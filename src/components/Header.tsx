@@ -6,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, Globe, Sparkles } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 
 const languages: { code: Language; flag: string; name: string }[] = [
@@ -32,31 +32,12 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50 overflow-hidden">
-      {/* New Year Decorations */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full">
-          {/* Snowflakes */}
-          <span className="absolute top-2 left-[5%] text-lg opacity-60 animate-pulse">❄️</span>
-          <span className="absolute top-1 left-[15%] text-sm opacity-40 animate-pulse" style={{ animationDelay: '0.5s' }}>✨</span>
-          <span className="absolute top-3 left-[25%] text-xs opacity-50 animate-pulse" style={{ animationDelay: '1s' }}>❄️</span>
-          <span className="absolute top-1 left-[35%] text-lg opacity-30 animate-pulse" style={{ animationDelay: '0.3s' }}>🎄</span>
-          <span className="absolute top-2 left-[85%] text-sm opacity-50 animate-pulse" style={{ animationDelay: '0.7s' }}>❄️</span>
-          <span className="absolute top-1 left-[75%] text-lg opacity-40 animate-pulse" style={{ animationDelay: '1.2s' }}>✨</span>
-          <span className="absolute top-3 left-[95%] text-xs opacity-60 animate-pulse" style={{ animationDelay: '0.2s' }}>🎉</span>
-          <span className="absolute top-2 right-[5%] text-sm opacity-50 animate-pulse" style={{ animationDelay: '0.9s' }}>🎊</span>
-        </div>
-      </div>
-      
-      <div className="container mx-auto px-4 relative">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo with New Year badge */}
-          <a href="#" className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-yellow-400 animate-pulse" />
+          {/* Logo */}
+          <a href="#" className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             AI Byte Consult
-            <span className="text-xs bg-gradient-to-r from-yellow-400 to-orange-500 text-background px-2 py-0.5 rounded-full font-semibold animate-pulse">
-              2026
-            </span>
           </a>
 
           {/* Desktop Navigation */}
