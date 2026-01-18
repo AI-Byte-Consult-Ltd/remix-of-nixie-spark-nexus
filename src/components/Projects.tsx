@@ -1,11 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import restaurantImg from "@/assets/project-restaurant.jpg";
-import logisticsImg from "@/assets/project-logistics.jpg";
-import hotelImg from "@/assets/project-hotel.jpg";
-import nftImg from "@/assets/project-nft.jpg";
-import clinicImg from "@/assets/project-clinic.jpg";
-import retailImg from "@/assets/project-retail.jpg";
+import restaurantImg from "@/assets/project-restaurant-new.jpg";
+import logisticsImg from "@/assets/project-logistics-new.jpg";
+import hotelImg from "@/assets/project-hotel-new.jpg";
+import nftImg from "@/assets/project-nft-new.jpg";
+import clinicImg from "@/assets/project-clinic-new.jpg";
+import retailImg from "@/assets/project-retail-new.jpg";
 
 const projects = [
   {
