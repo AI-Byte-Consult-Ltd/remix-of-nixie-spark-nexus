@@ -179,7 +179,7 @@ const SCIProducts = () => {
                       transition-all duration-300
                     `}
                   >
-                    Pay with Revolut
+                    Get Started
                     <ArrowUpRight className="w-5 h-5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </a>
                 </div>
