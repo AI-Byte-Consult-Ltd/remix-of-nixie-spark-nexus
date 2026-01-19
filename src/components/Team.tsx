@@ -16,7 +16,7 @@ const team = [
     role: "Co-Founder & Product Director",
     bio: "Focuses on automation systems, client solutions, and creative ecosystem design. Passionate about turning complex tech into simple solutions.",
     image: johnImg,
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/alekstoch",
   },
 ];
 
