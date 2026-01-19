@@ -23,7 +23,7 @@ const SCIProducts = () => {
       ],
       gradient: "from-cyan-500 via-blue-500 to-purple-500",
       glowColor: "shadow-cyan-500/50",
-      paymentLink: "https://revolut.me/sci-lite",
+      paymentLink: "https://checkout.revolut.com/pay/bfc39f6d-b7ab-40a3-a42a-b161d5515aa1",
     },
     {
       icon: Bot,
@@ -46,7 +46,7 @@ const SCIProducts = () => {
       gradient: "from-purple-500 via-pink-500 to-rose-500",
       glowColor: "shadow-purple-500/50",
       popular: true,
-      paymentLink: "https://revolut.me/sci-smart",
+      paymentLink: "https://checkout.revolut.com/pay/96646897-cc38-46b8-b127-4ff669334d68",
     },
     {
       icon: BrainCircuit,
@@ -70,7 +70,7 @@ const SCIProducts = () => {
       ],
       gradient: "from-emerald-500 via-teal-500 to-cyan-500",
       glowColor: "shadow-emerald-500/50",
-      paymentLink: "https://revolut.me/sci-pro",
+      paymentLink: "https://checkout.revolut.com/pay/844029e5-8718-443a-82e4-d979f5a211a6",
     },
   ];
 
