@@ -23,6 +23,7 @@ const SCIProducts = () => {
       ],
       gradient: "from-cyan-500 via-blue-500 to-purple-500",
       glowColor: "shadow-cyan-500/50",
+      paymentLink: "https://revolut.me/sci-lite",
     },
     {
       icon: Bot,
@@ -45,6 +46,7 @@ const SCIProducts = () => {
       gradient: "from-purple-500 via-pink-500 to-rose-500",
       glowColor: "shadow-purple-500/50",
       popular: true,
+      paymentLink: "https://revolut.me/sci-smart",
     },
     {
       icon: BrainCircuit,
@@ -68,6 +70,7 @@ const SCIProducts = () => {
       ],
       gradient: "from-emerald-500 via-teal-500 to-cyan-500",
       glowColor: "shadow-emerald-500/50",
+      paymentLink: "https://revolut.me/sci-pro",
     },
   ];
 
@@ -163,7 +166,9 @@ const SCIProducts = () => {
 
                   {/* Button */}
                   <a
-                    href="#contact"
+                    href={product.paymentLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`
                       group/btn relative w-full flex items-center justify-center gap-2 
                       px-6 py-4 rounded-xl font-semibold text-lg
@@ -174,7 +179,7 @@ const SCIProducts = () => {
                       transition-all duration-300
                     `}
                   >
-                    Get Started
+                    Pay with Revolut
                     <ArrowUpRight className="w-5 h-5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </a>
                 </div>
