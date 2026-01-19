@@ -7,14 +7,16 @@ const team = [
   {
     name: "Alexander Lunin",
     role: "Co-Founder & AI Architect",
-    bio: "Leads AI architecture and Web3 integrations across the Nixie Ecosystem. Over 15 years of experience in cutting-edge technology.",
-    image: johnImg,
+    bio: "Leads AI architecture and Web3 integrations across the NICS AI Ecosystem. Over 15 years of experience in cutting-edge technology.",
+    image: alexImg,
+    linkedin: "https://www.linkedin.com/in/luntick",
   },
   {
     name: "Aleksandr Tochilov",
     role: "Co-Founder & Product Director",
     bio: "Focuses on automation systems, client solutions, and creative ecosystem design. Passionate about turning complex tech into simple solutions.",
-    image: alexImg,
+    image: johnImg,
+    linkedin: "",
   },
 ];
 
@@ -57,11 +59,18 @@ const Team = () => {
                 <p className="text-muted-foreground text-center leading-relaxed">
                   {member.bio}
                 </p>
-                <div className="flex justify-center pt-4">
-                  <button className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors group/btn">
-                    <Linkedin className="w-5 h-5 text-primary group-hover/btn:scale-110 transition-transform" />
-                  </button>
-                </div>
+                {member.linkedin && (
+                  <div className="flex justify-center pt-4">
+                    <a 
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors group/btn"
+                    >
+                      <Linkedin className="w-5 h-5 text-primary group-hover/btn:scale-110 transition-transform" />
+                    </a>
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
