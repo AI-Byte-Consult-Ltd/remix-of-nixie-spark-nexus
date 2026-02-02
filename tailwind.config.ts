@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif'],
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -50,22 +50,27 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        neon: {
-          blue: "hsl(var(--neon-blue))",
-          purple: "hsl(var(--electric-purple))",
-          cyan: "hsl(var(--cyber-cyan))",
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          light: "hsl(var(--gold-light))",
+          dark: "hsl(var(--gold-dark))",
         },
       },
       backgroundImage: {
         'gradient-hero': 'var(--gradient-hero)',
         'gradient-card': 'var(--gradient-card)',
-        'gradient-glow': 'var(--gradient-glow)',
-        'gradient-purple-glow': 'var(--gradient-purple-glow)',
+        'gradient-gold': 'var(--gradient-gold)',
+        'gradient-subtle': 'var(--gradient-subtle)',
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        'gold': 'var(--gold-shadow)',
+        'card': 'var(--card-shadow)',
+        'hover': 'var(--hover-shadow)',
       },
       keyframes: {
         "accordion-down": {

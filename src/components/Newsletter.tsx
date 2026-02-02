@@ -13,13 +13,12 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-purple-glow opacity-30" />
+    <section className="py-24 relative overflow-hidden bg-background">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="glass-card p-12 rounded-2xl space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-              Stay Updated
+          <div className="bg-card p-12 rounded-3xl space-y-6 border border-border/50 shadow-card">
+            <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
+              Stay <span className="text-gradient-gold">Updated</span>
             </h2>
             <p className="text-lg text-muted-foreground">
               Join our innovation updates and be the first to know about new features and insights
@@ -31,12 +30,12 @@ const Newsletter = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your.email@example.com"
                 required
-                className="flex-1 bg-background/50 border-primary/20 focus:border-primary"
+                className="flex-1 bg-background border-border focus:border-primary rounded-full px-6"
               />
               <Button 
                 type="submit"
                 size="lg"
-                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold purple-glow"
+                className="bg-foreground hover:bg-foreground/90 text-background font-medium rounded-full px-8"
               >
                 Subscribe
               </Button>

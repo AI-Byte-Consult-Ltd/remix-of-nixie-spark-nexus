@@ -21,26 +21,26 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-24 relative">
+    <section className="py-24 relative bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Trusted by Innovators
+          <h2 className="text-4xl md:text-5xl font-semibold text-foreground">
+            Trusted by <span className="text-gradient-gold">Innovators</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             See what our clients say about working with us
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="glass-card group hover:scale-105 transition-all duration-300 border-primary/20 hover:border-primary/50"
+              className="card-hover bg-card border-border/50 hover:border-primary/30"
             >
               <CardContent className="pt-6 space-y-4">
-                <Quote className="w-10 h-10 text-primary opacity-50 group-hover:opacity-100 transition-opacity" />
-                <p className="text-foreground/90 leading-relaxed italic">
+                <Quote className="w-10 h-10 text-primary/30" />
+                <p className="text-foreground/80 leading-relaxed">
                   "{testimonial.quote}"
                 </p>
                 <div className="pt-4 border-t border-border">

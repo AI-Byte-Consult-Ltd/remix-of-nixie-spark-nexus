@@ -48,34 +48,33 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-glow opacity-30" />
+    <section id="projects" className="py-24 relative overflow-hidden bg-muted/30">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-            Our Work in Action
+          <h2 className="text-4xl md:text-5xl font-semibold text-foreground">
+            Our Work in <span className="text-gradient-gold">Action</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Real solutions delivering measurable results for forward-thinking businesses
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <Card 
               key={index}
-              className="glass-card group overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-primary/20 hover:border-secondary/50"
+              className="group card-hover overflow-hidden bg-card border-border/50 hover:border-primary/30"
             >
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-60" />
               </div>
               <CardHeader>
-                <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                   {project.title}
                 </CardTitle>
                 <CardDescription className="text-sm text-muted-foreground leading-relaxed">
@@ -88,7 +87,7 @@ const Projects = () => {
                     <Badge 
                       key={tagIndex} 
                       variant="secondary"
-                      className="bg-secondary/20 text-secondary-foreground border-secondary/30"
+                      className="bg-accent text-accent-foreground border-border/50"
                     >
                       {tag}
                     </Badge>

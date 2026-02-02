@@ -21,8 +21,6 @@ const SCIProducts = () => {
         "Easy embed on any website",
         "Basic analytics dashboard",
       ],
-      gradient: "from-cyan-500 via-blue-500 to-purple-500",
-      glowColor: "shadow-cyan-500/50",
       paymentLink: "https://checkout.revolut.com/pay/bfc39f6d-b7ab-40a3-a42a-b161d5515aa1",
     },
     {
@@ -43,8 +41,6 @@ const SCIProducts = () => {
         "Custom response training",
         "Advanced analytics & insights",
       ],
-      gradient: "from-purple-500 via-pink-500 to-rose-500",
-      glowColor: "shadow-purple-500/50",
       popular: true,
       paymentLink: "https://checkout.revolut.com/pay/96646897-cc38-46b8-b127-4ff669334d68",
     },
@@ -68,30 +64,21 @@ const SCIProducts = () => {
         "Dedicated support & training",
         "API access for custom integrations",
       ],
-      gradient: "from-emerald-500 via-teal-500 to-cyan-500",
-      glowColor: "shadow-emerald-500/50",
       paymentLink: "https://checkout.revolut.com/pay/844029e5-8718-443a-82e4-d979f5a211a6",
     },
   ];
 
   return (
-    <section id="sci-products" className="py-24 relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-glow opacity-30" />
-      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl" />
-
+    <section id="sci-products" className="py-24 relative overflow-hidden bg-background">
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20 mb-6">
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">Smart Client Interface</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
-              Smart Client Interface (SCI)
-            </span>
+          <h2 className="text-4xl md:text-5xl font-semibold mb-6 text-foreground">
+            Smart Client <span className="text-gradient-gold">Interface (SCI)</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             From static websites to living client conversations. Transform how your business communicates with intelligent AI-powered interfaces.
@@ -99,7 +86,7 @@ const SCIProducts = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {products.map((product, index) => (
             <div
               key={index}
@@ -108,49 +95,44 @@ const SCIProducts = () => {
             >
               {/* Popular badge */}
               {product.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
-                  <div className={`px-4 py-1 rounded-full bg-gradient-to-r ${product.gradient} text-white text-sm font-semibold shadow-lg`}>
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
+                  <div className="px-4 py-1 rounded-full bg-foreground text-background text-sm font-medium shadow-lg">
                     Most Popular
                   </div>
                 </div>
               )}
 
               {/* Card */}
-              <div className={`relative h-full glass-card rounded-3xl p-8 border ${product.popular ? 'border-primary/50' : 'border-border/50'} hover:border-primary/50 transition-all duration-500 overflow-hidden`}>
-                {/* Gradient overlay on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                
+              <div className={`relative h-full bg-card rounded-3xl p-8 border ${product.popular ? 'border-primary/50 shadow-gold' : 'border-border/50'} card-hover overflow-hidden`}>
                 {/* Icon */}
-                <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${product.gradient} p-[1px] mb-6`}>
-                  <div className="w-full h-full rounded-2xl bg-background flex items-center justify-center">
-                    <product.icon className="w-8 h-8 text-primary" />
-                  </div>
+                <div className="w-14 h-14 rounded-2xl bg-gradient-gold flex items-center justify-center mb-6">
+                  <product.icon className="w-7 h-7 text-white" />
                 </div>
 
                 {/* Content */}
                 <div className="relative">
-                  <h3 className="text-2xl font-bold mb-1 text-foreground">{product.title}</h3>
+                  <h3 className="text-2xl font-semibold mb-1 text-foreground">{product.title}</h3>
                   <p className="text-sm text-muted-foreground mb-2">{product.subtitle}</p>
-                  <p className={`text-sm font-medium bg-gradient-to-r ${product.gradient} bg-clip-text text-transparent mb-4`}>
+                  <p className="text-sm font-medium text-primary mb-4">
                     {product.tagline}
                   </p>
                   
                   {/* Pricing */}
-                  <div className="mb-6 p-4 rounded-xl bg-muted/30 border border-border/50">
+                  <div className="mb-6 p-4 rounded-2xl bg-muted/50 border border-border/50">
                     <div className="flex items-baseline gap-2 mb-1">
-                      <span className={`text-3xl font-bold bg-gradient-to-r ${product.gradient} bg-clip-text text-transparent`}>
+                      <span className="text-3xl font-semibold text-gradient-gold">
                         {product.oneTimePrice}
                       </span>
                       <span className="text-muted-foreground">one-time</span>
                     </div>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-lg font-semibold text-foreground">+ {product.monthlyPrice}</span>
+                      <span className="text-lg font-medium text-foreground">+ {product.monthlyPrice}</span>
                       <span className="text-muted-foreground">/month</span>
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="text-foreground/80 mb-6 leading-relaxed text-sm">
+                  <p className="text-foreground/70 mb-6 leading-relaxed text-sm">
                     {product.description}
                   </p>
 
@@ -158,7 +140,7 @@ const SCIProducts = () => {
                   <ul className="space-y-2 mb-8">
                     {product.features.map((feature, fIndex) => (
                       <li key={fIndex} className="flex items-start gap-3 text-sm text-foreground/70">
-                        <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 text-primary`} />
+                        <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -169,15 +151,7 @@ const SCIProducts = () => {
                     href={product.paymentLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`
-                      group/btn relative w-full flex items-center justify-center gap-2 
-                      px-6 py-4 rounded-xl font-semibold text-lg
-                      bg-gradient-to-r ${product.gradient} 
-                      text-white shadow-lg ${product.glowColor}
-                      hover:shadow-xl hover:scale-[1.02] 
-                      active:scale-[0.98]
-                      transition-all duration-300
-                    `}
+                    className="group/btn relative w-full flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium text-lg bg-foreground text-background hover:bg-foreground/90 transition-all duration-300"
                   >
                     Get Started
                     <ArrowUpRight className="w-5 h-5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />

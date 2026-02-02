@@ -22,27 +22,26 @@ const team = [
 
 const Team = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-purple-glow opacity-30" />
+    <section className="py-24 relative overflow-hidden bg-background">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-            Meet the Founders
+          <h2 className="text-4xl md:text-5xl font-semibold text-foreground">
+            Meet the <span className="text-gradient-gold">Founders</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             The visionaries behind AI Byte Consult Ltd.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {team.map((member, index) => (
             <Card 
               key={index}
-              className="glass-card group hover:scale-105 transition-all duration-300 border-primary/20 hover:border-secondary/50"
+              className="card-hover bg-card border-border/50 hover:border-primary/30"
             >
               <CardHeader className="text-center">
                 <div className="mx-auto mb-6 relative">
-                  <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-primary/30 group-hover:border-primary transition-all duration-300 neon-glow">
+                  <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-primary/20 shadow-gold">
                     <img 
                       src={member.image} 
                       alt={member.name}
@@ -50,7 +49,7 @@ const Team = () => {
                     />
                   </div>
                 </div>
-                <CardTitle className="text-2xl font-bold text-foreground">{member.name}</CardTitle>
+                <CardTitle className="text-2xl font-semibold text-foreground">{member.name}</CardTitle>
                 <CardDescription className="text-primary font-medium text-lg">
                   {member.role}
                 </CardDescription>
@@ -65,7 +64,7 @@ const Team = () => {
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors group/btn"
+                      className="p-3 rounded-full bg-accent hover:bg-primary/10 transition-colors group/btn"
                     >
                       <Linkedin className="w-5 h-5 text-primary group-hover/btn:scale-110 transition-transform" />
                     </a>

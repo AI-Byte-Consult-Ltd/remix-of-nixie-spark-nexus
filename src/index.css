@@ -2,62 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Apple-inspired Light Design System with Gold Accents
+   Clean, minimalist, elegant typography with warm gold highlights
 */
 
 @layer base {
   :root {
-    --background: 240 10% 4%;
-    --foreground: 200 100% 95%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
 
-    --card: 240 8% 8%;
-    --card-foreground: 200 100% 95%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 10%;
 
-    --popover: 240 10% 6%;
-    --popover-foreground: 200 100% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 193 100% 50%;
-    --primary-foreground: 240 10% 4%;
+    --primary: 38 90% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 271 76% 67%;
-    --secondary-foreground: 240 10% 4%;
+    --secondary: 38 40% 90%;
+    --secondary-foreground: 38 80% 30%;
 
-    --muted: 240 6% 20%;
-    --muted-foreground: 200 20% 65%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 193 100% 50%;
-    --accent-foreground: 240 10% 4%;
+    --accent: 38 60% 95%;
+    --accent-foreground: 38 80% 30%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 200 100% 95%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 240 8% 15%;
-    --input: 240 8% 15%;
-    --ring: 193 100% 50%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 38 90% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Custom design tokens */
-    --neon-blue: 193 100% 50%;
-    --electric-purple: 271 76% 67%;
-    --deep-black: 240 10% 4%;
-    --cyber-cyan: 180 100% 50%;
+    /* Custom design tokens - Apple-inspired with Gold */
+    --gold: 38 90% 50%;
+    --gold-light: 38 80% 70%;
+    --gold-dark: 38 90% 40%;
+    --warm-white: 40 20% 98%;
+    --soft-gray: 0 0% 96%;
+    --text-primary: 0 0% 10%;
+    --text-secondary: 0 0% 45%;
     
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--deep-black)) 0%, hsl(240 20% 10%) 50%, hsl(271 50% 15%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(240 8% 8% / 0.6) 0%, hsl(240 8% 12% / 0.4) 100%);
-    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(var(--neon-blue) / 0.15) 0%, transparent 70%);
-    --gradient-purple-glow: radial-gradient(circle at 50% 0%, hsl(var(--electric-purple) / 0.15) 0%, transparent 70%);
+    /* Gradients - Subtle and elegant */
+    --gradient-hero: linear-gradient(180deg, hsl(var(--warm-white)) 0%, hsl(0 0% 100%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(var(--soft-gray)) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--gold-light)) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--soft-gray)) 0%, hsl(0 0% 100%) 100%);
     
-    /* Effects */
-    --glass-bg: hsl(240 8% 10% / 0.6);
-    --glass-border: hsl(200 100% 50% / 0.2);
-    --neon-shadow: 0 0 20px hsl(var(--neon-blue) / 0.5), 0 0 40px hsl(var(--neon-blue) / 0.3);
-    --purple-shadow: 0 0 20px hsl(var(--electric-purple) / 0.5), 0 0 40px hsl(var(--electric-purple) / 0.3);
+    /* Effects - Clean and minimal */
+    --glass-bg: hsl(0 0% 100% / 0.8);
+    --glass-border: hsl(0 0% 0% / 0.05);
+    --gold-shadow: 0 4px 20px hsl(var(--gold) / 0.15);
+    --card-shadow: 0 2px 12px hsl(0 0% 0% / 0.06);
+    --hover-shadow: 0 8px 30px hsl(0 0% 0% / 0.1);
     
     /* Transitions */
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -67,7 +71,8 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-poppins;
+    @apply bg-background text-foreground antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-feature-settings: "kern" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -76,30 +81,49 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
 }
 
 @layer utilities {
   .glass-card {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--card-shadow);
   }
 
-  .neon-glow {
-    box-shadow: var(--neon-shadow);
+  .gold-glow {
+    box-shadow: var(--gold-shadow);
   }
 
-  .purple-glow {
-    box-shadow: var(--purple-shadow);
+  .card-hover {
+    transition: var(--transition-smooth);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--hover-shadow);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(var(--gold-dark)) 0%, hsl(var(--gold)) 50%, hsl(var(--gold-light)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
 
-  .animate-glow {
-    animation: glow 2s ease-in-out infinite alternate;
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
   }
 
   @keyframes float {
@@ -107,16 +131,29 @@ All colors MUST be HSL.
       transform: translateY(0px);
     }
     50% {
-      transform: translateY(-20px);
+      transform: translateY(-10px);
     }
   }
 
-  @keyframes glow {
+  @keyframes fadeIn {
     from {
-      filter: drop-shadow(0 0 10px hsl(var(--neon-blue) / 0.5));
+      opacity: 0;
+      transform: translateY(20px);
     }
     to {
-      filter: drop-shadow(0 0 20px hsl(var(--neon-blue) / 0.8));
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
+
+  /* Smooth section transitions */
+  section {
+    position: relative;
+  }
+
+  /* Apple-style subtle dividers */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--border)) 50%, transparent 100%);
   }
 }
