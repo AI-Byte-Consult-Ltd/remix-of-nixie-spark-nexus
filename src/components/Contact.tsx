@@ -13,7 +13,6 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
     toast.success("Message sent! We'll get back to you soon.");
     setFormData({ name: "", email: "", message: "" });
   };
@@ -26,20 +25,19 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-glow opacity-50" />
+    <section id="contact" className="py-24 relative overflow-hidden bg-muted/30">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Get in Touch
+            <h2 className="text-4xl md:text-5xl font-semibold text-foreground">
+              Get in <span className="text-gradient-gold">Touch</span>
             </h2>
             <p className="text-lg text-muted-foreground">
               Let's build the future of automation together
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 glass-card p-8 rounded-2xl">
+          <form onSubmit={handleSubmit} className="space-y-6 bg-card p-8 rounded-3xl border border-border/50 shadow-card">
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-medium text-foreground">
                 Name
@@ -51,7 +49,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 placeholder="Your name"
-                className="bg-background/50 border-primary/20 focus:border-primary"
+                className="bg-background border-border focus:border-primary rounded-xl"
               />
             </div>
 
@@ -67,7 +65,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 placeholder="your.email@example.com"
-                className="bg-background/50 border-primary/20 focus:border-primary"
+                className="bg-background border-border focus:border-primary rounded-xl"
               />
             </div>
 
@@ -83,14 +81,14 @@ const Contact = () => {
                 required
                 placeholder="Tell us about your project..."
                 rows={6}
-                className="bg-background/50 border-primary/20 focus:border-primary resize-none"
+                className="bg-background border-border focus:border-primary resize-none rounded-xl"
               />
             </div>
 
             <Button 
               type="submit"
               size="lg"
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold neon-glow"
+              className="w-full bg-foreground hover:bg-foreground/90 text-background font-medium rounded-full"
             >
               Send Message
             </Button>

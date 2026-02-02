@@ -80,7 +80,7 @@ const getStatusBadge = (status: EcosystemItem["status"]) => {
   switch (status) {
     case "alpha":
       return (
-        <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
+        <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
           Alpha
         </Badge>
       );
@@ -92,7 +92,7 @@ const getStatusBadge = (status: EcosystemItem["status"]) => {
       );
     case "live":
       return (
-        <Badge variant="secondary" className="bg-green-500/20 text-green-400 border-green-500/30">
+        <Badge variant="secondary" className="bg-green-500/10 text-green-600 border-green-500/20">
           Live
         </Badge>
       );
@@ -101,18 +101,18 @@ const getStatusBadge = (status: EcosystemItem["status"]) => {
 
 const Ecosystem = () => {
   return (
-    <section id="ecosystem" className="py-24 relative">
+    <section id="ecosystem" className="py-24 relative bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Our Ecosystem
+          <h2 className="text-4xl md:text-5xl font-semibold text-foreground">
+            Our <span className="text-gradient-gold">Ecosystem</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             A comprehensive suite of AI-powered solutions for the modern digital economy
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {ecosystems.map((ecosystem, index) => {
             const Icon = ecosystem.icon;
             const CardWrapper = ecosystem.link ? "a" : "div";
@@ -127,14 +127,14 @@ const Ecosystem = () => {
             return (
               <CardWrapper key={index} {...cardProps} className="block">
                 <Card
-                  className={`glass-card group hover:scale-105 transition-all duration-300 cursor-pointer border-primary/20 hover:border-primary/50 h-full ${
+                  className={`group card-hover bg-card border-border/50 hover:border-primary/30 h-full ${
                     ecosystem.link ? "" : "cursor-default"
                   }`}
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between gap-4">
-                      <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-4 group-hover:animate-float flex-shrink-0">
-                        <Icon className="w-8 h-8 text-primary-foreground" />
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-gold flex items-center justify-center mb-4 flex-shrink-0">
+                        <Icon className="w-7 h-7 text-white" />
                       </div>
                       <div className="flex items-center gap-2">
                         {getStatusBadge(ecosystem.status)}
@@ -143,7 +143,7 @@ const Ecosystem = () => {
                         )}
                       </div>
                     </div>
-                    <CardTitle className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                    <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                       {ecosystem.title}
                     </CardTitle>
                   </CardHeader>
