@@ -1,6 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Building2, Scale, Languages, Palette, Shield, Bot, Briefcase, Home } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-microscheme.jpg";
+
+const businessSectors = [
+  { icon: Bot, label: "AI Development" },
+  { icon: Briefcase, label: "Business Automation" },
+  { icon: Building2, label: "Real Estate" },
+  { icon: Languages, label: "Translation & Legalisation" },
+  { icon: Scale, label: "Law Consulting" },
+  { icon: Shield, label: "Insurance" },
+  { icon: Home, label: "Company Registration" },
+  { icon: Palette, label: "3D Design & Furnishings" },
+];
 
 const Hero = () => {
   const scrollToEcosystem = () => {
@@ -20,24 +32,41 @@ const Hero = () => {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
               <span className="w-2 h-2 rounded-full bg-primary" />
-              <span className="text-sm font-medium text-primary">A Global AI Technology Company</span>
+              <span className="text-sm font-medium text-primary">A Global Multi-Sector Technology Company</span>
             </div>
 
             {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1] text-foreground">
-              Intelligent Systems{" "}
+              One Company.{" "}
               <span className="text-gradient-gold">
-                designed and built
-              </span>{" "}
-              for Business
+                Infinite Possibilities.
+              </span>
             </h1>
+
+            {/* Slogan */}
+            <p className="text-xl md:text-2xl font-medium text-primary italic">
+              "Empowering Tomorrow, Today"
+            </p>
 
             {/* Description */}
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
-              AI Byte Consult Ltd specializes in AI development and business automation. 
-              We create scalable solutions for enterprises, hospitality, healthcare, 
-              logistics, and research.
+              AI Byte Consult Ltd is a diversified holding company operating across multiple industries — 
+              from cutting-edge AI development and business automation to real estate, legal services, 
+              insurance, and creative 3D design solutions.
             </p>
+
+            {/* Business Sectors Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-4">
+              {businessSectors.map((sector, index) => (
+                <div 
+                  key={index}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-muted/50 border border-border/50 hover:border-primary/30 hover:bg-accent/50 transition-all duration-300"
+                >
+                  <sector.icon className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-xs font-medium text-foreground truncate">{sector.label}</span>
+                </div>
+              ))}
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
@@ -49,29 +78,30 @@ const Hero = () => {
                 Explore Ecosystem
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="font-medium text-base px-8 py-6 rounded-full border-2 border-border hover:border-foreground/20 hover:bg-muted/50 transition-all duration-300"
-              >
-                Contact Us
-              </Button>
+              <Link to="/about">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="font-medium text-base px-8 py-6 rounded-full border-2 border-border hover:border-foreground/20 hover:bg-muted/50 transition-all duration-300 w-full sm:w-auto"
+                >
+                  About Us
+                </Button>
+              </Link>
             </div>
 
             {/* Trust badges */}
             <div className="flex flex-wrap gap-6 pt-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Check className="w-5 h-5 text-primary" />
-                <span>AI-Powered</span>
+                <span>Since 2011</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-5 h-5 text-primary" />
-                <span>Blockchain Ready</span>
+                <span>Multi-Industry</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-5 h-5 text-primary" />
-                <span>Enterprise Grade</span>
+                <span>Global Reach</span>
               </div>
             </div>
           </div>
@@ -88,14 +118,14 @@ const Hero = () => {
 
               {/* Floating stats card */}
               <div className="hidden sm:block absolute -bottom-4 -left-4 bg-background p-4 rounded-2xl shadow-card border border-border animate-float">
-                <div className="text-2xl font-semibold text-gradient-gold">10+</div>
-                <div className="text-sm text-muted-foreground">Years Experience</div>
+                <div className="text-2xl font-semibold text-gradient-gold">8+</div>
+                <div className="text-sm text-muted-foreground">Business Sectors</div>
               </div>
 
               {/* Floating tech card */}
               <div className="hidden sm:block absolute -top-4 -right-4 bg-background p-4 rounded-2xl shadow-card border border-border animate-float" style={{ animationDelay: "1s" }}>
-                <div className="text-2xl font-semibold text-gradient-gold">AI</div>
-                <div className="text-sm text-muted-foreground">Powered Solutions</div>
+                <div className="text-2xl font-semibold text-gradient-gold">14+</div>
+                <div className="text-sm text-muted-foreground">Years Experience</div>
               </div>
             </div>
           </div>
