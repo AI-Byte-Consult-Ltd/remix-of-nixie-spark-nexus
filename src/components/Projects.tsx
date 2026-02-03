@@ -6,8 +6,15 @@ import hotelImg from "@/assets/project-hotel-new.jpg";
 import nftImg from "@/assets/project-nft-new.jpg";
 import clinicImg from "@/assets/project-clinic-new.jpg";
 import retailImg from "@/assets/project-retail-new.jpg";
+import realestateAiImg from "@/assets/project-realestate-ai.jpg";
 
 const projects = [
+  {
+    title: "EstateReply AI",
+    description: "24/7 automated email responses for real estate inquiries. AI agent handles property questions, schedules viewings, and sends detailed listings — no human needed.",
+    image: realestateAiImg,
+    tags: ["AI Agent", "Email Automation", "Real Estate", "24/7"],
+  },
   {
     title: "Restaurant Chain Automation",
     description: "Smart ordering and AI customer service for TasteWave Bistro. Increased efficiency by 150%.",
