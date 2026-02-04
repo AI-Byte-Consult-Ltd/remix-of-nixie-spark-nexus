@@ -36,7 +36,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">Services</h3>
             <ul className="space-y-2">
-              <li><Link to="/estate" className="text-muted-foreground hover:text-primary transition-colors">NICS Real Estate</Link></li>
+              <li><a href="https://estate.aibyteconsult.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Real Estate</a></li>
               <li><Link to="/insurance" className="text-muted-foreground hover:text-primary transition-colors">NICS Insurance</Link></li>
               <li><Link to="/translation" className="text-muted-foreground hover:text-primary transition-colors">NICS Translation</Link></li>
               <li><Link to="/furnishings" className="text-muted-foreground hover:text-primary transition-colors">NICS Furnishings</Link></li>
