@@ -16,6 +16,8 @@ const languages: { code: Language; flag: string; name: string }[] = [
   { code: "fr", flag: "🇫🇷", name: "Français" },
   { code: "ar", flag: "🇸🇦", name: "العربية" },
   { code: "zh", flag: "🇨🇳", name: "中文" },
+  { code: "pl", flag: "🇵🇱", name: "Polski" },
+  { code: "tr", flag: "🇹🇷", name: "Türkçe" },
 ];
 
 const nicsServices = [
