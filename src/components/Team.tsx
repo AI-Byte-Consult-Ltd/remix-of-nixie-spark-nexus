@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Linkedin } from "lucide-react";
-import johnImg from "@/assets/team-john.jpg";
+import johnImg from "@/assets/team-aleks.jpg";
 import alexImg from "@/assets/team-alex.jpg";
 
 const team = [
@@ -14,7 +14,7 @@ const team = [
   {
     name: "Aleksandr Tochilov",
     role: "Co-Founder & Product Director",
-    bio: "Focuses on automation systems, client solutions, and creative ecosystem design. Passionate about turning complex tech into simple solutions.",
+    bio: "Co-founder of AI Byte Consult | SaaS & MTS Engineer, Digital Project Manager, Graphic designer and more… | Charged with 60+ countries.",
     image: johnImg,
     linkedin: "https://www.linkedin.com/in/alekstoch",
   },
