@@ -19,10 +19,10 @@ const languages: { code: Language; flag: string; name: string }[] = [
 ];
 
 const nicsServices = [
-  { href: "/estate", label: "NICS Real Estate" },
-  { href: "/insurance", label: "NICS Insurance" },
-  { href: "/translation", label: "NICS Translation" },
-  { href: "/furnishings", label: "NICS Furnishings" },
+  { href: "https://estate.aibyteconsult.com", label: "NICS Real Estate", external: true },
+  { href: "/insurance", label: "NICS Insurance", external: false },
+  { href: "/translation", label: "NICS Translation", external: false },
+  { href: "/furnishings", label: "NICS Furnishings", external: false },
 ];
 
 const Header = () => {
@@ -73,21 +73,27 @@ const Header = () => {
 
             {/* Services Dropdown */}
             <DropdownMenu open={isServicesOpen} onOpenChange={setIsServicesOpen}>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="gap-1 text-muted-foreground hover:text-foreground rounded-full hover:bg-muted/50">
-                  Services
-                  <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
-                </Button>
+              <DropdownMenuTrigger className="inline-flex items-center justify-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground rounded-full hover:bg-muted/50 h-9 px-4 py-2">
+                Services
+                <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="w-48">
                 {nicsServices.map((service) => (
-                  <DropdownMenuItem key={service.href} asChild>
-                    <Link
-                      to={service.href}
-                      className="w-full cursor-pointer"
-                    >
-                      {service.label}
-                    </Link>
+                  <DropdownMenuItem key={service.href} className="cursor-pointer">
+                    {service.external ? (
+                      <a
+                        href={service.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full"
+                      >
+                        {service.label}
+                      </a>
+                    ) : (
+                      <Link to={service.href} className="w-full">
+                        {service.label}
+                      </Link>
+                    )}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -95,19 +101,16 @@ const Header = () => {
 
             {/* Language Selector */}
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="gap-2 ml-2 rounded-full hover:bg-muted/50">
-                  <Globe className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-lg">{currentLang?.flag}</span>
-                </Button>
+              <DropdownMenuTrigger className="inline-flex items-center justify-center gap-2 ml-2 rounded-full hover:bg-muted/50 h-9 px-3">
+                <Globe className="w-4 h-4 text-muted-foreground" />
+                <span className="text-lg">{currentLang?.flag}</span>
               </DropdownMenuTrigger>
               <DropdownMenuContent align={isRTL ? "start" : "end"}>
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => setLanguage(lang.code)}
+                    onSelect={() => setLanguage(lang.code)}
                     className={`gap-2 cursor-pointer ${language === lang.code ? "bg-accent" : ""}`}
-                    dir={lang.code === "ar" ? "rtl" : "ltr"}
                   >
                     <span className="text-lg">{lang.flag}</span>
                     <span>{lang.name}</span>
@@ -121,18 +124,15 @@ const Header = () => {
           <div className="flex md:hidden items-center gap-2">
             {/* Mobile Language Selector */}
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full">
-                  <span className="text-xl">{currentLang?.flag}</span>
-                </Button>
+              <DropdownMenuTrigger className="inline-flex items-center justify-center rounded-full h-10 w-10 hover:bg-muted/50">
+                <span className="text-xl">{currentLang?.flag}</span>
               </DropdownMenuTrigger>
               <DropdownMenuContent align={isRTL ? "start" : "end"}>
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => setLanguage(lang.code)}
+                    onSelect={() => setLanguage(lang.code)}
                     className={`gap-2 cursor-pointer ${language === lang.code ? "bg-accent" : ""}`}
-                    dir={lang.code === "ar" ? "rtl" : "ltr"}
                   >
                     <span className="text-lg">{lang.flag}</span>
                     <span>{lang.name}</span>
@@ -172,14 +172,27 @@ const Header = () => {
                 Services
               </div>
               {nicsServices.map((service) => (
-                <Link
-                  key={service.href}
-                  to={service.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors"
-                >
-                  {service.label}
-                </Link>
+                service.external ? (
+                  <a
+                    key={service.href}
+                    href={service.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors"
+                  >
+                    {service.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={service.href}
+                    to={service.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors"
+                  >
+                    {service.label}
+                  </Link>
+                )
               ))}
             </div>
           </nav>
