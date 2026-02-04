@@ -1,22 +1,59 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Linkedin } from "lucide-react";
-import johnImg from "@/assets/team-aleks.jpg";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Linkedin, Globe } from "lucide-react";
+
+import aleksImg from "@/assets/team-aleks.jpg";
 import alexImg from "@/assets/team-alex.jpg";
 
-const team = [
+// Placeholder image for the 3rd founder (replace later with IPFS link)
+import nicsFounderImg from "@/assets/nicsFounderImg.jpeg";
+
+type TeamMember = {
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+  link?: {
+    url: string;
+    type: "linkedin" | "website";
+  };
+};
+
+const team: TeamMember[] = [
   {
     name: "Alexander Lunin",
     role: "Co-Founder & AI Architect",
     bio: "Leads AI architecture and Web3 integrations across the NICS AI Ecosystem. Over 15 years of experience in cutting-edge technology.",
     image: alexImg,
-    linkedin: "https://www.linkedin.com/in/luntick",
+    link: {
+      url: "https://www.linkedin.com/in/luntick",
+      type: "linkedin",
+    },
   },
   {
     name: "Aleksandr Tochilov",
     role: "Co-Founder & Product Director",
     bio: "Co-founder of AI Byte Consult | SaaS & MTS Engineer, Digital Project Manager, Graphic designer and more… | Charged with 60+ countries.",
-    image: johnImg,
-    linkedin: "https://www.linkedin.com/in/alekstoch",
+    image: aleksImg,
+    link: {
+      url: "https://www.linkedin.com/in/alekstoch",
+      type: "linkedin",
+    },
+  },
+  {
+    name: "NICS AI Founder",
+    role: "Founder, NICS AI",
+    bio: "Founder of NICS AI. Driving the ecosystem strategy, AI product vision, and cross-platform innovation across the NICS AI Ecosystem.",
+    image: nicsFounderImg,
+    link: {
+      url: "https://nics.space",
+      type: "website",
+    },
   },
 ];
 
@@ -33,40 +70,50 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {team.map((member, index) => (
-            <Card 
+            <Card
               key={index}
               className="card-hover bg-card border-border/50 hover:border-primary/30"
             >
               <CardHeader className="text-center">
                 <div className="mx-auto mb-6 relative">
                   <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-primary/20 shadow-gold">
-                    <img 
-                      src={member.image} 
+                    <img
+                      src={member.image}
                       alt={member.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </div>
-                <CardTitle className="text-2xl font-semibold text-foreground">{member.name}</CardTitle>
+
+                <CardTitle className="text-2xl font-semibold text-foreground">
+                  {member.name}
+                </CardTitle>
                 <CardDescription className="text-primary font-medium text-lg">
                   {member.role}
                 </CardDescription>
               </CardHeader>
+
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground text-center leading-relaxed">
                   {member.bio}
                 </p>
-                {member.linkedin && (
+
+                {member.link && (
                   <div className="flex justify-center pt-4">
-                    <a 
-                      href={member.linkedin}
+                    <a
+                      href={member.link.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-3 rounded-full bg-accent hover:bg-primary/10 transition-colors group/btn"
+                      aria-label={member.link.type}
                     >
-                      <Linkedin className="w-5 h-5 text-primary group-hover/btn:scale-110 transition-transform" />
+                      {member.link.type === "linkedin" ? (
+                        <Linkedin className="w-5 h-5 text-primary group-hover/btn:scale-110 transition-transform" />
+                      ) : (
+                        <Globe className="w-5 h-5 text-primary group-hover/btn:scale-110 transition-transform" />
+                      )}
                     </a>
                   </div>
                 )}

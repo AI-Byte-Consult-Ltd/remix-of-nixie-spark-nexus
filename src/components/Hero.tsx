@@ -45,7 +45,7 @@ const Hero = () => {
 
             {/* Slogan */}
             <p className="text-xl md:text-2xl font-medium text-primary italic">
-              "Empowering Tomorrow, Today"
+              "Made in EU 🇪🇺 for the World 🗺️"
             </p>
 
             {/* Description */}
