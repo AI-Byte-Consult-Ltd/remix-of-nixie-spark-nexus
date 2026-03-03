@@ -9,6 +9,7 @@ import {
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Link, useLocation } from "react-router-dom";
+import logoImg from "@/assets/logo.jpeg";
 
 const languages: { code: Language; flag: string; name: string }[] = [
   { code: "en", flag: "🇬🇧", name: "English" },
@@ -56,8 +57,12 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="text-xl font-semibold text-foreground tracking-tight">
-            AI Byte Consult
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <img src={logoImg} alt="AI Byte Consult" className="h-9 w-9 rounded-lg object-cover" />
+            <span className="text-xl font-bold tracking-tight">
+              <span className="text-gradient-gold">AI Byte</span>
+              <span className="text-muted-foreground font-light ml-1.5 uppercase tracking-widest text-sm">Consult</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
