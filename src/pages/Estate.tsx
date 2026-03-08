@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, MapPin, TrendingUp, Shield, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
+import useSEO from "@/hooks/useSEO";
 
 const features = [
   {
