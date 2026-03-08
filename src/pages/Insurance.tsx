@@ -39,6 +39,12 @@ const benefits = [
 ];
 
 const Insurance = () => {
+  useSEO({
+    title: "NICS Insurance — AI-Powered Smart Insurance | AI Byte Consult",
+    description: "Smart insurance solutions with AI-powered risk assessment, instant claims processing, and personalized coverage for health, property, auto and business.",
+    canonical: "https://aibyteconsult.com/insurance",
+  });
+
   return (
     <main className="min-h-screen bg-background">
       <Header />

@@ -10,8 +10,15 @@ import Contact from "@/components/Contact";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import AIChatWidget from "@/components/AIChatWidget";
+import useSEO from "@/hooks/useSEO";
 
 const Index = () => {
+  useSEO({
+    title: "AI Byte Consult — European AI Consulting & Intelligent Systems",
+    description: "European AI consulting company building intelligent AI systems, agents, Web3 platforms and blockchain solutions for real-world business and research use cases.",
+    canonical: "https://aibyteconsult.com/",
+  });
+
   return (
     <main className="min-h-screen">
       <Header />

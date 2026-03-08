@@ -39,6 +39,12 @@ const benefits = [
 ];
 
 const Estate = () => {
+  useSEO({
+    title: "NICS Real Estate — AI-Powered Property Solutions | AI Byte Consult",
+    description: "Intelligent real estate solutions with AI-powered valuations, blockchain-secured transactions, and smart market analytics for property businesses.",
+    canonical: "https://aibyteconsult.com/estate",
+  });
+
   return (
     <main className="min-h-screen bg-background">
       <Header />

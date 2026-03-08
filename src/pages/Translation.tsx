@@ -44,6 +44,12 @@ const benefits = [
 ];
 
 const Translation = () => {
+  useSEO({
+    title: "NICS Translation & Legalisation — Certified Translation Services | AI Byte Consult",
+    description: "Professional certified translation and legalisation services in 50+ languages with AI-enhanced accuracy, apostille, and notarized translations.",
+    canonical: "https://aibyteconsult.com/translation",
+  });
+
   return (
     <main className="min-h-screen bg-background">
       <Header />
