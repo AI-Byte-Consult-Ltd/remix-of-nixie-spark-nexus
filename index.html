@@ -90,9 +90,12 @@
       content="https://ipfs.io/ipfs/bafybeifje6hchbtq3q22afe7xtmo3q2zvz64soen5nu34eaqple4wd6fqi"
     />
 
-    <!-- Favicon -->
+    <!-- Favicon & Manifest -->
     <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -101,8 +104,49 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/index-CsvyocO8.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CKGf9eCK.css">
+
+    <!-- Structured Data: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "AI Byte Consult Ltd",
+      "alternateName": "AI Byte Consult",
+      "url": "https://aibyteconsult.com",
+      "logo": "https://aibyteconsult.com/android-chrome-512x512.png",
+      "description": "European AI consulting company delivering custom AI systems, intelligent agents, Web3 platforms, and blockchain solutions.",
+      "foundingDate": "2011",
+      "email": "info@aibyteconsult.com",
+      "sameAs": [],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "GB"
+      },
+      "areaServed": "Worldwide",
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Web3",
+        "Blockchain",
+        "Business Automation",
+        "Real Estate Technology",
+        "Insurance Technology",
+        "Translation Services"
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: WebSite with SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "AI Byte Consult",
+      "url": "https://aibyteconsult.com"
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-Cpge8g10.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-fKzahIi-.css">
   </head>
 
   <body>
