@@ -108,9 +108,22 @@ const milestones = [
 
 const About = () => {
   useSEO({
-    title: "About AI Byte Consult — Our Mission, Vision & Business Divisions",
+    title: "About AI Byte Consult — Mission, Vision & Divisions",
     description: "Discover AI Byte Consult Ltd, a diversified holding company founded in 2011 with 8+ business divisions serving 50+ countries worldwide.",
     canonical: "https://aibyteconsult.com/about",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "About AI Byte Consult",
+      "url": "https://aibyteconsult.com/about",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "AI Byte Consult Ltd",
+        "foundingDate": "2011",
+        "numberOfEmployees": { "@type": "QuantitativeValue", "value": "50+" },
+        "areaServed": "Worldwide"
+      }
+    },
   });
 
   return (

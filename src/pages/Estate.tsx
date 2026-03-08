@@ -40,9 +40,17 @@ const benefits = [
 
 const Estate = () => {
   useSEO({
-    title: "NICS Real Estate — AI-Powered Property Solutions | AI Byte Consult",
+    title: "NICS Real Estate — AI Property Solutions | AI Byte Consult",
     description: "Intelligent real estate solutions with AI-powered valuations, blockchain-secured transactions, and smart market analytics for property businesses.",
     canonical: "https://aibyteconsult.com/estate",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "NICS Real Estate",
+      "provider": { "@type": "Organization", "name": "AI Byte Consult Ltd" },
+      "description": "AI-powered property management, valuation, and blockchain-secured transactions.",
+      "url": "https://aibyteconsult.com/estate"
+    },
   });
 
   return (

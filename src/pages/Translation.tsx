@@ -45,9 +45,17 @@ const benefits = [
 
 const Translation = () => {
   useSEO({
-    title: "NICS Translation & Legalisation — Certified Translation Services | AI Byte Consult",
+    title: "NICS Translation & Legalisation — Certified Services | AI Byte Consult",
     description: "Professional certified translation and legalisation services in 50+ languages with AI-enhanced accuracy, apostille, and notarized translations.",
     canonical: "https://aibyteconsult.com/translation",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "NICS Translation & Legalisation",
+      "provider": { "@type": "Organization", "name": "AI Byte Consult Ltd" },
+      "description": "Certified translation and legalisation services in 50+ languages.",
+      "url": "https://aibyteconsult.com/translation"
+    },
   });
 
   return (
