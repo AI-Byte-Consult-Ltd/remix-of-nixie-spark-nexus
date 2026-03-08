@@ -63,9 +63,17 @@ const benefits = [
 
 const Furnishings = () => {
   useSEO({
-    title: "NICS Furnishings — 3D Interior Design & Virtual Furnishing | AI Byte Consult",
+    title: "NICS Furnishings — 3D Interior Design | AI Byte Consult",
     description: "3D house projects and virtual furnishing platform. Visualize your dream home with photorealistic renderings and AI-powered interior design.",
     canonical: "https://aibyteconsult.com/furnishings",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "NICS Furnishings",
+      "provider": { "@type": "Organization", "name": "AI Byte Consult Ltd" },
+      "description": "3D house projects and virtual furnishing with AI-powered interior design.",
+      "url": "https://aibyteconsult.com/furnishings"
+    },
   });
 
   return (

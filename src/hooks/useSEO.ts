@@ -5,9 +5,11 @@ interface SEOProps {
   description: string;
   canonical?: string;
   ogImage?: string;
+  jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
 }
 
-const useSEO = ({ title, description, canonical, ogImage }: SEOProps) => {
+const useSEO = ({ title, description, canonical, ogImage, jsonLd, noindex }: SEOProps) => {
   useEffect(() => {
     document.title = title;
 
@@ -27,17 +29,48 @@ const useSEO = ({ title, description, canonical, ogImage }: SEOProps) => {
     setMeta("twitter:title", title, "name");
     setMeta("twitter:description", description, "name");
 
+    if (noindex) {
+      setMeta("robots", "noindex, nofollow");
+    } else {
+      setMeta("robots", "index, follow, max-image-preview:large");
+    }
+
     if (canonical) {
       setMeta("og:url", canonical, "property");
       let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-      if (link) link.href = canonical;
+      if (!link) {
+        link = document.createElement("link");
+        link.setAttribute("rel", "canonical");
+        document.head.appendChild(link);
+      }
+      link.href = canonical;
     }
 
     if (ogImage) {
       setMeta("og:image", ogImage, "property");
       setMeta("twitter:image", ogImage, "name");
     }
-  }, [title, description, canonical, ogImage]);
+
+    // JSON-LD structured data
+    const jsonLdId = "dynamic-jsonld";
+    let scriptEl = document.getElementById(jsonLdId) as HTMLScriptElement | null;
+    if (jsonLd) {
+      if (!scriptEl) {
+        scriptEl = document.createElement("script");
+        scriptEl.id = jsonLdId;
+        scriptEl.type = "application/ld+json";
+        document.head.appendChild(scriptEl);
+      }
+      scriptEl.textContent = JSON.stringify(jsonLd);
+    } else if (scriptEl) {
+      scriptEl.remove();
+    }
+
+    return () => {
+      const el = document.getElementById(jsonLdId);
+      if (el) el.remove();
+    };
+  }, [title, description, canonical, ogImage, jsonLd, noindex]);
 };
 
 export default useSEO;
