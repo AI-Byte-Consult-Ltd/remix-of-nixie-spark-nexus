@@ -15,10 +15,13 @@ const languages: { code: Language; flag: string; name: string }[] = [
   { code: "en", flag: "🇬🇧", name: "English" },
   { code: "de", flag: "🇩🇪", name: "Deutsch" },
   { code: "fr", flag: "🇫🇷", name: "Français" },
+  { code: "it", flag: "🇮🇹", name: "Italiano" },
   { code: "ar", flag: "🇸🇦", name: "العربية" },
   { code: "zh", flag: "🇨🇳", name: "中文" },
   { code: "pl", flag: "🇵🇱", name: "Polski" },
   { code: "tr", flag: "🇹🇷", name: "Türkçe" },
+  { code: "bg", flag: "🇧🇬", name: "Български" },
+  { code: "ru", flag: "🇷🇺", name: "Русский" },
 ];
 
 const nicsServices = [
