@@ -21,6 +21,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import useSEO from "@/hooks/useSEO";
 
 const businessDivisions = [
   {
@@ -106,6 +107,12 @@ const milestones = [
 ];
 
 const About = () => {
+  useSEO({
+    title: "About AI Byte Consult — Our Mission, Vision & Business Divisions",
+    description: "Discover AI Byte Consult Ltd, a diversified holding company founded in 2011 with 8+ business divisions serving 50+ countries worldwide.",
+    canonical: "https://aibyteconsult.com/about",
+  });
+
   return (
     <main className="min-h-screen bg-background">
       <Header />

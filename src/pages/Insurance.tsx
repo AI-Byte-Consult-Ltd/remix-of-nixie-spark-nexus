@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Heart, Car, Home, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
+import useSEO from "@/hooks/useSEO";
 
 const insuranceTypes = [
   {
@@ -38,6 +39,12 @@ const benefits = [
 ];
 
 const Insurance = () => {
+  useSEO({
+    title: "NICS Insurance — AI-Powered Smart Insurance | AI Byte Consult",
+    description: "Smart insurance solutions with AI-powered risk assessment, instant claims processing, and personalized coverage for health, property, auto and business.",
+    canonical: "https://aibyteconsult.com/insurance",
+  });
+
   return (
     <main className="min-h-screen bg-background">
       <Header />

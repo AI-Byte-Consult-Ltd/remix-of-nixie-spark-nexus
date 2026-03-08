@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Languages, FileCheck, Scale, Globe, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
+import useSEO from "@/hooks/useSEO";
 
 const services = [
   {
@@ -43,6 +44,12 @@ const benefits = [
 ];
 
 const Translation = () => {
+  useSEO({
+    title: "NICS Translation & Legalisation — Certified Translation Services | AI Byte Consult",
+    description: "Professional certified translation and legalisation services in 50+ languages with AI-enhanced accuracy, apostille, and notarized translations.",
+    canonical: "https://aibyteconsult.com/translation",
+  });
+
   return (
     <main className="min-h-screen bg-background">
       <Header />

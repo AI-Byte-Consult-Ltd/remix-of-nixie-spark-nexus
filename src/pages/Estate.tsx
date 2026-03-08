@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, MapPin, TrendingUp, Shield, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
+import useSEO from "@/hooks/useSEO";
 
 const features = [
   {
@@ -38,6 +39,12 @@ const benefits = [
 ];
 
 const Estate = () => {
+  useSEO({
+    title: "NICS Real Estate — AI-Powered Property Solutions | AI Byte Consult",
+    description: "Intelligent real estate solutions with AI-powered valuations, blockchain-secured transactions, and smart market analytics for property businesses.",
+    canonical: "https://aibyteconsult.com/estate",
+  });
+
   return (
     <main className="min-h-screen bg-background">
       <Header />

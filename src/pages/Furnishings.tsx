@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sofa, Home, Palette, Box, ArrowRight, Check, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
+import useSEO from "@/hooks/useSEO";
 
 const features = [
   {
@@ -61,6 +62,12 @@ const benefits = [
 ];
 
 const Furnishings = () => {
+  useSEO({
+    title: "NICS Furnishings — 3D Interior Design & Virtual Furnishing | AI Byte Consult",
+    description: "3D house projects and virtual furnishing platform. Visualize your dream home with photorealistic renderings and AI-powered interior design.",
+    canonical: "https://aibyteconsult.com/furnishings",
+  });
+
   return (
     <main className="min-h-screen bg-background">
       <Header />
