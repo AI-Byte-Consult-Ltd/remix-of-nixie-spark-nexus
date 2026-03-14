@@ -43,6 +43,7 @@ const Estate = () => {
     title: "NICS Real Estate — AI Property Solutions | AI Byte Consult",
     description: "Intelligent real estate solutions with AI-powered valuations, blockchain-secured transactions, and smart market analytics for property businesses.",
     canonical: "https://aibyteconsult.com/estate",
+    ogImage: "https://aibyteconsult.com/og-estate.jpg",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "Service",
