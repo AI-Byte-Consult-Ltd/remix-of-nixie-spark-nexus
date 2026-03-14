@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { subPageTranslations } from "./subPageTranslations";
 
 export type Language = "en" | "de" | "fr" | "ar" | "zh" | "pl" | "tr" | "it" | "bg" | "ru";
 
