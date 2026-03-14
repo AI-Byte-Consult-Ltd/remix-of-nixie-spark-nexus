@@ -3,110 +3,19 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
-  Building2, 
-  Bot, 
-  Briefcase, 
-  Languages, 
-  Scale, 
-  Shield, 
-  Home, 
-  Palette, 
-  Target, 
-  Eye, 
-  Heart,
-  Globe,
-  Users,
-  Award,
-  ArrowRight,
-  CheckCircle2
+  Building2, Bot, Briefcase, Languages, Scale, Shield, Home, Palette,
+  Target, Eye, Heart, Globe, Users, Award, ArrowRight, CheckCircle2
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import useSEO from "@/hooks/useSEO";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const businessDivisions = [
-  {
-    icon: Bot,
-    title: "AI Development",
-    description: "Cutting-edge artificial intelligence solutions including machine learning, natural language processing, computer vision, and intelligent automation systems for enterprise clients.",
-  },
-  {
-    icon: Briefcase,
-    title: "Business Automation",
-    description: "End-to-end workflow automation, CRM integration, process optimization, and digital transformation consulting to streamline operations and boost productivity.",
-  },
-  {
-    icon: Building2,
-    title: "NICS Real Estate",
-    description: "AI-powered property management, valuation services, investment analytics, and blockchain-secured transactions for residential and commercial real estate.",
-    link: "/estate",
-  },
-  {
-    icon: Languages,
-    title: "NICS Translation & Legalisation",
-    description: "Professional certified translation services in 50+ languages, document legalisation, apostille services, and notarized translations for official use.",
-    link: "/translation",
-  },
-  {
-    icon: Scale,
-    title: "Law Consulting",
-    description: "Corporate legal advisory, contract drafting and review, intellectual property protection, compliance consulting, and international business law expertise.",
-  },
-  {
-    icon: Shield,
-    title: "NICS Insurance",
-    description: "Comprehensive insurance solutions including property, liability, health, and business insurance with AI-driven risk assessment and claims processing.",
-    link: "/insurance",
-  },
-  {
-    icon: Home,
-    title: "Company & Trade Representative Registration",
-    description: "Full-service business registration, trade representative setup, corporate structuring, and ongoing compliance management across multiple jurisdictions.",
-  },
-  {
-    icon: Palette,
-    title: "NICS Furnishings & 3D Design",
-    description: "Innovative 3D visualization of houses and apartments, interior design projects, virtual staging, and complete furnishing solutions from concept to delivery.",
-    link: "/furnishings",
-  },
-];
-
-const companyValues = [
-  {
-    icon: Target,
-    title: "Mission",
-    description: "To empower businesses worldwide with innovative technology solutions and comprehensive professional services that drive growth, efficiency, and success.",
-  },
-  {
-    icon: Eye,
-    title: "Vision",
-    description: "To become the leading multi-sector technology and consulting conglomerate, recognized globally for excellence, innovation, and client-centric solutions.",
-  },
-  {
-    icon: Heart,
-    title: "Values",
-    description: "Integrity, innovation, excellence, and commitment to our clients' success guide every decision we make and every service we deliver.",
-  },
-];
-
-const companyStats = [
-  { value: "2011", label: "Founded" },
-  { value: "8+", label: "Business Divisions" },
-  { value: "50+", label: "Countries Served" },
-  { value: "500+", label: "Projects Delivered" },
-];
-
-const milestones = [
-  { year: "2011", event: "AI Byte Consult Ltd founded in the United Kingdom" },
-  { year: "2013", event: "Expanded into business automation and consulting services" },
-  { year: "2015", event: "Launched NICS Real Estate division" },
-  { year: "2017", event: "Established translation and legalisation services" },
-  { year: "2019", event: "Introduced AI-powered insurance solutions" },
-  { year: "2021", event: "Launched 3D design and furnishings division" },
-  { year: "2023", event: "Expanded law consulting and company registration services" },
-  { year: "2024", event: "Integrated advanced AI across all business divisions" },
-];
+const divisionIcons = [Bot, Briefcase, Building2, Languages, Scale, Shield, Home, Palette];
+const valueIcons = [Target, Eye, Heart];
 
 const About = () => {
+  const { t } = useLanguage();
+
   useSEO({
     title: "About AI Byte Consult — Mission, Vision & Divisions",
     description: "Discover AI Byte Consult Ltd, a diversified holding company founded in 2011 with 8+ business divisions serving 50+ countries worldwide.",
@@ -126,6 +35,46 @@ const About = () => {
     },
   });
 
+  const businessDivisions = [
+    { icon: divisionIcons[0], title: t("aboutpage.div1.title"), description: t("aboutpage.div1.desc"), link: undefined },
+    { icon: divisionIcons[1], title: t("aboutpage.div2.title"), description: t("aboutpage.div2.desc"), link: undefined },
+    { icon: divisionIcons[2], title: t("aboutpage.div3.title"), description: t("aboutpage.div3.desc"), link: "/estate" },
+    { icon: divisionIcons[3], title: t("aboutpage.div4.title"), description: t("aboutpage.div4.desc"), link: "/translation" },
+    { icon: divisionIcons[4], title: t("aboutpage.div5.title"), description: t("aboutpage.div5.desc"), link: undefined },
+    { icon: divisionIcons[5], title: t("aboutpage.div6.title"), description: t("aboutpage.div6.desc"), link: "/insurance" },
+    { icon: divisionIcons[6], title: t("aboutpage.div7.title"), description: t("aboutpage.div7.desc"), link: undefined },
+    { icon: divisionIcons[7], title: t("aboutpage.div8.title"), description: t("aboutpage.div8.desc"), link: "/furnishings" },
+  ];
+
+  const companyValues = [
+    { icon: valueIcons[0], title: t("aboutpage.value1.title"), description: t("aboutpage.value1.desc") },
+    { icon: valueIcons[1], title: t("aboutpage.value2.title"), description: t("aboutpage.value2.desc") },
+    { icon: valueIcons[2], title: t("aboutpage.value3.title"), description: t("aboutpage.value3.desc") },
+  ];
+
+  const companyStats = [
+    { value: "2011", label: t("aboutpage.stat1") },
+    { value: "8+", label: t("aboutpage.stat2") },
+    { value: "50+", label: t("aboutpage.stat3") },
+    { value: "500+", label: t("aboutpage.stat4") },
+  ];
+
+  const milestones = [
+    { year: "2011", event: t("aboutpage.milestone1") },
+    { year: "2013", event: t("aboutpage.milestone2") },
+    { year: "2015", event: t("aboutpage.milestone3") },
+    { year: "2017", event: t("aboutpage.milestone4") },
+    { year: "2019", event: t("aboutpage.milestone5") },
+    { year: "2021", event: t("aboutpage.milestone6") },
+    { year: "2023", event: t("aboutpage.milestone7") },
+    { year: "2024", event: t("aboutpage.milestone8") },
+  ];
+
+  const whyChooseUs = [
+    t("aboutpage.choose1"), t("aboutpage.choose2"), t("aboutpage.choose3"), t("aboutpage.choose4"),
+    t("aboutpage.choose5"), t("aboutpage.choose6"), t("aboutpage.choose7"), t("aboutpage.choose8"),
+  ];
+
   return (
     <main className="min-h-screen bg-background">
       <Header />
@@ -139,22 +88,20 @@ const About = () => {
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
               <Globe className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">About AI Byte Consult Ltd</span>
+              <span className="text-sm font-medium text-primary">{t("aboutpage.badge")}</span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground">
-              One Company.{" "}
-              <span className="text-gradient-gold">Infinite Possibilities.</span>
+              {t("aboutpage.hero.title1")}{" "}
+              <span className="text-gradient-gold">{t("aboutpage.hero.title2")}</span>
             </h1>
 
             <p className="text-xl md:text-2xl font-medium text-primary italic">
-              "Empowering Tomorrow, Today"
+              "{t("aboutpage.hero.slogan")}"
             </p>
             
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              AI Byte Consult Ltd is a diversified holding company headquartered in the United Kingdom, 
-              operating across multiple industries with a unified mission: to deliver excellence through 
-              innovation, technology, and unwavering commitment to our clients.
+              {t("aboutpage.hero.desc")}
             </p>
           </div>
         </div>
@@ -183,50 +130,37 @@ const About = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
               <div className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-                  Who We <span className="text-gradient-gold">Are</span>
+                  {t("aboutpage.who.title1")} <span className="text-gradient-gold">{t("aboutpage.who.title2")}</span>
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
-                  <p>
-                    Founded in 2011, AI Byte Consult Ltd has grown from a specialized AI development 
-                    firm into a comprehensive multi-sector conglomerate serving clients across more 
-                    than 50 countries worldwide.
-                  </p>
-                  <p>
-                    Our unique approach combines cutting-edge technology with traditional business 
-                    expertise, allowing us to offer integrated solutions that address the full 
-                    spectrum of our clients' needs — from AI-powered automation to real estate 
-                    investment, from legal consulting to creative 3D design.
-                  </p>
-                  <p>
-                    Under the NICS (Next-generation Intelligent Corporate Solutions) umbrella, 
-                    our specialized divisions work synergistically to deliver comprehensive 
-                    solutions that drive business transformation and sustainable growth.
-                  </p>
+                  <p>{t("aboutpage.who.p1")}</p>
+                  <p>{t("aboutpage.who.p2")}</p>
+                  <p>{t("aboutpage.who.p3")}</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <div className="bg-muted/50 p-6 rounded-2xl border border-border/50">
                     <Users className="w-8 h-8 text-primary mb-3" />
-                    <h4 className="font-semibold text-foreground mb-1">Expert Team</h4>
-                    <p className="text-sm text-muted-foreground">Industry professionals with decades of combined experience</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t("aboutpage.card1.title")}</h4>
+                    <p className="text-sm text-muted-foreground">{t("aboutpage.card1.desc")}</p>
                   </div>
                   <div className="bg-muted/50 p-6 rounded-2xl border border-border/50">
                     <Award className="w-8 h-8 text-primary mb-3" />
-                    <h4 className="font-semibold text-foreground mb-1">Proven Track Record</h4>
-                    <p className="text-sm text-muted-foreground">500+ successful projects across all divisions</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t("aboutpage.card2.title")}</h4>
+                    <p className="text-sm text-muted-foreground">{t("aboutpage.card2.desc")}</p>
                   </div>
                 </div>
                 <div className="space-y-4 mt-8">
                   <div className="bg-muted/50 p-6 rounded-2xl border border-border/50">
                     <Globe className="w-8 h-8 text-primary mb-3" />
-                    <h4 className="font-semibold text-foreground mb-1">Global Presence</h4>
-                    <p className="text-sm text-muted-foreground">Serving clients in 50+ countries worldwide</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t("aboutpage.card3.title")}</h4>
+                    <p className="text-sm text-muted-foreground">{t("aboutpage.card3.desc")}</p>
                   </div>
                   <div className="bg-muted/50 p-6 rounded-2xl border border-border/50">
                     <Bot className="w-8 h-8 text-primary mb-3" />
-                    <h4 className="font-semibold text-foreground mb-1">AI-First Approach</h4>
-                    <p className="text-sm text-muted-foreground">Technology integration across all services</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t("aboutpage.card4.title")}</h4>
+                    <p className="text-sm text-muted-foreground">{t("aboutpage.card4.desc")}</p>
                   </div>
                 </div>
               </div>
@@ -240,10 +174,10 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-              Our <span className="text-gradient-gold">Purpose</span>
+              {t("aboutpage.purpose.title1")} <span className="text-gradient-gold">{t("aboutpage.purpose.title2")}</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Guided by clear principles that define who we are and how we serve our clients
+              {t("aboutpage.purpose.subtitle")}
             </p>
           </div>
 
@@ -270,19 +204,16 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-              Our <span className="text-gradient-gold">Business Divisions</span>
+              {t("aboutpage.divisions.title1")} <span className="text-gradient-gold">{t("aboutpage.divisions.title2")}</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A comprehensive ecosystem of specialized services working together to serve your needs
+              {t("aboutpage.divisions.subtitle")}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {businessDivisions.map((division, index) => (
-              <Card 
-                key={index} 
-                className="card-hover bg-card border-border/50 hover:border-primary/30 group"
-              >
+              <Card key={index} className="card-hover bg-card border-border/50 hover:border-primary/30 group">
                 <CardHeader className="pb-2">
                   <div className="w-12 h-12 rounded-xl bg-gradient-gold flex items-center justify-center mb-4">
                     <division.icon className="w-6 h-6 text-white" />
@@ -296,11 +227,8 @@ const About = () => {
                     {division.description}
                   </p>
                   {division.link && (
-                    <Link 
-                      to={division.link}
-                      className="inline-flex items-center text-sm font-medium text-primary hover:underline"
-                    >
-                      Learn More
+                    <Link to={division.link} className="inline-flex items-center text-sm font-medium text-primary hover:underline">
+                      {t("aboutpage.learnMore")}
                       <ArrowRight className="w-4 h-4 ml-1" />
                     </Link>
                   )}
@@ -316,36 +244,23 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-              Our <span className="text-gradient-gold">Journey</span>
+              {t("aboutpage.journey.title1")} <span className="text-gradient-gold">{t("aboutpage.journey.title2")}</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Key milestones in our path to becoming a global multi-sector leader
+              {t("aboutpage.journey.subtitle")}
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto">
             <div className="relative">
-              {/* Timeline line */}
               <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-border md:-translate-x-0.5" />
               
               {milestones.map((milestone, index) => (
-                <div 
-                  key={index}
-                  className={`relative flex items-center gap-6 mb-8 ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
-                >
-                  {/* Dot */}
+                <div key={index} className={`relative flex items-center gap-6 mb-8 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
                   <div className="absolute left-4 md:left-1/2 w-3 h-3 bg-primary rounded-full md:-translate-x-1.5 z-10" />
-                  
-                  {/* Content */}
-                  <div className={`ml-12 md:ml-0 md:w-1/2 ${
-                    index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
-                  }`}>
+                  <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
                     <div className="bg-card p-4 rounded-xl border border-border/50 shadow-sm">
-                      <div className="text-lg font-semibold text-gradient-gold mb-1">
-                        {milestone.year}
-                      </div>
+                      <div className="text-lg font-semibold text-gradient-gold mb-1">{milestone.year}</div>
                       <p className="text-muted-foreground text-sm">{milestone.event}</p>
                     </div>
                   </div>
@@ -362,21 +277,12 @@ const About = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12 space-y-4">
               <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-                Why Choose <span className="text-gradient-gold">AI Byte Consult</span>
+                {t("aboutpage.whychoose.title1")} <span className="text-gradient-gold">{t("aboutpage.whychoose.title2")}</span>
               </h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              {[
-                "Integrated multi-sector solutions under one roof",
-                "AI-powered technology across all services",
-                "14+ years of proven industry experience",
-                "Global reach with local expertise",
-                "Dedicated account management",
-                "Transparent pricing and processes",
-                "Cutting-edge security and compliance",
-                "24/7 customer support availability",
-              ].map((benefit, index) => (
+              {whyChooseUs.map((benefit, index) => (
                 <div key={index} className="flex items-start gap-3 p-4 rounded-xl bg-muted/30 border border-border/50">
                   <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                   <span className="text-foreground">{benefit}</span>
@@ -392,21 +298,21 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center space-y-6 bg-card p-12 rounded-3xl border border-border/50 shadow-card">
             <h2 className="text-3xl font-semibold text-foreground">
-              Ready to Work With Us?
+              {t("aboutpage.cta.title")}
             </h2>
             <p className="text-muted-foreground">
-              Discover how AI Byte Consult can help transform your business with our comprehensive solutions.
+              {t("aboutpage.cta.desc")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/#contact">
                 <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                  Get in Touch
+                  {t("aboutpage.cta.button1")}
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
               <Link to="/#ecosystem">
                 <Button size="lg" variant="outline" className="rounded-full px-8 border-2">
-                  Explore Services
+                  {t("aboutpage.cta.button2")}
                 </Button>
               </Link>
             </div>
