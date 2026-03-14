@@ -4,32 +4,32 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  DropdownMenuTrigger } from
+"@/components/ui/dropdown-menu";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { Link, useLocation } from "react-router-dom";
 import logoImg from "@/assets/logo.jpeg";
 
-const languages: { code: Language; flag: string; name: string }[] = [
-  { code: "en", flag: "🇬🇧", name: "English" },
-  { code: "de", flag: "🇩🇪", name: "Deutsch" },
-  { code: "fr", flag: "🇫🇷", name: "Français" },
-  { code: "it", flag: "🇮🇹", name: "Italiano" },
-  { code: "ar", flag: "🇸🇦", name: "العربية" },
-  { code: "zh", flag: "🇨🇳", name: "中文" },
-  { code: "pl", flag: "🇵🇱", name: "Polski" },
-  { code: "tr", flag: "🇹🇷", name: "Türkçe" },
-  { code: "bg", flag: "🇧🇬", name: "Български" },
-  { code: "ru", flag: "🇷🇺", name: "Русский" },
-];
+const languages: {code: Language;flag: string;name: string;}[] = [
+{ code: "en", flag: "🇬🇧", name: "English" },
+{ code: "de", flag: "🇩🇪", name: "Deutsch" },
+{ code: "fr", flag: "🇫🇷", name: "Français" },
+{ code: "it", flag: "🇮🇹", name: "Italiano" },
+{ code: "ar", flag: "🇸🇦", name: "العربية" },
+{ code: "zh", flag: "🇨🇳", name: "中文" },
+{ code: "pl", flag: "🇵🇱", name: "Polski" },
+{ code: "tr", flag: "🇹🇷", name: "Türkçe" },
+{ code: "bg", flag: "🇧🇬", name: "Български" },
+{ code: "ru", flag: "🇷🇺", name: "Русский" }];
+
 
 const nicsServices = [
-  { href: "https://estate.aibyteconsult.com", label: "NICS Real Estate", external: true },
-  { href: "/insurance", label: "NICS Insurance", external: false },
-  { href: "/translation", label: "NICS Translation", external: false },
-  { href: "/furnishings", label: "NICS Furnishings", external: false },
-];
+{ href: "https://estate.aibyteconsult.com", label: "NICS Real Estate", external: true },
+{ href: "/insurance", label: "NICS Insurance", external: false },
+{ href: "/translation", label: "NICS Translation", external: false },
+{ href: "/furnishings", label: "NICS Furnishings", external: false }];
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,12 +40,12 @@ const Header = () => {
   const currentLang = languages.find((l) => l.code === language);
 
   const navLinks = [
-    { href: "/", label: t("nav.home"), isHome: true },
-    { href: "/#ecosystem", label: t("nav.ecosystem") },
-    { href: "/#projects", label: t("nav.projects") },
-    { href: "/#ai-automation-fix", label: t("nav.automation") },
-    { href: "/#contact", label: t("nav.contact") },
-  ];
+  { href: "/", label: t("nav.home"), isHome: true },
+  { href: "/#ecosystem", label: t("nav.ecosystem") },
+  { href: "/#projects", label: t("nav.projects") },
+  { href: "/#ai-automation-fix", label: t("nav.automation") },
+  { href: "/#contact", label: t("nav.contact") }];
+
 
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false);
@@ -61,7 +61,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <img src={logoImg} alt="AI Byte Consult" className="h-10 w-10 rounded-lg object-cover shadow-gold" />
+            <img alt="AI Byte Consult" className="h-10 w-10 rounded-lg object-cover shadow-gold" src="/lovable-uploads/64a5b8df-cd74-4103-97f1-71bc06440227.jpg" />
             <span className="text-xl font-bold tracking-tight">
               <span className="text-gradient-gold">AI Byte</span>
               <span className="text-muted-foreground font-light ml-1.5 uppercase tracking-widest text-sm">Consult</span>
@@ -70,16 +70,16 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={() => handleNavClick(link.href)}
-                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-muted/50"
-              >
+            {navLinks.map((link) =>
+            <Link
+              key={link.href}
+              to={link.href}
+              onClick={() => handleNavClick(link.href)}
+              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-muted/50">
+              
                 {link.label}
               </Link>
-            ))}
+            )}
 
             {/* Services Dropdown */}
             <DropdownMenu open={isServicesOpen} onOpenChange={setIsServicesOpen}>
@@ -88,24 +88,24 @@ const Header = () => {
                 <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="w-48">
-                {nicsServices.map((service) => (
-                  <DropdownMenuItem key={service.href} className="cursor-pointer">
-                    {service.external ? (
-                      <a
-                        href={service.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full"
-                      >
+                {nicsServices.map((service) =>
+                <DropdownMenuItem key={service.href} className="cursor-pointer">
+                    {service.external ?
+                  <a
+                    href={service.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full">
+                    
                         {service.label}
-                      </a>
-                    ) : (
-                      <Link to={service.href} className="w-full">
+                      </a> :
+
+                  <Link to={service.href} className="w-full">
                         {service.label}
                       </Link>
-                    )}
+                  }
                   </DropdownMenuItem>
-                ))}
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -116,16 +116,16 @@ const Header = () => {
                 <span className="text-lg">{currentLang?.flag}</span>
               </DropdownMenuTrigger>
               <DropdownMenuContent align={isRTL ? "start" : "end"}>
-                {languages.map((lang) => (
-                  <DropdownMenuItem
-                    key={lang.code}
-                    onSelect={() => setLanguage(lang.code)}
-                    className={`gap-2 cursor-pointer ${language === lang.code ? "bg-accent" : ""}`}
-                  >
+                {languages.map((lang) =>
+                <DropdownMenuItem
+                  key={lang.code}
+                  onSelect={() => setLanguage(lang.code)}
+                  className={`gap-2 cursor-pointer ${language === lang.code ? "bg-accent" : ""}`}>
+                  
                     <span className="text-lg">{lang.flag}</span>
                     <span>{lang.name}</span>
                   </DropdownMenuItem>
-                ))}
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
           </nav>
@@ -138,16 +138,16 @@ const Header = () => {
                 <span className="text-xl">{currentLang?.flag}</span>
               </DropdownMenuTrigger>
               <DropdownMenuContent align={isRTL ? "start" : "end"}>
-                {languages.map((lang) => (
-                  <DropdownMenuItem
-                    key={lang.code}
-                    onSelect={() => setLanguage(lang.code)}
-                    className={`gap-2 cursor-pointer ${language === lang.code ? "bg-accent" : ""}`}
-                  >
+                {languages.map((lang) =>
+                <DropdownMenuItem
+                  key={lang.code}
+                  onSelect={() => setLanguage(lang.code)}
+                  className={`gap-2 cursor-pointer ${language === lang.code ? "bg-accent" : ""}`}>
+                  
                     <span className="text-lg">{lang.flag}</span>
                     <span>{lang.name}</span>
                   </DropdownMenuItem>
-                ))}
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -155,61 +155,61 @@ const Header = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="rounded-full"
-            >
+              className="rounded-full">
+              
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border/50">
+        {isMenuOpen &&
+        <nav className="md:hidden py-4 border-t border-border/50">
             <div className="flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors"
-                >
+              {navLinks.map((link) =>
+            <Link
+              key={link.href}
+              to={link.href}
+              onClick={() => handleNavClick(link.href)}
+              className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors">
+              
                   {link.label}
                 </Link>
-              ))}
+            )}
               
               {/* Mobile Services */}
               <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide mt-2">
                 Services
               </div>
-              {nicsServices.map((service) => (
-                service.external ? (
-                  <a
-                    key={service.href}
-                    href={service.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors"
-                  >
+              {nicsServices.map((service) =>
+            service.external ?
+            <a
+              key={service.href}
+              href={service.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+              className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors">
+              
                     {service.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={service.href}
-                    to={service.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors"
-                  >
+                  </a> :
+
+            <Link
+              key={service.href}
+              to={service.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors">
+              
                     {service.label}
                   </Link>
-                )
-              ))}
+
+            )}
             </div>
           </nav>
-        )}
+        }
       </div>
-    </header>
-  );
+    </header>);
+
 };
 
 export default Header;
