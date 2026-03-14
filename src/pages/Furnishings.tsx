@@ -5,63 +5,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Sofa, Home, Palette, Box, ArrowRight, Check, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import useSEO from "@/hooks/useSEO";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const features = [
-  {
-    icon: Home,
-    title: "3D House Projects",
-    description: "Complete 3D visualization of houses and apartments with detailed architectural rendering.",
-  },
-  {
-    icon: Sofa,
-    title: "Virtual Furnishing",
-    description: "Furnish your space virtually with our extensive catalog of furniture and decor options.",
-  },
-  {
-    icon: Palette,
-    title: "Interior Design",
-    description: "AI-powered interior design suggestions based on your style preferences and space requirements.",
-  },
-  {
-    icon: Eye,
-    title: "Virtual Tours",
-    description: "Immersive 360° virtual tours of your furnished spaces before any purchase is made.",
-  },
-];
-
-const process = [
-  {
-    step: "01",
-    title: "Upload Floor Plan",
-    description: "Share your floor plan or property details to get started.",
-  },
-  {
-    step: "02",
-    title: "3D Visualization",
-    description: "We create a detailed 3D model of your space.",
-  },
-  {
-    step: "03",
-    title: "Virtual Furnishing",
-    description: "Explore furniture options and place them virtually.",
-  },
-  {
-    step: "04",
-    title: "Final Design",
-    description: "Get your complete design package and shopping list.",
-  },
-];
-
-const benefits = [
-  "Photorealistic 3D renderings",
-  "Extensive furniture catalog",
-  "Real-time design changes",
-  "Budget-friendly recommendations",
-  "Professional designer consultation",
-  "Complete shopping lists",
-];
+const featureIcons = [Home, Sofa, Palette, Eye];
 
 const Furnishings = () => {
+  const { t } = useLanguage();
+
   useSEO({
     title: "NICS Furnishings — 3D Interior Design | AI Byte Consult",
     description: "3D house projects and virtual furnishing platform. Visualize your dream home with photorealistic renderings and AI-powered interior design.",
@@ -77,11 +27,29 @@ const Furnishings = () => {
     },
   });
 
+  const features = [
+    { icon: featureIcons[0], title: t("furnishings.feature1.title"), description: t("furnishings.feature1.desc") },
+    { icon: featureIcons[1], title: t("furnishings.feature2.title"), description: t("furnishings.feature2.desc") },
+    { icon: featureIcons[2], title: t("furnishings.feature3.title"), description: t("furnishings.feature3.desc") },
+    { icon: featureIcons[3], title: t("furnishings.feature4.title"), description: t("furnishings.feature4.desc") },
+  ];
+
+  const process = [
+    { step: "01", title: t("furnishings.step1.title"), description: t("furnishings.step1.desc") },
+    { step: "02", title: t("furnishings.step2.title"), description: t("furnishings.step2.desc") },
+    { step: "03", title: t("furnishings.step3.title"), description: t("furnishings.step3.desc") },
+    { step: "04", title: t("furnishings.step4.title"), description: t("furnishings.step4.desc") },
+  ];
+
+  const benefits = [
+    t("furnishings.benefit1"), t("furnishings.benefit2"), t("furnishings.benefit3"),
+    t("furnishings.benefit4"), t("furnishings.benefit5"), t("furnishings.benefit6"),
+  ];
+
   return (
     <main className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
         <div className="absolute top-40 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
@@ -92,21 +60,21 @@ const Furnishings = () => {
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground">
-              3D Interior <span className="text-gradient-gold">Design</span> Solutions
+              {t("furnishings.hero.title1")} <span className="text-gradient-gold">{t("furnishings.hero.title2")}</span> {t("furnishings.hero.title3")}
             </h1>
             
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Visualize your dream home with our 3D house projects and virtual furnishing platform. Design and furnish your space before making any decisions.
+              {t("furnishings.hero.desc")}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                Start Your Project
+                {t("furnishings.cta.start")}
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               <Link to="/#contact">
                 <Button size="lg" variant="outline" className="rounded-full px-8 border-2">
-                  View Portfolio
+                  {t("furnishings.cta.portfolio")}
                 </Button>
               </Link>
             </div>
@@ -114,15 +82,14 @@ const Furnishings = () => {
         </div>
       </section>
 
-      {/* Features Grid */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-              What We <span className="text-gradient-gold">Offer</span>
+              {t("furnishings.offer.title1")} <span className="text-gradient-gold">{t("furnishings.offer.title2")}</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Complete 3D visualization and virtual furnishing solutions
+              {t("furnishings.offer.subtitle")}
             </p>
           </div>
 
@@ -146,15 +113,14 @@ const Furnishings = () => {
         </div>
       </section>
 
-      {/* Process Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-              How It <span className="text-gradient-gold">Works</span>
+              {t("furnishings.process.title1")} <span className="text-gradient-gold">{t("furnishings.process.title2")}</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Simple steps to visualize and furnish your dream space
+              {t("furnishings.process.subtitle")}
             </p>
           </div>
 
@@ -170,17 +136,16 @@ const Furnishings = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-                  Why Choose <span className="text-gradient-gold">NICS Furnishings</span>
+                  {t("furnishings.why.title1")} <span className="text-gradient-gold">{t("furnishings.why.title2")}</span>
                 </h2>
                 <p className="text-lg text-muted-foreground">
-                  Experience your space before you furnish it with our cutting-edge 3D visualization technology.
+                  {t("furnishings.why.desc")}
                 </p>
               </div>
               <div className="space-y-4">
@@ -198,19 +163,18 @@ const Furnishings = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center space-y-6 bg-card p-12 rounded-3xl border border-border/50 shadow-card">
             <h2 className="text-3xl font-semibold text-foreground">
-              Ready to Visualize Your Dream Space?
+              {t("furnishings.cta.title")}
             </h2>
             <p className="text-muted-foreground">
-              Start your 3D interior design project today and see your vision come to life.
+              {t("furnishings.cta.desc")}
             </p>
             <Link to="/#contact">
               <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                Get Started
+                {t("furnishings.cta.button")}
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
