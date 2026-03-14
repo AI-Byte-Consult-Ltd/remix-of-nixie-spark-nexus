@@ -5,40 +5,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Shield, Heart, Car, Home, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import useSEO from "@/hooks/useSEO";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const insuranceTypes = [
-  {
-    icon: Heart,
-    title: "Health Insurance",
-    description: "Comprehensive health coverage with AI-powered claims processing and personalized wellness programs.",
-  },
-  {
-    icon: Home,
-    title: "Property Insurance",
-    description: "Smart property protection with real-time risk assessment and instant damage evaluation.",
-  },
-  {
-    icon: Car,
-    title: "Auto Insurance",
-    description: "AI-driven auto coverage with telematics integration and usage-based premium optimization.",
-  },
-  {
-    icon: Shield,
-    title: "Business Insurance",
-    description: "Tailored business protection with intelligent risk modeling and automated compliance.",
-  },
-];
-
-const benefits = [
-  "AI-powered risk assessment",
-  "Instant claims processing",
-  "Personalized coverage recommendations",
-  "Blockchain-verified policies",
-  "24/7 AI customer support",
-  "Predictive fraud detection",
-];
+const typeIcons = [Heart, Home, Car, Shield];
 
 const Insurance = () => {
+  const { t } = useLanguage();
+
   useSEO({
     title: "NICS Insurance — AI-Powered Smart Insurance | AI Byte Consult",
     description: "Smart insurance solutions with AI-powered risk assessment, instant claims processing, and personalized coverage for health, property, auto and business.",
@@ -54,11 +27,22 @@ const Insurance = () => {
     },
   });
 
+  const insuranceTypes = [
+    { icon: typeIcons[0], title: t("insurance.type1.title"), description: t("insurance.type1.desc") },
+    { icon: typeIcons[1], title: t("insurance.type2.title"), description: t("insurance.type2.desc") },
+    { icon: typeIcons[2], title: t("insurance.type3.title"), description: t("insurance.type3.desc") },
+    { icon: typeIcons[3], title: t("insurance.type4.title"), description: t("insurance.type4.desc") },
+  ];
+
+  const benefits = [
+    t("insurance.benefit1"), t("insurance.benefit2"), t("insurance.benefit3"),
+    t("insurance.benefit4"), t("insurance.benefit5"), t("insurance.benefit6"),
+  ];
+
   return (
     <main className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
         <div className="absolute top-20 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
@@ -69,21 +53,21 @@ const Insurance = () => {
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground">
-              Smart <span className="text-gradient-gold">Insurance</span> Solutions
+              {t("insurance.hero.title1")} <span className="text-gradient-gold">{t("insurance.hero.title2")}</span> {t("insurance.hero.title3")}
             </h1>
             
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Experience the future of insurance with AI-powered risk assessment, instant claims, and personalized coverage tailored to your needs.
+              {t("insurance.hero.desc")}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                Get a Quote
+                {t("insurance.cta.quote")}
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               <Link to="/#contact">
                 <Button size="lg" variant="outline" className="rounded-full px-8 border-2">
-                  Learn More
+                  {t("insurance.cta.learn")}
                 </Button>
               </Link>
             </div>
@@ -91,15 +75,14 @@ const Insurance = () => {
         </div>
       </section>
 
-      {/* Insurance Types */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-              Coverage <span className="text-gradient-gold">Options</span>
+              {t("insurance.types.title1")} <span className="text-gradient-gold">{t("insurance.types.title2")}</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive insurance solutions powered by artificial intelligence
+              {t("insurance.types.subtitle")}
             </p>
           </div>
 
@@ -123,17 +106,16 @@ const Insurance = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-                  Why Choose <span className="text-gradient-gold">NICS Insurance</span>
+                  {t("insurance.why.title1")} <span className="text-gradient-gold">{t("insurance.why.title2")}</span>
                 </h2>
                 <p className="text-lg text-muted-foreground">
-                  Our intelligent platform revolutionizes insurance with faster claims, better coverage, and lower premiums.
+                  {t("insurance.why.desc")}
                 </p>
               </div>
               <div className="space-y-4">
@@ -151,19 +133,18 @@ const Insurance = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center space-y-6 bg-card p-12 rounded-3xl border border-border/50 shadow-card">
             <h2 className="text-3xl font-semibold text-foreground">
-              Protect What Matters Most
+              {t("insurance.cta.title")}
             </h2>
             <p className="text-muted-foreground">
-              Get personalized insurance coverage powered by AI technology.
+              {t("insurance.cta.desc")}
             </p>
             <Link to="/#contact">
               <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                Get Started
+                {t("insurance.cta.button")}
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
