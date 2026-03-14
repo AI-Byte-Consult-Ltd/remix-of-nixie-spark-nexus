@@ -66,6 +66,7 @@ const Furnishings = () => {
     title: "NICS Furnishings — 3D Interior Design | AI Byte Consult",
     description: "3D house projects and virtual furnishing platform. Visualize your dream home with photorealistic renderings and AI-powered interior design.",
     canonical: "https://aibyteconsult.com/furnishings",
+    ogImage: "https://aibyteconsult.com/og-furnishings.jpg",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "Service",

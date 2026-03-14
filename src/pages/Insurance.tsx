@@ -43,6 +43,7 @@ const Insurance = () => {
     title: "NICS Insurance — AI-Powered Smart Insurance | AI Byte Consult",
     description: "Smart insurance solutions with AI-powered risk assessment, instant claims processing, and personalized coverage for health, property, auto and business.",
     canonical: "https://aibyteconsult.com/insurance",
+    ogImage: "https://aibyteconsult.com/og-insurance.jpg",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "Service",
