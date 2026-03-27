@@ -2035,7 +2035,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   }, [language]);
 
   const t = (key: string): string => {
-    return translations[language]?.[key] || subPageTranslations[language]?.[key] || translations.en?.[key] || subPageTranslations.en?.[key] || key;
+    return translations[language]?.[key] || subPageTranslations[language]?.[key] || componentTranslations[language]?.[key] || translations.en?.[key] || subPageTranslations.en?.[key] || componentTranslations.en?.[key] || key;
   };
 
   const isRTL = language === "ar";
