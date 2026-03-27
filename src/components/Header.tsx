@@ -61,7 +61,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <img alt="AI Byte Consult" className="h-10 w-10 rounded-lg object-cover shadow-gold" src="/lovable-uploads/64a5b8df-cd74-4103-97f1-71bc06440227.jpg" />
+            <img alt="AI Byte Consult" className="h-10 w-10 rounded-lg object-cover shadow-gold" src="/lovable-uploads/b1735c02-5d33-4028-9bb9-727ffa3db32e.png" />
             <span className="text-xl font-bold tracking-tight">
               <span className="text-gradient-gold">AI Byte</span>
               <span className="text-muted-foreground font-light ml-1.5 uppercase tracking-widest text-sm">Consult</span>
