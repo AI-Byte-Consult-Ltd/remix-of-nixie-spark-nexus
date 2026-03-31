@@ -108,6 +108,8 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "hero.trust.since": "Seit 2011",
     "hero.trust.multi": "Multi-Branche",
     "hero.trust.global": "Globale Reichweite",
+    "hero.trust.meta": "Offizieller Meta Tech Provider",
+    "hero.trust.microsoft": "Microsoft for Startups Stipendiat",
     "hero.stats.sectors": "Geschäftsbereiche",
     "hero.stats.experience": "Jahre Erfahrung",
     "ecosystem.pridelab.title": "PRIDE Lab Stiftung",
