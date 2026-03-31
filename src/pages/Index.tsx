@@ -17,6 +17,7 @@ const Index = () => {
     title: "AI Byte Consult — European AI Consulting & Intelligent Systems",
     description: "European AI consulting company building intelligent AI systems, agents, Web3 platforms and blockchain solutions for real-world business and research use cases.",
     canonical: "https://aibyteconsult.com/",
+    ogImage: "https://aibyteconsult.com/og-home.jpg",
   });
 
   return (
