@@ -42,10 +42,22 @@ const Footer = () => {
               <li><a href="/privacy" className="text-muted-foreground hover:text-primary transition-colors">{t("footer.privacy")}</a></li>
               <li><a href="/terms" className="text-muted-foreground hover:text-primary transition-colors">{t("footer.terms")}</a></li>
             </ul>
-            <div className="pt-4">
+            <div className="pt-4 space-y-2">
               <a href="mailto:info@aibyteconsult.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                 <Mail className="w-4 h-4" />
                 <span>info@aibyteconsult.com</span>
+              </a>
+              <a href="tel:+359988899109" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                <Phone className="w-4 h-4" />
+                <span>+359 988 899 109</span>
+              </a>
+              <a href="viber://chat?number=%2B359988899109" className="flex items-center gap-2 text-muted-foreground hover:text-purple-500 transition-colors">
+                <MessageCircle className="w-4 h-4" />
+                <span>Viber</span>
+              </a>
+              <a href="https://wa.me/359988899109" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-green-500 transition-colors">
+                <MessageCircle className="w-4 h-4" />
+                <span>WhatsApp</span>
               </a>
             </div>
           </div>
