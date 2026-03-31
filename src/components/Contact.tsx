@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Phone, MessageCircle } from "lucide-react";
 
 const Contact = () => {
   const { t } = useLanguage();
