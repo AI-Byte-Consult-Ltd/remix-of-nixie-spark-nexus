@@ -20,6 +20,8 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "hero.trust.since": "Since 2011",
     "hero.trust.multi": "Multi-Industry",
     "hero.trust.global": "Global Reach",
+    "hero.trust.meta": "Official Meta Tech Provider",
+    "hero.trust.microsoft": "Microsoft for Startups Grantee",
     "hero.stats.sectors": "Business Sectors",
     "hero.stats.experience": "Years Experience",
     // Ecosystem extra
