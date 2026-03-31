@@ -87,7 +87,11 @@ const Hero = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-5 h-5 text-primary" />
-                <span>{t("hero.trust.multi")}</span>
+                <span>{t("hero.trust.meta")}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-5 h-5 text-primary" />
+                <span>{t("hero.trust.microsoft")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-5 h-5 text-primary" />
