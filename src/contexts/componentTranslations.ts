@@ -473,6 +473,8 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "hero.trust.since": "2011'den beri",
     "hero.trust.multi": "Çok sektörlü",
     "hero.trust.global": "Küresel erişim",
+    "hero.trust.meta": "Resmi Meta Tech Sağlayıcı",
+    "hero.trust.microsoft": "Microsoft for Startups Hibe Sahibi",
     "hero.stats.sectors": "İş Sektörü",
     "hero.stats.experience": "Yıl Deneyim",
     "ecosystem.pridelab.title": "PRIDE Lab Vakfı",
