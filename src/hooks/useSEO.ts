@@ -26,6 +26,8 @@ const useSEO = ({ title, description, canonical, ogImage, jsonLd, noindex }: SEO
     setMeta("description", description);
     setMeta("og:title", title, "property");
     setMeta("og:description", description, "property");
+    setMeta("og:type", "website", "property");
+    setMeta("twitter:card", "summary_large_image", "name");
     setMeta("twitter:title", title, "name");
     setMeta("twitter:description", description, "name");
 

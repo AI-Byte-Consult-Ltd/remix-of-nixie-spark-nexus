@@ -20,6 +20,7 @@ const About = () => {
     title: "About AI Byte Consult — Mission, Vision & Divisions",
     description: "Discover AI Byte Consult Ltd, a diversified holding company founded in 2011 with 8+ business divisions serving 50+ countries worldwide.",
     canonical: "https://aibyteconsult.com/about",
+    ogImage: "https://aibyteconsult.com/og-about.jpg",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "AboutPage",
