@@ -1,4 +1,4 @@
-import { Bot, Globe, Hexagon, Users, UtensilsCrossed, Mountain, Heart, PawPrint, ExternalLink } from "lucide-react";
+import { Bot, Globe, Users, UtensilsCrossed, Mountain, PawPrint, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
