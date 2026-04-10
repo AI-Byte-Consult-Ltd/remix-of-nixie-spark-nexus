@@ -13,13 +13,11 @@ interface EcosystemItem {
 
 const ecosystems: EcosystemItem[] = [
   { icon: Bot, titleKey: "ecosystem.nics.title", descKey: "ecosystem.nics.desc", link: "https://nics.space", status: "alpha" },
-  { icon: UtensilsCrossed, titleKey: "ecosystem.horeca.title", descKey: "ecosystem.horeca.desc", link: "https://nics.space", status: "soon" },
-  { icon: Mountain, titleKey: "ecosystem.geologist.title", descKey: "ecosystem.geologist.desc", link: "https://nics.space", status: "soon" },
   { icon: Globe, titleKey: "ecosystem.aquaterra.title", descKey: "ecosystem.aquaterra.desc", link: "https://aquaterra.world", status: "alpha" },
-  { icon: Hexagon, titleKey: "ecosystem.pantheon.title", descKey: "ecosystem.pantheon.desc", link: "https://opensea.io/collection/nics-ai-eternals", status: "alpha" },
+  { icon: Mountain, titleKey: "ecosystem.geologist.title", descKey: "ecosystem.geologist.desc", link: "https://nics.space", status: "soon" },
+  { icon: UtensilsCrossed, titleKey: "ecosystem.horeca.title", descKey: "ecosystem.horeca.desc", link: "https://nics.space", status: "soon" },
+  { icon: PawPrint, titleKey: "ecosystem.animals.title", descKey: "ecosystem.animals.desc", link: "https://yorkie.aibyteconsult.com/", status: "soon" },
   { icon: Users, titleKey: "ecosystem.pride.title", descKey: "ecosystem.pride.desc", link: "https://pridesocial.org", status: "live" },
-  { icon: Heart, titleKey: "ecosystem.pridelab.title", descKey: "ecosystem.pridelab.desc", link: "https://pridesocial.org", status: "alpha" },
-  { icon: PawPrint, titleKey: "ecosystem.animals.title", descKey: "ecosystem.animals.desc", status: "soon" },
 ];
 
 const Ecosystem = () => {
