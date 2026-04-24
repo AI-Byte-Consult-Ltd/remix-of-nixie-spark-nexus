@@ -8,9 +8,11 @@ import nftImg from "@/assets/project-nft-new.jpg";
 import clinicImg from "@/assets/project-clinic-new.jpg";
 import retailImg from "@/assets/project-retail-new.jpg";
 import realestateAiImg from "@/assets/project-realestate-ai.jpg";
+import architectureImg from "@/assets/project-architecture-3d.jpg";
 
 const projectDefs = [
   { titleKey: "projects.estatereply.title", descKey: "projects.estatereply.desc", image: realestateAiImg, tags: ["AI Agent", "Email Automation", "Real Estate", "24/7"] },
+  { titleKey: "projects.architecture.title", descKey: "projects.architecture.desc", image: architectureImg, tags: ["3D Design", "Architecture", "Visualization", "AI"] },
   { titleKey: "projects.restaurant.title", descKey: "projects.restaurant.desc", image: restaurantImg, tags: ["FastAPI", "React", "NLP", "Automation"] },
   { titleKey: "projects.logistics.title", descKey: "projects.logistics.desc", image: logisticsImg, tags: ["Python", "AI/ML", "Real-time", "Analytics"] },
   { titleKey: "projects.hotel.title", descKey: "projects.hotel.desc", image: hotelImg, tags: ["Node.js", "WhatsApp API", "Automation"] },
