@@ -76,6 +76,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "projects.clinic.desc": "Appointment automation for MediCore Health with natural language processing.",
     "projects.retail.title": "Retail Analytics Platform",
     "projects.retail.desc": "AI-driven sales prediction for UrbanMarket with inventory optimization.",
+    "projects.architecture.title": "Architecture & 3D Design Studio",
+    "projects.architecture.desc": "Professional 3D visualization for apartments, houses, and interior design. AI-assisted layouts and photorealistic renderings for architects.",
     
     // Automation Constructor
     "constructor.title": "Automation Constructor",
@@ -291,6 +293,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "projects.clinic.desc": "Terminautomatisierung für MediCore Health mit natürlicher Sprachverarbeitung.",
     "projects.retail.title": "Einzelhandels-Analyseplattform",
     "projects.retail.desc": "KI-gesteuerte Verkaufsprognose für UrbanMarket mit Bestandsoptimierung.",
+    "projects.architecture.title": "Architektur- & 3D-Design-Studio",
+    "projects.architecture.desc": "Professionelle 3D-Visualisierung für Wohnungen, Häuser und Innenarchitektur. KI-gestützte Grundrisse und fotorealistische Renderings für Architekten.",
     
     // Automation Constructor
     "constructor.title": "Automatisierungs-Konfigurator",
@@ -506,6 +510,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "projects.clinic.desc": "Automatisation de rendez-vous pour MediCore Health avec traitement du langage naturel.",
     "projects.retail.title": "Plateforme d'analyse retail",
     "projects.retail.desc": "Prédiction des ventes pilotée par l'IA pour UrbanMarket avec optimisation des stocks.",
+    "projects.architecture.title": "Studio d'architecture et design 3D",
+    "projects.architecture.desc": "Visualisation 3D professionnelle pour appartements, maisons et design intérieur. Plans assistés par IA et rendus photoréalistes pour architectes.",
     
     // Automation Constructor
     "constructor.title": "Constructeur d'automatisation",
@@ -721,6 +727,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "projects.clinic.desc": "أتمتة المواعيد لـ MediCore Health مع معالجة اللغة الطبيعية.",
     "projects.retail.title": "منصة تحليلات التجزئة",
     "projects.retail.desc": "توقع مبيعات مدفوع بالذكاء الاصطناعي لـ UrbanMarket مع تحسين المخزون.",
+    "projects.architecture.title": "استوديو الهندسة المعمارية والتصميم ثلاثي الأبعاد",
+    "projects.architecture.desc": "تصور ثلاثي الأبعاد احترافي للشقق والمنازل والتصميم الداخلي. مخططات بمساعدة الذكاء الاصطناعي وعروض واقعية للمعماريين.",
     
     // Automation Constructor
     "constructor.title": "منشئ الأتمتة",
@@ -936,6 +944,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "projects.clinic.desc": "为MediCore Health提供自然语言处理的预约自动化。",
     "projects.retail.title": "零售分析平台",
     "projects.retail.desc": "为UrbanMarket提供AI驱动的销售预测和库存优化。",
+    "projects.architecture.title": "建筑与3D设计工作室",
+    "projects.architecture.desc": "为公寓、住宅和室内设计提供专业的3D可视化。AI辅助布局和逼真渲染,服务于建筑师。",
     
     // Automation Constructor
     "constructor.title": "自动化构建器",
@@ -1151,6 +1161,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "projects.clinic.desc": "Automatyzacja umawiania wizyt dla MediCore Health z przetwarzaniem języka naturalnego.",
     "projects.retail.title": "Platforma analityki detalicznej",
     "projects.retail.desc": "Prognozowanie sprzedaży oparte na AI dla UrbanMarket z optymalizacją zapasów.",
+    "projects.architecture.title": "Studio Architektury i Projektowania 3D",
+    "projects.architecture.desc": "Profesjonalna wizualizacja 3D mieszkań, domów i wnętrz. Układy wspomagane AI i fotorealistyczne renderingi dla architektów.",
     
     // Automation Constructor
     "constructor.title": "Konstruktor automatyzacji",
@@ -1366,6 +1378,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "projects.clinic.desc": "MediCore Health için doğal dil işleme ile randevu otomasyonu.",
     "projects.retail.title": "Perakende Analitik Platformu",
     "projects.retail.desc": "UrbanMarket için envanter optimizasyonu ile yapay zeka destekli satış tahmini.",
+    "projects.architecture.title": "Mimari ve 3D Tasarım Stüdyosu",
+    "projects.architecture.desc": "Daireler, evler ve iç tasarım için profesyonel 3D görselleştirme. Mimarlar için AI destekli planlar ve fotogerçekçi render'lar.",
     
     // Automation Constructor
     "constructor.title": "Otomasyon Yapıcısı",
@@ -1581,6 +1595,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "projects.clinic.desc": "Automazione appuntamenti per MediCore Health con elaborazione del linguaggio naturale.",
     "projects.retail.title": "Piattaforma Analisi Retail",
     "projects.retail.desc": "Previsione vendite guidata dall'IA per UrbanMarket con ottimizzazione dell'inventario.",
+    "projects.architecture.title": "Studio di Architettura e Design 3D",
+    "projects.architecture.desc": "Visualizzazione 3D professionale per appartamenti, case e interior design. Layout assistiti da IA e rendering fotorealistici per architetti.",
     
     // Automation Constructor
     "constructor.title": "Costruttore di Automazione",
@@ -1796,6 +1812,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "projects.clinic.desc": "Автоматизация на записване за часове за MediCore Health с обработка на естествен език.",
     "projects.retail.title": "Платформа за търговски анализ",
     "projects.retail.desc": "Прогнозиране на продажби, задвижвано от ИИ, за UrbanMarket с оптимизация на инвентара.",
+    "projects.architecture.title": "Студио за архитектура и 3D дизайн",
+    "projects.architecture.desc": "Професионална 3D визуализация на апартаменти, къщи и интериорен дизайн. Планове с помощта на ИИ и фотореалистични визуализации за архитекти.",
     
     // Automation Constructor
     "constructor.title": "Конструктор за автоматизация",
@@ -2011,6 +2029,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "projects.clinic.desc": "Автоматизация записи на приём для MediCore Health с обработкой естественного языка.",
     "projects.retail.title": "Платформа розничной аналитики",
     "projects.retail.desc": "Прогнозирование продаж на основе ИИ для UrbanMarket с оптимизацией запасов.",
+    "projects.architecture.title": "Студия архитектуры и 3D-дизайна",
+    "projects.architecture.desc": "Профессиональная 3D-визуализация квартир, домов и интерьеров. Планировки с помощью ИИ и фотореалистичные рендеры для архитекторов.",
     
     // Automation Constructor
     "constructor.title": "Конструктор автоматизации",
