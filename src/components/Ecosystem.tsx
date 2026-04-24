@@ -1,4 +1,4 @@
-import { Bot, Globe, Users, UtensilsCrossed, Mountain, PawPrint, ExternalLink, Brain, Cpu, Activity, Server } from "lucide-react";
+import { Bot, Globe, Users, UtensilsCrossed, Mountain, PawPrint, ExternalLink, Brain, Cpu, Activity, Server, Building2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -13,6 +13,7 @@ interface EcosystemItem {
 
 const ecosystems: EcosystemItem[] = [
   { icon: Globe, titleKey: "ecosystem.aquaterra.title", descKey: "ecosystem.aquaterra.desc", link: "https://aquaterra.world", status: "alpha" },
+  { icon: Building2, titleKey: "ecosystem.architect.title", descKey: "ecosystem.architect.desc", status: "soon" },
   { icon: Mountain, titleKey: "ecosystem.geologist.title", descKey: "ecosystem.geologist.desc", link: "https://nics.space", status: "soon" },
   { icon: UtensilsCrossed, titleKey: "ecosystem.horeca.title", descKey: "ecosystem.horeca.desc", link: "https://nics.space", status: "soon" },
   { icon: PawPrint, titleKey: "ecosystem.animals.title", descKey: "ecosystem.animals.desc", link: "https://yorkie.aibyteconsult.com/", status: "soon" },
