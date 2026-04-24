@@ -37,15 +37,21 @@ const useSEO = ({ title, description, canonical, ogImage, jsonLd, noindex }: SEO
       setMeta("robots", "index, follow, max-image-preview:large");
     }
 
-    if (canonical) {
-      setMeta("og:url", canonical, "property");
+    // Always set a canonical so each route is uniquely indexed.
+    const canonicalUrl =
+      canonical ||
+      (typeof window !== "undefined"
+        ? window.location.origin + window.location.pathname
+        : "");
+    if (canonicalUrl) {
+      setMeta("og:url", canonicalUrl, "property");
       let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
       if (!link) {
         link = document.createElement("link");
         link.setAttribute("rel", "canonical");
         document.head.appendChild(link);
       }
-      link.href = canonical;
+      link.href = canonicalUrl;
     }
 
     if (ogImage) {
