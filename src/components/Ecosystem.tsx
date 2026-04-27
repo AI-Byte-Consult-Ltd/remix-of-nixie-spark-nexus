@@ -1,4 +1,4 @@
-import { Bot, Globe, Users, UtensilsCrossed, Mountain, PawPrint, ExternalLink, Brain, Cpu, Activity, Server, Building2 } from "lucide-react";
+import { Bot, Globe, Users, UtensilsCrossed, Mountain, PawPrint, ExternalLink, Brain, Cpu, Activity, Server, Building2, TrendingUp } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -149,6 +149,53 @@ const Ecosystem = () => {
               </CardWrapper>
             );
           })}
+        </div>
+
+        {/* NICS Trading Featured Mini-Block */}
+        <div className="max-w-6xl mx-auto mt-8">
+          <Card className="group card-hover bg-gradient-to-br from-card via-card to-green-500/5 border-green-500/30 hover:border-green-500/50 overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 p-6 items-center">
+              <a
+                href="https://affs.click/2i4pn"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="block space-y-4"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0">
+                      <TrendingUp className="w-7 h-7 text-white" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-xl md:text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {t("ecosystem.trading.title")}
+                      </CardTitle>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Badge variant="secondary" className="bg-green-500/10 text-green-600 border-green-500/20">
+                          {t("ecosystem.status.live")}
+                        </Badge>
+                        <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <CardDescription className="text-base text-muted-foreground leading-relaxed">
+                  {t("ecosystem.trading.desc")}
+                </CardDescription>
+              </a>
+              <div className="flex justify-center md:justify-end">
+                <iframe
+                  src="https://images.pipaffiliates.com/f/b?g=1013&c=1217182"
+                  width="300"
+                  height="250"
+                  style={{ border: 0 }}
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="NICS Trading"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </Card>
         </div>
       </div>
     </section>
