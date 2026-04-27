@@ -112,47 +112,8 @@ const Ecosystem = () => {
           </Card>
         </a>
 
-        {/* Other Ecosystem Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-          {ecosystems.map((ecosystem, index) => {
-            const Icon = ecosystem.icon;
-            const CardWrapper = ecosystem.link ? "a" : "div";
-            const cardProps = ecosystem.link
-              ? { href: ecosystem.link, target: "_blank", rel: "noopener noreferrer" }
-              : {};
-
-            return (
-              <CardWrapper key={index} {...cardProps} className="block">
-                <Card className={`group card-hover bg-card border-border/50 hover:border-primary/30 h-full ${ecosystem.link ? "" : "cursor-default"}`}>
-                  <CardHeader>
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-gold flex items-center justify-center mb-4 flex-shrink-0">
-                        <Icon className="w-7 h-7 text-white" />
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {getStatusBadge(ecosystem.status)}
-                        {ecosystem.link && (
-                          <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                        )}
-                      </div>
-                    </div>
-                    <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {t(ecosystem.titleKey)}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-base text-muted-foreground leading-relaxed">
-                      {t(ecosystem.descKey)}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </CardWrapper>
-            );
-          })}
-        </div>
-
         {/* NICS Trading Featured Mini-Block */}
-        <div className="max-w-6xl mx-auto mt-8">
+        <div className="max-w-6xl mx-auto mb-8">
           <Card className="group card-hover bg-gradient-to-br from-card via-card to-green-500/5 border-green-500/30 hover:border-green-500/50 overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 p-6 items-center">
               <a
@@ -196,6 +157,45 @@ const Ecosystem = () => {
               </div>
             </div>
           </Card>
+        </div>
+
+        {/* Other Ecosystem Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          {ecosystems.map((ecosystem, index) => {
+            const Icon = ecosystem.icon;
+            const CardWrapper = ecosystem.link ? "a" : "div";
+            const cardProps = ecosystem.link
+              ? { href: ecosystem.link, target: "_blank", rel: "noopener noreferrer" }
+              : {};
+
+            return (
+              <CardWrapper key={index} {...cardProps} className="block">
+                <Card className={`group card-hover bg-card border-border/50 hover:border-primary/30 h-full ${ecosystem.link ? "" : "cursor-default"}`}>
+                  <CardHeader>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-gold flex items-center justify-center mb-4 flex-shrink-0">
+                        <Icon className="w-7 h-7 text-white" />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {getStatusBadge(ecosystem.status)}
+                        {ecosystem.link && (
+                          <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                        )}
+                      </div>
+                    </div>
+                    <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {t(ecosystem.titleKey)}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base text-muted-foreground leading-relaxed">
+                      {t(ecosystem.descKey)}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </CardWrapper>
+            );
+          })}
         </div>
       </div>
     </section>
