@@ -198,12 +198,14 @@ const Trading = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <CardDescription className="text-muted-foreground">{t(m.descKey)}</CardDescription>
-                  <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored">
-                    <Button variant="outline" size="sm" className="rounded-full">
-                      <Download className="mr-2 w-4 h-4" />
-                      {t("trading.vantage.download")}
-                    </Button>
-                  </a>
+                  <div className="pt-2">
+                    <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored">
+                      <Button variant="outline" size="sm" className="rounded-full">
+                        <Download className="mr-2 w-4 h-4" />
+                        {t("trading.vantage.download")}
+                      </Button>
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             ))}
