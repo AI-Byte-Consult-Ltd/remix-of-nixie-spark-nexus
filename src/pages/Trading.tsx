@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
 import TradingViewTicker from "@/components/TradingViewTicker";
 import {
   TrendingUp,
@@ -117,9 +118,15 @@ const Trading = () => {
 
   // ROI Calculator state — based on historical algorithm avg monthly return.
   const [deposit, setDeposit] = useState<number>(2500);
+  const [period, setPeriod] = useState<"7d" | "1m" | "1y">("1m");
+  const [feeEnabled, setFeeEnabled] = useState<boolean>(true);
+  const [feePct, setFeePct] = useState<number>(20); // performance fee % on profit
   const AVG_MONTHLY_RETURN = 0.084; // 8.4% avg historical monthly (illustrative)
-  const monthlyProfit = deposit * AVG_MONTHLY_RETURN;
-  const yearlyProfit = deposit * (Math.pow(1 + AVG_MONTHLY_RETURN, 12) - 1);
+  const periodMonths = period === "7d" ? 7 / 30 : period === "1m" ? 1 : 12;
+  const grossProfit = deposit * (Math.pow(1 + AVG_MONTHLY_RETURN, periodMonths) - 1);
+  const fee = feeEnabled ? grossProfit * (feePct / 100) : 0;
+  const netProfit = grossProfit - fee;
+  const finalBalance = deposit + netProfit;
   const fmt = (n: number) =>
     n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
