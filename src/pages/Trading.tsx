@@ -408,12 +408,14 @@ const Trading = () => {
                     <span>{t("trading.telegram.stat2")}</span>
                   </div>
                 </div>
-                <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-10">
-                    <Send className="mr-2 w-4 h-4" />
-                    {t("trading.telegram.cta")}
-                  </Button>
-                </a>
+                <div className="pt-2">
+                  <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-10">
+                      <Send className="mr-2 w-4 h-4" />
+                      {t("trading.telegram.cta")}
+                    </Button>
+                  </a>
+                </div>
               </div>
             </Card>
           </div>
