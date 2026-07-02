@@ -213,6 +213,19 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "trading.telegram.stat2": "Daily AI insights",
     "trading.telegram.cta": "Join Telegram Group",
 
+    // Live Stats Widget
+    "trading.stats.winrate": "Algorithm win rate",
+    "trading.stats.copiers": "Active copy traders",
+    "trading.stats.month": "Profit this month",
+    "trading.stats.uptime": "AI engine uptime",
+
+    // ROI Calculator
+    "trading.roi.title": "ROI Calculator",
+    "trading.roi.deposit": "Your deposit",
+    "trading.roi.monthly": "Est. monthly profit",
+    "trading.roi.yearly": "Est. yearly profit (compounded)",
+    "trading.roi.disclaimer": "Based on 8.4% avg historical monthly return of the NICS AI algorithm. Past performance does not guarantee future results.",
+
     // === ABOUT PAGE ===
     "aboutpage.badge": "About AI Byte Consult Ltd",
     "aboutpage.hero.title1": "One Company.",
