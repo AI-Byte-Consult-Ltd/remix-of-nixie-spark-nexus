@@ -198,12 +198,14 @@ const Trading = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <CardDescription className="text-muted-foreground">{t(m.descKey)}</CardDescription>
-                  <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored">
-                    <Button variant="outline" size="sm" className="rounded-full">
-                      <Download className="mr-2 w-4 h-4" />
-                      {t("trading.vantage.download")}
-                    </Button>
-                  </a>
+                  <div className="pt-2">
+                    <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored">
+                      <Button variant="outline" size="sm" className="rounded-full">
+                        <Download className="mr-2 w-4 h-4" />
+                        {t("trading.vantage.download")}
+                      </Button>
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -212,19 +214,21 @@ const Trading = () => {
           <div className="max-w-6xl mx-auto">
             <Card className="bg-gradient-to-br from-card via-card to-green-500/5 border-green-500/30 overflow-hidden">
               <div className="grid md:grid-cols-[1fr_auto] gap-6 p-6 items-center">
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-5 h-5 text-green-600" />
                     <span className="text-sm font-medium text-green-700">{t("trading.vantage.partner")}</span>
                   </div>
                   <h3 className="text-2xl font-semibold text-foreground">{t("trading.vantage.cta.title")}</h3>
                   <p className="text-muted-foreground">{t("trading.vantage.cta.desc")}</p>
-                  <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored">
-                    <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full">
-                      {t("trading.vantage.cta.button")}
-                      <ExternalLink className="ml-2 w-4 h-4" />
-                    </Button>
-                  </a>
+                  <div className="pt-1">
+                    <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored">
+                      <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full">
+                        {t("trading.vantage.cta.button")}
+                        <ExternalLink className="ml-2 w-4 h-4" />
+                      </Button>
+                    </a>
+                  </div>
                 </div>
                 <div className="flex justify-center md:justify-end">
                   {/* Image removed by request */}
@@ -260,12 +264,14 @@ const Trading = () => {
                       </li>
                     ))}
                   </ul>
-                  <a href={COPY_TRADING_URL} target="_blank" rel="noopener noreferrer sponsored">
-                    <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                      <CopyIcon className="mr-2 w-4 h-4" />
-                      {t("trading.copy.cta")}
-                    </Button>
-                  </a>
+                  <div className="pt-2">
+                    <a href={COPY_TRADING_URL} target="_blank" rel="noopener noreferrer sponsored">
+                      <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
+                        <CopyIcon className="mr-2 w-4 h-4" />
+                        {t("trading.copy.cta")}
+                      </Button>
+                    </a>
+                  </div>
                 </div>
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-gold opacity-10 rounded-3xl blur-2xl" />
@@ -402,12 +408,14 @@ const Trading = () => {
                     <span>{t("trading.telegram.stat2")}</span>
                   </div>
                 </div>
-                <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-10">
-                    <Send className="mr-2 w-4 h-4" />
-                    {t("trading.telegram.cta")}
-                  </Button>
-                </a>
+                <div className="pt-2">
+                  <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-10">
+                      <Send className="mr-2 w-4 h-4" />
+                      {t("trading.telegram.cta")}
+                    </Button>
+                  </a>
+                </div>
               </div>
             </Card>
           </div>
