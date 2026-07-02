@@ -327,7 +327,56 @@ const Trading = () => {
                 </div>
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-gold opacity-10 rounded-3xl blur-2xl" />
-                  <div className="relative rounded-3xl border border-border/50 bg-card/80 backdrop-blur p-6 space-y-4">
+                  <div className="relative rounded-3xl border border-border/50 bg-card/80 backdrop-blur p-6 space-y-5">
+                    {/* ROI Calculator */}
+                    <div className="space-y-4 pb-5 border-b border-border/50">
+                      <div className="flex items-center gap-2">
+                        <Calculator className="w-5 h-5 text-primary" />
+                        <span className="font-semibold">{t("trading.roi.title")}</span>
+                      </div>
+                      <div className="flex items-baseline justify-between">
+                        <span className="text-xs text-muted-foreground">
+                          {t("trading.roi.deposit")}
+                        </span>
+                        <span className="text-lg font-semibold text-foreground">
+                          {fmt(deposit)}
+                        </span>
+                      </div>
+                      <Slider
+                        value={[deposit]}
+                        min={500}
+                        max={10000}
+                        step={100}
+                        onValueChange={(v) => setDeposit(v[0])}
+                        aria-label={t("trading.roi.deposit")}
+                      />
+                      <div className="flex justify-between text-[10px] text-muted-foreground">
+                        <span>$500</span>
+                        <span>$10,000</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3 pt-1">
+                        <div className="rounded-xl bg-muted/40 p-3">
+                          <div className="text-[11px] text-muted-foreground">
+                            {t("trading.roi.monthly")}
+                          </div>
+                          <div className="text-lg font-semibold text-green-600">
+                            +{fmt(monthlyProfit)}
+                          </div>
+                        </div>
+                        <div className="rounded-xl bg-muted/40 p-3">
+                          <div className="text-[11px] text-muted-foreground">
+                            {t("trading.roi.yearly")}
+                          </div>
+                          <div className="text-lg font-semibold text-green-600">
+                            +{fmt(yearlyProfit)}
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-[10px] text-muted-foreground leading-relaxed">
+                        {t("trading.roi.disclaimer")}
+                      </p>
+                    </div>
+
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Bot className="w-5 h-5 text-primary" />
