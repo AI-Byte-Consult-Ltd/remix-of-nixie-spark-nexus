@@ -26,6 +26,7 @@ const languages: {code: Language;flag: string;name: string;}[] = [
 
 const nicsServices = [
 { href: "https://estate.aibyteconsult.com", label: "NICS Real Estate", external: true },
+{ href: "/trading", label: "NICS AI Trading", external: false },
 { href: "/insurance", label: "NICS Insurance", external: false },
 { href: "/translation", label: "NICS Translation", external: false },
 { href: "/furnishings", label: "NICS Furnishings", external: false }];
@@ -42,6 +43,7 @@ const Header = () => {
   const navLinks = [
   { href: "/", label: t("nav.home"), isHome: true },
   { href: "/#ecosystem", label: t("nav.ecosystem") },
+  { href: "/trading", label: t("nav.trading") },
   { href: "/#projects", label: t("nav.projects") },
   { href: "/#ai-automation-fix", label: t("nav.automation") },
   { href: "/#contact", label: t("nav.contact") }];
