@@ -47,9 +47,13 @@ async function fetchRss(
     const r = await fetch(url, {
       headers: { "User-Agent": "Mozilla/5.0 NICS-AI-Trading/1.0" },
     });
-    if (!r.ok) return [];
+    if (!r.ok) {
+      console.warn(`RSS ${category} HTTP ${r.status}`);
+      return [];
+    }
     const xml = await r.text();
     const items = xml.match(/<item[\s\S]*?<\/item>/g) ?? [];
+    console.log(`RSS ${category} items parsed: ${items.length}, xml length: ${xml.length}`);
     return items.slice(0, 15).map((it, idx) => {
       const title = extract("title", it);
       const link = extract("link", it);
@@ -67,7 +71,8 @@ async function fetchRss(
         publishedAt: pubDate ? new Date(pubDate).getTime() : Date.now(),
       };
     }).filter((n) => n.title && n.url);
-  } catch {
+  } catch (e) {
+    console.error(`RSS ${category} fetch error`, e);
     return [];
   }
 }
