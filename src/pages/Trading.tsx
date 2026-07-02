@@ -382,21 +382,86 @@ const Trading = () => {
                         <span>$500</span>
                         <span>$10,000</span>
                       </div>
+                      {/* Period selector */}
+                      <div>
+                        <div className="text-[11px] text-muted-foreground mb-2">
+                          {t("trading.roi.period")}
+                        </div>
+                        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-full bg-muted/40">
+                          {(["7d", "1m", "1y"] as const).map((p) => (
+                            <button
+                              key={p}
+                              type="button"
+                              onClick={() => setPeriod(p)}
+                              className={`text-xs font-medium py-1.5 rounded-full transition-colors ${
+                                period === p
+                                  ? "bg-foreground text-background"
+                                  : "text-muted-foreground hover:text-foreground"
+                              }`}
+                              aria-pressed={period === p}
+                            >
+                              {t(`trading.roi.period.${p}`)}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Fee toggle */}
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <label
+                            htmlFor="roi-fee-toggle"
+                            className="text-[11px] text-muted-foreground cursor-pointer"
+                          >
+                            {t("trading.roi.fee.label")}
+                          </label>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-medium text-foreground tabular-nums w-8 text-right">
+                              {feeEnabled ? `${feePct}%` : "—"}
+                            </span>
+                            <Switch
+                              id="roi-fee-toggle"
+                              checked={feeEnabled}
+                              onCheckedChange={setFeeEnabled}
+                            />
+                          </div>
+                        </div>
+                        {feeEnabled && (
+                          <Slider
+                            value={[feePct]}
+                            min={0}
+                            max={40}
+                            step={1}
+                            onValueChange={(v) => setFeePct(v[0])}
+                            aria-label={t("trading.roi.fee.label")}
+                          />
+                        )}
+                      </div>
+
+                      {/* Results */}
                       <div className="grid grid-cols-2 gap-3 pt-1">
                         <div className="rounded-xl bg-muted/40 p-3">
                           <div className="text-[11px] text-muted-foreground">
-                            {t("trading.roi.monthly")}
+                            {t("trading.roi.netProfit")}
                           </div>
-                          <div className="text-lg font-semibold text-green-600">
-                            +{fmt(monthlyProfit)}
+                          <div className="text-lg font-semibold text-green-600 tabular-nums">
+                            +{fmt(netProfit)}
                           </div>
+                          {feeEnabled && (
+                            <div className="text-[10px] text-muted-foreground mt-0.5 tabular-nums">
+                              {t("trading.roi.fee.short")}: −{fmt(fee)}
+                            </div>
+                          )}
                         </div>
                         <div className="rounded-xl bg-muted/40 p-3">
                           <div className="text-[11px] text-muted-foreground">
-                            {t("trading.roi.yearly")}
+                            {t("trading.roi.finalBalance")}
                           </div>
-                          <div className="text-lg font-semibold text-green-600">
-                            +{fmt(yearlyProfit)}
+                          <div className="text-lg font-semibold text-foreground tabular-nums">
+                            {fmt(finalBalance)}
+                          </div>
+                          <div className="text-[10px] text-muted-foreground mt-0.5 tabular-nums">
+                            {t("trading.roi.gross")}: +{fmt(grossProfit)}
                           </div>
                         </div>
                       </div>
