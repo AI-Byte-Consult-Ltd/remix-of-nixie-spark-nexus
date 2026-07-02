@@ -264,12 +264,14 @@ const Trading = () => {
                       </li>
                     ))}
                   </ul>
-                  <a href={COPY_TRADING_URL} target="_blank" rel="noopener noreferrer sponsored">
-                    <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                      <CopyIcon className="mr-2 w-4 h-4" />
-                      {t("trading.copy.cta")}
-                    </Button>
-                  </a>
+                  <div className="pt-2">
+                    <a href={COPY_TRADING_URL} target="_blank" rel="noopener noreferrer sponsored">
+                      <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
+                        <CopyIcon className="mr-2 w-4 h-4" />
+                        {t("trading.copy.cta")}
+                      </Button>
+                    </a>
+                  </div>
                 </div>
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-gold opacity-10 rounded-3xl blur-2xl" />
