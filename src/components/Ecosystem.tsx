@@ -114,14 +114,14 @@ const Ecosystem = () => {
 
         {/* NICS Trading Featured Mini-Block */}
         <div className="max-w-6xl mx-auto mb-8">
-          <Card className="group card-hover bg-gradient-to-br from-card via-card to-green-500/5 border-green-500/30 hover:border-green-500/50 overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 p-6 items-center">
-              <a
-                href="https://affs.click/2i4pn"
-                target="_blank"
-                rel="noopener noreferrer sponsored"
-                className="block space-y-4"
-              >
+          <a
+            href="https://affs.click/2i4pn"
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="block"
+          >
+            <Card className="group card-hover bg-gradient-to-br from-card via-card to-green-500/5 border-green-500/30 hover:border-green-500/50 overflow-hidden">
+              <div className="p-6 space-y-4">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0">
@@ -140,23 +140,12 @@ const Ecosystem = () => {
                     </div>
                   </div>
                 </div>
-                <CardDescription className="text-base text-muted-foreground leading-relaxed">
+                <CardDescription className="text-base text-muted-foreground leading-relaxed max-w-4xl">
                   {t("ecosystem.trading.desc")}
                 </CardDescription>
-              </a>
-              <div className="flex justify-center md:justify-end">
-                <iframe
-                  src="https://images.pipaffiliates.com/f/b?g=1013&c=1217182"
-                  width="300"
-                  height="250"
-                  style={{ border: 0 }}
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="NICS Trading"
-                  loading="lazy"
-                />
               </div>
-            </div>
-          </Card>
+            </Card>
+          </a>
         </div>
 
         {/* Other Ecosystem Cards */}
