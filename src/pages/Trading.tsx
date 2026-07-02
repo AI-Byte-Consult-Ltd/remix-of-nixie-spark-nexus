@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import useSEO from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const VANTAGE_URL = "https://fwd.cx/Yj25BCrDzEHB";
 const TELEGRAM_URL = "https://t.me/GoldAndMarkets";
@@ -44,8 +45,10 @@ interface NewsItem {
   category: Category;
   tags: string[];
   publishedAt: number;
+  url?: string;
 }
 
+// Fallback pool used only if the live news edge function is unreachable.
 const newsPool: Omit<NewsItem, "id" | "publishedAt">[] = [
   { title: "EUR/USD holds gains as traders reprice ECB rate path", source: "FX Wire", category: "Forex", tags: ["EURUSD", "ECB", "Rates"] },
   { title: "USD/JPY spikes on BoJ intervention rumors", source: "Market Pulse", category: "Forex", tags: ["USDJPY", "BoJ"] },
@@ -109,6 +112,8 @@ const Trading = () => {
 
   const [filter, setFilter] = useState<"All" | Category>("All");
   const [news, setNews] = useState<NewsItem[]>(() => seedNews());
+  const [newsLoading, setNewsLoading] = useState<boolean>(true);
+  const [newsLive, setNewsLive] = useState<boolean>(false);
 
   // ROI Calculator state — based on historical algorithm avg monthly return.
   const [deposit, setDeposit] = useState<number>(2500);
@@ -119,14 +124,30 @@ const Trading = () => {
     n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setNews((prev) => {
-        const next = newsPool[Math.floor(Math.random() * newsPool.length)];
-        const item: NewsItem = { ...next, id: `${Date.now()}-${Math.random()}`, publishedAt: Date.now() };
-        return [item, ...prev].slice(0, 10);
-      });
-    }, 15000);
-    return () => clearInterval(id);
+    let cancelled = false;
+    const load = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke("market-news");
+        if (cancelled) return;
+        if (error) throw error;
+        const items = (data?.items ?? []) as NewsItem[];
+        if (items.length > 0) {
+          setNews(items);
+          setNewsLive(true);
+        }
+      } catch (e) {
+        console.warn("market-news fetch failed, using fallback", e);
+      } finally {
+        if (!cancelled) setNewsLoading(false);
+      }
+    };
+    load();
+    // Refresh every 5 minutes
+    const id = setInterval(load, 5 * 60 * 1000);
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+    };
   }, []);
 
   const filtered = useMemo(
@@ -445,9 +466,8 @@ const Trading = () => {
             <div className="space-y-3">
               {filtered.map((n) => {
                 const Icon = catIcon(n.category);
-                return (
-                  <Card key={n.id} className="card-hover bg-card border-border/50 hover:border-primary/30 animate-fade-in">
-                    <CardContent className="p-4 md:p-5">
+                const CardInner = (
+                  <CardContent className="p-4 md:p-5">
                       <div className="flex items-start gap-4">
                         <div className="w-10 h-10 rounded-xl bg-gradient-gold flex items-center justify-center flex-shrink-0">
                           <Icon className="w-5 h-5 text-white" />
@@ -472,11 +492,40 @@ const Trading = () => {
                             ))}
                           </div>
                         </div>
+                        {n.url && (
+                          <ExternalLink className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-1" />
+                        )}
                       </div>
                     </CardContent>
+                );
+                const cardClass =
+                  "card-hover bg-card border-border/50 hover:border-primary/30 animate-fade-in block";
+                return n.url ? (
+                  <a
+                    key={n.id}
+                    href={n.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <Card className={cardClass}>{CardInner}</Card>
+                  </a>
+                ) : (
+                  <Card key={n.id} className={cardClass}>
+                    {CardInner}
                   </Card>
                 );
               })}
+              {newsLoading && news.length === 0 && (
+                <div className="text-center text-sm text-muted-foreground py-8">
+                  {t("trading.news.loading")}
+                </div>
+              )}
+              {!newsLoading && !newsLive && (
+                <p className="text-center text-[11px] text-muted-foreground pt-2">
+                  {t("trading.news.offline")}
+                </p>
+              )}
             </div>
             <p className="text-center text-xs text-muted-foreground mt-6">{t("trading.news.disclaimer")}</p>
           </div>
