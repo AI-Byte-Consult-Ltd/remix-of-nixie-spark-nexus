@@ -224,8 +224,15 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     // ROI Calculator
     "trading.roi.title": "ROI Calculator",
     "trading.roi.deposit": "Your deposit",
-    "trading.roi.monthly": "Est. monthly profit",
-    "trading.roi.yearly": "Est. yearly profit (compounded)",
+    "trading.roi.period": "Time horizon",
+    "trading.roi.period.7d": "7 days",
+    "trading.roi.period.1m": "1 month",
+    "trading.roi.period.1y": "1 year",
+    "trading.roi.fee.label": "Performance fee (on profit)",
+    "trading.roi.fee.short": "Fee",
+    "trading.roi.gross": "Gross",
+    "trading.roi.netProfit": "Net profit",
+    "trading.roi.finalBalance": "Final balance",
     "trading.roi.disclaimer": "Based on 8.4% avg historical monthly return of the NICS AI algorithm. Past performance does not guarantee future results.",
 
     // === ABOUT PAGE ===
