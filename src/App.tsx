@@ -10,6 +10,7 @@ import Estate from "./pages/Estate";
 import Insurance from "./pages/Insurance";
 import Translation from "./pages/Translation";
 import Furnishings from "./pages/Furnishings";
+import Trading from "./pages/Trading";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/insurance" element={<Insurance />} />
             <Route path="/translation" element={<Translation />} />
             <Route path="/furnishings" element={<Furnishings />} />
+            <Route path="/trading" element={<Trading />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
