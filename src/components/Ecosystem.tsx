@@ -115,7 +115,7 @@ const Ecosystem = () => {
         {/* NICS Trading Featured Mini-Block */}
         <div className="max-w-6xl mx-auto mb-8">
           <a
-            href="https://affs.click/2i4pn"
+            href="https://fwd.cx/Yj25BCrDzEHB"
             target="_blank"
             rel="noopener noreferrer sponsored"
             className="block"
