@@ -227,15 +227,7 @@ const Trading = () => {
                   </a>
                 </div>
                 <div className="flex justify-center md:justify-end">
-                  <iframe
-                    src="https://images.pipaffiliates.com/f/b?g=1013&c=1217182"
-                    width="300"
-                    height="250"
-                    style={{ border: 0 }}
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Vantage Partnership"
-                    loading="lazy"
-                  />
+                  {/* Image removed by request */}
                 </div>
               </div>
             </Card>
