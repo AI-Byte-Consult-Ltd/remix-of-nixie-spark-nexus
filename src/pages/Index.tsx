@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import HomeMarketTicker from "@/components/HomeMarketTicker";
 import About from "@/components/About";
 import Ecosystem from "@/components/Ecosystem";
 import Projects from "@/components/Projects";
@@ -24,6 +25,7 @@ const Index = () => {
     <main className="min-h-screen">
       <Header />
       <Hero />
+      <HomeMarketTicker />
       <About />
       <Ecosystem />
       <Projects />
