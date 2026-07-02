@@ -205,6 +205,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "trading.news.subtitle": "Real-time updates on Forex, Gold (XAUUSD) and Crypto markets — filtered by NICS AI.",
     "trading.news.filter.all": "All Markets",
     "trading.news.disclaimer": "Headlines refresh automatically. For informational purposes only — not financial advice.",
+    "trading.news.loading": "Loading live market news…",
+    "trading.news.offline": "Live feed temporarily unavailable — showing recent cached headlines.",
 
     "trading.telegram.title1": "Join the NICS AI",
     "trading.telegram.title2": "Trading Community",
