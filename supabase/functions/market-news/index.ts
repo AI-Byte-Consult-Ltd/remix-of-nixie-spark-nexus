@@ -12,34 +12,6 @@ interface NewsItem {
   publishedAt: number; // ms epoch
 }
 
-// ---------- CryptoCompare (no API key required) ----------
-async function fetchCrypto(): Promise<NewsItem[]> {
-  try {
-    const r = await fetch(
-      "https://min-api.cryptocompare.com/data/v2/news/?lang=EN&sortOrder=latest",
-      { headers: { "User-Agent": "NICS-AI-Trading/1.0" } },
-    );
-    if (!r.ok) return [];
-    const j = await r.json();
-    const arr: any[] = Array.isArray(j?.Data) ? j.Data : [];
-    return arr.slice(0, 20).map((n) => ({
-      id: `cc-${n.id}`,
-      title: String(n.title ?? "").trim(),
-      source: String(n.source_info?.name ?? n.source ?? "CryptoCompare"),
-      category: "Crypto" as Category,
-      tags: String(n.categories ?? "")
-        .split("|")
-        .map((t: string) => t.trim())
-        .filter(Boolean)
-        .slice(0, 4),
-      url: String(n.url ?? ""),
-      publishedAt: Number(n.published_on ?? 0) * 1000,
-    })).filter((n) => n.title && n.url);
-  } catch {
-    return [];
-  }
-}
-
 // ---------- Google News RSS (no API key required) ----------
 function decodeEntities(s: string): string {
   return s
@@ -124,7 +96,11 @@ Deno.serve(async (req) => {
     }
 
     const [crypto, forex, gold] = await Promise.all([
-      fetchCrypto(),
+      fetchRss(
+        "bitcoin OR ethereum OR crypto",
+        "Crypto",
+        ["BTC", "ETH", "Crypto"],
+      ),
       fetchRss("forex EURUSD OR GBPUSD OR USDJPY", "Forex", ["Forex"]),
       fetchRss("gold XAUUSD OR \"gold price\"", "Gold", ["XAUUSD", "Gold"]),
     ]);
