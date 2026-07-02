@@ -26,7 +26,7 @@ import useSEO from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const VANTAGE_URL = "https://affs.click/2i4pn";
-const TELEGRAM_URL = "https://t.me/nicsaitrading";
+const TELEGRAM_URL = "https://t.me/GoldAndMarkets";
 const COPY_TRADING_URL = "https://affs.click/2i4pn";
 
 type Category = "Forex" | "Gold" | "Crypto";
