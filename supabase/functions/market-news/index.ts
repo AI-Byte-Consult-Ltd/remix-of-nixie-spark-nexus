@@ -36,33 +36,40 @@ function extract(tag: string, xml: string): string {
 }
 
 async function fetchRss(
-  query: string,
+  url: string,
   category: Category,
   tags: string[],
+  label: string,
 ): Promise<NewsItem[]> {
   try {
-    const url = `https://news.google.com/rss/search?q=${encodeURIComponent(
-      query,
-    )}&hl=en-US&gl=US&ceid=US:en`;
     const r = await fetch(url, {
-      headers: { "User-Agent": "Mozilla/5.0 NICS-AI-Trading/1.0" },
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (compatible; NICS-AI-Trading/1.0; +https://aibyteconsult.com)",
+        Accept: "application/rss+xml, application/xml, text/xml;q=0.9, */*;q=0.8",
+      },
+      redirect: "follow",
     });
     if (!r.ok) {
-      console.warn(`RSS ${category} HTTP ${r.status}`);
+      console.warn(`RSS ${label} HTTP ${r.status}`);
       return [];
     }
     const xml = await r.text();
     const items = xml.match(/<item[\s\S]*?<\/item>/g) ?? [];
-    console.log(`RSS ${category} items parsed: ${items.length}, xml length: ${xml.length}`);
+    console.log(`RSS ${label} items=${items.length} xmlLen=${xml.length}`);
     return items.slice(0, 15).map((it, idx) => {
       const title = extract("title", it);
-      const link = extract("link", it);
+      let link = extract("link", it);
+      if (!link) {
+        // Some feeds put the link in <guid> or as an <atom:link href="..."/>
+        const guid = extract("guid", it);
+        if (/^https?:\/\//.test(guid)) link = guid;
+      }
       const pubDate = extract("pubDate", it);
-      const source = extract("source", it) || "Google News";
-      // title often ends with " - Source"; trim it
+      const source = extract("source", it) || label;
       const cleanTitle = title.replace(/\s+-\s+[^-]+$/, "").trim();
       return {
-        id: `gn-${category}-${idx}-${link.slice(-20)}`,
+        id: `rss-${category}-${idx}-${link.slice(-24)}`,
         title: cleanTitle || title,
         source,
         category,
@@ -72,7 +79,7 @@ async function fetchRss(
       };
     }).filter((n) => n.title && n.url);
   } catch (e) {
-    console.error(`RSS ${category} fetch error`, e);
+    console.error(`RSS ${label} fetch error`, e);
     return [];
   }
 }
@@ -102,12 +109,23 @@ Deno.serve(async (req) => {
 
     const [crypto, forex, gold] = await Promise.all([
       fetchRss(
-        "bitcoin OR ethereum OR crypto",
+        "https://cointelegraph.com/rss",
         "Crypto",
-        ["BTC", "ETH", "Crypto"],
+        ["Crypto", "BTC", "ETH"],
+        "Cointelegraph",
       ),
-      fetchRss("forex EURUSD OR GBPUSD OR USDJPY", "Forex", ["Forex"]),
-      fetchRss("gold XAUUSD OR \"gold price\"", "Gold", ["XAUUSD", "Gold"]),
+      fetchRss(
+        "https://www.investing.com/rss/news_1.rss",
+        "Forex",
+        ["Forex"],
+        "Investing.com Forex",
+      ),
+      fetchRss(
+        "https://www.investing.com/rss/news_285.rss",
+        "Gold",
+        ["XAUUSD", "Gold", "Commodities"],
+        "Investing.com Commodities",
+      ),
     ]);
 
     const merged = [...crypto, ...forex, ...gold]
