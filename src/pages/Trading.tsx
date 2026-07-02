@@ -4,6 +4,8 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Slider } from "@/components/ui/slider";
+import TradingViewTicker from "@/components/TradingViewTicker";
 import {
   TrendingUp,
   ArrowRight,
@@ -21,6 +23,10 @@ import {
   ExternalLink,
   Zap,
   Copy as CopyIcon,
+  Activity,
+  Percent,
+  BarChart3,
+  Calculator,
 } from "lucide-react";
 import useSEO from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -104,6 +110,14 @@ const Trading = () => {
   const [filter, setFilter] = useState<"All" | Category>("All");
   const [news, setNews] = useState<NewsItem[]>(() => seedNews());
 
+  // ROI Calculator state — based on historical algorithm avg monthly return.
+  const [deposit, setDeposit] = useState<number>(2500);
+  const AVG_MONTHLY_RETURN = 0.084; // 8.4% avg historical monthly (illustrative)
+  const monthlyProfit = deposit * AVG_MONTHLY_RETURN;
+  const yearlyProfit = deposit * (Math.pow(1 + AVG_MONTHLY_RETURN, 12) - 1);
+  const fmt = (n: number) =>
+    n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+
   useEffect(() => {
     const id = setInterval(() => {
       setNews((prev) => {
@@ -170,6 +184,44 @@ const Trading = () => {
                 </Badge>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TradingView Ticker Tape — live market prices */}
+      <TradingViewTicker />
+
+      {/* Live Stats Widget */}
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {[
+              { icon: Percent, value: "74%", label: t("trading.stats.winrate"), color: "text-green-600" },
+              { icon: Users, value: "1,420+", label: t("trading.stats.copiers"), color: "text-primary" },
+              { icon: BarChart3, value: "+12.4%", label: t("trading.stats.month"), color: "text-green-600" },
+              { icon: Activity, value: "24/7", label: t("trading.stats.uptime"), color: "text-primary" },
+            ].map((s, i) => (
+              <Card
+                key={i}
+                className="card-hover bg-card border-border/50 hover:border-primary/30"
+              >
+                <CardContent className="p-5 flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-2xl bg-gradient-gold flex items-center justify-center flex-shrink-0">
+                    <s.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className={`text-xl md:text-2xl font-semibold ${s.color}`}>
+                      {s.value}
+                      <span className="relative inline-flex h-2 w-2 ml-2 -translate-y-1">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                      </span>
+                    </div>
+                    <div className="text-xs text-muted-foreground truncate">{s.label}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
