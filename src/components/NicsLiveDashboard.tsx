@@ -139,11 +139,11 @@ const NicsLiveDashboard = ({ compact = false }: Props) => {
             <LineChart data={chart}>
               <YAxis hide domain={["dataMin - 0.1", "dataMax + 0.1"]} />
               <Tooltip
-                contentStyle={{ background: "#0a0f14", border: "1px solid rgba(34,211,238,0.3)", fontSize: 11 }}
-                labelStyle={{ color: "#67e8f9" }}
+                contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", fontSize: 11 }}
+                labelStyle={{ color: "hsl(var(--primary))" }}
                 formatter={(v: number) => [v, "loss"]}
               />
-              <Line type="monotone" dataKey="loss" stroke="#22d3ee" strokeWidth={2} dot={false} isAnimationActive={false} />
+              <Line type="monotone" dataKey="loss" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} isAnimationActive={false} />
             </LineChart>
           </ResponsiveContainer>
         </div>

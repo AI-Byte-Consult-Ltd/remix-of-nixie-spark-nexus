@@ -32,7 +32,7 @@ const NicsEcosystem = () => {
   });
 
   return (
-    <main className="min-h-screen bg-background text-white">
+    <main className="min-h-screen bg-background text-foreground">
       <Header />
 
       {/* Hero */}
@@ -63,7 +63,7 @@ const NicsEcosystem = () => {
                 ))}
               </div>
               <div className="flex flex-wrap gap-3 pt-2">
-                <a href="#live"><Button size="lg" className="bg-primary text-black hover:bg-primary">View Live Training <ArrowRight className="w-4 h-4 ml-1" /></Button></a>
+                <a href="#live"><Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90">View Live Training <ArrowRight className="w-4 h-4 ml-1" /></Button></a>
                 <a href="#overview"><Button size="lg" variant="outline" className="border-primary/40 text-foreground bg-transparent hover:bg-primary/10">Project Overview</Button></a>
               </div>
             </div>
@@ -88,7 +88,7 @@ const NicsEcosystem = () => {
             {stackItems.map(({ Icon, title, desc }) => (
               <Card key={title} className="bg-card border-border p-6 hover:border-primary/30 transition-colors">
                 <Icon className="w-6 h-6 text-primary mb-3" />
-                <h3 className="font-semibold mb-2 text-white">{title}</h3>
+                <h3 className="font-semibold mb-2 text-foreground">{title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
               </Card>
             ))}
@@ -119,7 +119,7 @@ const NicsEcosystem = () => {
           </div>
           <div className="text-center mt-10">
             <a href="https://nics.space" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-primary text-black hover:bg-primary">
+              <Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90">
                 Explore Full Interface at nics.space <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </a>

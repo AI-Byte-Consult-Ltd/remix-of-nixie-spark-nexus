@@ -43,7 +43,7 @@ const NicsEcosystemPreview = () => {
 
             <div className="flex flex-wrap gap-3 pt-2">
               <Link to="/nics-ecosystem">
-                <Button size="lg" className="bg-primary text-black hover:bg-primary">
+                <Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90">
                   View Live Training <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </Link>
