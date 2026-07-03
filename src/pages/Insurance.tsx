@@ -13,7 +13,7 @@ const Insurance = () => {
   const { t } = useLanguage();
 
   useSEO({
-    title: "NICS Insurance — AI-Powered Smart Insurance | AI Byte Consult",
+    title: "NICS Insurance — AI-Powered Smart Insurance",
     description: "Smart insurance solutions with AI-powered risk assessment, instant claims processing, and personalized coverage for health, property, auto and business.",
     canonical: "https://aibyteconsult.com/insurance",
     ogImage: "https://aibyteconsult.com/og-insurance.jpg",

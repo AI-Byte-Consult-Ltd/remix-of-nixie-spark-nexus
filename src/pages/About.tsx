@@ -93,12 +93,11 @@ const About = () => {
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground">
-              {t("aboutpage.hero.title1")}{" "}
-              <span className="text-gradient-gold">{t("aboutpage.hero.title2")}</span>
+              About <span className="text-gradient-gold">AI Byte Consult</span>
             </h1>
 
             <p className="text-xl md:text-2xl font-medium text-primary italic">
-              "{t("aboutpage.hero.slogan")}"
+              {t("aboutpage.hero.title1")} {t("aboutpage.hero.title2")} — "{t("aboutpage.hero.slogan")}"
             </p>
             
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -228,8 +227,11 @@ const About = () => {
                     {division.description}
                   </p>
                   {division.link && (
-                    <Link to={division.link} className="inline-flex items-center text-sm font-medium text-primary hover:underline">
-                      {t("aboutpage.learnMore")}
+                    <Link
+                      to={division.link}
+                      aria-label={`Learn more about ${division.title}`}
+                      className="inline-flex items-center text-sm font-medium text-primary hover:underline">
+                      {`Learn about ${division.title}`}
                       <ArrowRight className="w-4 h-4 ml-1" />
                     </Link>
                   )}
