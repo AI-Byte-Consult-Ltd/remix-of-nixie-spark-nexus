@@ -70,9 +70,11 @@ const HomeMarketTicker = () => {
   const loop = [...items, ...items];
 
   return (
-    <Link
-      to="/trading"
-      aria-label="Open NICS AI Trading"
+    <a
+      href="https://fwd.cx/Yj25BCrDzEHB"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open Vantage referral"
       className="relative block group border-y border-border/50 bg-card/40 backdrop-blur overflow-hidden"
     >
       <div className="flex items-center">
