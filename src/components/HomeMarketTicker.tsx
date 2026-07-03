@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { TrendingUp, TrendingDown, Circle } from "lucide-react";
 
@@ -71,9 +70,11 @@ const HomeMarketTicker = () => {
   const loop = [...items, ...items];
 
   return (
-    <Link
-      to="/trading"
-      aria-label="Open NICS AI Trading"
+    <a
+      href="https://fwd.cx/Yj25BCrDzEHB"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open Vantage referral"
       className="relative block group border-y border-border/50 bg-card/40 backdrop-blur overflow-hidden"
     >
       <div className="flex items-center">
@@ -136,10 +137,10 @@ const HomeMarketTicker = () => {
 
         {/* Trailing hint */}
         <div className="hidden md:flex items-center gap-1 px-3 py-2 border-l border-border/50 bg-background/60 text-[11px] font-medium text-foreground/70 group-hover:text-primary transition-colors">
-          NICS AI Trading →
+          Vantage →
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 
