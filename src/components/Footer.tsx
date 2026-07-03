@@ -18,11 +18,12 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">{t("footer.quicklinks")}</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-muted-foreground hover:text-primary transition-colors">{t("footer.home")}</Link></li>
-              <li><Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">{t("footer.aboutus")}</Link></li>
-              <li><Link to="/#ecosystem" className="text-muted-foreground hover:text-primary transition-colors">{t("footer.ecosystem")}</Link></li>
-              <li><Link to="/#projects" className="text-muted-foreground hover:text-primary transition-colors">{t("footer.projects")}</Link></li>
-              <li><Link to="/#contact" className="text-muted-foreground hover:text-primary transition-colors">{t("footer.contact")}</Link></li>
+              <li><Link to="/" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.home")}</Link></li>
+              <li><Link to="/#ecosystem" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.ecosystem")}</Link></li>
+              <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.trading")}</Link></li>
+              <li><Link to="/#projects" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.projects")}</Link></li>
+              <li><Link to="/#ai-automation-fix" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.automation")}</Link></li>
+              <li><Link to="/#contact" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.contact")}</Link></li>
             </ul>
           </div>
 
@@ -30,6 +31,8 @@ const Footer = () => {
             <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">{t("footer.services")}</h3>
             <ul className="space-y-2">
               <li><a href="https://estate.aibyteconsult.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Real Estate</a></li>
+              <li><Link to="/nics-ecosystem" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Ecosystem</Link></li>
+              <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Trading</Link></li>
               <li><Link to="/insurance" className="text-muted-foreground hover:text-primary transition-colors">NICS Insurance</Link></li>
               <li><Link to="/translation" className="text-muted-foreground hover:text-primary transition-colors">NICS Translation</Link></li>
               <li><Link to="/furnishings" className="text-muted-foreground hover:text-primary transition-colors">NICS Furnishings</Link></li>
