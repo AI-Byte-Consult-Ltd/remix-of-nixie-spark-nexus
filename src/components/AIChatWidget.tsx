@@ -261,6 +261,7 @@ const AIChatWidget = () => {
               size="icon"
               onClick={() => setIsOpen(false)}
               className="h-8 w-8 rounded-full hover:bg-muted"
+              aria-label="Close chat"
             >
               <X className="w-4 h-4" />
             </Button>
@@ -345,6 +346,7 @@ const AIChatWidget = () => {
               disabled={!inputValue.trim() || isLoading || chatStep === "completed"}
               size="icon"
               className="rounded-full bg-primary hover:bg-primary/90 w-10 h-10"
+              aria-label="Send message"
             >
               <Send className="w-4 h-4" />
             </Button>

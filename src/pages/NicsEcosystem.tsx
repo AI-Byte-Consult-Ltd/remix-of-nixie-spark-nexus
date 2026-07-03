@@ -26,7 +26,7 @@ const infra = [
 
 const NicsEcosystem = () => {
   useSEO({
-    title: "NICS AI Ecosystem — Live Multilingual AI Research | AI Byte Consult",
+    title: "NICS AI Ecosystem — Live Multilingual AI Research",
     description: "A transparent AI laboratory: proprietary tokenizer, models, training pipeline and inference stack — with live multilingual training you can observe in real time.",
     canonical: "https://aibyteconsult.com/nics-ecosystem",
   });

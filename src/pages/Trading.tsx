@@ -95,7 +95,7 @@ const Trading = () => {
   const { t } = useLanguage();
 
   useSEO({
-    title: "NICS AI Trading — AI-Powered Forex, Gold & Crypto Signals | AI Byte Consult",
+    title: "NICS AI Trading — Forex, Gold & Crypto Signals",
     description:
       "NICS AI Trading — AI-powered trading, Vantage partnership, copy trading, and a live news hub for Forex, Gold (XAUUSD) and Crypto. Join our Telegram community.",
     canonical: "https://aibyteconsult.com/trading",

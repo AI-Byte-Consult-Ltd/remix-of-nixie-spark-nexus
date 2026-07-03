@@ -13,7 +13,7 @@ const Translation = () => {
   const { t } = useLanguage();
 
   useSEO({
-    title: "NICS Translation & Legalisation — Certified Services | AI Byte Consult",
+    title: "NICS Translation & Legalisation — Certified",
     description: "Professional certified translation and legalisation services in 50+ languages with AI-enhanced accuracy, apostille, and notarized translations.",
     canonical: "https://aibyteconsult.com/translation",
     ogImage: "https://aibyteconsult.com/og-translation.jpg",
