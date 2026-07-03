@@ -137,10 +137,10 @@ const HomeMarketTicker = () => {
 
         {/* Trailing hint */}
         <div className="hidden md:flex items-center gap-1 px-3 py-2 border-l border-border/50 bg-background/60 text-[11px] font-medium text-foreground/70 group-hover:text-primary transition-colors">
-          NICS AI Trading →
+          Vantage →
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 
