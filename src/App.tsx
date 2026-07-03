@@ -11,6 +11,7 @@ import Insurance from "./pages/Insurance";
 import Translation from "./pages/Translation";
 import Furnishings from "./pages/Furnishings";
 import Trading from "./pages/Trading";
+import NicsEcosystem from "./pages/NicsEcosystem";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/translation" element={<Translation />} />
             <Route path="/furnishings" element={<Furnishings />} />
             <Route path="/trading" element={<Trading />} />
+            <Route path="/nics-ecosystem" element={<NicsEcosystem />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

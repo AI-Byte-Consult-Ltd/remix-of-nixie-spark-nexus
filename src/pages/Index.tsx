@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import HomeMarketTicker from "@/components/HomeMarketTicker";
+import NicsEcosystemPreview from "@/components/NicsEcosystemPreview";
 import About from "@/components/About";
 import Ecosystem from "@/components/Ecosystem";
 import Projects from "@/components/Projects";
@@ -26,6 +27,7 @@ const Index = () => {
       <Header />
       <Hero />
       <HomeMarketTicker />
+      <NicsEcosystemPreview />
       <About />
       <Ecosystem />
       <Projects />
