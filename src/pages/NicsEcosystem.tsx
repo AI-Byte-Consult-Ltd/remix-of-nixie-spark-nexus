@@ -32,7 +32,7 @@ const NicsEcosystem = () => {
   });
 
   return (
-    <main className="min-h-screen bg-[#05080b] text-white">
+    <main className="min-h-screen bg-background text-white">
       <Header />
 
       {/* Hero */}
@@ -43,28 +43,28 @@ const NicsEcosystem = () => {
         <div className="container mx-auto px-4 relative">
           <div className="grid lg:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
             <div className="space-y-6">
-              <Badge className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/15">
+              <Badge className="bg-primary/10 border border-primary/30 text-primary hover:bg-primary/15">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 mr-2 animate-pulse" />
                 LIVE RESEARCH INTERFACE
               </Badge>
               <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
                 NICS AI{" "}
-                <span className="bg-gradient-to-r from-cyan-300 to-teal-300 bg-clip-text text-transparent">Ecosystem</span>
+                <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Ecosystem</span>
               </h1>
-              <p className="text-lg text-white/70">
+              <p className="text-lg text-muted-foreground">
                 A transparent AI laboratory where you can observe multilingual model training in real time.
               </p>
-              <p className="text-base text-white/60">
+              <p className="text-base text-muted-foreground">
                 NICS AI Ecosystem is an independent AI platform built from scratch — with its own tokenizer, models, training pipeline, inference stack, and live research interface.
               </p>
               <div className="flex flex-wrap gap-2">
                 {["Independent AI Stack", "Multilingual Core", "Live Training Active", "Azure Runtime Connected"].map((t) => (
-                  <Badge key={t} variant="outline" className="border-cyan-500/30 text-cyan-200 bg-cyan-500/5">{t}</Badge>
+                  <Badge key={t} variant="outline" className="border-primary/30 text-foreground bg-primary/5">{t}</Badge>
                 ))}
               </div>
               <div className="flex flex-wrap gap-3 pt-2">
-                <a href="#live"><Button size="lg" className="bg-cyan-400 text-black hover:bg-cyan-300">View Live Training <ArrowRight className="w-4 h-4 ml-1" /></Button></a>
-                <a href="#overview"><Button size="lg" variant="outline" className="border-cyan-500/40 text-cyan-100 bg-transparent hover:bg-cyan-500/10">Project Overview</Button></a>
+                <a href="#live"><Button size="lg" className="bg-primary text-black hover:bg-primary">View Live Training <ArrowRight className="w-4 h-4 ml-1" /></Button></a>
+                <a href="#overview"><Button size="lg" variant="outline" className="border-primary/40 text-foreground bg-transparent hover:bg-primary/10">Project Overview</Button></a>
               </div>
             </div>
             <div id="live">
@@ -75,21 +75,21 @@ const NicsEcosystem = () => {
       </section>
 
       {/* Overview */}
-      <section id="overview" className="py-20 border-t border-white/5">
+      <section id="overview" className="py-20 border-t border-border/60">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12 space-y-3">
-            <div className="text-xs tracking-widest text-cyan-400">PROJECT OVERVIEW</div>
+            <div className="text-xs tracking-widest text-primary">PROJECT OVERVIEW</div>
             <h2 className="text-3xl md:text-4xl font-semibold">A Complete Independent AI Stack</h2>
-            <p className="text-white/60 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Every component of NICS AI Ecosystem is built from the ground up — no third-party model dependencies, no API wrappers, no shortcuts.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {stackItems.map(({ Icon, title, desc }) => (
-              <Card key={title} className="bg-white/[0.02] border-white/10 p-6 hover:border-cyan-500/30 transition-colors">
-                <Icon className="w-6 h-6 text-cyan-300 mb-3" />
+              <Card key={title} className="bg-card border-border p-6 hover:border-primary/30 transition-colors">
+                <Icon className="w-6 h-6 text-primary mb-3" />
                 <h3 className="font-semibold mb-2 text-white">{title}</h3>
-                <p className="text-sm text-white/60 leading-relaxed">{desc}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
               </Card>
             ))}
           </div>
@@ -97,18 +97,18 @@ const NicsEcosystem = () => {
       </section>
 
       {/* Infrastructure */}
-      <section className="py-20 border-t border-white/5">
+      <section className="py-20 border-t border-border/60">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-10 space-y-3">
-            <div className="text-xs tracking-widest text-cyan-400">INFRASTRUCTURE</div>
+            <div className="text-xs tracking-widest text-primary">INFRASTRUCTURE</div>
             <h2 className="text-3xl md:text-4xl font-semibold">System Status</h2>
           </div>
-          <div className="rounded-2xl border border-white/10 divide-y divide-white/5 overflow-hidden">
+          <div className="rounded-2xl border border-border divide-y divide-border/60 overflow-hidden">
             {infra.map((row) => (
-              <div key={row.title} className="flex items-center justify-between p-4 md:p-5 bg-white/[0.02]">
+              <div key={row.title} className="flex items-center justify-between p-4 md:p-5 bg-card">
                 <div>
-                  <div className="text-white font-medium">{row.title}</div>
-                  <div className="text-sm text-white/50">{row.desc}</div>
+                  <div className="text-foreground font-medium">{row.title}</div>
+                  <div className="text-sm text-muted-foreground">{row.desc}</div>
                 </div>
                 <span className="flex items-center gap-2 text-xs text-green-400">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
@@ -119,7 +119,7 @@ const NicsEcosystem = () => {
           </div>
           <div className="text-center mt-10">
             <a href="https://nics.space" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-cyan-400 text-black hover:bg-cyan-300">
+              <Button size="lg" className="bg-primary text-black hover:bg-primary">
                 Explore Full Interface at nics.space <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </a>

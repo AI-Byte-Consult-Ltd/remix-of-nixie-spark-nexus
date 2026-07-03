@@ -96,10 +96,10 @@ const NicsLiveDashboard = ({ compact = false }: Props) => {
   const perception = INPUTS[inputIdx];
 
   return (
-    <div className="rounded-2xl border border-cyan-500/20 bg-[#0a0f14] text-cyan-100 font-mono p-5 md:p-6 shadow-2xl">
+    <div className="rounded-2xl border border-primary/20 bg-card text-foreground font-mono p-5 md:p-6 shadow-2xl">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <div className="text-sm font-semibold text-cyan-200">NICS Live Core</div>
+        <div className="text-sm font-semibold text-foreground">NICS Live Core</div>
         <div className="flex items-center gap-2 text-[11px] tracking-wider">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
@@ -122,18 +122,18 @@ const NicsLiveDashboard = ({ compact = false }: Props) => {
 
       {/* Progress */}
       <div className="mb-4">
-        <div className="flex justify-between text-[10px] text-cyan-400/70 mb-1">
+        <div className="flex justify-between text-[10px] text-muted-foreground mb-1">
           <span>PROGRESS</span>
           <span>{progress.toFixed(1)}%</span>
         </div>
-        <div className="h-1.5 rounded-full bg-cyan-500/10 overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-cyan-400 to-teal-300 transition-all" style={{ width: `${progress}%` }} />
+        <div className="h-1.5 rounded-full bg-primary/10 overflow-hidden">
+          <div className="h-full bg-gradient-to-r from-primary to-primary/70 transition-all" style={{ width: `${progress}%` }} />
         </div>
       </div>
 
       {/* Loss chart */}
       <div className="mb-4">
-        <div className="text-[10px] text-cyan-400/70 mb-1">LOSS TREND</div>
+        <div className="text-[10px] text-muted-foreground mb-1">LOSS TREND</div>
         <div className="h-24 -mx-2">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chart}>
@@ -150,41 +150,41 @@ const NicsLiveDashboard = ({ compact = false }: Props) => {
       </div>
 
       {/* Live output */}
-      <div className="rounded-lg border border-cyan-500/15 bg-black/30 p-3 mb-4">
-        <div className="flex items-center gap-2 text-[10px] text-cyan-400/70 mb-1">
+      <div className="rounded-lg border border-border/60 bg-muted/40 p-3 mb-4">
+        <div className="flex items-center gap-2 text-[10px] text-muted-foreground mb-1">
           LIVE OUTPUT <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
         </div>
-        <div className="text-xs text-cyan-100/90 min-h-[2.5rem]">
+        <div className="text-xs text-foreground min-h-[2.5rem]">
           &gt; {typed}<span className="animate-pulse">▊</span>
         </div>
       </div>
 
       {/* Model perception */}
       {!compact && (
-        <div className="rounded-lg border border-cyan-500/15 bg-black/30 p-3 mb-4 space-y-2">
-          <div className="text-[10px] text-cyan-400/70">WHAT THE MODEL SEES</div>
+        <div className="rounded-lg border border-border/60 bg-muted/40 p-3 mb-4 space-y-2">
+          <div className="text-[10px] text-muted-foreground">WHAT THE MODEL SEES</div>
           <div>
-            <div className="text-[10px] text-cyan-400/60 mb-1">INPUT</div>
+            <div className="text-[10px] text-muted-foreground mb-1">INPUT</div>
             <div className="flex flex-wrap gap-1">
               {perception.input.map((w) => (
-                <span key={w} className="px-1.5 py-0.5 rounded bg-cyan-500/10 text-xs">{w}</span>
+                <span key={w} className="px-1.5 py-0.5 rounded bg-primary/10 text-xs">{w}</span>
               ))}
             </div>
           </div>
           <div>
-            <div className="text-[10px] text-cyan-400/60 mb-1">TOKEN IDS</div>
-            <div className="text-xs tracking-wider text-cyan-200/80">{perception.tokens.join(" ")}</div>
+            <div className="text-[10px] text-muted-foreground mb-1">TOKEN IDS</div>
+            <div className="text-xs tracking-wider text-foreground/80">{perception.tokens.join(" ")}</div>
           </div>
           <div>
-            <div className="text-[10px] text-cyan-400/60 mb-1">PREDICTIONS</div>
+            <div className="text-[10px] text-muted-foreground mb-1">PREDICTIONS</div>
             <div className="space-y-1">
               {perception.preds.map(([w, p]) => (
                 <div key={w as string} className="flex items-center gap-2 text-xs">
-                  <div className="w-16 h-1 bg-cyan-500/10 rounded overflow-hidden">
-                    <div className="h-full bg-cyan-400" style={{ width: `${(p as number) * 100}%` }} />
+                  <div className="w-16 h-1 bg-primary/10 rounded overflow-hidden">
+                    <div className="h-full bg-primary" style={{ width: `${(p as number) * 100}%` }} />
                   </div>
                   <span className="flex-1">{w as string}</span>
-                  <span className="text-cyan-300">{(p as number).toFixed(2)}</span>
+                  <span className="text-primary">{(p as number).toFixed(2)}</span>
                 </div>
               ))}
             </div>
@@ -194,22 +194,22 @@ const NicsLiveDashboard = ({ compact = false }: Props) => {
 
       {/* Stream log */}
       {!compact && (
-        <div className="rounded-lg border border-cyan-500/15 bg-black/40 p-3">
-          <div className="text-[10px] text-cyan-400/70 mb-1">STREAM LOG</div>
-          <div className="space-y-0.5 text-[11px] text-cyan-200/70">
+        <div className="rounded-lg border border-border/60 bg-muted/50 p-3">
+          <div className="text-[10px] text-muted-foreground mb-1">STREAM LOG</div>
+          <div className="space-y-0.5 text-[11px] text-muted-foreground">
             {logs.map((l, i) => (
               <div key={i} className="truncate">{l}</div>
             ))}
-            {logs.length === 0 && <div className="text-cyan-500/40">awaiting stream…</div>}
+            {logs.length === 0 && <div className="text-muted-foreground/60">awaiting stream…</div>}
           </div>
         </div>
       )}
 
       {compact && (
         <div className="flex flex-wrap gap-1.5">
-          <Badge variant="outline" className="border-cyan-500/30 text-cyan-300 text-[10px]">Independent AI Stack</Badge>
-          <Badge variant="outline" className="border-cyan-500/30 text-cyan-300 text-[10px]">Multilingual Core</Badge>
-          <Badge variant="outline" className="border-cyan-500/30 text-cyan-300 text-[10px]">Azure Runtime</Badge>
+          <Badge variant="outline" className="border-primary/30 text-primary text-[10px]">Independent AI Stack</Badge>
+          <Badge variant="outline" className="border-primary/30 text-primary text-[10px]">Multilingual Core</Badge>
+          <Badge variant="outline" className="border-primary/30 text-primary text-[10px]">Azure Runtime</Badge>
         </div>
       )}
     </div>
@@ -218,8 +218,8 @@ const NicsLiveDashboard = ({ compact = false }: Props) => {
 
 const Row = ({ k, v }: { k: string; v: string }) => (
   <>
-    <div className="text-cyan-400/60 tracking-wider">{k}</div>
-    <div className="text-right text-cyan-100 tabular-nums">{v}</div>
+    <div className="text-muted-foreground tracking-wider">{k}</div>
+    <div className="text-right text-foreground tabular-nums">{v}</div>
   </>
 );
 
