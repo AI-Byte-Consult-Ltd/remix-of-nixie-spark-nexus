@@ -11,6 +11,13 @@ import realestateAiImg from "@/assets/project-realestate-ai.jpg";
 import architectureImg from "@/assets/project-architecture-3d.jpg";
 
 const projectDefs = [
+  {
+    titleKey: "projects.nicstrading.title",
+    descKey: "projects.nicstrading.desc",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
+    tags: ["AI Trading", "Forex", "Gold", "Crypto"],
+    href: "https://fwd.cx/Yj25BCrDzEHB",
+  },
   { titleKey: "projects.estatereply.title", descKey: "projects.estatereply.desc", image: realestateAiImg, tags: ["AI Agent", "Email Automation", "Real Estate", "24/7"] },
   { titleKey: "projects.architecture.title", descKey: "projects.architecture.desc", image: architectureImg, tags: ["3D Design", "Architecture", "Visualization", "AI"] },
   { titleKey: "projects.restaurant.title", descKey: "projects.restaurant.desc", image: restaurantImg, tags: ["FastAPI", "React", "NLP", "Automation"] },
@@ -41,7 +48,11 @@ const Projects = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projectDefs.map((project, index) => (
-            <Card key={index} className="group card-hover overflow-hidden bg-card border-border/50 hover:border-primary/30">
+            <Card
+              key={index}
+              className="group card-hover overflow-hidden bg-card border-border/50 hover:border-primary/30"
+              {...(project.href ? { onClick: () => window.open(project.href, "_blank", "noopener,noreferrer"), role: "link", tabIndex: 0, style: { cursor: "pointer" } } : {})}
+            >
               <div className="relative h-48 overflow-hidden">
                 <img src={project.image} alt={t(project.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-60" />
