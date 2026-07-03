@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Heart, Car, Home, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
-import useSEO from "@/hooks/useSEO";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const typeIcons = [Heart, Home, Car, Shield];
@@ -12,7 +12,7 @@ const typeIcons = [Heart, Home, Car, Shield];
 const Insurance = () => {
   const { t } = useLanguage();
 
-  useSEO({
+  const seoProps = {
     title: "NICS Insurance — AI-Powered Smart Insurance",
     description: "Smart insurance solutions with AI-powered risk assessment, instant claims processing, and personalized coverage for health, property, auto and business.",
     canonical: "https://aibyteconsult.com/insurance",
@@ -25,7 +25,7 @@ const Insurance = () => {
       "description": "AI-powered insurance with smart risk assessment and instant claims processing.",
       "url": "https://aibyteconsult.com/insurance"
     },
-  });
+  };
 
   const insuranceTypes = [
     { icon: typeIcons[0], title: t("insurance.type1.title"), description: t("insurance.type1.desc") },
@@ -40,7 +40,9 @@ const Insurance = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
+      <SEO {...seoProps} />
+      <main className="min-h-screen bg-background">
       <Header />
       
       <section className="pt-32 pb-20 relative overflow-hidden">
@@ -154,6 +156,7 @@ const Insurance = () => {
 
       <Footer />
     </main>
+    </>
   );
 };
 

@@ -12,18 +12,20 @@ import Contact from "@/components/Contact";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import AIChatWidget from "@/components/AIChatWidget";
-import useSEO from "@/hooks/useSEO";
+import SEO from "@/components/SEO";
 
 const Index = () => {
-  useSEO({
+  const seoProps = {
     title: "AI Byte Consult — European AI Consulting",
     description: "European AI consulting company building intelligent AI systems, agents, Web3 platforms and blockchain solutions for real-world business and research use cases.",
     canonical: "https://aibyteconsult.com/",
     ogImage: "https://aibyteconsult.com/og-home.jpg",
-  });
+  };
 
   return (
-    <main className="min-h-screen">
+    <>
+      <SEO {...seoProps} />
+      <main className="min-h-screen">
       <Header />
       <Hero />
       <HomeMarketTicker />
@@ -39,6 +41,7 @@ const Index = () => {
       <Footer />
       <AIChatWidget />
     </main>
+    </>
   );
 };
 

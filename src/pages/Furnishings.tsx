@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sofa, Home, Palette, Box, ArrowRight, Check, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
-import useSEO from "@/hooks/useSEO";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const featureIcons = [Home, Sofa, Palette, Eye];
@@ -12,7 +12,7 @@ const featureIcons = [Home, Sofa, Palette, Eye];
 const Furnishings = () => {
   const { t } = useLanguage();
 
-  useSEO({
+  const seoProps = {
     title: "NICS Furnishings — 3D Interior Design | AI Byte Consult",
     description: "3D house projects and virtual furnishing platform. Visualize your dream home with photorealistic renderings and AI-powered interior design.",
     canonical: "https://aibyteconsult.com/furnishings",
@@ -25,7 +25,7 @@ const Furnishings = () => {
       "description": "3D house projects and virtual furnishing with AI-powered interior design.",
       "url": "https://aibyteconsult.com/furnishings"
     },
-  });
+  };
 
   const features = [
     { icon: featureIcons[0], title: t("furnishings.feature1.title"), description: t("furnishings.feature1.desc") },
@@ -47,7 +47,9 @@ const Furnishings = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
+      <SEO {...seoProps} />
+      <main className="min-h-screen bg-background">
       <Header />
       
       <section className="pt-32 pb-20 relative overflow-hidden">
@@ -184,6 +186,7 @@ const Furnishings = () => {
 
       <Footer />
     </main>
+    </>
   );
 };
 

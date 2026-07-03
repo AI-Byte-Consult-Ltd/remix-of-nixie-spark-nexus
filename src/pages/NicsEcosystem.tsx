@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Brain, Cpu, Layers, Languages, Server, Sparkles } from "lucide-react";
-import useSEO from "@/hooks/useSEO";
+import SEO from "@/components/SEO";
 
 const stackItems = [
   { Icon: Layers, title: "Independent Tokenizer", desc: "Custom byte-pair encoding tokenizer built from scratch, optimized for multilingual processing across Latin and Cyrillic scripts." },
@@ -25,14 +25,16 @@ const infra = [
 ];
 
 const NicsEcosystem = () => {
-  useSEO({
+  const seoProps = {
     title: "NICS AI Ecosystem — Live Multilingual AI Research",
     description: "A transparent AI laboratory: proprietary tokenizer, models, training pipeline and inference stack — with live multilingual training you can observe in real time.",
     canonical: "https://aibyteconsult.com/nics-ecosystem",
-  });
+  };
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <>
+      <SEO {...seoProps} />
+      <main className="min-h-screen bg-background text-foreground">
       <Header />
 
       {/* Hero */}
@@ -129,6 +131,7 @@ const NicsEcosystem = () => {
 
       <Footer />
     </main>
+    </>
   );
 };
 

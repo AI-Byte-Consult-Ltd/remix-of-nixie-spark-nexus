@@ -29,7 +29,7 @@ import {
   BarChart3,
   Calculator,
 } from "lucide-react";
-import useSEO from "@/hooks/useSEO";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -94,7 +94,7 @@ const timeAgo = (ts: number) => {
 const Trading = () => {
   const { t } = useLanguage();
 
-  useSEO({
+  const seoProps = {
     title: "NICS AI Trading — Forex, Gold & Crypto Signals",
     description:
       "NICS AI Trading — AI-powered trading, Vantage partnership, copy trading, and a live news hub for Forex, Gold (XAUUSD) and Crypto. Join our Telegram community.",
@@ -109,7 +109,7 @@ const Trading = () => {
         "AI-powered trading platform with Vantage partnership, copy trading, and a live Forex, Gold and Crypto news hub.",
       url: "https://aibyteconsult.com/trading",
     },
-  });
+  };
 
   const [filter, setFilter] = useState<"All" | Category>("All");
   const [news, setNews] = useState<NewsItem[]>(() => seedNews());
@@ -169,7 +169,9 @@ const Trading = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
+      <SEO {...seoProps} />
+      <main className="min-h-screen bg-background">
       <Header />
 
       {/* Hero */}
@@ -646,6 +648,7 @@ const Trading = () => {
 
       <Footer />
     </main>
+    </>
   );
 };
 
