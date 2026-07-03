@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Languages, FileCheck, Scale, Globe, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
-import useSEO from "@/hooks/useSEO";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const serviceIcons = [Languages, FileCheck, Scale, Globe];
@@ -12,7 +12,7 @@ const serviceIcons = [Languages, FileCheck, Scale, Globe];
 const Translation = () => {
   const { t } = useLanguage();
 
-  useSEO({
+  const seoProps = {
     title: "NICS Translation & Legalisation — Certified",
     description: "Professional certified translation and legalisation services in 50+ languages with AI-enhanced accuracy, apostille, and notarized translations.",
     canonical: "https://aibyteconsult.com/translation",
@@ -25,7 +25,7 @@ const Translation = () => {
       "description": "Certified translation and legalisation services in 50+ languages.",
       "url": "https://aibyteconsult.com/translation"
     },
-  });
+  };
 
   const services = [
     { icon: serviceIcons[0], title: t("translation.service1.title"), description: t("translation.service1.desc") },
@@ -47,7 +47,9 @@ const Translation = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
+      <SEO {...seoProps} />
+      <main className="min-h-screen bg-background">
       <Header />
       
       <section className="pt-32 pb-20 relative overflow-hidden">
@@ -181,6 +183,7 @@ const Translation = () => {
 
       <Footer />
     </main>
+    </>
   );
 };
 

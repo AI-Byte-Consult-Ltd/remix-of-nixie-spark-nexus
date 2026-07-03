@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, MapPin, TrendingUp, Shield, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
-import useSEO from "@/hooks/useSEO";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const featureIcons = [Building2, MapPin, TrendingUp, Shield];
@@ -12,7 +12,7 @@ const featureIcons = [Building2, MapPin, TrendingUp, Shield];
 const Estate = () => {
   const { t } = useLanguage();
 
-  useSEO({
+  const seoProps = {
     title: "NICS Real Estate — AI Property Solutions | AI Byte Consult",
     description: "Intelligent real estate solutions with AI-powered valuations, blockchain-secured transactions, and smart market analytics for property businesses.",
     canonical: "https://aibyteconsult.com/estate",
@@ -25,7 +25,7 @@ const Estate = () => {
       "description": "AI-powered property management, valuation, and blockchain-secured transactions.",
       "url": "https://aibyteconsult.com/estate"
     },
-  });
+  };
 
   const features = [
     { icon: featureIcons[0], title: t("estate.feature1.title"), description: t("estate.feature1.desc") },
@@ -40,7 +40,9 @@ const Estate = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
+      <SEO {...seoProps} />
+      <main className="min-h-screen bg-background">
       <Header />
       
       <section className="pt-32 pb-20 relative overflow-hidden">
@@ -154,6 +156,7 @@ const Estate = () => {
 
       <Footer />
     </main>
+    </>
   );
 };
 

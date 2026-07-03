@@ -7,7 +7,7 @@ import {
   Target, Eye, Heart, Globe, Users, Award, ArrowRight, CheckCircle2
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import useSEO from "@/hooks/useSEO";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const divisionIcons = [Bot, Briefcase, Building2, Languages, Scale, Shield, Home, Palette];
@@ -16,7 +16,7 @@ const valueIcons = [Target, Eye, Heart];
 const About = () => {
   const { t } = useLanguage();
 
-  useSEO({
+  const seoProps = {
     title: "About AI Byte Consult — Mission, Vision & Divisions",
     description: "Discover AI Byte Consult Ltd, a diversified holding company founded in 2011 with 8+ business divisions serving 50+ countries worldwide.",
     canonical: "https://aibyteconsult.com/about",
@@ -34,7 +34,7 @@ const About = () => {
         "areaServed": "Worldwide"
       }
     },
-  });
+  };
 
   const businessDivisions = [
     { icon: divisionIcons[0], title: t("aboutpage.div1.title"), description: t("aboutpage.div1.desc"), link: undefined },
@@ -77,7 +77,9 @@ const About = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-background">
+    <>
+      <SEO {...seoProps} />
+      <main className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
@@ -325,6 +327,7 @@ const About = () => {
 
       <Footer />
     </main>
+    </>
   );
 };
 
