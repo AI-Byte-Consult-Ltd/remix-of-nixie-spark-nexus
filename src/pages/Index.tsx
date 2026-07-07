@@ -4,7 +4,7 @@ import HomeMarketTicker from "@/components/HomeMarketTicker";
 import NicsEcosystemPreview from "@/components/NicsEcosystemPreview";
 import About from "@/components/About";
 import Ecosystem from "@/components/Ecosystem";
-import OurWorkInAction from "@/components/OurWorkInAction";
+import Projects from "@/components/Projects";
 import SCIProducts from "@/components/SCIProducts";
 import Testimonials from "@/components/Testimonials";
 import Team from "@/components/Team";
@@ -32,7 +32,7 @@ const Index = () => {
       <NicsEcosystemPreview />
       <About />
       <Ecosystem />
-      <OurWorkInAction />
+      <Projects />
       <SCIProducts />
       <Testimonials />
       <Team />
