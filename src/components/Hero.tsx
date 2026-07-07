@@ -2,16 +2,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play, Calendar } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HERO_VIDEO =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4";
-
-const HEADLINE_LINES = [
-  "Building Independent Artificial Intelligence",
-  "For Science.",
-  "Business.",
-  "Humanity.",
-];
 
 const TERMINAL_LINES = [
   "> tokenizer initialized...",
@@ -188,6 +182,13 @@ const Cell = ({ label, value, accent = false }: { label: string; value: string; 
 );
 
 const Hero = () => {
+  const { t } = useLanguage();
+  const HEADLINE_LINES = [
+    t("hero2.line1"),
+    t("hero2.line2"),
+    t("hero2.line3"),
+    t("hero2.line4"),
+  ];
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
@@ -233,7 +234,7 @@ const Hero = () => {
             >
               <span className="h-px w-8 bg-white/60" />
               <span className="text-[11px] tracking-[0.32em] text-white/80 font-medium">
-                EUROPEAN ENGINEERING · GLOBAL AI ECOSYSTEM
+                {t("hero2.eyebrow")}
               </span>
             </motion.div>
 
@@ -258,9 +259,7 @@ const Hero = () => {
               transition={{ delay: 1.1, duration: 0.9 }}
               className="mt-8 max-w-xl text-base md:text-lg text-white/85 leading-relaxed"
             >
-              AI Byte Consult develops the NICS AI Ecosystem — an independent family of AI models,
-              cognitive agents, scientific tools and business automation platforms built entirely
-              from the ground up.
+              {t("hero2.desc")}
             </motion.p>
 
             <motion.div
@@ -273,7 +272,7 @@ const Hero = () => {
                 to="/nics-ecosystem"
                 className="group inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm font-medium hover:bg-white/90 transition-all"
               >
-                Explore NICS Ecosystem
+                {t("hero2.cta.explore")}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
@@ -281,14 +280,14 @@ const Hero = () => {
                 className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 backdrop-blur-md text-white px-6 py-3 text-sm font-medium hover:bg-white/10 transition-all"
               >
                 <Play className="w-4 h-4" />
-                Watch Live Research
+                {t("hero2.cta.watch")}
               </Link>
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 rounded-full text-white/85 px-4 py-3 text-sm font-medium hover:text-white transition-all"
               >
                 <Calendar className="w-4 h-4" />
-                Book Strategy Call
+                {t("hero2.cta.book")}
               </a>
             </motion.div>
           </div>
@@ -307,7 +306,7 @@ const Hero = () => {
         animate={{ opacity: [0.4, 1, 0.4] }}
         transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
       >
-        SCROLL
+        {t("hero2.scroll")}
       </motion.div>
     </section>
   );
