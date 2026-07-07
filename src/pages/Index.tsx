@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import HomeMarketTicker from "@/components/HomeMarketTicker";
 import NicsEcosystemPreview from "@/components/NicsEcosystemPreview";
 import About from "@/components/About";
-import Ecosystem from "@/components/Ecosystem";
+import OurEcosystem from "@/components/OurEcosystem";
 import OurWorkInAction from "@/components/OurWorkInAction";
 import SCIProducts from "@/components/SCIProducts";
 import Testimonials from "@/components/Testimonials";
@@ -31,7 +31,7 @@ const Index = () => {
       <HomeMarketTicker />
       <NicsEcosystemPreview />
       <About />
-      <Ecosystem />
+      <OurEcosystem />
       <OurWorkInAction />
       <SCIProducts />
       <Testimonials />
