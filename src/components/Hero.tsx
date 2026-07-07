@@ -1,128 +1,151 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Building2, Scale, Languages, Palette, Shield, Bot, Briefcase, Home } from "lucide-react";
-import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-microscheme.jpg";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useEffect, useState, ReactNode } from "react";
 
-const sectorKeys = [
-  { icon: Bot, key: "hero.sector.ai" },
-  { icon: Briefcase, key: "hero.sector.automation" },
-  { icon: Building2, key: "hero.sector.estate" },
-  { icon: Languages, key: "hero.sector.translation" },
-  { icon: Scale, key: "hero.sector.law" },
-  { icon: Shield, key: "hero.sector.insurance" },
-  { icon: Home, key: "hero.sector.registration" },
-  { icon: Palette, key: "hero.sector.design" },
-];
+const VIDEO_URL =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4";
+
+interface FadeInProps {
+  delay?: number;
+  duration?: number;
+  children: ReactNode;
+  className?: string;
+}
+
+const FadeIn = ({ delay = 0, duration = 1000, children, className = "" }: FadeInProps) => {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const id = setTimeout(() => setVisible(true), delay);
+    return () => clearTimeout(id);
+  }, [delay]);
+  return (
+    <div
+      className={`transition-opacity ${className}`}
+      style={{
+        opacity: visible ? 1 : 0,
+        transitionDuration: `${duration}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+interface AnimatedHeadingProps {
+  text: string;
+  className?: string;
+  style?: React.CSSProperties;
+  initialDelay?: number;
+  charDelay?: number;
+}
+
+const AnimatedHeading = ({
+  text,
+  className = "",
+  style,
+  initialDelay = 200,
+  charDelay = 30,
+}: AnimatedHeadingProps) => {
+  const [started, setStarted] = useState(false);
+  useEffect(() => {
+    const id = setTimeout(() => setStarted(true), initialDelay);
+    return () => clearTimeout(id);
+  }, [initialDelay]);
+
+  const lines = text.split("\n");
+  return (
+    <h1 className={className} style={style}>
+      {lines.map((line, lineIndex) => (
+        <span key={lineIndex} style={{ display: "block" }}>
+          {Array.from(line).map((ch, charIndex) => {
+            const delay = lineIndex * line.length * charDelay + charIndex * charDelay;
+            return (
+              <span
+                key={charIndex}
+                style={{
+                  display: "inline-block",
+                  opacity: started ? 1 : 0,
+                  transform: started ? "translateX(0)" : "translateX(-18px)",
+                  transition: `opacity 500ms ease, transform 500ms ease`,
+                  transitionDelay: `${delay}ms`,
+                }}
+              >
+                {ch === " " ? "\u00A0" : ch}
+              </span>
+            );
+          })}
+        </span>
+      ))}
+    </h1>
+  );
+};
 
 const Hero = () => {
-  const { t } = useLanguage();
-
-  const scrollToEcosystem = () => {
-    document.getElementById("ecosystem")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-hero">
-      <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-64 h-64 bg-primary/3 rounded-full blur-3xl" />
-      
-      <div className="container relative z-10 mx-auto px-6 md:px-12 lg:px-20 pt-28 pb-16">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="animate-fade-in space-y-8 order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
-              <span className="w-2 h-2 rounded-full bg-primary" />
-              <span className="text-sm font-medium text-primary">{t("hero.badge")}</span>
-            </div>
+    <section className="relative w-full h-screen overflow-hidden bg-black text-white">
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src={VIDEO_URL}
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1] text-foreground">
-              {t("hero.headline1")}{" "}
-              <span className="text-gradient-gold">{t("hero.headline2")}</span>
-            </h1>
-
-            <p className="text-xl md:text-2xl font-medium text-primary italic">
-              {t("hero.slogan")}
-            </p>
-
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
-              {t("hero.desc2")}
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-4">
-              {sectorKeys.map((sector, index) => (
-                <div 
-                  key={index}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-muted/50 border border-border/50 hover:border-primary/30 hover:bg-accent/50 transition-all duration-300"
-                >
-                  <sector.icon className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-xs font-medium text-foreground truncate">{t(sector.key)}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <Button
-                size="lg"
-                onClick={scrollToEcosystem}
-                className="group bg-foreground hover:bg-foreground/90 text-background font-medium text-base px-8 py-6 rounded-full transition-all duration-300"
+      <div className="relative z-10 flex flex-col h-full px-6 md:px-12 lg:px-16 pt-6">
+        {/* Navbar */}
+        <nav className="liquid-glass rounded-xl px-4 py-2 flex items-center justify-between">
+          <div className="text-2xl font-semibold tracking-tight text-white">VEX</div>
+          <div className="hidden md:flex items-center gap-8">
+            {["Story", "Investing", "Building", "Advisory"].map((item) => (
+              <a
+                key={item}
+                href="#"
+                className="text-sm text-white hover:text-gray-300 transition-colors"
               >
-                {t("hero.cta")}
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Link to="/about">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="font-medium text-base px-8 py-6 rounded-full border-2 border-border hover:border-foreground/20 hover:bg-muted/50 transition-all duration-300 w-full sm:w-auto"
-                >
-                  {t("hero.aboutus")}
-                </Button>
-              </Link>
-            </div>
+                {item}
+              </a>
+            ))}
+          </div>
+          <button className="bg-white text-black px-6 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition-colors">
+            Start a Chat
+          </button>
+        </nav>
 
-            <div className="flex flex-wrap gap-6 pt-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-primary" />
-                <span>{t("hero.trust.since")}</span>
+        {/* Hero content */}
+        <div className="flex-1 flex flex-col justify-end pb-12 lg:pb-16 lg:grid lg:grid-cols-2 lg:items-end">
+          <div>
+            <AnimatedHeading
+              text={"Shaping tomorrow\nwith vision and action."}
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-4 text-white"
+              style={{ letterSpacing: "-0.04em" }}
+            />
+
+            <FadeIn delay={800} duration={1000}>
+              <p className="text-base md:text-lg text-gray-300 mb-5">
+                We back visionaries and craft ventures that define what comes next.
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={1200} duration={1000}>
+              <div className="flex flex-wrap gap-4">
+                <button className="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                  Start a Chat
+                </button>
+                <button className="liquid-glass border border-white/20 text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-black transition-colors">
+                  Explore Now
+                </button>
               </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-primary" />
-                <span>{t("hero.trust.meta")}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-primary" />
-                <span>{t("hero.trust.microsoft")}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-primary" />
-                <span>{t("hero.trust.global")}</span>
-              </div>
-            </div>
+            </FadeIn>
           </div>
 
-          <div className="relative animate-fade-in order-1 lg:order-2" style={{ animationDelay: "200ms" }}>
-            <div className="relative">
-              <img
-                src={heroImage}
-                alt="AI Technology - Golden Microscheme"
-                className="relative w-full h-auto rounded-3xl shadow-hover object-cover aspect-video"
-              />
-              <div className="hidden sm:block absolute -bottom-4 -left-4 bg-background p-4 rounded-2xl shadow-card border border-border animate-float">
-                <div className="text-2xl font-semibold text-gradient-gold">8+</div>
-                <div className="text-sm text-muted-foreground">{t("hero.stats.sectors")}</div>
+          <div className="flex items-end justify-start lg:justify-end mt-8 lg:mt-0">
+            <FadeIn delay={1400} duration={1000}>
+              <div className="liquid-glass border border-white/20 px-6 py-3 rounded-xl">
+                <span className="text-lg md:text-xl lg:text-2xl font-light text-white">
+                  Investing. Building. Advisory.
+                </span>
               </div>
-              <div className="hidden sm:block absolute -top-4 -right-4 bg-background p-4 rounded-2xl shadow-card border border-border animate-float" style={{ animationDelay: "1s" }}>
-                <div className="text-2xl font-semibold text-gradient-gold">14+</div>
-                <div className="text-sm text-muted-foreground">{t("hero.stats.experience")}</div>
-              </div>
-            </div>
+            </FadeIn>
           </div>
-        </div>
-      </div>
-
-      <div className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-        <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex items-start justify-center p-2">
-          <div className="w-1.5 h-3 bg-muted-foreground/30 rounded-full" />
         </div>
       </div>
     </section>
