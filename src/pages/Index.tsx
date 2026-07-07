@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import HomeMarketTicker from "@/components/HomeMarketTicker";
 import NicsEcosystemPreview from "@/components/NicsEcosystemPreview";
@@ -26,7 +25,6 @@ const Index = () => {
     <>
       <SEO {...seoProps} />
       <main className="min-h-screen">
-      <Header />
       <Hero />
       <HomeMarketTicker />
       <NicsEcosystemPreview />
