@@ -5,15 +5,29 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Phone, MessageCircle } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success(t("contact.success"));
-    setFormData({ name: "", email: "", message: "" });
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: formData,
+      });
+      if (error) throw error;
+      toast.success(t("contact.success"));
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to send message. Please try again or email us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -59,8 +73,8 @@ const Contact = () => {
               <label htmlFor="message" className="text-sm font-medium text-foreground">{t("contact.message")}</label>
               <Textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder={t("contact.message.placeholder")} rows={6} className="bg-background border-border focus:border-primary resize-none rounded-xl" />
             </div>
-            <Button type="submit" size="lg" className="w-full bg-foreground hover:bg-foreground/90 text-background font-medium rounded-full">
-              {t("contact.submit")}
+            <Button type="submit" size="lg" disabled={submitting} className="w-full bg-foreground hover:bg-foreground/90 text-background font-medium rounded-full">
+              {submitting ? "Sending..." : t("contact.submit")}
             </Button>
           </form>
         </div>
