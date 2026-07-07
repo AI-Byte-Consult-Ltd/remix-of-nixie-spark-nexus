@@ -15,6 +15,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Status = "Live" | "Alpha" | "Training Active" | "Research Active" | "Coming Soon";
 
@@ -167,6 +168,7 @@ const OrbitDot = ({ delay = 0 }: { delay?: number }) => (
 );
 
 const OurEcosystem = () => {
+  const { t } = useLanguage();
   const [active, setActive] = useState<EcosystemModule | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -256,17 +258,16 @@ const OurEcosystem = () => {
           className="text-center mb-14 md:mb-20 space-y-4"
         >
           <div className="text-[11px] tracking-[0.35em] text-amber-300/80 font-medium">
-            NICS · ECOSYSTEM LAYER
+            {t("oureco.eyebrow")}
           </div>
           <h2 className="text-4xl md:text-6xl font-semibold tracking-tight">
-            Our{" "}
+            {t("oureco.title1")}{" "}
             <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 bg-clip-text text-transparent">
-              Ecosystem
+              {t("oureco.title2")}
             </span>
           </h2>
           <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
-            An independent AI stack — proprietary LLM, computer vision for
-            science, and real-world platforms for business and creativity.
+            {t("oureco.desc")}
           </p>
         </motion.div>
 
@@ -439,10 +440,10 @@ const OurEcosystem = () => {
         <div className="md:hidden space-y-3 max-w-xl mx-auto">
           <div className="relative rounded-2xl border border-amber-300/30 bg-gradient-to-br from-amber-400/10 to-transparent p-5 text-center">
             <div className="text-[10px] tracking-[0.3em] text-amber-300/80 mb-1">
-              NICS AI
+              {t("oureco.core.label")}
             </div>
-            <div className="text-lg font-semibold">Ecosystem</div>
-            <div className="text-[11px] text-white/50">Independent AI Stack</div>
+            <div className="text-lg font-semibold">{t("oureco.core.name")}</div>
+            <div className="text-[11px] text-white/50">{t("oureco.core.stack")}</div>
           </div>
           {modules.map((m) => {
             const Icon = m.icon;
@@ -495,15 +496,13 @@ const OurEcosystem = () => {
             <div className="relative grid md:grid-cols-[1.4fr_1fr] gap-8 items-center">
               <div>
                 <h3 className="text-2xl md:text-4xl font-semibold tracking-tight leading-tight">
-                  One ecosystem.{" "}
+                  {t("oureco.cta.title1")}{" "}
                   <span className="bg-gradient-to-r from-amber-200 to-amber-400 bg-clip-text text-transparent">
-                    Multiple real-world applications.
+                    {t("oureco.cta.title2")}
                   </span>
                 </h3>
                 <p className="text-white/60 mt-4 leading-relaxed">
-                  AI Byte Consult develops independent AI models and transforms
-                  them into practical platforms for science, business, trading,
-                  architecture, hospitality and digital communities.
+                  {t("oureco.cta.desc")}
                 </p>
               </div>
               <div className="flex flex-col gap-3">
@@ -512,7 +511,7 @@ const OurEcosystem = () => {
                     size="lg"
                     className="w-full bg-amber-300 text-black hover:bg-amber-200"
                   >
-                    Explore Full Ecosystem <ArrowRight className="w-4 h-4 ml-1" />
+                    {t("oureco.cta.btn1")} <ArrowRight className="w-4 h-4 ml-1" />
                   </Button>
                 </a>
                 <a href="#contact">
@@ -521,7 +520,7 @@ const OurEcosystem = () => {
                     variant="outline"
                     className="w-full border-white/20 bg-transparent text-white hover:bg-white/10"
                   >
-                    Build Your AI Platform <ArrowRight className="w-4 h-4 ml-1" />
+                    {t("oureco.cta.btn2")} <ArrowRight className="w-4 h-4 ml-1" />
                   </Button>
                 </a>
               </div>

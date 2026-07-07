@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { TrendingUp, TrendingDown, Circle } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Quote = {
   symbol: string;
@@ -27,6 +28,7 @@ function formatPrice(q: Quote): string {
  * refreshed every 15s. Clicking the strip opens the NICS AI Trading page.
  */
 const HomeMarketTicker = () => {
+  const { t } = useLanguage();
   const [items, setItems] = useState<Quote[]>([]);
   const [live, setLive] = useState(false);
   const [updatedAt, setUpdatedAt] = useState<number | null>(null);
@@ -60,7 +62,7 @@ const HomeMarketTicker = () => {
     return (
       <div className="border-y border-border/50 bg-card/40 backdrop-blur">
         <div className="h-11 flex items-center justify-center text-xs text-muted-foreground">
-          Loading live market data…
+          {t("ticker.loading")}
         </div>
       </div>
     );
@@ -93,7 +95,7 @@ const HomeMarketTicker = () => {
             />
           </span>
           <span className="text-[10px] font-semibold tracking-wider uppercase text-foreground/80">
-            Live
+            {t("ticker.live")}
           </span>
         </div>
 

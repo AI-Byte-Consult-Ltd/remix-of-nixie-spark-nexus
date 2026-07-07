@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, useMotionValue, useTransform, animate, AnimatePresence } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import realestateAiImg from "@/assets/project-realestate-ai.jpg";
 import architectureImg from "@/assets/project-architecture-3d.jpg";
 import restaurantImg from "@/assets/project-restaurant-new.jpg";
@@ -361,6 +362,7 @@ function ExpandedCase({ open, onClose, c }: { open: boolean; onClose: () => void
 }
 
 const OurWorkInAction = () => {
+  const { t } = useLanguage();
   return (
     <section id="projects" className="relative overflow-hidden bg-neutral-950 py-28 text-white">
       {/* Cinematic background */}
@@ -390,13 +392,13 @@ const OurWorkInAction = () => {
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[10px] uppercase tracking-[0.3em] text-white/70 backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            Selected AI Solutions
+            {t("owia.badge")}
           </div>
           <h2 className="mt-6 text-4xl md:text-6xl font-semibold leading-tight">
-            Our Work in <span className="text-gradient-gold">Action</span>
+            {t("owia.title1")} <span className="text-gradient-gold">{t("owia.title2")}</span>
           </h2>
           <p className="mt-5 text-lg text-white/70">
-            Real solutions delivering measurable results for forward-thinking businesses.
+            {t("owia.subtitle")}
           </p>
         </motion.div>
 
@@ -426,10 +428,10 @@ const OurWorkInAction = () => {
           <div className="relative grid gap-8 md:grid-cols-2 md:items-center">
             <div>
               <h3 className="text-3xl md:text-4xl font-semibold leading-tight">
-                Have a process we can <span className="text-gradient-gold">automate?</span>
+                {t("owia.cta.title1")} <span className="text-gradient-gold">{t("owia.cta.title2")}</span>
               </h3>
               <p className="mt-4 text-white/70 max-w-lg">
-                AI Byte Consult builds custom AI agents, automation systems and intelligent business tools for real companies.
+                {t("owia.cta.desc")}
               </p>
             </div>
             <div className="flex flex-wrap gap-3 md:justify-end">
@@ -437,13 +439,13 @@ const OurWorkInAction = () => {
                 onClick={scrollToContact}
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-gold px-7 py-3.5 text-sm font-semibold text-white shadow-gold hover:opacity-90"
               >
-                Build Similar AI System <ArrowRight className="h-4 w-4" />
+                {t("owia.cta.btn1")} <ArrowRight className="h-4 w-4" />
               </button>
               <button
                 onClick={scrollToContact}
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10"
               >
-                Book Strategy Call
+                {t("owia.cta.btn2")}
               </button>
             </div>
           </div>

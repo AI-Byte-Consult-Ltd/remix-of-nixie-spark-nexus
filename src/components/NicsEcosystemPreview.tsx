@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Cpu, Globe2, Layers, Zap } from "lucide-react";
 import NicsLiveDashboard from "./NicsLiveDashboard";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const NicsEcosystemPreview = () => {
+  const { t } = useLanguage();
   return (
     <section id="nics-ecosystem" className="py-24 relative bg-background text-foreground overflow-hidden">
       <div className="absolute inset-0 opacity-[0.08] pointer-events-none"
@@ -18,21 +20,21 @@ const NicsEcosystemPreview = () => {
           <div className="space-y-6">
             <Badge className="bg-primary/10 border border-primary/30 text-primary hover:bg-primary/15">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 mr-2 animate-pulse" />
-              LIVE RESEARCH INTERFACE
+              {t("nicsprev.badge")}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-semibold">
-              NICS AI <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Ecosystem</span>
+              {t("nicsprev.title")} <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">{t("nicsprev.title2")}</span>
             </h2>
             <p className="text-lg text-muted-foreground">
-              A transparent AI laboratory where you can observe multilingual model training in real time — proprietary tokenizer, models, training pipeline and inference stack, built end-to-end.
+              {t("nicsprev.desc")}
             </p>
 
             <div className="grid sm:grid-cols-2 gap-3">
               {[
-                { Icon: Layers, label: "Independent AI Stack" },
-                { Icon: Globe2, label: "EN / RU / BG / ES Multilingual" },
-                { Icon: Cpu, label: "Azure F-series Runtime" },
-                { Icon: Zap, label: "Live Training Active" },
+                { Icon: Layers, label: t("nicsprev.f1") },
+                { Icon: Globe2, label: t("nicsprev.f2") },
+                { Icon: Cpu, label: t("nicsprev.f3") },
+                { Icon: Zap, label: t("nicsprev.f4") },
               ].map(({ Icon, label }) => (
                 <div key={label} className="flex items-center gap-2 text-sm text-foreground/80">
                   <Icon className="w-4 h-4 text-primary" />
@@ -44,12 +46,12 @@ const NicsEcosystemPreview = () => {
             <div className="flex flex-wrap gap-3 pt-2">
               <Link to="/nics-ecosystem">
                 <Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90">
-                  View Live Training <ArrowRight className="w-4 h-4 ml-1" />
+                  {t("nicsprev.cta1")} <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </Link>
               <a href="https://nics.space" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="border-primary/40 text-foreground bg-transparent hover:bg-primary/10">
-                  Open nics.space
+                  {t("nicsprev.cta2")}
                 </Button>
               </a>
             </div>

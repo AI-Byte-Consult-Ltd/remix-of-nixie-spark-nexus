@@ -21,6 +21,7 @@ import {
   Plane,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Plan {
   id: string;
@@ -37,92 +38,6 @@ interface Plan {
   featured?: boolean;
 }
 
-const plans: Plan[] = [
-  {
-    id: "audit",
-    icon: ClipboardList,
-    name: "AI Lead Audit",
-    price: "€150",
-    tagline: "Find where your leads are lost before building automation.",
-    description:
-      "We analyze your current client communication flow, website, WhatsApp/Telegram conversations, typical questions, response delays and lead handoff process. You receive a clear AI automation plan and a sales conversation map.",
-    features: [
-      "Review of website and client contact points",
-      "Analysis of repetitive questions and manual workload",
-      "Lead journey and funnel map",
-      "AI assistant implementation plan",
-      "Recommended tools and channels",
-      "Clear next-step proposal",
-    ],
-    cta: "Book AI Audit",
-    href: "#contact",
-  },
-  {
-    id: "starter",
-    icon: Rocket,
-    name: "AI Sales Assistant Starter",
-    price: "from €950",
-    monthly: "+ €75 / month support",
-    tag: "Most Practical",
-    tagline: "One channel. One clear funnel. One working AI assistant.",
-    description:
-      "A focused AI assistant for one main channel: WhatsApp, Telegram, Messenger or website chat. It answers common questions, qualifies leads, collects client details and sends hot conversations to your team.",
-    features: [
-      "One communication channel",
-      "Custom knowledge base",
-      "FAQ and product/service answers",
-      "Lead qualification questions",
-      "Basic sales conversation flow",
-      "Human handoff when needed",
-      "Email or Telegram lead notifications",
-      "Testing and launch support",
-    ],
-    cta: "Start With One Channel",
-    href: "#contact",
-    featured: true,
-  },
-  {
-    id: "pro",
-    icon: Sparkles,
-    name: "AI Sales Assistant Pro",
-    price: "from €1,800",
-    monthly: "+ €150 / month support",
-    tagline: "A serious AI front-office for high-value client conversations.",
-    description:
-      "A custom AI sales assistant for businesses with expensive products or services. It guides prospects through a structured sales funnel, records lead data, connects with CRM when possible, and prepares clients before a human manager steps in.",
-    features: [
-      "Multi-channel: WhatsApp, Telegram, Messenger, website",
-      "Advanced sales conversation funnel",
-      "Client qualification workflows",
-      "CRM integration where available",
-      "Lead data collection & structured handoff",
-      "Appointment or consultation request flow",
-      "Custom tone of voice and business knowledge",
-      "Testing, optimization and support",
-      "Manager notifications & conversation history",
-    ],
-    cta: "Build Pro Assistant",
-    href: "#contact",
-  },
-];
-
-const pipeline = [
-  { icon: Users, label: "Visitor" },
-  { icon: Bot, label: "AI Conversation" },
-  { icon: Filter, label: "Qualification" },
-  { icon: Database, label: "CRM / Manager" },
-  { icon: Handshake, label: "Deal" },
-];
-
-const audiences = [
-  { icon: Home, label: "Real Estate & Developers" },
-  { icon: Hammer, label: "Construction & Renovation" },
-  { icon: Package, label: "Custom Products" },
-  { icon: Briefcase, label: "High-Ticket Services" },
-  { icon: Stethoscope, label: "Clinics & Aesthetic Services" },
-  { icon: Plane, label: "Travel, Villas & Rentals" },
-];
-
 const channelBubbles = [
   { label: "Website", icon: Globe, x: "6%", y: "18%", delay: 0 },
   { label: "WhatsApp", icon: MessageCircle, x: "18%", y: "72%", delay: 0.6 },
@@ -133,6 +48,65 @@ const channelBubbles = [
 ];
 
 const AISalesAssistant = () => {
+  const { t } = useLanguage();
+
+  const plans: Plan[] = [
+    {
+      id: "audit",
+      icon: ClipboardList,
+      name: t("aisa.audit.name"),
+      price: t("aisa.audit.price"),
+      tagline: t("aisa.audit.tagline"),
+      description: t("aisa.audit.desc"),
+      features: [1, 2, 3, 4, 5, 6].map((i) => t(`aisa.audit.f${i}`)),
+      cta: t("aisa.audit.cta"),
+      href: "#contact",
+    },
+    {
+      id: "starter",
+      icon: Rocket,
+      name: t("aisa.starter.name"),
+      price: t("aisa.starter.price"),
+      monthly: t("aisa.starter.monthly"),
+      tag: t("aisa.starter.tag"),
+      tagline: t("aisa.starter.tagline"),
+      description: t("aisa.starter.desc"),
+      features: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => t(`aisa.starter.f${i}`)),
+      cta: t("aisa.starter.cta"),
+      href: "#contact",
+      featured: true,
+    },
+    {
+      id: "pro",
+      icon: Sparkles,
+      name: t("aisa.pro.name"),
+      price: t("aisa.pro.price"),
+      monthly: t("aisa.pro.monthly"),
+      tagline: t("aisa.pro.tagline"),
+      description: t("aisa.pro.desc"),
+      features: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => t(`aisa.pro.f${i}`)),
+      cta: t("aisa.pro.cta"),
+      href: "#contact",
+    },
+  ];
+
+  const pipeline = [
+    { icon: Users, label: t("aisa.pipe.visitor") },
+    { icon: Bot, label: t("aisa.pipe.ai") },
+    { icon: Filter, label: t("aisa.pipe.qualify") },
+    { icon: Database, label: t("aisa.pipe.crm") },
+    { icon: Handshake, label: t("aisa.pipe.deal") },
+  ];
+
+  const audiences = [
+    { icon: Home, label: t("aisa.aud.realestate") },
+    { icon: Hammer, label: t("aisa.aud.construction") },
+    { icon: Package, label: t("aisa.aud.custom") },
+    { icon: Briefcase, label: t("aisa.aud.services") },
+    { icon: Stethoscope, label: t("aisa.aud.clinics") },
+    { icon: Plane, label: t("aisa.aud.travel") },
+  ];
+
   return (
     <section
       id="sci-products"
@@ -212,23 +186,19 @@ const AISalesAssistant = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-400/30 bg-orange-400/5 text-orange-300 text-xs font-medium mb-6 backdrop-blur">
             <Bot className="w-3.5 h-3.5" />
-            AI Sales Automation
+            {t("aisa.badge")}
           </div>
           <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6 leading-[1.05]">
-            AI Sales Assistant for{" "}
+            {t("aisa.title1")}{" "}
             <span className="bg-gradient-to-r from-orange-300 via-orange-400 to-amber-300 bg-clip-text text-transparent">
-              WhatsApp, Telegram & Website
+              {t("aisa.title2")}
             </span>
           </h2>
           <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-4">
-            Stop losing hours on repetitive client messages. Our AI assistant
-            answers first, qualifies prospects, follows a sales conversation
-            flow, and hands over only serious leads to your team.
+            {t("aisa.subtitle")}
           </p>
           <p className="text-sm md:text-base text-white/50">
-            Built for high-ticket service businesses, real estate teams,
-            construction companies, custom product manufacturers, and businesses
-            where every lead matters.
+            {t("aisa.target")}
           </p>
         </motion.div>
 
@@ -316,7 +286,7 @@ const AISalesAssistant = () => {
                   <div className="flex items-baseline gap-2">
                     <span className="text-3xl font-semibold">{plan.price}</span>
                     <span className="text-sm text-white/50">
-                      {plan.id === "audit" ? "one-time" : "setup"}
+                      {plan.id === "audit" ? t("aisa.onetime") : t("aisa.setup")}
                     </span>
                   </div>
                   {plan.monthly && (
@@ -367,12 +337,10 @@ const AISalesAssistant = () => {
           className="mt-24 max-w-5xl mx-auto text-center"
         >
           <h3 className="text-2xl md:text-3xl font-semibold mb-4">
-            Who is this for?
+            {t("aisa.who.title")}
           </h3>
           <p className="text-white/65 max-w-3xl mx-auto mb-8 leading-relaxed">
-            This is for businesses where clients ask the same questions every
-            day before buying: prices, availability, details, delivery,
-            consultation, documents, location, materials, timing or next steps.
+            {t("aisa.who.desc")}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {audiences.map((a, i) => (
@@ -404,17 +372,16 @@ const AISalesAssistant = () => {
             <div className="relative rounded-[calc(1.5rem-1px)] bg-[#0a0f1f]/95 backdrop-blur-xl p-8 md:p-12 text-center overflow-hidden">
               <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl" />
               <h3 className="relative text-2xl md:text-4xl font-semibold mb-4 leading-tight">
-                Not sure if your business needs an AI assistant?
+                {t("aisa.final.title")}
               </h3>
               <p className="relative text-white/70 max-w-2xl mx-auto mb-8">
-                Book an AI Lead Audit and we will show exactly where automation
-                can save time, qualify clients and reduce manual replies.
+                {t("aisa.final.desc")}
               </p>
               <a
                 href="#contact"
                 className="relative inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 text-black font-semibold hover:shadow-xl hover:shadow-orange-500/40 transition-all"
               >
-                Book AI Audit
+                {t("aisa.final.cta")}
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
