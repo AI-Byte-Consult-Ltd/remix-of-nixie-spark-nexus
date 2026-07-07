@@ -5,7 +5,7 @@ import NicsEcosystemPreview from "@/components/NicsEcosystemPreview";
 import About from "@/components/About";
 import OurEcosystem from "@/components/OurEcosystem";
 import OurWorkInAction from "@/components/OurWorkInAction";
-import SCIProducts from "@/components/SCIProducts";
+import AISalesAssistant from "@/components/AISalesAssistant";
 import Testimonials from "@/components/Testimonials";
 import Team from "@/components/Team";
 import Contact from "@/components/Contact";
@@ -33,7 +33,7 @@ const Index = () => {
       <About />
       <OurEcosystem />
       <OurWorkInAction />
-      <SCIProducts />
+      <AISalesAssistant />
       <Testimonials />
       <Team />
       <Contact />
