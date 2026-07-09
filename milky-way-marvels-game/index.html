@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Milky Way Marvels: Orbit Rush</title>
+  <meta name="description" content="A simple ready-to-play arcade game concept for the Milky Way Marvels NFT collection on Cronos." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="gameCanvas" aria-label="Milky Way Marvels Orbit Rush game canvas"></canvas>
+
+    <div class="hud top-left">
+      <div class="brand">Milky Way Marvels</div>
+      <div class="subbrand">Orbit Rush</div>
+    </div>
+
+    <div class="hud top-right stats-panel" aria-live="polite">
+      <div><span>Score</span><strong id="scoreText">0</strong></div>
+      <div><span>Combo</span><strong id="comboText">x1</strong></div>
+      <div><span>Fuel</span><strong id="fuelText">100%</strong></div>
+      <div><span>Wave</span><strong id="waveText">1</strong></div>
+    </div>
+
+    <div class="hud bottom-left mission-panel">
+      <div class="mission-title">Mission</div>
+      <div id="missionText">Collect planets, dodge asteroids, survive the solar storm.</div>
+    </div>
+
+    <div class="hud bottom-right controls-panel">
+      <div>Move: WASD / Arrows / Drag</div>
+      <div>Boost: Space / Double tap</div>
+      <div>Pause: P</div>
+    </div>
+
+    <section id="menuScreen" class="screen active">
+      <div class="card hero-card">
+        <div class="eyebrow">Cronos arcade MVP</div>
+        <h1>Milky Way Marvels: Orbit Rush</h1>
+        <p class="lead">A fast, simple Web3-style arcade game for a collection of NFT planets and solar-system objects.</p>
+
+        <div class="competition-box">
+          <h2>Trading Competition Mode</h2>
+          <p><strong>Every 1 $CRO purchase = 1 tournament point.</strong></p>
+          <p>Competition starts today and runs for <strong>4 days</strong>.</p>
+          <div id="countdownText" class="countdown">Loading timer...</div>
+        </div>
+
+        <div class="prize-grid">
+          <div><span>1st</span><strong>10,000 $RAVERSE</strong><em>+ 3 Planets</em></div>
+          <div><span>2nd</span><strong>5,000 $RAVERSE</strong><em>+ 2 Planets</em></div>
+          <div><span>3rd</span><strong>2,500 $RAVERSE</strong><em>+ 1 Planet</em></div>
+        </div>
+
+        <div class="menu-actions">
+          <button id="startBtn" class="primary">Start Game</button>
+          <button id="howBtn">How to Play</button>
+          <a class="link-button" href="https://app.ebisusbay.com/collection/cronos/milky-way-marvels/" target="_blank" rel="noreferrer">Open Collection</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="howScreen" class="screen">
+      <div class="card info-card">
+        <h2>Game Logic</h2>
+        <p>You pilot a collector ship through a solar storm. Catch NFT-style planets and cosmic objects, avoid asteroids and black holes, keep your fuel alive, and build a combo streak.</p>
+        <ul>
+          <li><strong>Planets:</strong> +100 score and +1 combo.</li>
+          <li><strong>$RAVERSE crystals:</strong> +25 score and refill a little fuel.</li>
+          <li><strong>Fuel cells:</strong> restore fuel.</li>
+          <li><strong>Asteroids:</strong> break combo and damage your ship.</li>
+          <li><strong>Black holes:</strong> heavy damage and gravity pull.</li>
+          <li><strong>Boost:</strong> move faster, but burns fuel.</li>
+        </ul>
+        <p>Local leaderboard is saved in the browser. Web3 leaderboard can be added later using Ebisu's Bay sales/API data or wallet snapshots.</p>
+        <div class="menu-actions">
+          <button id="backBtn" class="primary">Back</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="pauseScreen" class="screen">
+      <div class="card small-card">
+        <h2>Paused</h2>
+        <p>The galaxy is waiting.</p>
+        <div class="menu-actions vertical">
+          <button id="resumeBtn" class="primary">Resume</button>
+          <button id="restartPauseBtn">Restart</button>
+          <button id="menuPauseBtn">Main Menu</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="gameOverScreen" class="screen">
+      <div class="card result-card">
+        <div class="eyebrow">Mission complete</div>
+        <h2>Run Result</h2>
+        <div class="result-score" id="finalScoreText">0</div>
+        <div id="resultDetails" class="result-details"></div>
+
+        <h3>Local Leaderboard</h3>
+        <ol id="leaderboardList" class="leaderboard"></ol>
+
+        <div class="collection-unlocks">
+          <h3>Objects discovered</h3>
+          <div id="unlockList" class="unlock-list"></div>
+        </div>
+
+        <div class="menu-actions">
+          <button id="restartBtn" class="primary">Play Again</button>
+          <button id="shareBtn">Copy Tweet</button>
+          <button id="menuBtn">Main Menu</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="game.js"></script>
+</body>
+</html>
