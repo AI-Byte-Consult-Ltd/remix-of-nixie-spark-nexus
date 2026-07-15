@@ -2,10 +2,7 @@ import { motion } from "framer-motion";
 import {
   MessageCircle,
   Send,
-  Globe,
   Bot,
-  Users,
-  Database,
   ArrowRight,
   Check,
   LineChart,
@@ -15,6 +12,8 @@ import {
   Activity,
   Newspaper,
 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { traderCopy, type Lang } from "./aiTraderPlansI18n";
 
 interface Plan {
   id: string;
@@ -41,85 +40,55 @@ const channelBubbles = [
 ];
 
 const AISalesAssistant = () => {
+  const { language } = useLanguage();
+  const c = traderCopy[(language as Lang)] || traderCopy.en;
+
   const plans: Plan[] = [
     {
       id: "essential",
       icon: LineChart,
-      name: "AI Trader Essential",
+      name: c.essential.name,
       setup: "€149",
       monthly: "€79",
-      tagline: "Reliable AI trade ideas on a single market",
-      description:
-        "Perfect for traders who want reliable AI trade ideas on a single market.",
-      features: [
-        "1 selected market (Gold OR Forex OR Oil)",
-        "Up to 3 AI trade signals per day",
-        "Telegram OR WhatsApp delivery",
-        "Entry, Stop Loss & Take Profit",
-        "AI explanation for every trade",
-        "Basic risk management",
-        "Instant trade notifications",
-      ],
-      cta: "Get Started",
+      tagline: c.essential.tagline,
+      description: c.essential.description,
+      features: c.essential.features,
+      cta: c.essential.cta,
       href: "#contact",
     },
     {
       id: "professional",
       icon: Sparkles,
-      name: "AI Trader Professional",
+      name: c.professional.name,
       setup: "€249",
       monthly: "€179",
-      tag: "Most Popular",
-      tagline: "Broader coverage, continuous updates",
-      description:
-        "Designed for active traders who want broader market coverage and continuous updates.",
-      features: [
-        "Up to 3 selected markets",
-        "Up to 10 AI trade signals per day",
-        "Telegram & WhatsApp delivery",
-        "Signal update notifications",
-        "Economic news impact analysis",
-        "Daily AI market briefing",
-        "Priority signal delivery",
-        "Enhanced market insights",
-      ],
-      cta: "Start Trading",
+      tag: c.professional.tag,
+      tagline: c.professional.tagline,
+      description: c.professional.description,
+      features: c.professional.features,
+      cta: c.professional.cta,
       href: "#contact",
       featured: true,
     },
     {
       id: "elite",
       icon: Crown,
-      name: "AI Trader Elite",
+      name: c.elite.name,
       setup: "€499",
       monthly: "€399",
-      tagline: "Personalized intelligence, unlimited coverage",
-      description:
-        "The complete AI trading experience with personalized intelligence and unlimited market coverage.",
-      features: [
-        "Unlimited supported markets",
-        "Unlimited AI trade signals",
-        "Multiple AI trading strategies",
-        "Adjustable risk profile",
-        "Personal AI trading assistant",
-        "Detailed trade explanations",
-        "Premium market reports",
-        "VIP priority alerts",
-        "Early access to new AI features",
-        "Dedicated VIP support",
-      ],
-      cta: "Become Elite",
+      tagline: c.elite.tagline,
+      description: c.elite.description,
+      features: c.elite.features,
+      cta: c.elite.cta,
       href: "#contact",
     },
   ];
 
-  const pipeline = [
-    { icon: Activity, label: "Live Market Data" },
-    { icon: Bot, label: "AI Analysis" },
-    { icon: LineChart, label: "Signal Generation" },
-    { icon: Send, label: "Instant Delivery" },
-    { icon: TrendingUp, label: "Your Trade" },
-  ];
+  const pipelineIcons = [Activity, Bot, LineChart, Send, TrendingUp];
+  const pipeline = c.pipeline.map((label, i) => ({
+    icon: pipelineIcons[i],
+    label,
+  }));
 
   return (
     <section
@@ -200,16 +169,16 @@ const AISalesAssistant = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-400/30 bg-orange-400/5 text-orange-300 text-xs font-medium mb-6 backdrop-blur">
             <Bot className="w-3.5 h-3.5" />
-            Institutional-grade AI trading
+            {c.badge}
           </div>
           <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6 leading-[1.05]">
-            AI Trading{" "}
+            {c.title1}{" "}
             <span className="bg-gradient-to-r from-orange-300 via-orange-400 to-amber-300 bg-clip-text text-transparent">
-              Agent Plans
+              {c.title2}
             </span>
           </h2>
           <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-4">
-            Choose the AI trading assistant that matches your experience and trading style.
+            {c.subtitle}
           </p>
         </motion.div>
 
@@ -296,13 +265,13 @@ const AISalesAssistant = () => {
                 <div className="relative mb-6 pb-6 border-b border-white/10">
                   <div className="flex items-baseline gap-2">
                     <span className="text-3xl font-semibold">{plan.setup}</span>
-                    <span className="text-sm text-white/50">setup fee</span>
+                    <span className="text-sm text-white/50">{c.setupFee}</span>
                   </div>
                   <div className="flex items-baseline gap-2 mt-2">
                     <span className="text-2xl font-semibold text-white/90">
                       {plan.monthly}
                     </span>
-                    <span className="text-sm text-white/50">/ month</span>
+                    <span className="text-sm text-white/50">{c.perMonth}</span>
                   </div>
                 </div>
 
@@ -356,16 +325,16 @@ const AISalesAssistant = () => {
             <div className="relative rounded-[calc(1.5rem-1px)] bg-[#0a0f1f]/95 backdrop-blur-xl p-8 md:p-12 text-center overflow-hidden">
               <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl" />
               <h3 className="relative text-2xl md:text-4xl font-semibold mb-4 leading-tight">
-                Trade with an institutional-grade AI edge
+                {c.finalTitle}
               </h3>
               <p className="relative text-white/70 max-w-2xl mx-auto mb-8">
-                Talk to our team and get matched with the AI trading plan built for your goals.
+                {c.finalDesc}
               </p>
               <a
                 href="#contact"
                 className="relative inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 text-black font-semibold hover:shadow-xl hover:shadow-orange-500/40 transition-all"
               >
-                Book a strategy call
+                {c.finalCta}
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
