@@ -2,10 +2,7 @@ import { motion } from "framer-motion";
 import {
   MessageCircle,
   Send,
-  Globe,
   Bot,
-  Users,
-  Database,
   ArrowRight,
   Check,
   LineChart,
