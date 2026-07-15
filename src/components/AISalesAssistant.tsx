@@ -8,27 +8,20 @@ import {
   Database,
   ArrowRight,
   Check,
-  ClipboardList,
-  Rocket,
+  LineChart,
   Sparkles,
-  Filter,
-  Handshake,
-  Home,
-  Hammer,
-  Package,
-  Briefcase,
-  Stethoscope,
-  Plane,
+  Crown,
+  TrendingUp,
+  Activity,
+  Newspaper,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Plan {
   id: string;
   icon: typeof Bot;
   name: string;
-  price: string;
-  monthly?: string;
+  setup: string;
+  monthly: string;
   tag?: string;
   tagline: string;
   description: string;
@@ -39,72 +32,93 @@ interface Plan {
 }
 
 const channelBubbles = [
-  { label: "Website", icon: Globe, x: "6%", y: "18%", delay: 0 },
-  { label: "WhatsApp", icon: MessageCircle, x: "18%", y: "72%", delay: 0.6 },
-  { label: "Telegram", icon: Send, x: "84%", y: "22%", delay: 1.2 },
-  { label: "Messenger", icon: MessageCircle, x: "88%", y: "70%", delay: 1.8 },
-  { label: "CRM", icon: Database, x: "72%", y: "88%", delay: 2.4 },
-  { label: "Human Manager", icon: Users, x: "12%", y: "40%", delay: 3.0 },
+  { label: "Gold", icon: TrendingUp, x: "6%", y: "18%", delay: 0 },
+  { label: "Forex", icon: LineChart, x: "18%", y: "72%", delay: 0.6 },
+  { label: "Oil", icon: Activity, x: "84%", y: "22%", delay: 1.2 },
+  { label: "Telegram", icon: Send, x: "88%", y: "70%", delay: 1.8 },
+  { label: "WhatsApp", icon: MessageCircle, x: "72%", y: "88%", delay: 2.4 },
+  { label: "Market News", icon: Newspaper, x: "12%", y: "40%", delay: 3.0 },
 ];
 
 const AISalesAssistant = () => {
-  const { t } = useLanguage();
-
   const plans: Plan[] = [
     {
-      id: "audit",
-      icon: ClipboardList,
-      name: t("aisa.audit.name"),
-      price: t("aisa.audit.price"),
-      tagline: t("aisa.audit.tagline"),
-      description: t("aisa.audit.desc"),
-      features: [1, 2, 3, 4, 5, 6].map((i) => t(`aisa.audit.f${i}`)),
-      cta: t("aisa.audit.cta"),
+      id: "essential",
+      icon: LineChart,
+      name: "AI Trader Essential",
+      setup: "€149",
+      monthly: "€79",
+      tagline: "Reliable AI trade ideas on a single market",
+      description:
+        "Perfect for traders who want reliable AI trade ideas on a single market.",
+      features: [
+        "1 selected market (Gold OR Forex OR Oil)",
+        "Up to 3 AI trade signals per day",
+        "Telegram OR WhatsApp delivery",
+        "Entry, Stop Loss & Take Profit",
+        "AI explanation for every trade",
+        "Basic risk management",
+        "Instant trade notifications",
+      ],
+      cta: "Get Started",
       href: "#contact",
     },
     {
-      id: "starter",
-      icon: Rocket,
-      name: t("aisa.starter.name"),
-      price: t("aisa.starter.price"),
-      monthly: t("aisa.starter.monthly"),
-      tag: t("aisa.starter.tag"),
-      tagline: t("aisa.starter.tagline"),
-      description: t("aisa.starter.desc"),
-      features: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => t(`aisa.starter.f${i}`)),
-      cta: t("aisa.starter.cta"),
+      id: "professional",
+      icon: Sparkles,
+      name: "AI Trader Professional",
+      setup: "€249",
+      monthly: "€179",
+      tag: "Most Popular",
+      tagline: "Broader coverage, continuous updates",
+      description:
+        "Designed for active traders who want broader market coverage and continuous updates.",
+      features: [
+        "Up to 3 selected markets",
+        "Up to 10 AI trade signals per day",
+        "Telegram & WhatsApp delivery",
+        "Signal update notifications",
+        "Economic news impact analysis",
+        "Daily AI market briefing",
+        "Priority signal delivery",
+        "Enhanced market insights",
+      ],
+      cta: "Start Trading",
       href: "#contact",
       featured: true,
     },
     {
-      id: "pro",
-      icon: Sparkles,
-      name: t("aisa.pro.name"),
-      price: t("aisa.pro.price"),
-      monthly: t("aisa.pro.monthly"),
-      tagline: t("aisa.pro.tagline"),
-      description: t("aisa.pro.desc"),
-      features: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => t(`aisa.pro.f${i}`)),
-      cta: t("aisa.pro.cta"),
+      id: "elite",
+      icon: Crown,
+      name: "AI Trader Elite",
+      setup: "€499",
+      monthly: "€399",
+      tagline: "Personalized intelligence, unlimited coverage",
+      description:
+        "The complete AI trading experience with personalized intelligence and unlimited market coverage.",
+      features: [
+        "Unlimited supported markets",
+        "Unlimited AI trade signals",
+        "Multiple AI trading strategies",
+        "Adjustable risk profile",
+        "Personal AI trading assistant",
+        "Detailed trade explanations",
+        "Premium market reports",
+        "VIP priority alerts",
+        "Early access to new AI features",
+        "Dedicated VIP support",
+      ],
+      cta: "Become Elite",
       href: "#contact",
     },
   ];
 
   const pipeline = [
-    { icon: Users, label: t("aisa.pipe.visitor") },
-    { icon: Bot, label: t("aisa.pipe.ai") },
-    { icon: Filter, label: t("aisa.pipe.qualify") },
-    { icon: Database, label: t("aisa.pipe.crm") },
-    { icon: Handshake, label: t("aisa.pipe.deal") },
-  ];
-
-  const audiences = [
-    { icon: Home, label: t("aisa.aud.realestate") },
-    { icon: Hammer, label: t("aisa.aud.construction") },
-    { icon: Package, label: t("aisa.aud.custom") },
-    { icon: Briefcase, label: t("aisa.aud.services") },
-    { icon: Stethoscope, label: t("aisa.aud.clinics") },
-    { icon: Plane, label: t("aisa.aud.travel") },
+    { icon: Activity, label: "Live Market Data" },
+    { icon: Bot, label: "AI Analysis" },
+    { icon: LineChart, label: "Signal Generation" },
+    { icon: Send, label: "Instant Delivery" },
+    { icon: TrendingUp, label: "Your Trade" },
   ];
 
   return (
@@ -186,19 +200,16 @@ const AISalesAssistant = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-400/30 bg-orange-400/5 text-orange-300 text-xs font-medium mb-6 backdrop-blur">
             <Bot className="w-3.5 h-3.5" />
-            {t("aisa.badge")}
+            Institutional-grade AI trading
           </div>
           <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6 leading-[1.05]">
-            {t("aisa.title1")}{" "}
+            AI Trading{" "}
             <span className="bg-gradient-to-r from-orange-300 via-orange-400 to-amber-300 bg-clip-text text-transparent">
-              {t("aisa.title2")}
+              Agent Plans
             </span>
           </h2>
           <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-4">
-            {t("aisa.subtitle")}
-          </p>
-          <p className="text-sm md:text-base text-white/50">
-            {t("aisa.target")}
+            Choose the AI trading assistant that matches your experience and trading style.
           </p>
         </motion.div>
 
@@ -284,16 +295,15 @@ const AISalesAssistant = () => {
 
                 <div className="relative mb-6 pb-6 border-b border-white/10">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-semibold">{plan.price}</span>
-                    <span className="text-sm text-white/50">
-                      {plan.id === "audit" ? t("aisa.onetime") : t("aisa.setup")}
-                    </span>
+                    <span className="text-3xl font-semibold">{plan.setup}</span>
+                    <span className="text-sm text-white/50">setup fee</span>
                   </div>
-                  {plan.monthly && (
-                    <div className="text-sm text-white/60 mt-1">
+                  <div className="flex items-baseline gap-2 mt-2">
+                    <span className="text-2xl font-semibold text-white/90">
                       {plan.monthly}
-                    </div>
-                  )}
+                    </span>
+                    <span className="text-sm text-white/50">/ month</span>
+                  </div>
                 </div>
 
                 <p className="relative text-sm text-white/70 leading-relaxed mb-6">
@@ -301,14 +311,20 @@ const AISalesAssistant = () => {
                 </p>
 
                 <ul className="relative space-y-2.5 mb-8 flex-1">
-                  {plan.features.map((f) => (
-                    <li
+                  {plan.features.map((f, i) => (
+                    <motion.li
                       key={f}
+                      initial={{ opacity: 0, x: -8 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: i * 0.04 }}
                       className="flex items-start gap-3 text-sm text-white/75"
                     >
-                      <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-400" />
+                      <span className="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full bg-orange-400/15 border border-orange-400/40 flex items-center justify-center">
+                        <Check className="w-3 h-3 text-orange-300" />
+                      </span>
                       <span>{f}</span>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
 
@@ -328,38 +344,6 @@ const AISalesAssistant = () => {
           ))}
         </div>
 
-        {/* Who is this for */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-24 max-w-5xl mx-auto text-center"
-        >
-          <h3 className="text-2xl md:text-3xl font-semibold mb-4">
-            {t("aisa.who.title")}
-          </h3>
-          <p className="text-white/65 max-w-3xl mx-auto mb-8 leading-relaxed">
-            {t("aisa.who.desc")}
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {audiences.map((a, i) => (
-              <motion.div
-                key={a.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: i * 0.05 }}
-                whileHover={{ y: -2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/12 bg-white/[0.04] backdrop-blur text-sm text-white/85 hover:border-orange-400/40 hover:text-white transition-colors"
-              >
-                <a.icon className="w-4 h-4 text-orange-300" />
-                {a.label}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Final CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -372,16 +356,16 @@ const AISalesAssistant = () => {
             <div className="relative rounded-[calc(1.5rem-1px)] bg-[#0a0f1f]/95 backdrop-blur-xl p-8 md:p-12 text-center overflow-hidden">
               <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl" />
               <h3 className="relative text-2xl md:text-4xl font-semibold mb-4 leading-tight">
-                {t("aisa.final.title")}
+                Trade with an institutional-grade AI edge
               </h3>
               <p className="relative text-white/70 max-w-2xl mx-auto mb-8">
-                {t("aisa.final.desc")}
+                Talk to our team and get matched with the AI trading plan built for your goals.
               </p>
               <a
                 href="#contact"
                 className="relative inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 text-black font-semibold hover:shadow-xl hover:shadow-orange-500/40 transition-all"
               >
-                {t("aisa.final.cta")}
+                Book a strategy call
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
