@@ -15,6 +15,8 @@ import {
   Activity,
   Newspaper,
 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { traderCopy, type Lang } from "./aiTraderPlansI18n";
 
 interface Plan {
   id: string;
@@ -41,85 +43,55 @@ const channelBubbles = [
 ];
 
 const AISalesAssistant = () => {
+  const { language } = useLanguage();
+  const c = traderCopy[(language as Lang)] || traderCopy.en;
+
   const plans: Plan[] = [
     {
       id: "essential",
       icon: LineChart,
-      name: "AI Trader Essential",
+      name: c.essential.name,
       setup: "€149",
       monthly: "€79",
-      tagline: "Reliable AI trade ideas on a single market",
-      description:
-        "Perfect for traders who want reliable AI trade ideas on a single market.",
-      features: [
-        "1 selected market (Gold OR Forex OR Oil)",
-        "Up to 3 AI trade signals per day",
-        "Telegram OR WhatsApp delivery",
-        "Entry, Stop Loss & Take Profit",
-        "AI explanation for every trade",
-        "Basic risk management",
-        "Instant trade notifications",
-      ],
-      cta: "Get Started",
+      tagline: c.essential.tagline,
+      description: c.essential.description,
+      features: c.essential.features,
+      cta: c.essential.cta,
       href: "#contact",
     },
     {
       id: "professional",
       icon: Sparkles,
-      name: "AI Trader Professional",
+      name: c.professional.name,
       setup: "€249",
       monthly: "€179",
-      tag: "Most Popular",
-      tagline: "Broader coverage, continuous updates",
-      description:
-        "Designed for active traders who want broader market coverage and continuous updates.",
-      features: [
-        "Up to 3 selected markets",
-        "Up to 10 AI trade signals per day",
-        "Telegram & WhatsApp delivery",
-        "Signal update notifications",
-        "Economic news impact analysis",
-        "Daily AI market briefing",
-        "Priority signal delivery",
-        "Enhanced market insights",
-      ],
-      cta: "Start Trading",
+      tag: c.professional.tag,
+      tagline: c.professional.tagline,
+      description: c.professional.description,
+      features: c.professional.features,
+      cta: c.professional.cta,
       href: "#contact",
       featured: true,
     },
     {
       id: "elite",
       icon: Crown,
-      name: "AI Trader Elite",
+      name: c.elite.name,
       setup: "€499",
       monthly: "€399",
-      tagline: "Personalized intelligence, unlimited coverage",
-      description:
-        "The complete AI trading experience with personalized intelligence and unlimited market coverage.",
-      features: [
-        "Unlimited supported markets",
-        "Unlimited AI trade signals",
-        "Multiple AI trading strategies",
-        "Adjustable risk profile",
-        "Personal AI trading assistant",
-        "Detailed trade explanations",
-        "Premium market reports",
-        "VIP priority alerts",
-        "Early access to new AI features",
-        "Dedicated VIP support",
-      ],
-      cta: "Become Elite",
+      tagline: c.elite.tagline,
+      description: c.elite.description,
+      features: c.elite.features,
+      cta: c.elite.cta,
       href: "#contact",
     },
   ];
 
-  const pipeline = [
-    { icon: Activity, label: "Live Market Data" },
-    { icon: Bot, label: "AI Analysis" },
-    { icon: LineChart, label: "Signal Generation" },
-    { icon: Send, label: "Instant Delivery" },
-    { icon: TrendingUp, label: "Your Trade" },
-  ];
+  const pipelineIcons = [Activity, Bot, LineChart, Send, TrendingUp];
+  const pipeline = c.pipeline.map((label, i) => ({
+    icon: pipelineIcons[i],
+    label,
+  }));
 
   return (
     <section
