@@ -172,16 +172,16 @@ const AISalesAssistant = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-400/30 bg-orange-400/5 text-orange-300 text-xs font-medium mb-6 backdrop-blur">
             <Bot className="w-3.5 h-3.5" />
-            Institutional-grade AI trading
+            {c.badge}
           </div>
           <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6 leading-[1.05]">
-            AI Trading{" "}
+            {c.title1}{" "}
             <span className="bg-gradient-to-r from-orange-300 via-orange-400 to-amber-300 bg-clip-text text-transparent">
-              Agent Plans
+              {c.title2}
             </span>
           </h2>
           <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-4">
-            Choose the AI trading assistant that matches your experience and trading style.
+            {c.subtitle}
           </p>
         </motion.div>
 
@@ -268,13 +268,13 @@ const AISalesAssistant = () => {
                 <div className="relative mb-6 pb-6 border-b border-white/10">
                   <div className="flex items-baseline gap-2">
                     <span className="text-3xl font-semibold">{plan.setup}</span>
-                    <span className="text-sm text-white/50">setup fee</span>
+                    <span className="text-sm text-white/50">{c.setupFee}</span>
                   </div>
                   <div className="flex items-baseline gap-2 mt-2">
                     <span className="text-2xl font-semibold text-white/90">
                       {plan.monthly}
                     </span>
-                    <span className="text-sm text-white/50">/ month</span>
+                    <span className="text-sm text-white/50">{c.perMonth}</span>
                   </div>
                 </div>
 
@@ -328,16 +328,16 @@ const AISalesAssistant = () => {
             <div className="relative rounded-[calc(1.5rem-1px)] bg-[#0a0f1f]/95 backdrop-blur-xl p-8 md:p-12 text-center overflow-hidden">
               <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl" />
               <h3 className="relative text-2xl md:text-4xl font-semibold mb-4 leading-tight">
-                Trade with an institutional-grade AI edge
+                {c.finalTitle}
               </h3>
               <p className="relative text-white/70 max-w-2xl mx-auto mb-8">
-                Talk to our team and get matched with the AI trading plan built for your goals.
+                {c.finalDesc}
               </p>
               <a
                 href="#contact"
                 className="relative inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 text-black font-semibold hover:shadow-xl hover:shadow-orange-500/40 transition-all"
               >
-                Book a strategy call
+                {c.finalCta}
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
