@@ -11,16 +11,22 @@ import {
   TrendingUp,
   Activity,
   Newspaper,
+  Infinity as InfinityIcon,
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { traderCopy, type Lang } from "./aiTraderPlansI18n";
+
+const REVOLUT_URL = "https://revolut.me/REPLACE-WITH-REAL-LINK";
 
 interface Plan {
   id: string;
   icon: typeof Bot;
   name: string;
-  setup: string;
+  setup?: string;
   monthly: string;
+  monthlyLabel?: string;
+  oldPrice?: string;
+  priceNote?: string;
   tag?: string;
   tagline: string;
   description: string;
@@ -28,6 +34,7 @@ interface Plan {
   cta: string;
   href: string;
   featured?: boolean;
+  lifetime?: boolean;
 }
 
 const channelBubbles = [
@@ -49,25 +56,25 @@ const AISalesAssistant = () => {
       icon: LineChart,
       name: c.essential.name,
       setup: "€149",
-      monthly: "€79",
+      monthly: "€49.99",
       tagline: c.essential.tagline,
       description: c.essential.description,
       features: c.essential.features,
       cta: c.essential.cta,
-      href: "#contact",
+      href: REVOLUT_URL,
     },
     {
       id: "professional",
       icon: Sparkles,
       name: c.professional.name,
       setup: "€249",
-      monthly: "€179",
+      monthly: "€99.99",
       tag: c.professional.tag,
       tagline: c.professional.tagline,
       description: c.professional.description,
       features: c.professional.features,
       cta: c.professional.cta,
-      href: "#contact",
+      href: REVOLUT_URL,
       featured: true,
     },
     {
@@ -75,12 +82,28 @@ const AISalesAssistant = () => {
       icon: Crown,
       name: c.elite.name,
       setup: "€499",
-      monthly: "€399",
+      monthly: "€349",
       tagline: c.elite.tagline,
       description: c.elite.description,
       features: c.elite.features,
       cta: c.elite.cta,
-      href: "#contact",
+      href: REVOLUT_URL,
+    },
+    {
+      id: "lifetime",
+      icon: InfinityIcon,
+      name: c.lifetime.name,
+      oldPrice: c.lifetime.oldPrice,
+      monthly: c.lifetime.price,
+      monthlyLabel: c.oneTime,
+      tag: c.lifetime.tag,
+      priceNote: c.lifetime.priceNote,
+      tagline: c.lifetime.tagline,
+      description: c.lifetime.description,
+      features: c.lifetime.features,
+      cta: c.lifetime.cta,
+      href: REVOLUT_URL,
+      lifetime: true,
     },
   ];
 
@@ -216,7 +239,7 @@ const AISalesAssistant = () => {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.id}
@@ -228,6 +251,8 @@ const AISalesAssistant = () => {
               className={`group relative rounded-3xl p-[1px] ${
                 plan.featured
                   ? "bg-gradient-to-b from-orange-400/60 via-orange-400/20 to-transparent"
+                  : plan.lifetime
+                  ? "bg-gradient-to-b from-amber-300/70 via-amber-500/30 to-blue-500/20"
                   : "bg-gradient-to-b from-white/15 to-transparent"
               }`}
             >
@@ -237,12 +262,18 @@ const AISalesAssistant = () => {
                   className={`absolute -top-20 -right-20 w-64 h-64 rounded-full blur-3xl transition-opacity duration-500 ${
                     plan.featured
                       ? "bg-orange-500/25 opacity-100"
+                      : plan.lifetime
+                      ? "bg-amber-400/25 opacity-100"
                       : "bg-blue-500/20 opacity-60 group-hover:opacity-100"
                   }`}
                 />
 
                 {plan.tag && (
-                  <div className="absolute top-5 right-5 px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-semibold bg-orange-400 text-black">
+                  <div className={`absolute top-5 right-5 px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-semibold ${
+                    plan.lifetime
+                      ? "bg-gradient-to-r from-amber-300 to-amber-500 text-black"
+                      : "bg-orange-400 text-black"
+                  }`}>
                     {plan.tag}
                   </div>
                 )}
@@ -263,16 +294,41 @@ const AISalesAssistant = () => {
                 </p>
 
                 <div className="relative mb-6 pb-6 border-b border-white/10">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-semibold">{plan.setup}</span>
-                    <span className="text-sm text-white/50">{c.setupFee}</span>
-                  </div>
-                  <div className="flex items-baseline gap-2 mt-2">
-                    <span className="text-2xl font-semibold text-white/90">
-                      {plan.monthly}
-                    </span>
-                    <span className="text-sm text-white/50">{c.perMonth}</span>
-                  </div>
+                  {plan.lifetime ? (
+                    <>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-lg text-white/40 line-through">{plan.oldPrice}</span>
+                        <span className="text-[10px] uppercase tracking-wider text-amber-300/90 font-semibold">
+                          {c.launchPrice}
+                        </span>
+                      </div>
+                      <div className="flex items-baseline gap-2 mt-2">
+                        <span className="text-3xl font-semibold">{plan.monthly}</span>
+                        <span className="text-sm text-white/50">{plan.monthlyLabel}</span>
+                      </div>
+                      {plan.priceNote && (
+                        <p className="text-xs text-white/50 mt-3 leading-relaxed">
+                          {plan.priceNote}
+                        </p>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-lg text-white/40 line-through">{plan.setup}</span>
+                        <span className="text-xs text-white/60">{c.setupFee}</span>
+                        <span className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-semibold bg-emerald-400/15 text-emerald-300 border border-emerald-400/30">
+                          {c.freeLabel}
+                        </span>
+                      </div>
+                      <div className="flex items-baseline gap-2 mt-2">
+                        <span className="text-3xl font-semibold text-white">
+                          {plan.monthly}
+                        </span>
+                        <span className="text-sm text-white/50">{c.perMonth}</span>
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 <p className="relative text-sm text-white/70 leading-relaxed mb-6">
@@ -299,9 +355,13 @@ const AISalesAssistant = () => {
 
                 <a
                   href={plan.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`relative inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-full font-medium text-sm transition-all duration-300 ${
                     plan.featured
                       ? "bg-gradient-to-r from-orange-400 to-amber-400 text-black hover:shadow-lg hover:shadow-orange-500/40"
+                      : plan.lifetime
+                      ? "bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-black hover:shadow-lg hover:shadow-amber-500/40"
                       : "bg-white/5 border border-white/15 text-white hover:bg-white/10 hover:border-orange-400/40"
                   }`}
                 >
