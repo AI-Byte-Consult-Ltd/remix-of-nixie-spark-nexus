@@ -299,7 +299,7 @@ const AISalesAssistant = () => {
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="text-lg text-white/40 line-through">{plan.oldPrice}</span>
                         <span className="text-[10px] uppercase tracking-wider text-amber-300/90 font-semibold">
-                          Launch price
+                          {c.launchPrice}
                         </span>
                       </div>
                       <div className="flex items-baseline gap-2 mt-2">
@@ -318,7 +318,7 @@ const AISalesAssistant = () => {
                         <span className="text-lg text-white/40 line-through">{plan.setup}</span>
                         <span className="text-xs text-white/60">{c.setupFee}</span>
                         <span className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-semibold bg-emerald-400/15 text-emerald-300 border border-emerald-400/30">
-                          Free
+                          {c.freeLabel}
                         </span>
                       </div>
                       <div className="flex items-baseline gap-2 mt-2">
