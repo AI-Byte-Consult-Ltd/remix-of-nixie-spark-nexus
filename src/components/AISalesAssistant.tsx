@@ -16,7 +16,13 @@ import {
 import { useLanguage } from "@/contexts/LanguageContext";
 import { traderCopy, type Lang } from "./aiTraderPlansI18n";
 
-const REVOLUT_URL = "https://revolut.me/REPLACE-WITH-REAL-LINK";
+const REVOLUT_URLS = {
+  essential: "https://checkout.revolut.com/pay/1c4e41c5-66e3-4bbb-991e-5fab849d7929",
+  professional: "https://checkout.revolut.com/pay/6af27b5a-0928-4f11-b3a5-934f790a6949",
+  elite: "https://checkout.revolut.com/pay/23eac341-62be-4f34-883d-77dee43c1709",
+  lifetime: "https://checkout.revolut.com/pay/860e05d1-9f4d-492e-8c95-3e64f3fd9ff1",
+};
+
 
 interface Plan {
   id: string;
@@ -61,7 +67,7 @@ const AISalesAssistant = () => {
       description: c.essential.description,
       features: c.essential.features,
       cta: c.essential.cta,
-      href: REVOLUT_URL,
+      href: REVOLUT_URLS.essential,
     },
     {
       id: "professional",
@@ -74,7 +80,7 @@ const AISalesAssistant = () => {
       description: c.professional.description,
       features: c.professional.features,
       cta: c.professional.cta,
-      href: REVOLUT_URL,
+      href: REVOLUT_URLS.professional,
       featured: true,
     },
     {
@@ -87,7 +93,7 @@ const AISalesAssistant = () => {
       description: c.elite.description,
       features: c.elite.features,
       cta: c.elite.cta,
-      href: REVOLUT_URL,
+      href: REVOLUT_URLS.elite,
     },
     {
       id: "lifetime",
@@ -102,7 +108,7 @@ const AISalesAssistant = () => {
       description: c.lifetime.description,
       features: c.lifetime.features,
       cta: c.lifetime.cta,
-      href: REVOLUT_URL,
+      href: REVOLUT_URLS.lifetime,
       lifetime: true,
     },
   ];
