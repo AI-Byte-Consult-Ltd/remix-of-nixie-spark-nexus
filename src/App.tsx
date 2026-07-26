@@ -11,6 +11,7 @@ import Insurance from "./pages/Insurance";
 import Translation from "./pages/Translation";
 import Furnishings from "./pages/Furnishings";
 import Trading from "./pages/Trading";
+import NicsTraderApp from "./pages/NicsTraderApp";
 import NicsEcosystem from "./pages/NicsEcosystem";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/translation" element={<Translation />} />
             <Route path="/furnishings" element={<Furnishings />} />
             <Route path="/trading" element={<Trading />} />
+            <Route path="/nics-app" element={<NicsTraderApp />} />
             <Route path="/nics-ecosystem" element={<NicsEcosystem />} />
             <Route path="/terms" element={<Terms />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
