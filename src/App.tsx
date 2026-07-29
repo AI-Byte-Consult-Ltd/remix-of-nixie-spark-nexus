@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -11,12 +12,12 @@ import Insurance from "./pages/Insurance";
 import Translation from "./pages/Translation";
 import Furnishings from "./pages/Furnishings";
 import Trading from "./pages/Trading";
-import NicsTraderApp from "./pages/NicsTraderApp";
 import NicsEcosystem from "./pages/NicsEcosystem";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+const NicsTraderApp = lazy(() => import("./pages/NicsTraderApp"));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -33,7 +34,20 @@ const App = () => (
             <Route path="/translation" element={<Translation />} />
             <Route path="/furnishings" element={<Furnishings />} />
             <Route path="/trading" element={<Trading />} />
-            <Route path="/nics-app" element={<NicsTraderApp />} />
+            <Route
+              path="/nics-app"
+              element={
+                <Suspense
+                  fallback={
+                    <main className="grid min-h-screen place-items-center bg-[#07090f] text-sm text-slate-400">
+                      NICS AI Trader…
+                    </main>
+                  }
+                >
+                  <NicsTraderApp />
+                </Suspense>
+              }
+            />
             <Route path="/nics-ecosystem" element={<NicsEcosystem />} />
             <Route path="/terms" element={<Terms />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
