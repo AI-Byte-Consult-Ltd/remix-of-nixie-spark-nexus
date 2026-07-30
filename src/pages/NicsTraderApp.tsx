@@ -18,6 +18,7 @@ import {
   Signal,
   Sparkles,
   TrendingUp,
+  Users,
 } from "lucide-react";
 import {
   Bar,
@@ -34,6 +35,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { callNicsApi, NicsApiError } from "@/features/nics/api";
 import { periodLabels, translations } from "@/features/nics/i18n";
+import { ReferralCabinet } from "@/features/nics/ReferralCabinet";
 import { RiskProfileForm } from "@/features/nics/RiskProfileForm";
 import { RiskSummaryCard } from "@/features/nics/RiskSummaryCard";
 import { SettingsForm } from "@/features/nics/SettingsForm";
@@ -54,7 +56,7 @@ import {
   signedR,
 } from "@/features/nics/utils";
 
-const APP_VERSION = "2.0.2";
+const APP_VERSION = "2.1.0";
 
 const emptyPerformance: PerformanceBlock = {
   closedSignals: 0,
@@ -91,9 +93,17 @@ const NicsTraderApp = () => {
   const telegram = window.Telegram?.WebApp;
   const telegramLanguage = telegram?.initDataUnsafe?.user?.language_code?.slice(0, 2);
   const [language, setLanguage] = useState<AppLanguage>(
-    telegramLanguage === "ru" || telegramLanguage === "bg" ? telegramLanguage : "en",
+    telegramLanguage === "ru" ||
+      telegramLanguage === "bg" ||
+      telegramLanguage === "es"
+      ? telegramLanguage
+      : "en",
   );
-  const [screen, setScreen] = useState<Screen>("dashboard");
+  const [screen, setScreen] = useState<Screen>(
+    new URLSearchParams(window.location.search).get("screen") === "referral"
+      ? "referral"
+      : "dashboard",
+  );
   const [data, setData] = useState<AppPayload | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<"telegram" | "network" | null>(null);
@@ -185,7 +195,10 @@ const NicsTraderApp = () => {
   }, []);
 
   useEffect(() => {
-    if (data) void trackEvent("mini_app_opened", { screen: "dashboard" });
+    if (data) {
+      void trackEvent("mini_app_opened", { screen });
+      if (screen === "referral") void trackEvent("referral_opened", { screen });
+    }
   }, [data?.apiVersion]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const performanceChart = useMemo(
@@ -285,10 +298,36 @@ const NicsTraderApp = () => {
   const openScreen = (next: Screen) => {
     setScreen(next);
     telegram?.HapticFeedback?.impactOccurred("light");
-    void trackEvent(
-      next === "performance" ? "performance_opened" : "screen_opened",
-      { screen: next },
-    );
+    const eventName =
+      next === "performance"
+        ? "performance_opened"
+        : next === "referral"
+          ? "referral_opened"
+          : "screen_opened";
+    void trackEvent(eventName, { screen: next });
+  };
+
+  const openTelegramUrl = (url: string) => {
+    if (telegram?.openTelegramLink) {
+      telegram.openTelegramLink(url);
+      return;
+    }
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const shareReferral = () => {
+    const url =
+      "https://t.me/share/url?url=" +
+      encodeURIComponent(data?.referral.link ?? "") +
+      "&text=" +
+      encodeURIComponent(t.referralLead);
+    void trackEvent("referral_share_opened", { screen: "referral" });
+    openTelegramUrl(url);
+  };
+
+  const requestReferralPayout = () => {
+    void trackEvent("referral_payout_opened", { screen: "referral" });
+    openTelegramUrl("https://t.me/nics_ai_bot?start=payout");
   };
 
   if (loading) {
@@ -332,6 +371,7 @@ const NicsTraderApp = () => {
     { key: "dashboard", icon: LayoutDashboard, label: t.dashboard },
     { key: "signals", icon: Signal, label: t.signals },
     { key: "risk", icon: Calculator, label: t.risk },
+    { key: "referral", icon: Users, label: t.referrals },
     { key: "performance", icon: BarChart3, label: t.performance },
     { key: "history", icon: History, label: t.history },
     { key: "markets", icon: Activity, label: t.markets },
@@ -625,6 +665,20 @@ const NicsTraderApp = () => {
               onSubmit={(event) => void saveRisk(event)}
             />
           </>
+        )}
+
+        {screen === "referral" && (
+          <ReferralCabinet
+            program={data.referral}
+            language={language}
+            t={t}
+            onCopy={() => {
+              telegram?.HapticFeedback?.notificationOccurred("success");
+              void trackEvent("referral_link_copied", { screen: "referral" });
+            }}
+            onShare={shareReferral}
+            onPayout={requestReferralPayout}
+          />
         )}
 
         {screen === "markets" && (
