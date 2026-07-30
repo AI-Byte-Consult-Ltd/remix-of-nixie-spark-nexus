@@ -1,4 +1,4 @@
-export type AppLanguage = "ru" | "bg" | "en";
+export type AppLanguage = "ru" | "bg" | "en" | "es";
 
 export type Screen =
   | "dashboard"
@@ -6,6 +6,7 @@ export type Screen =
   | "signals"
   | "history"
   | "risk"
+  | "referral"
   | "markets"
   | "settings"
   | "updates";
@@ -16,6 +17,8 @@ export interface TelegramWebApp {
   ready: () => void;
   expand: () => void;
   close: () => void;
+  openTelegramLink?: (url: string) => void;
+  openLink?: (url: string) => void;
   HapticFeedback?: {
     impactOccurred: (style: "light" | "medium" | "heavy") => void;
     notificationOccurred: (type: "error" | "success" | "warning") => void;
@@ -201,6 +204,45 @@ export interface FeatureFlags {
   autoExecution: boolean;
 }
 
+export interface ReferralPlan {
+  code: string;
+  priceXtr: number;
+  commissionXtr: number;
+}
+
+export interface ReferralUser {
+  username?: string | null;
+  firstName?: string | null;
+  joinedAt?: string | null;
+  hasPaid: boolean;
+}
+
+export interface ReferralPayoutRequest {
+  id: number;
+  amountXtr: number;
+  status: string;
+  requestedAt?: string | null;
+  processedAt?: string | null;
+}
+
+export interface ReferralProgram {
+  programActive: boolean;
+  commissionRatePercent: number;
+  code: string;
+  link: string;
+  referralCount: number;
+  payingReferralCount: number;
+  grossPaymentsXtr: number;
+  earnedLifetimeXtr: number;
+  availableXtr: number;
+  pendingXtr: number;
+  paidXtr: number;
+  reversedXtr: number;
+  latestPayoutRequest?: ReferralPayoutRequest | null;
+  recentReferrals: ReferralUser[];
+  plans: ReferralPlan[];
+}
+
 export interface AppPayload {
   ok: boolean;
   apiVersion: string;
@@ -226,6 +268,7 @@ export interface AppPayload {
   riskProfile: RiskProfile;
   riskSummary: RiskSummary;
   preferences: UserPreferences;
+  referral: ReferralProgram;
   sizing?: SizingResult | null;
   markets: MarketRow[];
   features: FeatureFlags;
