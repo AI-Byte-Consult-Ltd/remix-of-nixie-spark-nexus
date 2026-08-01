@@ -135,7 +135,7 @@ const markets = [
     icon: Droplet,
     name: "Oil",
     symbol: "UKOUSDft",
-    desc: "Vantage Brent Oil Futures with broker-native MT5 pricing.",
+    desc: "Vantage Brent Crude Oil Future with broker-native MT5 pricing.",
     availability: "Monday–Friday, according to Vantage market hours",
   },
   {

@@ -223,9 +223,14 @@ export const SignalCard = ({
         )}
 
         <div className="flex flex-wrap items-center justify-between gap-3 p-4">
-          <div className="flex items-center gap-2 text-xs text-slate-400">
+          <div className="flex items-start gap-2 text-xs text-slate-400">
             <Clock3 className="h-3.5 w-3.5" />
-            {t.validUntil}: {formatDate(signal.validUntil, language)}
+            <span className="space-y-1">
+              <span className="block">{t.validUntil}: {formatDate(signal.validUntil, language)}</span>
+              <span className="block text-amber-200/80">
+                {t.tradeExpiresAt}: {formatDate(signal.tradeExpiresAt, language)}
+              </span>
+            </span>
           </div>
           <div className="flex gap-2">
             <Button

@@ -81,6 +81,9 @@ export interface SignalRow {
   sourceInstance?: string | null;
   brokerServer?: string | null;
   validUntil?: string | null;
+  tradeExpiresAt?: string | null;
+  maxHoldMinutes?: number | null;
+  strategyVersion?: string | null;
   publishedAt?: string | null;
   acceptedAt?: string | null;
   lastCheckedAt?: string | null;
@@ -120,6 +123,9 @@ export interface SignalHistoryRow {
   publishedAt?: string | null;
   acceptedAt?: string | null;
   closedAt?: string | null;
+  exitPrice?: string | number | null;
+  tradeExpiresAt?: string | null;
+  strategyVersion?: string | null;
 }
 
 export interface RiskProfile {
