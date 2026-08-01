@@ -7,6 +7,7 @@ export type Screen =
   | "history"
   | "risk"
   | "referral"
+  | "admin"
   | "markets"
   | "settings"
   | "updates";
@@ -48,6 +49,24 @@ export interface PerformanceBlock {
   expectancyR: number;
   averageMfeR: number;
   averageMaeR: number;
+}
+
+export interface StrategyPerformanceBlock extends PerformanceBlock {
+  averageHoldingMinutes: number;
+  firstClosedAt?: string | null;
+  lastClosedAt?: string | null;
+}
+
+export interface PerformanceAudit {
+  verified: boolean;
+  basis: "user_accepted_delivered_closed" | string;
+  unit: "R" | string;
+  sampleSize: number;
+  firstClosedAt?: string | null;
+  lastClosedAt?: string | null;
+  strategyVersions: string[];
+  includedStatuses: string[];
+  excludes: string[];
 }
 
 export interface FreshnessInterval {
@@ -206,6 +225,7 @@ export interface FeatureFlags {
   portfolioRisk: boolean;
   correlationRisk: boolean;
   history: boolean;
+  adminHealth: boolean;
   stocks: boolean;
   autoExecution: boolean;
 }
@@ -249,6 +269,56 @@ export interface ReferralProgram {
   plans: ReferralPlan[];
 }
 
+export interface AdminHealthSymbol {
+  symbol: string;
+  brokerSymbol?: string | null;
+  lastReceivedAt?: string | null;
+  ageSeconds?: number | null;
+  complete?: boolean;
+  updatedAt?: string | null;
+}
+
+export interface AdminHealth {
+  checkedAt: string;
+  overallStatus: "HEALTHY" | "DEGRADED" | "OFFLINE" | string;
+  alibaba: {
+    sourceInstance?: string | null;
+    bridgeVersion?: string | null;
+    accountServer?: string | null;
+    lastReceivedAt?: string | null;
+    ageSeconds?: number | null;
+    online: boolean;
+    symbolCount: number;
+    symbols: AdminHealthSymbol[];
+  };
+  specifications: {
+    total: number;
+    complete: number;
+    allComplete: boolean;
+    latestUpdatedAt?: string | null;
+    symbols: AdminHealthSymbol[];
+  };
+  core: {
+    lastScanAt?: string | null;
+    ageMinutes?: number | null;
+    runId?: string | null;
+    signalCount?: number | null;
+    dataQuality?: Record<string, unknown> | null;
+  };
+  delivery: {
+    lastSignalDeliveredAt?: string | null;
+    lastLifecycleAt?: string | null;
+    failures24h: number;
+    lifecycleFailures24h: number;
+  };
+  channels: {
+    lastSentAt?: string | null;
+    sentToday: number;
+    failuresToday: number;
+    policy: string;
+  };
+}
+
 export interface AppPayload {
   ok: boolean;
   apiVersion: string;
@@ -258,6 +328,7 @@ export interface AppPayload {
     firstName?: string;
     username?: string;
     language: AppLanguage;
+    isAdmin?: boolean;
   };
   access: {
     mode: string;
@@ -270,11 +341,14 @@ export interface AppPayload {
   performance: {
     periods: Record<"7d" | "30d" | "90d" | "all", PerformanceBlock>;
     byMarket: Record<string, PerformanceBlock>;
+    byStrategy: Record<string, StrategyPerformanceBlock>;
+    audit: PerformanceAudit;
   };
   riskProfile: RiskProfile;
   riskSummary: RiskSummary;
   preferences: UserPreferences;
   referral: ReferralProgram;
+  adminHealth?: AdminHealth | null;
   sizing?: SizingResult | null;
   markets: MarketRow[];
   features: FeatureFlags;

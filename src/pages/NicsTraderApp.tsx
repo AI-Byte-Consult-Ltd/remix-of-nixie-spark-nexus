@@ -17,6 +17,7 @@ import {
   ShieldCheck,
   Signal,
   Sparkles,
+  Server,
   TrendingUp,
   Users,
 } from "lucide-react";
@@ -34,6 +35,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { callNicsApi, NicsApiError } from "@/features/nics/api";
+import { AdminHealthDashboard } from "@/features/nics/AdminHealthDashboard";
 import { periodLabels, translations } from "@/features/nics/i18n";
 import { ReferralCabinet } from "@/features/nics/ReferralCabinet";
 import { RiskProfileForm } from "@/features/nics/RiskProfileForm";
@@ -56,7 +58,7 @@ import {
   signedR,
 } from "@/features/nics/utils";
 
-const APP_VERSION = "2.2.0";
+const APP_VERSION = "2.3.0";
 
 const emptyPerformance: PerformanceBlock = {
   closedSignals: 0,
@@ -376,6 +378,9 @@ const NicsTraderApp = () => {
     { key: "history", icon: History, label: t.history },
     { key: "markets", icon: Activity, label: t.markets },
     { key: "settings", icon: Settings2, label: t.settings },
+    ...(data.user.isAdmin && data.adminHealth
+      ? [{ key: "admin" as Screen, icon: Server, label: t.adminHealth }]
+      : []),
   ];
 
   const metricCards = [
@@ -549,6 +554,68 @@ const NicsTraderApp = () => {
               })}
             </section>
 
+            <Card className="border-emerald-300/15 bg-emerald-400/[0.045] text-white shadow-none">
+              <CardContent className="p-5">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <ShieldCheck className="h-4 w-4 text-emerald-300" />
+                      <p className="font-medium">{t.verifiedPerformance}</p>
+                    </div>
+                    <p className="mt-3 max-w-2xl text-xs leading-5 text-slate-400">
+                      {t.verifiedBasis}
+                    </p>
+                  </div>
+                  <Badge className="border-0 bg-emerald-400/10 text-emerald-300">
+                    {t.sampleSize}: {data.performance.audit?.sampleSize ?? 0}
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <section className="space-y-3">
+              <h2 className="text-sm font-medium text-slate-300">{t.byStrategy}</h2>
+              {Object.entries(data.performance.byStrategy ?? {}).length ? (
+                <div className="grid gap-3 md:grid-cols-2">
+                  {Object.entries(data.performance.byStrategy).map(([version, block]) => (
+                    <Card key={version} className="border-white/10 bg-white/[0.045] text-white shadow-none">
+                      <CardContent className="p-4">
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <p className="text-sm font-medium">{version}</p>
+                            <p className="mt-1 text-xs text-slate-500">
+                              {t.sampleSize}: {block.closedSignals}
+                            </p>
+                          </div>
+                          <Badge variant="outline" className="border-white/10 text-slate-300">
+                            {signedR(block.expectancyR)}
+                          </Badge>
+                        </div>
+                        <div className="mt-4 grid grid-cols-3 gap-2 text-center">
+                          {[
+                            [t.winRate, `${formatNumber(block.winRatePercent, 1)}%`],
+                            [t.totalR, signedR(block.totalR)],
+                            [t.averageHolding, `${formatNumber(block.averageHoldingMinutes, 0)} ${t.minutes}`],
+                          ].map(([label, value]) => (
+                            <div key={label} className="rounded-xl border border-white/10 bg-black/10 p-2.5">
+                              <p className="text-[10px] text-slate-500">{label}</p>
+                              <p className="mt-1 text-xs">{value}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <Card className="border-dashed border-white/10 bg-white/[0.025] text-white">
+                  <CardContent className="p-6 text-center text-sm text-slate-500">
+                    {t.noClosed}
+                  </CardContent>
+                </Card>
+              )}
+            </section>
+
             <Card className="border-white/10 bg-white/[0.045] text-white shadow-none">
               <CardHeader>
                 <CardTitle className="text-base">{t.byMarket}</CardTitle>
@@ -678,6 +745,14 @@ const NicsTraderApp = () => {
             }}
             onShare={shareReferral}
             onPayout={requestReferralPayout}
+          />
+        )}
+
+        {screen === "admin" && data.user.isAdmin && data.adminHealth && (
+          <AdminHealthDashboard
+            health={data.adminHealth}
+            language={language}
+            t={t}
           />
         )}
 
