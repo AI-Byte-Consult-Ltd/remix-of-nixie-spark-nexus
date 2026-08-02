@@ -58,7 +58,7 @@ import {
   signedR,
 } from "@/features/nics/utils";
 
-const APP_VERSION = "2.3.1";
+const APP_VERSION = "2.4.0";
 
 const emptyPerformance: PerformanceBlock = {
   closedSignals: 0,
@@ -94,6 +94,16 @@ const defaultPreferences: UserPreferences = {
 const NicsTraderApp = () => {
   const telegram = window.Telegram?.WebApp;
   const telegramLanguage = telegram?.initDataUnsafe?.user?.language_code?.slice(0, 2);
+  const initialSignalId = useMemo(() => {
+    const parameters = new URLSearchParams(window.location.search);
+    const directSignalId = parameters.get("signalId");
+    if (directSignalId) return directSignalId.slice(0, 160);
+
+    const startParameter = telegram?.initDataUnsafe?.start_param ?? "";
+    return startParameter.startsWith("signal_")
+      ? startParameter.slice("signal_".length, "signal_".length + 160)
+      : "";
+  }, [telegram?.initDataUnsafe?.start_param]);
   const [language, setLanguage] = useState<AppLanguage>(
     telegramLanguage === "ru" ||
       telegramLanguage === "bg" ||
@@ -102,7 +112,9 @@ const NicsTraderApp = () => {
       : "en",
   );
   const [screen, setScreen] = useState<Screen>(
-    new URLSearchParams(window.location.search).get("screen") === "referral"
+    initialSignalId
+      ? "signals"
+      : new URLSearchParams(window.location.search).get("screen") === "referral"
       ? "referral"
       : "dashboard",
   );
@@ -119,6 +131,7 @@ const NicsTraderApp = () => {
   const [sizing, setSizing] = useState<SizingResult | null>(null);
   const [sizingSignalId, setSizingSignalId] = useState<string | null>(null);
   const [sizingLoading, setSizingLoading] = useState(false);
+  const [decisionLoadingSignalId, setDecisionLoadingSignalId] = useState<string | null>(null);
   const t = translations[language];
 
   const callApi = useCallback(
@@ -154,7 +167,10 @@ const NicsTraderApp = () => {
     setError(null);
 
     try {
-      const result = await callApi("dashboard");
+      const result = await callApi(
+        initialSignalId ? "signal_status" : "dashboard",
+        initialSignalId ? { signalId: initialSignalId } : {},
+      );
       if (!result.data) throw new NicsApiError("REQUEST_FAILED");
       applyPayload(result.data);
     } catch (requestError) {
@@ -163,7 +179,7 @@ const NicsTraderApp = () => {
     } finally {
       setLoading(false);
     }
-  }, [applyPayload, callApi]);
+  }, [applyPayload, callApi, initialSignalId]);
 
   const trackEvent = useCallback(
     async (eventName: string, metadata: Record<string, unknown> = {}) => {
@@ -297,6 +313,40 @@ const NicsTraderApp = () => {
     }
   };
 
+  const decideSignal = async (
+    signalId: string,
+    decision: "ACCEPTED" | "DECLINED",
+  ) => {
+    setDecisionLoadingSignalId(signalId);
+    telegram?.HapticFeedback?.impactOccurred("medium");
+
+    try {
+      const result = await callApi("signal_decision", { signalId, decision });
+      if (!result.data) throw new NicsApiError("REQUEST_FAILED");
+
+      applyPayload(result.data);
+      const updatedSignal = result.data.activeSignals.find(
+        (signal) => signal.signalId === signalId,
+      );
+      const succeeded = updatedSignal?.userDecision === decision;
+
+      if (succeeded) {
+        telegram?.HapticFeedback?.notificationOccurred("success");
+        void trackEvent(
+          decision === "ACCEPTED" ? "signal_accepted" : "signal_skipped",
+          { signalId, screen: "signals" },
+        );
+      } else {
+        telegram?.HapticFeedback?.notificationOccurred("warning");
+      }
+    } catch {
+      setError("network");
+      telegram?.HapticFeedback?.notificationOccurred("error");
+    } finally {
+      setDecisionLoadingSignalId(null);
+    }
+  };
+
   const openScreen = (next: Screen) => {
     setScreen(next);
     telegram?.HapticFeedback?.impactOccurred("light");
@@ -403,8 +453,10 @@ const NicsTraderApp = () => {
       t={t}
       sizing={sizingSignalId === signal.signalId ? sizing : null}
       sizingLoading={sizingLoading && sizingSignalId === signal.signalId}
+      decisionLoading={decisionLoadingSignalId === signal.signalId}
       onCalculate={(signalId) => void calculateSizing(signalId)}
       onRefresh={(signalId) => void refreshSignal(signalId)}
+      onDecision={(signalId, decision) => void decideSignal(signalId, decision)}
     />
   );
 

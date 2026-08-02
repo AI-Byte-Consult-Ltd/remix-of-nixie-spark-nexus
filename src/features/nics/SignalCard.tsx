@@ -1,12 +1,16 @@
 import {
   AlertTriangle,
+  BellOff,
   Calculator,
+  Check,
   CheckCircle2,
   Clock3,
+  Loader2,
   RefreshCw,
   ShieldAlert,
   TrendingDown,
   TrendingUp,
+  X,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,8 +26,10 @@ interface SignalCardProps {
   t: Translation;
   sizing?: SizingResult | null;
   sizingLoading?: boolean;
+  decisionLoading?: boolean;
   onCalculate: (signalId: string) => void;
   onRefresh: (signalId: string) => void;
+  onDecision: (signalId: string, decision: "ACCEPTED" | "DECLINED") => void;
 }
 
 const statusTone = (status: string) => {
@@ -41,8 +47,10 @@ export const SignalCard = ({
   t,
   sizing,
   sizingLoading = false,
+  decisionLoading = false,
   onCalculate,
   onRefresh,
+  onDecision,
 }: SignalCardProps) => {
   const long = signal.direction === "LONG";
   const rawStatus = signal.liveStatus ?? "ACTIVE";
@@ -50,6 +58,21 @@ export const SignalCard = ({
   const hitTargets = new Set(signal.hitTargets ?? []);
   const targets = [signal.tp1, signal.tp2, signal.tp3, signal.tp4];
   const ownSizing = sizing ?? null;
+  const decision = signal.userDecision ?? "ACCEPTED";
+  const analysis = signal.analysis ?? {};
+  const why = Array.isArray(analysis.why) ? analysis.why.slice(0, 3) : [];
+  const news = Array.isArray(analysis.news) ? analysis.news.slice(0, 3) : [];
+  const risks = Array.isArray(analysis.riskFlags) ? analysis.riskFlags.slice(0, 3) : [];
+  const decisionError =
+    signal.decisionReason === "ENTRY_WINDOW_EXPIRED"
+      ? t.decisionEntryExpired
+      : signal.decisionReason === "PRICE_LEFT_ENTRY"
+        ? t.decisionPriceMoved
+        : signal.decisionReason === "TP1_ALREADY_HIT"
+          ? t.decisionTpReached
+          : signal.decisionReason
+            ? t.decisionUnavailable
+            : null;
 
   return (
     <Card className="overflow-hidden border-white/10 bg-white/[0.045] text-white shadow-none">
@@ -74,6 +97,18 @@ export const SignalCard = ({
               {signal.accessType && (
                 <Badge variant="secondary" className="bg-white/5 text-slate-400">
                   {signal.accessType}
+                </Badge>
+              )}
+              {decision === "ACCEPTED" && (
+                <Badge className="border-0 bg-emerald-400/10 text-emerald-300">
+                  <Check className="mr-1 h-3 w-3" />
+                  {t.acceptedShort}
+                </Badge>
+              )}
+              {decision === "DECLINED" && (
+                <Badge className="border-0 bg-slate-400/10 text-slate-300">
+                  <X className="mr-1 h-3 w-3" />
+                  {t.skippedShort}
                 </Badge>
               )}
             </div>
@@ -164,6 +199,44 @@ export const SignalCard = ({
             )}
           </div>
 
+          {(why.length > 0 || news.length > 0 || risks.length > 0 || signal.confidence != null) && (
+            <div className="grid gap-3 md:grid-cols-3">
+              {why.length > 0 && (
+                <div className="rounded-xl border border-sky-400/15 bg-sky-400/[0.05] p-3">
+                  <p className="text-xs font-medium text-sky-200">{t.entryRationale}</p>
+                  <ul className="mt-2 space-y-1.5 text-[11px] leading-5 text-slate-400">
+                    {why.map((item, index) => <li key={`why-${index}`}>• {item}</li>)}
+                  </ul>
+                </div>
+              )}
+              {news.length > 0 && (
+                <div className="rounded-xl border border-violet-400/15 bg-violet-400/[0.05] p-3">
+                  <p className="text-xs font-medium text-violet-200">{t.newsAnalysis}</p>
+                  <ul className="mt-2 space-y-1.5 text-[11px] leading-5 text-slate-400">
+                    {news.map((item, index) => <li key={`news-${index}`}>• {item}</li>)}
+                  </ul>
+                </div>
+              )}
+              {(risks.length > 0 || signal.confidence != null) && (
+                <div className="rounded-xl border border-amber-400/15 bg-amber-400/[0.05] p-3">
+                  {signal.confidence != null && (
+                    <p className="text-xs font-medium text-amber-200">
+                      {t.confidence}: {formatNumber(signal.confidence, 0)}/100
+                    </p>
+                  )}
+                  {risks.length > 0 && (
+                    <>
+                      <p className="mt-2 text-[11px] font-medium text-slate-300">{t.riskAnalysis}</p>
+                      <ul className="mt-1 space-y-1.5 text-[11px] leading-5 text-slate-400">
+                        {risks.map((item, index) => <li key={`risk-${index}`}>• {item}</li>)}
+                      </ul>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
           <div className="grid gap-1 text-[11px] text-slate-500 sm:grid-cols-3">
             <span>{t.publishedAt}: {formatDate(signal.publishedAt, language)}</span>
             <span>{t.acceptedAt}: {formatDate(signal.acceptedAt, language)}</span>
@@ -218,6 +291,53 @@ export const SignalCard = ({
                   {ownSizing.methodologyVersion ? ` · ${ownSizing.methodologyVersion}` : ""}
                 </p>
               </>
+            )}
+          </div>
+        )}
+
+        {(decision === "PENDING" || decision === "ACCEPTED" || decisionError) && (
+          <div className="border-b border-white/10 p-4">
+            {decisionError && (
+              <div className="mb-3 flex gap-2 rounded-xl border border-rose-400/20 bg-rose-400/[0.07] p-3 text-xs text-rose-200">
+                <AlertTriangle className="h-4 w-4 shrink-0" />
+                <span>{decisionError}</span>
+              </div>
+            )}
+            {decision === "PENDING" && (
+              <div className="grid grid-cols-2 gap-2">
+                <Button
+                  disabled={decisionLoading}
+                  onClick={() => onDecision(signal.signalId, "ACCEPTED")}
+                  className="bg-emerald-400 text-emerald-950 hover:bg-emerald-300"
+                >
+                  {decisionLoading ? <Loader2 className="mr-1.5 h-4 w-4 animate-spin" /> : <Check className="mr-1.5 h-4 w-4" />}
+                  {decisionLoading ? t.decisionWorking : t.acceptSignal}
+                </Button>
+                <Button
+                  disabled={decisionLoading}
+                  variant="outline"
+                  onClick={() => onDecision(signal.signalId, "DECLINED")}
+                  className="border-rose-400/20 bg-rose-400/[0.05] text-rose-200 hover:bg-rose-400/10 hover:text-rose-100"
+                >
+                  <X className="mr-1.5 h-4 w-4" />
+                  {t.skipSignal}
+                </Button>
+              </div>
+            )}
+            {decision === "ACCEPTED" && (
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs text-emerald-300">{t.signalAccepted}</p>
+                <Button
+                  size="sm"
+                  disabled={decisionLoading}
+                  variant="ghost"
+                  onClick={() => onDecision(signal.signalId, "DECLINED")}
+                  className="text-slate-400 hover:bg-white/5 hover:text-white"
+                >
+                  <BellOff className="mr-1.5 h-3.5 w-3.5" />
+                  {t.stopTracking}
+                </Button>
+              </div>
             )}
           </div>
         )}
