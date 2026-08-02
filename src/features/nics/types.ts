@@ -25,6 +25,7 @@ export interface TelegramWebApp {
     notificationOccurred: (type: "error" | "success" | "warning") => void;
   };
   initDataUnsafe?: {
+    start_param?: string;
     user?: {
       language_code?: string;
     };
@@ -116,6 +117,15 @@ export interface SignalRow {
   freshness?: SignalFreshness;
   correlationGroup?: string;
   accessType?: string;
+  confidence?: number | null;
+  userDecision?: "PENDING" | "ACCEPTED" | "DECLINED" | string;
+  decisionReason?: string | null;
+  analysis?: {
+    why?: string[];
+    news?: string[];
+    riskFlags?: string[];
+    summary?: string;
+  } | null;
 }
 
 export interface SignalHistoryRow {
