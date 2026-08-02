@@ -97,11 +97,17 @@ export const ReferralCabinet = ({
           <CardTitle className="text-sm">{t.personalLink}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <div className="overflow-hidden rounded-xl border border-white/10 bg-black/20 px-3 py-3">
-            <p className="truncate font-mono text-xs text-amber-200">
+          <a
+            href={program.link || undefined}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-disabled={!program.link}
+            className="block rounded-xl border border-white/10 bg-black/20 px-3 py-3 transition hover:border-amber-300/30 hover:bg-amber-300/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/60"
+          >
+            <span className="block break-all font-mono text-xs text-amber-200 underline decoration-amber-300/35 underline-offset-4 select-all">
               {program.link || "—"}
-            </p>
-          </div>
+            </span>
+          </a>
           <div className="grid grid-cols-2 gap-2">
             <Button
               type="button"

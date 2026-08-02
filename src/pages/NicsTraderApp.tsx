@@ -58,7 +58,7 @@ import {
   signedR,
 } from "@/features/nics/utils";
 
-const APP_VERSION = "2.3.0";
+const APP_VERSION = "2.3.1";
 
 const emptyPerformance: PerformanceBlock = {
   closedSignals: 0,
