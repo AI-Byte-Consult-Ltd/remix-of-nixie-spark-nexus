@@ -18,7 +18,7 @@ const SEO = ({
   title,
   description,
   canonical,
-  ogImage = DEFAULT_IMAGE,
+  ogImage,
   imageAlt = "AI Byte Consult and the NICS AI Ecosystem",
   ogType = "website",
   locale = "en_US",
@@ -30,6 +30,7 @@ const SEO = ({
     (typeof window !== "undefined"
       ? window.location.origin + window.location.pathname
       : undefined);
+  const resolvedImage = ogImage && !ogImage.includes("/og-") ? ogImage : DEFAULT_IMAGE;
 
   return (
     <Helmet prioritizeSeoTags>
@@ -51,14 +52,14 @@ const SEO = ({
       <meta property="og:description" content={description} />
       <meta property="og:type" content={ogType} />
       {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={resolvedImage} />
       <meta property="og:image:alt" content={imageAlt} />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@aibyteconsult" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content={resolvedImage} />
       <meta name="twitter:image:alt" content={imageAlt} />
 
       {jsonLd && (
