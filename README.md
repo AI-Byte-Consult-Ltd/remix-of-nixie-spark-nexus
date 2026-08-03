@@ -20,6 +20,7 @@ AI Byte Consult Ltd is a technology company specializing in **SaaS development, 
 | Project | Description |
 |---------|-------------|
 | [NICS AI Ecosystem](https://nics.space) | AI-powered ecosystem platform |
+| [NICS AI Trader Mini App](https://aibyteconsult.com/nics-app/) | Telegram mini app for AI trading scenarios powered by n8n AI-agent workflows on Oracle VPS and MT5 market data on Alibaba VPS for Vantage markets such as Gold and Brent |
 | [AquaTerra World](https://aquaterra.world) | Metaverse environment |
 | NICS AI Geologist | AI-driven geological analysis |
 | NICS AI HoReCa | AI solutions for hospitality industry |
@@ -32,6 +33,7 @@ AI Byte Consult Ltd is a technology company specializing in **SaaS development, 
 
 - **AI Ecosystem Development** — NICS AI Ecosystem
 - **Automation Systems** — n8n, Node.js, API Integrations
+- **Trading Automation Infrastructure** — Telegram Mini Apps, n8n AI agents, MT5 data bridges, Oracle VPS, Alibaba VPS, Vantage market feeds
 - **Blockchain Solutions** — Smart Contracts, Tokens, NFTs
 - **Web & SaaS Development** — React, Vite, TypeScript
 - **Infrastructure & DevOps** — Azure, Docker, Cloudflare, GitHub Actions

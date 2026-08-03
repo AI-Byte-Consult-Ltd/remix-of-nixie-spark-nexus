@@ -12,6 +12,9 @@ import {
   Droplet,
   DollarSign,
   Bitcoin,
+  ServerCog,
+  Workflow,
+  RadioTower,
 } from "lucide-react";
 
 const TELEGRAM_BOT_URL = "https://t.me/nics_ai_bot";
@@ -120,6 +123,25 @@ const plans: Plan[] = [
       "Full Telegram delivery and tracking",
     ],
     cta: "Unlock Full Coverage",
+  },
+];
+
+
+const infrastructure = [
+  {
+    icon: Workflow,
+    title: "Oracle VPS · n8n AI Agent",
+    desc: "The orchestration layer runs the NICS AI agent workflows, validates requests and coordinates signal delivery inside Telegram.",
+  },
+  {
+    icon: ServerCog,
+    title: "Alibaba VPS · MT5 Bridge",
+    desc: "A dedicated MetaTrader 5 data node streams broker-native Vantage pricing for gold, Brent oil and additional supported markets.",
+  },
+  {
+    icon: RadioTower,
+    title: "Telegram Mini App",
+    desc: "The trader dashboard is opened at aibyteconsult.com/nics-app from Telegram, with signal tracking, risk sizing and lifecycle updates.",
   },
 ];
 
@@ -397,6 +419,39 @@ const AISalesAssistant = () => {
             ))}
           </div>
         </div>
+
+        {/* Infrastructure */}
+        <div className="mt-24 max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <h3 className="text-3xl md:text-4xl font-semibold tracking-tight">
+              Built as a Live Telegram AI Trader
+            </h3>
+            <p className="mt-4 text-white/65 max-w-3xl mx-auto leading-relaxed">
+              NICS connects the public website, Telegram mini app, n8n AI-agent automation and an MT5 market-data bridge into one two-VPS trading infrastructure for Vantage-based market analysis.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {infrastructure.map((item) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4 }}
+                className="rounded-2xl p-[1px] bg-gradient-to-b from-orange-400/35 via-white/10 to-transparent"
+              >
+                <div className="h-full rounded-[calc(1rem-1px)] bg-[#0a0f1f]/90 backdrop-blur-xl p-6">
+                  <div className="w-11 h-11 rounded-2xl bg-orange-400/15 border border-orange-400/35 text-orange-300 flex items-center justify-center mb-4">
+                    <item.icon className="w-5 h-5" />
+                  </div>
+                  <div className="text-lg font-semibold mb-2">{item.title}</div>
+                  <p className="text-sm text-white/65 leading-relaxed">{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
 
         {/* How payment works */}
         <div className="mt-24 max-w-5xl mx-auto">
