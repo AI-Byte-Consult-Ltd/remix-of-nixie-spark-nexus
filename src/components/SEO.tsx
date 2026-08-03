@@ -5,39 +5,62 @@ interface SEOProps {
   description: string;
   canonical?: string;
   ogImage?: string;
+  imageAlt?: string;
+  ogType?: "website" | "article" | "product";
+  locale?: string;
   jsonLd?: Record<string, unknown>;
   noindex?: boolean;
 }
 
-const SEO = ({ title, description, canonical, ogImage, jsonLd, noindex }: SEOProps) => {
+const DEFAULT_IMAGE = "https://aibyteconsult.com/android-chrome-512x512.png";
+
+const SEO = ({
+  title,
+  description,
+  canonical,
+  ogImage,
+  imageAlt = "AI Byte Consult and the NICS AI Ecosystem",
+  ogType = "website",
+  locale = "en_US",
+  jsonLd,
+  noindex,
+}: SEOProps) => {
   const canonicalUrl =
     canonical ||
     (typeof window !== "undefined"
       ? window.location.origin + window.location.pathname
       : undefined);
+  const resolvedImage = ogImage && !ogImage.includes("/og-") ? ogImage : DEFAULT_IMAGE;
 
   return (
     <Helmet prioritizeSeoTags>
+      <html lang="en" />
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="author" content="AI Byte Consult Ltd" />
+      <meta name="application-name" content="AI Byte Consult" />
       <meta
         name="robots"
         content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"}
       />
+      <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
-      {/* Open Graph */}
+      <meta property="og:site_name" content="AI Byte Consult" />
+      <meta property="og:locale" content={locale} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-      {ogImage && <meta property="og:image" content={ogImage} />}
+      <meta property="og:image" content={resolvedImage} />
+      <meta property="og:image:alt" content={imageAlt} />
 
-      {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@aibyteconsult" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      {ogImage && <meta name="twitter:image" content={ogImage} />}
+      <meta name="twitter:image" content={resolvedImage} />
+      <meta name="twitter:image:alt" content={imageAlt} />
 
       {jsonLd && (
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>

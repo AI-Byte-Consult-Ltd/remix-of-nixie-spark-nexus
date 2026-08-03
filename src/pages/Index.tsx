@@ -5,7 +5,7 @@ import NicsEcosystemPreview from "@/components/NicsEcosystemPreview";
 import About from "@/components/About";
 import OurEcosystem from "@/components/OurEcosystem";
 import OurWorkInAction from "@/components/OurWorkInAction";
-import AISalesAssistant from "@/components/AISalesAssistant";
+import NicsTraderPlans from "@/components/NicsTraderPlans";
 import Testimonials from "@/components/Testimonials";
 import Team from "@/components/Team";
 import Contact from "@/components/Contact";
@@ -16,31 +16,56 @@ import SEO from "@/components/SEO";
 
 const Index = () => {
   const seoProps = {
-    title: "AI Byte Consult — European AI Consulting",
-    description: "European AI consulting company building intelligent AI systems, agents, Web3 platforms and blockchain solutions for real-world business and research use cases.",
+    title: "AI Byte Consult — AI Systems, Agents & NICS Ecosystem",
+    description:
+      "AI Byte Consult builds production AI systems, intelligent agents and the NICS ecosystem for trading, business automation, research and digital platforms.",
     canonical: "https://aibyteconsult.com/",
-    ogImage: "https://aibyteconsult.com/og-home.jpg",
+    ogImage: "https://aibyteconsult.com/android-chrome-512x512.png",
+    imageAlt: "AI Byte Consult and the NICS AI Ecosystem",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://aibyteconsult.com/#organization",
+          name: "AI Byte Consult Ltd",
+          url: "https://aibyteconsult.com/",
+          logo: "https://aibyteconsult.com/android-chrome-512x512.png",
+          email: "info@aibyteconsult.com",
+          telephone: "+359988899109",
+          foundingDate: "2011",
+          areaServed: "Worldwide",
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://aibyteconsult.com/#website",
+          url: "https://aibyteconsult.com/",
+          name: "AI Byte Consult",
+          publisher: { "@id": "https://aibyteconsult.com/#organization" },
+        },
+      ],
+    },
   };
 
   return (
     <>
       <SEO {...seoProps} />
       <main className="min-h-screen">
-      <Header />
-      <Hero />
-      <HomeMarketTicker />
-      <NicsEcosystemPreview />
-      <About />
-      <OurEcosystem />
-      <OurWorkInAction />
-      <AISalesAssistant />
-      <Testimonials />
-      <Team />
-      <Contact />
-      <Newsletter />
-      <Footer />
-      <AIChatWidget />
-    </main>
+        <Header />
+        <Hero />
+        <HomeMarketTicker />
+        <NicsEcosystemPreview />
+        <About />
+        <OurEcosystem />
+        <OurWorkInAction />
+        <NicsTraderPlans />
+        <Testimonials />
+        <Team />
+        <Contact />
+        <Newsletter />
+        <Footer />
+        <AIChatWidget />
+      </main>
     </>
   );
 };

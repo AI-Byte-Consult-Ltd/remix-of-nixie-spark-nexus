@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import SEO from "@/components/SEO";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
@@ -37,20 +38,27 @@ const App = () => (
             <Route
               path="/nics-app"
               element={
-                <Suspense
-                  fallback={
-                    <main className="grid min-h-screen place-items-center bg-[#07090f] text-sm text-slate-400">
-                      NICS AI Trader…
-                    </main>
-                  }
-                >
-                  <NicsTraderApp />
-                </Suspense>
+                <>
+                  <SEO
+                    title="NICS AI Trader Mini App"
+                    description="Authenticated NICS AI Trader user application."
+                    canonical="https://aibyteconsult.com/nics-app"
+                    noindex
+                  />
+                  <Suspense
+                    fallback={
+                      <main className="grid min-h-screen place-items-center bg-[#07090f] text-sm text-slate-400">
+                        NICS AI Trader…
+                      </main>
+                    }
+                  >
+                    <NicsTraderApp />
+                  </Suspense>
+                </>
               }
             />
             <Route path="/nics-ecosystem" element={<NicsEcosystem />} />
             <Route path="/terms" element={<Terms />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
