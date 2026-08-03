@@ -28,7 +28,7 @@ import {
 } from "lucide-react";
 
 const MINI_APP_URL = "https://aibyteconsult.com/nics-app";
-const TELEGRAM_URL = "https://web.telegram.org/k/#@TravelTradeBook";
+const TELEGRAM_URL = "https://t.me/TravelTradeBook";
 const VANTAGE_URL = "https://fwd.cx/Yj25BCrDzEHB";
 
 const benefits = [
