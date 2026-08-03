@@ -1,653 +1,355 @@
-import { useEffect, useMemo, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
-import TradingViewTicker from "@/components/TradingViewTicker";
-import {
-  TrendingUp,
-  ArrowRight,
-  Send,
-  Users,
-  BookOpen,
-  Download,
-  ShieldCheck,
-  Bot,
-  Sparkles,
-  Newspaper,
-  Bitcoin,
-  DollarSign,
-  Coins,
-  ExternalLink,
-  Zap,
-  Copy as CopyIcon,
-  Activity,
-  Percent,
-  BarChart3,
-  Calculator,
-} from "lucide-react";
 import SEO from "@/components/SEO";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { supabase } from "@/integrations/supabase/client";
+import TradingViewTicker from "@/components/TradingViewTicker";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Activity,
+  ArrowRight,
+  BarChart3,
+  BellRing,
+  Bitcoin,
+  Bot,
+  CheckCircle2,
+  Coins,
+  Database,
+  Gauge,
+  LockKeyhole,
+  Network,
+  Send,
+  Server,
+  ShieldCheck,
+  Target,
+  TrendingUp,
+  Zap,
+} from "lucide-react";
 
-const VANTAGE_URL = "https://fwd.cx/Yj25BCrDzEHB";
+const MINI_APP_URL = "https://aibyteconsult.com/nics-app";
 const TELEGRAM_URL = "https://t.me/GoldAndMarkets";
-const COPY_TRADING_URL = "https://fwd.cx/Yj25BCrDzEHB";
+const VANTAGE_URL = "https://fwd.cx/Yj25BCrDzEHB";
 
-type Category = "Forex" | "Gold" | "Crypto";
-
-interface NewsItem {
-  id: string;
-  title: string;
-  source: string;
-  category: Category;
-  tags: string[];
-  publishedAt: number;
-  url?: string;
-}
-
-// Fallback pool used only if the live news edge function is unreachable.
-const newsPool: Omit<NewsItem, "id" | "publishedAt">[] = [
-  { title: "EUR/USD holds gains as traders reprice ECB rate path", source: "FX Wire", category: "Forex", tags: ["EURUSD", "ECB", "Rates"] },
-  { title: "USD/JPY spikes on BoJ intervention rumors", source: "Market Pulse", category: "Forex", tags: ["USDJPY", "BoJ"] },
-  { title: "Gold (XAUUSD) breaks $2,450 as safe-haven demand returns", source: "Metals Daily", category: "Gold", tags: ["XAUUSD", "Safe-Haven"] },
-  { title: "GBP/USD tests resistance ahead of UK CPI print", source: "FX Wire", category: "Forex", tags: ["GBPUSD", "CPI"] },
-  { title: "Bitcoin reclaims $95K as ETF inflows accelerate", source: "Crypto Feed", category: "Crypto", tags: ["BTC", "ETF"] },
-  { title: "Ethereum surges on Layer-2 adoption metrics", source: "Crypto Feed", category: "Crypto", tags: ["ETH", "L2"] },
-  { title: "XAUUSD consolidates below all-time high — breakout watch", source: "Metals Daily", category: "Gold", tags: ["XAUUSD", "Breakout"] },
-  { title: "AUD/USD rallies on strong China trade data", source: "Market Pulse", category: "Forex", tags: ["AUDUSD", "China"] },
-  { title: "Solana leads altcoin rally, +12% in 24h", source: "Crypto Feed", category: "Crypto", tags: ["SOL", "Altcoins"] },
-  { title: "Gold miners outperform as XAUUSD volatility jumps", source: "Metals Daily", category: "Gold", tags: ["XAUUSD", "Miners"] },
-  { title: "DXY softens — risk assets catch a bid across FX and crypto", source: "Macro Desk", category: "Forex", tags: ["DXY", "Risk-On"] },
-  { title: "AI trading bots dominate Q3 volume in crypto perps", source: "Crypto Feed", category: "Crypto", tags: ["AI", "Perps"] },
+const markets = [
+  {
+    name: "Gold",
+    symbols: "XAU/USD · XAUUSD247",
+    schedule: "Weekdays plus broker-fed weekend coverage",
+    icon: Coins,
+  },
+  {
+    name: "Brent Oil",
+    symbols: "UKOUSDft",
+    schedule: "Brent Futures market sessions",
+    icon: Activity,
+  },
+  {
+    name: "Forex",
+    symbols: "EUR/USD · GBP/USD · USD/JPY",
+    schedule: "Sunday evening through Friday",
+    icon: TrendingUp,
+  },
+  {
+    name: "Bitcoin",
+    symbols: "BTC/USD",
+    schedule: "24 hours a day, 7 days a week",
+    icon: Bitcoin,
+  },
 ];
 
-const catIcon = (c: Category) => (c === "Crypto" ? Bitcoin : c === "Gold" ? Coins : DollarSign);
-const catStyle = (c: Category) =>
-  c === "Crypto"
-    ? "bg-amber-500/10 text-amber-600 border-amber-500/20"
-    : c === "Gold"
-    ? "bg-yellow-500/10 text-yellow-700 border-yellow-500/20"
-    : "bg-blue-500/10 text-blue-600 border-blue-500/20";
+const signalFields = [
+  "Direction and market-order scenario",
+  "Entry zone and current-price context",
+  "Stop Loss and four Take Profit targets",
+  "Signal validity and maximum price deviation",
+  "Spread, slippage and market-session checks",
+  "Clear accept or reject decision in Telegram",
+];
 
-const seedNews = (): NewsItem[] => {
-  const now = Date.now();
-  return newsPool.slice(0, 8).map((n, i) => ({
-    ...n,
-    id: `${now}-${i}`,
-    publishedAt: now - i * 1000 * 60 * (3 + Math.floor(Math.random() * 9)),
-  }));
-};
+const pipeline = [
+  {
+    title: "Broker market data",
+    description: "Fresh 5-minute and 15-minute candles, instrument specifications and live prices from the Vantage MT5 environment.",
+    icon: Database,
+  },
+  {
+    title: "NICS analysis engine",
+    description: "Separate Gold, Brent, Forex and Bitcoin logic evaluates direction, Entry, SL, TP, risk and market conditions.",
+    icon: Bot,
+  },
+  {
+    title: "Production automation",
+    description: "n8n workflows coordinate analysis, access control, signal lifecycle, delivery and post-entry tracking.",
+    icon: Network,
+  },
+  {
+    title: "Telegram Mini App",
+    description: "Users receive a compact signal first, then open the detailed analysis, risk profile and personal performance view.",
+    icon: Send,
+  },
+];
 
-const timeAgo = (ts: number) => {
-  const s = Math.floor((Date.now() - ts) / 1000);
-  if (s < 60) return `${s}s ago`;
-  const m = Math.floor(s / 60);
-  if (m < 60) return `${m}m ago`;
-  const h = Math.floor(m / 60);
-  return `${h}h ago`;
-};
+const safeguards = [
+  {
+    title: "Fresh-data requirement",
+    description: "NICS does not build a trading plan from stale 5-minute or 15-minute market data.",
+    icon: Gauge,
+  },
+  {
+    title: "Entry protection",
+    description: "Acceptance is blocked after expiry, TP1, excessive price movement or invalid market conditions.",
+    icon: Target,
+  },
+  {
+    title: "Risk controls",
+    description: "Account balance, risk percentage, total exposure and correlated exposure are part of the user profile.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Authenticated access",
+    description: "Telegram initData verification and user-scoped queries keep every dashboard private to its owner.",
+    icon: LockKeyhole,
+  },
+];
 
 const Trading = () => {
-  const { t } = useLanguage();
-
   const seoProps = {
-    title: "NICS AI Trading — Forex, Gold & Crypto Signals",
+    title: "NICS AI Trader Agent — Telegram Mini App for Vantage Markets",
     description:
-      "NICS AI Trading — AI-powered trading, Vantage partnership, copy trading, and a live news hub for Forex, Gold (XAUUSD) and Crypto. Join our Telegram community.",
+      "NICS AI Trader Agent combines Vantage MT5 market data, n8n production automation, structured risk controls and a Telegram Mini App for Gold, Brent, Forex and Bitcoin signals.",
     canonical: "https://aibyteconsult.com/trading",
     ogImage: "https://aibyteconsult.com/og-trading.jpg",
     jsonLd: {
       "@context": "https://schema.org",
-      "@type": "Service",
-      name: "NICS AI Trading",
-      provider: { "@type": "Organization", "name": "AI Byte Consult Ltd" },
+      "@type": "SoftwareApplication",
+      name: "NICS AI Trader Agent",
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "Telegram Web App",
+      provider: {
+        "@type": "Organization",
+        name: "AI Byte Consult Ltd",
+      },
       description:
-        "AI-powered trading platform with Vantage partnership, copy trading, and a live Forex, Gold and Crypto news hub.",
+        "A Telegram-first AI trading scenario engine using broker market data, automated risk checks and structured signal lifecycle management.",
       url: "https://aibyteconsult.com/trading",
     },
   };
 
-  const [filter, setFilter] = useState<"All" | Category>("All");
-  const [news, setNews] = useState<NewsItem[]>(() => seedNews());
-  const [newsLoading, setNewsLoading] = useState<boolean>(true);
-  const [newsLive, setNewsLive] = useState<boolean>(false);
-
-  // ROI Calculator state — based on historical algorithm avg monthly return.
-  const [deposit, setDeposit] = useState<number>(2500);
-  const [period, setPeriod] = useState<"7d" | "1m" | "1y">("1m");
-  const [feeEnabled, setFeeEnabled] = useState<boolean>(true);
-  const [feePct, setFeePct] = useState<number>(20); // performance fee % on profit
-  const AVG_MONTHLY_RETURN = 0.084; // 8.4% avg historical monthly (illustrative)
-  const periodMonths = period === "7d" ? 7 / 30 : period === "1m" ? 1 : 12;
-  const grossProfit = deposit * (Math.pow(1 + AVG_MONTHLY_RETURN, periodMonths) - 1);
-  const fee = feeEnabled ? grossProfit * (feePct / 100) : 0;
-  const netProfit = grossProfit - fee;
-  const finalBalance = deposit + netProfit;
-  const fmt = (n: number) =>
-    n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
-
-  useEffect(() => {
-    let cancelled = false;
-    const load = async () => {
-      try {
-        const { data, error } = await supabase.functions.invoke("market-news");
-        if (cancelled) return;
-        if (error) throw error;
-        const items = (data?.items ?? []) as NewsItem[];
-        if (items.length > 0) {
-          setNews(items);
-          setNewsLive(true);
-        }
-      } catch (e) {
-        console.warn("market-news fetch failed, using fallback", e);
-      } finally {
-        if (!cancelled) setNewsLoading(false);
-      }
-    };
-    load();
-    // Refresh every 5 minutes
-    const id = setInterval(load, 5 * 60 * 1000);
-    return () => {
-      cancelled = true;
-      clearInterval(id);
-    };
-  }, []);
-
-  const filtered = useMemo(
-    () => (filter === "All" ? news : news.filter((n) => n.category === filter)),
-    [news, filter]
-  );
-
-  const materials = [
-    { icon: BookOpen, titleKey: "trading.vantage.mat1.title", descKey: "trading.vantage.mat1.desc" },
-    { icon: Download, titleKey: "trading.vantage.mat2.title", descKey: "trading.vantage.mat2.desc" },
-    { icon: ShieldCheck, titleKey: "trading.vantage.mat3.title", descKey: "trading.vantage.mat3.desc" },
-  ];
-
   return (
     <>
       <SEO {...seoProps} />
-      <main className="min-h-screen bg-background">
-      <Header />
+      <main className="min-h-screen bg-background text-foreground">
+        <Header />
 
-      {/* Hero */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute top-20 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-[32rem] h-[32rem] bg-green-500/10 rounded-full blur-3xl" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
-              <TrendingUp className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">{t("trading.badge")}</span>
+        <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,hsl(var(--primary)/0.16),transparent_35%),radial-gradient(circle_at_80%_60%,rgba(34,197,94,0.12),transparent_35%)]" />
+          <div className="container relative z-10 mx-auto px-4">
+            <div className="mx-auto max-w-5xl text-center">
+              <Badge className="mb-7 border-primary/25 bg-primary/10 text-primary hover:bg-primary/10">
+                <Zap className="mr-2 h-3.5 w-3.5" />
+                Real broker data · Production automation · Telegram-first UX
+              </Badge>
+
+              <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl md:text-7xl">
+                Telegram AI Trader
+                <span className="block text-gradient-gold">powered by NICS</span>
+              </h1>
+
+              <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">
+                A structured AI trading scenario engine connected to Vantage MT5 data, n8n workflows and a secure Telegram Mini App. NICS evaluates Gold, Brent, Forex and Bitcoin, then delivers an actionable Entry, Stop Loss, Take Profit plan and risk context.
+              </p>
+
+              <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <a href={MINI_APP_URL} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="rounded-full px-8">
+                    Open NICS Mini App
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </a>
+                <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="outline" className="rounded-full px-8">
+                    <Send className="mr-2 h-4 w-4" />
+                    Telegram channel
+                  </Button>
+                </a>
+              </div>
+
+              <div className="mt-10 flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
+                {["Market-order scenarios", "Fresh 5m + 15m data", "Entry · SL · TP1–TP4", "Personal risk profile"].map((item) => (
+                  <span key={item} className="inline-flex items-center rounded-full border border-border/70 bg-card/60 px-4 py-2 backdrop-blur">
+                    <CheckCircle2 className="mr-2 h-4 w-4 text-green-500" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <TradingViewTicker />
+
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl text-center">
+              <Badge variant="outline" className="mb-4">Real NICS AI Trader Agent</Badge>
+              <h2 className="text-3xl font-semibold md:text-5xl">Not a copy-trading promise — a structured AI scenario engine</h2>
+              <p className="mt-5 text-lg leading-8 text-muted-foreground">
+                NICS does not publish invented profitability figures or generic dashboard theatre. It processes current broker data, applies instrument-specific trading logic and gives the user a bounded decision with transparent risk parameters.
+              </p>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground">
-              {t("trading.hero.title1")} <span className="text-gradient-gold">{t("trading.hero.title2")}</span>{" "}
-              {t("trading.hero.title3")}
-            </h1>
-
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t("trading.hero.desc")}</p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                  <Send className="mr-2 w-4 h-4" />
-                  {t("trading.cta.telegram")}
-                </Button>
-              </a>
-              <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored">
-                <Button size="lg" variant="outline" className="rounded-full px-8 border-2">
-                  {t("trading.cta.vantage")}
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </a>
-            </div>
-
-            <div className="flex flex-wrap gap-2 justify-center pt-6">
-              {["trading.badge.ai", "trading.badge.forex", "trading.badge.gold", "trading.badge.crypto"].map((k) => (
-                <Badge key={k} variant="outline" className="border-primary/20 text-primary/80 bg-primary/5">
-                  {t(k)}
-                </Badge>
+            <div className="mx-auto mt-12 grid max-w-6xl gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {signalFields.map((field) => (
+                <Card key={field} className="border-border/60 bg-card/70">
+                  <CardContent className="flex items-start gap-3 p-5">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
+                    <span className="font-medium">{field}</span>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* TradingView Ticker Tape — live market prices */}
-      <TradingViewTicker />
+        <section className="border-y border-border/60 bg-muted/25 py-20">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl text-center">
+              <Badge variant="outline" className="mb-4">Supported markets</Badge>
+              <h2 className="text-3xl font-semibold md:text-5xl">Dedicated logic for each market</h2>
+              <p className="mt-5 text-lg text-muted-foreground">
+                Gold, oil, Forex and crypto do not share one generic configuration. Each market has its own schedule, data source and trading parameters.
+              </p>
+            </div>
 
-      {/* Live Stats Widget */}
-      <section className="py-12 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {[
-              { icon: Percent, value: "74%", label: t("trading.stats.winrate"), color: "text-green-600" },
-              { icon: Users, value: "1,420+", label: t("trading.stats.copiers"), color: "text-primary" },
-              { icon: BarChart3, value: "+12.4%", label: t("trading.stats.month"), color: "text-green-600" },
-              { icon: Activity, value: "24/7", label: t("trading.stats.uptime"), color: "text-primary" },
-            ].map((s, i) => (
-              <Card
-                key={i}
-                className="card-hover bg-card border-border/50 hover:border-primary/30"
-              >
-                <CardContent className="p-5 flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-gradient-gold flex items-center justify-center flex-shrink-0">
-                    <s.icon className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className={`text-xl md:text-2xl font-semibold ${s.color}`}>
-                      {s.value}
-                      <span className="relative inline-flex h-2 w-2 ml-2 -translate-y-1">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                      </span>
+            <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {markets.map((market) => (
+                <Card key={market.name} className="h-full border-border/60 bg-background/80">
+                  <CardHeader>
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <market.icon className="h-6 w-6" />
                     </div>
-                    <div className="text-xs text-muted-foreground truncate">{s.label}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                    <CardTitle>{market.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="font-medium">{market.symbols}</p>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">{market.schedule}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Vantage Partnership */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
-            <Badge variant="secondary" className="bg-green-500/10 text-green-600 border-green-500/20">
-              {t("trading.vantage.badge")}
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-              {t("trading.vantage.title1")} <span className="text-gradient-gold">{t("trading.vantage.title2")}</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("trading.vantage.subtitle")}</p>
-          </div>
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl text-center">
+              <Badge variant="outline" className="mb-4">Infrastructure</Badge>
+              <h2 className="text-3xl font-semibold md:text-5xl">Two-VPS signal pipeline</h2>
+              <p className="mt-5 text-lg text-muted-foreground">
+                Market collection and trading analysis are separated from user delivery and application services, creating a cleaner and more resilient production architecture.
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-10">
-            {materials.map((m, i) => (
-              <Card key={i} className="card-hover bg-card border-border/50 hover:border-primary/30">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-gold flex items-center justify-center mb-4">
-                    <m.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <CardTitle className="text-lg font-semibold">{t(m.titleKey)}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <CardDescription className="text-muted-foreground">{t(m.descKey)}</CardDescription>
-                  <div className="pt-2">
-                    <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored">
-                      <Button variant="outline" size="sm" className="rounded-full">
-                        <Download className="mr-2 w-4 h-4" />
-                        {t("trading.vantage.download")}
-                      </Button>
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            <Card className="bg-gradient-to-br from-card via-card to-green-500/5 border-green-500/30 overflow-hidden">
-              <div className="grid md:grid-cols-[1fr_auto] gap-6 p-6 items-center">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-5 h-5 text-green-600" />
-                    <span className="text-sm font-medium text-green-700">{t("trading.vantage.partner")}</span>
-                  </div>
-                  <h3 className="text-2xl font-semibold text-foreground">{t("trading.vantage.cta.title")}</h3>
-                  <p className="text-muted-foreground">{t("trading.vantage.cta.desc")}</p>
-                  <div className="pt-1">
-                    <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored">
-                      <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full">
-                        {t("trading.vantage.cta.button")}
-                        <ExternalLink className="ml-2 w-4 h-4" />
-                      </Button>
-                    </a>
-                  </div>
-                </div>
-                <div className="flex justify-center md:justify-end">
-                  {/* Image removed by request */}
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Copy Trading */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <Card className="bg-gradient-to-br from-card via-card to-primary/5 border-primary/30 overflow-hidden">
-              <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12 items-center">
-                <div className="space-y-6">
-                  <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                    {t("trading.copy.badge")}
-                  </Badge>
-                  <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-                    {t("trading.copy.title1")}{" "}
-                    <span className="text-gradient-gold">{t("trading.copy.title2")}</span>
-                  </h2>
-                  <p className="text-lg text-muted-foreground">{t("trading.copy.desc")}</p>
-                  <ul className="space-y-3">
-                    {["trading.copy.b1", "trading.copy.b2", "trading.copy.b3", "trading.copy.b4"].map((k) => (
-                      <li key={k} className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Zap className="w-3.5 h-3.5 text-primary" />
-                        </div>
-                        <span className="text-foreground">{t(k)}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="pt-2">
-                    <a href={COPY_TRADING_URL} target="_blank" rel="noopener noreferrer sponsored">
-                      <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                        <CopyIcon className="mr-2 w-4 h-4" />
-                        {t("trading.copy.cta")}
-                      </Button>
-                    </a>
-                  </div>
-                </div>
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-gold opacity-10 rounded-3xl blur-2xl" />
-                  <div className="relative rounded-3xl border border-border/50 bg-card/80 backdrop-blur p-6 space-y-5">
-                    {/* ROI Calculator */}
-                    <div className="space-y-4 pb-5 border-b border-border/50">
-                      <div className="flex items-center gap-2">
-                        <Calculator className="w-5 h-5 text-primary" />
-                        <span className="font-semibold">{t("trading.roi.title")}</span>
-                      </div>
-                      <div className="flex items-baseline justify-between">
-                        <span className="text-xs text-muted-foreground">
-                          {t("trading.roi.deposit")}
-                        </span>
-                        <span className="text-lg font-semibold text-foreground">
-                          {fmt(deposit)}
-                        </span>
-                      </div>
-                      <Slider
-                        value={[deposit]}
-                        min={500}
-                        max={10000}
-                        step={100}
-                        onValueChange={(v) => setDeposit(v[0])}
-                        aria-label={t("trading.roi.deposit")}
-                      />
-                      <div className="flex justify-between text-[10px] text-muted-foreground">
-                        <span>$500</span>
-                        <span>$10,000</span>
-                      </div>
-                      {/* Period selector */}
+            <div className="mx-auto mt-12 max-w-6xl">
+              <div className="mb-8 grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
+                <Card className="border-primary/20 bg-primary/5">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <Server className="h-8 w-8 text-primary" />
                       <div>
-                        <div className="text-[11px] text-muted-foreground mb-2">
-                          {t("trading.roi.period")}
-                        </div>
-                        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-full bg-muted/40">
-                          {(["7d", "1m", "1y"] as const).map((p) => (
-                            <button
-                              key={p}
-                              type="button"
-                              onClick={() => setPeriod(p)}
-                              className={`text-xs font-medium py-1.5 rounded-full transition-colors ${
-                                period === p
-                                  ? "bg-foreground text-background"
-                                  : "text-muted-foreground hover:text-foreground"
-                              }`}
-                              aria-pressed={period === p}
-                            >
-                              {t(`trading.roi.period.${p}`)}
-                            </button>
-                          ))}
-                        </div>
+                        <p className="font-semibold">Alibaba Cloud VPS</p>
+                        <p className="text-sm text-muted-foreground">Market intelligence and AI analysis workloads</p>
                       </div>
-
-                      {/* Fee toggle */}
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <label
-                            htmlFor="roi-fee-toggle"
-                            className="text-[11px] text-muted-foreground cursor-pointer"
-                          >
-                            {t("trading.roi.fee.label")}
-                          </label>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs font-medium text-foreground tabular-nums w-8 text-right">
-                              {feeEnabled ? `${feePct}%` : "—"}
-                            </span>
-                            <Switch
-                              id="roi-fee-toggle"
-                              checked={feeEnabled}
-                              onCheckedChange={setFeeEnabled}
-                            />
-                          </div>
-                        </div>
-                        {feeEnabled && (
-                          <Slider
-                            value={[feePct]}
-                            min={0}
-                            max={40}
-                            step={1}
-                            onValueChange={(v) => setFeePct(v[0])}
-                            aria-label={t("trading.roi.fee.label")}
-                          />
-                        )}
-                      </div>
-
-                      {/* Results */}
-                      <div className="grid grid-cols-2 gap-3 pt-1">
-                        <div className="rounded-xl bg-muted/40 p-3">
-                          <div className="text-[11px] text-muted-foreground">
-                            {t("trading.roi.netProfit")}
-                          </div>
-                          <div className="text-lg font-semibold text-green-600 tabular-nums">
-                            +{fmt(netProfit)}
-                          </div>
-                          {feeEnabled && (
-                            <div className="text-[10px] text-muted-foreground mt-0.5 tabular-nums">
-                              {t("trading.roi.fee.short")}: −{fmt(fee)}
-                            </div>
-                          )}
-                        </div>
-                        <div className="rounded-xl bg-muted/40 p-3">
-                          <div className="text-[11px] text-muted-foreground">
-                            {t("trading.roi.finalBalance")}
-                          </div>
-                          <div className="text-lg font-semibold text-foreground tabular-nums">
-                            {fmt(finalBalance)}
-                          </div>
-                          <div className="text-[10px] text-muted-foreground mt-0.5 tabular-nums">
-                            {t("trading.roi.gross")}: +{fmt(grossProfit)}
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-[10px] text-muted-foreground leading-relaxed">
-                        {t("trading.roi.disclaimer")}
-                      </p>
                     </div>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Bot className="w-5 h-5 text-primary" />
-                        <span className="font-semibold">{t("trading.copy.card.title")}</span>
+                  </CardContent>
+                </Card>
+                <ArrowRight className="mx-auto hidden h-6 w-6 text-muted-foreground md:block" />
+                <Card className="border-green-500/20 bg-green-500/5">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <Server className="h-8 w-8 text-green-500" />
+                      <div>
+                        <p className="font-semibold">Oracle Cloud VPS</p>
+                        <p className="text-sm text-muted-foreground">n8n orchestration, PostgreSQL, Telegram and Mini App API</p>
                       </div>
-                      <Badge className="bg-green-500/10 text-green-600 border-green-500/20" variant="secondary">
-                        LIVE
-                      </Badge>
                     </div>
-                    {[
-                      { name: "NICS Alpha Bot", pnl: "+38.4%", trades: 214 },
-                      { name: "XAUUSD Momentum", pnl: "+21.7%", trades: 96 },
-                      { name: "BTC Trend Follower", pnl: "+52.1%", trades: 47 },
-                    ].map((s) => (
-                      <div key={s.name} className="flex items-center justify-between p-3 rounded-xl bg-muted/40">
-                        <div>
-                          <div className="font-medium text-sm">{s.name}</div>
-                          <div className="text-xs text-muted-foreground">{s.trades} trades</div>
-                        </div>
-                        <div className="text-green-600 font-semibold">{s.pnl}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               </div>
-            </Card>
-          </div>
-        </div>
-      </section>
 
-      {/* Live News Hub */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-10 space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
-              <Newspaper className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">{t("trading.news.badge")}</span>
-              <span className="relative flex h-2 w-2 ml-1">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                {pipeline.map((step, index) => (
+                  <Card key={step.title} className="relative border-border/60">
+                    <CardHeader>
+                      <span className="absolute right-4 top-4 text-xs font-semibold text-muted-foreground">0{index + 1}</span>
+                      <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-muted">
+                        <step.icon className="h-5 w-5" />
+                      </div>
+                      <CardTitle className="text-lg">{step.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm leading-6 text-muted-foreground">{step.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-              {t("trading.news.title1")} <span className="text-gradient-gold">{t("trading.news.title2")}</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("trading.news.subtitle")}</p>
           </div>
+        </section>
 
-          <div className="max-w-5xl mx-auto">
-            <div className="flex flex-wrap gap-2 justify-center mb-6">
-              {(["All", "Forex", "Gold", "Crypto"] as const).map((c) => (
-                <button
-                  key={c}
-                  onClick={() => setFilter(c)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
-                    filter === c
-                      ? "bg-foreground text-background border-foreground"
-                      : "bg-card text-muted-foreground border-border hover:border-primary/30"
-                  }`}
-                >
-                  {c === "All" ? t("trading.news.filter.all") : c}
-                </button>
+        <section className="border-y border-border/60 bg-muted/25 py-20">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl text-center">
+              <Badge variant="outline" className="mb-4">Risk before speed</Badge>
+              <h2 className="text-3xl font-semibold md:text-5xl">Production safeguards built into every decision</h2>
+            </div>
+
+            <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {safeguards.map((item) => (
+                <Card key={item.title} className="border-border/60 bg-background/80">
+                  <CardHeader>
+                    <item.icon className="mb-3 h-7 w-7 text-primary" />
+                    <CardTitle className="text-lg">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm leading-6 text-muted-foreground">{item.description}</p>
+                  </CardContent>
+                </Card>
               ))}
             </div>
-
-            <div className="space-y-3">
-              {filtered.map((n) => {
-                const Icon = catIcon(n.category);
-                const CardInner = (
-                  <CardContent className="p-4 md:p-5">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-gold flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-5 h-5 text-white" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap mb-1">
-                            <Badge variant="outline" className={catStyle(n.category)}>
-                              {n.category}
-                            </Badge>
-                            <span className="text-xs text-muted-foreground">{n.source}</span>
-                            <span className="text-xs text-muted-foreground">· {timeAgo(n.publishedAt)}</span>
-                          </div>
-                          <div className="font-medium text-foreground">{n.title}</div>
-                          <div className="flex flex-wrap gap-1.5 mt-2">
-                            {n.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground"
-                              >
-                                #{tag}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        {n.url && (
-                          <ExternalLink className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-1" />
-                        )}
-                      </div>
-                    </CardContent>
-                );
-                const cardClass =
-                  "card-hover bg-card border-border/50 hover:border-primary/30 animate-fade-in block";
-                return n.url ? (
-                  <a
-                    key={n.id}
-                    href={n.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
-                    <Card className={cardClass}>{CardInner}</Card>
-                  </a>
-                ) : (
-                  <Card key={n.id} className={cardClass}>
-                    {CardInner}
-                  </Card>
-                );
-              })}
-              {newsLoading && news.length === 0 && (
-                <div className="text-center text-sm text-muted-foreground py-8">
-                  {t("trading.news.loading")}
-                </div>
-              )}
-              {!newsLoading && !newsLive && (
-                <p className="text-center text-[11px] text-muted-foreground pt-2">
-                  {t("trading.news.offline")}
-                </p>
-              )}
-            </div>
-            <p className="text-center text-xs text-muted-foreground mt-6">{t("trading.news.disclaimer")}</p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Telegram Community */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <Card className="relative overflow-hidden border-primary/30 bg-gradient-to-br from-primary/10 via-card to-card">
-              <div className="absolute -top-16 -right-16 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
-              <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-green-500/20 rounded-full blur-3xl" />
-              <div className="relative p-8 md:p-12 text-center space-y-6">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-gold">
-                  <Send className="w-8 h-8 text-white" />
-                </div>
-                <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-                  {t("trading.telegram.title1")}{" "}
-                  <span className="text-gradient-gold">{t("trading.telegram.title2")}</span>
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("trading.telegram.desc")}</p>
-                <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground pt-2">
-                  <div className="flex items-center gap-2">
-                    <Users className="w-4 h-4 text-primary" />
-                    <span>{t("trading.telegram.stat1")}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-primary" />
-                    <span>{t("trading.telegram.stat2")}</span>
-                  </div>
-                </div>
-                <div className="pt-2">
-                  <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-10">
-                      <Send className="mr-2 w-4 h-4" />
-                      {t("trading.telegram.cta")}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <Card className="mx-auto max-w-5xl overflow-hidden border-primary/20 bg-gradient-to-br from-primary/10 via-background to-green-500/10">
+              <CardContent className="p-8 text-center md:p-14">
+                <BellRing className="mx-auto h-10 w-10 text-primary" />
+                <h2 className="mt-5 text-3xl font-semibold md:text-5xl">Trade scenarios delivered where decisions happen</h2>
+                <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+                  Open the NICS Mini App for active signals, live status, personal statistics and risk settings, or connect through Telegram for compact real-time delivery.
+                </p>
+                <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+                  <a href={MINI_APP_URL} target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" className="rounded-full px-8">Open Mini App</Button>
+                  </a>
+                  <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored">
+                    <Button size="lg" variant="outline" className="rounded-full px-8">
+                      Vantage Markets
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
                 </div>
-              </div>
+                <p className="mt-6 text-xs text-muted-foreground">
+                  Trading involves risk. NICS provides structured analytical scenarios and risk controls, not guaranteed returns or financial advice.
+                </p>
+              </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Footer />
-    </main>
+        <Footer />
+      </main>
     </>
   );
 };
