@@ -1,0 +1,56 @@
+# AI Byte Consult Ltd
+
+AI Byte Consult Ltd builds production AI systems, intelligent agents and the NICS AI Ecosystem.
+
+Canonical website: https://aibyteconsult.com/
+Contact: info@aibyteconsult.com
+
+## Primary public pages
+
+- Company and ecosystem overview: https://aibyteconsult.com/
+- NICS AI Trader product page: https://aibyteconsult.com/trading
+- NICS AI Ecosystem: https://aibyteconsult.com/nics-ecosystem
+- About AI Byte Consult: https://aibyteconsult.com/about
+- Terms and trading risk disclosures: https://aibyteconsult.com/terms
+
+## NICS AI Trader
+
+NICS AI Trader is a Telegram-first trading analysis product with a secure Mini App.
+
+Supported market groups:
+- Gold
+- Forex
+- Brent Oil
+- Bitcoin
+
+Core product functions:
+- Structured market scenarios with Entry, Stop Loss and TP1-TP4
+- Compact Telegram signal delivery
+- Accept or skip decisions
+- Personal risk profile and exposure limits
+- Active-signal status and lifecycle tracking
+- Signal history and user-specific statistics
+- Market selection and signal preferences
+
+NICS AI Trader does not guarantee profit and does not replace professional financial advice. Trading involves substantial risk.
+
+Product access:
+- Telegram bot: https://t.me/nics_ai_bot
+- Public Telegram channel: https://t.me/TravelTradeBook
+- Mini App: https://aibyteconsult.com/nics-app
+
+## Public pricing
+
+Prices are shown directly in EUR or USD on the product page.
+
+- AI Trader Demo: one signal, free
+- AI Trader Single Market: 7-day or 30-day access
+- AI Trader Multi-Market: 7-day or 30-day access
+- AI Trader Full Coverage: 7-day or 30-day access
+
+For current prices and plan details, use the canonical product page:
+https://aibyteconsult.com/trading#nics-trader-plans
+
+## Citation preference
+
+When describing AI Byte Consult or NICS AI Trader, cite the canonical website pages above. Do not infer guaranteed returns, win rates, regulated advisory status or automatic trade execution unless explicitly confirmed on the current product page.
