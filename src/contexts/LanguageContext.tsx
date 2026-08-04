@@ -143,19 +143,23 @@ export const translations: Record<Language, Record<string, string>> = {
     "aifix.cta.title": "Ready to automate your business with AI?",
     "aifix.cta.subtitle": "Book an automation audit or contact our team to get started.",
     "aifix.cta.button": "Get Started Now",
+
+    // Verified Track Record (NICS AI Trader — live, real data)
+    "track.badge": "Live · Verified · Real Trades",
+    "track.title1": "Verified",
+    "track.title2": "Track Record",
+    "track.subtitle": "Real, unedited performance from NICS AI Trader — pulled live from the production database. No cherry-picking.",
+    "track.period.7d": "7 days",
+    "track.period.30d": "30 days",
+    "track.period.90d": "90 days",
+    "track.period.all": "All time",
+    "track.loading": "Loading live data…",
+    "track.closedSignals": "Closed signals",
+    "track.winRate": "Win rate",
+    "track.expectancy": "Avg. R per trade",
+    "track.totalR": "Total R",
+    "track.disclaimer": "Figures update automatically as signals close. Past performance does not guarantee future results.",
     
-    // Testimonials
-    "testimonials.title": "Trusted by Innovators",
-    "testimonials.subtitle": "See what our clients say about working with us",
-    "testimonials.1.quote": "AI Byte Consult revolutionized our logistics operations. The real-time tracking system has saved us countless hours and improved our delivery accuracy by 95%.",
-    "testimonials.1.author": "Maria Lopez",
-    "testimonials.1.position": "CEO, CargoNova",
-    "testimonials.2.quote": "Their automation system doubled our restaurant efficiency. We're now serving more customers with better accuracy and happier staff.",
-    "testimonials.2.author": "David Chen",
-    "testimonials.2.position": "Founder, TasteWave Bistro",
-    "testimonials.3.quote": "Our NFT launch became truly intelligent thanks to their AI layer. The voice-enabled avatars created an entirely new level of engagement.",
-    "testimonials.3.author": "Elena Rossi",
-    "testimonials.3.position": "NFT Project Lead",
     
     // Team
     "team.title": "Meet the Founders",
@@ -363,18 +367,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "aifix.cta.subtitle": "Buchen Sie ein Automatisierungs-Audit oder kontaktieren Sie unser Team.",
     "aifix.cta.button": "Jetzt starten",
     
-    // Testimonials
-    "testimonials.title": "Von Innovatoren vertraut",
-    "testimonials.subtitle": "Erfahren Sie, was unsere Kunden über die Zusammenarbeit mit uns sagen",
-    "testimonials.1.quote": "AI Byte Consult hat unsere Logistikoperationen revolutioniert. Das Echtzeit-Tracking-System hat uns unzählige Stunden gespart und unsere Liefergenauigkeit um 95% verbessert.",
-    "testimonials.1.author": "Maria Lopez",
-    "testimonials.1.position": "CEO, CargoNova",
-    "testimonials.2.quote": "Ihr Automatisierungssystem hat die Effizienz unseres Restaurants verdoppelt. Wir bedienen jetzt mehr Kunden mit besserer Genauigkeit und zufriedenerem Personal.",
-    "testimonials.2.author": "David Chen",
-    "testimonials.2.position": "Gründer, TasteWave Bistro",
-    "testimonials.3.quote": "Unser NFT-Launch wurde dank ihrer KI-Schicht wirklich intelligent. Die sprachgesteuerten Avatare schufen ein völlig neues Maß an Engagement.",
-    "testimonials.3.author": "Elena Rossi",
-    "testimonials.3.position": "NFT-Projektleiterin",
     
     // Team
     "team.title": "Lernen Sie die Gründer kennen",
@@ -582,18 +574,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "aifix.cta.subtitle": "Réservez un audit d'automatisation ou contactez notre équipe pour commencer.",
     "aifix.cta.button": "Commencer maintenant",
     
-    // Testimonials
-    "testimonials.title": "Approuvé par les innovateurs",
-    "testimonials.subtitle": "Découvrez ce que nos clients disent de leur collaboration avec nous",
-    "testimonials.1.quote": "AI Byte Consult a révolutionné nos opérations logistiques. Le système de suivi en temps réel nous a fait gagner d'innombrables heures et a amélioré notre précision de livraison de 95%.",
-    "testimonials.1.author": "Maria Lopez",
-    "testimonials.1.position": "PDG, CargoNova",
-    "testimonials.2.quote": "Leur système d'automatisation a doublé l'efficacité de notre restaurant. Nous servons maintenant plus de clients avec une meilleure précision et un personnel plus heureux.",
-    "testimonials.2.author": "David Chen",
-    "testimonials.2.position": "Fondateur, TasteWave Bistro",
-    "testimonials.3.quote": "Notre lancement NFT est devenu vraiment intelligent grâce à leur couche IA. Les avatars vocaux ont créé un niveau d'engagement entièrement nouveau.",
-    "testimonials.3.author": "Elena Rossi",
-    "testimonials.3.position": "Chef de projet NFT",
     
     // Team
     "team.title": "Rencontrez les fondateurs",
@@ -801,18 +781,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "aifix.cta.subtitle": "احجز تدقيق أتمتة أو اتصل بفريقنا للبدء.",
     "aifix.cta.button": "ابدأ الآن",
     
-    // Testimonials
-    "testimonials.title": "موثوق به من قبل المبتكرين",
-    "testimonials.subtitle": "اطلع على ما يقوله عملاؤنا عن العمل معنا",
-    "testimonials.1.quote": "أحدثت AI Byte Consult ثورة في عملياتنا اللوجستية. وفر لنا نظام التتبع في الوقت الفعلي ساعات لا حصر لها وحسّن دقة التسليم لدينا بنسبة 95%.",
-    "testimonials.1.author": "ماريا لوبيز",
-    "testimonials.1.position": "الرئيس التنفيذي، CargoNova",
-    "testimonials.2.quote": "ضاعف نظام الأتمتة الخاص بهم كفاءة مطعمنا. نحن الآن نخدم المزيد من العملاء بدقة أفضل وموظفين أسعد.",
-    "testimonials.2.author": "ديفيد تشين",
-    "testimonials.2.position": "مؤسس، TasteWave Bistro",
-    "testimonials.3.quote": "أصبح إطلاق NFT الخاص بنا ذكياً حقاً بفضل طبقة الذكاء الاصطناعي الخاصة بهم. خلقت الأفاتار المفعّلة بالصوت مستوى جديداً تماماً من المشاركة.",
-    "testimonials.3.author": "إيلينا روسي",
-    "testimonials.3.position": "قائدة مشروع NFT",
     
     // Team
     "team.title": "تعرف على المؤسسين",
@@ -1020,18 +988,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "aifix.cta.subtitle": "预约自动化审计或联系我们的团队开始。",
     "aifix.cta.button": "立即开始",
     
-    // Testimonials
-    "testimonials.title": "受创新者信赖",
-    "testimonials.subtitle": "看看我们的客户对与我们合作的评价",
-    "testimonials.1.quote": "AI Byte Consult彻底改变了我们的物流运营。实时跟踪系统为我们节省了无数小时，并将我们的交付准确率提高了95%。",
-    "testimonials.1.author": "玛丽亚·洛佩兹",
-    "testimonials.1.position": "CEO，CargoNova",
-    "testimonials.2.quote": "他们的自动化系统使我们餐厅的效率翻了一番。我们现在以更高的准确度服务更多客户，员工也更开心。",
-    "testimonials.2.author": "大卫·陈",
-    "testimonials.2.position": "创始人，TasteWave Bistro",
-    "testimonials.3.quote": "多亏了他们的AI层，我们的NFT发布变得真正智能。语音启用的头像创造了全新的参与水平。",
-    "testimonials.3.author": "埃琳娜·罗西",
-    "testimonials.3.position": "NFT项目负责人",
     
     // Team
     "team.title": "认识创始人",
@@ -1239,18 +1195,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "aifix.cta.subtitle": "Zarezerwuj audyt automatyzacji lub skontaktuj się z naszym zespołem.",
     "aifix.cta.button": "Rozpocznij teraz",
     
-    // Testimonials
-    "testimonials.title": "Zaufani przez innowatorów",
-    "testimonials.subtitle": "Zobacz, co mówią nasi klienci o współpracy z nami",
-    "testimonials.1.quote": "AI Byte Consult zrewolucjonizował nasze operacje logistyczne. System śledzenia w czasie rzeczywistym zaoszczędził nam niezliczone godziny.",
-    "testimonials.1.author": "Maria Lopez",
-    "testimonials.1.position": "CEO, CargoNova",
-    "testimonials.2.quote": "Ich system automatyzacji podwoił efektywność naszej restauracji.",
-    "testimonials.2.author": "David Chen",
-    "testimonials.2.position": "Założyciel, TasteWave Bistro",
-    "testimonials.3.quote": "Nasze uruchomienie NFT stało się naprawdę inteligentne dzięki ich warstwie AI.",
-    "testimonials.3.author": "Elena Rossi",
-    "testimonials.3.position": "Kierownik projektu NFT",
     
     // Team
     "team.title": "Poznaj założycieli",
@@ -1458,18 +1402,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "aifix.cta.subtitle": "Bir otomasyon denetimi ayırtın veya başlamak için ekibimizle iletişime geçin.",
     "aifix.cta.button": "Şimdi Başla",
     
-    // Testimonials
-    "testimonials.title": "Yenilikçiler Tarafından Güvenilir",
-    "testimonials.subtitle": "Müşterilerimizin bizimle çalışma hakkında söylediklerini görün",
-    "testimonials.1.quote": "AI Byte Consult lojistik operasyonlarımızda devrim yarattı. Gerçek zamanlı takip sistemi bize sayısız saat kazandırdı.",
-    "testimonials.1.author": "Maria Lopez",
-    "testimonials.1.position": "CEO, CargoNova",
-    "testimonials.2.quote": "Otomasyon sistemleri restoran verimliliğimizi iki katına çıkardı.",
-    "testimonials.2.author": "David Chen",
-    "testimonials.2.position": "Kurucu, TasteWave Bistro",
-    "testimonials.3.quote": "Yapay zeka katmanları sayesinde NFT lansmanımız gerçekten akıllı hale geldi.",
-    "testimonials.3.author": "Elena Rossi",
-    "testimonials.3.position": "NFT Proje Lideri",
     
     // Team
     "team.title": "Kurucularla Tanışın",
@@ -1677,18 +1609,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "aifix.cta.subtitle": "Prenota un audit di automazione o contatta il nostro team per iniziare.",
     "aifix.cta.button": "Inizia Ora",
     
-    // Testimonials
-    "testimonials.title": "Fidato dagli Innovatori",
-    "testimonials.subtitle": "Scopri cosa dicono i nostri clienti sulla collaborazione con noi",
-    "testimonials.1.quote": "AI Byte Consult ha rivoluzionato le nostre operazioni logistiche. Il sistema di tracciamento in tempo reale ci ha fatto risparmiare innumerevoli ore e ha migliorato la nostra precisione di consegna del 95%.",
-    "testimonials.1.author": "Maria Lopez",
-    "testimonials.1.position": "CEO, CargoNova",
-    "testimonials.2.quote": "Il loro sistema di automazione ha raddoppiato l'efficienza del nostro ristorante. Ora serviamo più clienti con maggiore precisione e personale più soddisfatto.",
-    "testimonials.2.author": "David Chen",
-    "testimonials.2.position": "Fondatore, TasteWave Bistro",
-    "testimonials.3.quote": "Il nostro lancio NFT è diventato veramente intelligente grazie al loro livello IA. Gli avatar abilitati alla voce hanno creato un livello di coinvolgimento completamente nuovo.",
-    "testimonials.3.author": "Elena Rossi",
-    "testimonials.3.position": "Responsabile Progetto NFT",
     
     // Team
     "team.title": "Incontra i Fondatori",
@@ -1896,18 +1816,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "aifix.cta.subtitle": "Резервирайте одит на автоматизацията или се свържете с нашия екип, за да започнете.",
     "aifix.cta.button": "Започнете сега",
     
-    // Testimonials
-    "testimonials.title": "Доверен от иноватори",
-    "testimonials.subtitle": "Вижте какво казват нашите клиенти за работата с нас",
-    "testimonials.1.quote": "AI Byte Consult революционизира логистичните ни операции. Системата за проследяване в реално време ни спести безброй часове и подобри точността на доставките ни с 95%.",
-    "testimonials.1.author": "Мария Лопес",
-    "testimonials.1.position": "CEO, CargoNova",
-    "testimonials.2.quote": "Тяхната система за автоматизация удвои ефективността на нашия ресторант. Сега обслужваме повече клиенти с по-добра точност и по-доволен персонал.",
-    "testimonials.2.author": "Дейвид Чен",
-    "testimonials.2.position": "Основател, TasteWave Bistro",
-    "testimonials.3.quote": "Нашето NFT стартиране стана наистина интелигентно благодарение на техния ИИ слой. Гласовите аватари създадоха напълно ново ниво на ангажираност.",
-    "testimonials.3.author": "Елена Роси",
-    "testimonials.3.position": "Ръководител на NFT проект",
     
     // Team
     "team.title": "Запознайте се с основателите",
@@ -2115,18 +2023,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "aifix.cta.subtitle": "Забронируйте аудит автоматизации или свяжитесь с нашей командой, чтобы начать.",
     "aifix.cta.button": "Начать сейчас",
     
-    // Testimonials
-    "testimonials.title": "Доверие инноваторов",
-    "testimonials.subtitle": "Узнайте, что говорят наши клиенты о работе с нами",
-    "testimonials.1.quote": "AI Byte Consult революционизировал наши логистические операции. Система отслеживания в реальном времени сэкономила нам бесчисленные часы и повысила точность доставки на 95%.",
-    "testimonials.1.author": "Мария Лопес",
-    "testimonials.1.position": "CEO, CargoNova",
-    "testimonials.2.quote": "Их система автоматизации удвоила эффективность нашего ресторана. Теперь мы обслуживаем больше клиентов с лучшей точностью и более довольным персоналом.",
-    "testimonials.2.author": "Дэвид Чен",
-    "testimonials.2.position": "Основатель, TasteWave Bistro",
-    "testimonials.3.quote": "Наш запуск NFT стал по-настоящему интеллектуальным благодаря их ИИ-слою. Голосовые аватары создали совершенно новый уровень вовлечённости.",
-    "testimonials.3.author": "Елена Росси",
-    "testimonials.3.position": "Руководитель NFT-проекта",
     
     // Team
     "team.title": "Познакомьтесь с основателями",
