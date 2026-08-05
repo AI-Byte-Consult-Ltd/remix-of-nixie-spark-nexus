@@ -9,9 +9,6 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Estate from "./pages/Estate";
-import Insurance from "./pages/Insurance";
-import Translation from "./pages/Translation";
-import Furnishings from "./pages/Furnishings";
 import Trading from "./pages/Trading";
 import NicsEcosystem from "./pages/NicsEcosystem";
 import Terms from "./pages/Terms";
@@ -31,9 +28,6 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/estate" element={<Estate />} />
-            <Route path="/insurance" element={<Insurance />} />
-            <Route path="/translation" element={<Translation />} />
-            <Route path="/furnishings" element={<Furnishings />} />
             <Route path="/trading" element={<Trading />} />
             <Route
               path="/nics-app"

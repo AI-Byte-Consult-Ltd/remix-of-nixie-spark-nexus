@@ -39,9 +39,6 @@ const Footer = () => {
                 <li><a href="https://estate.aibyteconsult.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Real Estate</a></li>
                 <li><Link to="/nics-ecosystem" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Ecosystem</Link></li>
                 <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Trading</Link></li>
-                <li><Link to="/insurance" className="text-muted-foreground hover:text-primary transition-colors">NICS Insurance</Link></li>
-                <li><Link to="/translation" className="text-muted-foreground hover:text-primary transition-colors">NICS Translation</Link></li>
-                <li><Link to="/furnishings" className="text-muted-foreground hover:text-primary transition-colors">NICS Furnishings</Link></li>
               </ul>
             </div>
 

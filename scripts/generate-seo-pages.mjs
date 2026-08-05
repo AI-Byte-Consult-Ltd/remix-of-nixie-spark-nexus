@@ -55,30 +55,6 @@ const pages = [
     schemaType: "Service",
   },
   {
-    route: "/insurance",
-    title: "NICS Insurance — AI-Powered Insurance Solutions",
-    description:
-      "Explore NICS insurance technology for risk assessment, intelligent workflows, claims support and personalized digital services.",
-    type: "website",
-    schemaType: "Service",
-  },
-  {
-    route: "/translation",
-    title: "NICS Translation & Legalisation — Professional Services",
-    description:
-      "Professional translation, legalisation, apostille and multilingual document services supported by intelligent workflows.",
-    type: "website",
-    schemaType: "Service",
-  },
-  {
-    route: "/furnishings",
-    title: "NICS Furnishings — AI Interior Design & 3D Visualisation",
-    description:
-      "AI-assisted interior design, virtual furnishing and 3D visualisation for residential and commercial spaces.",
-    type: "website",
-    schemaType: "Service",
-  },
-  {
     route: "/trading",
     title: "NICS AI Trader — Telegram Trading Signals & Mini App",
     description:

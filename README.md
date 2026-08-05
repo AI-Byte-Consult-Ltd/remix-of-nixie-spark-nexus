@@ -44,9 +44,6 @@ AI Byte Consult Ltd is a technology company specializing in **SaaS development, 
 - **Web & SaaS Development** — React, Vite, TypeScript
 - **Infrastructure & DevOps** — Azure, Docker, Cloudflare, GitHub Actions
 - **Real Estate Services** — Property management in Bulgaria
-- **Insurance Services** — Insurance consulting
-- **Translation Services** — Professional translation
-- **Furnishing Services** — Interior furnishing solutions
 
 ---
 

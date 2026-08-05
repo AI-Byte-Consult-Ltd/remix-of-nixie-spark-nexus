@@ -40,11 +40,8 @@ const About = () => {
     { icon: divisionIcons[0], title: t("aboutpage.div1.title"), description: t("aboutpage.div1.desc"), link: undefined },
     { icon: divisionIcons[1], title: t("aboutpage.div2.title"), description: t("aboutpage.div2.desc"), link: undefined },
     { icon: divisionIcons[2], title: t("aboutpage.div3.title"), description: t("aboutpage.div3.desc"), link: "/estate" },
-    { icon: divisionIcons[3], title: t("aboutpage.div4.title"), description: t("aboutpage.div4.desc"), link: "/translation" },
     { icon: divisionIcons[4], title: t("aboutpage.div5.title"), description: t("aboutpage.div5.desc"), link: undefined },
-    { icon: divisionIcons[5], title: t("aboutpage.div6.title"), description: t("aboutpage.div6.desc"), link: "/insurance" },
     { icon: divisionIcons[6], title: t("aboutpage.div7.title"), description: t("aboutpage.div7.desc"), link: undefined },
-    { icon: divisionIcons[7], title: t("aboutpage.div8.title"), description: t("aboutpage.div8.desc"), link: "/furnishings" },
   ];
 
   const companyValues = [
