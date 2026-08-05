@@ -11,7 +11,7 @@
 AI Byte Consult Ltd is a technology company specializing in **SaaS development, business automation, AI ecosystems, and blockchain-based solutions**. We create advanced digital infrastructures — from AI-powered web platforms and workflow automation tools to full-scale blockchain ecosystems — empowering innovation across industries.
 
 - **Founded:** 2011
-- **Registered:** United Kingdom
+- **Registered:** Bulgaria
 - **Contact:** [info@aibyteconsult.com](mailto:info@aibyteconsult.com)
 
 ### Official Partnerships & Achievements
@@ -75,7 +75,7 @@ Full terms: [`LICENSE`](./LICENSE).
 ## Creator & Maintainer
 
 This project is created and maintained by **AI Byte Consult Ltd**, a technology
-company founded in 2011 and registered in the United Kingdom. All product design,
+company founded in 2011 and registered in Bulgaria. All product design,
 engineering, and the NICS AI ecosystem are developed in-house by the AI Byte
 Consult team.
 
