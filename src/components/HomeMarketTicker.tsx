@@ -12,7 +12,9 @@ type Quote = {
   currency: string;
 };
 
-const REFRESH_MS = 15_000;
+// Decorative ticker only — daily refresh is enough and avoids burning
+// through the Supabase free-tier edge function quota.
+const REFRESH_MS = 24 * 60 * 60 * 1_000;
 
 function formatPrice(q: Quote): string {
   const abs = Math.abs(q.price);
