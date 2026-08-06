@@ -1,20 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Play, Calendar } from "lucide-react";
+import { ArrowRight, Play, Calendar, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const HERO_VIDEO =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4";
-
-const TERMINAL_LINES = [
-  "> tokenizer initialized...",
-  "> loading multilingual corpus...",
-  "> checkpoint restored...",
-  "> inference online...",
-  "> visual encoder ready...",
-  "> NICS Core synchronized...",
-];
 
 const Particles = () => {
   const dots = useMemo(
@@ -74,34 +65,6 @@ const Particles = () => {
 };
 
 const LiveControlPanel = () => {
-  const [progress, setProgress] = useState(419056);
-  const [loss, setLoss] = useState(0.789);
-  const [inference, setInference] = useState(12.4);
-  const [terminal, setTerminal] = useState<string[]>([]);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setProgress((p) => p + Math.floor(20 + Math.random() * 60));
-      setLoss((l) => +Math.max(0.72, l + (Math.random() - 0.55) * 0.008).toFixed(3));
-      setInference(() => +(11 + Math.random() * 2.5).toFixed(1));
-    }, 1600);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    let i = 0;
-    const id = setInterval(() => {
-      setTerminal((prev) => {
-        const line = TERMINAL_LINES[i % TERMINAL_LINES.length];
-        i++;
-        return [...prev.slice(-5), line];
-      });
-    }, 900);
-    return () => clearInterval(id);
-  }, []);
-
-  const pct = Math.min(100, (progress / 2_000_000) * 100);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, rotateX: 8 }}
@@ -117,56 +80,35 @@ const LiveControlPanel = () => {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-400" />
             </span>
-            <span className="text-[11px] tracking-[0.2em] text-white/90">TRAINING ACTIVE</span>
+            <span className="text-[11px] tracking-[0.2em] text-white/90">VERIFIED SNAPSHOT</span>
           </div>
-          <span className="text-[10px] tracking-[0.2em] text-white/50">NICS · CORE</span>
+          <span className="text-[10px] tracking-[0.2em] text-white/50">NICS · AI LAB</span>
         </div>
 
         <div className="grid grid-cols-2 gap-3 mb-4">
-          <Cell label="MODEL" value="NICS LLM" />
-          <Cell label="VISUAL AI" value="ONLINE" accent />
-          <Cell label="INFERENCE" value={`${inference} ms`} />
-          <Cell label="GPU" value="Azure F-Series" />
-          <Cell label="LOSS" value={loss.toFixed(3)} />
-          <Cell label="LANG" value="EN·RU·BG·ES" />
+          <Cell label="MODEL" value="NICS Text Nano" />
+          <Cell label="STATUS" value="First Run Complete" accent />
+          <Cell label="PARAMETERS" value="868,992" />
+          <Cell label="HARDWARE" value="CPU Only" />
+          <Cell label="TRAIN LOSS" value="3.914" />
+          <Cell label="LANG" value="English (roadmap: more)" />
         </div>
 
-        <div className="mb-4">
-          <div className="flex justify-between text-[10px] tracking-[0.2em] text-white/60 mb-1.5">
-            <span>TRAINING PROGRESS</span>
-            <motion.span key={progress} initial={{ opacity: 0.6 }} animate={{ opacity: 1 }}>
-              {progress.toLocaleString()} / 2,000,000
-            </motion.span>
-          </div>
-          <div className="h-1 rounded-full bg-white/10 overflow-hidden">
-            <motion.div
-              className="h-full bg-white"
-              animate={{ width: `${pct}%` }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            />
-          </div>
+        <div className="rounded-lg border border-white/10 bg-black/40 p-3 text-[11px] text-white/70 leading-relaxed mb-4">
+          Trained from random initialisation on a public-domain corpus. Not
+          a live feed -- a snapshot of the most recent verified run.
         </div>
 
-        <div className="rounded-lg border border-white/10 bg-black/40 p-3 font-mono text-[11px] text-emerald-300/90 h-[132px] overflow-hidden">
-          {terminal.map((l, i) => (
-            <motion.div
-              key={`${l}-${i}`}
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="truncate"
-            >
-              {l}
-            </motion.div>
-          ))}
-          <motion.span
-            className="inline-block w-2 h-3 bg-emerald-300/80 align-middle"
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ duration: 1, repeat: Infinity }}
-          />
-        </div>
+        <a
+          href="https://github.com/AI-Byte-Consult-Ltd/nics-ai-lab"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 text-[11px] text-white/80 hover:text-white transition-colors"
+        >
+          Full logs &amp; checkpoints on GitHub <ExternalLink className="w-3 h-3" />
+        </a>
       </div>
     </motion.div>
   );
