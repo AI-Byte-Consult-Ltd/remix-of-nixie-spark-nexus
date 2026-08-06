@@ -4,7 +4,7 @@ import foundersImg from "@/assets/team-founders.jpg";
 
 const teamDefs = [
   { nameKey: "team.alex.name", roleKey: "team.alex.role", bioKey: "team.alex.bio", link: { url: "https://www.linkedin.com/in/luntick", type: "linkedin" as const } },
-  { nameKey: "team.nics.name", roleKey: "team.nics.role", bioKey: "team.nics.bio", link: { url: "https://nics.space", type: "website" as const } },
+  { nameKey: "team.nics.name", roleKey: "team.nics.role", bioKey: "team.nics.bio" },
   { nameKey: "team.aleksandr.name", roleKey: "team.aleksandr.role", bioKey: "team.aleksandr.bio", link: { url: "https://www.linkedin.com/in/alekstoch", type: "linkedin" as const } },
 ];
 

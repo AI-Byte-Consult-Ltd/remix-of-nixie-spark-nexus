@@ -108,7 +108,7 @@ const modules: EcosystemModule[] = [
     who: "Mining companies, exploration teams and geological institutes.",
     connection:
       "Combines NICS LLM with Visual AI to fuse historical archives, field data and satellite imagery.",
-    cta: { label: "Discover Geologist AI", href: "https://nics.space", external: true },
+    cta: { label: "Discover Geologist AI", href: "#contact" },
   },
   {
     id: "aquaterra",

@@ -116,13 +116,6 @@ const NicsEcosystem = () => {
               </div>
             ))}
           </div>
-          <div className="text-center mt-10">
-            <a href="https://nics.space" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90">
-                Explore Full Interface at nics.space <ArrowRight className="w-4 h-4 ml-1" />
-              </Button>
-            </a>
-          </div>
         </div>
       </section>
 
