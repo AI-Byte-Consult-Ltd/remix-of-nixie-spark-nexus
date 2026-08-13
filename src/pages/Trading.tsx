@@ -2,12 +2,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import TradingViewTicker from "@/components/TradingViewTicker";
+import VerifiedTrackRecord from "@/components/VerifiedTrackRecord";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Activity,
   ArrowRight,
+  BadgeCheck,
   BarChart3,
   BellRing,
   Bitcoin,
@@ -17,12 +19,16 @@ import {
   Clock,
   Coins,
   Gauge,
+  Globe,
   History,
+  LineChart,
+  Rocket,
   Send,
   Settings,
   ShieldCheck,
   Target,
   TrendingUp,
+  Users,
   Wallet,
   Zap,
 } from "lucide-react";
@@ -141,6 +147,62 @@ const advantages = [
   "Personal risk settings and exposure limits",
   "Automatic signal lifecycle and target tracking",
   "History and statistics based on your own accepted signals",
+];
+
+const platformCapabilities = [
+  {
+    title: "Structured signals across four markets",
+    description: "Gold, Forex, Brent Oil and Bitcoin, each with dedicated market logic and its own trading schedule.",
+    icon: BarChart3,
+  },
+  {
+    title: "Personal risk sizing",
+    description: "Position size, total exposure and correlated risk are calculated from your own account balance and risk settings.",
+    icon: Settings,
+  },
+  {
+    title: "Automatic lifecycle tracking",
+    description: "Take Profit, Stop Loss and Breakeven updates are delivered automatically as each accepted scenario develops.",
+    icon: History,
+  },
+  {
+    title: "Verified public track record",
+    description: "Real, accepted-and-closed results are published for every period below — no invented statistics.",
+    icon: BadgeCheck,
+  },
+  {
+    title: "Referral program",
+    description: "Earn 30% commission from every confirmed subscription payment and renewal through your personal link.",
+    icon: Users,
+  },
+  {
+    title: "10-language interface",
+    description: "The Mini App and signal delivery are available in ten languages, including Russian, Bulgarian, English and Spanish.",
+    icon: Globe,
+  },
+];
+
+const roadmap = [
+  {
+    title: "Copy-trading & referral leaderboard",
+    description: "A ranked leaderboard for top referrers and, later, optional copy-trading for accepted scenarios.",
+    icon: Users,
+  },
+  {
+    title: "On-demand backtesting",
+    description: "Request a historical backtest of the current strategy against a chosen market and period.",
+    icon: LineChart,
+  },
+  {
+    title: "VIP / scalping tier",
+    description: "A faster, higher-frequency signal tier for experienced traders who want more setups per day.",
+    icon: Zap,
+  },
+  {
+    title: "Broader MT5 auto-execution",
+    description: "Optional automatic order placement on a connected MT5 account, beyond today's manual accept/skip flow.",
+    icon: Rocket,
+  },
 ];
 
 const Trading = () => {
@@ -266,6 +328,52 @@ const Trading = () => {
 
         <TradingViewTicker />
 
+        <section className="border-y border-border/60 bg-muted/25 py-20">
+          <div className="container mx-auto px-4">
+            <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+              <div>
+                <Badge className="mb-4 border-primary/25 bg-primary/10 text-primary hover:bg-primary/10">
+                  <ShieldCheck className="mr-2 h-3.5 w-3.5" />
+                  Official Vantage signal provider
+                </Badge>
+                <h2 className="text-3xl font-semibold md:text-5xl">
+                  Built on a <span className="text-gradient-gold">regulated broker's</span> live market data
+                </h2>
+                <p className="mt-5 text-lg leading-8 text-muted-foreground">
+                  NICS AI Trader is an official trading-signal provider for Vantage. Every scenario is generated from Vantage's own live price feed, and every accepted signal can be executed on a Vantage MT5 account through our dedicated market-data bridge — the same feed, the same broker, no intermediary re-quoting.
+                </p>
+                <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored" className="mt-8 inline-block">
+                  <Button size="lg" variant="outline" className="rounded-full px-8">
+                    Open a Vantage account
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </a>
+              </div>
+
+              <div className="rounded-[2rem] border border-border/70 bg-card/70 p-6 shadow-xl shadow-primary/5">
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="rounded-xl border border-border/60 bg-background p-4">
+                    <p className="text-muted-foreground">Broker</p>
+                    <p className="mt-1 font-semibold">Vantage Markets</p>
+                  </div>
+                  <div className="rounded-xl border border-border/60 bg-background p-4">
+                    <p className="text-muted-foreground">Status</p>
+                    <p className="mt-1 font-semibold">Official provider</p>
+                  </div>
+                  <div className="rounded-xl border border-border/60 bg-background p-4">
+                    <p className="text-muted-foreground">Execution</p>
+                    <p className="mt-1 font-semibold">Live MT5 bridge</p>
+                  </div>
+                  <div className="rounded-xl border border-border/60 bg-background p-4">
+                    <p className="text-muted-foreground">Price source</p>
+                    <p className="mt-1 font-semibold">Vantage live feed</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center">
@@ -374,6 +482,8 @@ const Trading = () => {
           </div>
         </section>
 
+        <VerifiedTrackRecord />
+
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center">
@@ -471,6 +581,54 @@ const Trading = () => {
                   <div key={advantage} className="flex items-start gap-3 rounded-xl border border-border/60 bg-background p-4">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
                     <span>{advantage}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl text-center">
+              <Badge variant="outline" className="mb-4">About the project</Badge>
+              <h2 className="text-3xl font-semibold md:text-5xl">What NICS AI Trader does today — and what's coming next</h2>
+              <p className="mt-5 text-lg leading-8 text-muted-foreground">
+                NICS AI Trader is built by AI Byte Consult Ltd as a Telegram-first trading assistant, delivered through a signal bot and the NICS Mini App. Here is what's actually live right now, and what's genuinely planned rather than promised.
+              </p>
+            </div>
+
+            <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {platformCapabilities.map((item) => (
+                <Card key={item.title} className="h-full border-border/60 bg-card/70">
+                  <CardHeader>
+                    <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <item.icon className="h-5 w-5" />
+                    </div>
+                    <CardTitle className="text-lg">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm leading-6 text-muted-foreground">{item.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="mx-auto mt-16 max-w-6xl">
+              <div className="mx-auto max-w-3xl text-center">
+                <Badge variant="outline" className="mb-4">
+                  <Rocket className="mr-2 h-3.5 w-3.5" />
+                  Roadmap
+                </Badge>
+                <h3 className="text-2xl font-semibold md:text-3xl">On the roadmap — not available yet</h3>
+              </div>
+
+              <div className="mx-auto mt-8 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
+                {roadmap.map((item) => (
+                  <div key={item.title} className="rounded-xl border border-dashed border-border/70 bg-background p-5">
+                    <item.icon className="mb-3 h-6 w-6 text-muted-foreground" />
+                    <p className="font-semibold">{item.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
                   </div>
                 ))}
               </div>
