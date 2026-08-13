@@ -8,26 +8,26 @@ import { ArrowRight, Brain, Cpu, Layers, Languages, Server, Sparkles } from "luc
 import SEO from "@/components/SEO";
 
 const stackItems = [
-  { Icon: Layers, title: "Independent Tokenizer", desc: "Custom byte-pair encoding tokenizer built from scratch, optimized for multilingual processing across Latin and Cyrillic scripts." },
-  { Icon: Brain, title: "Proprietary Models", desc: "Transformer-based language models designed and trained entirely in-house with full architectural control." },
-  { Icon: Cpu, title: "Training Pipeline", desc: "End-to-end training infrastructure with automated checkpointing, loss monitoring, and distributed batch processing." },
-  { Icon: Sparkles, title: "Inference Engine", desc: "Optimized inference stack with dynamic batching, speculative decoding, and low-latency response generation." },
-  { Icon: Languages, title: "Multilingual Architecture", desc: "Native support for English, Russian, Bulgarian, and Spanish with cross-lingual transfer capabilities." },
+  { Icon: Layers, title: "Independent Tokenizer", desc: "Custom byte-pair encoding tokenizer trained from scratch on our own corpus -- no pretrained vocabulary." },
+  { Icon: Brain, title: "Proprietary Models", desc: "Transformer-based language models designed and trained entirely in-house, from random initialisation -- full architectural control." },
+  { Icon: Cpu, title: "Training Pipeline", desc: "End-to-end training infrastructure with automated checkpointing, loss monitoring and structured telemetry, running today on CPU-only hardware." },
+  { Icon: Sparkles, title: "Text Generation (Early)", desc: "Basic greedy/sampling generation for evaluating the model. A production inference service is not built yet." },
+  { Icon: Languages, title: "Multilingual Roadmap", desc: "English NLP today, trained on public-domain text. Russian, Bulgarian and Spanish support is planned, not yet trained." },
   { Icon: Server, title: "Future Multimodal Expansion", desc: "Roadmap includes vision, audio, and cross-modal reasoning capabilities for comprehensive AI understanding." },
 ];
 
 const infra = [
-  { title: "Local Training Environment", desc: "Hewlett-Packard workstation" },
-  { title: "Azure VM Deployment", desc: "F-series compute instance" },
-  { title: "Model Checkpoint Sync", desc: "Automated periodic persistence" },
-  { title: "Active Runtime Node", desc: "Training + inference pipeline" },
-  { title: "Multilingual Corpus", desc: "EN / RU / BG / ES aligned data" },
+  { title: "Training Hardware", desc: "CPU only, no GPU -- proof-of-pipeline scale" },
+  { title: "Code & Provenance", desc: "Public GitHub repository (nics-ai-lab)" },
+  { title: "Checkpoint Verification", desc: "SHA-256 checksums, step-0 random-init checkpoint retained" },
+  { title: "Current Dataset", desc: "Tiny Shakespeare -- public domain (v1)" },
+  { title: "Current Status", desc: "First training run complete -- vision model next" },
 ];
 
 const NicsEcosystem = () => {
   const seoProps = {
-    title: "NICS AI Ecosystem — Live Multilingual AI Research",
-    description: "A transparent AI laboratory: proprietary tokenizer, models, training pipeline and inference stack — with live multilingual training you can observe in real time.",
+    title: "NICS AI Ecosystem — Independent AI Research Lab",
+    description: "A transparent AI laboratory: proprietary tokenizer, models and training pipeline, built from scratch and documented in the open as we go.",
     canonical: "https://aibyteconsult.com/nics-ecosystem",
   };
 
@@ -46,26 +46,27 @@ const NicsEcosystem = () => {
           <div className="grid lg:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
             <div className="space-y-6">
               <Badge className="bg-primary/10 border border-primary/30 text-primary hover:bg-primary/15">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 mr-2 animate-pulse" />
-                LIVE RESEARCH INTERFACE
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 mr-2" />
+                AI RESEARCH LAB
               </Badge>
               <h1 className="text-5xl md:text-6xl font-semibold leading-tight">
                 NICS AI{" "}
                 <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Ecosystem</span>
               </h1>
               <p className="text-lg text-muted-foreground">
-                A transparent AI laboratory where you can observe multilingual model training in real time.
+                A transparent AI laboratory building our own tokenizer, models and training pipeline from scratch — early-stage, openly documented, no third-party models.
               </p>
               <p className="text-base text-muted-foreground">
-                NICS AI Ecosystem is an independent AI platform built from scratch — with its own tokenizer, models, training pipeline, inference stack, and live research interface.
+                NICS AI Ecosystem is an independent AI platform built from scratch — with its own tokenizer, models and training pipeline, developed in the open in the public{" "}
+                <a href="https://github.com/AI-Byte-Consult-Ltd/nics-ai-lab" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">nics-ai-lab</a> repository.
               </p>
               <div className="flex flex-wrap gap-2">
-                {["Independent AI Stack", "Multilingual Core", "Live Training Active", "Azure Runtime Connected"].map((t) => (
+                {["Independent AI Stack", "CPU-Trained From Scratch", "Verified Provenance", "Open Source Pipeline"].map((t) => (
                   <Badge key={t} variant="outline" className="border-primary/30 text-foreground bg-primary/5">{t}</Badge>
                 ))}
               </div>
               <div className="flex flex-wrap gap-3 pt-2">
-                <a href="#live"><Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90">View Live Training <ArrowRight className="w-4 h-4 ml-1" /></Button></a>
+                <a href="#live"><Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90">View Training Progress <ArrowRight className="w-4 h-4 ml-1" /></Button></a>
                 <a href="#overview"><Button size="lg" variant="outline" className="border-primary/40 text-foreground bg-transparent hover:bg-primary/10">Project Overview</Button></a>
               </div>
             </div>
@@ -103,7 +104,7 @@ const NicsEcosystem = () => {
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-10 space-y-3">
             <div className="text-xs tracking-widest text-primary">INFRASTRUCTURE</div>
-            <h2 className="text-3xl md:text-4xl font-semibold">System Status</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold">Current Setup</h2>
           </div>
           <div className="rounded-2xl border border-border divide-y divide-border/60 overflow-hidden">
             {infra.map((row) => (
@@ -112,19 +113,8 @@ const NicsEcosystem = () => {
                   <div className="text-foreground font-medium">{row.title}</div>
                   <div className="text-sm text-muted-foreground">{row.desc}</div>
                 </div>
-                <span className="flex items-center gap-2 text-xs text-green-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  Online
-                </span>
               </div>
             ))}
-          </div>
-          <div className="text-center mt-10">
-            <a href="https://nics.space" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90">
-                Explore Full Interface at nics.space <ArrowRight className="w-4 h-4 ml-1" />
-              </Button>
-            </a>
           </div>
         </div>
       </section>

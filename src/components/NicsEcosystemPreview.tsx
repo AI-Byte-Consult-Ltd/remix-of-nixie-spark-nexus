@@ -49,11 +49,6 @@ const NicsEcosystemPreview = () => {
                   {t("nicsprev.cta1")} <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </Link>
-              <a href="https://nics.space" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="border-primary/40 text-foreground bg-transparent hover:bg-primary/10">
-                  {t("nicsprev.cta2")}
-                </Button>
-              </a>
             </div>
           </div>
 
