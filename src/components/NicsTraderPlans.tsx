@@ -5,15 +5,21 @@ import { useState } from "react";
 const TELEGRAM_BOT_URL = "https://t.me/nics_ai_bot";
 
 /*
- * Revolut Business payment links, 30-day EUR plans only — same
+ * Revolut Business payment links, EUR plans only — same
  * checkout.revolut.com/pay/<id> pattern already used in SCIProducts.tsx.
- * Fill in once created in the Revolut Business dashboard; the button
- * stays hidden for any plan left empty here.
+ * The button stays hidden for any plan/period left empty here.
  */
-const REVOLUT_LINKS: Record<string, string> = {
-  single: "",
-  multi: "",
-  full: "",
+const REVOLUT_LINKS: Record<string, Record<string, string>> = {
+  "30d": {
+    single: "https://checkout.revolut.com/pay/77320277-3272-4175-a7db-a0f70ed6cacd",
+    multi: "https://checkout.revolut.com/pay/48476677-fb37-45d0-882f-d4316bb185ea",
+    full: "https://checkout.revolut.com/pay/a95ccc94-7bc5-470d-97e7-5198949a4d49",
+  },
+  "7d": {
+    single: "https://checkout.revolut.com/pay/a3eb2890-88c8-47af-8023-1855c52f6e22",
+    multi: "https://checkout.revolut.com/pay/5f970c45-13c7-47a3-abdd-09de7d700087",
+    full: "https://checkout.revolut.com/pay/21ada208-69aa-4eff-b285-503a3e1f9691",
+  },
 };
 
 type Period = "7d" | "30d";
@@ -241,7 +247,7 @@ const NicsTraderPlans = () => {
           {plans.map((plan, index) => {
             const amount = plan.prices?.[period]?.[currency];
             const revolutLink =
-              period === "30d" && currency === "EUR" ? REVOLUT_LINKS[plan.id] : undefined;
+              currency === "EUR" ? REVOLUT_LINKS[period]?.[plan.id] : undefined;
 
             return (
               <motion.div
