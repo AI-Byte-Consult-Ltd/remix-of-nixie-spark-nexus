@@ -1,8 +1,20 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Bot, Check, ShieldCheck, Target, Zap } from "lucide-react";
+import { ArrowRight, Bot, Check, CreditCard, ShieldCheck, Target, Zap } from "lucide-react";
 import { useState } from "react";
 
 const TELEGRAM_BOT_URL = "https://t.me/nics_ai_bot";
+
+/*
+ * Revolut Business payment links, 30-day EUR plans only — same
+ * checkout.revolut.com/pay/<id> pattern already used in SCIProducts.tsx.
+ * Fill in once created in the Revolut Business dashboard; the button
+ * stays hidden for any plan left empty here.
+ */
+const REVOLUT_LINKS: Record<string, string> = {
+  single: "",
+  multi: "",
+  full: "",
+};
 
 type Period = "7d" | "30d";
 type Currency = "EUR" | "USD";
@@ -228,6 +240,8 @@ const NicsTraderPlans = () => {
         <div className="mx-auto grid max-w-7xl items-stretch gap-6 md:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan, index) => {
             const amount = plan.prices?.[period]?.[currency];
+            const revolutLink =
+              period === "30d" && currency === "EUR" ? REVOLUT_LINKS[plan.id] : undefined;
 
             return (
               <motion.div
@@ -323,6 +337,18 @@ const NicsTraderPlans = () => {
                     {plan.cta}
                     <ArrowRight className="h-4 w-4" />
                   </a>
+
+                  {revolutLink && (
+                    <a
+                      href={revolutLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative mt-2.5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-transparent px-6 py-3 text-sm font-medium text-white/70 transition-colors duration-300 hover:border-white/25 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0f1f]"
+                    >
+                      <CreditCard className="h-4 w-4" />
+                      Pay with Revolut
+                    </a>
+                  )}
                 </div>
               </motion.div>
             );

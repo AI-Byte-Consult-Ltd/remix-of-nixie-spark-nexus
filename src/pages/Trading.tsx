@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import TradingViewTicker from "@/components/TradingViewTicker";
+import NicsTraderPlans from "@/components/NicsTraderPlans";
 import VerifiedTrackRecord from "@/components/VerifiedTrackRecord";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -635,6 +636,8 @@ const Trading = () => {
             </div>
           </div>
         </section>
+
+        <NicsTraderPlans />
 
         <section className="py-24">
           <div className="container mx-auto px-4">
