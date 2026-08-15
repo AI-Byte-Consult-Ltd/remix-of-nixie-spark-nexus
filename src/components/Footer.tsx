@@ -1,18 +1,13 @@
 import { Mail, Phone, MessageCircle } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
-import NicsTraderPlans from "@/components/NicsTraderPlans";
 
 const Footer = () => {
   const { t } = useLanguage();
-  const { pathname } = useLocation();
   const currentYear = new Date().getFullYear();
-  const showTradingPlans = pathname === "/trading";
 
   return (
     <>
-      {showTradingPlans && <NicsTraderPlans />}
-
       <footer className="relative py-16 border-t border-border/50 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">

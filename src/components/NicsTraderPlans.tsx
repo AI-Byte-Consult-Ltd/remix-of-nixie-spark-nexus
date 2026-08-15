@@ -1,6 +1,14 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Bot, Check, CreditCard, ShieldCheck, Target, Zap } from "lucide-react";
 import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const TELEGRAM_BOT_URL = "https://t.me/nics_ai_bot";
 
@@ -328,32 +336,85 @@ const NicsTraderPlans = () => {
                     ))}
                   </ul>
 
-                  <a
-                    href={TELEGRAM_BOT_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`relative inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0f1f] ${
-                      plan.featured
-                        ? "bg-gradient-to-r from-orange-400 to-amber-400 text-black hover:shadow-lg hover:shadow-orange-500/40"
-                        : plan.free
-                          ? "border border-white/15 bg-white/[0.06] text-white hover:bg-white/10"
-                          : "border border-white/15 bg-white/5 text-white hover:border-orange-400/40 hover:bg-white/10"
-                    }`}
-                  >
-                    {plan.cta}
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-
-                  {revolutLink && (
+                  {plan.free || !revolutLink ? (
                     <a
-                      href={revolutLink}
+                      href={TELEGRAM_BOT_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative mt-2.5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-transparent px-6 py-3 text-sm font-medium text-white/70 transition-colors duration-300 hover:border-white/25 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0f1f]"
+                      className={`relative inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0f1f] ${
+                        plan.featured
+                          ? "bg-gradient-to-r from-orange-400 to-amber-400 text-black hover:shadow-lg hover:shadow-orange-500/40"
+                          : plan.free
+                            ? "border border-white/15 bg-white/[0.06] text-white hover:bg-white/10"
+                            : "border border-white/15 bg-white/5 text-white hover:border-orange-400/40 hover:bg-white/10"
+                      }`}
                     >
-                      <CreditCard className="h-4 w-4" />
-                      Pay with Revolut
+                      {plan.cta}
+                      <ArrowRight className="h-4 w-4" />
                     </a>
+                  ) : (
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <button
+                          type="button"
+                          className={`relative inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0f1f] ${
+                            plan.featured
+                              ? "bg-gradient-to-r from-orange-400 to-amber-400 text-black hover:shadow-lg hover:shadow-orange-500/40"
+                              : "border border-white/15 bg-white/5 text-white hover:border-orange-400/40 hover:bg-white/10"
+                          }`}
+                        >
+                          {plan.cta}
+                          <ArrowRight className="h-4 w-4" />
+                        </button>
+                      </DialogTrigger>
+                      <DialogContent className="border-white/10 bg-[#0a0f1f] text-white sm:max-w-md">
+                        <DialogHeader>
+                          <DialogTitle className="text-white">{plan.name}</DialogTitle>
+                          <DialogDescription className="text-white/60">
+                            {period === "7d" ? "7 days" : "30 days"} ·{" "}
+                            {amount !== undefined ? formatPrice(amount, currency) : ""} — choose how you'd like to pay.
+                          </DialogDescription>
+                        </DialogHeader>
+
+                        <div className="grid gap-3 pt-1">
+                          <a
+                            href={TELEGRAM_BOT_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-left transition-colors hover:border-orange-400/40 hover:bg-white/10"
+                          >
+                            <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-orange-400/30 bg-orange-400/15">
+                              <Bot className="h-5 w-5 text-orange-300" />
+                            </span>
+                            <span className="flex-1">
+                              <span className="block text-sm font-medium text-white">Pay with Telegram Stars</span>
+                              <span className="block text-xs text-white/55">
+                                Pick your market(s) and pay directly in @nics_ai_bot — fully automatic.
+                              </span>
+                            </span>
+                            <ArrowRight className="h-4 w-4 flex-shrink-0 text-white/40" />
+                          </a>
+
+                          <a
+                            href={revolutLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-left transition-colors hover:border-orange-400/40 hover:bg-white/10"
+                          >
+                            <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10">
+                              <CreditCard className="h-5 w-5 text-white/80" />
+                            </span>
+                            <span className="flex-1">
+                              <span className="block text-sm font-medium text-white">Pay by card via Revolut</span>
+                              <span className="block text-xs text-white/55">
+                                After paying, message @nics_ai_bot with your receipt to pick your market(s) and activate access.
+                              </span>
+                            </span>
+                            <ArrowRight className="h-4 w-4 flex-shrink-0 text-white/40" />
+                          </a>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   )}
                 </div>
               </motion.div>
