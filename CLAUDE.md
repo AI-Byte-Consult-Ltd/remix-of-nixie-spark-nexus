@@ -255,6 +255,33 @@ Lesson Delivery`, кнопка «🎓 NICS Academy» в `[02 BOT]`). Это пе
 - **Прямого push-доступа к `remix-of-nixie-spark-nexus` у облачной сессии
   нет** (403). Рабочий обходной путь: генерируем самодостаточный Python-скрипт
   с файлами в base64, Alessandro запускает его у себя и делает push.
+  **Обещано выдать права 2026-08-21** — Alessandro планирует настроить это
+  «чуть попозже» в тот же день. Проверено три пути записи, все дают
+  403 "Resource not accessible by integration": `git push` по HTTPS,
+  GitHub MCP `push_files` (git trees API), GitHub MCP `create_or_update_file`
+  (contents API). Чтение (`get_file_contents`) при этом работает — значит
+  дело не в отсутствии доступа к репозиторию вообще, а конкретно в
+  отсутствии права записи у GitHub-интеграции. Что нужно проверить/сделать
+  Alessandro, чтобы это заработало:
+  1. **claude.ai → Settings → Connectors → GitHub** — открыть настройки
+     GitHub-коннектора и проверить, что для организации
+     `AI-Byte-Consult-Ltd` и репозитория `remix-of-nixie-spark-nexus`
+     разрешена не только `read`, но и `write`/push-доступ.
+  2. Если GitHub-доступ организован через установленное GitHub App —
+     на github.com: **Settings → Applications → Installed GitHub Apps**
+     (для организации — в настройках самой организации, не личного
+     аккаунта) найти приложение Claude/Claude Code и проверить его
+     Repository permissions: `Contents` должно быть `Read and write`,
+     а не `Read-only`.
+  3. Там же проверить **Repository access** — что репозиторий
+     `remix-of-nixie-spark-nexus` явно включён в список (если выбрано
+     «Only select repositories», а не «All repositories»).
+  4. Изменение прав установленного GitHub App в организации обычно
+     требует **подтверждения от владельца/админа организации** — если
+     после смены разрешений появится запрос на approval, его нужно
+     одобрить отдельно.
+  После этого стоит попросить облачную сессию просто повторить
+  `git push` — если 403 не появляется, доступ настроен верно.
 
 ## Правила, которые нужно соблюдать
 
