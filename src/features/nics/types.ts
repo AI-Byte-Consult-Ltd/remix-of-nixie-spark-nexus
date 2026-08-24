@@ -7,6 +7,7 @@ export type Screen =
   | "history"
   | "risk"
   | "referral"
+  | "rewards"
   | "admin"
   | "markets"
   | "settings"
@@ -238,6 +239,32 @@ export interface FeatureFlags {
   adminHealth: boolean;
   stocks: boolean;
   autoExecution: boolean;
+  rewards: boolean;
+}
+
+export type WheelRewardType = "EMPTY" | "POINTS" | "VOUCHER";
+
+export interface WheelSpinResult {
+  sectorIndex: number;
+  rewardType: WheelRewardType;
+  rewardValue: string | null;
+}
+
+export interface SignalVoucher {
+  id: number;
+  source: "WHEEL" | "POINTS_REDEEM" | string;
+  market?: string | null;
+  createdAt?: string | null;
+}
+
+export interface RewardsState {
+  pointsBalance: number;
+  checkedInToday: boolean;
+  wheelAvailableToday: boolean;
+  lastWheelSpin: WheelSpinResult | null;
+  availableVouchers: SignalVoucher[];
+  pointsPerCheckin: number;
+  pointsToRedeemSignal: number;
 }
 
 export interface ReferralPlan {
@@ -354,6 +381,7 @@ export interface AppPayload {
     byStrategy: Record<string, StrategyPerformanceBlock>;
     audit: PerformanceAudit;
   };
+  rewards: RewardsState;
   riskProfile: RiskProfile;
   riskSummary: RiskSummary;
   preferences: UserPreferences;

@@ -8,6 +8,7 @@ import {
   Clock3,
   FileClock,
   Gauge,
+  Gift,
   History,
   LayoutDashboard,
   LineChart,
@@ -38,6 +39,7 @@ import { callNicsApi, NicsApiError } from "@/features/nics/api";
 import { AdminHealthDashboard } from "@/features/nics/AdminHealthDashboard";
 import { periodLabels, translations } from "@/features/nics/i18n";
 import { ReferralCabinet } from "@/features/nics/ReferralCabinet";
+import { RewardsCabinet } from "@/features/nics/RewardsCabinet";
 import { RiskProfileForm } from "@/features/nics/RiskProfileForm";
 import { RiskSummaryCard } from "@/features/nics/RiskSummaryCard";
 import { SettingsForm } from "@/features/nics/SettingsForm";
@@ -132,6 +134,9 @@ const NicsTraderApp = () => {
   const [sizingSignalId, setSizingSignalId] = useState<string | null>(null);
   const [sizingLoading, setSizingLoading] = useState(false);
   const [decisionLoadingSignalId, setDecisionLoadingSignalId] = useState<string | null>(null);
+  const [checkinLoading, setCheckinLoading] = useState(false);
+  const [spinLoading, setSpinLoading] = useState(false);
+  const [redeemLoading, setRedeemLoading] = useState(false);
   const t = translations[language];
 
   const callApi = useCallback(
@@ -347,6 +352,57 @@ const NicsTraderApp = () => {
     }
   };
 
+  const doCheckin = async () => {
+    setCheckinLoading(true);
+    telegram?.HapticFeedback?.impactOccurred("light");
+
+    try {
+      const result = await callApi("checkin");
+      if (result.data) applyPayload(result.data);
+      telegram?.HapticFeedback?.notificationOccurred("success");
+      void trackEvent("rewards_checkin", { screen: "rewards" });
+    } catch {
+      setError("network");
+      telegram?.HapticFeedback?.notificationOccurred("error");
+    } finally {
+      setCheckinLoading(false);
+    }
+  };
+
+  const doSpin = async () => {
+    setSpinLoading(true);
+    telegram?.HapticFeedback?.impactOccurred("medium");
+
+    try {
+      const result = await callApi("spin_wheel");
+      if (result.data) applyPayload(result.data);
+      telegram?.HapticFeedback?.notificationOccurred("success");
+      void trackEvent("rewards_wheel_spin", { screen: "rewards" });
+    } catch {
+      setError("network");
+      telegram?.HapticFeedback?.notificationOccurred("error");
+    } finally {
+      setSpinLoading(false);
+    }
+  };
+
+  const doRedeem = async () => {
+    setRedeemLoading(true);
+    telegram?.HapticFeedback?.impactOccurred("medium");
+
+    try {
+      const result = await callApi("redeem_points");
+      if (result.data) applyPayload(result.data);
+      telegram?.HapticFeedback?.notificationOccurred("success");
+      void trackEvent("rewards_redeem", { screen: "rewards" });
+    } catch {
+      setError("network");
+      telegram?.HapticFeedback?.notificationOccurred("error");
+    } finally {
+      setRedeemLoading(false);
+    }
+  };
+
   const openScreen = (next: Screen) => {
     setScreen(next);
     telegram?.HapticFeedback?.impactOccurred("light");
@@ -424,6 +480,7 @@ const NicsTraderApp = () => {
     { key: "signals", icon: Signal, label: t.signals },
     { key: "risk", icon: Calculator, label: t.risk },
     { key: "referral", icon: Users, label: t.referrals },
+    { key: "rewards", icon: Gift, label: t.rewards },
     { key: "performance", icon: BarChart3, label: t.performance },
     { key: "history", icon: History, label: t.history },
     { key: "markets", icon: Activity, label: t.markets },
@@ -797,6 +854,21 @@ const NicsTraderApp = () => {
             }}
             onShare={shareReferral}
             onPayout={requestReferralPayout}
+          />
+        )}
+
+        {screen === "rewards" && (
+          <RewardsCabinet
+            rewards={data.rewards}
+            language={language}
+            t={t}
+            accessMode={data.access.mode}
+            checkinLoading={checkinLoading}
+            spinLoading={spinLoading}
+            redeemLoading={redeemLoading}
+            onCheckin={() => void doCheckin()}
+            onSpin={() => void doSpin()}
+            onRedeem={() => void doRedeem()}
           />
         )}
 
