@@ -136,6 +136,13 @@ const NicsTraderApp = () => {
   const [decisionLoadingSignalId, setDecisionLoadingSignalId] = useState<string | null>(null);
   const [checkinLoading, setCheckinLoading] = useState(false);
   const [spinLoading, setSpinLoading] = useState(false);
+  /*
+   * Bumped on every completed spin so the wheel knows to animate.
+   * The spin result itself cannot carry that signal: it has no
+   * timestamp, so landing twice on the same sector is indistinguishable
+   * from not having span at all.
+   */
+  const [spinNonce, setSpinNonce] = useState(0);
   const [redeemLoading, setRedeemLoading] = useState(false);
   const t = translations[language];
 
@@ -376,6 +383,7 @@ const NicsTraderApp = () => {
     try {
       const result = await callApi("spin_wheel");
       if (result.data) applyPayload(result.data);
+      setSpinNonce((nonce) => nonce + 1);
       telegram?.HapticFeedback?.notificationOccurred("success");
       void trackEvent("rewards_wheel_spin", { screen: "rewards" });
     } catch {
@@ -865,6 +873,7 @@ const NicsTraderApp = () => {
             accessMode={data.access.mode}
             checkinLoading={checkinLoading}
             spinLoading={spinLoading}
+            spinNonce={spinNonce}
             redeemLoading={redeemLoading}
             onCheckin={() => void doCheckin()}
             onSpin={() => void doSpin()}

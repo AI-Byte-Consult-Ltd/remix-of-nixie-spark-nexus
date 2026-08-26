@@ -15,6 +15,15 @@ interface RewardsCabinetProps {
   checkinLoading: boolean;
   spinLoading: boolean;
   redeemLoading: boolean;
+  /*
+   * Incremented by the parent every time a spin request comes back.
+   * Comparing spin *values* is not enough to know a spin happened:
+   * WheelSpinResult carries no timestamp, so two spins that land on
+   * the same sector look identical, and any other action that
+   * refreshes the dashboard hands back an equal-but-new object. This
+   * counter is the only unambiguous "the user just span" signal.
+   */
+  spinNonce: number;
   onCheckin: () => void;
   onSpin: () => void;
   onRedeem: () => void;
@@ -38,19 +47,34 @@ const WHEEL_SECTORS: Array<{ type: WheelRewardType; value: number | null }> = [
 ];
 
 const SECTOR_ANGLE = 360 / WHEEL_SECTORS.length;
-const WHEEL_SIZE = 240;
+const WHEEL_SIZE = 260;
 const CENTER = WHEEL_SIZE / 2;
-const RADIUS = WHEEL_SIZE / 2;
+/*
+ * The rim is drawn as a thick ring inside the viewBox, so the sectors
+ * stop short of the edge and the wheel reads as a physical object with
+ * a raised border rather than a flat pie chart.
+ */
+const RIM_WIDTH = 13;
+const RADIUS = WHEEL_SIZE / 2 - RIM_WIDTH;
+const HUB_RADIUS = 26;
+const TURNS = 6;
 
-const SECTOR_FILLS = [
-  "#1c2130",
-  "#f59e0b",
-  "#1c2130",
-  "#f59e0b",
-  "#f59e0b",
-  "#f59e0b",
-  "#10b981",
-  "#fbbf24",
+/*
+ * Casino palette: near-black and deep crimson alternate the way a
+ * roulette wheel does, gold carries the point sectors, emerald marks
+ * the one sector that pays a voucher. Each sector also gets a paired
+ * darker shade so it can be filled with a gradient instead of a flat
+ * colour -- that gradient is what makes it look bevelled.
+ */
+const SECTOR_FILLS: Array<[string, string]> = [
+  ["#1f2937", "#0b0f18"],
+  ["#fbbf24", "#b45309"],
+  ["#3f1d1d", "#180a0a"],
+  ["#fcd34d", "#c2740a"],
+  ["#fbbf24", "#b45309"],
+  ["#fcd34d", "#c2740a"],
+  ["#34d399", "#047857"],
+  ["#fde68a", "#d97706"],
 ];
 
 const polarToCartesian = (angleDeg: number, radius: number) => {
@@ -87,32 +111,58 @@ export const RewardsCabinet = ({
   checkinLoading,
   spinLoading,
   redeemLoading,
+  spinNonce,
   onCheckin,
   onSpin,
   onRedeem,
 }: RewardsCabinetProps) => {
   const [rotation, setRotation] = useState(0);
   const [instant, setInstant] = useState(true);
-  const previousSpinKey = useRef<string | null>(null);
-  const isFirstSpin = useRef(true);
+  const [spinning, setSpinning] = useState(false);
+  const handledNonce = useRef(spinNonce);
 
+  /*
+   * Where the wheel has to stop for `sectorIndex` to sit under the
+   * pointer at twelve o'clock. Sector i covers [i*45, (i+1)*45]
+   * clockwise from the top, so its MIDDLE is at i*45 + 22.5 -- the
+   * half-sector term is what was missing before, which is why the
+   * pointer always came to rest exactly on a divider line.
+   */
+  const landingAngle = (sectorIndex: number) =>
+    -(sectorIndex * SECTOR_ANGLE + SECTOR_ANGLE / 2);
+
+  /* Restore the last known result on first paint, without animating. */
   useEffect(() => {
     const spin = rewards.lastWheelSpin;
     if (!spin) return;
+    setInstant(true);
+    setRotation(landingAngle(spin.sectorIndex));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    const key = `${spin.sectorIndex}-${spin.rewardType}-${spin.rewardValue}`;
-    if (previousSpinKey.current === key) return;
-    previousSpinKey.current = key;
+  useEffect(() => {
+    if (spinNonce === handledNonce.current) return;
+    handledNonce.current = spinNonce;
 
-    const isInstant = isFirstSpin.current;
-    isFirstSpin.current = false;
+    const spin = rewards.lastWheelSpin;
+    if (!spin) return;
 
-    const spins = isInstant ? 0 : 5;
-    const target = spins * 360 - spin.sectorIndex * SECTOR_ANGLE;
+    const landing = landingAngle(spin.sectorIndex);
 
-    setInstant(isInstant);
-    setRotation(target);
-  }, [rewards.lastWheelSpin]);
+    setInstant(false);
+    setSpinning(true);
+    setRotation((current) => {
+      /*
+       * Keep turning forwards. The landing angle is only defined
+       * modulo 360, so pick the multiple that sits at least TURNS
+       * full revolutions ahead of wherever the wheel is resting --
+       * otherwise a new result behind the current one would make the
+       * wheel crawl backwards instead of spinning.
+       */
+      const turnsAhead = Math.ceil((current + TURNS * 360 - landing) / 360);
+      return landing + turnsAhead * 360;
+    });
+  }, [spinNonce, rewards.lastWheelSpin]);
 
   const canRedeem =
     eligibleForRedeem(accessMode) &&
@@ -177,62 +227,189 @@ export const RewardsCabinet = ({
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center gap-4 pb-6">
-          <div className="relative" style={{ width: WHEEL_SIZE, height: WHEEL_SIZE }}>
+          {/*
+            * The tilt lives on a wrapper, not on the spinning SVG:
+            * the wheel has to keep turning around its own axis, so
+            * rotateX has to be applied by an element above it.
+            */}
+          <div
+            className="relative"
+            style={{ width: WHEEL_SIZE, height: WHEEL_SIZE, perspective: 900 }}
+          >
             <div
-              className="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/3"
-              style={{
-                width: 0,
-                height: 0,
-                borderLeft: "9px solid transparent",
-                borderRight: "9px solid transparent",
-                borderTop: "16px solid #fbbf24",
-              }}
-            />
-            <svg
-              width={WHEEL_SIZE}
-              height={WHEEL_SIZE}
-              viewBox={`0 0 ${WHEEL_SIZE} ${WHEEL_SIZE}`}
-              style={{
-                transform: `rotate(${rotation}deg)`,
-                transition: instant
-                  ? "none"
-                  : "transform 3.2s cubic-bezier(0.17, 0.67, 0.32, 1.28)",
-              }}
+              className="relative h-full w-full"
+              style={{ transform: "rotateX(16deg)", transformStyle: "preserve-3d" }}
             >
-              <circle cx={CENTER} cy={CENTER} r={RADIUS - 1} fill="#0b0d13" />
-              {WHEEL_SECTORS.map((sector, index) => {
-                const midAngle = index * SECTOR_ANGLE + SECTOR_ANGLE / 2;
-                const labelPos = polarToCartesian(midAngle, RADIUS * 0.66);
-                return (
-                  <g key={index}>
-                    <path
-                      d={sectorPath(index)}
-                      fill={SECTOR_FILLS[index]}
-                      stroke="#0b0d13"
-                      strokeWidth={2}
-                    />
-                    <text
-                      x={labelPos.x}
-                      y={labelPos.y}
-                      fill={sector.type === "EMPTY" ? "#64748b" : "#0b0d13"}
-                      fontSize={sector.type === "VOUCHER" ? 18 : 13}
-                      fontWeight={700}
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                      transform={`rotate(${midAngle}, ${labelPos.x}, ${labelPos.y})`}
+              {/* Contact shadow, so the wheel sits on the card instead of floating. */}
+              <div
+                aria-hidden
+                className="absolute left-1/2 bottom-[-14px] -translate-x-1/2 rounded-[50%]"
+                style={{
+                  width: WHEEL_SIZE * 0.78,
+                  height: 18,
+                  background:
+                    "radial-gradient(ellipse at center, rgba(0,0,0,0.55), transparent 70%)",
+                }}
+              />
+
+              <div
+                aria-hidden
+                className="absolute left-1/2 top-[-6px] z-20 -translate-x-1/2"
+                style={{ filter: "drop-shadow(0 3px 4px rgba(0,0,0,0.6))" }}
+              >
+                <svg width="26" height="30" viewBox="0 0 26 30">
+                  <defs>
+                    <linearGradient id="nics-wheel-pointer" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#fde68a" />
+                      <stop offset="45%" stopColor="#f59e0b" />
+                      <stop offset="100%" stopColor="#b45309" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M13 29 L2 7 A 12 12 0 0 1 24 7 Z"
+                    fill="url(#nics-wheel-pointer)"
+                    stroke="#78350f"
+                    strokeWidth="1.2"
+                    strokeLinejoin="round"
+                  />
+                  <circle cx="13" cy="8" r="3" fill="#fffbeb" opacity="0.85" />
+                </svg>
+              </div>
+
+              <svg
+                width={WHEEL_SIZE}
+                height={WHEEL_SIZE}
+                viewBox={`0 0 ${WHEEL_SIZE} ${WHEEL_SIZE}`}
+                style={{
+                  transform: `rotate(${rotation}deg)`,
+                  transition: instant
+                    ? "none"
+                    : "transform 4.6s cubic-bezier(0.12, 0.68, 0.12, 1)",
+                  filter: "drop-shadow(0 10px 18px rgba(0,0,0,0.55))",
+                }}
+                onTransitionEnd={() => setSpinning(false)}
+              >
+                <defs>
+                  <linearGradient id="nics-wheel-rim" x1="0" y1="0" x2="0.6" y2="1">
+                    <stop offset="0%" stopColor="#fde68a" />
+                    <stop offset="28%" stopColor="#d97706" />
+                    <stop offset="52%" stopColor="#7c4a06" />
+                    <stop offset="74%" stopColor="#f59e0b" />
+                    <stop offset="100%" stopColor="#6b3f05" />
+                  </linearGradient>
+                  <radialGradient id="nics-wheel-depth" cx="0.5" cy="0.5" r="0.5">
+                    <stop offset="60%" stopColor="#000" stopOpacity="0" />
+                    <stop offset="100%" stopColor="#000" stopOpacity="0.55" />
+                  </radialGradient>
+                  <radialGradient id="nics-wheel-hub" cx="0.35" cy="0.3" r="0.8">
+                    <stop offset="0%" stopColor="#fef3c7" />
+                    <stop offset="45%" stopColor="#d97706" />
+                    <stop offset="100%" stopColor="#5b3405" />
+                  </radialGradient>
+                  {SECTOR_FILLS.map(([light, dark], index) => (
+                    <linearGradient
+                      key={index}
+                      id={`nics-wheel-sector-${index}`}
+                      x1="0"
+                      y1="0"
+                      x2="0.4"
+                      y2="1"
                     >
-                      {sectorLabel(sector)}
-                    </text>
-                  </g>
-                );
-              })}
-              <circle cx={CENTER} cy={CENTER} r={22} fill="#0b0d13" stroke="#f59e0b" strokeWidth={2} />
-            </svg>
+                      <stop offset="0%" stopColor={light} />
+                      <stop offset="100%" stopColor={dark} />
+                    </linearGradient>
+                  ))}
+                </defs>
+
+                <circle
+                  cx={CENTER}
+                  cy={CENTER}
+                  r={WHEEL_SIZE / 2 - RIM_WIDTH / 2}
+                  fill="none"
+                  stroke="url(#nics-wheel-rim)"
+                  strokeWidth={RIM_WIDTH}
+                />
+
+                {WHEEL_SECTORS.map((sector, index) => {
+                  const midAngle = index * SECTOR_ANGLE + SECTOR_ANGLE / 2;
+                  const labelPos = polarToCartesian(midAngle, RADIUS * 0.64);
+                  const onDark = sector.type === "EMPTY";
+                  return (
+                    <g key={index}>
+                      <path
+                        d={sectorPath(index)}
+                        fill={`url(#nics-wheel-sector-${index})`}
+                        stroke="#3b2405"
+                        strokeWidth={1.4}
+                      />
+                      <text
+                        x={labelPos.x}
+                        y={labelPos.y}
+                        fill={onDark ? "#94a3b8" : "#1a1205"}
+                        fontSize={sector.type === "VOUCHER" ? 19 : 15}
+                        fontWeight={800}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        transform={`rotate(${midAngle}, ${labelPos.x}, ${labelPos.y})`}
+                        style={{
+                          textShadow: onDark
+                            ? "none"
+                            : "0 1px 0 rgba(255,255,255,0.35)",
+                        }}
+                      >
+                        {sectorLabel(sector)}
+                      </text>
+                    </g>
+                  );
+                })}
+
+                {/* Darkens the outer edge so the face reads as concave. */}
+                <circle
+                  cx={CENTER}
+                  cy={CENTER}
+                  r={RADIUS}
+                  fill="url(#nics-wheel-depth)"
+                  pointerEvents="none"
+                />
+
+                {/* Studs on the rim, the way a real wheel has them. */}
+                {WHEEL_SECTORS.map((_, index) => {
+                  const pos = polarToCartesian(index * SECTOR_ANGLE, RADIUS + 1);
+                  return (
+                    <circle
+                      key={`stud-${index}`}
+                      cx={pos.x}
+                      cy={pos.y}
+                      r={3}
+                      fill="#fde68a"
+                      stroke="#78350f"
+                      strokeWidth={1}
+                    />
+                  );
+                })}
+
+                <circle
+                  cx={CENTER}
+                  cy={CENTER}
+                  r={HUB_RADIUS}
+                  fill="url(#nics-wheel-hub)"
+                  stroke="#78350f"
+                  strokeWidth={2}
+                />
+                <circle
+                  cx={CENTER}
+                  cy={CENTER}
+                  r={HUB_RADIUS - 9}
+                  fill="#120d06"
+                  opacity={0.85}
+                />
+              </svg>
+            </div>
           </div>
 
           <Button
             type="button"
-            disabled={!rewards.wheelAvailableToday || spinLoading}
+            disabled={!rewards.wheelAvailableToday || spinLoading || spinning}
             onClick={onSpin}
             className={cn(
               "w-full",
@@ -245,7 +422,12 @@ export const RewardsCabinet = ({
             {rewards.wheelAvailableToday ? t.spinButton : t.wheelDoneToday}
           </Button>
 
-          {resultText ? (
+          {/*
+            * Held back until the wheel actually stops -- announcing the
+            * prize while it is still turning gives the result away and
+            * makes the spin look decorative.
+            */}
+          {resultText && !spinning ? (
             <p className="text-center text-sm font-medium text-amber-200">{resultText}</p>
           ) : null}
         </CardContent>
