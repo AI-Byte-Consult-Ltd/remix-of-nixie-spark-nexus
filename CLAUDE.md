@@ -24,9 +24,10 @@ ID workflow/credentials, что-либо, что раньше уже приво�
 
 ## Что это за проект
 
-- **AI Byte Consult Ltd** (зарегистрирована в Болгарии) — этот
-  репозиторий содержит публичный сайт (React/Vite/TS, деплой на
-  GitHub Pages) и Telegram Mini App для продукта **NICS AI Trader**.
+- **AI Byte Consult Ltd** (зарегистрирована в Болгарии, официальный
+  Meta Tech Provider) — этот репозиторий содержит публичный сайт
+  (React/Vite/TS, деплой на GitHub Pages) и Telegram Mini App для
+  продукта **NICS AI Trader**.
 - Backend NICS AI Trader живёт **не в этом репозитории** — это n8n
   workflows на отдельном сервере, плюс MT5-мост на другом сервере.
   Детали — в приватном рунбуке.

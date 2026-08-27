@@ -54,12 +54,12 @@ const Index = () => {
         <Header />
         <Hero />
         <HomeMarketTicker />
+        <VerifiedTrackRecord />
         <NicsEcosystemPreview />
         <About />
         <OurEcosystem />
         <OurWorkInAction />
         <NicsTraderPlans />
-        <VerifiedTrackRecord />
         <Team />
         <Contact />
         <Newsletter />
