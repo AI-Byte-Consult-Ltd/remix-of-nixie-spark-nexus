@@ -51,7 +51,7 @@ const Footer = () => {
                   <Phone className="w-4 h-4" />
                   <span>+359 988 899 109</span>
                 </a>
-                <a href="viber://chat?number=%2B359988899109" className="flex items-center gap-2 text-muted-foreground hover:text-purple-500 transition-colors">
+                <a href="viber://chat?number=%2B359988899109" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                   <MessageCircle className="w-4 h-4" />
                   <span>Viber</span>
                 </a>
