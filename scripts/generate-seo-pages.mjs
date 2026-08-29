@@ -134,6 +134,14 @@ const pages = [
     type: "website",
     schemaType: "WebPage",
   },
+  {
+    route: "/nics-multimedia",
+    title: "NICS Multimedia — Original Music by Aleksandr Tochilov | AI Byte Consult",
+    description:
+      "NICS Multimedia is AI Byte Consult's in-house music-creation system. \"Just Live\" is its first release — lyrics written with the system's creator, music composed with NICS Multimedia.",
+    type: "music.album",
+    schemaType: "MusicAlbum",
+  },
 ];
 
 const escapeAttribute = (value) =>

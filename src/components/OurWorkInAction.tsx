@@ -194,12 +194,12 @@ const CASES: Case[] = [
     industry: "Music · Multimedia",
     name: "NICS Multimedia",
     problem: "Creative work outside our core AI products had no home or distribution.",
-    solution: "Original music we write and record, released under the Aleksandr Tochilov name on Spotify and other streaming platforms — starting with the track \"Just Live\".",
+    solution: "Lyrics written with NICS Multimedia's creator, music composed with the NICS Multimedia system, released under the Aleksandr Tochilov name on Spotify and other streaming platforms — starting with the track \"Just Live\".",
     result: "Real, released music available to stream today, not a mockup.",
     metric: { value: 1, suffix: "", label: "Track released, more in the works" },
     tags: ["Music", "Streaming", "Spotify", "Creative"],
-    cta: "Listen on Amuse",
-    href: "https://share.amuse.io/album/aleksandr-tochilov-just-live",
+    cta: "Read the Story",
+    href: "/nics-multimedia",
     image: multimediaImg,
   },
 ];
@@ -232,8 +232,12 @@ function scrollToContact() {
 }
 
 function handleCta(c: Case) {
-  if (c.href) window.open(c.href, "_blank", "noopener,noreferrer");
-  else scrollToContact();
+  if (!c.href) {
+    scrollToContact();
+    return;
+  }
+  if (c.href.startsWith("http")) window.open(c.href, "_blank", "noopener,noreferrer");
+  else window.location.href = c.href;
 }
 
 function FeaturedCard({ c, index }: { c: Case; index: number }) {
