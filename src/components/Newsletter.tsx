@@ -3,7 +3,8 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { supabase } from "@/integrations/supabase/client";
+
+const NEWSLETTER_SIGNUP_URL = "https://n8n.aibyteconsult.com/webhook/newsletter-signup";
 
 const Newsletter = () => {
   const { t } = useLanguage();
@@ -14,18 +15,14 @@ const Newsletter = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const { error } = await supabase.from("newsletter_subscribers").insert({ email });
-      if (error) {
-        if (error.code === "23505") {
-          toast.success(t("newsletter.success"));
-          setEmail("");
-        } else {
-          throw error;
-        }
-      } else {
-        toast.success(t("newsletter.success"));
-        setEmail("");
-      }
+      const response = await fetch(NEWSLETTER_SIGNUP_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!response.ok) throw new Error(`Signup failed with status ${response.status}`);
+      toast.success(t("newsletter.success"));
+      setEmail("");
     } catch (err) {
       console.error(err);
       toast.error("Could not subscribe right now. Please try again later.");

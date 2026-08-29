@@ -27,7 +27,8 @@ const languages: {code: Language;flag: string;name: string;}[] = [
 const nicsServices = [
 { href: "https://estate.aibyteconsult.com", label: "NICS Real Estate", external: true },
 { href: "/nics-ecosystem", label: "NICS AI Ecosystem", external: false },
-{ href: "/trading", label: "NICS AI Trading", external: false }];
+{ href: "/trading", label: "NICS AI Trading", external: false },
+{ href: "https://share.amuse.io/album/aleksandr-tochilov-just-live", label: "NICS Multimedia", external: true }];
 
 
 const Header = () => {
@@ -43,7 +44,6 @@ const Header = () => {
   { href: "/#ecosystem", label: t("nav.ecosystem") },
   { href: "/trading", label: t("nav.trading") },
   { href: "/#projects", label: t("nav.projects") },
-  { href: "/#ai-automation-fix", label: t("nav.automation") },
   { href: "/#contact", label: t("nav.contact") }];
 
 

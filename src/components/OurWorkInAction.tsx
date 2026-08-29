@@ -51,6 +51,42 @@ const prideImg = `data:image/svg+xml,${encodeURIComponent(`
 </svg>
 `)}`;
 
+const multimediaImg = `data:image/svg+xml,${encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125">
+  <defs>
+    <radialGradient id="m1" cx="50%" cy="30%" r="65%"><stop offset="0%" stop-color="#f5b942" stop-opacity="0.45"/><stop offset="100%" stop-color="#f5b942" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="900" height="1125" fill="#0a0a0f"/>
+  <rect width="900" height="1125" fill="url(#m1)"/>
+  <g fill="#f5b942" fill-opacity="0.85">
+    <rect x="60" y="590" width="34" height="120" rx="17"/>
+    <rect x="140" y="540" width="34" height="220" rx="17"/>
+    <rect x="220" y="480" width="34" height="340" rx="17"/>
+    <rect x="300" y="560" width="34" height="180" rx="17"/>
+    <rect x="380" y="440" width="34" height="420" rx="17"/>
+    <rect x="460" y="500" width="34" height="300" rx="17"/>
+    <rect x="540" y="530" width="34" height="240" rx="17"/>
+    <rect x="620" y="460" width="34" height="380" rx="17"/>
+    <rect x="700" y="570" width="34" height="160" rx="17"/>
+    <rect x="780" y="520" width="34" height="260" rx="17"/>
+    <rect x="860" y="550" width="34" height="200" rx="17"/>
+  </g>
+  <g fill="#f5b942" fill-opacity="0.4">
+    <rect x="60" y="920" width="34" height="60" rx="17"/>
+    <rect x="140" y="880" width="34" height="140" rx="17"/>
+    <rect x="220" y="905" width="34" height="90" rx="17"/>
+    <rect x="300" y="840" width="34" height="220" rx="17"/>
+    <rect x="380" y="890" width="34" height="120" rx="17"/>
+    <rect x="460" y="860" width="34" height="180" rx="17"/>
+    <rect x="540" y="820" width="34" height="260" rx="17"/>
+    <rect x="620" y="900" width="34" height="100" rx="17"/>
+    <rect x="700" y="850" width="34" height="200" rx="17"/>
+    <rect x="780" y="880" width="34" height="140" rx="17"/>
+    <rect x="860" y="910" width="34" height="80" rx="17"/>
+  </g>
+</svg>
+`)}`;
+
 type Case = {
   id: string;
   industry: string;
@@ -152,6 +188,19 @@ const CASES: Case[] = [
     cta: "Visit PRIDE Social",
     href: "https://pridesocial.org",
     image: prideImg,
+  },
+  {
+    id: "multimedia",
+    industry: "Music · Multimedia",
+    name: "NICS Multimedia",
+    problem: "Creative work outside our core AI products had no home or distribution.",
+    solution: "Original music we write and record, released under the Aleksandr Tochilov name on Spotify and other streaming platforms — starting with the track \"Just Live\".",
+    result: "Real, released music available to stream today, not a mockup.",
+    metric: { value: 1, suffix: "", label: "Track released, more in the works" },
+    tags: ["Music", "Streaming", "Spotify", "Creative"],
+    cta: "Listen on Amuse",
+    href: "https://share.amuse.io/album/aleksandr-tochilov-just-live",
+    image: multimediaImg,
   },
 ];
 
