@@ -46,7 +46,7 @@ const About = () => {
     {
       icon: Music2,
       title: "NICS Multimedia",
-      description: "Lyrics written with NICS Multimedia's creator, music composed with the NICS Multimedia system, released under the Aleksandr Tochilov name on Spotify and other streaming platforms — starting with the track \"Just Live\".",
+      description: "Original music — lyrics, musical idea and visual direction by Aleksandr Tochilov, technical production by NICS Multimedia — released on Spotify and other streaming platforms, starting with the track \"Just Live\".",
       link: "/nics-multimedia",
     },
     {

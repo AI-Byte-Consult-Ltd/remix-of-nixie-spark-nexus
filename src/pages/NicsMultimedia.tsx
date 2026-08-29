@@ -13,17 +13,17 @@ const credits = [
   {
     icon: PenLine,
     label: "Lyrics",
-    value: "Written by Aleksandr Tochilov, together with NICS Multimedia's creator.",
+    value: "Written entirely by Aleksandr Tochilov.",
   },
   {
     icon: Sparkles,
-    label: "Music",
-    value: "Composed with NICS Multimedia, our in-house music-creation system.",
+    label: "Concept & visual",
+    value: "Musical idea and visual direction by Aleksandr Tochilov.",
   },
   {
     icon: Music2,
-    label: "Release",
-    value: "Distributed via Amuse to Spotify and other streaming platforms.",
+    label: "Production",
+    value: "Technical execution — composing, producing and engineering the track — by NICS Multimedia.",
   },
 ];
 
@@ -31,7 +31,7 @@ const NicsMultimedia = () => {
   const seoProps = {
     title: "NICS Multimedia — Original Music by Aleksandr Tochilov | AI Byte Consult",
     description:
-      "NICS Multimedia is AI Byte Consult's in-house music-creation system. \"Just Live\" is its first release — lyrics written with the system's creator, music composed with NICS Multimedia.",
+      "NICS Multimedia is AI Byte Consult's in-house music-production system. \"Just Live\" is its first release — lyrics, musical idea and visual direction entirely by Aleksandr Tochilov, technical production by NICS Multimedia.",
     canonical: "https://aibyteconsult.com/nics-multimedia",
     jsonLd: {
       "@context": "https://schema.org",
@@ -118,10 +118,9 @@ const NicsMultimedia = () => {
                   and see what it can actually do.
                 </p>
                 <p>
-                  "Just Live" is its first release. The lyrics were written by Aleksandr Tochilov,
-                  working directly with NICS Multimedia's creator. The music was composed with the
-                  NICS Multimedia system — a genuine back-and-forth between a person and the tool,
-                  not a single prompt and a finished track.
+                  "Just Live" is its first release. The lyrics, the musical idea and the visual
+                  direction are entirely Aleksandr Tochilov's. The technical side — composing,
+                  producing and engineering the track — was handled by NICS Multimedia.
                 </p>
                 <p>
                   This is a first step, not a finished catalog. More releases will follow as the
