@@ -23,8 +23,8 @@ const Footer = () => {
                 <li><Link to="/#ecosystem" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.ecosystem")}</Link></li>
                 <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.trading")}</Link></li>
                 <li><Link to="/#projects" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.projects")}</Link></li>
-                <li><Link to="/#ai-automation-fix" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.automation")}</Link></li>
                 <li><Link to="/#contact" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.contact")}</Link></li>
+                <li><a href="https://share.amuse.io/album/aleksandr-tochilov-just-live" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Multimedia</a></li>
               </ul>
             </div>
 
@@ -34,6 +34,9 @@ const Footer = () => {
                 <li><a href="https://estate.aibyteconsult.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Real Estate</a></li>
                 <li><Link to="/nics-ecosystem" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Ecosystem</Link></li>
                 <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Trading</Link></li>
+                <li><a href="https://pridesocial.org" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Social</a></li>
+                <li><a href="https://aquaterra.world" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">AquaTerra World</a></li>
+                <li><a href="https://share.amuse.io/album/aleksandr-tochilov-just-live" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Multimedia</a></li>
               </ul>
             </div>
 
