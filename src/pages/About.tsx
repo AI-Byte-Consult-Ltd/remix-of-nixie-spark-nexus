@@ -2,9 +2,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
+import {
   Building2, Bot, Briefcase, Languages, Scale, Shield, Home, Palette,
-  Target, Eye, Heart, Globe, Users, Award, ArrowRight, CheckCircle2
+  Target, Eye, Heart, Globe, Users, Award, ArrowRight, CheckCircle2,
+  Music2, Share2, Globe2
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
@@ -42,6 +43,24 @@ const About = () => {
     { icon: divisionIcons[2], title: t("aboutpage.div3.title"), description: t("aboutpage.div3.desc"), link: "/estate" },
     { icon: divisionIcons[4], title: t("aboutpage.div5.title"), description: t("aboutpage.div5.desc"), link: undefined },
     { icon: divisionIcons[6], title: t("aboutpage.div7.title"), description: t("aboutpage.div7.desc"), link: undefined },
+    {
+      icon: Music2,
+      title: "NICS Multimedia",
+      description: "Original music we write and record, released under the Aleksandr Tochilov name on Spotify and other streaming platforms — starting with the track \"Just Live\".",
+      link: "https://share.amuse.io/album/aleksandr-tochilov-just-live",
+    },
+    {
+      icon: Share2,
+      title: "NICS Social",
+      description: "PRIDE Social Network (pridesocial.org) — a social platform we built in-house for the LGBTQ+ community. Live today, still basic, with a small first group of real users.",
+      link: "https://pridesocial.org",
+    },
+    {
+      icon: Globe2,
+      title: "AquaTerra World",
+      description: "Our metaverse project — 640,000 virtual land parcels designed as an interactive, AI-teaching environment. Development is currently paused while we focus on other priorities.",
+      link: "https://aquaterra.world",
+    },
   ];
 
   const companyValues = [
@@ -226,13 +245,25 @@ const About = () => {
                     {division.description}
                   </p>
                   {division.link && (
-                    <Link
-                      to={division.link}
-                      aria-label={`Learn more about ${division.title}`}
-                      className="inline-flex items-center text-sm font-medium text-primary hover:underline">
-                      {`Learn about ${division.title}`}
-                      <ArrowRight className="w-4 h-4 ml-1" />
-                    </Link>
+                    division.link.startsWith("http") ? (
+                      <a
+                        href={division.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Learn more about ${division.title}`}
+                        className="inline-flex items-center text-sm font-medium text-primary hover:underline">
+                        {`Learn about ${division.title}`}
+                        <ArrowRight className="w-4 h-4 ml-1" />
+                      </a>
+                    ) : (
+                      <Link
+                        to={division.link}
+                        aria-label={`Learn more about ${division.title}`}
+                        className="inline-flex items-center text-sm font-medium text-primary hover:underline">
+                        {`Learn about ${division.title}`}
+                        <ArrowRight className="w-4 h-4 ml-1" />
+                      </Link>
+                    )
                   )}
                 </CardContent>
               </Card>

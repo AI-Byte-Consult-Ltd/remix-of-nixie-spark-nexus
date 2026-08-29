@@ -134,7 +134,7 @@ export const AdminHealthDashboard = ({
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center justify-between gap-3 text-base">
               <span className="flex items-center gap-2">
-                <Database className="h-4 w-4 text-violet-300" />
+                <Database className="h-4 w-4 text-sky-300" />
                 {t.brokerSpecs}
               </span>
               <Badge

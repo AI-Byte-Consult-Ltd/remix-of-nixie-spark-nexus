@@ -50,7 +50,7 @@ const Contact = () => {
               <Phone className="w-5 h-5" />
               <span>+359 988 899 109</span>
             </a>
-            <a href="viber://chat?number=%2B359988899109" className="flex items-center gap-2 text-muted-foreground hover:text-purple-500 transition-colors">
+            <a href="viber://chat?number=%2B359988899109" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
               <MessageCircle className="w-5 h-5" />
               <span>Viber</span>
             </a>

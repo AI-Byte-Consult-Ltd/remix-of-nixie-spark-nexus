@@ -5,10 +5,51 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import realestateAiImg from "@/assets/project-realestate-ai.jpg";
 import architectureImg from "@/assets/project-architecture-3d.jpg";
 import restaurantImg from "@/assets/project-restaurant-new.jpg";
-import logisticsImg from "@/assets/project-logistics-new.jpg";
 import hotelImg from "@/assets/project-hotel-new.jpg";
-import clinicImg from "@/assets/project-clinic-new.jpg";
-import retailImg from "@/assets/project-retail-new.jpg";
+import aquaterraImg from "@/assets/project-nft-new.jpg";
+
+const prideImg = `data:image/svg+xml,${encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125">
+  <defs>
+    <radialGradient id="g1" cx="30%" cy="20%" r="60%"><stop offset="0%" stop-color="#ff3b30" stop-opacity="0.55"/><stop offset="100%" stop-color="#ff3b30" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g2" cx="80%" cy="15%" r="55%"><stop offset="0%" stop-color="#ff9500" stop-opacity="0.5"/><stop offset="100%" stop-color="#ff9500" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g3" cx="85%" cy="55%" r="55%"><stop offset="0%" stop-color="#ffd60a" stop-opacity="0.45"/><stop offset="100%" stop-color="#ffd60a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g4" cx="20%" cy="60%" r="55%"><stop offset="0%" stop-color="#34c759" stop-opacity="0.5"/><stop offset="100%" stop-color="#34c759" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g5" cx="55%" cy="85%" r="55%"><stop offset="0%" stop-color="#0a84ff" stop-opacity="0.55"/><stop offset="100%" stop-color="#0a84ff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g6" cx="15%" cy="90%" r="45%"><stop offset="0%" stop-color="#ff2d55" stop-opacity="0.5"/><stop offset="100%" stop-color="#ff2d55" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="900" height="1125" fill="#0a0a0f"/>
+  <rect width="900" height="1125" fill="url(#g1)"/>
+  <rect width="900" height="1125" fill="url(#g2)"/>
+  <rect width="900" height="1125" fill="url(#g3)"/>
+  <rect width="900" height="1125" fill="url(#g4)"/>
+  <rect width="900" height="1125" fill="url(#g5)"/>
+  <rect width="900" height="1125" fill="url(#g6)"/>
+  <g stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.5">
+    <line x1="180" y1="260" x2="420" y2="180"/>
+    <line x1="420" y1="180" x2="700" y2="300"/>
+    <line x1="180" y1="260" x2="330" y2="480"/>
+    <line x1="330" y1="480" x2="700" y2="300"/>
+    <line x1="330" y1="480" x2="560" y2="640"/>
+    <line x1="560" y1="640" x2="760" y2="560"/>
+    <line x1="560" y1="640" x2="420" y2="860"/>
+    <line x1="420" y1="860" x2="680" y2="920"/>
+    <line x1="180" y1="260" x2="240" y2="700"/>
+    <line x1="240" y1="700" x2="420" y2="860"/>
+  </g>
+  <g fill="#ffffff">
+    <circle cx="180" cy="260" r="9"/>
+    <circle cx="420" cy="180" r="7"/>
+    <circle cx="700" cy="300" r="10"/>
+    <circle cx="330" cy="480" r="8"/>
+    <circle cx="560" cy="640" r="11"/>
+    <circle cx="760" cy="560" r="7"/>
+    <circle cx="420" cy="860" r="9"/>
+    <circle cx="680" cy="920" r="7"/>
+    <circle cx="240" cy="700" r="6"/>
+  </g>
+</svg>
+`)}`;
 
 type Case = {
   id: string;
@@ -26,15 +67,15 @@ type Case = {
 
 const CASES: Case[] = [
   {
-    id: "estatereply",
-    industry: "Real Estate",
-    name: "EstateReply AI",
-    problem: "Real estate agencies lose leads because they respond too late to property inquiries.",
-    solution: "AI agent replies to property questions 24/7, qualifies leads, sends listings and schedules viewings.",
-    result: "80% faster response time, 24/7 lead capture, more booked viewings.",
-    metric: { value: 80, suffix: "%", label: "Faster response time" },
-    tags: ["AI Agent", "Email Automation", "Real Estate", "24/7"],
-    cta: "Automate Real Estate Leads",
+    id: "propertypartner",
+    industry: "Real Estate · Developers & Agencies",
+    name: "Property Partner",
+    problem: "Developers, agencies and independent agents lose buyers because they have no proper website and no way to answer property questions outside office hours.",
+    solution: "The full package: a professional real estate website, an AI chat widget on the site, and an AI agent inside WhatsApp/Telegram that answers questions, sends listings and books viewings around the clock.",
+    result: "A real digital presence and continuous contact with buyers, without hiring extra staff.",
+    metric: { value: 24, suffix: "/7", label: "Always-on lead response" },
+    tags: ["AI Agent", "Website", "Real Estate", "WhatsApp/Telegram"],
+    cta: "Build My Property Package",
     image: realestateAiImg,
   },
   {
@@ -53,74 +94,64 @@ const CASES: Case[] = [
     id: "nicstrading",
     industry: "Trading · Market Intelligence",
     name: "NICS AI Trading",
-    problem: "Traders need structured analysis for Forex, Gold and Crypto instead of emotional decisions.",
-    solution: "AI-assisted market analysis, trading scenarios, risk zones, technical summaries and broker integration.",
-    result: "Faster market preparation, structured trade planning, multi-asset analysis.",
+    problem: "Retail traders act on emotion and scattered information instead of a structured process across Forex, Gold and Crypto.",
+    solution: "NICS AI Trader reads price action, Ichimoku, Fibonacci and volume confluence in real time, then delivers confidence-scored signals with entries, stops and take-profit levels straight to Telegram and MT5 through our Vantage broker integration.",
+    result: "A disciplined, always-on signal engine with a public, verified track record instead of backtested promises.",
     metric: { value: 24, suffix: "/7", label: "Market analysis coverage" },
-    tags: ["AI Trading", "Forex", "Gold", "Crypto"],
+    tags: ["AI Trading", "Forex · Gold · Crypto", "Telegram + MT5", "Verified Track Record"],
     cta: "Explore AI Trading",
     href: "https://fwd.cx/Yj25BCrDzEHB",
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    id: "hotel",
-    industry: "Hotels · Hospitality",
-    name: "Hotel Booking Automation",
-    problem: "Hotels miss bookings because guests ask questions on WhatsApp, email and social channels at all hours.",
-    solution: "AI booking assistant answers questions, checks availability, explains services and helps guests book.",
-    result: "Faster guest replies, more direct bookings, less manual reception work.",
-    metric: { value: 60, suffix: "%", label: "More direct bookings" },
-    tags: ["WhatsApp API", "Hospitality", "Booking AI", "Automation"],
-    cta: "Automate Hotel Bookings",
+    id: "hospitality",
+    industry: "Hospitality · Hotels & Airbnb",
+    name: "Hotel & Airbnb Auto-Reply",
+    problem: "Hotels and independent Airbnb hosts miss bookings because guests message on WhatsApp, email, Airbnb chat and social media at all hours.",
+    solution: "An AI guest-support assistant answers questions, checks availability, explains house rules and amenities, and helps guests book or check in — for hotels and individual Airbnb hosts alike.",
+    result: "Faster guest replies day and night, and far less manual work for reception or a host running several listings.",
+    metric: { value: 24, suffix: "/7", label: "Guest replies, day or night" },
+    tags: ["WhatsApp API", "Hospitality", "Airbnb", "Automation"],
+    cta: "Automate Guest Replies",
     image: hotelImg,
   },
   {
     id: "restaurant",
-    industry: "Restaurants",
-    name: "Restaurant Chain Automation",
-    problem: "Restaurants lose time handling repetitive order questions, menu requests and customer service.",
-    solution: "AI ordering assistant handles menu questions, reservations, delivery inquiries and customer support.",
-    result: "Faster service, less manual work, higher operational efficiency.",
-    metric: { value: 5, suffix: "×", label: "Faster order handling" },
-    tags: ["FastAPI", "React", "NLP", "Automation"],
+    industry: "Restaurants · Food Service",
+    name: "Restaurant Ordering Assistant",
+    problem: "Restaurant staff spend hours answering the same questions about the menu, hours, delivery and reservations instead of serving guests.",
+    solution: "An AI assistant handles menu questions, table reservations and delivery inquiries over chat, and hands off to staff only when a human is really needed.",
+    result: "Less repetitive phone and chat work for staff, and guests get instant answers at any hour.",
+    metric: { value: 24, suffix: "/7", label: "Guest questions answered anytime" },
+    tags: ["Chat AI", "Reservations", "Delivery", "Automation"],
     cta: "Automate Restaurant Orders",
     image: restaurantImg,
   },
   {
-    id: "logistics",
-    industry: "Logistics · Supply Chain",
-    name: "Logistics Parser AI",
-    problem: "Logistics companies manually process documents, shipment updates and cargo data.",
-    solution: "AI parser extracts data from messages, PDFs and shipment documents, then structures it for tracking and analytics.",
-    result: "Faster document processing, real-time tracking, less manual data entry.",
-    metric: { value: 90, suffix: "%", label: "Less manual data entry" },
-    tags: ["Python", "AI/ML", "Real-time", "Analytics"],
-    cta: "Build Logistics AI Parser",
-    image: logisticsImg,
+    id: "aquaterra",
+    industry: "Metaverse · AI Education",
+    name: "AquaTerra World",
+    problem: "AI education is abstract and hard to engage with through slides and video alone.",
+    solution: "AquaTerra World is our metaverse project — 640,000 virtual land parcels designed as an interactive, AI-teaching environment. Development is currently paused while we focus on other priorities.",
+    result: "A concrete blueprint and reserved virtual territory, ready to resume when development restarts.",
+    metric: { value: 640000, suffix: "", label: "Virtual land parcels planned" },
+    tags: ["Metaverse", "AI Education", "Virtual Land", "Paused"],
+    cta: "See AquaTerra World",
+    href: "https://aquaterra.world",
+    image: aquaterraImg,
   },
   {
-    id: "clinic",
-    industry: "Healthcare · Clinics",
-    name: "Voice Assistant for Clinics",
-    problem: "Clinics spend too much time answering calls and scheduling appointments manually.",
-    solution: "Voice AI assistant handles patient questions, appointment requests and basic clinic information.",
-    result: "Less reception workload, faster appointment booking, better patient experience.",
-    metric: { value: 70, suffix: "%", label: "Less reception workload" },
-    tags: ["Voice AI", "Healthcare", "Automation", "NLP"],
-    cta: "Create Clinic Voice Assistant",
-    image: clinicImg,
-  },
-  {
-    id: "retail",
-    industry: "Retail",
-    name: "Retail Analytics Platform",
-    problem: "Retail stores need better visibility into demand, stock and sales trends.",
-    solution: "AI analytics platform predicts sales, detects inventory problems and gives business insights.",
-    result: "Better stock planning, fewer missed sales, data-driven decisions.",
-    metric: { value: 40, suffix: "%", label: "Fewer missed sales" },
-    tags: ["Analytics", "AI/ML", "React", "Python"],
-    cta: "Build Retail Analytics",
-    image: retailImg,
+    id: "pride",
+    industry: "Social Network · Community",
+    name: "PRIDE Social Network",
+    problem: "LGBTQ+ communities often lack a dedicated social platform built with their needs in mind.",
+    solution: "We designed and built PRIDE Social Network (pridesocial.org) end to end — profiles, feeds and community features, built in-house rather than on a template.",
+    result: "A live platform already in use by an early group of real members, growing organically.",
+    metric: { value: 100, suffix: "%", label: "In-house build, live today" },
+    tags: ["Social Network", "Community", "LGBTQ+", "Live"],
+    cta: "Visit PRIDE Social",
+    href: "https://pridesocial.org",
+    image: prideImg,
   },
 ];
 

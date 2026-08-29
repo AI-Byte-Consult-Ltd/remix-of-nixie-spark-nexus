@@ -506,7 +506,7 @@ const NicsTraderApp = () => {
       label: t.winRate,
       value: `${formatNumber(allTime.winRatePercent, 1)}%`,
       icon: BarChart3,
-      tone: "text-violet-300",
+      tone: "text-rose-300",
     },
   ];
 
@@ -644,7 +644,7 @@ const NicsTraderApp = () => {
           <>
             <section className="rounded-[28px] border border-white/10 bg-white/[0.04] p-5">
               <div className="flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-2xl bg-violet-400/10 text-violet-300">
+                <div className="grid h-11 w-11 place-items-center rounded-2xl bg-rose-400/10 text-rose-300">
                   <LineChart className="h-5 w-5" />
                 </div>
                 <div>

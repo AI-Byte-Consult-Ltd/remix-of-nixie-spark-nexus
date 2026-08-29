@@ -210,8 +210,8 @@ export const SignalCard = ({
                 </div>
               )}
               {news.length > 0 && (
-                <div className="rounded-xl border border-violet-400/15 bg-violet-400/[0.05] p-3">
-                  <p className="text-xs font-medium text-violet-200">{t.newsAnalysis}</p>
+                <div className="rounded-xl border border-teal-400/15 bg-teal-400/[0.05] p-3">
+                  <p className="text-xs font-medium text-teal-200">{t.newsAnalysis}</p>
                   <ul className="mt-2 space-y-1.5 text-[11px] leading-5 text-slate-400">
                     {news.map((item, index) => <li key={`news-${index}`}>• {item}</li>)}
                   </ul>

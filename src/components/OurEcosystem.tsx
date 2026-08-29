@@ -17,7 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-type Status = "Live" | "Alpha" | "Training Active" | "Research Active" | "Coming Soon";
+type Status = "Live" | "Alpha" | "Training Active" | "Research Active" | "Coming Soon" | "Paused";
 
 interface EcosystemModule {
   id: string;
@@ -114,27 +114,27 @@ const modules: EcosystemModule[] = [
     id: "aquaterra",
     name: "AquaTerra World",
     icon: Globe2,
-    status: "Alpha",
+    status: "Paused",
     short:
-      "Immersive AI-driven metaverse for virtual collaboration, creativity and digital economy.",
-    tags: ["Metaverse", "AI", "Virtual World"],
-    who: "Creators, brands and communities building persistent virtual spaces.",
+      "A metaverse project — 640,000 virtual land parcels designed as an interactive, AI-teaching environment. Development is currently paused while we focus on other priorities.",
+    tags: ["Metaverse", "AI Education", "Virtual Land"],
+    who: "Educators and learners looking for an immersive way to teach and learn AI-era skills.",
     connection:
-      "Places NICS agents inside an immersive world — the social + creative layer of the ecosystem.",
-    cta: { label: "Enter AquaTerra", href: "https://aquaterra.world", external: true },
+      "The planned social + learning layer of the ecosystem, once development resumes.",
+    cta: { label: "See AquaTerra World", href: "https://aquaterra.world", external: true },
   },
   {
     id: "pride",
-    name: "PRIDE Social Network",
+    name: "NICS Social (PRIDE Social Network)",
     icon: Users,
     status: "Live",
     short:
-      "Decentralized Web3 community platform rewarding creativity and engagement.",
-    tags: ["Web3", "Social", "Token Economy"],
-    who: "Creators and communities seeking a fair, token-rewarded social layer.",
+      "A social network we built in-house for the LGBTQ+ community — live today, still basic, with a small first group of real users.",
+    tags: ["Social Network", "Community", "LGBTQ+"],
+    who: "The LGBTQ+ community and allies looking for a dedicated social space.",
     connection:
-      "The community layer — where NICS-powered experiences meet a decentralized identity and reward system.",
-    cta: { label: "Discover PRIDE Network", href: "https://pridesocial.org", external: true },
+      "The community layer of the ecosystem — built independently of the AI/trading products.",
+    cta: { label: "Visit PRIDE Social", href: "https://pridesocial.org", external: true },
   },
   {
     id: "animals",
@@ -157,6 +157,7 @@ const statusStyles: Record<Status, string> = {
   "Training Active": "bg-amber-300/10 text-amber-200 border-amber-300/30",
   "Research Active": "bg-cyan-300/10 text-cyan-200 border-cyan-300/30",
   "Coming Soon": "bg-white/5 text-white/60 border-white/15",
+  Paused: "bg-white/5 text-white/60 border-white/15",
 };
 
 const OrbitDot = ({ delay = 0 }: { delay?: number }) => (
