@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 
 const SPOTIFY_URL = "https://open.spotify.com/album/1Sj5W4WdKgCUOw0ziLSrDX";
-const AMUSE_URL = "https://share.amuse.io/album/aleksandr-tochilov-just-live";
+const YOUTUBE_MUSIC_URL = "https://music.youtube.com/playlist?list=OLAK5uy_lKY_Wdx2UCXcvG_tMFPXAYUqoRJSr4TQ0&si=8tt5eusrGFYwhcfU";
+const APPLE_MUSIC_URL = "https://music.apple.com/us/album/just-live/6771376298";
 
 const credits = [
   {
@@ -75,9 +76,9 @@ const NicsMultimedia = () => {
                   title="Just Live — Spotify player"
                   data-testid="embed-iframe"
                   style={{ borderRadius: 16 }}
-                  src="https://open.spotify.com/embed/album/1Sj5W4WdKgCUOw0ziLSrDX?utm_source=generator&si=7b1b89c7df784bf8"
+                  src="https://open.spotify.com/embed/album/1Sj5W4WdKgCUOw0ziLSrDX?utm_source=generator&si=211635320bdb44a4"
                   width="100%"
-                  height="152"
+                  height="352"
                   frameBorder="0"
                   allowFullScreen
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -85,16 +86,22 @@ const NicsMultimedia = () => {
                 />
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+              <div className="flex flex-wrap gap-4 justify-center mt-6">
                 <a href={SPOTIFY_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="w-full sm:w-auto bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
                     Listen on Spotify
                     <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </a>
-                <a href={AMUSE_URL} target="_blank" rel="noopener noreferrer">
+                <a href={YOUTUBE_MUSIC_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
-                    Listen on Amuse
+                    Listen on YouTube Music
+                    <ExternalLink className="ml-2 w-4 h-4" />
+                  </Button>
+                </a>
+                <a href={APPLE_MUSIC_URL} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
+                    Listen on Apple Music
                     <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </a>
