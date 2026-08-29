@@ -194,7 +194,7 @@ const CASES: Case[] = [
     industry: "Music · Multimedia",
     name: "NICS Multimedia",
     problem: "Creative work outside our core AI products had no home or distribution.",
-    solution: "Lyrics written with NICS Multimedia's creator, music composed with the NICS Multimedia system, released under the Aleksandr Tochilov name on Spotify and other streaming platforms — starting with the track \"Just Live\".",
+    solution: "Lyrics, musical idea and visual direction entirely by Aleksandr Tochilov; technical production by NICS Multimedia. Released on Spotify and other streaming platforms — starting with the track \"Just Live\".",
     result: "Real, released music available to stream today, not a mockup.",
     metric: { value: 1, suffix: "", label: "Track released, more in the works" },
     tags: ["Music", "Streaming", "Spotify", "Creative"],
