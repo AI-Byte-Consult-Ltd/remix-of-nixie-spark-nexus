@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
 import {
   Brain,
   Eye,
@@ -160,13 +160,129 @@ const statusStyles: Record<Status, string> = {
   Paused: "bg-white/5 text-white/60 border-white/15",
 };
 
-const OrbitDot = ({ delay = 0 }: { delay?: number }) => (
-  <motion.span
-    className="absolute w-1 h-1 rounded-full bg-amber-300/70 shadow-[0_0_8px_2px_rgba(251,191,36,0.6)]"
-    animate={{ opacity: [0.2, 1, 0.2] }}
-    transition={{ duration: 3, repeat: Infinity, delay }}
-  />
-);
+// Quadratic-bezier path between two points in the shared 0-100 viewBox,
+// bowed sideways so connections read as organic nerve lines, not spokes.
+const curvePath = (x1: number, y1: number, x2: number, y2: number, curve: number) => {
+  const mx = (x1 + x2) / 2;
+  const my = (y1 + y2) / 2;
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const len = Math.hypot(dx, dy) || 1;
+  const cx = mx + (-dy / len) * curve;
+  const cy = my + (dx / len) * curve;
+  return `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`;
+};
+
+function ModuleNode({
+  m,
+  p,
+  index,
+  hovered,
+  onHover,
+  onLeave,
+  onClick,
+}: {
+  m: EcosystemModule;
+  p: { x: number; y: number };
+  index: number;
+  hovered: boolean;
+  onHover: () => void;
+  onLeave: () => void;
+  onClick: () => void;
+}) {
+  const Icon = m.icon;
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const springX = useSpring(mx, { stiffness: 220, damping: 18, mass: 0.4 });
+  const springY = useSpring(my, { stiffness: 220, damping: 18, mass: 0.4 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mx.set((e.clientX - rect.left - rect.width / 2) * 0.12);
+    my.set((e.clientY - rect.top - rect.height / 2) * 0.12);
+  };
+
+  const handleLeave = () => {
+    mx.set(0);
+    my.set(0);
+    onLeave();
+  };
+
+  return (
+    <motion.button
+      type="button"
+      onClick={onClick}
+      onMouseEnter={onHover}
+      onMouseLeave={handleLeave}
+      onMouseMove={handleMouseMove}
+      initial={{ opacity: 0, scale: 0.6 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.15 * index }}
+      whileHover={{ scale: 1.06 }}
+      className="absolute -translate-x-1/2 -translate-y-1/2 group text-left"
+      style={{ left: `${p.x}%`, top: `${p.y}%`, x: springX, y: springY }}
+    >
+      <motion.div
+        animate={{
+          x: [0, (index % 2 === 0 ? 1 : -1) * (4 + (index % 3)), 0],
+          y: [0, -(5 + (index % 4)), 0],
+        }}
+        transition={{
+          duration: 6 + (index % 4),
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: index * 0.35,
+        }}
+        className="relative"
+      >
+        <div
+          className={`relative w-[190px] rounded-2xl border backdrop-blur-xl px-4 py-3 transition-all duration-300 ${
+            hovered
+              ? "border-amber-300/50 bg-white/[0.06] shadow-[0_0_40px_-10px_rgba(251,191,36,0.5)]"
+              : "border-white/10 bg-white/[0.03] hover:border-white/20"
+          }`}
+        >
+          <div className="flex items-center gap-2.5 mb-1.5">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400/20 to-amber-600/10 border border-amber-300/20 flex items-center justify-center">
+              <Icon className="w-4 h-4 text-amber-200" />
+            </div>
+            <div className="text-sm font-semibold truncate">{m.name}</div>
+          </div>
+          <div
+            className={`inline-flex items-center gap-1.5 text-[10px] px-2 py-0.5 rounded-full border ${statusStyles[m.status]}`}
+          >
+            <span className="w-1 h-1 rounded-full bg-current animate-pulse" />
+            {m.status}
+          </div>
+          <AnimatePresence>
+            {hovered && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.25 }}
+                className="overflow-hidden"
+              >
+                <p className="text-[11px] text-white/60 leading-relaxed mt-2">{m.short}</p>
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {m.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="text-[9px] px-1.5 py-0.5 rounded-full bg-amber-300/10 text-amber-200/80 border border-amber-300/20"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.div>
+    </motion.button>
+  );
+}
 
 const OurEcosystem = () => {
   const { t } = useLanguage();
@@ -174,16 +290,20 @@ const OurEcosystem = () => {
   const [hovered, setHovered] = useState<string | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
-  // Positions around the core on desktop (percent of container)
+  // Organic cluster around the core on desktop (percent of container) —
+  // jittered angle/radius per node plus a per-link curve bow, so the map
+  // reads as a living network rather than a perfect mechanical orbit.
   const positions = useMemo(() => {
     const n = modules.length;
     return modules.map((_, i) => {
-      const angle = (i / n) * Math.PI * 2 - Math.PI / 2;
-      const rx = 38; // horizontal radius %
-      const ry = 34; // vertical radius %
+      const angle = (i / n) * Math.PI * 2 - Math.PI / 2 + (Math.random() - 0.5) * 0.22;
+      const rx = 35 + Math.random() * 6;
+      const ry = 29 + Math.random() * 6;
+      const curve = (Math.random() - 0.5) * 24;
       return {
         x: 50 + Math.cos(angle) * rx,
         y: 50 + Math.sin(angle) * ry,
+        curve,
       };
     });
   }, []);
@@ -290,16 +410,15 @@ const OurEcosystem = () => {
               </defs>
               {positions.map((p, i) => {
                 const isActive = hovered === modules[i].id;
+                const d = curvePath(50, 50, p.x, p.y, p.curve);
                 return (
-                  <motion.line
+                  <motion.path
                     key={modules[i].id}
-                    x1={50}
-                    y1={50}
-                    x2={p.x}
-                    y2={p.y}
+                    id={`eco-link-${modules[i].id}`}
+                    d={d}
+                    fill="none"
                     stroke="url(#lineGrad)"
                     strokeWidth={isActive ? 0.35 : 0.15}
-                    strokeDasharray="0.6 0.8"
                     initial={{ opacity: 0, pathLength: 0 }}
                     whileInView={{ opacity: isActive ? 1 : 0.35, pathLength: 1 }}
                     animate={{ opacity: isActive ? 1 : 0.35 }}
@@ -309,6 +428,18 @@ const OurEcosystem = () => {
                   />
                 );
               })}
+              {/* Signal pulses traveling along each link, like impulses through a nerve */}
+              {positions.map((p, i) => (
+                <circle key={`pulse-${modules[i].id}`} r={hovered === modules[i].id ? 0.9 : 0.55} fill="#fbbf24" opacity={0.9}>
+                  <animateMotion
+                    dur={`${3.5 + (i % 4) * 0.6}s`}
+                    begin={`${i * 0.4}s`}
+                    repeatCount="indefinite"
+                  >
+                    <mpath href={`#eco-link-${modules[i].id}`} />
+                  </animateMotion>
+                </circle>
+              ))}
             </svg>
 
             {/* Central Core */}
@@ -325,22 +456,28 @@ const OurEcosystem = () => {
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 group"
             >
               <div className="relative w-48 h-48 lg:w-56 lg:h-56 rounded-full flex items-center justify-center">
-                {/* Rings */}
+                {/* Breathing halos, not orbiting rings */}
                 <motion.div
                   className="absolute inset-0 rounded-full border border-amber-300/20"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                >
-                  <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-amber-300 shadow-[0_0_10px_2px_rgba(251,191,36,0.8)]" />
-                </motion.div>
+                  animate={{ scale: [1, 1.08, 1], opacity: [0.35, 0.7, 0.35] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
                 <motion.div
                   className="absolute inset-4 rounded-full border border-white/10"
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
+                  animate={{ scale: [1, 1.05, 1], opacity: [0.4, 0.75, 0.4] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
                 />
                 {/* Glow */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-400/25 via-amber-500/10 to-transparent blur-2xl" />
-                <div className="relative w-32 h-32 lg:w-36 lg:h-36 rounded-full bg-gradient-to-br from-[#141018] to-[#0a0a10] border border-amber-300/30 shadow-[0_0_60px_-10px_rgba(251,191,36,0.6)] flex flex-col items-center justify-center text-center px-4">
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-400/25 via-amber-500/10 to-transparent blur-2xl"
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <motion.div
+                  animate={{ scale: [1, 1.03, 1] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative w-32 h-32 lg:w-36 lg:h-36 rounded-full bg-gradient-to-br from-[#141018] to-[#0a0a10] border border-amber-300/30 shadow-[0_0_60px_-10px_rgba(251,191,36,0.6)] flex flex-col items-center justify-center text-center px-4"
+                >
                   <div className="text-[10px] tracking-[0.3em] text-amber-300/80 mb-1">
                     NICS AI
                   </div>
@@ -350,90 +487,23 @@ const OurEcosystem = () => {
                   <div className="text-[10px] text-white/40 mt-1">
                     Independent AI Stack
                   </div>
-                </div>
+                </motion.div>
               </div>
             </motion.button>
 
             {/* Modules */}
-            {modules.map((m, i) => {
-              const p = positions[i];
-              const Icon = m.icon;
-              return (
-                <motion.button
-                  type="button"
-                  key={m.id}
-                  onClick={() => setActive(m)}
-                  onMouseEnter={() => setHovered(m.id)}
-                  onMouseLeave={() => setHovered(null)}
-                  initial={{ opacity: 0, scale: 0.6 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.15 * i }}
-                  whileHover={{ scale: 1.06 }}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 group text-left"
-                  style={{ left: `${p.x}%`, top: `${p.y}%` }}
-                >
-                  <motion.div
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{
-                      duration: 5 + (i % 3),
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: i * 0.3,
-                    }}
-                    className="relative"
-                  >
-                    <div
-                      className={`relative w-[190px] rounded-2xl border backdrop-blur-xl px-4 py-3 transition-all duration-300 ${
-                        hovered === m.id
-                          ? "border-amber-300/50 bg-white/[0.06] shadow-[0_0_40px_-10px_rgba(251,191,36,0.5)]"
-                          : "border-white/10 bg-white/[0.03] hover:border-white/20"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2.5 mb-1.5">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400/20 to-amber-600/10 border border-amber-300/20 flex items-center justify-center">
-                          <Icon className="w-4 h-4 text-amber-200" />
-                        </div>
-                        <div className="text-sm font-semibold truncate">
-                          {m.name}
-                        </div>
-                      </div>
-                      <div
-                        className={`inline-flex items-center gap-1.5 text-[10px] px-2 py-0.5 rounded-full border ${statusStyles[m.status]}`}
-                      >
-                        <span className="w-1 h-1 rounded-full bg-current animate-pulse" />
-                        {m.status}
-                      </div>
-                      <AnimatePresence>
-                        {hovered === m.id && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.25 }}
-                            className="overflow-hidden"
-                          >
-                            <p className="text-[11px] text-white/60 leading-relaxed mt-2">
-                              {m.short}
-                            </p>
-                            <div className="flex flex-wrap gap-1 mt-2">
-                              {m.tags.map((t) => (
-                                <span
-                                  key={t}
-                                  className="text-[9px] px-1.5 py-0.5 rounded-full bg-amber-300/10 text-amber-200/80 border border-amber-300/20"
-                                >
-                                  {t}
-                                </span>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  </motion.div>
-                </motion.button>
-              );
-            })}
+            {modules.map((m, i) => (
+              <ModuleNode
+                key={m.id}
+                m={m}
+                p={positions[i]}
+                index={i}
+                hovered={hovered === m.id}
+                onHover={() => setHovered(m.id)}
+                onLeave={() => setHovered(null)}
+                onClick={() => setActive(m)}
+              />
+            ))}
           </div>
         </div>
 
