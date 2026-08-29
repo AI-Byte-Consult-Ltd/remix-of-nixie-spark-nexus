@@ -419,6 +419,22 @@ function ExpandedCase({ open, onClose, c }: { open: boolean; onClose: () => void
                 <div className="text-xs text-white/60">{c.metric.label}</div>
               </div>
             </div>
+            {c.id === "multimedia" && (
+              <div className="px-6 md:px-8 pb-6 md:pb-8">
+                <iframe
+                  title="NICS Multimedia — Spotify player"
+                  data-testid="embed-iframe"
+                  style={{ borderRadius: 12 }}
+                  src="https://open.spotify.com/embed/album/1Sj5W4WdKgCUOw0ziLSrDX?utm_source=generator&si=7b1b89c7df784bf8"
+                  width="100%"
+                  height="152"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                />
+              </div>
+            )}
             <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 p-6 md:p-8">
               <div className="flex flex-wrap gap-2">
                 {c.tags.map((t) => (
