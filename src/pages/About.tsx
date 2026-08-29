@@ -46,8 +46,8 @@ const About = () => {
     {
       icon: Music2,
       title: "NICS Multimedia",
-      description: "Original music we write and record, released under the Aleksandr Tochilov name on Spotify and other streaming platforms — starting with the track \"Just Live\".",
-      link: "https://share.amuse.io/album/aleksandr-tochilov-just-live",
+      description: "Lyrics written with NICS Multimedia's creator, music composed with the NICS Multimedia system, released under the Aleksandr Tochilov name on Spotify and other streaming platforms — starting with the track \"Just Live\".",
+      link: "/nics-multimedia",
     },
     {
       icon: Share2,

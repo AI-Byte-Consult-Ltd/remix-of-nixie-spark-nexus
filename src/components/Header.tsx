@@ -28,7 +28,7 @@ const nicsServices = [
 { href: "https://estate.aibyteconsult.com", label: "NICS Real Estate", external: true },
 { href: "/nics-ecosystem", label: "NICS AI Ecosystem", external: false },
 { href: "/trading", label: "NICS AI Trading", external: false },
-{ href: "https://share.amuse.io/album/aleksandr-tochilov-just-live", label: "NICS Multimedia", external: true }];
+{ href: "/nics-multimedia", label: "NICS Multimedia", external: false }];
 
 
 const Header = () => {

@@ -11,6 +11,7 @@ import About from "./pages/About";
 import Estate from "./pages/Estate";
 import Trading from "./pages/Trading";
 import NicsEcosystem from "./pages/NicsEcosystem";
+import NicsMultimedia from "./pages/NicsMultimedia";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 
@@ -52,6 +53,7 @@ const App = () => (
               }
             />
             <Route path="/nics-ecosystem" element={<NicsEcosystem />} />
+            <Route path="/nics-multimedia" element={<NicsMultimedia />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
