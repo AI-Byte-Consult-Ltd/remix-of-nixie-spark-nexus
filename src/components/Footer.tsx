@@ -44,6 +44,7 @@ const Footer = () => {
               <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">{t("footer.legal")}</h3>
               <ul className="space-y-2">
                 <li><Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">{t("footer.terms")}</Link></li>
+                <li><Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">{t("footer.privacy")}</Link></li>
               </ul>
               <div className="pt-4 space-y-2">
                 <a href="mailto:info@aibyteconsult.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">

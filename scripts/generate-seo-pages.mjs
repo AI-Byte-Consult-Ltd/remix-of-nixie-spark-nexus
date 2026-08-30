@@ -135,6 +135,14 @@ const pages = [
     schemaType: "WebPage",
   },
   {
+    route: "/privacy",
+    title: "Privacy Policy — AI Byte Consult",
+    description:
+      "How AI Byte Consult Ltd. collects, uses, shares, and protects personal data across our website, Telegram bot, NICS AI Trader Mini App, and connected Meta/Threads account.",
+    type: "website",
+    schemaType: "WebPage",
+  },
+  {
     route: "/delete",
     title: "Data Deletion Instructions — AI Byte Consult",
     description:
