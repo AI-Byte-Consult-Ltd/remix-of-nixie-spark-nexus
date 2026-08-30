@@ -135,6 +135,14 @@ const pages = [
     schemaType: "WebPage",
   },
   {
+    route: "/delete",
+    title: "Data Deletion Instructions — AI Byte Consult",
+    description:
+      "How to request deletion of your data connected to AI Byte Consult Ltd. applications, including data received through Meta/Threads platform integrations.",
+    type: "website",
+    schemaType: "WebPage",
+  },
+  {
     route: "/nics-multimedia",
     title: "NICS Multimedia — Original Music by Aleksandr Tochilov | AI Byte Consult",
     description:
