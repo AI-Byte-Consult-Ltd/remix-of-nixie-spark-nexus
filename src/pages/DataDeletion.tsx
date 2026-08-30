@@ -22,10 +22,12 @@ const DataDeletion = () => {
 
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p>
-                If you have connected a Meta account (including Threads) to any
-                application operated by AI Byte Consult Ltd., or otherwise
-                provided us with personal data, you can request that we delete
-                it at any time.
+                AI Byte Consult Ltd. is an applied-AI company — this page covers
+                data collected across all of our products, not only our Meta/Threads
+                integration: the website contact form and newsletter, the NICS AI
+                Trader Telegram bot and Mini App, and our connected Threads account.
+                If you have used any of these and provided us with personal data,
+                you can request that we delete it at any time.
               </p>
 
               <p>
@@ -38,28 +40,39 @@ const DataDeletion = () => {
                 </a>{" "}
                 with the subject line "Data deletion request", from the email
                 address or account you used with us. Please tell us which
-                account or platform (e.g. Threads, Telegram) the request
-                relates to, so we can locate your data.
+                product the request relates to (Telegram bot, NICS AI Trader
+                Mini App, newsletter, contact form, or our Meta/Threads
+                integration), so we can locate your data.
               </p>
 
               <p>
                 Once we receive and verify your request, we will delete the
-                personal data we hold about you from our systems — including
-                any access tokens, account identifiers, and platform data
-                received through connected Meta permissions — within 30 days,
-                except where we are required to retain specific records by
-                law.
+                personal data we hold about you from our active systems —
+                including Telegram account identifiers, trading-signal and
+                journal history, newsletter subscription, contact-form
+                submissions, and any Meta/Threads access tokens or platform
+                data tied to your request — within 30 days, except where we
+                are required to retain specific records by law. Data already
+                contained in a routine database backup ages out on our normal
+                backup rotation schedule.
               </p>
 
               <p>
-                You can also revoke our app's access to your Meta account
-                directly at any time, from your Meta Accounts Center under
-                Apps and websites — this immediately stops us from receiving
-                any further data from that account.
+                If your request relates to our Meta/Threads integration, note
+                that this integration is used to publish our own account's
+                trading updates — we do not collect data from your personal
+                Meta account through it. You can still revoke our app's access
+                at any time from your Meta Accounts Center under Apps and
+                websites.
               </p>
 
               <p>
-                For any questions about this process, contact{" "}
+                See our{" "}
+                <a href="/privacy" className="text-primary hover:underline">
+                  Privacy Policy
+                </a>{" "}
+                for full details on what data we collect and why. For any
+                questions about this process, contact{" "}
                 <a
                   href="mailto:info@aibyteconsult.com"
                   className="text-primary hover:underline"

@@ -114,7 +114,7 @@ const Terms = () => {
       content: [
         "We process the personal data you provide through our contact form, newsletter signup, Telegram bot, and Mini App (such as your name, email address, and Telegram account identifiers) to operate the Services, respond to inquiries, deliver signals or content you have opted into, and, where you have separately agreed, send periodic updates or marketing communications.",
         "We do not sell your personal data to third parties. We may share data with service providers strictly necessary to operate the Services (for example, our hosting, database, email-delivery, and messaging infrastructure providers), under confidentiality obligations consistent with applicable data-protection law, including the EU General Data Protection Regulation (GDPR) where it applies to you.",
-        "You may withdraw consent to marketing communications at any time (for example, by unsubscribing from the newsletter or blocking/leaving the Telegram bot), and may request access to, correction of, or deletion of your personal data by contacting us at the email address below. A dedicated Privacy Policy with full technical and legal detail is planned; until it is published, this section is our governing privacy notice.",
+        "You may withdraw consent to marketing communications at any time (for example, by unsubscribing from the newsletter or blocking/leaving the Telegram bot), and may request access to, correction of, or deletion of your personal data by contacting us at the email address below. Full technical and legal detail on data collection, use, and your rights is published in our Privacy Policy.",
       ],
     },
     {
