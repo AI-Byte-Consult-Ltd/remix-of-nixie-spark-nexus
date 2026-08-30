@@ -13,6 +13,7 @@ import Trading from "./pages/Trading";
 import NicsEcosystem from "./pages/NicsEcosystem";
 import NicsMultimedia from "./pages/NicsMultimedia";
 import Terms from "./pages/Terms";
+import DataDeletion from "./pages/DataDeletion";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/nics-ecosystem" element={<NicsEcosystem />} />
             <Route path="/nics-multimedia" element={<NicsMultimedia />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/delete" element={<DataDeletion />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
