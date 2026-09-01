@@ -211,6 +211,13 @@ const Hero = () => {
               className="mt-10 flex flex-wrap items-center gap-3"
             >
               <Link
+                to="/trading"
+                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black px-6 py-3 text-sm font-semibold hover:from-amber-300 hover:to-yellow-400 transition-all shadow-[0_8px_30px_-8px_rgba(251,191,36,0.6)]"
+              >
+                {t("hero2.cta.trading")}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
                 to="/nics-ecosystem"
                 className="group inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm font-medium hover:bg-white/90 transition-all"
               >

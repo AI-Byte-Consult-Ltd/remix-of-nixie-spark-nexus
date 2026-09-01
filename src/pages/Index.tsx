@@ -16,9 +16,9 @@ import SEO from "@/components/SEO";
 
 const Index = () => {
   const seoProps = {
-    title: "AI Byte Consult — AI Systems, Agents & NICS Ecosystem",
+    title: "AI Byte Consult — NICS AI Trader, AI Systems & NICS Ecosystem",
     description:
-      "AI Byte Consult builds production AI systems, intelligent agents and the NICS ecosystem for trading, business automation, research and digital platforms.",
+      "AI Byte Consult builds production AI systems and the NICS ecosystem, including NICS AI Trader — AI technical analysis and trading signals for gold, forex and crypto in Telegram — plus intelligent agents for business automation and research.",
     canonical: "https://aibyteconsult.com/",
     ogImage: "https://aibyteconsult.com/android-chrome-512x512.png",
     imageAlt: "AI Byte Consult and the NICS AI Ecosystem",
