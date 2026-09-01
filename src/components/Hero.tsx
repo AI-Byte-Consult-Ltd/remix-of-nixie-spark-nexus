@@ -148,7 +148,10 @@ const Hero = () => {
           muted
           playsInline
           loop
-        />
+          aria-hidden="true"
+        >
+          <track kind="captions" srcLang="en" src="/hero-video-captions.vtt" label="English" default />
+        </video>
       </motion.div>
 
       <Particles />

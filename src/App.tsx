@@ -7,18 +7,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
-import About from "./pages/About";
-import Estate from "./pages/Estate";
-import Trading from "./pages/Trading";
-import NicsEcosystem from "./pages/NicsEcosystem";
-import NicsMultimedia from "./pages/NicsMultimedia";
-import Terms from "./pages/Terms";
-import Privacy from "./pages/Privacy";
-import DataDeletion from "./pages/DataDeletion";
-import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 const NicsTraderApp = lazy(() => import("./pages/NicsTraderApp"));
+const About = lazy(() => import("./pages/About"));
+const Estate = lazy(() => import("./pages/Estate"));
+const Trading = lazy(() => import("./pages/Trading"));
+const NicsEcosystem = lazy(() => import("./pages/NicsEcosystem"));
+const NicsMultimedia = lazy(() => import("./pages/NicsMultimedia"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const DataDeletion = lazy(() => import("./pages/DataDeletion"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -27,6 +27,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <Suspense fallback={<div className="min-h-screen bg-background" />}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
@@ -61,6 +62,7 @@ const App = () => (
             <Route path="/delete" element={<DataDeletion />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>

@@ -122,7 +122,7 @@ const HomeMarketTicker = () => {
                   </span>
                   <span
                     className={`inline-flex items-center gap-0.5 text-[11px] font-medium ${
-                      up ? "text-green-600" : "text-red-600"
+                      up ? "text-emerald-700" : "text-rose-600"
                     }`}
                   >
                     {up ? (
