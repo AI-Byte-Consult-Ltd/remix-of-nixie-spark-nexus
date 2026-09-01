@@ -39,7 +39,7 @@ const Team = () => {
               <p className="text-muted-foreground leading-relaxed">{t(member.bioKey)}</p>
               {member.link && (
                 <div className="flex justify-center pt-2">
-                  <a href={member.link.url} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-accent hover:bg-primary/10 transition-colors group/btn" aria-label={member.link.type}>
+                  <a href={member.link.url} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-accent hover:bg-primary/10 transition-colors group/btn" aria-label={`${t(member.nameKey)} — LinkedIn`}>
                     {member.link.type === "linkedin" ? (
                       <Linkedin className="w-5 h-5 text-primary group-hover/btn:scale-110 transition-transform" />
                     ) : (
