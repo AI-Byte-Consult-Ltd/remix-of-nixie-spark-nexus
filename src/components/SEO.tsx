@@ -25,11 +25,12 @@ const SEO = ({
   jsonLd,
   noindex,
 }: SEOProps) => {
-  const canonicalUrl =
-    canonical ||
-    (typeof window !== "undefined"
-      ? window.location.origin + window.location.pathname
-      : undefined);
+  const canonicalUrl = noindex
+    ? undefined
+    : canonical ||
+      (typeof window !== "undefined"
+        ? window.location.origin + window.location.pathname
+        : undefined);
   const resolvedImage = ogImage && !ogImage.includes("/og-") ? ogImage : DEFAULT_IMAGE;
 
   return (

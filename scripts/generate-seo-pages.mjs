@@ -56,9 +56,9 @@ const pages = [
   },
   {
     route: "/trading",
-    title: "NICS AI Trader — Telegram Trading Signals & Mini App",
+    title: "NICS AI Trader — AI Technical Analysis & Trading Signals in Telegram",
     description:
-      "NICS AI Trader delivers Entry, Stop Loss, TP1–TP4, personal risk controls and signal tracking for Gold, Forex, Brent Oil and Bitcoin.",
+      "AI-powered technical analysis for gold, forex and crypto. NICS AI Trader delivers structured trading signals — Entry, Stop Loss, TP1–TP4, personal risk controls and signal tracking — for Gold, Forex, Brent Oil and Bitcoin.",
     type: "product",
     schema: {
       "@context": "https://schema.org",
@@ -189,19 +189,23 @@ const renderPage = (page, noindex = false) => {
   const clean = removeManagedTags(baseHtml);
   const robots = noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large";
   const schema = JSON.stringify(pageSchema(page, canonical)).replaceAll("<", "\\u003c");
+  // A noindex page (currently only the 404 page) must not declare a canonical:
+  // Google treats "index this canonical URL" + "noindex me" as conflicting signals,
+  // and every crawled not-found path pointing the same canonical at /404 produced
+  // exactly that "multiple conflicting canonical URLs" warning in Search Console.
+  const canonicalTag = noindex ? "" : `\n    <link rel="canonical" href="${canonical}" />`;
+  const ogUrlTag = noindex ? "" : `\n    <meta property="og:url" content="${canonical}" />`;
 
   const tags = `
     <title>${escapeAttribute(page.title)}</title>
     <meta name="description" content="${escapeAttribute(page.description)}" />
     <meta name="robots" content="${robots}" />
-    <meta name="googlebot" content="${robots}" />
-    <link rel="canonical" href="${canonical}" />
+    <meta name="googlebot" content="${robots}" />${canonicalTag}
     <meta property="og:site_name" content="AI Byte Consult" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="${page.type}" />
     <meta property="og:title" content="${escapeAttribute(page.title)}" />
-    <meta property="og:description" content="${escapeAttribute(page.description)}" />
-    <meta property="og:url" content="${canonical}" />
+    <meta property="og:description" content="${escapeAttribute(page.description)}" />${ogUrlTag}
     <meta property="og:image" content="${defaultImage}" />
     <meta property="og:image:alt" content="AI Byte Consult and the NICS AI Ecosystem" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -239,4 +243,29 @@ const notFound = renderPage(
 );
 await writeFile(path.join(distDir, "404.html"), notFound, "utf8");
 
-console.log(`Generated static SEO metadata for ${pages.length} public routes.`);
+// Sitemap priority/changefreq per route. Anything not listed here (e.g. /privacy,
+// /delete) still gets a sitemap entry with sensible low-priority defaults below —
+// previously those pages existed but were missing from sitemap.xml entirely.
+const sitemapMeta = {
+  "/": { priority: "1.0", changefreq: "weekly" },
+  "/trading": { priority: "0.95", changefreq: "weekly" },
+  "/nics-ecosystem": { priority: "0.9", changefreq: "weekly" },
+  "/about": { priority: "0.85", changefreq: "monthly" },
+  "/estate": { priority: "0.8", changefreq: "monthly" },
+  "/nics-multimedia": { priority: "0.5", changefreq: "monthly" },
+  "/terms": { priority: "0.4", changefreq: "yearly" },
+  "/privacy": { priority: "0.3", changefreq: "yearly" },
+  "/delete": { priority: "0.3", changefreq: "yearly" },
+};
+const today = new Date().toISOString().slice(0, 10);
+const sitemapUrls = pages
+  .map((page) => {
+    const loc = page.route === "/" ? `${siteUrl}/` : `${siteUrl}${page.route}`;
+    const { priority = "0.5", changefreq = "monthly" } = sitemapMeta[page.route] || {};
+    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+  })
+  .join("\n");
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls}\n</urlset>\n`;
+await writeFile(path.join(distDir, "sitemap.xml"), sitemap, "utf8");
+
+console.log(`Generated static SEO metadata for ${pages.length} public routes and a fresh sitemap.xml.`);
