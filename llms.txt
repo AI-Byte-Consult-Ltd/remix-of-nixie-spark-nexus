@@ -2,20 +2,21 @@
 
 AI Byte Consult Ltd builds production AI systems, intelligent agents and the NICS AI Ecosystem.
 
-Canonical website: https://aibyteconsult.com/
+Canonical website: [https://aibyteconsult.com/](https://aibyteconsult.com/)
 Contact: info@aibyteconsult.com
 
 ## Primary public pages
 
-- Company and ecosystem overview: https://aibyteconsult.com/
-- NICS AI Trader product page: https://aibyteconsult.com/trading
-- NICS AI Ecosystem: https://aibyteconsult.com/nics-ecosystem
-- About AI Byte Consult: https://aibyteconsult.com/about
-- Terms and trading risk disclosures: https://aibyteconsult.com/terms
+- [Company and ecosystem overview](https://aibyteconsult.com/)
+- [NICS AI Trader product page](https://aibyteconsult.com/trading)
+- [NICS AI Ecosystem](https://aibyteconsult.com/nics-ecosystem)
+- [About AI Byte Consult](https://aibyteconsult.com/about)
+- [Terms and trading risk disclosures](https://aibyteconsult.com/terms)
+- [Privacy Policy](https://aibyteconsult.com/privacy)
 
 ## NICS AI Trader
 
-NICS AI Trader is a Telegram-first trading analysis product with a secure Mini App.
+NICS AI Trader is a Telegram-first AI technical analysis and trading signals product with a secure Mini App, covering gold, forex and crypto markets.
 
 Supported market groups:
 - Gold
@@ -24,7 +25,7 @@ Supported market groups:
 - Bitcoin
 
 Core product functions:
-- Structured market scenarios with Entry, Stop Loss and TP1-TP4
+- AI technical analysis producing structured market scenarios with Entry, Stop Loss and TP1-TP4
 - Compact Telegram signal delivery
 - Accept or skip decisions
 - Personal risk profile and exposure limits
@@ -35,9 +36,9 @@ Core product functions:
 NICS AI Trader does not guarantee profit and does not replace professional financial advice. Trading involves substantial risk.
 
 Product access:
-- Telegram bot: https://t.me/nics_ai_bot
-- Public Telegram channel: https://t.me/TravelTradeBook
-- Mini App: https://aibyteconsult.com/nics-app
+- [Telegram bot](https://t.me/nics_ai_bot)
+- [Public Telegram channel](https://t.me/TravelTradeBook)
+- [Mini App](https://aibyteconsult.com/nics-app)
 
 ## Public pricing
 
@@ -48,8 +49,7 @@ Prices are shown directly in EUR or USD on the product page.
 - AI Trader Multi-Market: 7-day or 30-day access
 - AI Trader Full Coverage: 7-day or 30-day access
 
-For current prices and plan details, use the canonical product page:
-https://aibyteconsult.com/trading#nics-trader-plans
+For current prices and plan details, use the canonical product page: [https://aibyteconsult.com/trading#nics-trader-plans](https://aibyteconsult.com/trading#nics-trader-plans)
 
 ## Citation preference
 
