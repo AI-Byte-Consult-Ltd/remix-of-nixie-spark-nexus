@@ -208,9 +208,9 @@ const roadmap = [
 
 const Trading = () => {
   const seoProps = {
-    title: "NICS AI Trader — Clear Trading Signals in Telegram",
+    title: "NICS AI Trader — AI Technical Analysis & Trading Signals in Telegram",
     description:
-      "Receive structured trading scenarios with Entry, Stop Loss, TP1–TP4, personal risk controls and signal tracking for Gold, Forex, Brent Oil and Bitcoin in Telegram and the NICS Mini App.",
+      "AI-powered technical analysis for gold, forex and crypto. Receive structured trading signals with Entry, Stop Loss, TP1–TP4, personal risk controls and signal tracking for Gold, Forex, Brent Oil and Bitcoin in Telegram and the NICS Mini App.",
     canonical: "https://aibyteconsult.com/trading",
     ogImage: "https://aibyteconsult.com/og-trading.jpg",
     jsonLd: {
@@ -242,7 +242,7 @@ const Trading = () => {
               <div>
                 <Badge className="mb-6 border-primary/25 bg-primary/10 text-primary hover:bg-primary/10">
                   <Bot className="mr-2 h-3.5 w-3.5" />
-                  NICS AI Trader in Telegram
+                  AI Technical Analysis · Gold · Forex · Crypto
                 </Badge>
 
                 <h1 className="max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl md:text-7xl">
@@ -251,7 +251,7 @@ const Trading = () => {
                 </h1>
 
                 <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">
-                  Receive structured trading scenarios with Entry, Stop Loss, four Take Profit targets and personal risk control — directly in Telegram and your NICS Mini App.
+                  AI-powered technical analysis for gold, forex and crypto — delivered as structured trading signals with Entry, Stop Loss, four Take Profit targets and personal risk control, directly in Telegram and your NICS Mini App.
                 </p>
 
                 <div className="mt-9 flex flex-col gap-4 sm:flex-row">
