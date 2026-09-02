@@ -8,6 +8,7 @@ interface SEOProps {
   imageAlt?: string;
   ogType?: "website" | "article" | "product";
   locale?: string;
+  htmlLang?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   noindex?: boolean;
 }
@@ -22,6 +23,7 @@ const SEO = ({
   imageAlt = "AI Byte Consult and the NICS AI Ecosystem",
   ogType = "website",
   locale = "en_US",
+  htmlLang = "en",
   jsonLd,
   noindex,
 }: SEOProps) => {
@@ -36,7 +38,7 @@ const SEO = ({
 
   return (
     <Helmet prioritizeSeoTags>
-      <html lang="en" />
+      <html lang={htmlLang} />
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="author" content="AI Byte Consult Ltd" />
