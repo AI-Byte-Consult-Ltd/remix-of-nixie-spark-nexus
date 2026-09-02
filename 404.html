@@ -62,10 +62,22 @@
     <!-- Backends used on first paint (market ticker, contact form) -->
     <link rel="preconnect" href="https://n8n.aibyteconsult.com" crossorigin />
     <link rel="preconnect" href="https://rlaiukqrqfoeaztsoftx.supabase.co" crossorigin />
+    <!-- Loaded non-blocking: the print/onload swap trick defers this
+         stylesheet off the critical rendering path. font-display=swap in
+         the URL already means text renders in a fallback font immediately
+         either way, so there's no flash-of-invisible-text regression. -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <!-- Structured Data: Organization -->
     <script type="application/ld+json">
