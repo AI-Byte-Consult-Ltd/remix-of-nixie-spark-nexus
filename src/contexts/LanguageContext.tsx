@@ -239,8 +239,6 @@ export const translations: Record<Language, Record<string, string>> = {
 
     "seo.home.title": "AI Byte Consult — NICS AI Trader, AI Systems & NICS Ecosystem",
     "seo.home.description": "AI Byte Consult builds production AI systems and the NICS ecosystem — NICS AI Trader delivers AI technical analysis and signals for gold, forex and crypto.",
-    "seo.trading.title": "NICS AI Trader — AI Technical Analysis & Trading Signals",
-    "seo.trading.description": "AI-powered technical analysis for gold, forex and crypto. Structured trading signals with Entry, Stop Loss and TP1–TP4 in Telegram and the NICS Mini App.",
   },
   de: {
     // Header
@@ -1900,8 +1898,6 @@ export const translations: Record<Language, Record<string, string>> = {
 
     "seo.home.title": "AI Byte Consult — NICS AI Trader, ИИ системи и екосистема NICS",
     "seo.home.description": "AI Byte Consult изгражда production ИИ системи и екосистемата NICS — NICS AI Trader предлага технически анализ и сигнали за злато, форекс и крипто.",
-    "seo.trading.title": "NICS AI Trader — ИИ технически анализ и търговски сигнали",
-    "seo.trading.description": "ИИ технически анализ за злато, форекс и крипто. Структурирани сигнали с вход, Stop Loss и TP1–TP4 в Telegram и NICS Mini App.",
   },
   ru: {
     // Header
@@ -2112,8 +2108,6 @@ export const translations: Record<Language, Record<string, string>> = {
 
     "seo.home.title": "AI Byte Consult — NICS AI Trader, ИИ-системы и экосистема NICS",
     "seo.home.description": "AI Byte Consult создаёт продакшн ИИ-системы и экосистему NICS — NICS AI Trader даёт технический анализ и сигналы по золоту, форекс и крипте.",
-    "seo.trading.title": "NICS AI Trader — ИИ технический анализ и торговые сигналы",
-    "seo.trading.description": "ИИ-анализ рынка золота, форекс и крипты. Структурированные сигналы с точкой входа, стоп-лоссом и TP1–TP4 в Telegram и NICS Mini App.",
   },
 };
 
@@ -2129,6 +2123,38 @@ const detectLanguageFromPath = (): Language | null => {
   if (typeof window === "undefined") return null;
   const segment = window.location.pathname.split("/")[1] as Language | undefined;
   return segment && URL_LANGUAGES.includes(segment) ? segment : null;
+};
+
+const SITE_URL = "https://aibyteconsult.com";
+
+// Shared canonical/hreflang/og:locale computation for any route that has a
+// crawlable localized variant (currently "/" and "/trading" — see App.tsx).
+// basePath must start with "/" and have no trailing slash except for the
+// root ("/"). Centralized here so every such page computes the same
+// alternates set instead of re-deriving (and risking drift on) its own.
+export const getLocalizedSeoMeta = (basePath: string, language: Language) => {
+  const langPrefix = language === "ru" || language === "bg" ? `/${language}` : "";
+  const htmlLang = language === "ru" || language === "bg" ? language : "en";
+  const locale = language === "ru" ? "ru_RU" : language === "bg" ? "bg_BG" : "en_US";
+  // Root ("/") is the one route with a trailing slash; its localized
+  // variants are bare "/ru", "/bg" (matching the routes declared in
+  // App.tsx and the static files scripts/generate-seo-pages.mjs writes) —
+  // every other basePath just gets the prefix concatenated in front.
+  const pathFor = (prefix: string) => {
+    if (basePath === "/") return prefix === "" ? "/" : prefix;
+    return `${prefix}${basePath}`;
+  };
+  return {
+    canonical: `${SITE_URL}${pathFor(langPrefix)}`,
+    htmlLang,
+    locale,
+    alternates: [
+      { lang: "en", href: `${SITE_URL}${pathFor("")}` },
+      { lang: "ru", href: `${SITE_URL}${pathFor("/ru")}` },
+      { lang: "bg", href: `${SITE_URL}${pathFor("/bg")}` },
+      { lang: "x-default", href: `${SITE_URL}${pathFor("")}` },
+    ],
+  };
 };
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {

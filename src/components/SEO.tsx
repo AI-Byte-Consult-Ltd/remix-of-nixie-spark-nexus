@@ -1,4 +1,28 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+
+// GitHub Pages serves one fully pre-rendered <head> per URL (see
+// scripts/generate-seo-pages.mjs), correct for whatever route a crawler or
+// a fresh browser tab actually requested. But once React has mounted, a
+// client-side route change (e.g. clicking a nav link) never re-fetches that
+// HTML — Helmet only ever manages the tags it itself renders, it doesn't
+// know about or clean up the static ones already sitting in <head> from the
+// initial load. Left alone, every SPA navigation piles a second, stale
+// canonical/hreflang/description next to Helmet's live one — the exact
+// "multiple conflicting canonical URLs" problem this file's noindex handling
+// already guards against for /404. Strip the static, Helmet-unmanaged copies
+// once so only the live, Helmet-managed set remains for the rest of the
+// session.
+const STATIC_HEAD_TAG_SELECTOR = [
+  'meta[name="description"]:not([data-rh])',
+  'meta[name="robots"]:not([data-rh])',
+  'meta[name="googlebot"]:not([data-rh])',
+  'meta[property^="og:"]:not([data-rh])',
+  'meta[name^="twitter:"]:not([data-rh])',
+  'link[rel="canonical"]:not([data-rh])',
+  'link[rel="alternate"][hreflang]:not([data-rh])',
+  'script[type="application/ld+json"]:not([data-rh])',
+].join(",");
 
 interface SEOProps {
   title: string;
@@ -9,6 +33,7 @@ interface SEOProps {
   ogType?: "website" | "article" | "product";
   locale?: string;
   htmlLang?: string;
+  alternates?: { lang: string; href: string }[];
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   noindex?: boolean;
 }
@@ -24,6 +49,7 @@ const SEO = ({
   ogType = "website",
   locale = "en_US",
   htmlLang = "en",
+  alternates,
   jsonLd,
   noindex,
 }: SEOProps) => {
@@ -35,6 +61,10 @@ const SEO = ({
         : undefined);
   const resolvedImage = ogImage || DEFAULT_IMAGE;
   const jsonLdEntries = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+
+  useEffect(() => {
+    document.head.querySelectorAll(STATIC_HEAD_TAG_SELECTOR).forEach((el) => el.remove());
+  });
 
   return (
     <Helmet prioritizeSeoTags>
@@ -49,6 +79,10 @@ const SEO = ({
       />
       <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+      {!noindex &&
+        alternates?.map((alt) => (
+          <link key={alt.lang} rel="alternate" hrefLang={alt.lang} href={alt.href} />
+        ))}
 
       <meta property="og:site_name" content="AI Byte Consult" />
       <meta property="og:locale" content={locale} />
