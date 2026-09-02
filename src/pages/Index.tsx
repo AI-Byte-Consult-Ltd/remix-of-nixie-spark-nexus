@@ -13,21 +13,15 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import AIChatWidget from "@/components/AIChatWidget";
 import SEO from "@/components/SEO";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage, getLocalizedSeoMeta } from "@/contexts/LanguageContext";
 
 const Index = () => {
   const { t, language } = useLanguage();
-  // Only ru/bg have a crawlable URL (see LanguageContext's URL_LANGUAGES) —
-  // canonical must self-reference that URL, everything else canonicals to
-  // the default English root.
-  const langPrefix = language === "ru" || language === "bg" ? `/${language}` : "";
-  const ogLocale = language === "ru" ? "ru_RU" : language === "bg" ? "bg_BG" : "en_US";
+  const localizedSeo = getLocalizedSeoMeta("/", language);
   const seoProps = {
     title: t("seo.home.title"),
     description: t("seo.home.description"),
-    canonical: `https://aibyteconsult.com${langPrefix}/`,
-    htmlLang: language === "ru" || language === "bg" ? language : "en",
-    locale: ogLocale,
+    ...localizedSeo,
     ogImage: "https://aibyteconsult.com/android-chrome-512x512.png",
     imageAlt: "AI Byte Consult and the NICS AI Ecosystem",
     jsonLd: {

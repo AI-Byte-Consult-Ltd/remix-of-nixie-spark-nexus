@@ -54,6 +54,152 @@ const homeAlternates = [
   { lang: "x-default", path: "/" },
 ];
 
+const tradingAlternates = [
+  { lang: "en", path: "/trading" },
+  { lang: "ru", path: "/ru/trading" },
+  { lang: "bg", path: "/bg/trading" },
+  { lang: "x-default", path: "/trading" },
+];
+
+// FAQ text for the Russian/Bulgarian /trading variants — kept in sync with
+// src/contexts/subPageTranslations.ts's tradingpage.faq1-6.q/a for ru/bg
+// (same rule as tradingFaqs below: schema text must match what a visitor
+// on that page actually sees).
+const tradingFaqsRu = [
+  {
+    question: "Что такое NICS AI Trader?",
+    answer:
+      "NICS AI Trader — торговый помощник в Telegram, созданный AI Byte Consult Ltd. Он предоставляет структурированные торговые сценарии — точку входа, стоп-лосс и четыре цели Take Profit — через сигнального бота и NICS Mini App.",
+  },
+  {
+    question: "Какие рынки он охватывает?",
+    answer:
+      "Золото, форекс, нефть Brent и Bitcoin — у каждого своя рыночная логика и собственный торговый график.",
+  },
+  {
+    question: "Откуда берутся данные о ценах?",
+    answer:
+      "NICS AI Trader — официальный провайдер торговых сигналов для Vantage. Каждый сценарий формируется из собственного live-потока цен Vantage, а принятые сигналы можно исполнить на счёте Vantage MT5 через наш мост рыночных данных.",
+  },
+  {
+    question: "Нужно ли принимать каждый сигнал?",
+    answer:
+      "Нет. Каждый сигнал приходит в виде компактного сценария в Telegram, и вы принимаете его или пропускаете. Ничего не исполняется автоматически.",
+  },
+  {
+    question: "Расчёт риска действительно личный для меня?",
+    answer:
+      "Да. Размер позиции, общая экспозиция и коррелированный риск рассчитываются на основе вашего собственного баланса счёта, валюты и настроек риска, заданных один раз в Mini App и изменяемых в любой момент.",
+  },
+  {
+    question: "Гарантирует ли NICS прибыль?",
+    answer:
+      "Нет. Торговля связана с существенным риском. NICS предоставляет структурированные аналитические сценарии и инструменты управления риском, а не гарантированную доходность, инвестиционные советы или автоматическую прибыль.",
+  },
+];
+
+const tradingFaqsBg = [
+  {
+    question: "Какво е NICS AI Trader?",
+    answer:
+      "NICS AI Trader е търговски асистент от типа Telegram-first, разработен от AI Byte Consult Ltd. Той предоставя структурирани търговски сценарии — Entry, Stop Loss и четири цели за Take Profit — чрез бот за сигнали и NICS Mini App.",
+  },
+  {
+    question: "Кои пазари покрива?",
+    answer:
+      "Злато, форекс, Brent петрол и Bitcoin, всеки със специализирана пазарна логика и собствен търговски график.",
+  },
+  {
+    question: "Откъде идват данните за цените?",
+    answer:
+      "NICS AI Trader е официален доставчик на търговски сигнали за Vantage. Всеки сценарий се генерира от собствения поток на живо цени на Vantage, а приетите сигнали могат да бъдат изпълнени по сметка Vantage MT5 чрез нашия мост за пазарни данни.",
+  },
+  {
+    question: "Трябва ли да приемам всеки сигнал?",
+    answer:
+      "Не. Всеки сигнал пристига като компактен сценарий в Telegram, и вие го приемате или пропускате. Нищо не се изпълнява автоматично.",
+  },
+  {
+    question: "Личен ли е за мен размерът на риска?",
+    answer:
+      "Да. Размерът на позицията, общата експозиция и корелираният риск се изчисляват от вашия собствен баланс по сметката, валута и настройки на риска, зададени еднократно в Mini App и коригируеми по всяко време.",
+  },
+  {
+    question: "Гарантира ли NICS печалби?",
+    answer:
+      "Не. Търговията носи значителен риск. NICS предоставя структурирани аналитични сценарии и инструменти за управление на риска, а не гарантирана възвращаемост, инвестиционни съвети или автоматична печалба.",
+  },
+];
+
+const tradingSchema = (canonical, faqs) => ({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${siteUrl}/trading#software`,
+      name: "NICS AI Trader",
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "Telegram Web App",
+      url: canonical,
+      description:
+        "A Telegram-first AI trading assistant with structured market scenarios, personal risk controls, signal history and lifecycle tracking.",
+      provider: { "@id": `${siteUrl}/#organization` },
+      featureList: [
+        "Entry, Stop Loss and TP1–TP4",
+        "Gold, Forex, Brent Oil and Bitcoin coverage",
+        "Personal risk profile",
+        "Signal acceptance and lifecycle tracking",
+        "Telegram and Mini App delivery",
+      ],
+    },
+    {
+      "@type": "OfferCatalog",
+      name: "NICS AI Trader access plans",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          name: "AI Trader Demo",
+          price: "0",
+          priceCurrency: "EUR",
+          url: "https://t.me/nics_ai_bot",
+        },
+        {
+          "@type": "Offer",
+          name: "AI Trader Single Market — 30 days",
+          price: "34.99",
+          priceCurrency: "EUR",
+          url: "https://t.me/nics_ai_bot",
+        },
+        {
+          "@type": "Offer",
+          name: "AI Trader Multi-Market — 30 days",
+          price: "52.99",
+          priceCurrency: "EUR",
+          url: "https://t.me/nics_ai_bot",
+        },
+        {
+          "@type": "Offer",
+          name: "AI Trader Full Coverage — 30 days",
+          price: "79.99",
+          priceCurrency: "EUR",
+          url: "https://t.me/nics_ai_bot",
+        },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+});
+
 const homeSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -138,74 +284,30 @@ const pages = [
     // No dedicated og-trading.jpg exists yet — reuse the real home banner
     // rather than point social previews at a missing file.
     ogImage: `${siteUrl}/og-home.jpg`,
-    schema: {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "SoftwareApplication",
-          "@id": `${siteUrl}/trading#software`,
-          name: "NICS AI Trader",
-          applicationCategory: "FinanceApplication",
-          operatingSystem: "Telegram Web App",
-          url: `${siteUrl}/trading`,
-          description:
-            "A Telegram-first AI trading assistant with structured market scenarios, personal risk controls, signal history and lifecycle tracking.",
-          provider: { "@id": `${siteUrl}/#organization` },
-          featureList: [
-            "Entry, Stop Loss and TP1–TP4",
-            "Gold, Forex, Brent Oil and Bitcoin coverage",
-            "Personal risk profile",
-            "Signal acceptance and lifecycle tracking",
-            "Telegram and Mini App delivery",
-          ],
-        },
-        {
-          "@type": "OfferCatalog",
-          name: "NICS AI Trader access plans",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              name: "AI Trader Demo",
-              price: "0",
-              priceCurrency: "EUR",
-              url: "https://t.me/nics_ai_bot",
-            },
-            {
-              "@type": "Offer",
-              name: "AI Trader Single Market — 30 days",
-              price: "34.99",
-              priceCurrency: "EUR",
-              url: "https://t.me/nics_ai_bot",
-            },
-            {
-              "@type": "Offer",
-              name: "AI Trader Multi-Market — 30 days",
-              price: "52.99",
-              priceCurrency: "EUR",
-              url: "https://t.me/nics_ai_bot",
-            },
-            {
-              "@type": "Offer",
-              name: "AI Trader Full Coverage — 30 days",
-              price: "79.99",
-              priceCurrency: "EUR",
-              url: "https://t.me/nics_ai_bot",
-            },
-          ],
-        },
-        {
-          "@type": "FAQPage",
-          mainEntity: tradingFaqs.map((faq) => ({
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: faq.answer,
-            },
-          })),
-        },
-      ],
-    },
+    alternates: tradingAlternates,
+    schema: tradingSchema(`${siteUrl}/trading`, tradingFaqs),
+  },
+  {
+    route: "/ru/trading",
+    title: "NICS AI Trader — ИИ технический анализ и торговые сигналы",
+    description:
+      "ИИ-анализ рынка золота, форекс и крипты. Структурированные сигналы с точкой входа, стоп-лоссом и TP1–TP4 в Telegram и NICS Mini App.",
+    type: "product",
+    locale: "ru_RU",
+    ogImage: `${siteUrl}/og-home.jpg`,
+    alternates: tradingAlternates,
+    schema: tradingSchema(`${siteUrl}/ru/trading`, tradingFaqsRu),
+  },
+  {
+    route: "/bg/trading",
+    title: "NICS AI Trader — ИИ технически анализ и търговски сигнали",
+    description:
+      "ИИ технически анализ за злато, форекс и крипто. Структурирани сигнали с вход, Stop Loss и TP1–TP4 в Telegram и NICS Mini App.",
+    type: "product",
+    locale: "bg_BG",
+    ogImage: `${siteUrl}/og-home.jpg`,
+    alternates: tradingAlternates,
+    schema: tradingSchema(`${siteUrl}/bg/trading`, tradingFaqsBg),
   },
   {
     route: "/nics-ecosystem",
@@ -346,6 +448,8 @@ const sitemapMeta = {
   "/ru": { priority: "0.9", changefreq: "weekly" },
   "/bg": { priority: "0.9", changefreq: "weekly" },
   "/trading": { priority: "0.95", changefreq: "weekly" },
+  "/ru/trading": { priority: "0.85", changefreq: "weekly" },
+  "/bg/trading": { priority: "0.85", changefreq: "weekly" },
   "/nics-ecosystem": { priority: "0.9", changefreq: "weekly" },
   "/about": { priority: "0.85", changefreq: "monthly" },
   "/estate": { priority: "0.8", changefreq: "monthly" },

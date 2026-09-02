@@ -7,7 +7,7 @@ import VerifiedTrackRecord from "@/components/VerifiedTrackRecord";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage, getLocalizedSeoMeta } from "@/contexts/LanguageContext";
 import {
   Activity,
   ArrowRight,
@@ -40,7 +40,8 @@ const TELEGRAM_URL = "https://t.me/TravelTradeBook";
 const VANTAGE_URL = "https://fwd.cx/Yj25BCrDzEHB";
 
 const Trading = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const localizedSeo = getLocalizedSeoMeta("/trading", language);
 
   const benefits = [
     { title: t("tradingpage.benefit1.title"), description: t("tradingpage.benefit1.desc"), icon: Target },
@@ -135,7 +136,7 @@ const Trading = () => {
   const seoProps = {
     title: t("tradingpage.seo.title"),
     description: t("tradingpage.seo.description"),
-    canonical: "https://aibyteconsult.com/trading",
+    ...localizedSeo,
     ogImage: "https://aibyteconsult.com/og-home.jpg",
     jsonLd: [
       {
@@ -149,7 +150,7 @@ const Trading = () => {
           name: "AI Byte Consult Ltd",
         },
         description: t("tradingpage.schema.description"),
-        url: "https://aibyteconsult.com/trading",
+        url: localizedSeo.canonical,
       },
       {
         "@context": "https://schema.org",
