@@ -5,7 +5,7 @@ import SEO from "@/components/SEO";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import { LanguageProvider } from "@/contexts/LanguageContext";
+import { LanguageProvider, URL_LANGUAGES } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 
 const queryClient = new QueryClient();
@@ -30,22 +30,25 @@ const App = () => (
           <Suspense fallback={<div className="min-h-screen bg-background" />}>
           <Routes>
             <Route path="/" element={<Index />} />
-            {/* Crawlable localized entry points for the two languages with
-                translated meta (title/description) and hreflang wiring —
-                see src/contexts/LanguageContext.tsx's URL_LANGUAGES and
-                getLocalizedSeoMeta(), and scripts/generate-seo-pages.mjs.
-                Both Index and Trading are fully translated via t() (all
-                10 languages), so these are genuine localized content
-                pages, not just a translated meta tag over English copy.
-                Every other language stays client-side-only via the
-                language switcher, same as before. */}
-            <Route path="/ru" element={<Index />} />
-            <Route path="/bg" element={<Index />} />
+            {/* Crawlable localized entry points for every non-English
+                language — translated meta (title/description) and
+                hreflang wiring, see src/contexts/LanguageContext.tsx's
+                URL_LANGUAGES and getLocalizedSeoMeta(), and
+                scripts/generate-seo-pages.mjs (which derives its own
+                route list from the same language set, so the two can't
+                drift apart). Index and Trading are fully translated via
+                t() for every one of these languages, so these are
+                genuine localized content pages, not just a translated
+                meta tag over English copy. */}
+            {URL_LANGUAGES.map((lang) => (
+              <Route key={lang} path={`/${lang}`} element={<Index />} />
+            ))}
+            {URL_LANGUAGES.map((lang) => (
+              <Route key={`${lang}-trading`} path={`/${lang}/trading`} element={<Trading />} />
+            ))}
             <Route path="/about" element={<About />} />
             <Route path="/estate" element={<Estate />} />
             <Route path="/trading" element={<Trading />} />
-            <Route path="/ru/trading" element={<Trading />} />
-            <Route path="/bg/trading" element={<Trading />} />
             <Route
               path="/nics-app"
               element={
