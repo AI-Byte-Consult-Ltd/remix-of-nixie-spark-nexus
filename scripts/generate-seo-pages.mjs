@@ -44,6 +44,40 @@ const tradingFaqs = [
   },
 ];
 
+// Crawlable localized homepage variants (RU, BG) — see src/contexts/LanguageContext.tsx's
+// URL_LANGUAGES and src/App.tsx. Each variant must list every variant including itself
+// (Google's hreflang requirement) plus an x-default pointing at the English root.
+const homeAlternates = [
+  { lang: "en", path: "/" },
+  { lang: "ru", path: "/ru" },
+  { lang: "bg", path: "/bg" },
+  { lang: "x-default", path: "/" },
+];
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Byte Consult Ltd",
+      url: `${siteUrl}/`,
+      logo: defaultImage,
+      email: "info@aibyteconsult.com",
+      telephone: "+359988899109",
+      foundingDate: "2011",
+      areaServed: "Worldwide",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
+      name: "AI Byte Consult",
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+  ],
+};
+
 const pages = [
   {
     route: "/",
@@ -52,29 +86,30 @@ const pages = [
       "AI Byte Consult builds production AI systems and the NICS ecosystem — NICS AI Trader delivers AI technical analysis and signals for gold, forex and crypto.",
     type: "website",
     ogImage: `${siteUrl}/og-home.jpg`,
-    schema: {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": `${siteUrl}/#organization`,
-          name: "AI Byte Consult Ltd",
-          url: `${siteUrl}/`,
-          logo: defaultImage,
-          email: "info@aibyteconsult.com",
-          telephone: "+359988899109",
-          foundingDate: "2011",
-          areaServed: "Worldwide",
-        },
-        {
-          "@type": "WebSite",
-          "@id": `${siteUrl}/#website`,
-          url: `${siteUrl}/`,
-          name: "AI Byte Consult",
-          publisher: { "@id": `${siteUrl}/#organization` },
-        },
-      ],
-    },
+    alternates: homeAlternates,
+    schema: homeSchema,
+  },
+  {
+    route: "/ru",
+    title: "AI Byte Consult — NICS AI Trader, ИИ-системы и экосистема NICS",
+    description:
+      "AI Byte Consult создаёт продакшн ИИ-системы и экосистему NICS — NICS AI Trader даёт технический анализ и сигналы по золоту, форекс и крипте.",
+    type: "website",
+    locale: "ru_RU",
+    ogImage: `${siteUrl}/og-home.jpg`,
+    alternates: homeAlternates,
+    schema: homeSchema,
+  },
+  {
+    route: "/bg",
+    title: "AI Byte Consult — NICS AI Trader, ИИ системи и екосистема NICS",
+    description:
+      "AI Byte Consult изгражда production ИИ системи и екосистемата NICS — NICS AI Trader предлага технически анализ и сигнали за злато, форекс и крипто.",
+    type: "website",
+    locale: "bg_BG",
+    ogImage: `${siteUrl}/og-home.jpg`,
+    alternates: homeAlternates,
+    schema: homeSchema,
   },
   {
     route: "/about",
@@ -249,15 +284,20 @@ const renderPage = (page, noindex = false) => {
   // exactly that "multiple conflicting canonical URLs" warning in Search Console.
   const canonicalTag = noindex ? "" : `\n    <link rel="canonical" href="${canonical}" />`;
   const ogUrlTag = noindex ? "" : `\n    <meta property="og:url" content="${canonical}" />`;
+  const alternateTags = noindex
+    ? ""
+    : (page.alternates || [])
+        .map((alt) => `\n    <link rel="alternate" hreflang="${alt.lang}" href="${siteUrl}${alt.path}" />`)
+        .join("");
   const image = page.ogImage || defaultImage;
 
   const tags = `
     <title>${escapeAttribute(page.title)}</title>
     <meta name="description" content="${escapeAttribute(page.description)}" />
     <meta name="robots" content="${robots}" />
-    <meta name="googlebot" content="${robots}" />${canonicalTag}
+    <meta name="googlebot" content="${robots}" />${canonicalTag}${alternateTags}
     <meta property="og:site_name" content="AI Byte Consult" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="${page.locale || "en_US"}" />
     <meta property="og:type" content="${page.type}" />
     <meta property="og:title" content="${escapeAttribute(page.title)}" />
     <meta property="og:description" content="${escapeAttribute(page.description)}" />${ogUrlTag}
@@ -303,6 +343,8 @@ await writeFile(path.join(distDir, "404.html"), notFound, "utf8");
 // previously those pages existed but were missing from sitemap.xml entirely.
 const sitemapMeta = {
   "/": { priority: "1.0", changefreq: "weekly" },
+  "/ru": { priority: "0.9", changefreq: "weekly" },
+  "/bg": { priority: "0.9", changefreq: "weekly" },
   "/trading": { priority: "0.95", changefreq: "weekly" },
   "/nics-ecosystem": { priority: "0.9", changefreq: "weekly" },
   "/about": { priority: "0.85", changefreq: "monthly" },

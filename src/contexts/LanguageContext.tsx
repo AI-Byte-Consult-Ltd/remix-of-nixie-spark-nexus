@@ -236,6 +236,11 @@ export const translations: Record<Language, Record<string, string>> = {
     "products.ai.feature2": "Product catalog display",
     "products.ai.feature3": "Order inquiry handling",
     "products.ai.feature4": "Multi-language support",
+
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, AI Systems & NICS Ecosystem",
+    "seo.home.description": "AI Byte Consult builds production AI systems and the NICS ecosystem — NICS AI Trader delivers AI technical analysis and signals for gold, forex and crypto.",
+    "seo.trading.title": "NICS AI Trader — AI Technical Analysis & Trading Signals",
+    "seo.trading.description": "AI-powered technical analysis for gold, forex and crypto. Structured trading signals with Entry, Stop Loss and TP1–TP4 in Telegram and the NICS Mini App.",
   },
   de: {
     // Header
@@ -1892,6 +1897,11 @@ export const translations: Record<Language, Record<string, string>> = {
     "products.ai.feature2": "Показване на продуктов каталог",
     "products.ai.feature3": "Обработка на запитвания за поръчки",
     "products.ai.feature4": "Многоезикова поддръжка",
+
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, ИИ системи и екосистема NICS",
+    "seo.home.description": "AI Byte Consult изгражда production ИИ системи и екосистемата NICS — NICS AI Trader предлага технически анализ и сигнали за злато, форекс и крипто.",
+    "seo.trading.title": "NICS AI Trader — ИИ технически анализ и търговски сигнали",
+    "seo.trading.description": "ИИ технически анализ за злато, форекс и крипто. Структурирани сигнали с вход, Stop Loss и TP1–TP4 в Telegram и NICS Mini App.",
   },
   ru: {
     // Header
@@ -2099,11 +2109,32 @@ export const translations: Record<Language, Record<string, string>> = {
     "products.ai.feature2": "Отображение каталога продуктов",
     "products.ai.feature3": "Обработка запросов на заказы",
     "products.ai.feature4": "Многоязычная поддержка",
+
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, ИИ-системы и экосистема NICS",
+    "seo.home.description": "AI Byte Consult создаёт продакшн ИИ-системы и экосистему NICS — NICS AI Trader даёт технический анализ и сигналы по золоту, форекс и крипте.",
+    "seo.trading.title": "NICS AI Trader — ИИ технический анализ и торговые сигналы",
+    "seo.trading.description": "ИИ-анализ рынка золота, форекс и крипты. Структурированные сигналы с точкой входа, стоп-лоссом и TP1–TP4 в Telegram и NICS Mini App.",
   },
+};
+
+// Languages with a crawlable, self-contained URL prefix (/ru, /bg, ...).
+// A visit to one of these paths must render in that language immediately,
+// both for the static prerendered HTML search engines see and for a real
+// browser on first paint — so this takes priority over any stored
+// preference. Every other language stays localStorage/client-state only,
+// same as before this was added.
+const URL_LANGUAGES: Language[] = ["ru", "bg"];
+
+const detectLanguageFromPath = (): Language | null => {
+  if (typeof window === "undefined") return null;
+  const segment = window.location.pathname.split("/")[1] as Language | undefined;
+  return segment && URL_LANGUAGES.includes(segment) ? segment : null;
 };
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguageState] = useState<Language>(() => {
+    const fromPath = detectLanguageFromPath();
+    if (fromPath) return fromPath;
     const saved = localStorage.getItem("language");
     return (saved as Language) || "en";
   });

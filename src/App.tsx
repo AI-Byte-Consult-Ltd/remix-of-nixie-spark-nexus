@@ -30,6 +30,21 @@ const App = () => (
           <Suspense fallback={<div className="min-h-screen bg-background" />}>
           <Routes>
             <Route path="/" element={<Index />} />
+            {/* Crawlable localized entry points for the two languages with
+                translated meta (title/description) and hreflang wiring —
+                see src/contexts/LanguageContext.tsx's URL_LANGUAGES and
+                scripts/generate-seo-pages.mjs. Homepage content is fully
+                translated already (Hero/About/etc. all use t()), so this
+                is genuine localized content, not just a translated meta
+                tag over English copy. /trading is deliberately not
+                included here yet — its body isn't wired to useLanguage()
+                at all (100% hardcoded English), so a localized URL for it
+                would show a Russian/Bulgarian title over English content —
+                do that once the page itself is actually translated. Every
+                other language stays client-side-only via the language
+                switcher, same as before. */}
+            <Route path="/ru" element={<Index />} />
+            <Route path="/bg" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/estate" element={<Estate />} />
             <Route path="/trading" element={<Trading />} />
