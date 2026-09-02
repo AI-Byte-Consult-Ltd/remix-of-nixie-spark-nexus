@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from "react
 import { subPageTranslations } from "./subPageTranslations";
 import { componentTranslations } from "./componentTranslations";
 
-export type Language = "en" | "de" | "fr" | "ar" | "zh" | "pl" | "tr" | "it" | "bg" | "ru";
+export type Language = "en" | "de" | "fr" | "ar" | "zh" | "pl" | "tr" | "it" | "bg" | "ru" | "es" | "pt";
 
 interface LanguageContextType {
   language: Language;
@@ -2108,6 +2108,108 @@ export const translations: Record<Language, Record<string, string>> = {
 
     "seo.home.title": "AI Byte Consult — NICS AI Trader, ИИ-системы и экосистема NICS",
     "seo.home.description": "AI Byte Consult создаёт продакшн ИИ-системы и экосистему NICS — NICS AI Trader даёт технический анализ и сигналы по золоту, форекс и крипте.",
+  },
+  es: {
+    "nav.contact": "Contacto",
+    "nav.ecosystem": "Ecosistema",
+    "nav.home": "Inicio",
+    "nav.projects": "Proyectos",
+
+    "footer.copyright": "AI Byte Consult Ltd. Todos los derechos reservados.",
+    "footer.description": "Automatización Inteligente, Blockchain y Soluciones Web3 — construyendo el futuro de la tecnología empresarial dentro del Ecosistema NICS AI.",
+    "footer.legal": "Legal",
+    "footer.privacy": "Política de Privacidad",
+    "footer.quicklinks": "Enlaces Rápidos",
+    "footer.terms": "Términos de Servicio",
+
+    "about.p1": "AI Byte Consult Ltd. es una empresa tecnológica global que construye inteligencia artificial independiente desde cero. Diseñamos sistemas de IA propios — incluyendo el LLM NICS y NICS Visual AI — que impulsan la investigación científica, la automatización industrial y la próxima generación de experiencias digitales para organizaciones de todo el mundo.",
+    "about.p2": "Nuestro trabajo abarca grandes modelos de lenguaje entrenados con el corpus de Project Gutenberg, modelos de visión por computadora entrenados con imágenes de la Tierra y de la NASA para detectar minerales y materiales, y visualización arquitectónica profesional para apartamentos y viviendas — con o sin IA. Damos servicio a la geología, la arqueología, la medicina, la química, la investigación sobre colonización espacial y terraformación, además de los sectores B2B, B2C, hostelería y diseño.",
+    "about.title": "Sobre la Empresa",
+
+    "team.subtitle": "Los visionarios detrás de AI Byte Consult Ltd.",
+    "team.title": "Conoce a los Fundadores",
+
+    "contact.email": "Correo electrónico",
+    "contact.email.placeholder": "tu.correo@ejemplo.com",
+    "contact.message": "Mensaje",
+    "contact.message.placeholder": "Cuéntanos sobre tu proyecto...",
+    "contact.name": "Nombre",
+    "contact.name.placeholder": "Tu nombre",
+    "contact.submit": "Enviar Mensaje",
+    "contact.subtitle": "Construyamos juntos el futuro de la automatización",
+    "contact.success": "¡Mensaje enviado! Te responderemos pronto.",
+    "contact.title": "Ponte en Contacto",
+
+    "newsletter.placeholder": "tu.correo@ejemplo.com",
+    "newsletter.submit": "Suscribirse",
+    "newsletter.subtitle": "Únete a nuestras actualizaciones de innovación y sé el primero en conocer nuevas funciones y novedades",
+    "newsletter.success": "¡Gracias por suscribirte a nuestro boletín!",
+    "newsletter.title": "Mantente Informado",
+
+    "track.badge": "En vivo · Verificado · Operaciones reales",
+    "track.closedSignals": "Señales cerradas",
+    "track.disclaimer": "Las cifras se actualizan automáticamente al cerrarse las señales. El rendimiento pasado no garantiza resultados futuros.",
+    "track.expectancy": "R promedio por operación",
+    "track.loading": "Cargando datos en vivo…",
+    "track.subtitle": "Rendimiento real y sin editar de NICS AI Trader — extraído en vivo de la base de datos de producción. Sin selección sesgada.",
+    "track.title1": "Historial",
+    "track.title2": "Verificado",
+    "track.totalR": "R total",
+    "track.winRate": "Tasa de aciertos",
+
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, sistemas de IA y ecosistema NICS",
+    "seo.home.description": "AI Byte Consult construye sistemas de IA en producción y el ecosistema NICS — NICS AI Trader ofrece análisis técnico y señales de IA para oro, forex y cripto.",
+  },
+  pt: {
+    "nav.contact": "Contato",
+    "nav.ecosystem": "Ecossistema",
+    "nav.home": "Início",
+    "nav.projects": "Projetos",
+
+    "footer.copyright": "AI Byte Consult Ltd. Todos os direitos reservados.",
+    "footer.description": "Automação Inteligente, Blockchain e Soluções Web3 — construindo o futuro da tecnologia empresarial dentro do Ecossistema NICS AI.",
+    "footer.legal": "Legal",
+    "footer.privacy": "Política de Privacidade",
+    "footer.quicklinks": "Links Rápidos",
+    "footer.terms": "Termos de Serviço",
+
+    "about.p1": "A AI Byte Consult Ltd. é uma empresa de tecnologia global que constrói inteligência artificial independente desde o zero. Projetamos sistemas de IA proprietários — incluindo o LLM NICS e o NICS Visual AI — que impulsionam a pesquisa científica, a automação industrial e a próxima geração de experiências digitais para organizações em todo o mundo.",
+    "about.p2": "Nosso trabalho abrange grandes modelos de linguagem treinados com o corpus do Project Gutenberg, modelos de visão computacional treinados com imagens da Terra e da NASA para detectar minerais e materiais, e visualização arquitetônica profissional para apartamentos e casas — com ou sem IA. Atendemos geologia, arqueologia, medicina, química, pesquisa de colonização espacial e terraformação, além dos setores B2B, B2C, hotelaria e design.",
+    "about.title": "Sobre a Empresa",
+
+    "team.subtitle": "Os visionários por trás da AI Byte Consult Ltd.",
+    "team.title": "Conheça os Fundadores",
+
+    "contact.email": "E-mail",
+    "contact.email.placeholder": "seu.email@exemplo.com",
+    "contact.message": "Mensagem",
+    "contact.message.placeholder": "Conte-nos sobre seu projeto...",
+    "contact.name": "Nome",
+    "contact.name.placeholder": "Seu nome",
+    "contact.submit": "Enviar Mensagem",
+    "contact.subtitle": "Vamos construir juntos o futuro da automação",
+    "contact.success": "Mensagem enviada! Retornaremos em breve.",
+    "contact.title": "Entre em Contato",
+
+    "newsletter.placeholder": "seu.email@exemplo.com",
+    "newsletter.submit": "Inscrever-se",
+    "newsletter.subtitle": "Junte-se às nossas atualizações de inovação e seja o primeiro a saber sobre novos recursos e novidades",
+    "newsletter.success": "Obrigado por assinar nossa newsletter!",
+    "newsletter.title": "Fique Atualizado",
+
+    "track.badge": "Em tempo real · Verificado · Operações reais",
+    "track.closedSignals": "Sinais encerrados",
+    "track.disclaimer": "Os números são atualizados automaticamente conforme os sinais são encerrados. Desempenho passado não garante resultados futuros.",
+    "track.expectancy": "R médio por operação",
+    "track.loading": "Carregando dados em tempo real…",
+    "track.subtitle": "Desempenho real e sem edições do NICS AI Trader — extraído em tempo real do banco de dados de produção. Sem seleção tendenciosa.",
+    "track.title1": "Histórico",
+    "track.title2": "Verificado",
+    "track.totalR": "R total",
+    "track.winRate": "Taxa de acerto",
+
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, sistemas de IA e ecossistema NICS",
+    "seo.home.description": "A AI Byte Consult constrói sistemas de IA em produção e o ecossistema NICS — o NICS AI Trader oferece análise técnica e sinais de IA para ouro, forex e criptomoedas.",
   },
 };
 

@@ -21,7 +21,9 @@ const languages: {code: Language;flag: string;name: string;}[] = [
 { code: "pl", flag: "🇵🇱", name: "Polski" },
 { code: "tr", flag: "🇹🇷", name: "Türkçe" },
 { code: "bg", flag: "🇧🇬", name: "Български" },
-{ code: "ru", flag: "🇷🇺", name: "Русский" }];
+{ code: "ru", flag: "🇷🇺", name: "Русский" },
+{ code: "es", flag: "🇪🇸", name: "Español" },
+{ code: "pt", flag: "🇵🇹", name: "Português" }];
 
 
 const nicsServices = [
