@@ -198,14 +198,13 @@ const Hero = () => {
               ))}
             </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1, duration: 0.9 }}
-              className="mt-8 max-w-xl text-base md:text-lg text-white/85 leading-relaxed"
-            >
+            {/* Plain <p>, not motion.p: this is the page's LCP element on
+                most viewports — an opacity:0 initial state with a 1.1s
+                delay was pushing the LCP element-render-delay to ~3.4s in
+                PageSpeed, with no network cost to blame (TTFB was 0ms). */}
+            <p className="mt-8 max-w-xl text-base md:text-lg text-white/85 leading-relaxed">
               {t("hero2.desc")}
-            </motion.p>
+            </p>
 
             <motion.div
               initial={{ opacity: 0, y: 12 }}
