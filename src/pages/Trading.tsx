@@ -241,9 +241,9 @@ const roadmap = [
 
 const Trading = () => {
   const seoProps = {
-    title: "NICS AI Trader — AI Technical Analysis & Trading Signals in Telegram",
+    title: "NICS AI Trader — AI Technical Analysis & Trading Signals",
     description:
-      "AI-powered technical analysis for gold, forex and crypto. Receive structured trading signals with Entry, Stop Loss, TP1–TP4, personal risk controls and signal tracking for Gold, Forex, Brent Oil and Bitcoin in Telegram and the NICS Mini App.",
+      "AI-powered technical analysis for gold, forex and crypto. Structured trading signals with Entry, Stop Loss and TP1–TP4 in Telegram and the NICS Mini App.",
     canonical: "https://aibyteconsult.com/trading",
     ogImage: "https://aibyteconsult.com/og-home.jpg",
     jsonLd: [

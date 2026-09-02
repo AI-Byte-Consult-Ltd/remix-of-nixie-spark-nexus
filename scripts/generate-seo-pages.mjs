@@ -49,7 +49,7 @@ const pages = [
     route: "/",
     title: "AI Byte Consult — NICS AI Trader, AI Systems & NICS Ecosystem",
     description:
-      "AI Byte Consult builds production AI systems and the NICS ecosystem, including NICS AI Trader — AI technical analysis and trading signals for gold, forex and crypto in Telegram — plus intelligent agents for business automation and research.",
+      "AI Byte Consult builds production AI systems and the NICS ecosystem — NICS AI Trader delivers AI technical analysis and signals for gold, forex and crypto.",
     type: "website",
     ogImage: `${siteUrl}/og-home.jpg`,
     schema: {
@@ -96,9 +96,9 @@ const pages = [
   },
   {
     route: "/trading",
-    title: "NICS AI Trader — AI Technical Analysis & Trading Signals in Telegram",
+    title: "NICS AI Trader — AI Technical Analysis & Trading Signals",
     description:
-      "AI-powered technical analysis for gold, forex and crypto. NICS AI Trader delivers structured trading signals — Entry, Stop Loss, TP1–TP4, personal risk controls and signal tracking — for Gold, Forex, Brent Oil and Bitcoin.",
+      "AI-powered technical analysis for gold, forex and crypto. Structured trading signals with Entry, Stop Loss and TP1–TP4 in Telegram and the NICS Mini App.",
     type: "product",
     // No dedicated og-trading.jpg exists yet — reuse the real home banner
     // rather than point social previews at a missing file.
@@ -206,9 +206,9 @@ const pages = [
   },
   {
     route: "/nics-multimedia",
-    title: "NICS Multimedia — Original Music by Aleksandr Tochilov | AI Byte Consult",
+    title: "NICS Multimedia — Original Music by Aleksandr Tochilov",
     description:
-      "NICS Multimedia is AI Byte Consult's in-house music-creation system. \"Just Live\" is its first release — lyrics written with the system's creator, music composed with NICS Multimedia.",
+      "NICS Multimedia is AI Byte Consult's in-house music system. \"Just Live\" — lyrics and visual direction by Aleksandr Tochilov, produced by NICS Multimedia.",
     type: "music.album",
     schemaType: "MusicAlbum",
   },
