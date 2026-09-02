@@ -30,9 +30,9 @@ const credits = [
 
 const NicsMultimedia = () => {
   const seoProps = {
-    title: "NICS Multimedia — Original Music by Aleksandr Tochilov | AI Byte Consult",
+    title: "NICS Multimedia — Original Music by Aleksandr Tochilov",
     description:
-      "NICS Multimedia is AI Byte Consult's in-house music-production system. \"Just Live\" is its first release — lyrics, musical idea and visual direction entirely by Aleksandr Tochilov, technical production by NICS Multimedia.",
+      "NICS Multimedia is AI Byte Consult's in-house music system. \"Just Live\" — lyrics and visual direction by Aleksandr Tochilov, produced by NICS Multimedia.",
     canonical: "https://aibyteconsult.com/nics-multimedia",
     jsonLd: {
       "@context": "https://schema.org",

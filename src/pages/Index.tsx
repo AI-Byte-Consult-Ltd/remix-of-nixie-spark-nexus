@@ -18,7 +18,7 @@ const Index = () => {
   const seoProps = {
     title: "AI Byte Consult — NICS AI Trader, AI Systems & NICS Ecosystem",
     description:
-      "AI Byte Consult builds production AI systems and the NICS ecosystem, including NICS AI Trader — AI technical analysis and trading signals for gold, forex and crypto in Telegram — plus intelligent agents for business automation and research.",
+      "AI Byte Consult builds production AI systems and the NICS ecosystem — NICS AI Trader delivers AI technical analysis and signals for gold, forex and crypto.",
     canonical: "https://aibyteconsult.com/",
     ogImage: "https://aibyteconsult.com/android-chrome-512x512.png",
     imageAlt: "AI Byte Consult and the NICS AI Ecosystem",
