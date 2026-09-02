@@ -8,7 +8,7 @@ interface SEOProps {
   imageAlt?: string;
   ogType?: "website" | "article" | "product";
   locale?: string;
-  jsonLd?: Record<string, unknown>;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   noindex?: boolean;
 }
 
@@ -31,7 +31,8 @@ const SEO = ({
       (typeof window !== "undefined"
         ? window.location.origin + window.location.pathname
         : undefined);
-  const resolvedImage = ogImage && !ogImage.includes("/og-") ? ogImage : DEFAULT_IMAGE;
+  const resolvedImage = ogImage || DEFAULT_IMAGE;
+  const jsonLdEntries = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
   return (
     <Helmet prioritizeSeoTags>
@@ -63,9 +64,11 @@ const SEO = ({
       <meta name="twitter:image" content={resolvedImage} />
       <meta name="twitter:image:alt" content={imageAlt} />
 
-      {jsonLd && (
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      )}
+      {jsonLdEntries.map((entry, index) => (
+        <script key={index} type="application/ld+json">
+          {JSON.stringify(entry)}
+        </script>
+      ))}
     </Helmet>
   );
 };

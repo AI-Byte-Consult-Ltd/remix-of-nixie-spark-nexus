@@ -7,6 +7,43 @@ const baseHtml = await readFile(basePath, "utf8");
 const siteUrl = "https://aibyteconsult.com";
 const defaultImage = `${siteUrl}/android-chrome-512x512.png`;
 
+// FAQ content for /trading — kept in sync with the visible FAQ section and
+// FAQPage JSON-LD rendered client-side in src/pages/Trading.tsx. Both must
+// state the same facts: this schema is only valid while it matches text a
+// visitor actually sees on the page.
+const tradingFaqs = [
+  {
+    question: "What is NICS AI Trader?",
+    answer:
+      "NICS AI Trader is a Telegram-first trading assistant built by AI Byte Consult Ltd. It delivers structured trading scenarios — Entry, Stop Loss and four Take Profit targets — through a signal bot and the NICS Mini App.",
+  },
+  {
+    question: "Which markets does it cover?",
+    answer:
+      "Gold, Forex, Brent Oil and Bitcoin, each with dedicated market logic and its own trading schedule.",
+  },
+  {
+    question: "Where does the price data come from?",
+    answer:
+      "NICS AI Trader is an official trading-signal provider for Vantage. Every scenario is generated from Vantage's own live price feed, and accepted signals can be executed on a Vantage MT5 account through our market-data bridge.",
+  },
+  {
+    question: "Do I have to accept every signal?",
+    answer:
+      "No. Each signal arrives as a compact scenario in Telegram, and you accept or skip it. Nothing is executed automatically.",
+  },
+  {
+    question: "Is the risk sizing personal to me?",
+    answer:
+      "Yes. Position size, total exposure and correlated risk are calculated from your own account balance, currency and risk settings, set once in the Mini App and adjustable at any time.",
+  },
+  {
+    question: "Does NICS guarantee profits?",
+    answer:
+      "No. Trading involves substantial risk. NICS provides structured analytical scenarios and risk-management tools, not guaranteed returns, investment advice or automatic profit.",
+  },
+];
+
 const pages = [
   {
     route: "/",
@@ -14,6 +51,7 @@ const pages = [
     description:
       "AI Byte Consult builds production AI systems and the NICS ecosystem, including NICS AI Trader — AI technical analysis and trading signals for gold, forex and crypto in Telegram — plus intelligent agents for business automation and research.",
     type: "website",
+    ogImage: `${siteUrl}/og-home.jpg`,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -45,6 +83,7 @@ const pages = [
       "Learn about AI Byte Consult Ltd, its applied AI work, the NICS ecosystem, international services and product divisions.",
     type: "website",
     schemaType: "AboutPage",
+    ogImage: `${siteUrl}/og-about.jpg`,
   },
   {
     route: "/estate",
@@ -53,6 +92,7 @@ const pages = [
       "AI-powered real estate solutions for property analysis, digital workflows, market intelligence and secure transaction support.",
     type: "website",
     schemaType: "Service",
+    ogImage: `${siteUrl}/og-estate.jpg`,
   },
   {
     route: "/trading",
@@ -60,6 +100,9 @@ const pages = [
     description:
       "AI-powered technical analysis for gold, forex and crypto. NICS AI Trader delivers structured trading signals — Entry, Stop Loss, TP1–TP4, personal risk controls and signal tracking — for Gold, Forex, Brent Oil and Bitcoin.",
     type: "product",
+    // No dedicated og-trading.jpg exists yet — reuse the real home banner
+    // rather than point social previews at a missing file.
+    ogImage: `${siteUrl}/og-home.jpg`,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -114,6 +157,17 @@ const pages = [
               url: "https://t.me/nics_ai_bot",
             },
           ],
+        },
+        {
+          "@type": "FAQPage",
+          mainEntity: tradingFaqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          })),
         },
       ],
     },
@@ -195,6 +249,7 @@ const renderPage = (page, noindex = false) => {
   // exactly that "multiple conflicting canonical URLs" warning in Search Console.
   const canonicalTag = noindex ? "" : `\n    <link rel="canonical" href="${canonical}" />`;
   const ogUrlTag = noindex ? "" : `\n    <meta property="og:url" content="${canonical}" />`;
+  const image = page.ogImage || defaultImage;
 
   const tags = `
     <title>${escapeAttribute(page.title)}</title>
@@ -206,13 +261,13 @@ const renderPage = (page, noindex = false) => {
     <meta property="og:type" content="${page.type}" />
     <meta property="og:title" content="${escapeAttribute(page.title)}" />
     <meta property="og:description" content="${escapeAttribute(page.description)}" />${ogUrlTag}
-    <meta property="og:image" content="${defaultImage}" />
+    <meta property="og:image" content="${image}" />
     <meta property="og:image:alt" content="AI Byte Consult and the NICS AI Ecosystem" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@aibyteconsult" />
     <meta name="twitter:title" content="${escapeAttribute(page.title)}" />
     <meta name="twitter:description" content="${escapeAttribute(page.description)}" />
-    <meta name="twitter:image" content="${defaultImage}" />
+    <meta name="twitter:image" content="${image}" />
     <script type="application/ld+json">${schema}</script>`;
 
   return clean.replace("</head>", `${tags}\n  </head>`);

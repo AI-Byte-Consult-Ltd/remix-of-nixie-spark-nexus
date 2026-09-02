@@ -183,6 +183,39 @@ const platformCapabilities = [
   },
 ];
 
+const faqs = [
+  {
+    question: "What is NICS AI Trader?",
+    answer:
+      "NICS AI Trader is a Telegram-first trading assistant built by AI Byte Consult Ltd. It delivers structured trading scenarios — Entry, Stop Loss and four Take Profit targets — through a signal bot and the NICS Mini App.",
+  },
+  {
+    question: "Which markets does it cover?",
+    answer:
+      "Gold, Forex, Brent Oil and Bitcoin, each with dedicated market logic and its own trading schedule.",
+  },
+  {
+    question: "Where does the price data come from?",
+    answer:
+      "NICS AI Trader is an official trading-signal provider for Vantage. Every scenario is generated from Vantage's own live price feed, and accepted signals can be executed on a Vantage MT5 account through our market-data bridge.",
+  },
+  {
+    question: "Do I have to accept every signal?",
+    answer:
+      "No. Each signal arrives as a compact scenario in Telegram, and you accept or skip it. Nothing is executed automatically.",
+  },
+  {
+    question: "Is the risk sizing personal to me?",
+    answer:
+      "Yes. Position size, total exposure and correlated risk are calculated from your own account balance, currency and risk settings, set once in the Mini App and adjustable at any time.",
+  },
+  {
+    question: "Does NICS guarantee profits?",
+    answer:
+      "No. Trading involves substantial risk. NICS provides structured analytical scenarios and risk-management tools, not guaranteed returns, investment advice or automatic profit.",
+  },
+];
+
 const roadmap = [
   {
     title: "Copy-trading & referral leaderboard",
@@ -212,21 +245,35 @@ const Trading = () => {
     description:
       "AI-powered technical analysis for gold, forex and crypto. Receive structured trading signals with Entry, Stop Loss, TP1–TP4, personal risk controls and signal tracking for Gold, Forex, Brent Oil and Bitcoin in Telegram and the NICS Mini App.",
     canonical: "https://aibyteconsult.com/trading",
-    ogImage: "https://aibyteconsult.com/og-trading.jpg",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      name: "NICS AI Trader",
-      applicationCategory: "FinanceApplication",
-      operatingSystem: "Telegram Web App",
-      provider: {
-        "@type": "Organization",
-        name: "AI Byte Consult Ltd",
+    ogImage: "https://aibyteconsult.com/og-home.jpg",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "NICS AI Trader",
+        applicationCategory: "FinanceApplication",
+        operatingSystem: "Telegram Web App",
+        provider: {
+          "@type": "Organization",
+          name: "AI Byte Consult Ltd",
+        },
+        description:
+          "A Telegram-first trading assistant that delivers structured market scenarios, personal risk controls, signal tracking and history for supported markets.",
+        url: "https://aibyteconsult.com/trading",
       },
-      description:
-        "A Telegram-first trading assistant that delivers structured market scenarios, personal risk controls, signal tracking and history for supported markets.",
-      url: "https://aibyteconsult.com/trading",
-    },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      },
+    ],
   };
 
   return (
@@ -669,6 +716,27 @@ const Trading = () => {
                 </a>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl text-center">
+              <Badge variant="outline" className="mb-4">FAQ</Badge>
+              <h2 className="text-3xl font-semibold md:text-5xl">Frequently asked questions</h2>
+            </div>
+
+            <div className="mx-auto mt-12 max-w-3xl space-y-4">
+              {faqs.map((faq) => (
+                <details key={faq.question} className="group rounded-2xl border border-border/60 bg-card/60 p-6">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+                    {faq.question}
+                    <ChevronDown className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" />
+                  </summary>
+                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
 
