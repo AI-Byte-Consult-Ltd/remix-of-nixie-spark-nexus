@@ -1,7 +1,7 @@
 // Sub-page translations for Estate, Insurance, Translation, Furnishings, About pages
 // and Header "Services" label
 
-import { Language } from "./LanguageContext";
+import type { Language } from "./LanguageContext";
 
 export const subPageTranslations: Record<Language, Record<string, string>> = {
   en: {
@@ -313,6 +313,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.button1": "Get in Touch",
     "aboutpage.cta.button2": "Explore Services",
 
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, AI Systems & NICS Ecosystem",
+    "seo.home.description": "AI Byte Consult builds production AI systems and the NICS ecosystem — NICS AI Trader delivers AI technical analysis and signals for gold, forex and crypto.",
+
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — AI Technical Analysis & Trading Signals",
     "tradingpage.seo.description": "AI-powered technical analysis for gold, forex and crypto. Structured trading signals with Entry, Stop Loss and TP1–TP4 in Telegram and the NICS Mini App.",
@@ -479,6 +482,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
   es: {
     "nav.trading": "Trading IA NICS",
 
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, sistemas de IA y ecosistema NICS",
+    "seo.home.description": "AI Byte Consult construye sistemas de IA en producción y el ecosistema NICS — NICS AI Trader ofrece análisis técnico y señales de IA para oro, forex y cripto.",
+
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Análisis Técnico con IA y Señales de Trading",
     "tradingpage.seo.description": "Análisis técnico con IA para oro, forex y cripto. Señales de trading estructuradas con Entry, Stop Loss y TP1–TP4 en Telegram y la NICS Mini App.",
@@ -644,6 +650,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
 
   pt: {
     "nav.trading": "Trading IA NICS",
+
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, sistemas de IA e ecossistema NICS",
+    "seo.home.description": "A AI Byte Consult constrói sistemas de IA em produção e o ecossistema NICS — o NICS AI Trader oferece análise técnica e sinais de IA para ouro, forex e criptomoedas.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Análise Técnica com IA e Sinais de Trading",
@@ -1076,6 +1085,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.button1": "Kontakt aufnehmen",
     "aboutpage.cta.button2": "Dienste erkunden",
 
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, KI-Systeme und NICS-Ökosystem",
+    "seo.home.description": "AI Byte Consult entwickelt Produktions-KI-Systeme und das NICS-Ökosystem — NICS AI Trader liefert KI-technische Analyse und Signale für Gold, Forex und Krypto.",
+
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — KI-Technische Analyse & Handelssignale",
     "tradingpage.seo.description": "KI-gestützte technische Analyse für Gold, Forex und Krypto. Strukturierte Handelssignale mit Entry, Stop Loss und TP1–TP4 in Telegram und der NICS Mini App.",
@@ -1444,6 +1456,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.title": "Prêt à travailler avec nous ?",
     "aboutpage.cta.desc": "Découvrez comment AI Byte Consult peut transformer votre entreprise.",
     "aboutpage.cta.button1": "Nous contacter", "aboutpage.cta.button2": "Explorer les services",
+
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, systèmes d'IA et écosystème NICS",
+    "seo.home.description": "AI Byte Consult développe des systèmes d'IA en production et l'écosystème NICS — NICS AI Trader fournit une analyse technique et des signaux IA pour l'or, le forex et les cryptos.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Analyse technique IA & signaux de trading",
@@ -1814,6 +1829,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "اكتشف كيف يمكن لـ AI Byte Consult تحويل أعمالك.",
     "aboutpage.cta.button1": "تواصل معنا", "aboutpage.cta.button2": "استكشف الخدمات",
 
+    "seo.home.title": "AI Byte Consult — NICS AI Trader وأنظمة الذكاء الاصطناعي ونظام NICS",
+    "seo.home.description": "تبني AI Byte Consult أنظمة ذكاء اصطناعي إنتاجية ونظام NICS البيئي — يقدم NICS AI Trader تحليلاً تقنياً وإشارات بالذكاء الاصطناعي للذهب والفوركس والعملات المشفرة.",
+
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — تحليل تقني بالذكاء الاصطناعي وإشارات تداول",
     "tradingpage.seo.description": "تحليل تقني مدعوم بالذكاء الاصطناعي للذهب والفوركس والعملات المشفرة. إشارات تداول منظمة مع نقطة الدخول وStop Loss وTP1–TP4 عبر تيليجرام وتطبيق NICS المصغر.",
@@ -2177,6 +2195,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.title": "准备与我们合作？",
     "aboutpage.cta.desc": "了解AI Byte Consult如何变革您的业务。",
     "aboutpage.cta.button1": "联系我们", "aboutpage.cta.button2": "探索服务",
+
+    "seo.home.title": "AI Byte Consult — NICS AI Trader、AI系统与NICS生态系统",
+    "seo.home.description": "AI Byte Consult构建生产级AI系统和NICS生态系统——NICS AI Trader为黄金、外汇和加密货币提供AI技术分析和信号。",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — AI技术分析与交易信号",
@@ -2544,6 +2565,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "Odkryj, jak AI Byte Consult może przekształcić Twój biznes.",
     "aboutpage.cta.button1": "Skontaktuj się", "aboutpage.cta.button2": "Odkryj usługi",
 
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, systemy AI i ekosystem NICS",
+    "seo.home.description": "AI Byte Consult tworzy produkcyjne systemy AI i ekosystem NICS — NICS AI Trader zapewnia analizę techniczną i sygnały AI dla złota, forexu i kryptowalut.",
+
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Analiza techniczna AI i sygnały tradingowe",
     "tradingpage.seo.description": "Analiza techniczna wspierana przez AI dla złota, forexu i kryptowalut. Ustrukturyzowane sygnały tradingowe z Entry, Stop Loss i TP1–TP4 w Telegramie i NICS Mini App.",
@@ -2909,6 +2933,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.title": "Bizimle çalışmaya hazır mısınız?",
     "aboutpage.cta.desc": "AI Byte Consult'un işinizi nasıl dönüştürebileceğini keşfedin.",
     "aboutpage.cta.button1": "İletişime geçin", "aboutpage.cta.button2": "Hizmetleri keşfedin",
+
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, Yapay Zeka Sistemleri ve NICS Ekosistemi",
+    "seo.home.description": "AI Byte Consult, üretim yapay zeka sistemleri ve NICS ekosistemini geliştirir — NICS AI Trader, altın, forex ve kripto için yapay zeka teknik analizi ve sinyalleri sunar.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Yapay Zeka Teknik Analiz ve Alım Satım Sinyalleri",
@@ -3276,6 +3303,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "Scopri come AI Byte Consult può trasformare il tuo business.",
     "aboutpage.cta.button1": "Contattaci", "aboutpage.cta.button2": "Esplora i servizi",
 
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, Sistemi IA ed Ecosistema NICS",
+    "seo.home.description": "AI Byte Consult sviluppa sistemi IA in produzione e l'ecosistema NICS — NICS AI Trader offre analisi tecnica e segnali IA per oro, forex e crypto.",
+
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Analisi Tecnica IA e Segnali di Trading",
     "tradingpage.seo.description": "Analisi tecnica basata su IA per oro, forex e crypto. Segnali di trading strutturati con Entry, Stop Loss e TP1–TP4 su Telegram e la NICS Mini App.",
@@ -3642,6 +3672,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "Открийте как AI Byte Consult може да трансформира вашия бизнес.",
     "aboutpage.cta.button1": "Свържете се", "aboutpage.cta.button2": "Разгледайте услугите",
 
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, ИИ системи и екосистема NICS",
+    "seo.home.description": "AI Byte Consult изгражда production ИИ системи и екосистемата NICS — NICS AI Trader предлага технически анализ и сигнали за злато, форекс и крипто.",
+
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — ИИ технически анализ и търговски сигнали",
     "tradingpage.seo.description": "ИИ технически анализ за злато, форекс и крипто. Структурирани търговски сигнали с Entry, Stop Loss и TP1–TP4 в Telegram и NICS Mini App.",
@@ -4007,6 +4040,9 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.title": "Готовы работать с нами?",
     "aboutpage.cta.desc": "Узнайте, как AI Byte Consult может трансформировать ваш бизнес.",
     "aboutpage.cta.button1": "Связаться", "aboutpage.cta.button2": "Обзор услуг",
+
+    "seo.home.title": "AI Byte Consult — NICS AI Trader, ИИ-системы и экосистема NICS",
+    "seo.home.description": "AI Byte Consult создаёт продакшн ИИ-системы и экосистему NICS — NICS AI Trader даёт технический анализ и сигналы по золоту, форекс и крипте.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — ИИ технический анализ и торговые сигналы",

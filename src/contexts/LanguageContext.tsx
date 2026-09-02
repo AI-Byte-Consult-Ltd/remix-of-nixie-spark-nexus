@@ -236,9 +236,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "products.ai.feature2": "Product catalog display",
     "products.ai.feature3": "Order inquiry handling",
     "products.ai.feature4": "Multi-language support",
-
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, AI Systems & NICS Ecosystem",
-    "seo.home.description": "AI Byte Consult builds production AI systems and the NICS ecosystem — NICS AI Trader delivers AI technical analysis and signals for gold, forex and crypto.",
   },
   de: {
     // Header
@@ -1896,8 +1893,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "products.ai.feature3": "Обработка на запитвания за поръчки",
     "products.ai.feature4": "Многоезикова поддръжка",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, ИИ системи и екосистема NICS",
-    "seo.home.description": "AI Byte Consult изгражда production ИИ системи и екосистемата NICS — NICS AI Trader предлага технически анализ и сигнали за злато, форекс и крипто.",
   },
   ru: {
     // Header
@@ -2105,9 +2100,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "products.ai.feature2": "Отображение каталога продуктов",
     "products.ai.feature3": "Обработка запросов на заказы",
     "products.ai.feature4": "Многоязычная поддержка",
-
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, ИИ-системы и экосистема NICS",
-    "seo.home.description": "AI Byte Consult создаёт продакшн ИИ-системы и экосистему NICS — NICS AI Trader даёт технический анализ и сигналы по золоту, форекс и крипте.",
   },
   es: {
     "nav.contact": "Contacto",
@@ -2156,9 +2148,6 @@ export const translations: Record<Language, Record<string, string>> = {
     "track.title2": "Verificado",
     "track.totalR": "R total",
     "track.winRate": "Tasa de aciertos",
-
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, sistemas de IA y ecosistema NICS",
-    "seo.home.description": "AI Byte Consult construye sistemas de IA en producción y el ecosistema NICS — NICS AI Trader ofrece análisis técnico y señales de IA para oro, forex y cripto.",
   },
   pt: {
     "nav.contact": "Contato",
@@ -2207,19 +2196,26 @@ export const translations: Record<Language, Record<string, string>> = {
     "track.title2": "Verificado",
     "track.totalR": "R total",
     "track.winRate": "Taxa de acerto",
-
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, sistemas de IA e ecossistema NICS",
-    "seo.home.description": "A AI Byte Consult constrói sistemas de IA em produção e o ecossistema NICS — o NICS AI Trader oferece análise técnica e sinais de IA para ouro, forex e criptomoedas.",
   },
 };
 
-// Languages with a crawlable, self-contained URL prefix (/ru, /bg, ...).
-// A visit to one of these paths must render in that language immediately,
-// both for the static prerendered HTML search engines see and for a real
-// browser on first paint — so this takes priority over any stored
-// preference. Every other language stays localStorage/client-state only,
-// same as before this was added.
-const URL_LANGUAGES: Language[] = ["ru", "bg"];
+// Every non-English language now has a crawlable, self-contained URL
+// prefix (/ru, /bg, /de, ...) for "/" and "/trading" — see App.tsx's
+// routes, generated from this same list, and scripts/generate-seo-pages.mjs,
+// which derives its own copy from ALL_LANGUAGES so the two never drift
+// apart. A visit to one of these paths must render in that language
+// immediately, both for the static prerendered HTML search engines see
+// and for a real browser on first paint — so this takes priority over any
+// stored preference for THOSE two pages. Every other page stays
+// localStorage/client-state only, same as before URL-based languages
+// existed at all.
+export const URL_LANGUAGES: Language[] = ["de", "fr", "ar", "zh", "pl", "tr", "it", "bg", "ru", "es", "pt"];
+
+const OG_LOCALE: Record<Language, string> = {
+  en: "en_US", de: "de_DE", fr: "fr_FR", ar: "ar_SA", zh: "zh_CN",
+  pl: "pl_PL", tr: "tr_TR", it: "it_IT", bg: "bg_BG", ru: "ru_RU",
+  es: "es_ES", pt: "pt_BR",
+};
 
 const detectLanguageFromPath = (): Language | null => {
   if (typeof window === "undefined") return null;
@@ -2235,11 +2231,12 @@ const SITE_URL = "https://aibyteconsult.com";
 // root ("/"). Centralized here so every such page computes the same
 // alternates set instead of re-deriving (and risking drift on) its own.
 export const getLocalizedSeoMeta = (basePath: string, language: Language) => {
-  const langPrefix = language === "ru" || language === "bg" ? `/${language}` : "";
-  const htmlLang = language === "ru" || language === "bg" ? language : "en";
-  const locale = language === "ru" ? "ru_RU" : language === "bg" ? "bg_BG" : "en_US";
+  const isUrlLanguage = URL_LANGUAGES.includes(language);
+  const langPrefix = isUrlLanguage ? `/${language}` : "";
+  const htmlLang = isUrlLanguage ? language : "en";
+  const locale = OG_LOCALE[language];
   // Root ("/") is the one route with a trailing slash; its localized
-  // variants are bare "/ru", "/bg" (matching the routes declared in
+  // variants are bare "/ru", "/bg", ... (matching the routes declared in
   // App.tsx and the static files scripts/generate-seo-pages.mjs writes) —
   // every other basePath just gets the prefix concatenated in front.
   const pathFor = (prefix: string) => {
@@ -2252,8 +2249,7 @@ export const getLocalizedSeoMeta = (basePath: string, language: Language) => {
     locale,
     alternates: [
       { lang: "en", href: `${SITE_URL}${pathFor("")}` },
-      { lang: "ru", href: `${SITE_URL}${pathFor("/ru")}` },
-      { lang: "bg", href: `${SITE_URL}${pathFor("/bg")}` },
+      ...URL_LANGUAGES.map((lang) => ({ lang, href: `${SITE_URL}${pathFor(`/${lang}`)}` })),
       { lang: "x-default", href: `${SITE_URL}${pathFor("")}` },
     ],
   };
