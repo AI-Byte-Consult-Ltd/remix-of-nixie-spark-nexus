@@ -83,6 +83,43 @@ export interface SubscriptionResponseData {
   subscription: CabinetSubscription | null;
 }
 
+export interface ProStatsPeriod {
+  closed: number;
+  wins: number;
+  winRate: number;
+  totalR: number;
+}
+
+export interface ProStatsBySymbol {
+  symbol: string;
+  closed: number;
+  winRate: number;
+  totalR: number;
+}
+
+export interface ProStatsRecentTrade {
+  symbol: string;
+  direction: string;
+  realizedR: number;
+  closedAt: string;
+}
+
+export interface ProStats {
+  summary: {
+    d7: ProStatsPeriod;
+    d30: ProStatsPeriod;
+    allTime: ProStatsPeriod;
+  };
+  bySymbol: ProStatsBySymbol[];
+  recentTrades: ProStatsRecentTrade[];
+}
+
+export interface ProStatsResponseData {
+  renewedToken?: string;
+  isActive: boolean;
+  proStats: ProStats | null;
+}
+
 export interface CabinetApiResponse<T = unknown> {
   ok: boolean;
   code?: string;
