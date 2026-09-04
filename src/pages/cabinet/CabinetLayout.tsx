@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import SEO from "@/components/SEO";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { CabinetSidebar } from "@/features/cabinet/CabinetSidebar";
-import { createCabinetTranslator } from "@/features/cabinet/i18n";
+import { CABINET_LANGUAGES, createCabinetTranslator } from "@/features/cabinet/i18n";
 import { callCabinetApi, CabinetApiError } from "@/features/cabinet/api";
 import { useCabinetAuth } from "@/features/cabinet/useCabinetAuth";
 import { useCabinetQuery } from "@/features/cabinet/useCabinetQuery";
@@ -21,8 +21,6 @@ export interface CabinetOutletContext {
   logout: () => void;
 }
 
-const SUPPORTED_CABINET_LANGUAGES: CabinetLanguage[] = ["ru", "bg", "en", "es"];
-
 export const useCabinetOutletContext = () => useOutletContext<CabinetOutletContext>();
 
 const CabinetLayout = () => {
@@ -30,7 +28,7 @@ const CabinetLayout = () => {
   const auth = useCabinetAuth();
 
   const cabinetLanguage: CabinetLanguage = useMemo(() => {
-    return (SUPPORTED_CABINET_LANGUAGES as string[]).includes(siteLanguage)
+    return (CABINET_LANGUAGES as string[]).includes(siteLanguage)
       ? (siteLanguage as CabinetLanguage)
       : "en";
   }, [siteLanguage]);

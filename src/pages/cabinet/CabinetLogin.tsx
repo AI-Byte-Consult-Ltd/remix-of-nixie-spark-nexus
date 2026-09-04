@@ -4,12 +4,11 @@ import { Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import SEO from "@/components/SEO";
 import { Checkbox } from "@/components/ui/checkbox";
-import { createCabinetTranslator, type CabinetTranslationKey } from "@/features/cabinet/i18n";
+import { CABINET_LANGUAGES, createCabinetTranslator, type CabinetTranslationKey } from "@/features/cabinet/i18n";
 import { useCabinetAuth } from "@/features/cabinet/useCabinetAuth";
 import type { CabinetLanguage, TelegramLoginPayload } from "@/features/cabinet/types";
 
 const TELEGRAM_BOT_USERNAME = "nics_ai_bot";
-const SUPPORTED_CABINET_LANGUAGES: CabinetLanguage[] = ["ru", "bg", "en", "es"];
 
 declare global {
   interface Window {
@@ -26,7 +25,7 @@ const CabinetLogin = () => {
   const [errorCode, setErrorCode] = useState<string | null>(null);
 
   const cabinetLanguage: CabinetLanguage = useMemo(() => {
-    return (SUPPORTED_CABINET_LANGUAGES as string[]).includes(siteLanguage)
+    return (CABINET_LANGUAGES as string[]).includes(siteLanguage)
       ? (siteLanguage as CabinetLanguage)
       : "en";
   }, [siteLanguage]);

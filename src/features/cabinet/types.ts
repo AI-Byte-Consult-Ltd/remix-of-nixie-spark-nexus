@@ -1,4 +1,16 @@
-export type CabinetLanguage = "ru" | "bg" | "en" | "es";
+export type CabinetLanguage =
+  | "en"
+  | "de"
+  | "fr"
+  | "ar"
+  | "zh"
+  | "pl"
+  | "tr"
+  | "it"
+  | "bg"
+  | "ru"
+  | "es"
+  | "pt";
 
 export interface TelegramLoginPayload {
   id: number;
