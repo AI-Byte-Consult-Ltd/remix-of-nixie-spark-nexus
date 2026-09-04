@@ -56,7 +56,7 @@ const CabinetPro = () => {
   const stats = data?.proStats;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
+    <div className="mx-auto max-w-5xl space-y-6">
       <h1 className="text-2xl font-bold text-gradient-gold">{t("proTitle")}</h1>
 
       {isLoading ? (

@@ -18,8 +18,11 @@ const CabinetCourses = () => {
   const lessons = data?.lessons ?? [];
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
-      <h1 className="text-2xl font-bold text-gradient-gold">{t("coursesTitle")}</h1>
+    <div className="mx-auto max-w-5xl space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold text-gradient-gold">{t("coursesTitle")}</h1>
+        <p className="mt-1 text-sm text-muted-foreground">{t("coursesPageLead")}</p>
+      </div>
 
       {isLoading && (
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -35,33 +38,39 @@ const CabinetCourses = () => {
         <p className="text-sm text-muted-foreground">{t("noCourses")}</p>
       )}
 
-      <div className="space-y-2">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {lessons.map((lesson) => (
-          <Card key={lesson.id} className="border-border bg-card">
-            <CardContent className="flex items-center justify-between py-4">
-              <div className="flex items-center gap-3">
+          <Card
+            key={lesson.id}
+            className={cn(
+              "border-border bg-card transition-colors",
+              lesson.current && "border-primary/50 bg-primary/5",
+            )}
+          >
+            <CardContent className="flex h-full flex-col gap-3 py-5">
+              <div className="flex items-start justify-between gap-2">
                 {lesson.passed ? (
-                  <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-emerald-500" />
                 ) : lesson.current ? (
-                  <Circle className="h-5 w-5 text-primary" />
+                  <Circle className="h-5 w-5 flex-shrink-0 text-primary" />
                 ) : (
-                  <Lock className="h-5 w-5 text-muted-foreground" />
+                  <Lock className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
                 )}
-                <span
-                  className={cn(
-                    "text-sm",
-                    lesson.passed || lesson.current ? "text-foreground" : "text-muted-foreground",
-                  )}
-                >
-                  {lesson.sortOrder}. {lesson.title}
+                <span className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+                  {lesson.passed
+                    ? t("lessonPassed")
+                    : lesson.current
+                      ? t("lessonCurrent")
+                      : t("lessonLocked")}
                 </span>
               </div>
-              <span className="text-xs text-muted-foreground">
-                {lesson.passed
-                  ? t("lessonPassed")
-                  : lesson.current
-                    ? t("lessonCurrent")
-                    : t("lessonLocked")}
+              <span
+                className={cn(
+                  "text-sm font-medium leading-snug",
+                  lesson.passed || lesson.current ? "text-foreground" : "text-muted-foreground",
+                )}
+              >
+                {lesson.sortOrder}. {lesson.title}
               </span>
             </CardContent>
           </Card>
