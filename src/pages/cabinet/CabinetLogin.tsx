@@ -80,12 +80,12 @@ const CabinetLogin = () => {
         canonical="https://aibyteconsult.com/cabinet/login"
         noindex
       />
-      <main className="grid min-h-screen place-items-center bg-[#07090f] px-4 text-slate-100">
-        <div className="w-full max-w-sm rounded-2xl border border-white/10 bg-white/5 p-8 text-center">
+      <main className="grid min-h-screen place-items-center bg-background px-4 text-foreground">
+        <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-8 text-center shadow-sm">
           <h1 className="text-xl font-bold text-gradient-gold">{t("loginTitle")}</h1>
-          <p className="mt-2 text-sm text-slate-400">{t("loginSubtitle")}</p>
+          <p className="mt-2 text-sm text-muted-foreground">{t("loginSubtitle")}</p>
 
-          <label className="mt-6 flex items-start gap-2 text-left text-xs text-slate-400">
+          <label className="mt-6 flex items-start gap-2 text-left text-xs text-muted-foreground">
             <Checkbox
               checked={consentChecked}
               onCheckedChange={(value) => setConsentChecked(value === true)}
@@ -93,11 +93,11 @@ const CabinetLogin = () => {
             />
             <span>
               {t("loginConsentPrefix")}{" "}
-              <Link to="/terms" className="text-amber-400 underline" target="_blank">
+              <Link to="/terms" className="text-primary underline" target="_blank">
                 {t("loginConsentTerms")}
               </Link>{" "}
               {t("loginConsentAnd")}{" "}
-              <Link to="/privacy" className="text-amber-400 underline" target="_blank">
+              <Link to="/privacy" className="text-primary underline" target="_blank">
                 {t("loginConsentPrivacy")}
               </Link>
               .
@@ -106,20 +106,20 @@ const CabinetLogin = () => {
 
           <div className="mt-6 flex min-h-[52px] items-center justify-center">
             {isSubmitting ? (
-              <Loader2 className="h-6 w-6 animate-spin text-amber-400" />
+              <Loader2 className="h-6 w-6 animate-spin text-primary" />
             ) : consentChecked ? (
               <div ref={widgetContainerRef} />
             ) : (
-              <p className="text-xs text-slate-500">{t("loginWidgetBlocked")}</p>
+              <p className="text-xs text-muted-foreground">{t("loginWidgetBlocked")}</p>
             )}
           </div>
 
           {consentChecked && !isSubmitting && (
-            <p className="mt-2 text-xs text-slate-500">{t("loginWidgetHint")}</p>
+            <p className="mt-2 text-xs text-muted-foreground">{t("loginWidgetHint")}</p>
           )}
 
           {errorCode && (
-            <p className="mt-4 rounded-lg bg-rose-500/10 px-3 py-2 text-xs text-rose-300">
+            <p className="mt-4 rounded-lg bg-rose-50 px-3 py-2 text-xs text-rose-700">
               {t(`error${errorCode}` as CabinetTranslationKey) || errorCode}
             </p>
           )}

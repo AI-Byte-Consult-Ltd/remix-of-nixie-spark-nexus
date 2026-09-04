@@ -23,13 +23,13 @@ const CabinetPro = () => {
       <h1 className="text-2xl font-bold text-gradient-gold">{t("proTitle")}</h1>
 
       {isLoading ? (
-        <div className="flex items-center gap-2 text-sm text-slate-400">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Loader2 className="h-4 w-4 animate-spin" /> {t("loading")}
         </div>
       ) : (
-        <Card className="border-white/10 bg-white/5">
+        <Card className="border-border bg-card">
           <CardContent className="space-y-3 pt-6">
-            <p className="text-sm text-slate-300">
+            <p className="text-sm text-muted-foreground">
               {isActive ? t("proLeadActive") : t("proLeadInactive")}
             </p>
             {!isActive && (

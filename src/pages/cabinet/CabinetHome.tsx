@@ -30,42 +30,42 @@ const CabinetHome = () => {
       </div>
 
       {isLoading && (
-        <div className="flex items-center gap-2 text-sm text-slate-400">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Loader2 className="h-4 w-4 animate-spin" /> {t("loading")}
         </div>
       )}
 
       {errorCode && (
-        <p className="rounded-lg bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{errorCode}</p>
+        <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">{errorCode}</p>
       )}
 
       {dashboard && (
         <div className="grid gap-4 sm:grid-cols-2">
-          <Card className="border-amber-400/30 bg-amber-400/5 sm:col-span-2">
+          <Card className="border-primary/30 bg-primary/5 sm:col-span-2">
             <CardHeader>
-              <CardTitle className="text-sm font-medium text-amber-300">
+              <CardTitle className="text-sm font-medium text-primary">
                 {t("cashbackLabel")}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-2xl font-bold text-amber-100">
+              <p className="text-2xl font-bold text-foreground">
                 {dashboard.cashbackAvailableXtr} XTR
               </p>
-              <p className="text-xs text-amber-200/70">{t("cashbackHint")}</p>
+              <p className="text-xs text-muted-foreground">{t("cashbackHint")}</p>
               <a
                 href="https://t.me/nics_ai_bot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 inline-block text-xs text-amber-400 underline"
+                className="mt-2 inline-block text-xs text-primary underline"
               >
                 {t("cashbackGoReferral")}
               </a>
             </CardContent>
           </Card>
 
-          <Card className="border-white/10 bg-white/5">
+          <Card className="border-border bg-card">
             <CardHeader>
-              <CardTitle className="text-sm font-medium text-slate-300">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
                 {t("subscriptionLabel")}
               </CardTitle>
             </CardHeader>
@@ -74,7 +74,7 @@ const CabinetHome = () => {
                 {isSubscriptionActive ? t("subscriptionActive") : t("subscriptionNone")}
               </Badge>
               {isSubscriptionActive && dashboard.subscription?.expiresAt && (
-                <p className="mt-2 text-xs text-slate-400">
+                <p className="mt-2 text-xs text-muted-foreground">
                   {t("subscriptionExpiresAt")}:{" "}
                   {new Date(dashboard.subscription.expiresAt).toLocaleDateString()}
                 </p>
@@ -82,24 +82,24 @@ const CabinetHome = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-white/10 bg-white/5">
+          <Card className="border-border bg-card">
             <CardHeader>
-              <CardTitle className="text-sm font-medium text-slate-300">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
                 {t("academyProgressLabel")}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-2xl font-bold text-slate-100">
+              <p className="text-2xl font-bold text-foreground">
                 {dashboard.academy.passedCount} / {dashboard.academy.totalLessons}
               </p>
-              <p className="text-xs text-slate-400">{t("academyLessonsPassed")}</p>
+              <p className="text-xs text-muted-foreground">{t("academyLessonsPassed")}</p>
             </CardContent>
           </Card>
 
           {dashboard.certificate && (
-            <Card className="border-emerald-500/30 bg-emerald-500/5 sm:col-span-2">
+            <Card className="border-emerald-300 bg-emerald-50 sm:col-span-2">
               <CardHeader>
-                <CardTitle className="text-sm font-medium text-emerald-300">
+                <CardTitle className="text-sm font-medium text-emerald-700">
                   {t("certificateReady")}
                 </CardTitle>
               </CardHeader>
@@ -108,7 +108,7 @@ const CabinetHome = () => {
                   href={`https://n8n.aibyteconsult.com/webhook/nics-certificate-view?id=${dashboard.certificate.verifySlug}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-amber-400 underline"
+                  className="text-sm text-primary underline"
                 >
                   {t("viewCertificate")}
                 </a>

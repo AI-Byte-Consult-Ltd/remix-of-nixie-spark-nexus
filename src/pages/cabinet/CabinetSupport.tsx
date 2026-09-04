@@ -10,7 +10,7 @@ const CabinetSupport = () => {
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-gradient-gold">{t("supportTitle")}</h1>
-        <p className="mt-1 text-sm text-slate-400">{t("supportLead")}</p>
+        <p className="mt-1 text-sm text-muted-foreground">{t("supportLead")}</p>
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row">

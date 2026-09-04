@@ -39,7 +39,7 @@ const CabinetLayout = () => {
 
   if (auth.isLoading) {
     return (
-      <main className="grid min-h-screen place-items-center bg-[#07090f] text-sm text-slate-400">
+      <main className="grid min-h-screen place-items-center bg-background text-sm text-muted-foreground">
         {t("loading")}
       </main>
     );
@@ -68,10 +68,10 @@ const CabinetLayout = () => {
         noindex
       />
       <SidebarProvider>
-        <div className="flex min-h-screen w-full bg-[#07090f] text-slate-100">
+        <div className="flex min-h-screen w-full bg-background text-foreground">
           <CabinetSidebar t={t} user={auth.user} onLogout={auth.logout} />
           <SidebarInset className="bg-transparent">
-            <div className="flex items-center justify-between gap-2 border-b border-white/10 px-4 py-3">
+            <div className="flex items-center justify-between gap-2 border-b border-border px-4 py-3">
               <div className="flex items-center gap-2">
                 <SidebarTrigger className="md:hidden" />
                 <span className="text-sm font-medium md:hidden">{t("appTitle")}</span>
@@ -111,10 +111,10 @@ const CashbackBadge = ({ session, language, onRenewedToken, label }: CashbackBad
   const amount = data?.dashboard?.cashbackAvailableXtr ?? 0;
 
   return (
-    <div className="flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1.5">
-      <Wallet className="h-4 w-4 text-amber-400" />
-      <span className="text-xs font-medium text-amber-200">{label}</span>
-      <span className="text-sm font-semibold text-amber-100">{amount} XTR</span>
+    <div className="flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5">
+      <Wallet className="h-4 w-4 text-primary" />
+      <span className="text-xs font-medium text-primary/80">{label}</span>
+      <span className="text-sm font-semibold text-foreground">{amount} XTR</span>
     </div>
   );
 };
