@@ -17,6 +17,7 @@ export const translations: Record<Language, Record<string, string>> = {
   en: {
     // Header
     "nav.home": "Home",
+    "nav.cabinet": "Cabinet",
     "nav.ecosystem": "Ecosystem",
     "nav.projects": "Projects",
     "nav.automation": "Automation",
@@ -240,6 +241,7 @@ export const translations: Record<Language, Record<string, string>> = {
   de: {
     // Header
     "nav.home": "Startseite",
+    "nav.cabinet": "Konto",
     "nav.ecosystem": "Ökosystem",
     "nav.projects": "Projekte",
     "nav.automation": "Automatisierung",
@@ -447,6 +449,7 @@ export const translations: Record<Language, Record<string, string>> = {
   fr: {
     // Header
     "nav.home": "Accueil",
+    "nav.cabinet": "Compte",
     "nav.ecosystem": "Écosystème",
     "nav.projects": "Projets",
     "nav.automation": "Automatisation",
@@ -654,6 +657,7 @@ export const translations: Record<Language, Record<string, string>> = {
   ar: {
     // Header
     "nav.home": "الرئيسية",
+    "nav.cabinet": "حسابي",
     "nav.ecosystem": "النظام البيئي",
     "nav.projects": "المشاريع",
     "nav.automation": "الأتمتة",
@@ -861,6 +865,7 @@ export const translations: Record<Language, Record<string, string>> = {
   zh: {
     // Header
     "nav.home": "首页",
+    "nav.cabinet": "个人中心",
     "nav.ecosystem": "生态系统",
     "nav.projects": "项目",
     "nav.automation": "自动化",
@@ -1068,6 +1073,7 @@ export const translations: Record<Language, Record<string, string>> = {
   pl: {
     // Header
     "nav.home": "Strona główna",
+    "nav.cabinet": "Panel",
     "nav.ecosystem": "Ekosystem",
     "nav.projects": "Projekty",
     "nav.automation": "Automatyzacja",
@@ -1275,6 +1281,7 @@ export const translations: Record<Language, Record<string, string>> = {
   tr: {
     // Header
     "nav.home": "Ana Sayfa",
+    "nav.cabinet": "Panel",
     "nav.ecosystem": "Ekosistem",
     "nav.projects": "Projeler",
     "nav.automation": "Otomasyon",
@@ -1482,6 +1489,7 @@ export const translations: Record<Language, Record<string, string>> = {
   it: {
     // Header
     "nav.home": "Home",
+    "nav.cabinet": "Account",
     "nav.ecosystem": "Ecosistema",
     "nav.projects": "Progetti",
     "nav.automation": "Automazione",
@@ -1689,6 +1697,7 @@ export const translations: Record<Language, Record<string, string>> = {
   bg: {
     // Header
     "nav.home": "Начало",
+    "nav.cabinet": "Кабинет",
     "nav.ecosystem": "Екосистема",
     "nav.projects": "Проекти",
     "nav.automation": "Автоматизация",
@@ -1897,6 +1906,7 @@ export const translations: Record<Language, Record<string, string>> = {
   ru: {
     // Header
     "nav.home": "Главная",
+    "nav.cabinet": "Кабинет",
     "nav.ecosystem": "Экосистема",
     "nav.projects": "Проекты",
     "nav.automation": "Автоматизация",
@@ -2105,6 +2115,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "Contacto",
     "nav.ecosystem": "Ecosistema",
     "nav.home": "Inicio",
+    "nav.cabinet": "Cuenta",
     "nav.projects": "Proyectos",
 
     "footer.copyright": "AI Byte Consult Ltd. Todos los derechos reservados.",
@@ -2153,6 +2164,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "Contato",
     "nav.ecosystem": "Ecossistema",
     "nav.home": "Início",
+    "nav.cabinet": "Conta",
     "nav.projects": "Projetos",
 
     "footer.copyright": "AI Byte Consult Ltd. Todos os direitos reservados.",

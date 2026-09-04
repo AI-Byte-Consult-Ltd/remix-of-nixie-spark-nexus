@@ -109,6 +109,15 @@ const Terms = () => {
       ],
     },
     {
+      id: "cabinet",
+      title: "Personal Cabinet",
+      content: [
+        "The personal cabinet at aibyteconsult.com/cabinet is a browser-accessible extension of your existing NICS AI Trader Telegram account, not a separate account or product. You sign in with the Telegram Login Widget using the same Telegram account you use with the bot; a cabinet session cannot exist independently of that Telegram account.",
+        "Academy certificates issued through the cabinet are named documents, issued only once you have actually completed every lesson of the NICS AI Trader Academy as recorded in our systems — never on request, and never for a fee. Each certificate is published at a public, individually verifiable link, so its authenticity can always be independently checked; do not share that link if you do not want the certificate publicly viewable.",
+        "The cabinet may also surface a cashback balance from our existing 30% referral-commission program (described in \"Affiliate, Referral & Third-Party Disclosure\" above) — this is a display of the same program, not a separate offer or a promise of any additional payment.",
+      ],
+    },
+    {
       id: "data",
       title: "Data, Privacy & Communications",
       content: [

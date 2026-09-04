@@ -25,7 +25,8 @@ const DataDeletion = () => {
                 AI Byte Consult Ltd. is an applied-AI company — this page covers
                 data collected across all of our products, not only our Meta/Threads
                 integration: the website contact form and newsletter, the NICS AI
-                Trader Telegram bot and Mini App, and our connected Threads account.
+                Trader Telegram bot and Mini App, the personal cabinet at
+                aibyteconsult.com/cabinet, and our connected Threads account.
                 If you have used any of these and provided us with personal data,
                 you can request that we delete it at any time.
               </p>
@@ -41,8 +42,8 @@ const DataDeletion = () => {
                 with the subject line "Data deletion request", from the email
                 address or account you used with us. Please tell us which
                 product the request relates to (Telegram bot, NICS AI Trader
-                Mini App, newsletter, contact form, or our Meta/Threads
-                integration), so we can locate your data.
+                Mini App, personal cabinet, newsletter, contact form, or our
+                Meta/Threads integration), so we can locate your data.
               </p>
 
               <p>
@@ -50,11 +51,13 @@ const DataDeletion = () => {
                 personal data we hold about you from our active systems —
                 including Telegram account identifiers, trading-signal and
                 journal history, newsletter subscription, contact-form
-                submissions, and any Meta/Threads access tokens or platform
-                data tied to your request — within 30 days, except where we
-                are required to retain specific records by law. Data already
-                contained in a routine database backup ages out on our normal
-                backup rotation schedule.
+                submissions, academy progress and any issued certificate
+                (which also removes its public verification link), and any
+                Meta/Threads access tokens or platform data tied to your
+                request — within 30 days, except where we are required to
+                retain specific records by law. Data already contained in a
+                routine database backup ages out on our normal backup
+                rotation schedule.
               </p>
 
               <p>
