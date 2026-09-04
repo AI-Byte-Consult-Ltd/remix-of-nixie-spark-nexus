@@ -43,7 +43,7 @@ const Header = () => {
 
   const navLinks = [
   { href: "/", label: t("nav.home"), isHome: true },
-  { href: "/#ecosystem", label: t("nav.ecosystem") },
+  { href: "/cabinet", label: t("nav.cabinet") },
   { href: "/trading", label: t("nav.trading") },
   { href: "/#projects", label: t("nav.projects") },
   { href: "/#contact", label: t("nav.contact") }];
