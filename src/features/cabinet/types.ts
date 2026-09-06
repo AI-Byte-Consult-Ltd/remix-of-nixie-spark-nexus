@@ -120,6 +120,27 @@ export interface ProStatsResponseData {
   proStats: ProStats | null;
 }
 
+export interface ExportedSignal {
+  symbol: string;
+  direction: string;
+  entryLow: number;
+  entryHigh: number;
+  stopLoss: number;
+  tp1: number | null;
+  tp2: number | null;
+  tp3: number | null;
+  tp4: number | null;
+  status: string;
+  realizedR: number;
+  closedAt: string;
+}
+
+export interface ExportSignalsResponseData {
+  renewedToken?: string;
+  isActive: boolean;
+  signals: ExportedSignal[] | null;
+}
+
 export interface CabinetApiResponse<T = unknown> {
   ok: boolean;
   code?: string;

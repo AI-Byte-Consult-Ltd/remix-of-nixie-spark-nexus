@@ -1,4 +1,5 @@
-import { Loader2 } from "lucide-react";
+import { useState } from "react";
+import { Download, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -12,8 +13,32 @@ import {
 import { Link } from "react-router-dom";
 import { useCabinetOutletContext } from "./CabinetLayout";
 import { useCabinetQuery } from "@/features/cabinet/useCabinetQuery";
-import type { ProStatsPeriod, ProStatsResponseData } from "@/features/cabinet/types";
+import { callCabinetApi } from "@/features/cabinet/api";
+import type {
+  ExportSignalsResponseData,
+  ProStatsPeriod,
+  ProStatsResponseData,
+} from "@/features/cabinet/types";
 import type { CabinetTranslation } from "@/features/cabinet/i18n";
+
+const downloadCsv = (filename: string, rows: string[][]) => {
+  const csv = rows
+    .map((row) =>
+      row
+        .map((cell) => `"${String(cell ?? "").replace(/"/g, '""')}"`)
+        .join(","),
+    )
+    .join("\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+};
 
 const signed = (value: number) => (value > 0 ? "+" : "");
 
@@ -55,6 +80,63 @@ const CabinetPro = () => {
   const isActive = data?.isActive === true;
   const stats = data?.proStats;
 
+  const [isExporting, setIsExporting] = useState(false);
+  const [exportError, setExportError] = useState(false);
+
+  const handleExport = async () => {
+    setIsExporting(true);
+    setExportError(false);
+
+    try {
+      const result = await callCabinetApi<ExportSignalsResponseData>({
+        action: "export_signals",
+        session,
+        language,
+      });
+
+      if (result.data?.renewedToken) {
+        updateSession(result.data.renewedToken);
+      }
+
+      const signals = result.data?.signals ?? [];
+
+      downloadCsv("nics-signals-history.csv", [
+        [
+          t("proStatsColSymbol"),
+          t("proStatsColDirection"),
+          "Entry Low",
+          "Entry High",
+          "Stop Loss",
+          "TP1",
+          "TP2",
+          "TP3",
+          "TP4",
+          "Status",
+          t("proStatsColResult"),
+          t("proStatsColDate"),
+        ],
+        ...signals.map((row) => [
+          row.symbol,
+          row.direction,
+          String(row.entryLow ?? ""),
+          String(row.entryHigh ?? ""),
+          String(row.stopLoss ?? ""),
+          String(row.tp1 ?? ""),
+          String(row.tp2 ?? ""),
+          String(row.tp3 ?? ""),
+          String(row.tp4 ?? ""),
+          row.status,
+          String(row.realizedR ?? ""),
+          row.closedAt,
+        ]),
+      ]);
+    } catch {
+      setExportError(true);
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
   return (
     <div className="mx-auto max-w-5xl space-y-6">
       <h1 className="text-2xl font-bold text-gradient-gold">{t("proTitle")}</h1>
@@ -82,6 +164,25 @@ const CabinetPro = () => {
                 <PeriodCard label={t("proStatsPeriod7d")} period={stats.summary.d7} t={t} />
                 <PeriodCard label={t("proStatsPeriod30d")} period={stats.summary.d30} t={t} />
                 <PeriodCard label={t("proStatsPeriodAllTime")} period={stats.summary.allTime} t={t} />
+              </div>
+
+              <div className="flex flex-col items-start gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleExport}
+                  disabled={isExporting}
+                >
+                  {isExporting ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : (
+                    <Download className="mr-2 h-4 w-4" />
+                  )}
+                  {t("proExportButton")}
+                </Button>
+                {exportError && (
+                  <p className="text-xs text-destructive">{t("proExportError")}</p>
+                )}
               </div>
 
               <Card className="border-border bg-card">

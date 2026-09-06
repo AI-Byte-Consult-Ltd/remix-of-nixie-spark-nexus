@@ -102,6 +102,8 @@ export const translations = {
     proStatsColResult: "Результат",
     proStatsColDate: "Дата закрытия",
     proStatsNoTrades: "Пока нет закрытых сделок за этот период.",
+    proExportButton: "Скачать CSV",
+    proExportError: "Не удалось скачать. Попробуйте позже.",
   },
   bg: {
     appTitle: "Личен кабинет",
@@ -204,6 +206,8 @@ export const translations = {
     proStatsColResult: "Резултат",
     proStatsColDate: "Дата на затваряне",
     proStatsNoTrades: "Все още няма затворени сделки за този период.",
+    proExportButton: "Изтегли CSV",
+    proExportError: "Изтеглянето не бе успешно. Опитайте по-късно.",
   },
   en: {
     appTitle: "Personal cabinet",
@@ -306,6 +310,8 @@ export const translations = {
     proStatsColResult: "Result",
     proStatsColDate: "Closed at",
     proStatsNoTrades: "No closed trades in this period yet.",
+    proExportButton: "Download CSV",
+    proExportError: "Download failed. Try again later.",
   },
   es: {
     appTitle: "Panel personal",
@@ -408,6 +414,8 @@ export const translations = {
     proStatsColResult: "Resultado",
     proStatsColDate: "Cierre",
     proStatsNoTrades: "Aún no hay operaciones cerradas en este período.",
+    proExportButton: "Descargar CSV",
+    proExportError: "No se pudo descargar. Inténtalo más tarde.",
   },
   de: {
     appTitle: "Persönlicher Bereich",
@@ -510,6 +518,8 @@ export const translations = {
     proStatsColResult: "Ergebnis",
     proStatsColDate: "Geschlossen am",
     proStatsNoTrades: "Noch keine geschlossenen Trades in diesem Zeitraum.",
+    proExportButton: "CSV herunterladen",
+    proExportError: "Download fehlgeschlagen. Bitte später erneut versuchen.",
   },
   fr: {
     appTitle: "Espace personnel",
@@ -612,6 +622,8 @@ export const translations = {
     proStatsColResult: "Résultat",
     proStatsColDate: "Clôturé le",
     proStatsNoTrades: "Aucun trade clôturé sur cette période pour l'instant.",
+    proExportButton: "Télécharger le CSV",
+    proExportError: "Échec du téléchargement. Réessayez plus tard.",
   },
   it: {
     appTitle: "Area personale",
@@ -714,6 +726,8 @@ export const translations = {
     proStatsColResult: "Risultato",
     proStatsColDate: "Chiusa il",
     proStatsNoTrades: "Nessuna operazione chiusa in questo periodo.",
+    proExportButton: "Scarica CSV",
+    proExportError: "Download non riuscito. Riprova più tardi.",
   },
   pt: {
     appTitle: "Área pessoal",
@@ -816,6 +830,8 @@ export const translations = {
     proStatsColResult: "Resultado",
     proStatsColDate: "Fechada em",
     proStatsNoTrades: "Ainda não há operações fechadas neste período.",
+    proExportButton: "Baixar CSV",
+    proExportError: "Falha no download. Tente novamente mais tarde.",
   },
   pl: {
     appTitle: "Panel osobisty",
@@ -918,6 +934,8 @@ export const translations = {
     proStatsColResult: "Wynik",
     proStatsColDate: "Zamknięto",
     proStatsNoTrades: "W tym okresie nie ma jeszcze zamkniętych transakcji.",
+    proExportButton: "Pobierz CSV",
+    proExportError: "Pobieranie nie powiodło się. Spróbuj ponownie później.",
   },
   tr: {
     appTitle: "Kişisel panel",
@@ -1020,6 +1038,8 @@ export const translations = {
     proStatsColResult: "Sonuç",
     proStatsColDate: "Kapanış",
     proStatsNoTrades: "Bu dönemde henüz kapanan işlem yok.",
+    proExportButton: "CSV indir",
+    proExportError: "İndirme başarısız oldu. Daha sonra tekrar deneyin.",
   },
   zh: {
     appTitle: "个人中心",
@@ -1122,6 +1142,8 @@ export const translations = {
     proStatsColResult: "结果",
     proStatsColDate: "平仓时间",
     proStatsNoTrades: "该时间段内尚无已平仓交易。",
+    proExportButton: "下载 CSV",
+    proExportError: "下载失败，请稍后重试。",
   },
   ar: {
     appTitle: "لوحتي الشخصية",
@@ -1224,6 +1246,8 @@ export const translations = {
     proStatsColResult: "النتيجة",
     proStatsColDate: "تاريخ الإغلاق",
     proStatsNoTrades: "لا توجد صفقات مغلقة في هذه الفترة بعد.",
+    proExportButton: "تنزيل CSV",
+    proExportError: "فشل التنزيل. حاول مرة أخرى لاحقًا.",
   },
 } satisfies Record<CabinetLanguage, Record<string, string>>;
 
