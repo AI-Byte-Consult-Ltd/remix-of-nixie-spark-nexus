@@ -78,6 +78,24 @@ export interface CoursesResponseData {
   lessons: CabinetLesson[];
 }
 
+export interface CabinetLessonFull {
+  id: string;
+  moduleNumber: number;
+  lessonNumber: number;
+  moduleTitle: string;
+  title: string;
+  bodyHtml: string;
+  sortOrder: number;
+  passed: boolean;
+  prevId: string | null;
+  nextId: string | null;
+}
+
+export interface AcademyLessonResponseData {
+  renewedToken?: string;
+  lesson: CabinetLessonFull | null;
+}
+
 export interface SubscriptionResponseData {
   renewedToken?: string;
   subscription: CabinetSubscription | null;

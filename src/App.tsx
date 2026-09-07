@@ -23,6 +23,7 @@ const CabinetLogin = lazy(() => import("./pages/cabinet/CabinetLogin"));
 const CabinetLayout = lazy(() => import("./pages/cabinet/CabinetLayout"));
 const CabinetHome = lazy(() => import("./pages/cabinet/CabinetHome"));
 const CabinetAcademy = lazy(() => import("./pages/cabinet/CabinetAcademy"));
+const CabinetLessonView = lazy(() => import("./pages/cabinet/CabinetLessonView"));
 const CabinetAchievements = lazy(() => import("./pages/cabinet/CabinetAchievements"));
 const CabinetCourses = lazy(() => import("./pages/cabinet/CabinetCourses"));
 const CabinetSubscription = lazy(() => import("./pages/cabinet/CabinetSubscription"));
@@ -102,6 +103,7 @@ const App = () => (
             >
               <Route index element={<CabinetHome />} />
               <Route path="academy" element={<CabinetAcademy />} />
+              <Route path="academy/:lessonId" element={<CabinetLessonView />} />
               <Route path="achievements" element={<CabinetAchievements />} />
               <Route path="courses" element={<CabinetCourses />} />
               <Route path="subscription" element={<CabinetSubscription />} />
