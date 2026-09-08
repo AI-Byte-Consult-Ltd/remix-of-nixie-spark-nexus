@@ -8,6 +8,7 @@ interface UseCabinetQueryArgs {
   session: string;
   language: CabinetLanguage;
   onRenewedToken: (token: string) => void;
+  payload?: Record<string, unknown>;
 }
 
 interface UseCabinetQueryResult<T> {
@@ -21,6 +22,7 @@ export function useCabinetQuery<T>({
   session,
   language,
   onRenewedToken,
+  payload,
 }: UseCabinetQueryArgs): UseCabinetQueryResult<T> {
   const [data, setData] = useState<T | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +39,7 @@ export function useCabinetQuery<T>({
           action,
           session,
           language,
+          payload,
         });
         if (cancelled) return;
         if (result.data?.renewedToken) {
@@ -57,7 +60,7 @@ export function useCabinetQuery<T>({
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [action, session, language]);
+  }, [action, session, language, JSON.stringify(payload ?? {})]);
 
   return { data, isLoading, errorCode };
 }
