@@ -173,7 +173,7 @@ const CASES: Case[] = [
     metric: { value: 640000, suffix: "", label: "Virtual land parcels planned" },
     tags: ["Metaverse", "AI Education", "Virtual Land", "Paused"],
     cta: "See AquaTerra World",
-    href: "https://aquaterra.world",
+    href: "https://aquaterra.aibyteconsult.com/",
     image: aquaterraImg,
   },
   {

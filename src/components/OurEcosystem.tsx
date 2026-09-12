@@ -121,7 +121,7 @@ const modules: EcosystemModule[] = [
     who: "Educators and learners looking for an immersive way to teach and learn AI-era skills.",
     connection:
       "The planned social + learning layer of the ecosystem, once development resumes.",
-    cta: { label: "See AquaTerra World", href: "https://aquaterra.world", external: true },
+    cta: { label: "See AquaTerra World", href: "https://aquaterra.aibyteconsult.com/", external: true },
   },
   {
     id: "pride",
