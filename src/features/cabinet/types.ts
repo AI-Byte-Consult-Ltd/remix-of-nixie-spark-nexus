@@ -87,6 +87,7 @@ export interface CabinetLessonFull {
   bodyHtml: string;
   sortOrder: number;
   passed: boolean;
+  hasQuiz: boolean;
   prevId: string | null;
   nextId: string | null;
 }
@@ -94,6 +95,40 @@ export interface CabinetLessonFull {
 export interface AcademyLessonResponseData {
   renewedToken?: string;
   lesson: CabinetLessonFull | null;
+}
+
+export interface QuizQuestion {
+  questionId: string;
+  question: string;
+  options: string[];
+}
+
+export interface QuizStartResponseData {
+  renewedToken?: string;
+  quiz: {
+    attemptId: number;
+    lessonId: string;
+    available: boolean;
+    questions: QuizQuestion[];
+  };
+}
+
+export interface QuizResultItem {
+  questionId: string;
+  question: string;
+  chosen: number;
+  correct: boolean;
+  correctIndex: number;
+  explanation: string;
+}
+
+export interface QuizSubmitResponseData {
+  renewedToken?: string;
+  quizResult: {
+    attemptId: number;
+    passed: boolean;
+    results: QuizResultItem[];
+  };
 }
 
 export interface SubscriptionResponseData {

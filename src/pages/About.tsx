@@ -59,7 +59,7 @@ const About = () => {
       icon: Globe2,
       title: "AquaTerra World",
       description: "Our metaverse project — 640,000 virtual land parcels designed as an interactive, AI-teaching environment. Development is currently paused while we focus on other priorities.",
-      link: "https://aquaterra.world",
+      link: "https://aquaterra.aibyteconsult.com/",
     },
   ];
 

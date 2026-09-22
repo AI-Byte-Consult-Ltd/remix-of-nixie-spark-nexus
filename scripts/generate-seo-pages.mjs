@@ -196,6 +196,14 @@ const pages = [
     type: "music.album",
     schemaType: "MusicAlbum",
   },
+  {
+    route: "/nics-forge",
+    title: "NICS Forge — AI-Designed, 3D-Printed Products",
+    description:
+      "NICS Forge is AI Byte Consult's 3D printing line — real printed products today on Etsy, with an AI-generated custom design and print-on-demand service in development.",
+    type: "website",
+    schemaType: "Organization",
+  },
 ];
 
 const escapeAttribute = (value) =>
@@ -297,6 +305,7 @@ const sitemapMeta = {
   "/about": { priority: "0.85", changefreq: "monthly" },
   "/estate": { priority: "0.8", changefreq: "monthly" },
   "/nics-multimedia": { priority: "0.5", changefreq: "monthly" },
+  "/nics-forge": { priority: "0.5", changefreq: "monthly" },
   "/terms": { priority: "0.4", changefreq: "yearly" },
   "/privacy": { priority: "0.3", changefreq: "yearly" },
   "/delete": { priority: "0.3", changefreq: "yearly" },
