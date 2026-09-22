@@ -2,13 +2,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Music2, PenLine, Sparkles, ExternalLink, ArrowRight, ArrowLeft } from "lucide-react";
+import { Music2, PenLine, Sparkles, ExternalLink, ArrowRight, ArrowLeft, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 
 const SPOTIFY_URL = "https://open.spotify.com/album/1Sj5W4WdKgCUOw0ziLSrDX";
 const YOUTUBE_MUSIC_URL = "https://music.youtube.com/playlist?list=OLAK5uy_lKY_Wdx2UCXcvG_tMFPXAYUqoRJSr4TQ0&si=8tt5eusrGFYwhcfU";
 const APPLE_MUSIC_URL = "https://music.apple.com/us/album/just-live/6771376298";
+const KINDLE_URL = "https://www.amazon.com/dp/B08NVGYVBS";
+const PAPERBACK_URL = "https://www.amazon.com/dp/B0HKL2LZX5";
 
 const credits = [
   {
@@ -164,8 +166,49 @@ const NicsMultimedia = () => {
           </div>
         </section>
 
-        {/* Back */}
+        {/* The Author */}
         <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
+                <BookOpen className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-primary">From the founder</span>
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
+                Alexander Lunin <span className="text-gradient-gold">(Александр Лунин)</span>
+              </h2>
+
+              <div className="space-y-4 text-lg text-muted-foreground leading-relaxed text-left">
+                <p>
+                  Alongside building AI Byte Consult, Alexander Lunin writes — a book about how this
+                  AI came to be, and how it keeps getting built. It's shelved on Amazon as science
+                  fiction. Whether that's the honest genre or just the safer one to print on the
+                  cover is left to the reader.
+                </p>
+                <p>Available now in Kindle and paperback editions.</p>
+              </div>
+
+              <div className="flex flex-wrap gap-4 justify-center pt-2">
+                <a href={KINDLE_URL} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="w-full sm:w-auto bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
+                    Kindle Edition
+                    <ExternalLink className="ml-2 w-4 h-4" />
+                  </Button>
+                </a>
+                <a href={PAPERBACK_URL} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
+                    Paperback Edition
+                    <ExternalLink className="ml-2 w-4 h-4" />
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Back */}
+        <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center space-y-6 bg-card p-12 rounded-3xl border border-border/50 shadow-card">
               <h2 className="text-3xl font-semibold text-foreground">

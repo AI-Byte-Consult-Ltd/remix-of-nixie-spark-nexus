@@ -10,6 +10,7 @@ import {
   Globe2,
   Users,
   PawPrint,
+  Box,
   X,
   ArrowRight,
   ExternalLink,
@@ -135,6 +136,19 @@ const modules: EcosystemModule[] = [
     connection:
       "The community layer of the ecosystem — built independently of the AI/trading products.",
     cta: { label: "Visit PRIDE Social", href: "https://pridesocial.org", external: true },
+  },
+  {
+    id: "forge",
+    name: "NICS Forge",
+    icon: Box,
+    status: "Live",
+    short:
+      "AI Byte Consult's 3D printing line — real products printed in-house and sold today, plus an AI-generated custom design service in development.",
+    tags: ["3D Printing", "AI Design", "Etsy"],
+    who: "Shoppers looking for printed products today, and — soon — anyone who wants a custom object designed and printed on demand.",
+    connection:
+      "Applies NICS generative AI to physical products — from a text or voice request to a shipped object.",
+    cta: { label: "Visit NICS Forge", href: "/nics-forge" },
   },
   {
     id: "animals",

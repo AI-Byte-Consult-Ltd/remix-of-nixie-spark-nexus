@@ -37,6 +37,7 @@ const Footer = () => {
                 <li><a href="https://pridesocial.org" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Social</a></li>
                 <li><a href="https://aquaterra.aibyteconsult.com/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">AquaTerra World</a></li>
                 <li><Link to="/nics-multimedia" className="text-muted-foreground hover:text-primary transition-colors">NICS Multimedia</Link></li>
+                <li><Link to="/nics-forge" className="text-muted-foreground hover:text-primary transition-colors">NICS Forge</Link></li>
               </ul>
             </div>
 
