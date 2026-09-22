@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Music2, PenLine, Sparkles, ExternalLink, ArrowRight, ArrowLeft, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
+import { useLanguage, Language } from "@/contexts/LanguageContext";
 
 const SPOTIFY_URL = "https://open.spotify.com/album/1Sj5W4WdKgCUOw0ziLSrDX";
 const YOUTUBE_MUSIC_URL = "https://music.youtube.com/playlist?list=OLAK5uy_lKY_Wdx2UCXcvG_tMFPXAYUqoRJSr4TQ0&si=8tt5eusrGFYwhcfU";
@@ -12,25 +13,371 @@ const APPLE_MUSIC_URL = "https://music.apple.com/us/album/just-live/6771376298";
 const KINDLE_URL = "https://www.amazon.com/dp/B08NVGYVBS";
 const PAPERBACK_URL = "https://www.amazon.com/dp/B0HKL2LZX5";
 
-const credits = [
-  {
-    icon: PenLine,
-    label: "Lyrics",
-    value: "Written entirely by Aleksandr Tochilov.",
+interface MultimediaContent {
+  heroSubtitle: string;
+  listenSpotify: string;
+  listenYoutube: string;
+  listenApple: string;
+  storyHeading: string;
+  storyP1: string;
+  storyP2: string;
+  storyP3: string;
+  creditsHeading: string;
+  creditLyricsLabel: string;
+  creditLyricsValue: string;
+  creditConceptLabel: string;
+  creditConceptValue: string;
+  creditProductionLabel: string;
+  creditProductionValue: string;
+  authorBadge: string;
+  authorName: string;
+  authorP1: string;
+  authorP2: string;
+  kindleButton: string;
+  paperbackButton: string;
+  backHeading: string;
+  backText: string;
+  backButton: string;
+  ecosystemButton: string;
+}
+
+const content: Record<Language, MultimediaContent> = {
+  en: {
+    heroSubtitle: "The first release from NICS Multimedia — original music by Aleksandr Tochilov.",
+    listenSpotify: "Listen on Spotify",
+    listenYoutube: "Listen on YouTube Music",
+    listenApple: "Listen on Apple Music",
+    storyHeading: "The story",
+    storyP1: "NICS Multimedia is a music-creation system we built inside the NICS AI ecosystem — not a product we sell, but a creative space the team uses for itself. It's the same approach behind everything else we build: apply the technology to something real, and see what it can actually do.",
+    storyP2: "\"Just Live\" is its first release. The lyrics, the musical idea and the visual direction are entirely Aleksandr Tochilov's. The technical side — composing, producing and engineering the track — was handled by NICS Multimedia.",
+    storyP3: "This is a first step, not a finished catalog. More releases will follow as the system develops, and we'll keep this page honest about how each one was made.",
+    creditsHeading: "Credits",
+    creditLyricsLabel: "Lyrics",
+    creditLyricsValue: "Written entirely by Aleksandr Tochilov.",
+    creditConceptLabel: "Concept & visual",
+    creditConceptValue: "Musical idea and visual direction by Aleksandr Tochilov.",
+    creditProductionLabel: "Production",
+    creditProductionValue: "Technical execution — composing, producing and engineering the track — by NICS Multimedia.",
+    authorBadge: "From the founder",
+    authorName: "Alexander Lunin",
+    authorP1: "Alongside building AI Byte Consult, Alexander Lunin writes — a book about how this AI came to be, and how it keeps getting built. It's shelved on Amazon as science fiction. Whether that's the honest genre or just the safer one to print on the cover is left to the reader.",
+    authorP2: "Available now in Kindle and paperback editions.",
+    kindleButton: "Kindle Edition",
+    paperbackButton: "Paperback Edition",
+    backHeading: "More from AI Byte Consult",
+    backText: "NICS Multimedia is one part of a wider AI ecosystem — trading, real estate, and more.",
+    backButton: "Back to Our Work",
+    ecosystemButton: "Explore the Ecosystem",
   },
-  {
-    icon: Sparkles,
-    label: "Concept & visual",
-    value: "Musical idea and visual direction by Aleksandr Tochilov.",
+  de: {
+    heroSubtitle: "Die erste Veröffentlichung von NICS Multimedia — Originalmusik von Aleksandr Tochilov.",
+    listenSpotify: "Auf Spotify hören",
+    listenYoutube: "Auf YouTube Music hören",
+    listenApple: "Auf Apple Music hören",
+    storyHeading: "Die Geschichte",
+    storyP1: "NICS Multimedia ist ein Musik-Erstellungssystem, das wir innerhalb des NICS AI Ecosystems gebaut haben — kein Produkt, das wir verkaufen, sondern ein kreativer Raum, den das Team selbst nutzt. Es ist derselbe Ansatz wie bei allem, was wir sonst bauen: die Technologie auf etwas Reales anwenden und sehen, was sie wirklich kann.",
+    storyP2: "„Just Live“ ist die erste Veröffentlichung. Text, musikalische Idee und visuelle Ausrichtung stammen vollständig von Aleksandr Tochilov. Die technische Seite — Komposition, Produktion und Tontechnik — übernahm NICS Multimedia.",
+    storyP3: "Das ist ein erster Schritt, kein fertiger Katalog. Weitere Veröffentlichungen folgen, während sich das System weiterentwickelt, und wir halten diese Seite ehrlich darüber, wie jede einzelne entstanden ist.",
+    creditsHeading: "Credits",
+    creditLyricsLabel: "Text",
+    creditLyricsValue: "Vollständig geschrieben von Aleksandr Tochilov.",
+    creditConceptLabel: "Konzept & Visuals",
+    creditConceptValue: "Musikalische Idee und visuelle Ausrichtung von Aleksandr Tochilov.",
+    creditProductionLabel: "Produktion",
+    creditProductionValue: "Technische Umsetzung — Komposition, Produktion und Tontechnik — durch NICS Multimedia.",
+    authorBadge: "Vom Gründer",
+    authorName: "Alexander Lunin",
+    authorP1: "Neben dem Aufbau von AI Byte Consult schreibt Alexander Lunin — ein Buch darüber, wie diese KI entstanden ist und wie sie weiter gebaut wird. Bei Amazon ist es als Science-Fiction gelistet. Ob das das ehrliche Genre ist oder nur das sicherere für den Umschlag, bleibt dem Leser überlassen.",
+    authorP2: "Jetzt erhältlich als Kindle- und Taschenbuchausgabe.",
+    kindleButton: "Kindle-Ausgabe",
+    paperbackButton: "Taschenbuchausgabe",
+    backHeading: "Mehr von AI Byte Consult",
+    backText: "NICS Multimedia ist ein Teil eines größeren KI-Ökosystems — Trading, Immobilien und mehr.",
+    backButton: "Zurück zu unserer Arbeit",
+    ecosystemButton: "Das Ökosystem entdecken",
   },
-  {
-    icon: Music2,
-    label: "Production",
-    value: "Technical execution — composing, producing and engineering the track — by NICS Multimedia.",
+  fr: {
+    heroSubtitle: "La première sortie de NICS Multimedia — musique originale d'Aleksandr Tochilov.",
+    listenSpotify: "Écouter sur Spotify",
+    listenYoutube: "Écouter sur YouTube Music",
+    listenApple: "Écouter sur Apple Music",
+    storyHeading: "L'histoire",
+    storyP1: "NICS Multimedia est un système de création musicale que nous avons conçu au sein de l'écosystème NICS AI — non pas un produit que nous vendons, mais un espace créatif que l'équipe utilise pour elle-même. C'est la même approche que pour tout ce que nous construisons : appliquer la technologie à quelque chose de réel et voir ce qu'elle peut vraiment faire.",
+    storyP2: "« Just Live » en est la première sortie. Les paroles, l'idée musicale et la direction visuelle sont entièrement d'Aleksandr Tochilov. La partie technique — composition, production et ingénierie du son — a été assurée par NICS Multimedia.",
+    storyP3: "C'est un premier pas, pas un catalogue achevé. D'autres sorties suivront à mesure que le système évolue, et nous garderons cette page honnête sur la façon dont chacune a été réalisée.",
+    creditsHeading: "Crédits",
+    creditLyricsLabel: "Paroles",
+    creditLyricsValue: "Entièrement écrites par Aleksandr Tochilov.",
+    creditConceptLabel: "Concept et visuel",
+    creditConceptValue: "Idée musicale et direction visuelle par Aleksandr Tochilov.",
+    creditProductionLabel: "Production",
+    creditProductionValue: "Réalisation technique — composition, production et ingénierie du son — par NICS Multimedia.",
+    authorBadge: "Du fondateur",
+    authorName: "Alexander Lunin",
+    authorP1: "En plus de développer AI Byte Consult, Alexander Lunin écrit — un livre sur la façon dont cette IA a vu le jour, et continue d'être construite. Sur Amazon, il est classé en science-fiction. Que ce soit le genre honnête ou simplement le plus prudent à imprimer sur la couverture, c'est au lecteur d'en juger.",
+    authorP2: "Disponible dès maintenant en édition Kindle et broché.",
+    kindleButton: "Édition Kindle",
+    paperbackButton: "Édition broché",
+    backHeading: "Plus d'AI Byte Consult",
+    backText: "NICS Multimedia fait partie d'un écosystème IA plus vaste — trading, immobilier, et plus encore.",
+    backButton: "Retour à nos réalisations",
+    ecosystemButton: "Découvrir l'écosystème",
   },
+  it: {
+    heroSubtitle: "La prima uscita di NICS Multimedia — musica originale di Aleksandr Tochilov.",
+    listenSpotify: "Ascolta su Spotify",
+    listenYoutube: "Ascolta su YouTube Music",
+    listenApple: "Ascolta su Apple Music",
+    storyHeading: "La storia",
+    storyP1: "NICS Multimedia è un sistema di creazione musicale che abbiamo costruito all'interno dell'ecosistema NICS AI — non un prodotto che vendiamo, ma uno spazio creativo che il team usa per sé. È lo stesso approccio di tutto ciò che costruiamo: applicare la tecnologia a qualcosa di reale e vedere cosa sa davvero fare.",
+    storyP2: "\"Just Live\" è la sua prima uscita. Il testo, l'idea musicale e la direzione visiva sono interamente di Aleksandr Tochilov. La parte tecnica — composizione, produzione e ingegneria del suono — è stata curata da NICS Multimedia.",
+    storyP3: "Questo è un primo passo, non un catalogo completo. Altre uscite seguiranno man mano che il sistema si sviluppa, e manterremo questa pagina onesta su come è stata realizzata ciascuna.",
+    creditsHeading: "Crediti",
+    creditLyricsLabel: "Testo",
+    creditLyricsValue: "Scritto interamente da Aleksandr Tochilov.",
+    creditConceptLabel: "Concept e visual",
+    creditConceptValue: "Idea musicale e direzione visiva di Aleksandr Tochilov.",
+    creditProductionLabel: "Produzione",
+    creditProductionValue: "Esecuzione tecnica — composizione, produzione e ingegneria del suono — a cura di NICS Multimedia.",
+    authorBadge: "Dal fondatore",
+    authorName: "Alexander Lunin",
+    authorP1: "Oltre a costruire AI Byte Consult, Alexander Lunin scrive — un libro su come questa IA è nata e su come continua a essere costruita. Su Amazon è catalogato come fantascienza. Se questo sia il genere onesto o semplicemente quello più prudente da stampare in copertina, lo lasciamo giudicare al lettore.",
+    authorP2: "Disponibile ora in edizione Kindle e cartacea.",
+    kindleButton: "Edizione Kindle",
+    paperbackButton: "Edizione cartacea",
+    backHeading: "Altro da AI Byte Consult",
+    backText: "NICS Multimedia è una parte di un ecosistema IA più ampio — trading, immobiliare e altro ancora.",
+    backButton: "Torna ai nostri lavori",
+    ecosystemButton: "Esplora l'ecosistema",
+  },
+  ar: {
+    heroSubtitle: "أول إصدار من NICS Multimedia — موسيقى أصلية من Aleksandr Tochilov.",
+    listenSpotify: "استمع على Spotify",
+    listenYoutube: "استمع على YouTube Music",
+    listenApple: "استمع على Apple Music",
+    storyHeading: "القصة",
+    storyP1: "NICS Multimedia هو نظام لإنشاء الموسيقى بنيناه داخل منظومة NICS AI — ليس منتجًا نبيعه، بل مساحة إبداعية يستخدمها الفريق لنفسه. إنه نفس النهج وراء كل ما نبنيه: تطبيق التقنية على شيء حقيقي ومعرفة ما يمكنها فعله فعليًا.",
+    storyP2: "\"Just Live\" هو إصداره الأول. الكلمات والفكرة الموسيقية والتوجيه البصري كلها من Aleksandr Tochilov بالكامل. أما الجانب التقني — التأليف والإنتاج والهندسة الصوتية — فتولاه فريق NICS Multimedia.",
+    storyP3: "هذه خطوة أولى، وليست كتالوجًا مكتملًا. ستتبعها إصدارات أخرى مع تطور النظام، وسنحرص على أن تبقى هذه الصفحة صادقة بشأن كيفية صنع كل واحد منها.",
+    creditsHeading: "الاعتمادات",
+    creditLyricsLabel: "الكلمات",
+    creditLyricsValue: "كُتبت بالكامل بواسطة Aleksandr Tochilov.",
+    creditConceptLabel: "الفكرة والتصور البصري",
+    creditConceptValue: "الفكرة الموسيقية والتوجيه البصري بواسطة Aleksandr Tochilov.",
+    creditProductionLabel: "الإنتاج",
+    creditProductionValue: "التنفيذ التقني — التأليف والإنتاج والهندسة الصوتية — بواسطة NICS Multimedia.",
+    authorBadge: "من المؤسس",
+    authorName: "Alexander Lunin",
+    authorP1: "إلى جانب بناء AI Byte Consult، يكتب Alexander Lunin كتابًا عن كيفية نشأة هذا الذكاء الاصطناعي، وكيف لا يزال قيد البناء. صُنّف على أمازون كخيال علمي. أما إن كان هذا هو التصنيف الصادق أو مجرد الخيار الأكثر أمانًا للطباعة على الغلاف، فهذا متروك للقارئ ليقرر.",
+    authorP2: "متوفر الآن بنسخة Kindle والنسخة الورقية.",
+    kindleButton: "نسخة Kindle",
+    paperbackButton: "النسخة الورقية",
+    backHeading: "المزيد من AI Byte Consult",
+    backText: "NICS Multimedia هو جزء واحد من منظومة ذكاء اصطناعي أوسع — التداول والعقارات والمزيد.",
+    backButton: "العودة إلى أعمالنا",
+    ecosystemButton: "استكشف المنظومة",
+  },
+  zh: {
+    heroSubtitle: "NICS Multimedia 首张作品 — Aleksandr Tochilov 创作的原创音乐。",
+    listenSpotify: "在 Spotify 上收听",
+    listenYoutube: "在 YouTube Music 上收听",
+    listenApple: "在 Apple Music 上收听",
+    storyHeading: "故事",
+    storyP1: "NICS Multimedia 是我们在 NICS AI 生态系统内打造的音乐创作系统——不是用来出售的产品，而是团队自用的创作空间。这和我们打造的其他一切遵循同样的思路：把技术应用到真实的事物上，看看它究竟能做到什么。",
+    storyP2: "《Just Live》是它的首张作品。歌词、音乐构思和视觉方向完全出自 Aleksandr Tochilov 之手。技术部分——作曲、制作与录音工程——由 NICS Multimedia 完成。",
+    storyP3: "这只是第一步，而非完整的作品目录。随着系统不断发展，还会有更多作品问世，我们会在这个页面上如实说明每一首是如何制作的。",
+    creditsHeading: "制作名单",
+    creditLyricsLabel: "歌词",
+    creditLyricsValue: "全部由 Aleksandr Tochilov 创作。",
+    creditConceptLabel: "构思与视觉",
+    creditConceptValue: "音乐构思与视觉方向由 Aleksandr Tochilov 负责。",
+    creditProductionLabel: "制作",
+    creditProductionValue: "技术执行——作曲、制作与录音工程——由 NICS Multimedia 完成。",
+    authorBadge: "来自创始人",
+    authorName: "Alexander Lunin",
+    authorP1: "除了创建 AI Byte Consult，Alexander Lunin 还在写一本书，讲述这个 AI 是如何诞生、又是如何持续被打造出来的。这本书在亚马逊上被归类为科幻小说。至于这是诚实的分类，还是印在封面上更安全的选择，就留给读者自己判断了。",
+    authorP2: "现已推出 Kindle 版和平装版。",
+    kindleButton: "Kindle 版",
+    paperbackButton: "平装版",
+    backHeading: "了解更多 AI Byte Consult 的项目",
+    backText: "NICS Multimedia 只是更广阔的 AI 生态系统的一部分——还有交易、房地产等更多内容。",
+    backButton: "返回我们的作品",
+    ecosystemButton: "探索生态系统",
+  },
+  pl: {
+    heroSubtitle: "Pierwsze wydawnictwo NICS Multimedia — oryginalna muzyka Aleksandra Tochilova.",
+    listenSpotify: "Słuchaj na Spotify",
+    listenYoutube: "Słuchaj na YouTube Music",
+    listenApple: "Słuchaj na Apple Music",
+    storyHeading: "Historia",
+    storyP1: "NICS Multimedia to system tworzenia muzyki, który zbudowaliśmy w ramach ekosystemu NICS AI — nie produkt na sprzedaż, lecz przestrzeń twórczą, z której korzysta sam zespół. To to samo podejście, które stoi za wszystkim, co budujemy: zastosować technologię do czegoś realnego i sprawdzić, co naprawdę potrafi.",
+    storyP2: "\"Just Live\" to jej pierwsze wydawnictwo. Tekst, pomysł muzyczny i kierunek wizualny w całości stworzył Aleksandr Tochilov. Stroną techniczną — komponowaniem, produkcją i realizacją dźwięku — zajął się zespół NICS Multimedia.",
+    storyP3: "To dopiero pierwszy krok, nie gotowy katalog. Wraz z rozwojem systemu pojawią się kolejne wydawnictwa, a my będziemy na tej stronie szczerze opisywać, jak powstało każde z nich.",
+    creditsHeading: "Twórcy",
+    creditLyricsLabel: "Tekst",
+    creditLyricsValue: "W całości napisany przez Aleksandra Tochilova.",
+    creditConceptLabel: "Koncepcja i wizualia",
+    creditConceptValue: "Pomysł muzyczny i kierunek wizualny — Aleksandr Tochilov.",
+    creditProductionLabel: "Produkcja",
+    creditProductionValue: "Realizacja techniczna — komponowanie, produkcja i realizacja dźwięku — przez NICS Multimedia.",
+    authorBadge: "Od założyciela",
+    authorName: "Alexander Lunin",
+    authorP1: "Poza budowaniem AI Byte Consult, Alexander Lunin pisze — książkę o tym, jak powstała ta sztuczna inteligencja i jak wciąż jest rozwijana. Na Amazonie figuruje jako science fiction. Czy to szczery gatunek, czy po prostu bezpieczniejszy napis na okładce — ocenę pozostawiamy czytelnikowi.",
+    authorP2: "Dostępna już w wersji Kindle i papierowej.",
+    kindleButton: "Wydanie Kindle",
+    paperbackButton: "Wydanie papierowe",
+    backHeading: "Więcej od AI Byte Consult",
+    backText: "NICS Multimedia to tylko część szerszego ekosystemu AI — trading, nieruchomości i wiele więcej.",
+    backButton: "Wróć do naszych projektów",
+    ecosystemButton: "Poznaj ekosystem",
+  },
+  tr: {
+    heroSubtitle: "NICS Multimedia'nın ilk yapımı — Aleksandr Tochilov'un özgün müziği.",
+    listenSpotify: "Spotify'da dinle",
+    listenYoutube: "YouTube Music'te dinle",
+    listenApple: "Apple Music'te dinle",
+    storyHeading: "Hikaye",
+    storyP1: "NICS Multimedia, NICS AI ekosistemi içinde kurduğumuz bir müzik üretim sistemi — sattığımız bir ürün değil, ekibin kendisi için kullandığı yaratıcı bir alan. Bu, inşa ettiğimiz her şeyin arkasındaki aynı yaklaşım: teknolojiyi gerçek bir şeye uygulamak ve gerçekten neler yapabildiğini görmek.",
+    storyP2: "\"Just Live\" bu sistemin ilk yapımı. Söz, müzik fikri ve görsel yön tamamen Aleksandr Tochilov'a ait. Teknik taraf — besteleme, prodüksiyon ve ses mühendisliği — NICS Multimedia tarafından gerçekleştirildi.",
+    storyP3: "Bu ilk adım, tamamlanmış bir katalog değil. Sistem geliştikçe yeni yapımlar gelecek ve bu sayfada her birinin nasıl yapıldığını dürüstçe paylaşmaya devam edeceğiz.",
+    creditsHeading: "Emeği Geçenler",
+    creditLyricsLabel: "Söz",
+    creditLyricsValue: "Tamamen Aleksandr Tochilov tarafından yazıldı.",
+    creditConceptLabel: "Konsept ve görsel",
+    creditConceptValue: "Müzik fikri ve görsel yön: Aleksandr Tochilov.",
+    creditProductionLabel: "Prodüksiyon",
+    creditProductionValue: "Teknik uygulama — besteleme, prodüksiyon ve ses mühendisliği — NICS Multimedia tarafından.",
+    authorBadge: "Kurucudan",
+    authorName: "Alexander Lunin",
+    authorP1: "AI Byte Consult'u kurmanın yanı sıra Alexander Lunin bir kitap da yazıyor — bu yapay zekânın nasıl ortaya çıktığı ve nasıl geliştirilmeye devam ettiği hakkında. Amazon'da bilim kurgu olarak listeleniyor. Bunun dürüst bir tür mü, yoksa kapağa basmak için daha güvenli bir seçim mi olduğuna karar vermeyi okuyucuya bırakıyoruz.",
+    authorP2: "Artık Kindle ve kağıt kapak baskısıyla satışta.",
+    kindleButton: "Kindle Baskısı",
+    paperbackButton: "Kağıt Kapak Baskısı",
+    backHeading: "AI Byte Consult'tan daha fazlası",
+    backText: "NICS Multimedia, daha geniş bir yapay zekâ ekosisteminin sadece bir parçası — trading, gayrimenkul ve daha fazlası.",
+    backButton: "Çalışmalarımıza dön",
+    ecosystemButton: "Ekosistemi keşfet",
+  },
+  bg: {
+    heroSubtitle: "Първото издание на NICS Multimedia — оригинална музика от Александър Точилов.",
+    listenSpotify: "Слушай в Spotify",
+    listenYoutube: "Слушай в YouTube Music",
+    listenApple: "Слушай в Apple Music",
+    storyHeading: "Историята",
+    storyP1: "NICS Multimedia е система за създаване на музика, която изградихме в рамките на екосистемата NICS AI — не продукт, който продаваме, а творческо пространство, което екипът използва за себе си. Това е същият подход, който стои зад всичко останало, което създаваме: прилагаме технологията към нещо реално и виждаме какво наистина може да постигне.",
+    storyP2: "„Just Live“ е първото ѝ издание. Текстът, музикалната идея и визуалната посока изцяло принадлежат на Александър Точилов. Техническата страна — композиране, продукция и звукова инженерия — беше поета от NICS Multimedia.",
+    storyP3: "Това е първа стъпка, не завършен каталог. Ще последват още издания с развитието на системата, а тази страница ще остане честна за това как е направено всяко от тях.",
+    creditsHeading: "Заслуги",
+    creditLyricsLabel: "Текст",
+    creditLyricsValue: "Написан изцяло от Александър Точилов.",
+    creditConceptLabel: "Концепция и визия",
+    creditConceptValue: "Музикална идея и визуална посока — Александър Точилов.",
+    creditProductionLabel: "Продукция",
+    creditProductionValue: "Техническо изпълнение — композиране, продукция и звукова инженерия — от NICS Multimedia.",
+    authorBadge: "От основателя",
+    authorName: "Александър Лунин",
+    authorP1: "Освен изграждането на AI Byte Consult, Александър Лунин пише — книга за това как се роди този изкуствен интелект и как продължава да се създава. В Amazon е класирана като научна фантастика. Дали това е честният жанр, или просто по-безопасният избор за корицата, оставяме на читателя да прецени.",
+    authorP2: "Вече е налична в издания Kindle и с меки корици.",
+    kindleButton: "Издание Kindle",
+    paperbackButton: "Издание с меки корици",
+    backHeading: "Още от AI Byte Consult",
+    backText: "NICS Multimedia е част от по-широка AI екосистема — трейдинг, недвижими имоти и още.",
+    backButton: "Обратно към нашата работа",
+    ecosystemButton: "Разгледай екосистемата",
+  },
+  ru: {
+    heroSubtitle: "Первый релиз NICS Multimedia — оригинальная музыка Александра Точилова.",
+    listenSpotify: "Слушать в Spotify",
+    listenYoutube: "Слушать в YouTube Music",
+    listenApple: "Слушать в Apple Music",
+    storyHeading: "История",
+    storyP1: "NICS Multimedia — это система создания музыки, которую мы построили внутри экосистемы NICS AI. Это не продукт на продажу, а творческое пространство, которое команда использует для себя. Тот же подход, что и во всём остальном, что мы делаем: применить технологию к чему-то реальному и посмотреть, на что она действительно способна.",
+    storyP2: "«Just Live» — её первый релиз. Текст, музыкальная идея и визуальное направление полностью принадлежат Александру Точилову. Техническую часть — сочинение, продюсирование и звукорежиссуру — взяла на себя NICS Multimedia.",
+    storyP3: "Это первый шаг, а не готовый каталог. По мере развития системы появятся новые релизы, и на этой странице мы будем честно рассказывать, как был сделан каждый из них.",
+    creditsHeading: "Над треком работали",
+    creditLyricsLabel: "Текст",
+    creditLyricsValue: "Полностью написан Александром Точиловым.",
+    creditConceptLabel: "Концепция и визуал",
+    creditConceptValue: "Музыкальная идея и визуальное направление — Александр Точилов.",
+    creditProductionLabel: "Продакшн",
+    creditProductionValue: "Техническая реализация — сочинение, продюсирование и звукорежиссура — NICS Multimedia.",
+    authorBadge: "От основателя",
+    authorName: "Александр Лунин",
+    authorP1: "Помимо AI Byte Consult, Александр Лунин пишет книгу о том, как появился этот ИИ и как он продолжает создаваться. На Amazon она числится как научная фантастика. Честный ли это жанр или просто более безопасная подпись на обложке — решать читателю.",
+    authorP2: "Уже доступна в версиях Kindle и в бумажной обложке.",
+    kindleButton: "Версия Kindle",
+    paperbackButton: "Бумажная версия",
+    backHeading: "Больше от AI Byte Consult",
+    backText: "NICS Multimedia — лишь часть более широкой AI-экосистемы: трейдинг, недвижимость и не только.",
+    backButton: "Назад к нашим проектам",
+    ecosystemButton: "Изучить экосистему",
+  },
+  es: {
+    heroSubtitle: "El primer lanzamiento de NICS Multimedia — música original de Aleksandr Tochilov.",
+    listenSpotify: "Escuchar en Spotify",
+    listenYoutube: "Escuchar en YouTube Music",
+    listenApple: "Escuchar en Apple Music",
+    storyHeading: "La historia",
+    storyP1: "NICS Multimedia es un sistema de creación musical que construimos dentro del ecosistema NICS AI — no un producto que vendemos, sino un espacio creativo que el equipo usa para sí mismo. Es el mismo enfoque detrás de todo lo que construimos: aplicar la tecnología a algo real y ver qué puede hacer de verdad.",
+    storyP2: "\"Just Live\" es su primer lanzamiento. La letra, la idea musical y la dirección visual son enteramente de Aleksandr Tochilov. La parte técnica — composición, producción e ingeniería de sonido — estuvo a cargo de NICS Multimedia.",
+    storyP3: "Este es un primer paso, no un catálogo terminado. Vendrán más lanzamientos a medida que el sistema evolucione, y mantendremos esta página honesta sobre cómo se hizo cada uno.",
+    creditsHeading: "Créditos",
+    creditLyricsLabel: "Letra",
+    creditLyricsValue: "Escrita íntegramente por Aleksandr Tochilov.",
+    creditConceptLabel: "Concepto y visual",
+    creditConceptValue: "Idea musical y dirección visual por Aleksandr Tochilov.",
+    creditProductionLabel: "Producción",
+    creditProductionValue: "Ejecución técnica — composición, producción e ingeniería de sonido — por NICS Multimedia.",
+    authorBadge: "Del fundador",
+    authorName: "Alexander Lunin",
+    authorP1: "Además de construir AI Byte Consult, Alexander Lunin escribe — un libro sobre cómo nació esta IA y cómo se sigue construyendo. En Amazon está catalogado como ciencia ficción. Si ese es el género honesto o simplemente el más seguro para imprimir en la portada, se lo dejamos al lector.",
+    authorP2: "Ya disponible en edición Kindle y de bolsillo.",
+    kindleButton: "Edición Kindle",
+    paperbackButton: "Edición de bolsillo",
+    backHeading: "Más de AI Byte Consult",
+    backText: "NICS Multimedia es una parte de un ecosistema de IA más amplio — trading, bienes raíces y más.",
+    backButton: "Volver a nuestro trabajo",
+    ecosystemButton: "Explorar el ecosistema",
+  },
+  pt: {
+    heroSubtitle: "O primeiro lançamento da NICS Multimedia — música original de Aleksandr Tochilov.",
+    listenSpotify: "Ouvir no Spotify",
+    listenYoutube: "Ouvir no YouTube Music",
+    listenApple: "Ouvir no Apple Music",
+    storyHeading: "A história",
+    storyP1: "NICS Multimedia é um sistema de criação musical que construímos dentro do ecossistema NICS AI — não um produto que vendemos, mas um espaço criativo que a equipa usa para si própria. É a mesma abordagem por trás de tudo o que construímos: aplicar a tecnologia a algo real e ver o que ela realmente consegue fazer.",
+    storyP2: "\"Just Live\" é o seu primeiro lançamento. A letra, a ideia musical e a direção visual são inteiramente de Aleksandr Tochilov. A parte técnica — composição, produção e engenharia de som — ficou a cargo da NICS Multimedia.",
+    storyP3: "Este é um primeiro passo, não um catálogo terminado. Mais lançamentos vão surgir à medida que o sistema evolui, e manteremos esta página honesta sobre como cada um foi feito.",
+    creditsHeading: "Créditos",
+    creditLyricsLabel: "Letra",
+    creditLyricsValue: "Escrita inteiramente por Aleksandr Tochilov.",
+    creditConceptLabel: "Conceito e visual",
+    creditConceptValue: "Ideia musical e direção visual por Aleksandr Tochilov.",
+    creditProductionLabel: "Produção",
+    creditProductionValue: "Execução técnica — composição, produção e engenharia de som — pela NICS Multimedia.",
+    authorBadge: "Do fundador",
+    authorName: "Alexander Lunin",
+    authorP1: "Além de construir a AI Byte Consult, Alexander Lunin escreve — um livro sobre como esta IA surgiu e como continua a ser construída. Na Amazon está catalogado como ficção científica. Se esse é o género honesto ou apenas o mais seguro para imprimir na capa, fica ao critério do leitor.",
+    authorP2: "Já disponível em edição Kindle e brochada.",
+    kindleButton: "Edição Kindle",
+    paperbackButton: "Edição brochada",
+    backHeading: "Mais da AI Byte Consult",
+    backText: "NICS Multimedia é uma parte de um ecossistema de IA mais amplo — trading, imobiliário e mais.",
+    backButton: "Voltar aos nossos trabalhos",
+    ecosystemButton: "Explorar o ecossistema",
+  },
+};
+
+const credits = (c: MultimediaContent) => [
+  { icon: PenLine, label: c.creditLyricsLabel, value: c.creditLyricsValue },
+  { icon: Sparkles, label: c.creditConceptLabel, value: c.creditConceptValue },
+  { icon: Music2, label: c.creditProductionLabel, value: c.creditProductionValue },
 ];
 
 const NicsMultimedia = () => {
+  const { language } = useLanguage();
+  const c = content[language] ?? content.en;
+
   const seoProps = {
     title: "NICS Multimedia — Original Music by Aleksandr Tochilov",
     description:
@@ -68,7 +415,7 @@ const NicsMultimedia = () => {
               </h1>
 
               <p className="text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                The first release from NICS Multimedia — original music by Aleksandr Tochilov.
+                {c.heroSubtitle}
               </p>
             </div>
 
@@ -91,19 +438,19 @@ const NicsMultimedia = () => {
               <div className="flex flex-wrap gap-4 justify-center mt-6">
                 <a href={SPOTIFY_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="w-full sm:w-auto bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                    Listen on Spotify
+                    {c.listenSpotify}
                     <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </a>
                 <a href={YOUTUBE_MUSIC_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
-                    Listen on YouTube Music
+                    {c.listenYoutube}
                     <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </a>
                 <a href={APPLE_MUSIC_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
-                    Listen on Apple Music
+                    {c.listenApple}
                     <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </a>
@@ -117,24 +464,12 @@ const NicsMultimedia = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto space-y-6">
               <h2 className="text-3xl md:text-4xl font-semibold text-foreground text-center">
-                The <span className="text-gradient-gold">story</span>
+                <span className="text-gradient-gold">{c.storyHeading}</span>
               </h2>
               <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                <p>
-                  NICS Multimedia is a music-creation system we built inside the NICS AI ecosystem —
-                  not a product we sell, but a creative space the team uses for itself. It's the same
-                  approach behind everything else we build: apply the technology to something real,
-                  and see what it can actually do.
-                </p>
-                <p>
-                  "Just Live" is its first release. The lyrics, the musical idea and the visual
-                  direction are entirely Aleksandr Tochilov's. The technical side — composing,
-                  producing and engineering the track — was handled by NICS Multimedia.
-                </p>
-                <p>
-                  This is a first step, not a finished catalog. More releases will follow as the
-                  system develops, and we'll keep this page honest about how each one was made.
-                </p>
+                <p>{c.storyP1}</p>
+                <p>{c.storyP2}</p>
+                <p>{c.storyP3}</p>
               </div>
             </div>
           </div>
@@ -145,19 +480,19 @@ const NicsMultimedia = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-semibold text-foreground text-center mb-12">
-                Credits
+                {c.creditsHeading}
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
-                {credits.map((c) => (
-                  <Card key={c.label} className="bg-card border-border/50">
+                {credits(c).map((cr) => (
+                  <Card key={cr.label} className="bg-card border-border/50">
                     <CardContent className="pt-6 space-y-3">
                       <div className="w-12 h-12 rounded-2xl bg-gradient-gold flex items-center justify-center">
-                        <c.icon className="w-6 h-6 text-white" />
+                        <cr.icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="text-sm font-semibold uppercase tracking-wide text-primary">
-                        {c.label}
+                        {cr.label}
                       </div>
-                      <p className="text-muted-foreground leading-relaxed">{c.value}</p>
+                      <p className="text-muted-foreground leading-relaxed">{cr.value}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -172,33 +507,28 @@ const NicsMultimedia = () => {
             <div className="max-w-3xl mx-auto text-center space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
                 <BookOpen className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">From the founder</span>
+                <span className="text-sm font-medium text-primary">{c.authorBadge}</span>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-                Alexander Lunin <span className="text-gradient-gold">(Александр Лунин)</span>
+                <span className="text-gradient-gold">{c.authorName}</span>
               </h2>
 
               <div className="space-y-4 text-lg text-muted-foreground leading-relaxed text-left">
-                <p>
-                  Alongside building AI Byte Consult, Alexander Lunin writes — a book about how this
-                  AI came to be, and how it keeps getting built. It's shelved on Amazon as science
-                  fiction. Whether that's the honest genre or just the safer one to print on the
-                  cover is left to the reader.
-                </p>
-                <p>Available now in Kindle and paperback editions.</p>
+                <p>{c.authorP1}</p>
+                <p>{c.authorP2}</p>
               </div>
 
               <div className="flex flex-wrap gap-4 justify-center pt-2">
                 <a href={KINDLE_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="w-full sm:w-auto bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                    Kindle Edition
+                    {c.kindleButton}
                     <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </a>
                 <a href={PAPERBACK_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
-                    Paperback Edition
+                    {c.paperbackButton}
                     <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </a>
@@ -212,21 +542,21 @@ const NicsMultimedia = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center space-y-6 bg-card p-12 rounded-3xl border border-border/50 shadow-card">
               <h2 className="text-3xl font-semibold text-foreground">
-                More from AI Byte Consult
+                {c.backHeading}
               </h2>
               <p className="text-muted-foreground">
-                NICS Multimedia is one part of a wider AI ecosystem — trading, real estate, and more.
+                {c.backText}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/#projects">
                   <Button size="lg" className="w-full sm:w-auto bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
                     <ArrowLeft className="mr-2 w-4 h-4" />
-                    Back to Our Work
+                    {c.backButton}
                   </Button>
                 </Link>
                 <Link to="/nics-ecosystem">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
-                    Explore the Ecosystem
+                    {c.ecosystemButton}
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </Link>
