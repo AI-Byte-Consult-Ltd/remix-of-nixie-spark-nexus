@@ -16,45 +16,345 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
+import { useLanguage, Language } from "@/contexts/LanguageContext";
 
 // TODO(Alessandro): swap in the real NICS Forge Etsy shop URL — this is a
 // placeholder so the button never links to a guessed/wrong shop.
 const ETSY_SHOP_URL = "https://www.etsy.com";
 
-const steps = [
-  {
-    icon: MessageSquare,
-    title: "Describe it",
-    text: "Type what you want, or just say it out loud — no design software needed.",
+interface ForgeStep {
+  title: string;
+  text: string;
+}
+
+interface ForgeContent {
+  heroHeading: string;
+  heroSubtitle: string;
+  shopEtsy: string;
+  liveHeading: string;
+  liveP1: string;
+  liveP2: string;
+  browseLineup: string;
+  comingBadge: string;
+  comingHeading: string;
+  comingSubtitle: string;
+  steps: ForgeStep[];
+  paymentNote: string;
+  backHeading: string;
+  backText: string;
+  backButton: string;
+  ecosystemButton: string;
+}
+
+const content: Record<Language, ForgeContent> = {
+  en: {
+    heroHeading: "From idea to object",
+    heroSubtitle: "AI Byte Consult's 3D printing line — real products, printed in-house, designed with AI.",
+    shopEtsy: "Shop on Etsy",
+    liveHeading: "Already real",
+    liveP1: "NICS Forge isn't a concept — it's our own 3D printers, running products we've already designed and sold. The current lineup lives on our Etsy shop, and it grows as we print new pieces.",
+    liveP2: "This page is the second part: an AI-driven design service that turns a description into a printed, shipped object. It's not live yet — here's exactly how it will work.",
+    browseLineup: "Browse the current lineup",
+    comingBadge: "Coming next — not live yet",
+    comingHeading: "Custom AI-designed prints",
+    comingSubtitle: "Describe what you want by text or by voice, and let our AI take it from a concept image all the way to a shipped, physical object.",
+    steps: [
+      { title: "Describe it", text: "Type what you want, or just say it out loud — no design software needed." },
+      { title: "AI builds the brief", text: "Our AI turns your request into a proper design brief and a few concept directions." },
+      { title: "Pick your favorite", text: "You get several image concepts back and choose the one you actually want." },
+      { title: "Pay", text: "Confirm and pay for the design you picked." },
+      { title: "AI models it, we print it", text: "Our AI turns the chosen concept into a real 3D model and sends it straight to our printers." },
+      { title: "It ships to you", text: "The finished, physical piece is packed and shipped to the address you give us." },
+    ],
+    paymentNote: "Checkout for this feature runs through Etsy today. Direct in-page checkout, including Revolut, is planned for a future update — it isn't wired up yet, and we won't collect any payment for it until it is.",
+    backHeading: "More from AI Byte Consult",
+    backText: "NICS Forge is one part of a wider AI ecosystem — trading, real estate, and more.",
+    backButton: "Back to Our Work",
+    ecosystemButton: "Explore the Ecosystem",
   },
-  {
-    icon: Wand2,
-    title: "AI builds the brief",
-    text: "Our AI turns your request into a proper design brief and a few concept directions.",
+  de: {
+    heroHeading: "Von der Idee zum Objekt",
+    heroSubtitle: "Die 3D-Druck-Linie von AI Byte Consult — echte Produkte, im eigenen Haus gedruckt, mit KI entworfen.",
+    shopEtsy: "Auf Etsy einkaufen",
+    liveHeading: "Schon real",
+    liveP1: "NICS Forge ist kein Konzept — es sind unsere eigenen 3D-Drucker, die Produkte herstellen, die wir bereits entworfen und verkauft haben. Das aktuelle Sortiment ist in unserem Etsy-Shop zu finden und wächst mit jedem neuen gedruckten Stück.",
+    liveP2: "Diese Seite ist der zweite Teil: ein KI-gestützter Designservice, der aus einer Beschreibung ein gedrucktes, verschicktes Objekt macht. Er ist noch nicht live — hier steht genau, wie er funktionieren wird.",
+    browseLineup: "Aktuelles Sortiment ansehen",
+    comingBadge: "Als Nächstes — noch nicht live",
+    comingHeading: "Individuelle KI-Designs zum Drucken",
+    comingSubtitle: "Beschreibe per Text oder Sprache, was du willst, und lass unsere KI daraus — von einem Konzeptbild bis zum verschickten, physischen Objekt — alles Weitere übernehmen.",
+    steps: [
+      { title: "Beschreiben", text: "Tippe ein, was du willst, oder sag es einfach laut — keine Designsoftware nötig." },
+      { title: "KI erstellt das Briefing", text: "Unsere KI macht aus deiner Anfrage ein echtes Design-Briefing und einige Konzeptrichtungen." },
+      { title: "Favorit wählen", text: "Du erhältst mehrere Bildkonzepte zurück und wählst das, das dir wirklich gefällt." },
+      { title: "Bezahlen", text: "Bestätige und bezahle das gewählte Design." },
+      { title: "KI modelliert, wir drucken", text: "Unsere KI verwandelt das gewählte Konzept in ein echtes 3D-Modell und schickt es direkt an unsere Drucker." },
+      { title: "Versand zu dir", text: "Das fertige, physische Stück wird verpackt und an die von dir angegebene Adresse verschickt." },
+    ],
+    paymentNote: "Der Checkout für diese Funktion läuft heute über Etsy. Ein direkter Checkout auf dieser Seite, auch mit Revolut, ist für ein späteres Update geplant — er ist noch nicht angebunden, und wir nehmen dafür keine Zahlung entgegen, bevor das der Fall ist.",
+    backHeading: "Mehr von AI Byte Consult",
+    backText: "NICS Forge ist ein Teil eines größeren KI-Ökosystems — Trading, Immobilien und mehr.",
+    backButton: "Zurück zu unserer Arbeit",
+    ecosystemButton: "Das Ökosystem entdecken",
   },
-  {
-    icon: ImageIcon,
-    title: "Pick your favorite",
-    text: "You get several image concepts back and choose the one you actually want.",
+  fr: {
+    heroHeading: "De l'idée à l'objet",
+    heroSubtitle: "La ligne d'impression 3D d'AI Byte Consult — de vrais produits, imprimés en interne, conçus avec l'IA.",
+    shopEtsy: "Acheter sur Etsy",
+    liveHeading: "Déjà bien réel",
+    liveP1: "NICS Forge n'est pas un concept — ce sont nos propres imprimantes 3D, qui produisent des articles que nous avons déjà conçus et vendus. La gamme actuelle se trouve sur notre boutique Etsy, et elle s'agrandit à chaque nouvelle pièce imprimée.",
+    liveP2: "Cette page en est la deuxième partie : un service de conception piloté par l'IA qui transforme une description en un objet imprimé et expédié. Ce n'est pas encore en ligne — voici exactement comment cela fonctionnera.",
+    browseLineup: "Parcourir la gamme actuelle",
+    comingBadge: "À venir — pas encore en ligne",
+    comingHeading: "Impressions personnalisées conçues par IA",
+    comingSubtitle: "Décrivez ce que vous voulez par texte ou par voix, et laissez notre IA s'occuper de tout, d'une image de concept jusqu'à un objet physique expédié.",
+    steps: [
+      { title: "Décrivez-le", text: "Tapez ce que vous voulez, ou dites-le simplement à voix haute — aucun logiciel de conception nécessaire." },
+      { title: "L'IA rédige le brief", text: "Notre IA transforme votre demande en un véritable brief de conception et quelques pistes de concept." },
+      { title: "Choisissez votre préféré", text: "Vous recevez plusieurs concepts visuels et choisissez celui que vous préférez vraiment." },
+      { title: "Payez", text: "Confirmez et payez le design que vous avez choisi." },
+      { title: "L'IA le modélise, nous l'imprimons", text: "Notre IA transforme le concept choisi en un véritable modèle 3D et l'envoie directement à nos imprimantes." },
+      { title: "Livré chez vous", text: "La pièce physique terminée est emballée et expédiée à l'adresse que vous indiquez." },
+    ],
+    paymentNote: "Le paiement de cette fonctionnalité passe aujourd'hui par Etsy. Un paiement direct sur cette page, y compris via Revolut, est prévu pour une prochaine mise à jour — ce n'est pas encore branché, et nous ne collecterons aucun paiement pour cela tant que ce ne sera pas le cas.",
+    backHeading: "Plus d'AI Byte Consult",
+    backText: "NICS Forge fait partie d'un écosystème IA plus vaste — trading, immobilier, et plus encore.",
+    backButton: "Retour à nos réalisations",
+    ecosystemButton: "Découvrir l'écosystème",
   },
-  {
-    icon: CreditCard,
-    title: "Pay",
-    text: "Confirm and pay for the design you picked.",
+  it: {
+    heroHeading: "Dall'idea all'oggetto",
+    heroSubtitle: "La linea di stampa 3D di AI Byte Consult — prodotti reali, stampati internamente, progettati con l'IA.",
+    shopEtsy: "Acquista su Etsy",
+    liveHeading: "Già reale",
+    liveP1: "NICS Forge non è un concetto — sono le nostre stampanti 3D, che producono articoli che abbiamo già progettato e venduto. La gamma attuale si trova nel nostro negozio Etsy e cresce a ogni nuovo pezzo stampato.",
+    liveP2: "Questa pagina è la seconda parte: un servizio di design guidato dall'IA che trasforma una descrizione in un oggetto stampato e spedito. Non è ancora attivo — ecco esattamente come funzionerà.",
+    browseLineup: "Sfoglia la gamma attuale",
+    comingBadge: "In arrivo — non ancora attivo",
+    comingHeading: "Stampe personalizzate progettate dall'IA",
+    comingSubtitle: "Descrivi ciò che vuoi a voce o per iscritto, e lascia che la nostra IA lo porti da un'immagine concettuale fino a un oggetto fisico spedito.",
+    steps: [
+      { title: "Descrivilo", text: "Scrivi cosa vuoi, o dillo semplicemente ad alta voce — nessun software di progettazione necessario." },
+      { title: "L'IA crea il brief", text: "La nostra IA trasforma la tua richiesta in un vero brief di design e alcune direzioni concettuali." },
+      { title: "Scegli il tuo preferito", text: "Ricevi diversi concept visivi e scegli quello che desideri davvero." },
+      { title: "Paga", text: "Conferma e paga il design che hai scelto." },
+      { title: "L'IA lo modella, noi lo stampiamo", text: "La nostra IA trasforma il concept scelto in un vero modello 3D e lo invia direttamente alle nostre stampanti." },
+      { title: "Ti viene spedito", text: "Il pezzo fisico finito viene imballato e spedito all'indirizzo che ci indichi." },
+    ],
+    paymentNote: "Il pagamento per questa funzione passa oggi attraverso Etsy. Un pagamento diretto su questa pagina, incluso Revolut, è previsto per un aggiornamento futuro — non è ancora collegato, e non raccoglieremo alcun pagamento per questo finché non lo sarà.",
+    backHeading: "Altro da AI Byte Consult",
+    backText: "NICS Forge è una parte di un ecosistema IA più ampio — trading, immobiliare e altro ancora.",
+    backButton: "Torna ai nostri lavori",
+    ecosystemButton: "Esplora l'ecosistema",
   },
-  {
-    icon: Box,
-    title: "AI models it, we print it",
-    text: "Our AI turns the chosen concept into a real 3D model and sends it straight to our printers.",
+  ar: {
+    heroHeading: "من الفكرة إلى الكائن",
+    heroSubtitle: "خط الطباعة ثلاثية الأبعاد التابع لـ AI Byte Consult — منتجات حقيقية، مطبوعة داخليًا، ومصمَّمة بالذكاء الاصطناعي.",
+    shopEtsy: "تسوّق على Etsy",
+    liveHeading: "حقيقي بالفعل",
+    liveP1: "NICS Forge ليس مجرد فكرة — إنها طابعاتنا ثلاثية الأبعاد الخاصة، التي تنتج منتجات صممناها وبعناها بالفعل. المجموعة الحالية موجودة في متجرنا على Etsy، وتنمو مع كل قطعة جديدة نطبعها.",
+    liveP2: "هذه الصفحة هي الجزء الثاني: خدمة تصميم مدعومة بالذكاء الاصطناعي تحوّل وصفًا إلى كائن مطبوع ومُرسَل. لم تُطلق بعد — وهذا بالضبط كيف ستعمل.",
+    browseLineup: "تصفّح المجموعة الحالية",
+    comingBadge: "قادم — لم يُطلق بعد",
+    comingHeading: "مطبوعات مخصصة بتصميم الذكاء الاصطناعي",
+    comingSubtitle: "صِف ما تريده كتابةً أو صوتيًا، ودع الذكاء الاصطناعي لدينا يأخذه من صورة مفاهيمية إلى كائن مادي يُشحن إليك.",
+    steps: [
+      { title: "صِفه", text: "اكتب ما تريد، أو قله بصوت عالٍ فقط — لا حاجة لأي برنامج تصميم." },
+      { title: "الذكاء الاصطناعي يضع الموجز", text: "يحوّل ذكاؤنا الاصطناعي طلبك إلى موجز تصميم حقيقي وبضعة اتجاهات مفاهيمية." },
+      { title: "اختر المفضل لديك", text: "تحصل على عدة تصورات بصرية وتختار ما يعجبك فعلًا." },
+      { title: "ادفع", text: "أكّد وادفع ثمن التصميم الذي اخترته." },
+      { title: "الذكاء الاصطناعي يُصمّم، ونحن نطبع", text: "يحوّل ذكاؤنا الاصطناعي التصور المختار إلى نموذج ثلاثي الأبعاد حقيقي ويرسله مباشرة إلى طابعاتنا." },
+      { title: "يُشحن إليك", text: "تُعبَّأ القطعة المادية الجاهزة وتُشحن إلى العنوان الذي تحدده." },
+    ],
+    paymentNote: "يتم الدفع لهذه الميزة حاليًا عبر Etsy. من المخطط توفير دفع مباشر داخل الصفحة، بما في ذلك عبر Revolut، في تحديث لاحق — لم يُفعَّل بعد، ولن نجمع أي مدفوعات مقابله حتى يصبح جاهزًا.",
+    backHeading: "المزيد من AI Byte Consult",
+    backText: "NICS Forge هو جزء واحد من منظومة ذكاء اصطناعي أوسع — التداول والعقارات والمزيد.",
+    backButton: "العودة إلى أعمالنا",
+    ecosystemButton: "استكشف المنظومة",
   },
-  {
-    icon: Truck,
-    title: "It ships to you",
-    text: "The finished, physical piece is packed and shipped to the address you give us.",
+  zh: {
+    heroHeading: "从创意到实物",
+    heroSubtitle: "AI Byte Consult 的3D打印产品线——真实产品，自主打印，AI 辅助设计。",
+    shopEtsy: "前往 Etsy 选购",
+    liveHeading: "已经是现实",
+    liveP1: "NICS Forge 不是概念——而是我们自己的3D打印机，生产着我们已经设计并售出的真实产品。目前的产品线就在我们的 Etsy 店铺中，并随着每一件新打印的作品不断扩充。",
+    liveP2: "这个页面是第二部分：一项由 AI 驱动的设计服务，能把一段描述变成打印出来并寄出的实物。它还未上线——下面正是它将如何运作的说明。",
+    browseLineup: "浏览现有产品线",
+    comingBadge: "即将推出 —— 尚未上线",
+    comingHeading: "AI 定制打印设计",
+    comingSubtitle: "用文字或语音描述你想要的东西，让我们的 AI 从概念图一路做到寄送到手的实体物品。",
+    steps: [
+      { title: "描述你的想法", text: "输入你想要的内容，或者直接说出来——无需任何设计软件。" },
+      { title: "AI 生成设计简报", text: "我们的 AI 会把你的需求转化为完整的设计简报和几个概念方向。" },
+      { title: "选出你的最爱", text: "你会收到几个概念图，选出你真正喜欢的那一个。" },
+      { title: "付款", text: "确认并为你选中的设计付款。" },
+      { title: "AI 建模，我们打印", text: "我们的 AI 把选中的概念转化为真实的3D模型，并直接发送到我们的打印机。" },
+      { title: "寄送到你手中", text: "成品会被打包，寄送到你提供的地址。" },
+    ],
+    paymentNote: "目前该功能的结账流程通过 Etsy 完成。未来更新计划提供包括 Revolut 在内的页面内直接结账——目前尚未接入，在其正式上线之前我们不会为此收取任何款项。",
+    backHeading: "了解更多 AI Byte Consult 的项目",
+    backText: "NICS Forge 只是更广阔的 AI 生态系统的一部分——还有交易、房地产等更多内容。",
+    backButton: "返回我们的作品",
+    ecosystemButton: "探索生态系统",
   },
-];
+  pl: {
+    heroHeading: "Od pomysłu do przedmiotu",
+    heroSubtitle: "Linia druku 3D AI Byte Consult — prawdziwe produkty, drukowane we własnym zakresie, projektowane z pomocą AI.",
+    shopEtsy: "Kupuj na Etsy",
+    liveHeading: "Już realne",
+    liveP1: "NICS Forge to nie koncepcja — to nasze własne drukarki 3D, które wytwarzają produkty, jakie już zaprojektowaliśmy i sprzedaliśmy. Aktualna oferta znajduje się w naszym sklepie na Etsy i powiększa się z każdym nowo wydrukowanym elementem.",
+    liveP2: "Ta strona to druga część: usługa projektowania oparta na AI, która zamienia opis w wydrukowany i wysłany przedmiot. Jeszcze nie działa — oto dokładnie, jak będzie to funkcjonować.",
+    browseLineup: "Przeglądaj aktualną ofertę",
+    comingBadge: "Już wkrótce — jeszcze nieaktywne",
+    comingHeading: "Niestandardowe wydruki projektowane przez AI",
+    comingSubtitle: "Opisz, czego chcesz, tekstem lub głosem, a nasza AI poprowadzi to od obrazu koncepcyjnego aż po wysłany, fizyczny przedmiot.",
+    steps: [
+      { title: "Opisz to", text: "Wpisz, czego chcesz, albo po prostu powiedz to na głos — bez żadnego oprogramowania projektowego." },
+      { title: "AI tworzy brief", text: "Nasza AI zamienia Twoją prośbę w prawdziwy brief projektowy i kilka kierunków koncepcyjnych." },
+      { title: "Wybierz ulubiony", text: "Otrzymujesz kilka wizualnych koncepcji i wybierasz tę, która naprawdę Ci się podoba." },
+      { title: "Zapłać", text: "Potwierdź i zapłać za wybrany projekt." },
+      { title: "AI modeluje, my drukujemy", text: "Nasza AI zamienia wybraną koncepcję w prawdziwy model 3D i wysyła go prosto do naszych drukarek." },
+      { title: "Wysyłka do Ciebie", text: "Gotowy, fizyczny przedmiot jest pakowany i wysyłany na podany przez Ciebie adres." },
+    ],
+    paymentNote: "Płatność za tę funkcję odbywa się dziś przez Etsy. Bezpośrednia płatność na tej stronie, w tym przez Revolut, jest planowana w przyszłej aktualizacji — jeszcze nie jest podłączona i nie pobierzemy za to żadnej płatności, dopóki nie będzie gotowa.",
+    backHeading: "Więcej od AI Byte Consult",
+    backText: "NICS Forge to tylko część szerszego ekosystemu AI — trading, nieruchomości i wiele więcej.",
+    backButton: "Wróć do naszych projektów",
+    ecosystemButton: "Poznaj ekosystem",
+  },
+  tr: {
+    heroHeading: "Fikirden nesneye",
+    heroSubtitle: "AI Byte Consult'un 3D baskı hattı — gerçek ürünler, kendi bünyemizde basılan, yapay zekâ ile tasarlanan.",
+    shopEtsy: "Etsy'de alışveriş yap",
+    liveHeading: "Zaten gerçek",
+    liveP1: "NICS Forge bir konsept değil — çoktan tasarlayıp sattığımız ürünleri üreten kendi 3D yazıcılarımız. Mevcut ürün yelpazesi Etsy mağazamızda yer alıyor ve her yeni bastığımız parçayla büyüyor.",
+    liveP2: "Bu sayfa ikinci bölüm: bir açıklamayı basılmış ve gönderilmiş bir nesneye dönüştüren yapay zekâ destekli bir tasarım hizmeti. Henüz yayında değil — işte tam olarak nasıl çalışacağı.",
+    browseLineup: "Mevcut ürün yelpazesine göz at",
+    comingBadge: "Sırada — henüz yayında değil",
+    comingHeading: "Yapay zekâ ile özel tasarım baskılar",
+    comingSubtitle: "İstediğini yazıyla veya sesle anlat, yapay zekâmız onu bir konsept görselinden gönderilmiş fiziksel bir nesneye kadar götürsün.",
+    steps: [
+      { title: "Anlat", text: "İstediğini yaz, ya da sadece sesli söyle — tasarım yazılımına gerek yok." },
+      { title: "Yapay zekâ brief hazırlar", text: "Yapay zekâmız isteğini gerçek bir tasarım brief'ine ve birkaç konsept yönüne dönüştürür." },
+      { title: "Favorini seç", text: "Birkaç görsel konsept alırsın ve gerçekten istediğini seçersin." },
+      { title: "Öde", text: "Seçtiğin tasarımı onayla ve öde." },
+      { title: "Yapay zekâ modeller, biz basarız", text: "Yapay zekâmız seçilen konsepti gerçek bir 3D modele dönüştürür ve doğrudan yazıcılarımıza gönderir." },
+      { title: "Sana gönderilir", text: "Bitmiş fiziksel parça paketlenir ve verdiğin adrese gönderilir." },
+    ],
+    paymentNote: "Bu özelliğin ödemesi bugün Etsy üzerinden yapılıyor. Revolut dahil, sayfa içinden doğrudan ödeme gelecekteki bir güncelleme için planlanıyor — henüz bağlı değil ve hazır olana kadar bunun için herhangi bir ödeme almayacağız.",
+    backHeading: "AI Byte Consult'tan daha fazlası",
+    backText: "NICS Forge, daha geniş bir yapay zekâ ekosisteminin sadece bir parçası — trading, gayrimenkul ve daha fazlası.",
+    backButton: "Çalışmalarımıza dön",
+    ecosystemButton: "Ekosistemi keşfet",
+  },
+  bg: {
+    heroHeading: "От идея до предмет",
+    heroSubtitle: "3D печатната линия на AI Byte Consult — реални продукти, отпечатани от нас, проектирани с ИИ.",
+    shopEtsy: "Пазарувай в Etsy",
+    liveHeading: "Вече реално",
+    liveP1: "NICS Forge не е концепция — това са нашите собствени 3D принтери, които произвеждат продукти, които вече сме проектирали и продали. Актуалната поредица е в нашия магазин в Etsy и расте с всяко ново отпечатано изделие.",
+    liveP2: "Тази страница е втората част: услуга за дизайн, задвижвана от ИИ, която превръща описание в отпечатан и изпратен предмет. Все още не е активна — ето точно как ще работи.",
+    browseLineup: "Разгледай текущата поредица",
+    comingBadge: "Предстои — все още не е активно",
+    comingHeading: "Персонализирани принтове, проектирани от ИИ",
+    comingSubtitle: "Опиши какво искаш с текст или глас и остави нашия ИИ да го превърне от концептуално изображение в изпратен физически предмет.",
+    steps: [
+      { title: "Опиши го", text: "Напиши какво искаш или просто го кажи на глас — не е нужен софтуер за дизайн." },
+      { title: "ИИ изготвя брифа", text: "Нашият ИИ превръща заявката ти в истински дизайн бриф и няколко концептуални посоки." },
+      { title: "Избери любимия", text: "Получаваш няколко визуални концепции и избираш тази, която наистина искаш." },
+      { title: "Плати", text: "Потвърди и плати за избрания дизайн." },
+      { title: "ИИ моделира, ние печатаме", text: "Нашият ИИ превръща избрания концепт в реален 3D модел и го изпраща директно на нашите принтери." },
+      { title: "Изпраща се до теб", text: "Готовото физическо изделие се опакова и изпраща на посочения от теб адрес." },
+    ],
+    paymentNote: "Плащането за тази функция минава днес през Etsy. Директно плащане в страницата, включително чрез Revolut, е планирано за бъдеща актуализация — все още не е свързано и няма да събираме плащания за него, докато не заработи.",
+    backHeading: "Още от AI Byte Consult",
+    backText: "NICS Forge е част от по-широка ИИ екосистема — трейдинг, недвижими имоти и още.",
+    backButton: "Обратно към нашата работа",
+    ecosystemButton: "Разгледай екосистемата",
+  },
+  ru: {
+    heroHeading: "От идеи к предмету",
+    heroSubtitle: "Линейка 3D-печати AI Byte Consult — реальные продукты, напечатанные нами самими, спроектированные с ИИ.",
+    shopEtsy: "Купить на Etsy",
+    liveHeading: "Уже реальность",
+    liveP1: "NICS Forge — это не концепция, а наши собственные 3D-принтеры, которые печатают товары, уже спроектированные и проданные нами. Текущая линейка представлена в нашем магазине на Etsy и растёт с каждым новым напечатанным изделием.",
+    liveP2: "Эта страница — вторая часть: сервис дизайна на основе ИИ, который превращает описание в напечатанный и отправленный предмет. Пока не запущен — вот как именно он будет работать.",
+    browseLineup: "Посмотреть текущую линейку",
+    comingBadge: "Скоро — пока не запущено",
+    comingHeading: "Кастомная печать по дизайну ИИ",
+    comingSubtitle: "Опишите текстом или голосом, что хотите получить, и наш ИИ проведёт это от концептуального изображения до отправленного вам физического предмета.",
+    steps: [
+      { title: "Опишите", text: "Напишите, что хотите, или просто проговорите вслух — никакого дизайн-софта не нужно." },
+      { title: "ИИ формирует бриф", text: "Наш ИИ превращает ваш запрос в полноценный дизайн-бриф и несколько концептуальных направлений." },
+      { title: "Выберите понравившийся", text: "Вы получаете несколько вариантов изображения и выбираете тот, который действительно нравится." },
+      { title: "Оплатите", text: "Подтвердите и оплатите выбранный дизайн." },
+      { title: "ИИ создаёт модель, мы печатаем", text: "Наш ИИ превращает выбранную концепцию в настоящую 3D-модель и отправляет её прямо на наши принтеры." },
+      { title: "Доставка вам", text: "Готовое физическое изделие упаковывается и отправляется по указанному вами адресу." },
+    ],
+    paymentNote: "Оплата этой функции сейчас проходит через Etsy. Прямая оплата на этой странице, включая Revolut, запланирована на будущее обновление — пока не подключена, и мы не будем принимать за неё оплату, пока она не заработает.",
+    backHeading: "Больше от AI Byte Consult",
+    backText: "NICS Forge — лишь часть более широкой AI-экосистемы: трейдинг, недвижимость и не только.",
+    backButton: "Назад к нашим проектам",
+    ecosystemButton: "Изучить экосистему",
+  },
+  es: {
+    heroHeading: "De la idea al objeto",
+    heroSubtitle: "La línea de impresión 3D de AI Byte Consult — productos reales, impresos internamente, diseñados con IA.",
+    shopEtsy: "Comprar en Etsy",
+    liveHeading: "Ya es real",
+    liveP1: "NICS Forge no es un concepto — son nuestras propias impresoras 3D, que producen artículos que ya hemos diseñado y vendido. La gama actual está en nuestra tienda de Etsy y crece con cada nueva pieza impresa.",
+    liveP2: "Esta página es la segunda parte: un servicio de diseño impulsado por IA que convierte una descripción en un objeto impreso y enviado. Todavía no está activo — así es exactamente como funcionará.",
+    browseLineup: "Ver la gama actual",
+    comingBadge: "Próximamente — aún no disponible",
+    comingHeading: "Impresiones personalizadas diseñadas por IA",
+    comingSubtitle: "Describe lo que quieres por texto o por voz, y deja que nuestra IA lo lleve desde una imagen de concepto hasta un objeto físico enviado.",
+    steps: [
+      { title: "Descríbelo", text: "Escribe lo que quieres, o simplemente dilo en voz alta — no necesitas software de diseño." },
+      { title: "La IA crea el brief", text: "Nuestra IA convierte tu petición en un brief de diseño real y varias direcciones de concepto." },
+      { title: "Elige tu favorito", text: "Recibes varios conceptos visuales y eliges el que realmente quieres." },
+      { title: "Paga", text: "Confirma y paga el diseño que elegiste." },
+      { title: "La IA lo modela, nosotros lo imprimimos", text: "Nuestra IA convierte el concepto elegido en un modelo 3D real y lo envía directamente a nuestras impresoras." },
+      { title: "Se envía a tu casa", text: "La pieza física terminada se empaqueta y se envía a la dirección que nos indiques." },
+    ],
+    paymentNote: "El pago de esta función se hace hoy a través de Etsy. Está previsto un pago directo en esta página, incluido Revolut, para una futura actualización — todavía no está conectado, y no cobraremos nada por esto hasta que lo esté.",
+    backHeading: "Más de AI Byte Consult",
+    backText: "NICS Forge es una parte de un ecosistema de IA más amplio — trading, bienes raíces y más.",
+    backButton: "Volver a nuestro trabajo",
+    ecosystemButton: "Explorar el ecosistema",
+  },
+  pt: {
+    heroHeading: "Da ideia ao objeto",
+    heroSubtitle: "A linha de impressão 3D da AI Byte Consult — produtos reais, impressos internamente, desenhados com IA.",
+    shopEtsy: "Comprar na Etsy",
+    liveHeading: "Já é real",
+    liveP1: "A NICS Forge não é um conceito — são as nossas próprias impressoras 3D, a produzir artigos que já desenhámos e vendemos. A gama atual está na nossa loja Etsy e cresce a cada nova peça impressa.",
+    liveP2: "Esta página é a segunda parte: um serviço de design impulsionado por IA que transforma uma descrição num objeto impresso e enviado. Ainda não está ativo — eis exatamente como vai funcionar.",
+    browseLineup: "Ver a gama atual",
+    comingBadge: "A caminho — ainda não disponível",
+    comingHeading: "Impressões personalizadas desenhadas por IA",
+    comingSubtitle: "Descreve o que queres por texto ou por voz, e deixa a nossa IA levá-lo desde uma imagem de conceito até um objeto físico enviado.",
+    steps: [
+      { title: "Descreve-o", text: "Escreve o que queres, ou diz simplesmente em voz alta — sem necessidade de software de design." },
+      { title: "A IA cria o brief", text: "A nossa IA transforma o teu pedido num brief de design real e algumas direções de conceito." },
+      { title: "Escolhe o teu favorito", text: "Recebes vários conceitos visuais e escolhes o que realmente queres." },
+      { title: "Paga", text: "Confirma e paga o design que escolheste." },
+      { title: "A IA modela, nós imprimimos", text: "A nossa IA transforma o conceito escolhido num modelo 3D real e envia-o diretamente para as nossas impressoras." },
+      { title: "É enviado até ti", text: "A peça física terminada é embalada e enviada para o endereço que indicares." },
+    ],
+    paymentNote: "O pagamento desta funcionalidade passa hoje pela Etsy. Está previsto um pagamento direto nesta página, incluindo via Revolut, para uma atualização futura — ainda não está ligado, e não vamos cobrar nada por isso até estar pronto.",
+    backHeading: "Mais da AI Byte Consult",
+    backText: "A NICS Forge é uma parte de um ecossistema de IA mais amplo — trading, imobiliário e mais.",
+    backButton: "Voltar aos nossos trabalhos",
+    ecosystemButton: "Explorar o ecossistema",
+  },
+};
+
+const stepIcons = [MessageSquare, Wand2, ImageIcon, CreditCard, Box, Truck];
 
 const NicsForge = () => {
+  const { language } = useLanguage();
+  const c = content[language] ?? content.en;
+
   const seoProps = {
     title: "NICS Forge — AI-Designed, 3D-Printed Products",
     description:
@@ -88,18 +388,18 @@ const NicsForge = () => {
               </div>
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground">
-                From idea to <span className="text-gradient-gold">object</span>
+                <span className="text-gradient-gold">{c.heroHeading}</span>
               </h1>
 
               <p className="text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                AI Byte Consult's 3D printing line — real products, printed in-house, designed with AI.
+                {c.heroSubtitle}
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center pt-2">
                 <a href={ETSY_SHOP_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="w-full sm:w-auto bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
                     <ShoppingBag className="mr-2 w-4 h-4" />
-                    Shop on Etsy
+                    {c.shopEtsy}
                     <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </a>
@@ -113,23 +413,16 @@ const NicsForge = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto space-y-6">
               <h2 className="text-3xl md:text-4xl font-semibold text-foreground text-center">
-                Already <span className="text-gradient-gold">real</span>
+                <span className="text-gradient-gold">{c.liveHeading}</span>
               </h2>
               <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                <p>
-                  NICS Forge isn't a concept — it's our own 3D printers, running products we've
-                  already designed and sold. The current lineup lives on our Etsy shop, and it grows
-                  as we print new pieces.
-                </p>
-                <p>
-                  This page is the second part: an AI-driven design service that turns a description
-                  into a printed, shipped object. It's not live yet — here's exactly how it will work.
-                </p>
+                <p>{c.liveP1}</p>
+                <p>{c.liveP2}</p>
               </div>
               <div className="flex justify-center pt-2">
                 <a href={ETSY_SHOP_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" variant="outline" className="rounded-full px-8 border-2">
-                    Browse the current lineup
+                    {c.browseLineup}
                     <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </a>
@@ -145,39 +438,39 @@ const NicsForge = () => {
               <div className="text-center space-y-4 mb-12">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
                   <Wand2 className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">Coming next — not live yet</span>
+                  <span className="text-sm font-medium text-primary">{c.comingBadge}</span>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-                  Custom AI-designed prints
+                  {c.comingHeading}
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                  Describe what you want by text or by voice, and let our AI take it from a concept
-                  image all the way to a shipped, physical object.
+                  {c.comingSubtitle}
                 </p>
               </div>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {steps.map((s, i) => (
-                  <Card key={s.title} className="bg-card border-border/50">
-                    <CardContent className="pt-6 space-y-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-2xl bg-gradient-gold flex items-center justify-center shrink-0">
-                          <s.icon className="w-6 h-6 text-white" />
+                {c.steps.map((s, i) => {
+                  const Icon = stepIcons[i] ?? Box;
+                  return (
+                    <Card key={s.title} className="bg-card border-border/50">
+                      <CardContent className="pt-6 space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 rounded-2xl bg-gradient-gold flex items-center justify-center shrink-0">
+                            <Icon className="w-6 h-6 text-white" />
+                          </div>
+                          <div className="text-sm font-semibold uppercase tracking-wide text-primary">
+                            {i + 1}. {s.title}
+                          </div>
                         </div>
-                        <div className="text-sm font-semibold uppercase tracking-wide text-primary">
-                          {i + 1}. {s.title}
-                        </div>
-                      </div>
-                      <p className="text-muted-foreground leading-relaxed">{s.text}</p>
-                    </CardContent>
-                  </Card>
-                ))}
+                        <p className="text-muted-foreground leading-relaxed">{s.text}</p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
 
               <p className="text-sm text-muted-foreground text-center max-w-2xl mx-auto pt-10 leading-relaxed">
-                Checkout for this feature runs through Etsy today. Direct in-page checkout, including
-                Revolut, is planned for a future update — it isn't wired up yet, and we won't collect
-                any payment for it until it is.
+                {c.paymentNote}
               </p>
             </div>
           </div>
@@ -188,21 +481,21 @@ const NicsForge = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center space-y-6 bg-card p-12 rounded-3xl border border-border/50 shadow-card">
               <h2 className="text-3xl font-semibold text-foreground">
-                More from AI Byte Consult
+                {c.backHeading}
               </h2>
               <p className="text-muted-foreground">
-                NICS Forge is one part of a wider AI ecosystem — trading, real estate, and more.
+                {c.backText}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/#projects">
                   <Button size="lg" className="w-full sm:w-auto bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
                     <ArrowLeft className="mr-2 w-4 h-4" />
-                    Back to Our Work
+                    {c.backButton}
                   </Button>
                 </Link>
                 <Link to="/nics-ecosystem">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
-                    Explore the Ecosystem
+                    {c.ecosystemButton}
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </Link>
