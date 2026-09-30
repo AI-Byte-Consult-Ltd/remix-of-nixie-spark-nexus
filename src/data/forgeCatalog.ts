@@ -7,6 +7,8 @@
 export const FORGE_API_BASE = "https://n8n.aibyteconsult.com/webhook";
 
 export const SHIPPING_EUR = 5;
+// Catalog pieces are sold from EUR 36 (smaller prices are not economical).
+export const MIN_CATALOG_PRICE_EUR = 36;
 export const DAILY_TRIES = 3;
 export const DELIVERY_DAYS = 21;
 
@@ -52,15 +54,15 @@ export interface CatalogItem {
 }
 
 export const CATALOG: CatalogItem[] = [
-  { id: "dragon", price: 29, hasText: false, image: "", revolutUrl: "", tint: ["#7d4fd1", "#2b6cdf"] },
-  { id: "name-keychain", price: 12, hasText: true, image: "", revolutUrl: "", tint: ["#c9a34e", "#d6322e"] },
-  { id: "geo-vase", price: 24, hasText: false, image: "", revolutUrl: "", tint: ["#2f9e5b", "#2b6cdf"] },
-  { id: "phone-stand", price: 16, hasText: false, image: "", revolutUrl: "", tint: ["#1c1c1e", "#7d4fd1"] },
-  { id: "lowpoly-fox", price: 19, hasText: false, image: "", revolutUrl: "", tint: ["#e8833a", "#c9a34e"] },
-  { id: "planter", price: 18, hasText: false, image: "", revolutUrl: "", tint: ["#2f9e5b", "#f2c230"] },
-  { id: "cable-organizer", price: 14, hasText: false, image: "", revolutUrl: "", tint: ["#2b6cdf", "#1c1c1e"] },
-  { id: "name-plate", price: 22, hasText: true, image: "", revolutUrl: "", tint: ["#c9a34e", "#1c1c1e"] },
-  { id: "chess-knight", price: 21, hasText: false, image: "", revolutUrl: "", tint: ["#1c1c1e", "#c9a34e"] },
+  { id: "dragon", price: 59, hasText: false, image: "", revolutUrl: "", tint: ["#7d4fd1", "#2b6cdf"] },
+  { id: "name-keychain", price: 36, hasText: true, image: "", revolutUrl: "", tint: ["#c9a34e", "#d6322e"] },
+  { id: "geo-vase", price: 44, hasText: false, image: "", revolutUrl: "", tint: ["#2f9e5b", "#2b6cdf"] },
+  { id: "phone-stand", price: 36, hasText: false, image: "", revolutUrl: "", tint: ["#1c1c1e", "#7d4fd1"] },
+  { id: "lowpoly-fox", price: 39, hasText: false, image: "", revolutUrl: "", tint: ["#e8833a", "#c9a34e"] },
+  { id: "planter", price: 38, hasText: false, image: "", revolutUrl: "", tint: ["#2f9e5b", "#f2c230"] },
+  { id: "cable-organizer", price: 36, hasText: false, image: "", revolutUrl: "", tint: ["#2b6cdf", "#1c1c1e"] },
+  { id: "name-plate", price: 42, hasText: true, image: "", revolutUrl: "", tint: ["#c9a34e", "#1c1c1e"] },
+  { id: "chess-knight", price: 41, hasText: false, image: "", revolutUrl: "", tint: ["#1c1c1e", "#c9a34e"] },
 ];
 
 export const SOCIAL_LINKS = {
