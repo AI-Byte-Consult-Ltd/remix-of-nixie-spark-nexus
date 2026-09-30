@@ -200,7 +200,7 @@ const pages = [
     route: "/nics-forge",
     title: "NICS Forge — AI-Designed, 3D-Printed Products",
     description:
-      "NICS Forge is AI Byte Consult's 3D printing line — real printed products today on Etsy, with an AI-generated custom design and print-on-demand service in development.",
+      "NICS Forge is part of the NICS AI ecosystem: ready-made 3D-printed pieces and a custom AI studio that turns your photo into a 3D model we print and ship to you.",
     type: "website",
     schemaType: "Organization",
   },
