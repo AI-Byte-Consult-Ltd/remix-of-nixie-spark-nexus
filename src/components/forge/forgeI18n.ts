@@ -19,6 +19,7 @@ export interface ForgeText {
   studioBadge: string;
   studioTitle: string;
   studioSubtitle: string;
+  studioSoonText: string;
   stepUpload: string;
   stepPick: string;
   stepModel: string;
@@ -95,6 +96,7 @@ const en: ForgeText = {
   studioBadge: "AI Studio",
   studioTitle: "Create your own",
   studioSubtitle: "Upload a photo. We turn it into something you can hold.",
+  studioSoonText: "Turning your photo into a full-colour 3D print is coming soon. For now, choose from the ready-made pieces above.",
   stepUpload: "Photo",
   stepPick: "Pick a look",
   stepModel: "3D model",
@@ -161,6 +163,7 @@ const ru: ForgeText = {
   studioBadge: "AI-студия",
   studioTitle: "Создайте своё",
   studioSubtitle: "Загрузите фото. Мы превратим его в вещь, которую можно держать в руках.",
+  studioSoonText: "Превращение вашего фото в цветную 3D-печать скоро появится. Пока выбирайте из готовых изделий выше.",
   stepUpload: "Фото",
   stepPick: "Выбор вида",
   stepModel: "3D-модель",
@@ -227,6 +230,7 @@ const de: ForgeText = {
   studioBadge: "KI-Studio",
   studioTitle: "Erstelle dein eigenes",
   studioSubtitle: "Lade ein Foto hoch. Wir machen daraus etwas zum Anfassen.",
+  studioSoonText: "Dein Foto als farbigen 3D-Druck gibt es bald. Bis dahin wähle aus den fertigen Stücken oben.",
   stepUpload: "Foto",
   stepPick: "Look wählen",
   stepModel: "3D-Modell",
@@ -293,6 +297,7 @@ const fr: ForgeText = {
   studioBadge: "Studio IA",
   studioTitle: "Créez le vôtre",
   studioSubtitle: "Envoyez une photo. Nous en faisons un objet que vous pouvez tenir.",
+  studioSoonText: "Transformer votre photo en impression 3D en couleur arrive bientôt. En attendant, choisissez parmi les pièces ci-dessus.",
   stepUpload: "Photo",
   stepPick: "Choisir",
   stepModel: "Modèle 3D",
@@ -359,6 +364,7 @@ const es: ForgeText = {
   studioBadge: "Estudio IA",
   studioTitle: "Crea el tuyo",
   studioSubtitle: "Sube una foto. La convertimos en algo que puedes sostener.",
+  studioSoonText: "Convertir tu foto en una impresión 3D a todo color llegará pronto. Mientras tanto, elige entre las piezas de arriba.",
   stepUpload: "Foto",
   stepPick: "Elegir",
   stepModel: "Modelo 3D",
@@ -425,6 +431,7 @@ const pt: ForgeText = {
   studioBadge: "Estúdio IA",
   studioTitle: "Cria o teu",
   studioSubtitle: "Envia uma foto. Transformamo-la em algo que podes segurar.",
+  studioSoonText: "Transformar a tua foto numa impressão 3D a cores chegará em breve. Entretanto, escolhe entre as peças acima.",
   stepUpload: "Foto",
   stepPick: "Escolher",
   stepModel: "Modelo 3D",
@@ -491,6 +498,7 @@ const it: ForgeText = {
   studioBadge: "Studio IA",
   studioTitle: "Crea il tuo",
   studioSubtitle: "Carica una foto. La trasformiamo in qualcosa che puoi tenere in mano.",
+  studioSoonText: "Trasformare la tua foto in una stampa 3D a colori arriverà presto. Nel frattempo scegli tra i pezzi qui sopra.",
   stepUpload: "Foto",
   stepPick: "Scegli",
   stepModel: "Modello 3D",
@@ -557,6 +565,7 @@ const pl: ForgeText = {
   studioBadge: "Studio AI",
   studioTitle: "Stwórz własny",
   studioSubtitle: "Prześlij zdjęcie. Zamienimy je w coś, co można wziąć do ręki.",
+  studioSoonText: "Zamiana Twojego zdjęcia w kolorowy wydruk 3D już wkrótce. Tymczasem wybierz spośród gotowych wyrobów powyżej.",
   stepUpload: "Zdjęcie",
   stepPick: "Wybór",
   stepModel: "Model 3D",
@@ -623,6 +632,7 @@ const tr: ForgeText = {
   studioBadge: "Yapay zekâ stüdyosu",
   studioTitle: "Kendini yarat",
   studioSubtitle: "Bir fotoğraf yükle. Onu elinde tutabileceğin bir nesneye dönüştürelim.",
+  studioSoonText: "Fotoğrafını renkli 3D baskıya dönüştürme çok yakında. Şimdilik yukarıdaki hazır ürünlerden seç.",
   stepUpload: "Fotoğraf",
   stepPick: "Seç",
   stepModel: "3D model",
@@ -689,6 +699,7 @@ const bg: ForgeText = {
   studioBadge: "AI студио",
   studioTitle: "Създай свое",
   studioSubtitle: "Качи снимка. Ще я превърнем в нещо, което можеш да държиш в ръка.",
+  studioSoonText: "Превръщането на снимката ти в цветен 3D печат скоро ще е налично. Дотогава избери от готовите изделия по-горе.",
   stepUpload: "Снимка",
   stepPick: "Избор",
   stepModel: "3D модел",
@@ -755,6 +766,7 @@ const ar: ForgeText = {
   studioBadge: "استوديو الذكاء الاصطناعي",
   studioTitle: "أنشئ قطعتك",
   studioSubtitle: "ارفع صورة. سنحوّلها إلى شيء يمكنك الإمساك به.",
+  studioSoonText: "تحويل صورتك إلى طباعة ثلاثية الأبعاد ملونة قريبًا. حتى ذلك الحين اختر من القطع الجاهزة أعلاه.",
   stepUpload: "الصورة",
   stepPick: "الاختيار",
   stepModel: "نموذج ثلاثي الأبعاد",
@@ -821,6 +833,7 @@ const zh: ForgeText = {
   studioBadge: "AI 工作室",
   studioTitle: "创作你自己的",
   studioSubtitle: "上传一张照片，我们把它变成可以握在手中的实物。",
+  studioSoonText: "将你的照片变成彩色3D打印即将推出。目前请从上方的现成作品中选择。",
   stepUpload: "照片",
   stepPick: "选择",
   stepModel: "3D 模型",
