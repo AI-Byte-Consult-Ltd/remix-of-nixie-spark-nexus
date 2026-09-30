@@ -8,6 +8,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { forgeText } from "@/components/forge/forgeI18n";
 import ForgeCatalog from "@/components/forge/ForgeCatalog";
 import ForgeStudio from "@/components/forge/ForgeStudio";
+import ForgeStudioSoon from "@/components/forge/ForgeStudioSoon";
+import { STUDIO_ENABLED } from "@/data/forgeCatalog";
 import ForgeSocial from "@/components/forge/ForgeSocial";
 import ForgeCheckout, { type PendingOrder } from "@/components/forge/ForgeCheckout";
 
@@ -74,7 +76,7 @@ const NicsForge = () => {
         </section>
 
         <ForgeCatalog t={t} onOrder={setOrder} />
-        <ForgeStudio t={t} onOrder={setOrder} />
+        {STUDIO_ENABLED ? <ForgeStudio t={t} onOrder={setOrder} /> : <ForgeStudioSoon t={t} />}
         <ForgeSocial t={t} />
 
         <ForgeCheckout order={order} onClose={() => setOrder(null)} t={t} lang={language} />

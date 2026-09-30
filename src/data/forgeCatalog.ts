@@ -9,6 +9,9 @@ export const FORGE_API_BASE = "https://n8n.aibyteconsult.com/webhook";
 export const SHIPPING_EUR = 5;
 // Catalog pieces are sold from EUR 36 (smaller prices are not economical).
 export const MIN_CATALOG_PRICE_EUR = 36;
+// The photo-to-3D studio is built but switched off: the page shows "coming soon"
+// until this is true (needs the OpenAI and Meshy keys, see the n8n key form).
+export const STUDIO_ENABLED = false;
 export const DAILY_TRIES = 3;
 export const DELIVERY_DAYS = 21;
 
