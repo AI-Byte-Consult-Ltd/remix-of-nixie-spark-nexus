@@ -19,6 +19,7 @@
     "publish-all": "git add . && git commit -m 'update: site changes' && git push origin main && npm run build && npm run deploy"
   },
   "dependencies": {
+    "@google/model-viewer": "^4.3.1",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",

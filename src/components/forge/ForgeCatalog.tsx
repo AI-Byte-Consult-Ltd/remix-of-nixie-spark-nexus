@@ -1,0 +1,105 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { CATALOG, COLOR_IDS, COLOR_HEX, type ColorId, type CatalogItem } from "@/data/forgeCatalog";
+import ProductImage from "./ProductImage";
+import type { ForgeText } from "./forgeI18n";
+import type { PendingOrder } from "./ForgeCheckout";
+import { SHIPPING_EUR } from "@/data/forgeCatalog";
+
+interface CardProps {
+  item: CatalogItem;
+  t: ForgeText;
+  onOrder: (o: PendingOrder) => void;
+}
+
+const CatalogCard = ({ item, t, onOrder }: CardProps) => {
+  const [color, setColor] = useState<ColorId>("white");
+  const [text, setText] = useState("");
+  const name = t.items[item.id] ?? item.id;
+
+  return (
+    <Card className="bg-card border-border/50 overflow-hidden flex flex-col">
+      <div className="aspect-[4/3] bg-muted">
+        <ProductImage item={item} alt={name} />
+      </div>
+      <CardContent className="pt-5 space-y-4 flex-1 flex flex-col">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="font-semibold text-foreground leading-snug">{name}</h3>
+          <span className="font-semibold text-primary shrink-0">€{item.price}</span>
+        </div>
+
+        <div className="space-y-1.5">
+          <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{t.optColor}</div>
+          <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={t.optColor}>
+            {COLOR_IDS.map((c) => (
+              <button
+                key={c}
+                type="button"
+                role="radio"
+                aria-checked={color === c}
+                aria-label={t.colors[c]}
+                title={t.colors[c]}
+                onClick={() => setColor(c)}
+                className={`w-7 h-7 rounded-full border-2 transition-transform ${color === c ? "border-primary scale-110 ring-2 ring-primary/30" : "border-border"}`}
+                style={{ backgroundColor: COLOR_HEX[c] }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {item.hasText && (
+          <div className="space-y-1.5">
+            <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{t.optText}</div>
+            <Input value={text} maxLength={24} placeholder={t.optTextPh} onChange={(e) => setText(e.target.value)} />
+          </div>
+        )}
+
+        <div className="mt-auto pt-2">
+          <Button
+            className="w-full rounded-full bg-foreground hover:bg-foreground/90 text-background"
+            onClick={() =>
+              onOrder({
+                kind: "catalog",
+                itemId: item.id,
+                itemName: name,
+                price: item.price,
+                color,
+                text: item.hasText ? text.trim() : "",
+                revolutUrl: item.revolutUrl,
+              })
+            }
+          >
+            {t.orderThis} · €{item.price + SHIPPING_EUR}
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+interface Props {
+  t: ForgeText;
+  onOrder: (o: PendingOrder) => void;
+}
+
+const ForgeCatalog = ({ t, onOrder }: Props) => (
+  <section id="catalog" className="py-20 bg-background">
+    <div className="container mx-auto px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center space-y-4 mb-12">
+          <h2 className="text-3xl md:text-4xl font-semibold text-foreground">{t.catalogTitle}</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">{t.catalogSubtitle}</p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {CATALOG.map((item) => (
+            <CatalogCard key={item.id} item={item} t={t} onOrder={onOrder} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+export default ForgeCatalog;
