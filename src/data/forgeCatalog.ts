@@ -15,6 +15,8 @@ export const STUDIO_ENABLED = false;
 export const DAILY_TRIES = 3;
 export const DELIVERY_DAYS = 21;
 
+export const shippingFor = (item: { shipping?: number }) => item.shipping ?? SHIPPING_EUR;
+
 export const COLOR_IDS = ["white", "black", "red", "blue", "green", "yellow", "purple", "gold"] as const;
 export type ColorId = (typeof COLOR_IDS)[number];
 
@@ -47,6 +49,12 @@ export const REVOLUT_SIZE_LINKS: Record<number, string> = {
 export interface CatalogItem {
   id: string;
   price: number;
+  /** Shipping for this piece; defaults to SHIPPING_EUR. */
+  shipping?: number;
+  /** Multi-colour piece sold as pictured: no colour picker. */
+  noColor?: boolean;
+  /** Low-poly GLB shown in the "View in 3D" dialog (served from /public). */
+  model?: string;
   /** Shows a "your text" field (name on a keychain, desk plate...). */
   hasText: boolean;
   /** Photo URL. Empty = SVG placeholder. TODO: swap in real photos. */
@@ -57,7 +65,17 @@ export interface CatalogItem {
 }
 
 export const CATALOG: CatalogItem[] = [
-  { id: "dragon", price: 59, hasText: false, image: "", revolutUrl: "", tint: ["#7d4fd1", "#2b6cdf"] },
+  {
+    id: "halloween-house",
+    price: 229,
+    shipping: 40,
+    noColor: true,
+    hasText: false,
+    image: "/forge/halloween-house.webp",
+    model: "/forge/models/halloween-house-preview.glb",
+    revolutUrl: "", // TODO(Alessandro): Revolut link, EUR 269 (229 + 40 shipping)
+    tint: ["#e8833a", "#1c1c1e"],
+  },
   { id: "name-keychain", price: 36, hasText: true, image: "", revolutUrl: "", tint: ["#c9a34e", "#d6322e"] },
   { id: "geo-vase", price: 44, hasText: false, image: "", revolutUrl: "", tint: ["#2f9e5b", "#2b6cdf"] },
   { id: "phone-stand", price: 36, hasText: false, image: "", revolutUrl: "", tint: ["#1c1c1e", "#7d4fd1"] },
