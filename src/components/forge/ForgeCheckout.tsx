@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CheckCircle2, CreditCard, Loader2 } from "lucide-react";
-import { SHIPPING_EUR, DELIVERY_DAYS } from "@/data/forgeCatalog";
+import { DELIVERY_DAYS } from "@/data/forgeCatalog";
 import { createOrder, reportPaid } from "@/lib/forgeApi";
 import { fill, type ForgeText } from "./forgeI18n";
 import type { Language } from "@/contexts/LanguageContext";
@@ -15,6 +15,8 @@ export interface PendingOrder {
   itemId?: string;
   itemName: string;
   price: number;
+  /** Shipping for this order (catalog pieces can have their own). */
+  shipping: number;
   color: string;
   text?: string;
   sizeCm?: number;
@@ -81,7 +83,7 @@ const ForgeCheckout = ({ order, onClose, t, lang }: Props) => {
     onClose();
   };
 
-  const total = order ? order.price + SHIPPING_EUR : 0;
+  const total = order ? order.price + order.shipping : 0;
 
   return (
     <Dialog open={!!order} onOpenChange={(o) => !o && close()}>
@@ -131,7 +133,7 @@ const ForgeCheckout = ({ order, onClose, t, lang }: Props) => {
 
             <div className="rounded-xl bg-muted/50 p-4 text-sm space-y-1.5">
               <div className="flex justify-between"><span>{order.itemName}</span><span>€{order.price}</span></div>
-              <div className="flex justify-between text-muted-foreground"><span>{t.shipping}</span><span>€{SHIPPING_EUR}</span></div>
+              <div className="flex justify-between text-muted-foreground"><span>{t.shipping}</span><span>€{order.shipping}</span></div>
               <div className="flex justify-between font-semibold text-base pt-1.5 border-t border-border"><span>{t.total}</span><span>€{total}</span></div>
               <p className="text-muted-foreground pt-1">{fill(t.delivery, { days: DELIVERY_DAYS })}</p>
             </div>

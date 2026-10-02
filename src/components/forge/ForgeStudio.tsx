@@ -148,6 +148,7 @@ const ForgeStudio = ({ t, onOrder }: Props) => {
       kind: "custom",
       itemName: `${t.studioTitle} · ${opt.cm} cm`,
       price: opt.price,
+      shipping: SHIPPING_EUR,
       color,
       sizeCm: opt.cm,
       generationId: genId,

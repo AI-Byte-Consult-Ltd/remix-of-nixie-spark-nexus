@@ -17,8 +17,10 @@ const ModelViewer = ({ src, alt }: Props) => {
       alt={alt}
       camera-controls=""
       auto-rotate=""
-      shadow-intensity="1"
+      shadow-intensity="0.8"
       interaction-prompt="none"
+      environment-image="neutral"
+      exposure="0.9"
       style={{ width: "100%", height: "100%", background: "transparent" }}
     />
   );
