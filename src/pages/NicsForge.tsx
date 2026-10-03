@@ -13,7 +13,7 @@ import { STUDIO_ENABLED } from "@/data/forgeCatalog";
 import ForgeSocial from "@/components/forge/ForgeSocial";
 import ForgeCheckout, { type PendingOrder } from "@/components/forge/ForgeCheckout";
 
-// TODO(Alessandro): swap in the real NICS Forge Etsy shop URL — this is a
+// TODO(Alessandro): swap in the real Alessandro Studio Etsy shop URL — this is a
 // placeholder so the button never links to a guessed/wrong shop.
 const ETSY_SHOP_URL = "https://www.etsy.com";
 
@@ -23,14 +23,14 @@ const NicsForge = () => {
   const [order, setOrder] = useState<PendingOrder | null>(null);
 
   const seoProps = {
-    title: "NICS Forge — AI-Designed, 3D-Printed Products",
+    title: "Alessandro Studio — AI-Designed, 3D-Printed Products",
     description:
-      "NICS Forge is part of the NICS AI ecosystem: ready-made 3D-printed pieces and a custom AI studio that turns your photo into a 3D model we print and ship to you.",
+      "Alessandro Studio is part of the NICS AI ecosystem: ready-made 3D-printed pieces and a custom AI studio that turns your photo into a 3D model we print and ship to you.",
     canonical: "https://aibyteconsult.com/nics-forge",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "Organization",
-      name: "NICS Forge",
+      name: "Alessandro Studio",
       url: "https://aibyteconsult.com/nics-forge",
       parentOrganization: { "@type": "Organization", name: "AI Byte Consult Ltd." },
     },

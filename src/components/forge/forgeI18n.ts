@@ -22,6 +22,8 @@ export interface ForgeText {
   studioSoonText: string;
   itemDesc: Record<string, string>;
   view3d: string;
+  variantTitle: string;
+  variants: { ams: string; paint: string };
   conceptNote: string;
   stepUpload: string;
   stepPick: string;
@@ -72,6 +74,8 @@ export interface ForgeText {
   close: string;
 }
 
+type BaseText = Omit<ForgeText, "variantTitle" | "variants">;
+
 type ItemNames = [string, string, string, string, string, string, string, string, string];
 const ITEM_IDS = ["halloween-house", "name-keychain", "geo-vase", "phone-stand", "lowpoly-fox", "planter", "cable-organizer", "name-plate", "chess-knight"];
 const items = (n: ItemNames): Record<string, string> => Object.fromEntries(ITEM_IDS.map((id, i) => [id, n[i]]));
@@ -82,11 +86,11 @@ const colors = (n: ColorNames): Record<ColorId, string> => Object.fromEntries(CO
 export const fill = (s: string, vars: Record<string, string | number>) =>
   s.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ""));
 
-const en: ForgeText = {
-  badge: "NICS Forge",
+const en: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "From idea to object",
   heroSubtitle: "Ready-made 3D-printed pieces, or your own design: upload a photo and our AI turns it into something you can hold.",
-  ecosystemNote: "NICS Forge is part of the NICS AI ecosystem. We are expanding it: the same AI that powers our trading and media products now designs and prepares objects for 3D printing. We print every piece ourselves and ship it to you.",
+  ecosystemNote: "Alessandro Studio is part of the NICS AI ecosystem. We are expanding it: the same AI that powers our trading and media products now designs and prepares objects for 3D printing. We print every piece ourselves and ship it to you.",
   etsy: "Shop on Etsy",
   catalogTitle: "Ready-made pieces",
   catalogSubtitle: "Order as is, or make it yours: pick a colour, add a name.",
@@ -152,11 +156,11 @@ const en: ForgeText = {
   close: "Close",
 };
 
-const ru: ForgeText = {
-  badge: "NICS Forge",
+const ru: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "От идеи до предмета",
   heroSubtitle: "Готовые изделия, напечатанные на 3D-принтере, или ваш собственный дизайн: загрузите фото, и наш ИИ превратит его в вещь, которую можно держать в руках.",
-  ecosystemNote: "NICS Forge — часть экосистемы NICS AI. Мы расширяем её: тот же ИИ, на котором работают наши трейдинг- и медиапродукты, теперь проектирует и готовит объекты для 3D-печати. Каждое изделие мы печатаем сами и отправляем вам.",
+  ecosystemNote: "Alessandro Studio — часть экосистемы NICS AI. Мы расширяем её: тот же ИИ, на котором работают наши трейдинг- и медиапродукты, теперь проектирует и готовит объекты для 3D-печати. Каждое изделие мы печатаем сами и отправляем вам.",
   etsy: "Магазин на Etsy",
   catalogTitle: "Готовые изделия",
   catalogSubtitle: "Заказывайте как есть или сделайте своим: выберите цвет, добавьте имя.",
@@ -222,11 +226,11 @@ const ru: ForgeText = {
   close: "Закрыть",
 };
 
-const de: ForgeText = {
-  badge: "NICS Forge",
+const de: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "Von der Idee zum Objekt",
   heroSubtitle: "Fertige 3D-Druck-Stücke oder dein eigenes Design: Lade ein Foto hoch und unsere KI macht daraus etwas zum Anfassen.",
-  ecosystemNote: "NICS Forge ist Teil des NICS-AI-Ökosystems. Wir erweitern es: dieselbe KI, die unsere Trading- und Medienprodukte antreibt, entwirft und bereitet jetzt Objekte für den 3D-Druck vor. Jedes Stück drucken wir selbst und verschicken es an dich.",
+  ecosystemNote: "Alessandro Studio ist Teil des NICS-AI-Ökosystems. Wir erweitern es: dieselbe KI, die unsere Trading- und Medienprodukte antreibt, entwirft und bereitet jetzt Objekte für den 3D-Druck vor. Jedes Stück drucken wir selbst und verschicken es an dich.",
   etsy: "Auf Etsy einkaufen",
   catalogTitle: "Fertige Stücke",
   catalogSubtitle: "Bestelle wie gezeigt oder mach es zu deinem: Farbe wählen, Namen hinzufügen.",
@@ -292,11 +296,11 @@ const de: ForgeText = {
   close: "Schließen",
 };
 
-const fr: ForgeText = {
-  badge: "NICS Forge",
+const fr: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "De l'idée à l'objet",
   heroSubtitle: "Des pièces imprimées en 3D prêtes à l'emploi, ou votre propre création : envoyez une photo et notre IA en fait un objet que vous pouvez tenir.",
-  ecosystemNote: "NICS Forge fait partie de l'écosystème NICS AI. Nous l'étendons : la même IA qui alimente nos produits de trading et de médias conçoit désormais des objets et les prépare pour l'impression 3D. Nous imprimons chaque pièce nous-mêmes et vous l'expédions.",
+  ecosystemNote: "Alessandro Studio fait partie de l'écosystème NICS AI. Nous l'étendons : la même IA qui alimente nos produits de trading et de médias conçoit désormais des objets et les prépare pour l'impression 3D. Nous imprimons chaque pièce nous-mêmes et vous l'expédions.",
   etsy: "Acheter sur Etsy",
   catalogTitle: "Pièces prêtes à commander",
   catalogSubtitle: "Commandez telles quelles ou personnalisez : choisissez une couleur, ajoutez un nom.",
@@ -362,11 +366,11 @@ const fr: ForgeText = {
   close: "Fermer",
 };
 
-const es: ForgeText = {
-  badge: "NICS Forge",
+const es: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "De la idea al objeto",
   heroSubtitle: "Piezas impresas en 3D listas para pedir, o tu propio diseño: sube una foto y nuestra IA la convierte en algo que puedes sostener.",
-  ecosystemNote: "NICS Forge forma parte del ecosistema NICS AI. Lo estamos ampliando: la misma IA que impulsa nuestros productos de trading y medios ahora diseña y prepara objetos para impresión 3D. Imprimimos cada pieza nosotros mismos y te la enviamos.",
+  ecosystemNote: "Alessandro Studio forma parte del ecosistema NICS AI. Lo estamos ampliando: la misma IA que impulsa nuestros productos de trading y medios ahora diseña y prepara objetos para impresión 3D. Imprimimos cada pieza nosotros mismos y te la enviamos.",
   etsy: "Comprar en Etsy",
   catalogTitle: "Piezas listas",
   catalogSubtitle: "Pídelas tal cual o hazlas tuyas: elige un color, añade un nombre.",
@@ -432,11 +436,11 @@ const es: ForgeText = {
   close: "Cerrar",
 };
 
-const pt: ForgeText = {
-  badge: "NICS Forge",
+const pt: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "Da ideia ao objeto",
   heroSubtitle: "Peças impressas em 3D prontas a encomendar, ou o teu próprio design: envia uma foto e a nossa IA transforma-a em algo que podes segurar.",
-  ecosystemNote: "A NICS Forge faz parte do ecossistema NICS AI. Estamos a expandi-lo: a mesma IA que alimenta os nossos produtos de trading e media agora desenha e prepara objetos para impressão 3D. Imprimimos cada peça nós mesmos e enviamos para ti.",
+  ecosystemNote: "A Alessandro Studio faz parte do ecossistema NICS AI. Estamos a expandi-lo: a mesma IA que alimenta os nossos produtos de trading e media agora desenha e prepara objetos para impressão 3D. Imprimimos cada peça nós mesmos e enviamos para ti.",
   etsy: "Comprar na Etsy",
   catalogTitle: "Peças prontas",
   catalogSubtitle: "Encomenda como está ou torna-a tua: escolhe uma cor, adiciona um nome.",
@@ -502,11 +506,11 @@ const pt: ForgeText = {
   close: "Fechar",
 };
 
-const it: ForgeText = {
-  badge: "NICS Forge",
+const it: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "Dall'idea all'oggetto",
   heroSubtitle: "Pezzi stampati in 3D pronti da ordinare, oppure il tuo design: carica una foto e la nostra IA la trasforma in qualcosa che puoi tenere in mano.",
-  ecosystemNote: "NICS Forge fa parte dell'ecosistema NICS AI. Lo stiamo ampliando: la stessa IA che alimenta i nostri prodotti di trading e media ora progetta e prepara oggetti per la stampa 3D. Stampiamo ogni pezzo noi stessi e lo spediamo a te.",
+  ecosystemNote: "Alessandro Studio fa parte dell'ecosistema NICS AI. Lo stiamo ampliando: la stessa IA che alimenta i nostri prodotti di trading e media ora progetta e prepara oggetti per la stampa 3D. Stampiamo ogni pezzo noi stessi e lo spediamo a te.",
   etsy: "Acquista su Etsy",
   catalogTitle: "Pezzi pronti",
   catalogSubtitle: "Ordina così com'è o rendilo tuo: scegli un colore, aggiungi un nome.",
@@ -572,11 +576,11 @@ const it: ForgeText = {
   close: "Chiudi",
 };
 
-const pl: ForgeText = {
-  badge: "NICS Forge",
+const pl: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "Od pomysłu do przedmiotu",
   heroSubtitle: "Gotowe wydruki 3D lub własny projekt: prześlij zdjęcie, a nasza AI zamieni je w coś, co można wziąć do ręki.",
-  ecosystemNote: "NICS Forge jest częścią ekosystemu NICS AI. Rozbudowujemy go: ta sama AI, która napędza nasze produkty tradingowe i medialne, teraz projektuje i przygotowuje obiekty do druku 3D. Każdy element drukujemy sami i wysyłamy do Ciebie.",
+  ecosystemNote: "Alessandro Studio jest częścią ekosystemu NICS AI. Rozbudowujemy go: ta sama AI, która napędza nasze produkty tradingowe i medialne, teraz projektuje i przygotowuje obiekty do druku 3D. Każdy element drukujemy sami i wysyłamy do Ciebie.",
   etsy: "Kup na Etsy",
   catalogTitle: "Gotowe wyroby",
   catalogSubtitle: "Zamów taki, jaki jest, albo spersonalizuj: wybierz kolor, dodaj imię.",
@@ -642,11 +646,11 @@ const pl: ForgeText = {
   close: "Zamknij",
 };
 
-const tr: ForgeText = {
-  badge: "NICS Forge",
+const tr: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "Fikirden nesneye",
   heroSubtitle: "Hazır 3D baskı ürünler ya da kendi tasarımın: bir fotoğraf yükle, yapay zekâmız onu elinde tutabileceğin bir nesneye dönüştürsün.",
-  ecosystemNote: "NICS Forge, NICS AI ekosisteminin bir parçasıdır. Onu genişletiyoruz: trading ve medya ürünlerimizi çalıştıran aynı yapay zekâ artık 3D baskı için nesneler tasarlıyor ve hazırlıyor. Her parçayı kendimiz basıp sana gönderiyoruz.",
+  ecosystemNote: "Alessandro Studio, NICS AI ekosisteminin bir parçasıdır. Onu genişletiyoruz: trading ve medya ürünlerimizi çalıştıran aynı yapay zekâ artık 3D baskı için nesneler tasarlıyor ve hazırlıyor. Her parçayı kendimiz basıp sana gönderiyoruz.",
   etsy: "Etsy'de alışveriş",
   catalogTitle: "Hazır ürünler",
   catalogSubtitle: "Olduğu gibi sipariş et ya da kişiselleştir: renk seç, isim ekle.",
@@ -712,11 +716,11 @@ const tr: ForgeText = {
   close: "Kapat",
 };
 
-const bg: ForgeText = {
-  badge: "NICS Forge",
+const bg: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "От идеята до предмета",
   heroSubtitle: "Готови 3D-принтирани изделия или твой собствен дизайн: качи снимка и нашият ИИ я превръща в нещо, което можеш да държиш в ръка.",
-  ecosystemNote: "NICS Forge е част от екосистемата NICS AI. Разширяваме я: същият ИИ, който захранва нашите трейдинг и медийни продукти, вече проектира и подготвя обекти за 3D печат. Всяко изделие го печатаме сами и ти го изпращаме.",
+  ecosystemNote: "Alessandro Studio е част от екосистемата NICS AI. Разширяваме я: същият ИИ, който захранва нашите трейдинг и медийни продукти, вече проектира и подготвя обекти за 3D печат. Всяко изделие го печатаме сами и ти го изпращаме.",
   etsy: "Магазин в Etsy",
   catalogTitle: "Готови изделия",
   catalogSubtitle: "Поръчай както е или го направи свое: избери цвят, добави име.",
@@ -782,11 +786,11 @@ const bg: ForgeText = {
   close: "Затвори",
 };
 
-const ar: ForgeText = {
-  badge: "NICS Forge",
+const ar: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "من الفكرة إلى الشيء",
   heroSubtitle: "قطع جاهزة مطبوعة بتقنية الطباعة ثلاثية الأبعاد، أو تصميمك الخاص: ارفع صورة وسيحوّلها ذكاؤنا الاصطناعي إلى شيء يمكنك الإمساك به.",
-  ecosystemNote: "NICS Forge جزء من منظومة NICS AI. نحن نوسّعها: فالذكاء الاصطناعي نفسه الذي يشغّل منتجاتنا في التداول والإعلام يصمّم الآن الأجسام ويجهّزها للطباعة ثلاثية الأبعاد. نطبع كل قطعة بأنفسنا ونشحنها إليك.",
+  ecosystemNote: "Alessandro Studio جزء من منظومة NICS AI. نحن نوسّعها: فالذكاء الاصطناعي نفسه الذي يشغّل منتجاتنا في التداول والإعلام يصمّم الآن الأجسام ويجهّزها للطباعة ثلاثية الأبعاد. نطبع كل قطعة بأنفسنا ونشحنها إليك.",
   etsy: "تسوّق على Etsy",
   catalogTitle: "قطع جاهزة",
   catalogSubtitle: "اطلبها كما هي أو اجعلها لك: اختر لونًا وأضف اسمًا.",
@@ -852,11 +856,11 @@ const ar: ForgeText = {
   close: "إغلاق",
 };
 
-const zh: ForgeText = {
-  badge: "NICS Forge",
+const zh: BaseText = {
+  badge: "Alessandro Studio",
   heroHeading: "从创意到实物",
   heroSubtitle: "现成的3D打印作品，或你自己的设计：上传一张照片，我们的AI将它变成可以握在手中的实物。",
-  ecosystemNote: "NICS Forge 是 NICS AI 生态系统的一部分，我们正在扩展它：驱动我们交易和媒体产品的同一套AI，如今也负责设计并准备3D打印对象。每件作品都由我们亲自打印并寄给你。",
+  ecosystemNote: "Alessandro Studio 是 NICS AI 生态系统的一部分，我们正在扩展它：驱动我们交易和媒体产品的同一套AI，如今也负责设计并准备3D打印对象。每件作品都由我们亲自打印并寄给你。",
   etsy: "前往 Etsy 购买",
   catalogTitle: "现成作品",
   catalogSubtitle: "直接下单，或让它属于你：选择颜色，添加名字。",
@@ -922,4 +926,35 @@ const zh: ForgeText = {
   close: "关闭",
 };
 
-export const forgeText: Record<Language, ForgeText> = { en, ru, de, fr, es, pt, it, pl, tr, bg, ar, zh };
+const KIT: Record<Language, { name: string; desc: string; variantTitle: string; variants: { ams: string; paint: string } }> = {
+  en: { name: "Mini Gingerbread House Kit Card", desc: "A Christmas gingerbread cottage you build yourself. One flat 15 × 15 cm kit card holds every part: house walls with cut-out windows, roof panels with icing snow, a slotted base, two fir trees, two gingerbread men and two lollipops. Snap the pieces off the frame, slot them together and glue on the roof. The windows are open, so a small LED light (not included) glows through them.", variantTitle: "Version", variants: {"ams": "Multicolour (AMS print)", "paint": "Single colour, to paint"} },
+  ru: { name: "Мини-пряничный домик: Kit Card", desc: "Рождественский пряничный домик, который вы собираете сами. Одна плоская карточка 15 × 15 см содержит все детали: стенки со сквозными окнами, крыши с «глазурью», основание с пазами, две ёлки, двух пряничных человечков и два леденца. Отломите детали от рамки, вставьте друг в друга и приклейте крыши. Окна открытые: маленький светодиод (в комплект не входит) подсветит домик изнутри.", variantTitle: "Версия", variants: {"ams": "Цветная (печать в 4 цвета)", "paint": "Одноцветная, под раскраску"} },
+  de: { name: "Mini-Lebkuchenhaus Bausatzkarte", desc: "Ein weihnachtliches Lebkuchenhäuschen zum Selberbauen. Eine flache Bausatzkarte (15 × 15 cm) enthält alle Teile: Hauswände mit ausgeschnittenen Fenstern, Dachplatten mit Zuckerguss-Schnee, eine Bodenplatte mit Schlitzen, zwei Tannen, zwei Lebkuchenmännchen und zwei Lollis. Teile vom Rahmen abbrechen, zusammenstecken und das Dach aufkleben. Die Fenster sind offen, ein kleines LED-Licht (nicht enthalten) leuchtet hindurch.", variantTitle: "Version", variants: {"ams": "Mehrfarbig (AMS-Druck)", "paint": "Einfarbig, zum Bemalen"} },
+  fr: { name: "Carte kit Mini maison en pain d'épices", desc: "Une petite maison de Noël en pain d'épices à construire soi-même. Une carte plate de 15 × 15 cm réunit toutes les pièces : murs avec fenêtres découpées, pans de toit avec neige en glaçage, une base à fentes, deux sapins, deux bonshommes en pain d'épices et deux sucettes. Détachez les pièces du cadre, emboîtez-les et collez le toit. Les fenêtres sont ouvertes : une petite LED (non fournie) les illumine de l'intérieur.", variantTitle: "Version", variants: {"ams": "Multicolore (impression AMS)", "paint": "Une couleur, à peindre"} },
+  es: { name: "Tarjeta kit Mini casita de jengibre", desc: "Una casita navideña de pan de jengibre para montar tú mismo. Una tarjeta plana de 15 × 15 cm reúne todas las piezas: paredes con ventanas recortadas, tejados con nieve de glaseado, una base con ranuras, dos abetos, dos muñecos de jengibre y dos piruletas. Separa las piezas del marco, encájalas y pega el tejado. Las ventanas están abiertas: una pequeña luz LED (no incluida) brilla a través de ellas.", variantTitle: "Versión", variants: {"ams": "Multicolor (impresión AMS)", "paint": "Un color, para pintar"} },
+  pt: { name: "Cartão kit Mini casinha de gengibre", desc: "Uma casinha de Natal de pão de gengibre para montares tu mesmo. Um cartão plano de 15 × 15 cm reúne todas as peças: paredes com janelas recortadas, telhados com neve de glacê, uma base com ranhuras, dois abetos, dois bonecos de gengibre e dois chupa-chupas. Separa as peças da moldura, encaixa-as e cola o telhado. As janelas são abertas: uma pequena luz LED (não incluída) brilha através delas.", variantTitle: "Versão", variants: {"ams": "Multicolor (impressão AMS)", "paint": "Uma cor, para pintar"} },
+  it: { name: "Kit card Mini casetta di pan di zenzero", desc: "Una casetta natalizia di pan di zenzero da costruire da soli. Una card piatta da 15 × 15 cm contiene tutti i pezzi: pareti con finestre ritagliate, falde del tetto con neve di glassa, una base con incastri, due abeti, due omini di pan di zenzero e due lecca-lecca. Stacca i pezzi dalla cornice, incastrali e incolla il tetto. Le finestre sono aperte: una piccola luce LED (non inclusa) le illumina dall'interno.", variantTitle: "Versione", variants: {"ams": "Multicolore (stampa AMS)", "paint": "Un colore, da dipingere"} },
+  pl: { name: "Karta modelarska Mini domek z piernika", desc: "Świąteczny domek z piernika do samodzielnego złożenia. Jedna płaska karta 15 × 15 cm zawiera wszystkie części: ściany z wyciętymi oknami, połacie dachu z lukrowym śniegiem, podstawę z otworami, dwie choinki, dwa pierniczkowe ludziki i dwa lizaki. Odłam części z ramki, połącz je i przyklej dach. Okna są otwarte, więc przez nie prześwituje mała dioda LED (nie wchodzi w skład zestawu).", variantTitle: "Wersja", variants: {"ams": "Wielokolorowa (druk AMS)", "paint": "Jednokolorowa, do malowania"} },
+  tr: { name: "Mini Zencefilli Kurabiye Ev Kit Kartı", desc: "Kendi ellerinizle kurabileceğiniz yılbaşı zencefilli kurabiye evi. 15 × 15 cm'lik tek bir düz kart tüm parçaları içerir: oyma pencereli duvarlar, krema karlı çatı panelleri, yuvalı taban, iki çam ağacı, iki zencefilli kurabiye adam ve iki lolipop. Parçaları çerçeveden kırın, birbirine geçirin ve çatıyı yapıştırın. Pencereler açıktır; küçük bir LED ışık (pakete dahil değildir) içeriden parlar.", variantTitle: "Sürüm", variants: {"ams": "Çok renkli (AMS baskı)", "paint": "Tek renk, boyamak için"} },
+  bg: { name: "Кит карта Мини къщичка от меденки", desc: "Коледна къщичка от меденки, която сглобявате сами. Една плоска карта 15 × 15 см съдържа всички части: стени с изрязани прозорци, покривни панели със захарен сняг, основа с прорези, две елхи, две фигурки от меденки и две близалки. Отчупете частите от рамката, свържете ги и залепете покрива. Прозорците са отворени, така че малка LED светлина (не е включена) свети през тях.", variantTitle: "Версия", variants: {"ams": "Многоцветна (AMS печат)", "paint": "Едноцветна, за боядисване"} },
+  ar: { name: "بطاقة تجميع بيت الزنجبيل المصغّر", desc: "بيت صغير من خبز الزنجبيل بطابع عيد الميلاد تركّبه بنفسك. بطاقة مسطحة واحدة بحجم 15 × 15 سم تضم كل القطع: جدران بنوافذ مقصوصة، ألواح سقف بثلج من الكريمة، قاعدة بفتحات، شجرتا تنوب، رجلان من خبز الزنجبيل ومصّتان. افصل القطع عن الإطار وركّبها معًا والصق السقف. النوافذ مفتوحة، فيشعّ منها ضوء LED صغير (غير مرفق).", variantTitle: "الإصدار", variants: {"ams": "متعدد الألوان (طباعة AMS)", "paint": "لون واحد للتلوين"} },
+  zh: { name: "迷你姜饼屋拼装卡", desc: "圣诞姜饼小屋，自己动手拼装。一张 15 × 15 厘米的平面拼装卡包含全部零件：带镂空窗户的墙体、带糖霜积雪的屋顶、带插槽的底座、两棵杉树、两个姜饼人和两根棒棒糖。把零件从边框上掰下，插接起来并粘上屋顶。窗户是镂空的，一盏小型 LED 灯（不含）可从窗中透出光来。", variantTitle: "版本", variants: {"ams": "彩色（AMS 多色打印）", "paint": "单色，可自行涂色"} },
+};
+
+const base: Record<Language, BaseText> = { en, ru, de, fr, es, pt, it, pl, tr, bg, ar, zh };
+
+export const forgeText = Object.fromEntries(
+  (Object.keys(base) as Language[]).map((lang) => {
+    const b = base[lang];
+    const k = KIT[lang];
+    const text: ForgeText = {
+      ...b,
+      items: { ...b.items, "gingerbread-kit": k.name },
+      itemDesc: { ...b.itemDesc, "gingerbread-kit": k.desc },
+      variantTitle: k.variantTitle,
+      variants: k.variants,
+    };
+    return [lang, text];
+  }),
+) as Record<Language, ForgeText>;
+

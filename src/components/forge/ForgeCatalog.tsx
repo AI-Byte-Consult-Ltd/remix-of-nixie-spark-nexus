@@ -3,7 +3,7 @@ import { Box } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { CATALOG, COLOR_IDS, COLOR_HEX, shippingFor, type ColorId, type CatalogItem } from "@/data/forgeCatalog";
+import { CATALOG, COLOR_IDS, COLOR_HEX, shippingFor, fmtEur, type ColorId, type CatalogItem } from "@/data/forgeCatalog";
 import ProductImage from "./ProductImage";
 import ForgeModelDialog from "./ForgeModelDialog";
 import type { ForgeText } from "./forgeI18n";
@@ -19,25 +19,52 @@ const CatalogCard = ({ item, t, onOrder }: CardProps) => {
   const [color, setColor] = useState<ColorId>("white");
   const [text, setText] = useState("");
   const [view3d, setView3d] = useState(false);
-  const name = t.items[item.id] ?? item.id;
+  const [variantKey, setVariantKey] = useState(item.variants?.[0]?.key ?? "");
+  const variant = item.variants?.find((v) => v.key === variantKey) ?? item.variants?.[0];
+  const baseName = t.items[item.id] ?? item.id;
+  const name = variant ? `${baseName} · ${t.variants[variant.key]}` : baseName;
+  const image = variant?.image ?? item.image;
+  const model = variant?.model ?? item.model;
+  const itemId = variant?.id ?? item.id;
+  const revolutUrl = variant?.revolutUrl ?? item.revolutUrl;
   const description = t.itemDesc[item.id];
   const shipping = shippingFor(item);
 
   return (
     <Card className="bg-card border-border/50 overflow-hidden flex flex-col">
       <div className="aspect-square bg-muted">
-        <ProductImage item={item} alt={name} />
+        <ProductImage item={{ ...item, image }} alt={name} />
       </div>
       <CardContent className="pt-5 space-y-4 flex-1 flex flex-col">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="font-semibold text-foreground leading-snug">{name}</h3>
+          <h3 className="font-semibold text-foreground leading-snug">{baseName}</h3>
           <div className="text-right shrink-0">
-            <div className="font-semibold text-primary">€{item.price}</div>
+            <div className="font-semibold text-primary">€{fmtEur(item.price)}</div>
             <div className="text-xs text-muted-foreground">+ €{shipping} {t.shipping}</div>
           </div>
         </div>
 
         {description && <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>}
+
+        {item.variants && (
+          <div className="space-y-1.5">
+            <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{t.variantTitle}</div>
+            <div className="grid grid-cols-1 gap-2" role="radiogroup" aria-label={t.variantTitle}>
+              {item.variants.map((v) => (
+                <button
+                  key={v.key}
+                  type="button"
+                  role="radio"
+                  aria-checked={variant?.key === v.key}
+                  onClick={() => setVariantKey(v.key)}
+                  className={`rounded-xl border-2 px-3 py-2 text-left text-sm transition-colors ${variant?.key === v.key ? "border-primary bg-primary/5 text-foreground" : "border-border text-muted-foreground hover:border-primary/50"}`}
+                >
+                  {t.variants[v.key]}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {!item.noColor && (
           <div className="space-y-1.5">
@@ -67,10 +94,10 @@ const CatalogCard = ({ item, t, onOrder }: CardProps) => {
           </div>
         )}
 
-        {item.model && description && <p className="text-xs text-muted-foreground leading-relaxed">{t.conceptNote}</p>}
+        {model && description && <p className="text-xs text-muted-foreground leading-relaxed">{t.conceptNote}</p>}
 
         <div className="mt-auto pt-2 space-y-2">
-          {item.model && (
+          {model && (
             <Button variant="outline" className="w-full rounded-full border-2" onClick={() => setView3d(true)}>
               <Box className="mr-2 w-4 h-4" />
               {t.view3d}
@@ -81,22 +108,22 @@ const CatalogCard = ({ item, t, onOrder }: CardProps) => {
             onClick={() =>
               onOrder({
                 kind: "catalog",
-                itemId: item.id,
+                itemId,
                 itemName: name,
                 price: item.price,
                 shipping,
                 color: item.noColor ? "" : color,
                 text: item.hasText ? text.trim() : "",
-                revolutUrl: item.revolutUrl,
+                revolutUrl,
               })
             }
           >
-            {t.orderThis} · €{item.price + shipping}
+            {t.orderThis} · €{fmtEur(item.price + shipping)}
           </Button>
         </div>
       </CardContent>
 
-      {item.model && <ForgeModelDialog open={view3d} onClose={() => setView3d(false)} title={name} src={item.model} t={t} />}
+      {model && <ForgeModelDialog open={view3d} onClose={() => setView3d(false)} title={name} src={model} t={t} />}
     </Card>
   );
 };
