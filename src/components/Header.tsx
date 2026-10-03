@@ -31,7 +31,7 @@ const nicsServices = [
 { href: "/nics-ecosystem", label: "NICS AI Ecosystem", external: false },
 { href: "/trading", label: "NICS AI Trading", external: false },
 { href: "/nics-multimedia", label: "NICS Multimedia", external: false },
-{ href: "/nics-forge", label: "NICS Forge", external: false }];
+{ href: "/nics-forge", label: "Alessandro Studio", external: false }];
 
 
 const Header = () => {

@@ -1,4 +1,4 @@
-"""NICS Forge: turn a customer's GLB into a print-ready file for Bambu Lab A1 mini.
+"""Alessandro Studio: turn a customer's GLB into a print-ready file for Bambu Lab A1 mini.
 
 Run on the Windows PC where Blender is installed (no Blender account needed):
 

@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CheckCircle2, CreditCard, Loader2 } from "lucide-react";
-import { DELIVERY_DAYS } from "@/data/forgeCatalog";
+import { DELIVERY_DAYS, fmtEur } from "@/data/forgeCatalog";
 import { createOrder, reportPaid } from "@/lib/forgeApi";
 import { fill, type ForgeText } from "./forgeI18n";
 import type { Language } from "@/contexts/LanguageContext";
@@ -132,9 +132,9 @@ const ForgeCheckout = ({ order, onClose, t, lang }: Props) => {
             </div>
 
             <div className="rounded-xl bg-muted/50 p-4 text-sm space-y-1.5">
-              <div className="flex justify-between"><span>{order.itemName}</span><span>€{order.price}</span></div>
-              <div className="flex justify-between text-muted-foreground"><span>{t.shipping}</span><span>€{order.shipping}</span></div>
-              <div className="flex justify-between font-semibold text-base pt-1.5 border-t border-border"><span>{t.total}</span><span>€{total}</span></div>
+              <div className="flex justify-between"><span>{order.itemName}</span><span>€{fmtEur(order.price)}</span></div>
+              <div className="flex justify-between text-muted-foreground"><span>{t.shipping}</span><span>€{fmtEur(order.shipping)}</span></div>
+              <div className="flex justify-between font-semibold text-base pt-1.5 border-t border-border"><span>{t.total}</span><span>€{fmtEur(total)}</span></div>
               <p className="text-muted-foreground pt-1">{fill(t.delivery, { days: DELIVERY_DAYS })}</p>
             </div>
 
@@ -155,7 +155,7 @@ const ForgeCheckout = ({ order, onClose, t, lang }: Props) => {
               <DialogTitle>{fill(t.payTitle, { ref: saved.ref })}</DialogTitle>
               <DialogDescription className="leading-relaxed">
                 {order.revolutUrl
-                  ? fill(t.payHint, { ref: saved.ref, total: `€${saved.total}` })
+                  ? fill(t.payHint, { ref: saved.ref, total: `€${fmtEur(saved.total)}` })
                   : t.payPending}
               </DialogDescription>
             </DialogHeader>
@@ -165,7 +165,7 @@ const ForgeCheckout = ({ order, onClose, t, lang }: Props) => {
                 <a href={order.revolutUrl} target="_blank" rel="noopener noreferrer" className="block">
                   <Button size="lg" className="w-full rounded-full bg-foreground hover:bg-foreground/90 text-background">
                     <CreditCard className="mr-2 w-4 h-4" />
-                    {t.payRevolut} · €{saved.total}
+                    {t.payRevolut} · €{fmtEur(saved.total)}
                   </Button>
                 </a>
                 <Button variant="outline" size="lg" className="w-full rounded-full border-2" onClick={markPaid}>

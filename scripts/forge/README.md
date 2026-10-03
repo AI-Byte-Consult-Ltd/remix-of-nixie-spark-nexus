@@ -1,4 +1,4 @@
-# NICS Forge: preparing an order for printing
+# Alessandro Studio: preparing an order for printing
 
 1. The order alert arrives in Telegram with the customer's 3D model attached
    (`NF-XXXXXX.glb`). Download it.

@@ -139,7 +139,7 @@ const modules: EcosystemModule[] = [
   },
   {
     id: "forge",
-    name: "NICS Forge",
+    name: "Alessandro Studio",
     icon: Box,
     status: "Live",
     short:
@@ -148,7 +148,7 @@ const modules: EcosystemModule[] = [
     who: "Shoppers looking for printed products today, and — soon — anyone who wants a custom object designed and printed on demand.",
     connection:
       "Applies NICS generative AI to physical products — from a text or voice request to a shipped object.",
-    cta: { label: "Visit NICS Forge", href: "/nics-forge" },
+    cta: { label: "Visit Alessandro Studio", href: "/nics-forge" },
   },
   {
     id: "animals",

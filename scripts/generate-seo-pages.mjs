@@ -198,9 +198,9 @@ const pages = [
   },
   {
     route: "/nics-forge",
-    title: "NICS Forge — AI-Designed, 3D-Printed Products",
+    title: "Alessandro Studio — AI-Designed, 3D-Printed Products",
     description:
-      "NICS Forge is part of the NICS AI ecosystem: ready-made 3D-printed pieces and a custom AI studio that turns your photo into a 3D model we print and ship to you.",
+      "Alessandro Studio is part of the NICS AI ecosystem: ready-made 3D-printed pieces and a custom AI studio that turns your photo into a 3D model we print and ship to you.",
     type: "website",
     schemaType: "Organization",
   },

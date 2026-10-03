@@ -1,4 +1,4 @@
-// NICS Forge catalog, pricing and payment configuration.
+// Alessandro Studio catalog, pricing and payment configuration.
 //
 // Prices and ids here MUST stay in sync with the server-side list in the
 // "[20 FORGE] Orders API" n8n workflow (node "Validate Order"). The server
@@ -14,6 +14,9 @@ export const MIN_CATALOG_PRICE_EUR = 36;
 export const STUDIO_ENABLED = false;
 export const DAILY_TRIES = 3;
 export const DELIVERY_DAYS = 21;
+
+/** Whole euros print as "36", fractions as "72.50". */
+export const fmtEur = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(2));
 
 export const shippingFor = (item: { shipping?: number }) => item.shipping ?? SHIPPING_EUR;
 
@@ -46,8 +49,20 @@ export const REVOLUT_SIZE_LINKS: Record<number, string> = {
   8: "", // TODO(Alessandro): Revolut link, EUR 154
 };
 
+/** One version of a catalog piece (e.g. multicolour vs. to paint). Its id is the server-side catalog id. */
+export interface CatalogVariant {
+  key: "ams" | "paint";
+  id: string;
+  image: string;
+  model: string;
+  /** Revolut link for price + shipping. Empty = not connected yet. */
+  revolutUrl: string;
+}
+
 export interface CatalogItem {
   id: string;
+  /** Versions of the same piece; the card shows a version picker and orders variant.id. */
+  variants?: CatalogVariant[];
   price: number;
   /** Shipping for this piece; defaults to SHIPPING_EUR. */
   shipping?: number;
@@ -75,6 +90,21 @@ export const CATALOG: CatalogItem[] = [
     model: "/forge/models/halloween-house-preview.glb",
     revolutUrl: "", // TODO(Alessandro): Revolut link, EUR 269 (229 + 40 shipping)
     tint: ["#e8833a", "#1c1c1e"],
+  },
+  {
+    id: "gingerbread-kit",
+    price: 72.5,
+    shipping: 4,
+    noColor: true,
+    hasText: false,
+    image: "/forge/gingerbread-kit-ams.webp",
+    model: "/forge/models/gingerbread-kit-ams.glb",
+    revolutUrl: "",
+    variants: [
+      { key: "ams", id: "gingerbread-kit-ams", image: "/forge/gingerbread-kit-ams.webp", model: "/forge/models/gingerbread-kit-ams.glb", revolutUrl: "" }, // TODO(Alessandro): Revolut link, EUR 76.50
+      { key: "paint", id: "gingerbread-kit-paint", image: "/forge/gingerbread-kit-paint.webp", model: "/forge/models/gingerbread-kit-paint.glb", revolutUrl: "" }, // TODO(Alessandro): Revolut link, EUR 76.50
+    ],
+    tint: ["#a06a3c", "#208c40"],
   },
   { id: "name-keychain", price: 36, hasText: true, image: "", revolutUrl: "", tint: ["#c9a34e", "#d6322e"] },
   { id: "geo-vase", price: 44, hasText: false, image: "", revolutUrl: "", tint: ["#2f9e5b", "#2b6cdf"] },
