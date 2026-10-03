@@ -11,6 +11,7 @@ import ForgeStudio from "@/components/forge/ForgeStudio";
 import ForgeStudioSoon from "@/components/forge/ForgeStudioSoon";
 import { STUDIO_ENABLED } from "@/data/forgeCatalog";
 import ForgeSocial from "@/components/forge/ForgeSocial";
+import ForgeAbout from "@/components/forge/ForgeAbout";
 import ForgeCheckout, { type PendingOrder } from "@/components/forge/ForgeCheckout";
 
 // TODO(Alessandro): swap in the real Alessandro Studio Etsy shop URL — this is a
@@ -76,6 +77,7 @@ const NicsForge = () => {
         </section>
 
         <ForgeCatalog t={t} onOrder={setOrder} />
+        <ForgeAbout t={t} />
         {STUDIO_ENABLED ? <ForgeStudio t={t} onOrder={setOrder} /> : <ForgeStudioSoon t={t} />}
         <ForgeSocial t={t} />
 
