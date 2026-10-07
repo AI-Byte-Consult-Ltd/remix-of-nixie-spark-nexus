@@ -94,7 +94,7 @@ type Case = {
   problem: string;
   solution: string;
   result: string;
-  metric: { value: number; suffix: string; label: string };
+  metric: { value: number; suffix: string; label: string; static?: boolean };
   tags: string[];
   cta: string;
   href?: string;
@@ -109,7 +109,7 @@ const CASES: Case[] = [
     problem: "Hobbyists and collectors want unique, hand-finished miniature pieces, not mass-produced factory kits.",
     solution: "Ready-made 3D-printed miniature houses and collectibles, plus a custom AI studio that turns your own photo into a 3D model we print, hand-paint and ship to you.",
     result: "A real partner brand inside the NICS ecosystem, from ready-made pieces to fully custom one-of-a-kind commissions.",
-    metric: { value: 24, suffix: "/7", label: "Ready-made & custom orders" },
+    metric: { value: 24, suffix: "/7", label: "Ready-made & custom orders", static: true },
     tags: ["3D Printing", "Miniatures", "Custom AI Studio", "Collectibles"],
     cta: "Visit Alessandro Studio",
     href: "https://alessandro-studio.eu",
@@ -299,7 +299,11 @@ function FeaturedCard({ c, index }: { c: Case; index: number }) {
 
           <div className="mt-4 flex items-end gap-4">
             <div className="text-4xl md:text-5xl font-semibold text-gradient-gold leading-none">
-              <Counter to={c.metric.value} suffix={c.metric.suffix} />
+              {c.metric.static ? (
+                <span className="tabular-nums">{c.metric.value}{c.metric.suffix}</span>
+              ) : (
+                <Counter to={c.metric.value} suffix={c.metric.suffix} />
+              )}
             </div>
             <div className="text-xs text-white/70 pb-1">{c.metric.label}</div>
           </div>
@@ -419,7 +423,11 @@ function ExpandedCase({ open, onClose, c }: { open: boolean; onClose: () => void
                 <div className="text-[10px] uppercase tracking-[0.25em] text-white/50 mb-2">Business Result</div>
                 <p className="text-sm text-white/80 leading-relaxed">{c.result}</p>
                 <div className="mt-3 text-3xl font-semibold text-gradient-gold">
-                  <Counter to={c.metric.value} suffix={c.metric.suffix} />
+                  {c.metric.static ? (
+                    <span className="tabular-nums">{c.metric.value}{c.metric.suffix}</span>
+                  ) : (
+                    <Counter to={c.metric.value} suffix={c.metric.suffix} />
+                  )}
                 </div>
                 <div className="text-xs text-white/60">{c.metric.label}</div>
               </div>
