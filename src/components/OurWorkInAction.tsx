@@ -109,7 +109,7 @@ const CASES: Case[] = [
     problem: "Hobbyists and collectors want unique, hand-finished miniature pieces, not mass-produced factory kits.",
     solution: "Ready-made 3D-printed miniature houses and collectibles, plus a custom AI studio that turns your own photo into a 3D model we print, hand-paint and ship to you.",
     result: "A real partner brand inside the NICS ecosystem, from ready-made pieces to fully custom one-of-a-kind commissions.",
-    metric: { value: 100, suffix: "%", label: "Designed and printed in-house" },
+    metric: { value: 24, suffix: "/7", label: "Ready-made & custom orders" },
     tags: ["3D Printing", "Miniatures", "Custom AI Studio", "Collectibles"],
     cta: "Visit Alessandro Studio",
     href: "https://alessandro-studio.eu",
