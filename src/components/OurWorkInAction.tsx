@@ -103,18 +103,6 @@ type Case = {
 
 const CASES: Case[] = [
   {
-    id: "propertypartner",
-    industry: "Real Estate · Developers & Agencies",
-    name: "Property Partner",
-    problem: "Developers, agencies and independent agents lose buyers because they have no proper website and no way to answer property questions outside office hours.",
-    solution: "The full package: a professional real estate website, an AI chat widget on the site, and an AI agent inside WhatsApp/Telegram that answers questions, sends listings and books viewings around the clock.",
-    result: "A real digital presence and continuous contact with buyers, without hiring extra staff.",
-    metric: { value: 24, suffix: "/7", label: "Always-on lead response" },
-    tags: ["AI Agent", "Website", "Real Estate", "WhatsApp/Telegram"],
-    cta: "Build My Property Package",
-    image: realestateAiImg,
-  },
-  {
     id: "alessandrostudio",
     industry: "Collectibles · 3D-Printed Miniatures",
     name: "Alessandro Studio",
@@ -126,6 +114,18 @@ const CASES: Case[] = [
     cta: "Visit Alessandro Studio",
     href: "https://alessandro-studio.eu",
     image: alessandroStudioImg,
+  },
+  {
+    id: "propertypartner",
+    industry: "Real Estate · Developers & Agencies",
+    name: "Property Partner",
+    problem: "Developers, agencies and independent agents lose buyers because they have no proper website and no way to answer property questions outside office hours.",
+    solution: "The full package: a professional real estate website, an AI chat widget on the site, and an AI agent inside WhatsApp/Telegram that answers questions, sends listings and books viewings around the clock.",
+    result: "A real digital presence and continuous contact with buyers, without hiring extra staff.",
+    metric: { value: 24, suffix: "/7", label: "Always-on lead response" },
+    tags: ["AI Agent", "Website", "Real Estate", "WhatsApp/Telegram"],
+    cta: "Build My Property Package",
+    image: realestateAiImg,
   },
   {
     id: "nicstrading",
