@@ -129,8 +129,7 @@ const NicsTraderPlans = () => {
         <div className="mx-auto grid max-w-7xl items-stretch gap-6 md:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan, index) => {
             const amount = plan.prices?.[period]?.[currency];
-            const revolutLink =
-              currency === "EUR" ? REVOLUT_LINKS[period]?.[plan.id] : undefined;
+            const revolutLink = REVOLUT_LINKS[period]?.[plan.id];
 
             return (
               <motion.div
@@ -282,7 +281,9 @@ const NicsTraderPlans = () => {
                             <span className="flex-1">
                               <span className="block text-sm font-medium text-white">Pay by card via Revolut</span>
                               <span className="block text-xs text-white/55">
-                                After paying, message @nics_ai_bot with your receipt to pick your market(s) and activate access.
+                                {currency === "EUR"
+                                  ? "After paying, message @nics_ai_bot with your receipt to pick your market(s) and activate access."
+                                  : "Charged in EUR on Revolut's checkout. After paying, message @nics_ai_bot with your receipt to pick your market(s) and activate access."}
                               </span>
                             </span>
                             <ArrowRight className="h-4 w-4 flex-shrink-0 text-white/40" />
