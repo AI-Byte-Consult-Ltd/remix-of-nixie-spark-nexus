@@ -25,6 +25,7 @@ const Footer = () => {
                 <li><Link to="/#projects" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.projects")}</Link></li>
                 <li><Link to="/#contact" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.contact")}</Link></li>
                 <li><Link to="/nics-multimedia" className="text-muted-foreground hover:text-primary transition-colors">NICS Multimedia</Link></li>
+                <li><a href="https://alessandro-studio.eu" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">Partners</a></li>
               </ul>
             </div>
 
@@ -36,8 +37,6 @@ const Footer = () => {
                 <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Trading</Link></li>
                 <li><a href="https://pridesocial.org" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Social</a></li>
                 <li><a href="https://aquaterra.aibyteconsult.com/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">AquaTerra World</a></li>
-                <li><Link to="/nics-multimedia" className="text-muted-foreground hover:text-primary transition-colors">NICS Multimedia</Link></li>
-                <li><Link to="/nics-forge" className="text-muted-foreground hover:text-primary transition-colors">Alessandro Studio</Link></li>
               </ul>
             </div>
 

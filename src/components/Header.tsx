@@ -30,8 +30,9 @@ const nicsServices = [
 { href: "https://estate.aibyteconsult.com", label: "NICS Real Estate", external: true },
 { href: "/nics-ecosystem", label: "NICS AI Ecosystem", external: false },
 { href: "/trading", label: "NICS AI Trading", external: false },
-{ href: "/nics-multimedia", label: "NICS Multimedia", external: false },
-{ href: "/nics-forge", label: "Alessandro Studio", external: false }];
+{ href: "/nics-multimedia", label: "NICS Multimedia", external: false }];
+
+const partnersLink = { href: "https://alessandro-studio.eu", label: "Partners" };
 
 
 const Header = () => {
@@ -83,6 +84,14 @@ const Header = () => {
                 {link.label}
               </Link>
             )}
+
+            <a
+              href={partnersLink.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-muted/50">
+              {partnersLink.label}
+            </a>
 
             {/* Services Dropdown */}
             <DropdownMenu open={isServicesOpen} onOpenChange={setIsServicesOpen}>
@@ -181,7 +190,16 @@ const Header = () => {
                   {link.label}
                 </Link>
             )}
-              
+
+              <a
+                href={partnersLink.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors">
+                {partnersLink.label}
+              </a>
+
               {/* Mobile Services */}
               <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide mt-2">
                 Services

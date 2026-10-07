@@ -3,7 +3,7 @@ import { motion, useInView, useMotionValue, useTransform, animate, AnimatePresen
 import { ArrowRight, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import realestateAiImg from "@/assets/project-realestate-ai.jpg";
-import architectureImg from "@/assets/project-architecture-3d.jpg";
+import alessandroStudioImg from "@/assets/project-alessandro-studio.webp";
 import restaurantImg from "@/assets/project-restaurant-new.jpg";
 import hotelImg from "@/assets/project-hotel-new.jpg";
 import aquaterraImg from "@/assets/project-nft-new.jpg";
@@ -115,16 +115,17 @@ const CASES: Case[] = [
     image: realestateAiImg,
   },
   {
-    id: "architecture",
-    industry: "Architecture · Real Estate Development",
-    name: "Architecture & 3D Design Studio",
-    problem: "Clients struggle to imagine apartments, houses and interiors before construction or renovation.",
-    solution: "AI-assisted 3D visualization, interior concepts, exterior renders and presentation materials.",
-    result: "Faster client approvals, better presentations, higher perceived project value.",
-    metric: { value: 3, suffix: "×", label: "Faster client approvals" },
-    tags: ["3D Design", "Architecture", "Visualization", "AI"],
-    cta: "Create 3D Visual Concept",
-    image: architectureImg,
+    id: "alessandrostudio",
+    industry: "Collectibles · 3D-Printed Miniatures",
+    name: "Alessandro Studio",
+    problem: "Hobbyists and collectors want unique, hand-finished miniature pieces, not mass-produced factory kits.",
+    solution: "Ready-made 3D-printed miniature houses and collectibles, plus a custom AI studio that turns your own photo into a 3D model we print, hand-paint and ship to you.",
+    result: "A real partner brand inside the NICS ecosystem, from ready-made pieces to fully custom one-of-a-kind commissions.",
+    metric: { value: 100, suffix: "%", label: "Designed and printed in-house" },
+    tags: ["3D Printing", "Miniatures", "Custom AI Studio", "Collectibles"],
+    cta: "Visit Alessandro Studio",
+    href: "https://alessandro-studio.eu",
+    image: alessandroStudioImg,
   },
   {
     id: "nicstrading",
