@@ -31,8 +31,22 @@ const CabinetSubscription = () => {
 
   const [payingPlanId, setPayingPlanId] = useState<string | null>(null);
   const [payErrorPlanId, setPayErrorPlanId] = useState<string | null>(null);
+  const [marketPickerPlanId, setMarketPickerPlanId] = useState<string | null>(null);
+  const [pickedMarkets, setPickedMarkets] = useState<string[]>([]);
 
-  const handleRevolutPay = async (planId: string) => {
+  const ALL_MARKETS = ["gold", "oil", "forex", "crypto", "stocks", "metals", "indices"] as const;
+  const PRODUCT_MARKET_CAP: Record<string, number> = { single: 1, multi: 2, full: 7 };
+  const MARKET_T_KEY: Record<string, string> = {
+    gold: "marketGold",
+    oil: "marketOil",
+    forex: "marketForex",
+    crypto: "marketCrypto",
+    stocks: "marketStocks",
+    metals: "marketMetals",
+    indices: "marketIndices",
+  };
+
+  const handleRevolutPay = async (planId: string, markets: string[]) => {
     setPayErrorPlanId(null);
     setPayingPlanId(planId);
     try {
@@ -40,7 +54,7 @@ const CabinetSubscription = () => {
         action: "create_payment_order",
         session,
         language,
-        payload: { plan: planId, period: "30d" },
+        payload: { plan: planId, period: "30d", markets },
       });
       if (result.data?.renewedToken) updateSession(result.data.renewedToken);
       if (result.data?.checkoutUrl) {
@@ -53,6 +67,25 @@ const CabinetSubscription = () => {
     } finally {
       setPayingPlanId(null);
     }
+  };
+
+  const startRevolutPay = (planId: string) => {
+    const cap = PRODUCT_MARKET_CAP[planId] ?? 0;
+    if (planId === "full" || cap >= ALL_MARKETS.length) {
+      handleRevolutPay(planId, [...ALL_MARKETS]);
+      return;
+    }
+    setMarketPickerPlanId(planId);
+    setPickedMarkets([]);
+  };
+
+  const toggleMarket = (planId: string, market: string) => {
+    const cap = PRODUCT_MARKET_CAP[planId] ?? 0;
+    setPickedMarkets((prev) => {
+      if (prev.includes(market)) return prev.filter((m) => m !== market);
+      if (prev.length >= cap) return prev;
+      return [...prev, market];
+    });
   };
 
   return (
@@ -156,7 +189,14 @@ const CabinetSubscription = () => {
                       </a>
                     </Button>
                   ) : (
-                    <Dialog>
+                    <Dialog
+                      onOpenChange={(open) => {
+                        if (!open) {
+                          setMarketPickerPlanId(null);
+                          setPickedMarkets([]);
+                        }
+                      }}
+                    >
                       <DialogTrigger asChild>
                         <Button variant={plan.featured ? "default" : "outline"} size="sm">
                           {plan.cta}
@@ -165,63 +205,128 @@ const CabinetSubscription = () => {
                       <DialogContent className="sm:max-w-md">
                         <DialogHeader>
                           <DialogTitle>{plan.name}</DialogTitle>
-                          <DialogDescription>{t("subscriptionPayDialogDesc")}</DialogDescription>
+                          <DialogDescription>
+                            {marketPickerPlanId === plan.id
+                              ? t("subscriptionChooseMarkets")
+                              : t("subscriptionPayDialogDesc")}
+                          </DialogDescription>
                         </DialogHeader>
 
-                        <div className="grid gap-3 pt-1">
-                          <a
-                            href={TELEGRAM_BOT_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-3 rounded-2xl border border-border bg-muted/50 p-4 text-left transition-colors hover:border-primary/40 hover:bg-muted"
-                          >
-                            <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/10">
-                              <Bot className="h-5 w-5 text-primary" />
-                            </span>
-                            <span className="flex-1">
-                              <span className="block text-sm font-medium text-foreground">
-                                {t("subscriptionPayTelegram")}
+                        {marketPickerPlanId === plan.id ? (
+                          <div className="grid gap-3 pt-1">
+                            <div className="grid grid-cols-2 gap-2">
+                              {ALL_MARKETS.map((market) => {
+                                const checked = pickedMarkets.includes(market);
+                                const cap = PRODUCT_MARKET_CAP[plan.id] ?? 0;
+                                const disabled = !checked && pickedMarkets.length >= cap;
+                                return (
+                                  <button
+                                    key={market}
+                                    type="button"
+                                    disabled={disabled}
+                                    onClick={() => toggleMarket(plan.id, market)}
+                                    className={`flex items-center gap-2 rounded-xl border p-3 text-left text-sm transition-colors disabled:opacity-40 ${
+                                      checked
+                                        ? "border-primary bg-primary/10 text-foreground"
+                                        : "border-border bg-muted/50 text-foreground hover:border-primary/40"
+                                    }`}
+                                  >
+                                    {t(MARKET_T_KEY[market])}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                            <div className="flex gap-2 pt-1">
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => {
+                                  setMarketPickerPlanId(null);
+                                  setPickedMarkets([]);
+                                }}
+                              >
+                                {t("subscriptionBack")}
+                              </Button>
+                              <Button
+                                type="button"
+                                size="sm"
+                                className="flex-1"
+                                disabled={
+                                  pickedMarkets.length !== (PRODUCT_MARKET_CAP[plan.id] ?? 0) ||
+                                  payingPlanId === plan.id
+                                }
+                                onClick={() => handleRevolutPay(plan.id, pickedMarkets)}
+                              >
+                                {payingPlanId === plan.id ? (
+                                  <Loader2 className="h-4 w-4 animate-spin" />
+                                ) : (
+                                  t("subscriptionContinue")
+                                )}
+                              </Button>
+                            </div>
+                            {payErrorPlanId === plan.id && (
+                              <span className="block text-xs text-rose-500">
+                                {t("subscriptionPayError")}
                               </span>
-                              <span className="block text-xs text-muted-foreground">
-                                {t("subscriptionPayTelegramDesc")}
-                              </span>
-                            </span>
-                            <ArrowRight className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
-                          </a>
-
-                          <button
-                            type="button"
-                            disabled={payingPlanId === plan.id}
-                            onClick={() => handleRevolutPay(plan.id)}
-                            className="flex w-full items-center gap-3 rounded-2xl border border-border bg-muted/50 p-4 text-left transition-colors hover:border-primary/40 hover:bg-muted disabled:opacity-60"
-                          >
-                            <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-border bg-muted">
-                              {payingPlanId === plan.id ? (
-                                <Loader2 className="h-5 w-5 animate-spin text-foreground/80" />
-                              ) : (
-                                <CreditCard className="h-5 w-5 text-foreground/80" />
-                              )}
-                            </span>
-                            <span className="flex-1">
-                              <span className="block text-sm font-medium text-foreground">
-                                {t("subscriptionPayRevolut")}
-                              </span>
-                              <span className="block text-xs text-muted-foreground">
-                                {payingPlanId === plan.id
-                                  ? t("subscriptionPayRedirecting")
-                                  : t("subscriptionPayRevolutDesc")}
-                              </span>
-                              {payErrorPlanId === plan.id && (
-                                <span className="mt-1 block text-xs text-rose-500">
-                                  {t("subscriptionPayError")}
-                                </span>
-                              )}
-                            </span>
-                            {payingPlanId !== plan.id && (
-                              <ArrowRight className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
                             )}
-                          </button>
-                        </div>
+                          </div>
+                        ) : (
+                          <div className="grid gap-3 pt-1">
+                            <a
+                              href={TELEGRAM_BOT_URL}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-3 rounded-2xl border border-border bg-muted/50 p-4 text-left transition-colors hover:border-primary/40 hover:bg-muted"
+                            >
+                              <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/10">
+                                <Bot className="h-5 w-5 text-primary" />
+                              </span>
+                              <span className="flex-1">
+                                <span className="block text-sm font-medium text-foreground">
+                                  {t("subscriptionPayTelegram")}
+                                </span>
+                                <span className="block text-xs text-muted-foreground">
+                                  {t("subscriptionPayTelegramDesc")}
+                                </span>
+                              </span>
+                              <ArrowRight className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+                            </a>
+
+                            <button
+                              type="button"
+                              disabled={payingPlanId === plan.id}
+                              onClick={() => startRevolutPay(plan.id)}
+                              className="flex w-full items-center gap-3 rounded-2xl border border-border bg-muted/50 p-4 text-left transition-colors hover:border-primary/40 hover:bg-muted disabled:opacity-60"
+                            >
+                              <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-border bg-muted">
+                                {payingPlanId === plan.id ? (
+                                  <Loader2 className="h-5 w-5 animate-spin text-foreground/80" />
+                                ) : (
+                                  <CreditCard className="h-5 w-5 text-foreground/80" />
+                                )}
+                              </span>
+                              <span className="flex-1">
+                                <span className="block text-sm font-medium text-foreground">
+                                  {t("subscriptionPayRevolut")}
+                                </span>
+                                <span className="block text-xs text-muted-foreground">
+                                  {payingPlanId === plan.id
+                                    ? t("subscriptionPayRedirecting")
+                                    : t("subscriptionPayRevolutDesc")}
+                                </span>
+                                {payErrorPlanId === plan.id && (
+                                  <span className="mt-1 block text-xs text-rose-500">
+                                    {t("subscriptionPayError")}
+                                  </span>
+                                )}
+                              </span>
+                              {payingPlanId !== plan.id && (
+                                <ArrowRight className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+                              )}
+                            </button>
+                          </div>
+                        )}
                       </DialogContent>
                     </Dialog>
                   )}
