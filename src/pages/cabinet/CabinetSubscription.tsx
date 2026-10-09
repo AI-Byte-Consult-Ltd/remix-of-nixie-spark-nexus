@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArrowRight, Bot, CreditCard, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,8 +13,9 @@ import {
 } from "@/components/ui/dialog";
 import { useCabinetOutletContext } from "./CabinetLayout";
 import { useCabinetQuery } from "@/features/cabinet/useCabinetQuery";
+import { callCabinetApi } from "@/features/cabinet/api";
 import type { SubscriptionResponseData } from "@/features/cabinet/types";
-import { formatPrice, plans, REVOLUT_LINKS, TELEGRAM_BOT_URL } from "@/data/nicsTraderPlans";
+import { formatPrice, plans, TELEGRAM_BOT_URL } from "@/data/nicsTraderPlans";
 
 const CabinetSubscription = () => {
   const { session, language, t, updateSession } = useCabinetOutletContext();
@@ -26,6 +28,32 @@ const CabinetSubscription = () => {
   });
 
   const isActive = data?.subscription?.status === "active";
+
+  const [payingPlanId, setPayingPlanId] = useState<string | null>(null);
+  const [payErrorPlanId, setPayErrorPlanId] = useState<string | null>(null);
+
+  const handleRevolutPay = async (planId: string) => {
+    setPayErrorPlanId(null);
+    setPayingPlanId(planId);
+    try {
+      const result = await callCabinetApi<{ checkoutUrl?: string; renewedToken?: string }>({
+        action: "create_payment_order",
+        session,
+        language,
+        payload: { plan: planId, period: "30d" },
+      });
+      if (result.data?.renewedToken) updateSession(result.data.renewedToken);
+      if (result.data?.checkoutUrl) {
+        window.open(result.data.checkoutUrl, "_blank", "noopener,noreferrer");
+      } else {
+        setPayErrorPlanId(planId);
+      }
+    } catch {
+      setPayErrorPlanId(planId);
+    } finally {
+      setPayingPlanId(null);
+    }
+  };
 
   return (
     <div className="mx-auto max-w-5xl space-y-8">
@@ -74,7 +102,6 @@ const CabinetSubscription = () => {
         <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan) => {
             const price30d = plan.prices?.["30d"]?.EUR;
-            const revolutLink = REVOLUT_LINKS["30d"]?.[plan.id];
 
             return (
               <Card
@@ -122,7 +149,7 @@ const CabinetSubscription = () => {
                     ))}
                   </ul>
 
-                  {plan.free || !revolutLink ? (
+                  {plan.free ? (
                     <Button asChild variant={plan.featured ? "default" : "outline"} size="sm">
                       <a href={TELEGRAM_BOT_URL} target="_blank" rel="noopener noreferrer">
                         {plan.cta}
@@ -162,25 +189,38 @@ const CabinetSubscription = () => {
                             <ArrowRight className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
                           </a>
 
-                          <a
-                            href={revolutLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-3 rounded-2xl border border-border bg-muted/50 p-4 text-left transition-colors hover:border-primary/40 hover:bg-muted"
+                          <button
+                            type="button"
+                            disabled={payingPlanId === plan.id}
+                            onClick={() => handleRevolutPay(plan.id)}
+                            className="flex w-full items-center gap-3 rounded-2xl border border-border bg-muted/50 p-4 text-left transition-colors hover:border-primary/40 hover:bg-muted disabled:opacity-60"
                           >
                             <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-border bg-muted">
-                              <CreditCard className="h-5 w-5 text-foreground/80" />
+                              {payingPlanId === plan.id ? (
+                                <Loader2 className="h-5 w-5 animate-spin text-foreground/80" />
+                              ) : (
+                                <CreditCard className="h-5 w-5 text-foreground/80" />
+                              )}
                             </span>
                             <span className="flex-1">
                               <span className="block text-sm font-medium text-foreground">
                                 {t("subscriptionPayRevolut")}
                               </span>
                               <span className="block text-xs text-muted-foreground">
-                                {t("subscriptionPayRevolutDesc")}
+                                {payingPlanId === plan.id
+                                  ? t("subscriptionPayRedirecting")
+                                  : t("subscriptionPayRevolutDesc")}
                               </span>
+                              {payErrorPlanId === plan.id && (
+                                <span className="mt-1 block text-xs text-rose-500">
+                                  {t("subscriptionPayError")}
+                                </span>
+                              )}
                             </span>
-                            <ArrowRight className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
-                          </a>
+                            {payingPlanId !== plan.id && (
+                              <ArrowRight className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+                            )}
+                          </button>
                         </div>
                       </DialogContent>
                     </Dialog>

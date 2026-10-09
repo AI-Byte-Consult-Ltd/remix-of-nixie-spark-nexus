@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Bot, Check, CreditCard, ShieldCheck, Target, Zap } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +13,6 @@ import {
 import {
   formatPrice,
   plans,
-  REVOLUT_LINKS,
   TELEGRAM_BOT_URL,
   type Currency,
   type Period,
@@ -129,7 +129,6 @@ const NicsTraderPlans = () => {
         <div className="mx-auto grid max-w-7xl items-stretch gap-6 md:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan, index) => {
             const amount = plan.prices?.[period]?.[currency];
-            const revolutLink = REVOLUT_LINKS[period]?.[plan.id];
 
             return (
               <motion.div
@@ -210,7 +209,7 @@ const NicsTraderPlans = () => {
                     ))}
                   </ul>
 
-                  {plan.free || !revolutLink ? (
+                  {plan.free ? (
                     <a
                       href={TELEGRAM_BOT_URL}
                       target="_blank"
@@ -269,10 +268,8 @@ const NicsTraderPlans = () => {
                             <ArrowRight className="h-4 w-4 flex-shrink-0 text-white/40" />
                           </a>
 
-                          <a
-                            href={revolutLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <Link
+                            to="/cabinet/subscription"
                             className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-left transition-colors hover:border-orange-400/40 hover:bg-white/10"
                           >
                             <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10">
@@ -282,12 +279,12 @@ const NicsTraderPlans = () => {
                               <span className="block text-sm font-medium text-white">Pay by card via Revolut</span>
                               <span className="block text-xs text-white/55">
                                 {currency === "EUR"
-                                  ? "After paying, message @nics_ai_bot with your receipt to pick your market(s) and activate access."
-                                  : "Charged in EUR on Revolut's checkout. After paying, message @nics_ai_bot with your receipt to pick your market(s) and activate access."}
+                                  ? "Log in with Telegram in your account, then complete a secure Revolut checkout — access activates automatically."
+                                  : "Charged in EUR on Revolut's checkout. Log in with Telegram in your account to pay — access activates automatically."}
                               </span>
                             </span>
                             <ArrowRight className="h-4 w-4 flex-shrink-0 text-white/40" />
-                          </a>
+                          </Link>
                         </div>
                       </DialogContent>
                     </Dialog>
