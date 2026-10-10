@@ -15,12 +15,22 @@ type PeriodStats = {
   averageMaeR: number;
 };
 
+// 2026-10-10, owner's instruction: STRONG/RELAXED ("confirmed") and WEAK
+// signals used to be blended into one number, which diluted the real gated
+// track record. Each tier now carries its own full stats; "overall" (the
+// old blended figure) is kept too, shown smaller, never shown alone.
+type TieredPeriodStats = {
+  confirmed: PeriodStats;
+  weak: PeriodStats;
+  overall: PeriodStats;
+};
+
 type PerformanceResponse = {
   product: string;
   verified: boolean;
   source: string;
   generatedAt: string;
-  performance: Record<"7d" | "30d" | "90d" | "all", PeriodStats>;
+  performance: Record<"7d" | "30d" | "90d" | "all", TieredPeriodStats>;
 };
 
 const ENDPOINT = "https://n8n.aibyteconsult.com/webhook/nics-public-performance";
@@ -57,7 +67,65 @@ const VerifiedTrackRecord = () => {
     return null;
   }
 
-  const stats = data?.performance?.[period];
+  const tiered = data?.performance?.[period];
+
+  const renderStatGrid = (stats: PeriodStats, muted: boolean) => (
+    <div className={`max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 ${muted ? "opacity-80" : ""}`}>
+      <Card className={`bg-card ${muted ? "border-border/30" : "border-border/50"}`}>
+        <CardContent className="pt-6 text-center">
+          <div className={`font-semibold text-foreground ${muted ? "text-2xl" : "text-3xl"}`}>
+            {stats.closedSignals}
+          </div>
+          <div className="text-xs text-muted-foreground mt-1">{t("track.closedSignals")}</div>
+        </CardContent>
+      </Card>
+      <Card className={`bg-card ${muted ? "border-border/30" : "border-border/50"}`}>
+        <CardContent className="pt-6 text-center">
+          <div className={`font-semibold text-foreground ${muted ? "text-2xl" : "text-3xl"}`}>
+            {stats.winRatePercent}%
+          </div>
+          <div className="text-xs text-muted-foreground mt-1">{t("track.winRate")}</div>
+        </CardContent>
+      </Card>
+      <Card className={`bg-card ${muted ? "border-border/30" : "border-border/50"}`}>
+        <CardContent className="pt-6 text-center">
+          <div
+            className={`flex items-center justify-center gap-1 font-semibold ${muted ? "text-2xl" : "text-3xl"} ${
+              stats.expectancyR > 0
+                ? "text-green-600"
+                : stats.expectancyR < 0
+                  ? "text-red-600"
+                  : "text-foreground"
+            }`}
+          >
+            {stats.expectancyR > 0 ? (
+              <TrendingUp className="w-6 h-6" />
+            ) : stats.expectancyR < 0 ? (
+              <TrendingDown className="w-6 h-6" />
+            ) : (
+              <Minus className="w-6 h-6" />
+            )}
+            {stats.expectancyR > 0 ? "+" : ""}
+            {stats.expectancyR}R
+          </div>
+          <div className="text-xs text-muted-foreground mt-1">{t("track.expectancy")}</div>
+        </CardContent>
+      </Card>
+      <Card className={`bg-card ${muted ? "border-border/30" : "border-border/50"}`}>
+        <CardContent className="pt-6 text-center">
+          <div
+            className={`font-semibold ${muted ? "text-2xl" : "text-3xl"} ${
+              stats.totalR > 0 ? "text-green-600" : stats.totalR < 0 ? "text-red-600" : "text-foreground"
+            }`}
+          >
+            {stats.totalR > 0 ? "+" : ""}
+            {stats.totalR}R
+          </div>
+          <div className="text-xs text-muted-foreground mt-1">{t("track.totalR")}</div>
+        </CardContent>
+      </Card>
+    </div>
+  );
 
   return (
     <section className="py-24 relative bg-muted/30">
@@ -92,56 +160,43 @@ const VerifiedTrackRecord = () => {
         {!data ? (
           <div className="text-center text-sm text-muted-foreground">{t("track.loading")}</div>
         ) : (
-          <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Card className="bg-card border-border/50">
-              <CardContent className="pt-6 text-center">
-                <div className="text-3xl font-semibold text-foreground">{stats.closedSignals}</div>
-                <div className="text-xs text-muted-foreground mt-1">{t("track.closedSignals")}</div>
-              </CardContent>
-            </Card>
-            <Card className="bg-card border-border/50">
-              <CardContent className="pt-6 text-center">
-                <div className="text-3xl font-semibold text-foreground">{stats.winRatePercent}%</div>
-                <div className="text-xs text-muted-foreground mt-1">{t("track.winRate")}</div>
-              </CardContent>
-            </Card>
-            <Card className="bg-card border-border/50">
-              <CardContent className="pt-6 text-center">
-                <div
-                  className={`flex items-center justify-center gap-1 text-3xl font-semibold ${
-                    stats.expectancyR > 0
-                      ? "text-green-600"
-                      : stats.expectancyR < 0
-                        ? "text-red-600"
-                        : "text-foreground"
-                  }`}
-                >
-                  {stats.expectancyR > 0 ? (
-                    <TrendingUp className="w-6 h-6" />
-                  ) : stats.expectancyR < 0 ? (
-                    <TrendingDown className="w-6 h-6" />
-                  ) : (
-                    <Minus className="w-6 h-6" />
-                  )}
-                  {stats.expectancyR > 0 ? "+" : ""}
-                  {stats.expectancyR}R
-                </div>
-                <div className="text-xs text-muted-foreground mt-1">{t("track.expectancy")}</div>
-              </CardContent>
-            </Card>
-            <Card className="bg-card border-border/50">
-              <CardContent className="pt-6 text-center">
-                <div
-                  className={`text-3xl font-semibold ${
-                    stats.totalR > 0 ? "text-green-600" : stats.totalR < 0 ? "text-red-600" : "text-foreground"
-                  }`}
-                >
-                  {stats.totalR > 0 ? "+" : ""}
-                  {stats.totalR}R
-                </div>
-                <div className="text-xs text-muted-foreground mt-1">{t("track.totalR")}</div>
-              </CardContent>
-            </Card>
+          <div className="space-y-10">
+            <div>
+              <div className="text-center mb-4">
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
+                  <span className="w-2 h-2 rounded-full bg-green-600" />
+                  {t("track.tier.confirmed")}
+                </span>
+              </div>
+              {renderStatGrid(tiered.confirmed, false)}
+            </div>
+
+            <div>
+              <div className="text-center mb-4 space-y-1">
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground">
+                  <span className="w-2 h-2 rounded-full bg-yellow-500" />
+                  {t("track.tier.weak")}
+                </span>
+                <p className="text-xs text-muted-foreground max-w-md mx-auto">{t("track.tier.weakNote")}</p>
+              </div>
+              {renderStatGrid(tiered.weak, true)}
+            </div>
+
+            <p className="text-center text-xs text-muted-foreground">
+              {t("track.overall")}: {tiered.overall.closedSignals} · {tiered.overall.winRatePercent}% ·{" "}
+              <span
+                className={
+                  tiered.overall.totalR > 0
+                    ? "text-green-600"
+                    : tiered.overall.totalR < 0
+                      ? "text-red-600"
+                      : undefined
+                }
+              >
+                {tiered.overall.totalR > 0 ? "+" : ""}
+                {tiered.overall.totalR}R
+              </span>
+            </p>
           </div>
         )}
 
