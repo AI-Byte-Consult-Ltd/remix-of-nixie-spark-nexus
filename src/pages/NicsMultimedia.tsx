@@ -11,7 +11,9 @@ const SPOTIFY_URL = "https://open.spotify.com/album/1Sj5W4WdKgCUOw0ziLSrDX";
 const YOUTUBE_MUSIC_URL = "https://music.youtube.com/playlist?list=OLAK5uy_lKY_Wdx2UCXcvG_tMFPXAYUqoRJSr4TQ0&si=8tt5eusrGFYwhcfU";
 const APPLE_MUSIC_URL = "https://music.apple.com/us/album/just-live/6771376298";
 const KINDLE_URL = "https://www.amazon.com/dp/B08NVGYVBS";
-const PAPERBACK_URL = "https://www.amazon.com/dp/B0HKL2LZX5";
+const PAPERBACK_URL = "https://www.amazon.com/dp/B0HMJSPC44"; // paperback, part 1
+// Paperback part 2: paste the Amazon link here — the second button appears automatically once it is set.
+const PAPERBACK_2_URL = "";
 
 interface MultimediaContent {
   heroSubtitle: string;
@@ -35,6 +37,7 @@ interface MultimediaContent {
   authorP2: string;
   kindleButton: string;
   paperbackButton: string;
+  paperback2Button: string;
   backHeading: string;
   backText: string;
   backButton: string;
@@ -63,7 +66,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "Alongside building AI Byte Consult, Alexander Lunin writes — a book about how this AI came to be, and how it keeps getting built. It's shelved on Amazon as science fiction. Whether that's the honest genre or just the safer one to print on the cover is left to the reader.",
     authorP2: "Available now in Kindle and paperback editions.",
     kindleButton: "Kindle Edition",
-    paperbackButton: "Paperback Edition",
+    paperbackButton: "Paperback — Part 1",
+    paperback2Button: "Paperback — Part 2",
     backHeading: "More from AI Byte Consult",
     backText: "NICS Multimedia is one part of a wider AI ecosystem — trading, real estate, and more.",
     backButton: "Back to Our Work",
@@ -90,7 +94,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "Neben dem Aufbau von AI Byte Consult schreibt Alexander Lunin — ein Buch darüber, wie diese KI entstanden ist und wie sie weiter gebaut wird. Bei Amazon ist es als Science-Fiction gelistet. Ob das das ehrliche Genre ist oder nur das sicherere für den Umschlag, bleibt dem Leser überlassen.",
     authorP2: "Jetzt erhältlich als Kindle- und Taschenbuchausgabe.",
     kindleButton: "Kindle-Ausgabe",
-    paperbackButton: "Taschenbuchausgabe",
+    paperbackButton: "Taschenbuch — Teil 1",
+    paperback2Button: "Taschenbuch — Teil 2",
     backHeading: "Mehr von AI Byte Consult",
     backText: "NICS Multimedia ist ein Teil eines größeren KI-Ökosystems — Trading, Immobilien und mehr.",
     backButton: "Zurück zu unserer Arbeit",
@@ -117,7 +122,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "En plus de développer AI Byte Consult, Alexander Lunin écrit — un livre sur la façon dont cette IA a vu le jour, et continue d'être construite. Sur Amazon, il est classé en science-fiction. Que ce soit le genre honnête ou simplement le plus prudent à imprimer sur la couverture, c'est au lecteur d'en juger.",
     authorP2: "Disponible dès maintenant en édition Kindle et broché.",
     kindleButton: "Édition Kindle",
-    paperbackButton: "Édition broché",
+    paperbackButton: "Édition broché — Partie 1",
+    paperback2Button: "Édition broché — Partie 2",
     backHeading: "Plus d'AI Byte Consult",
     backText: "NICS Multimedia fait partie d'un écosystème IA plus vaste — trading, immobilier, et plus encore.",
     backButton: "Retour à nos réalisations",
@@ -144,7 +150,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "Oltre a costruire AI Byte Consult, Alexander Lunin scrive — un libro su come questa IA è nata e su come continua a essere costruita. Su Amazon è catalogato come fantascienza. Se questo sia il genere onesto o semplicemente quello più prudente da stampare in copertina, lo lasciamo giudicare al lettore.",
     authorP2: "Disponibile ora in edizione Kindle e cartacea.",
     kindleButton: "Edizione Kindle",
-    paperbackButton: "Edizione cartacea",
+    paperbackButton: "Edizione cartacea — Parte 1",
+    paperback2Button: "Edizione cartacea — Parte 2",
     backHeading: "Altro da AI Byte Consult",
     backText: "NICS Multimedia è una parte di un ecosistema IA più ampio — trading, immobiliare e altro ancora.",
     backButton: "Torna ai nostri lavori",
@@ -171,7 +178,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "إلى جانب بناء AI Byte Consult، يكتب Alexander Lunin كتابًا عن كيفية نشأة هذا الذكاء الاصطناعي، وكيف لا يزال قيد البناء. صُنّف على أمازون كخيال علمي. أما إن كان هذا هو التصنيف الصادق أو مجرد الخيار الأكثر أمانًا للطباعة على الغلاف، فهذا متروك للقارئ ليقرر.",
     authorP2: "متوفر الآن بنسخة Kindle والنسخة الورقية.",
     kindleButton: "نسخة Kindle",
-    paperbackButton: "النسخة الورقية",
+    paperbackButton: "النسخة الورقية — الجزء الأول",
+    paperback2Button: "النسخة الورقية — الجزء الثاني",
     backHeading: "المزيد من AI Byte Consult",
     backText: "NICS Multimedia هو جزء واحد من منظومة ذكاء اصطناعي أوسع — التداول والعقارات والمزيد.",
     backButton: "العودة إلى أعمالنا",
@@ -198,7 +206,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "除了创建 AI Byte Consult，Alexander Lunin 还在写一本书，讲述这个 AI 是如何诞生、又是如何持续被打造出来的。这本书在亚马逊上被归类为科幻小说。至于这是诚实的分类，还是印在封面上更安全的选择，就留给读者自己判断了。",
     authorP2: "现已推出 Kindle 版和平装版。",
     kindleButton: "Kindle 版",
-    paperbackButton: "平装版",
+    paperbackButton: "平装版 — 第一部",
+    paperback2Button: "平装版 — 第二部",
     backHeading: "了解更多 AI Byte Consult 的项目",
     backText: "NICS Multimedia 只是更广阔的 AI 生态系统的一部分——还有交易、房地产等更多内容。",
     backButton: "返回我们的作品",
@@ -225,7 +234,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "Poza budowaniem AI Byte Consult, Alexander Lunin pisze — książkę o tym, jak powstała ta sztuczna inteligencja i jak wciąż jest rozwijana. Na Amazonie figuruje jako science fiction. Czy to szczery gatunek, czy po prostu bezpieczniejszy napis na okładce — ocenę pozostawiamy czytelnikowi.",
     authorP2: "Dostępna już w wersji Kindle i papierowej.",
     kindleButton: "Wydanie Kindle",
-    paperbackButton: "Wydanie papierowe",
+    paperbackButton: "Wydanie papierowe — Część 1",
+    paperback2Button: "Wydanie papierowe — Część 2",
     backHeading: "Więcej od AI Byte Consult",
     backText: "NICS Multimedia to tylko część szerszego ekosystemu AI — trading, nieruchomości i wiele więcej.",
     backButton: "Wróć do naszych projektów",
@@ -252,7 +262,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "AI Byte Consult'u kurmanın yanı sıra Alexander Lunin bir kitap da yazıyor — bu yapay zekânın nasıl ortaya çıktığı ve nasıl geliştirilmeye devam ettiği hakkında. Amazon'da bilim kurgu olarak listeleniyor. Bunun dürüst bir tür mü, yoksa kapağa basmak için daha güvenli bir seçim mi olduğuna karar vermeyi okuyucuya bırakıyoruz.",
     authorP2: "Artık Kindle ve kağıt kapak baskısıyla satışta.",
     kindleButton: "Kindle Baskısı",
-    paperbackButton: "Kağıt Kapak Baskısı",
+    paperbackButton: "Kağıt Kapak — 1. Kitap",
+    paperback2Button: "Kağıt Kapak — 2. Kitap",
     backHeading: "AI Byte Consult'tan daha fazlası",
     backText: "NICS Multimedia, daha geniş bir yapay zekâ ekosisteminin sadece bir parçası — trading, gayrimenkul ve daha fazlası.",
     backButton: "Çalışmalarımıza dön",
@@ -279,7 +290,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "Освен изграждането на AI Byte Consult, Александър Лунин пише — книга за това как се роди този изкуствен интелект и как продължава да се създава. В Amazon е класирана като научна фантастика. Дали това е честният жанр, или просто по-безопасният избор за корицата, оставяме на читателя да прецени.",
     authorP2: "Вече е налична в издания Kindle и с меки корици.",
     kindleButton: "Издание Kindle",
-    paperbackButton: "Издание с меки корици",
+    paperbackButton: "Меки корици — Част 1",
+    paperback2Button: "Меки корици — Част 2",
     backHeading: "Още от AI Byte Consult",
     backText: "NICS Multimedia е част от по-широка AI екосистема — трейдинг, недвижими имоти и още.",
     backButton: "Обратно към нашата работа",
@@ -306,7 +318,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "Помимо AI Byte Consult, Александр Лунин пишет книгу о том, как появился этот ИИ и как он продолжает создаваться. На Amazon она числится как научная фантастика. Честный ли это жанр или просто более безопасная подпись на обложке — решать читателю.",
     authorP2: "Уже доступна в версиях Kindle и в бумажной обложке.",
     kindleButton: "Версия Kindle",
-    paperbackButton: "Бумажная версия",
+    paperbackButton: "Бумажная версия — часть 1",
+    paperback2Button: "Бумажная версия — часть 2",
     backHeading: "Больше от AI Byte Consult",
     backText: "NICS Multimedia — лишь часть более широкой AI-экосистемы: трейдинг, недвижимость и не только.",
     backButton: "Назад к нашим проектам",
@@ -333,7 +346,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "Además de construir AI Byte Consult, Alexander Lunin escribe — un libro sobre cómo nació esta IA y cómo se sigue construyendo. En Amazon está catalogado como ciencia ficción. Si ese es el género honesto o simplemente el más seguro para imprimir en la portada, se lo dejamos al lector.",
     authorP2: "Ya disponible en edición Kindle y de bolsillo.",
     kindleButton: "Edición Kindle",
-    paperbackButton: "Edición de bolsillo",
+    paperbackButton: "Edición de bolsillo — Parte 1",
+    paperback2Button: "Edición de bolsillo — Parte 2",
     backHeading: "Más de AI Byte Consult",
     backText: "NICS Multimedia es una parte de un ecosistema de IA más amplio — trading, bienes raíces y más.",
     backButton: "Volver a nuestro trabajo",
@@ -360,7 +374,8 @@ const content: Record<Language, MultimediaContent> = {
     authorP1: "Além de construir a AI Byte Consult, Alexander Lunin escreve — um livro sobre como esta IA surgiu e como continua a ser construída. Na Amazon está catalogado como ficção científica. Se esse é o género honesto ou apenas o mais seguro para imprimir na capa, fica ao critério do leitor.",
     authorP2: "Já disponível em edição Kindle e brochada.",
     kindleButton: "Edição Kindle",
-    paperbackButton: "Edição brochada",
+    paperbackButton: "Edição brochada — Parte 1",
+    paperback2Button: "Edição brochada — Parte 2",
     backHeading: "Mais da AI Byte Consult",
     backText: "NICS Multimedia é uma parte de um ecossistema de IA mais amplo — trading, imobiliário e mais.",
     backButton: "Voltar aos nossos trabalhos",
@@ -532,6 +547,14 @@ const NicsMultimedia = () => {
                     <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </a>
+                {PAPERBACK_2_URL && (
+                  <a href={PAPERBACK_2_URL} target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
+                      {c.paperback2Button}
+                      <ExternalLink className="ml-2 w-4 h-4" />
+                    </Button>
+                  </a>
+                )}
               </div>
             </div>
           </div>
