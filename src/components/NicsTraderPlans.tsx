@@ -20,6 +20,7 @@ import {
 
 const NicsTraderPlans = () => {
   const [period, setPeriod] = useState<Period>("30d");
+  const periodLabel = (value: Period) => (value === "7d" ? "7 days" : value === "90d" ? "3 months" : "30 days");
   const [currency, setCurrency] = useState<Currency>("EUR");
 
   return (
@@ -78,7 +79,7 @@ const NicsTraderPlans = () => {
 
         <div className="mb-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <div role="tablist" aria-label="Access period" className="inline-flex rounded-full border border-white/10 bg-white/[0.04] p-1 backdrop-blur">
-            {(["7d", "30d"] as Period[]).map((value) => (
+            {(["7d", "30d", "90d"] as Period[]).map((value) => (
               <button
                 key={value}
                 type="button"
@@ -96,7 +97,9 @@ const NicsTraderPlans = () => {
                     transition={{ type: "spring", stiffness: 400, damping: 34 }}
                   />
                 )}
-                <span className="relative">{value === "7d" ? "7 Days" : "30 Days"}</span>
+                <span className="relative">
+                  {value === "7d" ? "7 Days" : value === "90d" ? "3 Months" : "30 Days"}
+                </span>
               </button>
             ))}
           </div>
@@ -178,7 +181,7 @@ const NicsTraderPlans = () => {
                       <div>
                         <div className="flex items-baseline gap-2">
                           <span className="text-3xl font-semibold text-white">FREE</span>
-                          <span className="text-sm text-white/50">1 signal</span>
+                          <span className="text-sm text-white/50">3-day trial</span>
                         </div>
                         <p className="mt-2 text-xs text-white/50">No payment required</p>
                       </div>
@@ -192,7 +195,7 @@ const NicsTraderPlans = () => {
                           transition={{ duration: 0.2 }}
                         >
                           <div className="text-3xl font-semibold text-white">{formatPrice(amount, currency)}</div>
-                          <p className="mt-2 text-xs text-white/55">for {period === "7d" ? "7 days" : "30 days"}</p>
+                          <p className="mt-2 text-xs text-white/55">for {periodLabel(period)}</p>
                         </motion.div>
                       </AnimatePresence>
                     ) : null}
@@ -244,7 +247,7 @@ const NicsTraderPlans = () => {
                         <DialogHeader>
                           <DialogTitle className="text-white">{plan.name}</DialogTitle>
                           <DialogDescription className="text-white/60">
-                            {period === "7d" ? "7 days" : "30 days"} ·{" "}
+                            {periodLabel(period)} ·{" "}
                             {amount !== undefined ? formatPrice(amount, currency) : ""} — choose how you'd like to pay.
                           </DialogDescription>
                         </DialogHeader>

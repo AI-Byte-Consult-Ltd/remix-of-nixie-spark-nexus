@@ -10,7 +10,7 @@
 
 export const TELEGRAM_BOT_URL = "https://t.me/nics_ai_bot";
 
-export type Period = "7d" | "30d";
+export type Period = "7d" | "30d" | "90d";
 export type Currency = "EUR" | "USD";
 
 export type PaidPrice = Record<Period, Record<Currency, number>>;
@@ -28,91 +28,59 @@ export interface Plan {
   featured?: boolean;
 }
 
+/*
+ * 2026-10-22, Galileo funnel relaunch (Block 3): collapsed from four
+ * tiers (demo/single/multi/full) to one flat tariff -- full access
+ * always covers every market the buyer has selected, same as the free
+ * trial. EUR prices MUST stay in sync with [02 BOT]'s Build Telegram
+ * API Actions and [21 REVOLUT]'s Build Order Payload, both of which
+ * read the same app_secrets keys (nics_price_week_eur,
+ * nics_price_month_eur, nics_price_3months_eur) -- same parallel-list
+ * risk flagged in those nodes' own comments. USD is a display-only
+ * estimate: Revolut always charges in EUR regardless of the toggle
+ * shown here (see the Revolut payment description below).
+ */
 export const plans: Plan[] = [
   {
     id: "demo",
-    name: "AI Trader Demo",
-    badge: "FREE DEMO",
-    subtitle: "Experience one real NICS trading plan before subscribing.",
-    markets: "Any currently available market",
+    name: "AI Trader Free Trial",
+    badge: "FREE 3-DAY TRIAL",
+    subtitle: "Full access to your chosen markets for 3 days, no payment required.",
+    markets: "Any currently available markets",
     free: true,
     features: [
-      "One real AI-generated trading signal",
-      "Choose any currently available market",
+      "Full access to every market you select",
+      "Request signals on demand, any time during the trial",
       "Entry zone, Stop Loss and TP1–TP4",
       "AI explanation and risk notes",
-      "Lifecycle updates after accepting the signal",
-      "No payment required",
+      "Lifecycle updates after accepting a signal",
+      "Granted once per account, no payment required",
     ],
-    cta: "Try One Free Signal",
-  },
-  {
-    id: "single",
-    name: "AI Trader Single Market",
-    subtitle: "Focused AI trading coverage for one selected market.",
-    markets: "Gold OR Oil OR Forex OR Bitcoin",
-    prices: {
-      "7d": { EUR: 10.99, USD: 12.99 },
-      "30d": { EUR: 34.99, USD: 39.99 },
-    },
-    features: [
-      "Choose one supported market",
-      "No request-count limit while access is active",
-      "Ten automated market scans per day",
-      "On-demand Get Signal requests",
-      "Current-market validation before delivery",
-      "Entry, SL and TP1–TP4",
-      "AI explanation and market-risk check",
-      "TP, SL and breakeven lifecycle updates",
-      "Personal Telegram delivery",
-    ],
-    cta: "Choose One Market",
-  },
-  {
-    id: "multi",
-    name: "AI Trader Multi-Market",
-    badge: "MOST POPULAR",
-    subtitle: "Broader coverage for active traders following two markets.",
-    markets: "Choose any 2: Gold, Oil, Forex or Bitcoin",
-    prices: {
-      "7d": { EUR: 17.99, USD: 20.99 },
-      "30d": { EUR: 52.99, USD: 60.99 },
-    },
-    features: [
-      "Choose any two supported markets",
-      "No request-count limit while access is active",
-      "Ten automated scans across available markets",
-      "On-demand requests by selected market",
-      "Current-market validation before delivery",
-      "Entry, SL and TP1–TP4",
-      "AI explanation and news-risk analysis",
-      "Personal TP, SL and breakeven updates",
-      "Priority Telegram delivery",
-    ],
-    cta: "Choose Two Markets",
-    featured: true,
+    cta: "Start Free Trial",
   },
   {
     id: "full",
-    name: "AI Trader Full Coverage",
-    subtitle: "Complete NICS coverage across all supported trading markets.",
-    markets: "Gold + Oil + Forex + Bitcoin",
+    name: "AI Trader Full Access",
+    badge: "ONE PLAN, ALL MARKETS",
+    subtitle: "Complete NICS coverage across every supported market.",
+    markets: "Gold, Oil, Forex, Crypto, Stocks, Silver, Indices",
     prices: {
-      "7d": { EUR: 26.99, USD: 30.99 },
-      "30d": { EUR: 79.99, USD: 91.99 },
+      "7d": { EUR: 9, USD: 9.99 },
+      "30d": { EUR: 29, USD: 31.99 },
+      "90d": { EUR: 69, USD: 75.99 },
     },
     features: [
-      "Access to all four supported market groups",
+      "Access to every supported market",
       "No request-count limit while access is active",
-      "Ten automated full-market scans per day",
-      "On-demand selection of a specific market",
-      "Current-market validation before delivery",
+      "Automated scans across the trading day",
+      "On-demand Get Signal requests",
       "Entry, SL and TP1–TP4",
-      "AI explanation, news and risk analysis",
-      "Personal TP, SL and breakeven updates",
-      "Full Telegram delivery and tracking",
+      "AI explanation and risk analysis",
+      "TP, SL and breakeven lifecycle updates",
+      "Personal Telegram delivery",
     ],
-    cta: "Unlock Full Coverage",
+    cta: "Get Full Access",
+    featured: true,
   },
 ];
 
