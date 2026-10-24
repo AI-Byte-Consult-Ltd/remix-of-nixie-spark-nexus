@@ -4,8 +4,7 @@ import { ArrowRight, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import realestateAiImg from "@/assets/project-realestate-ai.jpg";
 import alessandroStudioImg from "@/assets/project-alessandro-studio.webp";
-import restaurantImg from "@/assets/project-restaurant-new.jpg";
-import hotelImg from "@/assets/project-hotel-new.jpg";
+import nicsVideoImg from "@/assets/project-nics-video.webp";
 import aquaterraImg from "@/assets/project-nft-new.jpg";
 
 const prideImg = `data:image/svg+xml,${encodeURIComponent(`
@@ -103,6 +102,19 @@ type Case = {
 
 const CASES: Case[] = [
   {
+    id: "nicsvideo",
+    industry: "Content Creation · AI Video Editing",
+    name: "NICS Video",
+    problem: "Creators spend hours cutting raw clips into Shorts, Reels, TikToks and long YouTube videos, and still have to design covers by hand.",
+    solution: "Upload your raw footage and NICS Video edits it automatically: a vertical short and a horizontal long video with covers in Russian and English, plus NICS Studio for fine-tuning in the browser.",
+    result: "Ready-to-post videos for TikTok, YouTube and Instagram without sitting in an editor.",
+    metric: { value: 2, suffix: "", label: "Formats from one upload: short + long", static: true },
+    tags: ["AI Video", "TikTok · YouTube · Reels", "Auto Covers", "NICS Studio"],
+    cta: "Try NICS Video",
+    href: "/nics-video",
+    image: nicsVideoImg,
+  },
+  {
     id: "alessandrostudio",
     industry: "Collectibles · 3D-Printed Miniatures",
     name: "Alessandro Studio",
@@ -114,18 +126,6 @@ const CASES: Case[] = [
     cta: "Visit Alessandro Studio",
     href: "https://alessandro-studio.eu",
     image: alessandroStudioImg,
-  },
-  {
-    id: "propertypartner",
-    industry: "Real Estate · Developers & Agencies",
-    name: "Property Partner",
-    problem: "Developers, agencies and independent agents lose buyers because they have no proper website and no way to answer property questions outside office hours.",
-    solution: "The full package: a professional real estate website, an AI chat widget on the site, and an AI agent inside WhatsApp/Telegram that answers questions, sends listings and books viewings around the clock.",
-    result: "A real digital presence and continuous contact with buyers, without hiring extra staff.",
-    metric: { value: 24, suffix: "/7", label: "Always-on lead response" },
-    tags: ["AI Agent", "Website", "Real Estate", "WhatsApp/Telegram"],
-    cta: "Build My Property Package",
-    image: realestateAiImg,
   },
   {
     id: "nicstrading",
@@ -141,28 +141,16 @@ const CASES: Case[] = [
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    id: "hospitality",
-    industry: "Hospitality · Hotels & Airbnb",
-    name: "Hotel & Airbnb Auto-Reply",
-    problem: "Hotels and independent Airbnb hosts miss bookings because guests message on WhatsApp, email, Airbnb chat and social media at all hours.",
-    solution: "An AI guest-support assistant answers questions, checks availability, explains house rules and amenities, and helps guests book or check in — for hotels and individual Airbnb hosts alike.",
-    result: "Faster guest replies day and night, and far less manual work for reception or a host running several listings.",
-    metric: { value: 24, suffix: "/7", label: "Guest replies, day or night" },
-    tags: ["WhatsApp API", "Hospitality", "Airbnb", "Automation"],
-    cta: "Automate Guest Replies",
-    image: hotelImg,
-  },
-  {
-    id: "restaurant",
-    industry: "Restaurants · Food Service",
-    name: "Restaurant Ordering Assistant",
-    problem: "Restaurant staff spend hours answering the same questions about the menu, hours, delivery and reservations instead of serving guests.",
-    solution: "An AI assistant handles menu questions, table reservations and delivery inquiries over chat, and hands off to staff only when a human is really needed.",
-    result: "Less repetitive phone and chat work for staff, and guests get instant answers at any hour.",
-    metric: { value: 24, suffix: "/7", label: "Guest questions answered anytime" },
-    tags: ["Chat AI", "Reservations", "Delivery", "Automation"],
-    cta: "Automate Restaurant Orders",
-    image: restaurantImg,
+    id: "propertypartner",
+    industry: "Real Estate · Developers & Agencies",
+    name: "Property Partner",
+    problem: "Developers, agencies and independent agents lose buyers because they have no proper website and no way to answer property questions outside office hours.",
+    solution: "The full package: a professional real estate website, an AI chat widget on the site, and an AI agent inside WhatsApp/Telegram that answers questions, sends listings and books viewings around the clock.",
+    result: "A real digital presence and continuous contact with buyers, without hiring extra staff.",
+    metric: { value: 24, suffix: "/7", label: "Always-on lead response" },
+    tags: ["AI Agent", "Website", "Real Estate", "WhatsApp/Telegram"],
+    cta: "Build My Property Package",
+    image: realestateAiImg,
   },
   {
     id: "aquaterra",
@@ -178,19 +166,6 @@ const CASES: Case[] = [
     image: aquaterraImg,
   },
   {
-    id: "pride",
-    industry: "Social Network · Community",
-    name: "PRIDE Social Network",
-    problem: "LGBTQ+ communities often lack a dedicated social platform built with their needs in mind.",
-    solution: "We designed and built PRIDE Social Network (pridesocial.org) end to end — profiles, feeds and community features, built in-house rather than on a template.",
-    result: "A live platform already in use by an early group of real members, growing organically.",
-    metric: { value: 100, suffix: "%", label: "In-house build, live today" },
-    tags: ["Social Network", "Community", "LGBTQ+", "Live"],
-    cta: "Visit PRIDE Social",
-    href: "https://pridesocial.org",
-    image: prideImg,
-  },
-  {
     id: "multimedia",
     industry: "Music · Multimedia",
     name: "NICS Multimedia",
@@ -202,6 +177,19 @@ const CASES: Case[] = [
     cta: "Read the Story",
     href: "/nics-multimedia",
     image: multimediaImg,
+  },
+  {
+    id: "pride",
+    industry: "Social Network · Community",
+    name: "PRIDE Social Network",
+    problem: "LGBTQ+ communities often lack a dedicated social platform built with their needs in mind.",
+    solution: "We designed and built PRIDE Social Network (pridesocial.org) end to end — profiles, feeds and community features, built in-house rather than on a template.",
+    result: "A live platform already in use by an early group of real members, growing organically.",
+    metric: { value: 100, suffix: "%", label: "In-house build, live today" },
+    tags: ["Social Network", "Community", "LGBTQ+", "Live"],
+    cta: "Visit PRIDE Social",
+    href: "https://pridesocial.org",
+    image: prideImg,
   },
 ];
 
