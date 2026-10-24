@@ -26,9 +26,12 @@ import SEO from "@/components/SEO";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { formatPrice } from "@/data/nicsTraderPlans";
 
-// Basic plan price, EUR per month. Keep in sync with the Revolut order
-// amount once NICS Video checkout is wired in n8n.
+// Plan prices, EUR. Keep in sync with the Revolut order amounts once
+// NICS Video checkout is wired in n8n. A package is 1 Short + 1 Long + 4 covers.
 const NICS_VIDEO_BASIC_EUR = 9.99;
+const NICS_VIDEO_PRO_EUR = 24.99;
+const NICS_VIDEO_EXTRA_PACKAGE_EUR = 1.49;
+const NICS_VIDEO_ANNUAL_DISCOUNT_PCT = 30;
 
 interface VideoContent {
   badge: string;
@@ -68,6 +71,11 @@ interface VideoContent {
   basicPeriod: string;
   basicFeatures: string[];
   basicButton: string;
+  proName: string;
+  proPeriod: string;
+  proFeatures: string[];
+  proButton: string;
+  extrasNote: (extraPrice: string, annualDiscount: number) => string;
   pricingNote: string;
   backButton: string;
 }
@@ -135,25 +143,38 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       { title: "Everyone with a phone archive", text: "A lot of raw video and no time to edit it." },
     ],
     pricingHeading: "Pricing",
-    pricingIntro: "Try it free for 3 days, then one simple plan.",
+    pricingIntro: "Try it free for 3 days, then pick a plan. One package = 1 Short + 1 Long video + 4 covers.",
     demoName: "Demo",
     demoPrice: "Free",
     demoPeriod: "3 days",
     demoFeatures: [
-      "Full pipeline: Short, Long and 4 covers",
+      "Up to 2 packages",
+      "Up to 15 minutes of source footage per package",
       "Both styles: dynamic and travel",
-      "No card required",
+      "Watermark on videos, no card required",
     ],
     demoButton: "Start demo",
     basicName: "Basic",
     basicPeriod: "per month",
     basicFeatures: [
-      "Everything in the demo",
-      "New videos every month",
+      "10 packages per month",
+      "Up to 20 minutes of source footage per package",
+      "No watermark",
       "Background music and cover regeneration",
       "Secure card payment via Revolut",
     ],
     basicButton: "Get Basic",
+    proName: "Pro",
+    proPeriod: "per month",
+    proFeatures: [
+      "30 packages per month",
+      "Up to 60 minutes of source footage per package",
+      "Everything in Basic",
+      "Priority processing",
+    ],
+    proButton: "Get Pro",
+    extrasNote: (extraPrice, annualDiscount) =>
+      `Extra package: ${extraPrice}. Pay yearly and save ${annualDiscount}%.`,
     pricingNote:
       "Processing time depends on the amount of footage: from a few minutes for a small folder to several hours for long source files — you will get a notification when it is ready.",
     backButton: "Explore the Ecosystem",
@@ -220,25 +241,38 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       { title: "Все, у кого архив в телефоне", text: "Много сырого видео и нет времени монтировать." },
     ],
     pricingHeading: "Тарифы",
-    pricingIntro: "3 дня бесплатно, дальше один простой тариф.",
+    pricingIntro: "3 дня бесплатно, дальше выберите тариф. Один пакет = шортс + длинное видео + 4 обложки.",
     demoName: "Демо",
     demoPrice: "Бесплатно",
     demoPeriod: "3 дня",
     demoFeatures: [
-      "Полный пайплайн: шортс, лонг и 4 обложки",
+      "До 2 пакетов",
+      "До 15 минут исходника на пакет",
       "Оба стиля: динамичный и travel",
-      "Без привязки карты",
+      "Водяной знак на роликах, без привязки карты",
     ],
     demoButton: "Начать демо",
     basicName: "Базовый",
     basicPeriod: "в месяц",
     basicFeatures: [
-      "Всё, что в демо",
-      "Новые ролики каждый месяц",
+      "10 пакетов в месяц",
+      "До 20 минут исходника на пакет",
+      "Без водяного знака",
       "Фоновая музыка и перегенерация обложек",
       "Безопасная оплата картой через Revolut",
     ],
     basicButton: "Оформить Базовый",
+    proName: "Про",
+    proPeriod: "в месяц",
+    proFeatures: [
+      "30 пакетов в месяц",
+      "До 60 минут исходника на пакет",
+      "Всё, что в Базовом",
+      "Приоритетная обработка",
+    ],
+    proButton: "Оформить Про",
+    extrasNote: (extraPrice, annualDiscount) =>
+      `Дополнительный пакет: ${extraPrice}. При оплате за год скидка ${annualDiscount}%.`,
     pricingNote:
       "Время обработки зависит от объёма материала: от нескольких минут для небольшой папки до нескольких часов для длинных исходников — о готовности придёт уведомление.",
     backButton: "Экосистема NICS",
@@ -267,6 +301,14 @@ const NicsVideo = () => {
       features: c.basicFeatures,
       button: c.basicButton,
       featured: true,
+    },
+    {
+      name: c.proName,
+      price: formatPrice(NICS_VIDEO_PRO_EUR, "EUR"),
+      period: c.proPeriod,
+      features: c.proFeatures,
+      button: c.proButton,
+      featured: false,
     },
   ];
 
@@ -452,12 +494,12 @@ const NicsVideo = () => {
         {/* Pricing */}
         <section id="pricing" className="py-20 bg-background scroll-mt-24">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-semibold text-foreground text-center mb-4">
                 <span className="text-gradient-gold">{c.pricingHeading}</span>
               </h2>
               <p className="text-lg text-muted-foreground text-center mb-12">{c.pricingIntro}</p>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-3 gap-6">
                 {plans.map((plan) => (
                   <Card
                     key={plan.name}
@@ -493,7 +535,10 @@ const NicsVideo = () => {
                   </Card>
                 ))}
               </div>
-              <p className="text-sm text-muted-foreground text-center mt-8 max-w-2xl mx-auto flex items-start justify-center gap-2">
+              <p className="text-sm text-muted-foreground text-center mt-8">
+                {c.extrasNote(formatPrice(NICS_VIDEO_EXTRA_PACKAGE_EUR, "EUR"), NICS_VIDEO_ANNUAL_DISCOUNT_PCT)}
+              </p>
+              <p className="text-sm text-muted-foreground text-center mt-4 max-w-2xl mx-auto flex items-start justify-center gap-2">
                 <Clock className="w-4 h-4 shrink-0 mt-0.5 text-primary" />
                 <span>{c.pricingNote}</span>
               </p>
