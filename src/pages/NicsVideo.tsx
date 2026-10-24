@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -33,6 +33,8 @@ import { studioStrings } from "@/features/studio/strings";
 import { signOut, useAccount } from "@/features/account/account";
 import AccountDialog from "@/features/account/AccountDialog";
 import { nicsVideoLocales } from "@/i18n/nicsVideo";
+import { videoGuides } from "@/i18n/nicsVideoGuide";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 // Credit plans, EUR per 30 days. Keep in sync with PLAN_PRICES in n8n
 // [24 VIDEO] Validate Request and the credit amounts in [26 VIDEO] Check Access.
@@ -322,6 +324,14 @@ const NicsVideo = () => {
   const account = useAccount();
   const c = content[language] ?? nicsVideoLocales[language]?.page ?? content.en;
   const studio = studioStrings(language);
+  const guide = videoGuides[language] ?? videoGuides.en;
+
+  // Links like /nics-video#faq from NICS Studio: the section exists only
+  // after the first render, so scroll to it here.
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (id) document.getElementById(id)?.scrollIntoView();
+  }, []);
 
   const outputs = [
     { icon: Smartphone, title: c.shortsTitle, text: c.shortsText },
@@ -365,14 +375,25 @@ const NicsVideo = () => {
     description:
       "Upload raw clips from your trip and get a vertical Short, a horizontal travel video and four covers in two languages. Automatic editing of your real footage, fully offline.",
     canonical: "https://aibyteconsult.com/nics-video",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      name: "NICS Video Editor",
-      applicationCategory: "MultimediaApplication",
-      url: "https://aibyteconsult.com/nics-video",
-      provider: { "@type": "Organization", name: "AI Byte Consult Ltd." },
-    },
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "NICS Video Editor",
+        applicationCategory: "MultimediaApplication",
+        url: "https://aibyteconsult.com/nics-video",
+        provider: { "@type": "Organization", name: "AI Byte Consult Ltd." },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: guide.faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ],
   };
 
   return (
@@ -406,6 +427,11 @@ const NicsVideo = () => {
                 <a href="#how">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
                     {c.ctaSecondary}
+                  </Button>
+                </a>
+                <a href="#guide">
+                  <Button size="lg" variant="ghost" className="w-full sm:w-auto rounded-full px-8">
+                    {guide.guideHeading}
                   </Button>
                 </a>
               </div>
@@ -649,6 +675,56 @@ const NicsVideo = () => {
                 onSignIn={() => setSignInOpen(true)}
                 onNeedAccess={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
               />
+            </div>
+          </div>
+        </section>
+
+        {/* How to use */}
+        <section id="guide" className="py-20 bg-background scroll-mt-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-semibold text-foreground text-center mb-4">
+                <span className="text-gradient-gold">{guide.guideHeading}</span>
+              </h2>
+              <p className="text-lg text-muted-foreground text-center mb-12 max-w-3xl mx-auto">{guide.guideIntro}</p>
+              <div className="grid md:grid-cols-2 gap-6">
+                {guide.guides.map((g, i) => (
+                  <Card key={g.title} className="bg-card border-border/50">
+                    <CardContent className="pt-6 space-y-4">
+                      <div className="flex items-center gap-3">
+                        <span className="w-10 h-10 shrink-0 rounded-xl bg-accent border border-primary/20 flex items-center justify-center text-sm font-semibold text-primary">
+                          0{i + 1}
+                        </span>
+                        <h3 className="text-lg font-semibold text-foreground">{g.title}</h3>
+                      </div>
+                      <ol className="list-decimal ps-5 space-y-2 text-muted-foreground leading-relaxed">
+                        {g.steps.map((step) => (
+                          <li key={step}>{step}</li>
+                        ))}
+                      </ol>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className="py-20 bg-muted/30 scroll-mt-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-semibold text-foreground text-center mb-10">
+                <span className="text-gradient-gold">{guide.faqHeading}</span>
+              </h2>
+              <Accordion type="single" collapsible className="bg-card rounded-3xl border border-border/50 px-6">
+                {guide.faq.map((f, i) => (
+                  <AccordionItem key={f.q} value={`faq-${i}`} className="last:border-b-0">
+                    <AccordionTrigger className="text-start text-base font-medium text-foreground">{f.q}</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground leading-relaxed">{f.a}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </section>
