@@ -21,6 +21,7 @@ import {
   Camera,
   Users,
   Check,
+  Scissors,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
@@ -28,6 +29,7 @@ import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { formatPrice } from "@/data/nicsTraderPlans";
 import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/components/video/NicsVideoCheckout";
 import NicsVideoStudio from "@/components/video/NicsVideoStudio";
+import { studioStrings } from "@/features/studio/strings";
 
 // Plan prices, EUR. Keep in sync with the Revolut order amounts once
 // NICS Video checkout is wired in n8n. A package is 1 Short + 1 Long + 4 covers.
@@ -290,6 +292,7 @@ const NicsVideo = () => {
   const [checkoutPlan, setCheckoutPlan] = useState<CheckoutPlan | null>(null);
   const [studioEmail, setStudioEmail] = useState("");
   const c = content[language] ?? content.en;
+  const studio = studioStrings(language);
 
   const outputs = [
     { icon: Smartphone, title: c.shortsTitle, text: c.shortsText },
@@ -394,6 +397,30 @@ const NicsVideo = () => {
                 ))}
               </div>
               <p className="text-sm text-muted-foreground text-center mt-8 max-w-3xl mx-auto">{c.outputsFootnote}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* NICS Studio: manual editor */}
+        <section id="nics-studio" className="py-20 bg-background scroll-mt-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
+                <Scissors className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-primary">{studio.badge}</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
+                <span className="text-gradient-gold">{studio.sectionHeading}</span>
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">{studio.sectionText}</p>
+              <div>
+                <Link to="/nics-studio">
+                  <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
+                    {studio.sectionButton}
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </section>

@@ -42,6 +42,8 @@ export default defineConfig(({ mode }) => ({
           if (id.includes("/framer-motion/") || id.includes("/motion-dom/") || id.includes("/motion-utils/"))
             return "vendor-motion";
           if (id.includes("/@supabase/")) return "vendor-supabase";
+          // Video encoder/decoder used only by the lazy NICS Studio route.
+          if (id.includes("/mediabunny/")) return "vendor-mediabunny";
           return "vendor";
         },
       },
