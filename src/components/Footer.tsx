@@ -35,6 +35,7 @@ const Footer = () => {
                 <li><a href="https://estate.aibyteconsult.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Real Estate</a></li>
                 <li><Link to="/nics-ecosystem" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Ecosystem</Link></li>
                 <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Trading</Link></li>
+                <li><Link to="/nics-video" className="text-muted-foreground hover:text-primary transition-colors">NICS Video</Link></li>
                 <li><a href="https://pridesocial.org" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Social</a></li>
                 <li><a href="https://aquaterra.aibyteconsult.com/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">AquaTerra World</a></li>
               </ul>
