@@ -32,6 +32,7 @@ import NicsVideoStudio from "@/components/video/NicsVideoStudio";
 import { studioStrings } from "@/features/studio/strings";
 import { readAccount, signOut, useAccount } from "@/features/account/account";
 import AccountDialog from "@/features/account/AccountDialog";
+import { nicsVideoLocales } from "@/i18n/nicsVideo";
 
 // Credit plans, EUR per 30 days. Keep in sync with PLAN_PRICES in n8n
 // [24 VIDEO] Validate Request and the credit amounts in [26 VIDEO] Check Access.
@@ -40,7 +41,7 @@ const NICS_VIDEO_START_EUR = 14.99;
 const NICS_VIDEO_CREATOR_EUR = 34.99;
 const NICS_VIDEO_PRO_EUR = 69.99;
 
-interface VideoContent {
+export interface VideoContent {
   badge: string;
   heroHeading: string;
   heroSubtitle: string;
@@ -323,7 +324,7 @@ const NicsVideo = () => {
   useEffect(() => {
     if (account) setStudioEmail(account.email);
   }, [account]);
-  const c = content[language] ?? content.en;
+  const c = content[language] ?? nicsVideoLocales[language]?.page ?? content.en;
   const studio = studioStrings(language);
 
   const outputs = [

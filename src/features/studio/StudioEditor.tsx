@@ -924,7 +924,7 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
                     <div className="truncate font-semibold text-foreground">{item.title || s.projects.untitled}</div>
                     <div className="text-muted-foreground">{s.projects.duration(formatTime(item.duration))}</div>
                     <div className="text-muted-foreground">
-                      {item.id === currentId ? s.projects.current : new Date(item.updatedAt).toLocaleString(lang === "ru" ? "ru-RU" : "en-GB", { dateStyle: "short", timeStyle: "short" })}
+                      {item.id === currentId ? s.projects.current : new Date(item.updatedAt).toLocaleString(lang === "en" ? "en-GB" : lang, { dateStyle: "short", timeStyle: "short" })}
                     </div>
                   </div>
                 </button>
