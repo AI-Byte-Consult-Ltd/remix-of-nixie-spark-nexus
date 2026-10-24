@@ -4,13 +4,17 @@ import {
   ArrowLeft,
   ArrowRight,
   Captions,
+  Check,
+  Coins,
   Copy,
   Download,
   Film,
+  FolderOpen,
   ImagePlus,
   Layers,
   Loader2,
   Music2,
+  Plus,
   Redo2,
   Settings2,
   Sparkles,
@@ -63,6 +67,8 @@ import { studioStrings } from "./strings";
 import Timeline, { type Selection } from "./Timeline";
 import AgentPanel, { type AgentMessage, type StepStatus } from "./AgentPanel";
 import { Field, RangeSlider, Segmented, Swatches } from "./ui";
+import { type SavedSummary, deleteProject, listProjects, loadProject, newProjectId, requestPersistence, saveProject } from "./storage";
+import { type CreditsError, type SpendReason, PRICES, fetchBalance, rememberEmail, savedEmail, spendCredits, validEmail } from "./credits";
 
 const PREVIEW_SIZE: Record<Aspect, { w: number; h: number }> = {
   "9:16": { w: 540, h: 960 },
@@ -70,11 +76,12 @@ const PREVIEW_SIZE: Record<Aspect, { w: number; h: number }> = {
   "1:1": { w: 720, h: 720 },
 };
 
-type Tool = "media" | "sounds" | "captions" | "text" | "effects" | "transitions" | "background" | "settings";
+type Tool = "projects" | "media" | "sounds" | "captions" | "text" | "effects" | "transitions" | "background" | "settings";
 type Media = HTMLVideoElement | HTMLImageElement;
 type CaptionLang = "ru" | "en";
 
 const TOOLS: { id: Tool; icon: typeof Film }[] = [
+  { id: "projects", icon: FolderOpen },
   { id: "media", icon: Film },
   { id: "sounds", icon: Music2 },
   { id: "captions", icon: Captions },
@@ -121,6 +128,22 @@ const autoZooms = (total: number, amount: number): ZoomEffect[] => {
   return out;
 };
 
+// A small JPEG of the current preview frame for the projects list.
+const thumbnail = (canvas: HTMLCanvasElement | null) => {
+  if (!canvas || !canvas.width) return null;
+  try {
+    const h = 120;
+    const w = Math.round((canvas.width / canvas.height) * h);
+    const c = document.createElement("canvas");
+    c.width = w;
+    c.height = h;
+    c.getContext("2d")?.drawImage(canvas, 0, 0, w, h);
+    return c.toDataURL("image/jpeg", 0.6);
+  } catch {
+    return null;
+  }
+};
+
 const StudioEditor = ({ lang }: { lang: Language }) => {
   const s = studioStrings(lang);
   const [project, setProject] = useState<Project>(newProject);
@@ -136,6 +159,13 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
   const [captionLang, setCaptionLang] = useState<CaptionLang>(lang === "ru" ? "ru" : "en");
   const [captionStatus, setCaptionStatus] = useState<string | null>(null);
   const [messages, setMessages] = useState<AgentMessage[]>([{ id: "hello", role: "agent", text: s.agent.hello }]);
+  const [saved, setSaved] = useState<SavedSummary[]>([]);
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "failed">("idle");
+  const [currentId, setCurrentId] = useState<string | null>(null);
+  const [email, setEmail] = useState(savedEmail);
+  const [balance, setBalance] = useState<number | null>(null);
+  const [signIn, setSignIn] = useState<{ draft: string; error: string | null; checking: boolean } | null>(null);
+  const [creditsIssue, setCreditsIssue] = useState<string | null>(null);
   const [exportState, setExportState] = useState<
     { phase: "running"; progress: number } | { phase: "done"; url: string; name: string } | { phase: "error"; message: string } | null
   >(null);
@@ -149,6 +179,8 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
   const clockRef = useRef({ t: 0, wall: 0 });
   const lastPushRef = useRef(0);
   const cancelRef = useRef(false);
+  const projectIdRef = useRef<string | null>(null);
+  const restoredRef = useRef(false);
   const mediaInputRef = useRef<HTMLInputElement>(null);
   const musicInputRef = useRef<HTMLInputElement>(null);
 
@@ -333,6 +365,174 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
     }
   }, [project.music]);
 
+  // --- Saved projects ---------------------------------------------------------
+
+  const refreshSaved = useCallback(() => {
+    listProjects()
+      .then(setSaved)
+      .catch(() => setSaved([]));
+  }, []);
+
+  const releaseMedia = () => {
+    mediaRef.current.forEach((m, url) => {
+      if (m instanceof HTMLVideoElement) {
+        m.pause();
+        m.removeAttribute("src");
+        m.load();
+      }
+      URL.revokeObjectURL(url);
+    });
+    mediaRef.current.clear();
+    musicRef.current?.pause();
+    musicRef.current = null;
+    if (projectRef.current.music) URL.revokeObjectURL(projectRef.current.music.url);
+  };
+
+  const resetEditor = (p: Project, msgs: AgentMessage[], id: string | null) => {
+    projectRef.current = p;
+    projectIdRef.current = id;
+    setCurrentId(id);
+    setProject(p);
+    setHistory([]);
+    setFuture([]);
+    setSelection(null);
+    setMessages(msgs.length ? msgs : [{ id: "hello", role: "agent", text: s.agent.hello }]);
+    setCaptionStatus(null);
+    setSaveState(id ? "saved" : "idle");
+    lastPushRef.current = 0;
+    seek(0);
+  };
+
+  const openSaved = async (id: string) => {
+    stop();
+    setLoading(true);
+    setNotice(null);
+    try {
+      const loaded = await loadProject(id);
+      if (!loaded) throw new Error("missing");
+      releaseMedia();
+      const clips: Clip[] = [];
+      for (const c of loaded.project.clips) {
+        try {
+          const m = c.kind === "image" ? await loadImage(c.url) : await loadVideoMeta(c.url);
+          mediaRef.current.set(c.url, m);
+          clips.push(c);
+        } catch {
+          setNotice(s.cannotRead(c.name));
+        }
+      }
+      resetEditor({ ...loaded.project, clips }, loaded.messages, id);
+    } catch (err) {
+      console.error("NICS Studio open failed", err);
+      setNotice(s.projects.openFailed);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const startNew = () => {
+    stop();
+    releaseMedia();
+    resetEditor(newProject(), [], null);
+    setTool("media");
+  };
+
+  const removeSaved = async (id: string) => {
+    if (!window.confirm(s.projects.confirmRemove)) return;
+    try {
+      await deleteProject(id);
+    } catch (err) {
+      console.error("NICS Studio delete failed", err);
+    }
+    if (id === projectIdRef.current) startNew();
+    refreshSaved();
+  };
+
+  // Reopen the latest project when the studio loads, so work survives a
+  // closed tab or a reload.
+  useEffect(() => {
+    if (restoredRef.current) return;
+    restoredRef.current = true;
+    requestPersistence();
+    listProjects()
+      .then((list) => {
+        setSaved(list);
+        if (list.length && !projectRef.current.clips.length) openSaved(list[0].id);
+      })
+      .catch(() => setSaved([]));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Autosave a moment after the last change. Not while the agent or the export
+  // is running, so a half-made edit is never what gets saved.
+  useEffect(() => {
+    if (busy || loading) return;
+    if (!project.clips.length && !projectIdRef.current) return;
+    const timer = window.setTimeout(async () => {
+      const id = projectIdRef.current ?? newProjectId();
+      projectIdRef.current = id;
+      setCurrentId(id);
+      setSaveState("saving");
+      try {
+        await saveProject(id, projectRef.current, messages, { duration: totalDuration(projectRef.current), thumb: thumbnail(canvasRef.current) });
+        setSaveState("saved");
+        refreshSaved();
+      } catch (err) {
+        console.error("NICS Studio save failed", err);
+        setSaveState("failed");
+      }
+    }, 700);
+    return () => window.clearTimeout(timer);
+  }, [project, messages, busy, loading, refreshSaved]);
+
+  // --- Credits ----------------------------------------------------------------
+
+  useEffect(() => {
+    if (!email) return;
+    fetchBalance(email).then((r) => {
+      if (r.ok || r.error === "no_access") setBalance(r.credits);
+    });
+  }, [email]);
+
+  const creditsText = (error: CreditsError | null, cost: number, left: number) =>
+    error === "no_access" ? s.credits.noAccess : error === "network" ? s.credits.network : s.credits.notEnough(cost, left);
+
+  // Checks there is enough for `reason` before the work starts; the credits are
+  // taken only after it worked, so a failed export or recognition costs nothing.
+  const ensureCredits = async (reason: SpendReason): Promise<boolean> => {
+    setCreditsIssue(null);
+    if (!email) {
+      setSignIn({ draft: "", error: s.credits.needSignIn, checking: false });
+      return false;
+    }
+    const cost = PRICES[reason];
+    const r = await fetchBalance(email);
+    if (r.ok || r.error === "no_access") setBalance(r.credits);
+    if (r.ok && r.credits >= cost) return true;
+    setCreditsIssue(creditsText(r.ok ? "not_enough" : r.error, cost, r.credits));
+    return false;
+  };
+
+  const charge = async (reason: SpendReason) => {
+    const r = await spendCredits(email, reason);
+    if (r.ok || r.error === "not_enough") setBalance(r.credits);
+  };
+
+  const submitSignIn = async () => {
+    if (!signIn) return;
+    const value = signIn.draft.trim().toLowerCase();
+    if (!validEmail(value)) return setSignIn({ ...signIn, error: s.credits.invalidEmail });
+    setSignIn({ ...signIn, checking: true, error: null });
+    const r = await fetchBalance(value);
+    if (!r.ok && r.error !== "no_access") return setSignIn({ ...signIn, checking: false, error: creditsText(r.error, 0, 0) });
+    setEmail(value);
+    rememberEmail(value);
+    setBalance(r.credits);
+    setCreditsIssue(null);
+    if (r.ok) setSignIn(null);
+    else setSignIn({ draft: value, checking: false, error: s.credits.noAccess });
+  };
+
   const select = (sel: Selection) => {
     setSelection(sel);
     if (!sel) return;
@@ -511,8 +711,10 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
     stop();
     setAgentBusy(true);
     try {
+      if (!(await ensureCredits("captions"))) return;
       const n = await generateCaptions(project.captionStyle.wordsPerCaption, captionLang, setCaptionStatus);
       setCaptionStatus(s.stepNotes.captionsMade(n));
+      if (n > 0) await charge("captions");
     } catch (err) {
       console.error("NICS Studio captions failed", err);
       setCaptionStatus(captionError(err));
@@ -606,6 +808,13 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
       setMessages((m) => [...m, userMsg, { id: uid(), role: "agent", text: s.agent.unknown }]);
       return;
     }
+    setAgentBusy(true);
+    const allowed = await ensureCredits("agent");
+    if (!allowed) {
+      setAgentBusy(false);
+      setMessages((m) => [...m, userMsg, { id: uid(), role: "agent", text: email ? s.agent.noCredits : s.credits.needSignIn }]);
+      return;
+    }
     const id = uid();
     const view = steps.map((st) => ({ label: s.stepLabel(st), status: "pending" as StepStatus, note: undefined as string | undefined }));
     const publish = (footer?: string) =>
@@ -632,6 +841,7 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
       publish();
     }
     publish(failed ? undefined : s.agent.finished);
+    if (view.some((v) => v.status === "done")) await charge("agent");
     setAgentBusy(false);
   };
 
@@ -641,8 +851,10 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
     stop();
     cancelRef.current = false;
     setExportState({ phase: "running", progress: 0 });
+    if (!(await ensureCredits("export"))) return setExportState(null);
     try {
       const result = await exportProject(projectRef.current, (progress) => setExportState({ phase: "running", progress }), () => cancelRef.current);
+      await charge("export");
       const url = URL.createObjectURL(result.blob);
       const base = (projectRef.current.title || "nics-studio").replace(/[^\p{L}\p{N}_-]+/gu, "-").slice(0, 40);
       setExportState({ phase: "done", url, name: `${base}-${projectRef.current.aspect.replace(":", "x")}.${result.extension.replace(/^\./, "")}` });
@@ -683,6 +895,54 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
 
   const panel = (() => {
     switch (tool) {
+      case "projects":
+        return (
+          <div className="space-y-3">
+            <Button onClick={startNew} disabled={busy || loading} variant="outline" className="w-full rounded-full">
+              <Plus className="w-4 h-4 mr-2" />
+              {s.projects.newProject}
+            </Button>
+            <p className="text-xs text-muted-foreground">{s.projects.hint}</p>
+            {!saved.length && <p className="text-xs text-muted-foreground">{s.projects.empty}</p>}
+            {saved.map((item) => (
+              <div
+                key={item.id}
+                className={cn(
+                  "flex gap-2 rounded-lg border p-2",
+                  item.id === currentId ? "border-primary/60 bg-primary/5" : "border-border/60",
+                )}
+              >
+                <button
+                  type="button"
+                  disabled={busy || loading || item.id === currentId}
+                  onClick={() => openSaved(item.id)}
+                  className="flex min-w-0 flex-1 gap-2 text-left"
+                >
+                  <div className="h-14 w-10 shrink-0 overflow-hidden rounded bg-black">
+                    {item.thumb && <img src={item.thumb} alt="" className="h-full w-full object-cover" />}
+                  </div>
+                  <div className="min-w-0 text-xs">
+                    <div className="truncate font-semibold text-foreground">{item.title || s.projects.untitled}</div>
+                    <div className="text-muted-foreground">{s.projects.duration(formatTime(item.duration))}</div>
+                    <div className="text-muted-foreground">
+                      {item.id === currentId ? s.projects.current : new Date(item.updatedAt).toLocaleString(lang === "ru" ? "ru-RU" : "en-GB", { dateStyle: "short", timeStyle: "short" })}
+                    </div>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => removeSaved(item.id)}
+                  disabled={busy}
+                  aria-label={s.projects.remove}
+                  title={s.projects.remove}
+                  className="self-start text-muted-foreground hover:text-destructive"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+            ))}
+          </div>
+        );
       case "media":
         return (
           <div className="space-y-4">
@@ -1075,11 +1335,42 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
         <Button variant="ghost" size="icon" className="h-8 w-8" onClick={redo} disabled={busy || !future.length} aria-label={s.redo} title={s.redo}>
           <Redo2 className="w-4 h-4" />
         </Button>
+        {saveState !== "idle" && (
+          <span className={cn("hidden sm:flex items-center gap-1 text-[11px]", saveState === "failed" ? "text-destructive" : "text-muted-foreground")}>
+            {saveState === "saving" ? <Loader2 className="w-3 h-3 animate-spin" /> : saveState === "saved" ? <Check className="w-3 h-3" /> : <AlertCircle className="w-3 h-3" />}
+            {saveState === "saving" ? s.projects.saving : saveState === "saved" ? s.projects.saved : s.projects.saveFailed.split(":")[0]}
+          </span>
+        )}
+        <Button
+          variant="outline"
+          size="sm"
+          className="rounded-full h-9"
+          onClick={() => setSignIn({ draft: email, error: null, checking: false })}
+          title={email || s.credits.signIn}
+        >
+          <Coins className="w-4 h-4 mr-1.5 text-primary" />
+          {email ? (balance === null ? "…" : s.credits.balance(balance)) : s.credits.signIn}
+        </Button>
         <Button onClick={runExport} disabled={busy || total <= 0 || !canEncode} className="rounded-full h-9">
           <Download className="w-4 h-4 mr-2" />
           {s.export}
         </Button>
       </div>
+
+      {saveState === "failed" && <p className="text-xs text-destructive">{s.projects.saveFailed}</p>}
+
+      {creditsIssue && (
+        <div className="flex flex-wrap items-center gap-2 rounded-xl border border-primary/40 bg-primary/5 p-3 text-sm">
+          <Coins className="w-4 h-4 shrink-0 text-primary" />
+          <span className="flex-1 min-w-[12rem]">{creditsIssue}</span>
+          <Button asChild size="sm" className="rounded-full">
+            <a href="/nics-video#pricing">{s.credits.getCredits}</a>
+          </Button>
+          <button type="button" onClick={() => setCreditsIssue(null)} aria-label={s.close}>
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
 
       {notice && (
         <div className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -1168,6 +1459,48 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
           />
         </div>
       </div>
+
+      {/* Sign in for credits */}
+      {signIn && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => !signIn.checking && setSignIn(null)}>
+          <form
+            className="w-full max-w-sm rounded-xl border border-border bg-card p-6 space-y-3"
+            onClick={(e) => e.stopPropagation()}
+            onSubmit={(e) => {
+              e.preventDefault();
+              submitSignIn();
+            }}
+          >
+            <div className="flex items-center gap-2 font-semibold">
+              <Coins className="w-5 h-5 text-primary" />
+              {s.credits.title}
+            </div>
+            <p className="text-sm text-muted-foreground">{s.credits.text}</p>
+            <p className="text-xs text-muted-foreground">{s.credits.prices}</p>
+            <input
+              type="email"
+              autoFocus
+              value={signIn.draft}
+              onChange={(e) => setSignIn({ ...signIn, draft: e.target.value, error: null })}
+              placeholder={s.credits.emailPlaceholder}
+              className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+            />
+            {email && balance !== null && signIn.draft.trim().toLowerCase() === email && (
+              <p className="text-sm font-medium">{s.credits.balance(balance)}</p>
+            )}
+            {signIn.error && <p className="text-sm text-destructive">{signIn.error}</p>}
+            <div className="flex flex-wrap gap-2">
+              <Button type="submit" className="rounded-full" disabled={signIn.checking}>
+                {signIn.checking && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                {signIn.checking ? s.credits.checking : s.credits.continue}
+              </Button>
+              <Button asChild variant="outline" className="rounded-full">
+                <a href="/nics-video#pricing">{s.credits.getCredits}</a>
+              </Button>
+            </div>
+          </form>
+        </div>
+      )}
 
       {/* Export */}
       {exportState && (
