@@ -120,6 +120,8 @@ const it: NicsVideoLocale = {
     submitPay: "Vai al pagamento",
     error: "Qualcosa è andato storto. Riprova o scrivi a info@aibyteconsult.com.",
     demoExists: "I crediti gratuiti sono già stati richiesti con questa email.",
+    signInFirst: "Accedi prima con la tua email: i crediti gratuiti vanno a un indirizzo confermato.",
+    signIn: "Accedi",
     demoDone: "I tuoi 10 crediti gratuiti sono attivi. Carica le riprese da questa pagina con la stessa email.",
     payOpened:
       "La pagina di pagamento Revolut si è aperta in una nuova scheda. Pochi minuti dopo il pagamento i crediti saranno attivi: carica le riprese da questa pagina con la stessa email.",
@@ -130,6 +132,7 @@ const it: NicsVideoLocale = {
   upload: {
     heading: "Carica le tue riprese",
     intro: "Usa l'email con cui hai ottenuto i crediti. Un pacchetto costa 10 crediti: uno Short (9:16), un video lungo (16:9) e le copertine.",
+    signIn: "Accedi per caricare",
     email: "Email",
     title: "Titolo della copertina",
     titleEn: "Titolo della copertina in inglese (facoltativo)",
@@ -153,6 +156,7 @@ const it: NicsVideoLocale = {
       limit_reached: "Crediti insufficienti per un pacchetto (10 crediti). Scegli un piano per ricaricare.",
       job_in_progress: "Hai già un lavoro in corso. Attendi che finisca.",
       email: "Controlla l'indirizzo email.",
+      login_required: "Accedi di nuovo.",
       files_count: "Scegli da 1 a 20 file video.",
       file_type: "Sono supportati solo file MP4, MOV, AVI, MKV, M4V e 3GP.",
       file_size: "Ogni file deve essere inferiore a 1 GB.",
@@ -185,7 +189,6 @@ const it: NicsVideoLocale = {
     otherEmail: "Usa un'altra email",
     resend: "Invia di nuovo",
     signedIn: (e: string) => `Accesso come ${e}`,
-    notVerified: "Email non ancora confermata: l'accesso con codice sarà attivo a breve.",
     signOut: "Esci",
     errors: {
       email: "Inserisci un'email valida.",
@@ -194,7 +197,7 @@ const it: NicsVideoLocale = {
       too_many: "Troppi codici per questa email. Riprova tra un'ora.",
       session: "Accedi di nuovo.",
       network: "Nessuna connessione al server. Riprova.",
-      mail_unavailable: "",
+      mail_unavailable: "Impossibile inviare l'email in questo momento. Riprova tra qualche minuto.",
     } as Record<AccountError, string>,
   },
   studio: {

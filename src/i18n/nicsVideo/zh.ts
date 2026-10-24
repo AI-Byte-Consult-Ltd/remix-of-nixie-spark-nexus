@@ -100,6 +100,8 @@ const zh: NicsVideoLocale = {
     submitPay: "前往支付",
     error: "出了点问题。请重试，或发邮件至 info@aibyteconsult.com。",
     demoExists: "该邮箱已经领取过免费积分。",
+    signInFirst: "请先用邮箱登录：免费积分只发放给已验证的邮箱。",
+    signIn: "登录",
     demoDone: "您的 10 个免费积分已生效。请用同一邮箱在本页面上传素材。",
     payOpened: "Revolut 支付页面已在新标签页打开。付款几分钟后积分即生效：请用同一邮箱在本页面上传素材。",
     payLink: "重新打开支付页面",
@@ -109,6 +111,7 @@ const zh: NicsVideoLocale = {
   upload: {
     heading: "上传您的素材",
     intro: "请使用领取积分时的邮箱。一个套餐需要 10 积分：一条 Short（9:16）、一条长视频（16:9）和封面。",
+    signIn: "登录后上传",
     email: "邮箱",
     title: "封面标题",
     titleEn: "英文封面标题（可选）",
@@ -132,6 +135,7 @@ const zh: NicsVideoLocale = {
       limit_reached: "剩余积分不足一个套餐（10 积分）。请选择套餐充值。",
       job_in_progress: "您已有一个任务在处理中，请等待完成。",
       email: "请检查邮箱地址。",
+      login_required: "请重新登录。",
       files_count: "请选择 1 到 20 个视频文件。",
       file_type: "仅支持 MP4、MOV、AVI、MKV、M4V 和 3GP 文件。",
       file_size: "每个文件必须小于 1 GB。",
@@ -164,7 +168,6 @@ const zh: NicsVideoLocale = {
     otherEmail: "使用其他邮箱",
     resend: "重新发送",
     signedIn: (e: string) => `已登录：${e}`,
-    notVerified: "邮箱尚未验证：验证码登录即将开放。",
     signOut: "退出",
     errors: {
       email: "请输入有效的邮箱。",
@@ -173,7 +176,7 @@ const zh: NicsVideoLocale = {
       too_many: "该邮箱请求验证码次数过多，请一小时后再试。",
       session: "请重新登录。",
       network: "无法连接服务器，请重试。",
-      mail_unavailable: "",
+      mail_unavailable: "暂时无法发送邮件，请几分钟后再试。",
     } as Record<AccountError, string>,
   },
   studio: {

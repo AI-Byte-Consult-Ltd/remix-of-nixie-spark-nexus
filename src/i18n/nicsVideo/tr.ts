@@ -120,6 +120,8 @@ const tr: NicsVideoLocale = {
     submitPay: "Ödemeye geç",
     error: "Bir sorun oluştu. Lütfen tekrar deneyin veya info@aibyteconsult.com adresine yazın.",
     demoExists: "Bu e-postayla ücretsiz krediler zaten alınmış.",
+    signInFirst: "Önce e-postanızla giriş yapın: ücretsiz krediler doğrulanmış bir adrese verilir.",
+    signIn: "Giriş yap",
     demoDone: "10 ücretsiz krediniz aktif. Görüntülerinizi aynı e-postayla bu sayfadan yükleyin.",
     payOpened:
       "Revolut ödeme sayfası yeni sekmede açıldı. Ödemeden birkaç dakika sonra kredileriniz aktif olur: görüntülerinizi aynı e-postayla bu sayfadan yükleyin.",
@@ -130,6 +132,7 @@ const tr: NicsVideoLocale = {
   upload: {
     heading: "Görüntülerinizi yükleyin",
     intro: "Kredileri aldığınız e-postayı kullanın. Bir paket 10 kredidir: bir Short (9:16), uzun bir video (16:9) ve kapaklar.",
+    signIn: "Yüklemek için giriş yapın",
     email: "E-posta",
     title: "Kapak başlığı",
     titleEn: "İngilizce kapak başlığı (isteğe bağlı)",
@@ -153,6 +156,7 @@ const tr: NicsVideoLocale = {
       limit_reached: "Bir paket için yeterli kredi kalmadı (10 kredi). Yüklemek için bir plan seçin.",
       job_in_progress: "Devam eden bir işiniz var. Bitmesini bekleyin.",
       email: "E-posta adresini kontrol edin.",
+      login_required: "Lütfen tekrar giriş yapın.",
       files_count: "1 ile 20 arasında video dosyası seçin.",
       file_type: "Yalnızca MP4, MOV, AVI, MKV, M4V ve 3GP dosyaları desteklenir.",
       file_size: "Her dosya 1 GB'tan küçük olmalı.",
@@ -185,7 +189,6 @@ const tr: NicsVideoLocale = {
     otherEmail: "Başka e-posta kullan",
     resend: "Tekrar gönder",
     signedIn: (e: string) => `${e} olarak giriş yapıldı`,
-    notVerified: "E-posta henüz doğrulanmadı: kodla giriş yakında açılacak.",
     signOut: "Çıkış yap",
     errors: {
       email: "Geçerli bir e-posta girin.",
@@ -194,7 +197,7 @@ const tr: NicsVideoLocale = {
       too_many: "Bu e-posta için çok fazla kod istendi. Bir saat sonra tekrar deneyin.",
       session: "Lütfen yeniden giriş yapın.",
       network: "Sunucuya bağlantı yok. Tekrar deneyin.",
-      mail_unavailable: "",
+      mail_unavailable: "E-posta şu anda gönderilemedi. Birkaç dakika sonra tekrar deneyin.",
     } as Record<AccountError, string>,
   },
   studio: {

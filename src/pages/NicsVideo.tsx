@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -30,7 +30,7 @@ import { formatPrice } from "@/data/nicsTraderPlans";
 import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/components/video/NicsVideoCheckout";
 import NicsVideoStudio from "@/components/video/NicsVideoStudio";
 import { studioStrings } from "@/features/studio/strings";
-import { readAccount, signOut, useAccount } from "@/features/account/account";
+import { signOut, useAccount } from "@/features/account/account";
 import AccountDialog from "@/features/account/AccountDialog";
 import { nicsVideoLocales } from "@/i18n/nicsVideo";
 
@@ -318,12 +318,8 @@ const audienceIcons = [Plane, Building2, Camera, Users];
 const NicsVideo = () => {
   const { language } = useLanguage();
   const [checkoutPlan, setCheckoutPlan] = useState<CheckoutPlan | null>(null);
-  const [studioEmail, setStudioEmail] = useState(() => readAccount()?.email ?? "");
   const [signInOpen, setSignInOpen] = useState(false);
   const account = useAccount();
-  useEffect(() => {
-    if (account) setStudioEmail(account.email);
-  }, [account]);
   const c = content[language] ?? nicsVideoLocales[language]?.page ?? content.en;
   const studio = studioStrings(language);
 
@@ -649,8 +645,8 @@ const NicsVideo = () => {
               </div>
               <NicsVideoStudio
                 lang={language}
-                email={studioEmail}
-                onEmailChange={setStudioEmail}
+                account={account}
+                onSignIn={() => setSignInOpen(true)}
                 onNeedAccess={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
               />
             </div>
@@ -658,7 +654,7 @@ const NicsVideo = () => {
         </section>
 
         <AccountDialog open={signInOpen} onOpenChange={setSignInOpen} lang={language} onSignedIn={() => setSignInOpen(false)} />
-        <NicsVideoCheckout plan={checkoutPlan} onClose={() => setCheckoutPlan(null)} lang={language} onStarted={setStudioEmail} />
+        <NicsVideoCheckout plan={checkoutPlan} onClose={() => setCheckoutPlan(null)} lang={language} onSignIn={() => setSignInOpen(true)} />
         <Footer />
       </main>
     </>

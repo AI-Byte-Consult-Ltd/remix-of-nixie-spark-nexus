@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CheckCircle2, CreditCard, Loader2 } from "lucide-react";
 import type { Language } from "@/contexts/LanguageContext";
-import { readAccount } from "@/features/account/account";
+import { readAccount, useAccount } from "@/features/account/account";
 import { nicsVideoLocales } from "@/i18n/nicsVideo";
 
 // n8n [24 VIDEO] Checkout. Prices are decided server-side from the plan id;
@@ -27,6 +27,8 @@ interface Props {
   // Called with the email once the demo or order went through, so the page can
   // prefill the upload form.
   onStarted?: (email: string) => void;
+  // Free credits need a confirmed email, so the demo asks to sign in first.
+  onSignIn?: () => void;
 }
 
 const text = {
@@ -41,6 +43,8 @@ const text = {
     submitPay: "Continue to payment",
     error: "Something went wrong. Please try again or write to info@aibyteconsult.com.",
     demoExists: "Free credits have already been claimed with this email.",
+    signInFirst: "Sign in with your email first: the free credits go to a confirmed email.",
+    signIn: "Sign in",
     demoDone: "Your 10 free credits are active. Upload your footage on this page with the same email.",
     payOpened: "The Revolut checkout opened in a new tab. A few minutes after payment your credits are active: upload your footage on this page with the same email.",
     payLink: "Open checkout again",
@@ -58,6 +62,8 @@ const text = {
     submitPay: "Перейти к оплате",
     error: "Что-то пошло не так. Попробуйте ещё раз или напишите на info@aibyteconsult.com.",
     demoExists: "Бесплатные кредиты на этот email уже были получены.",
+    signInFirst: "Сначала войдите по email: бесплатные кредиты выдаются на подтверждённый адрес.",
+    signIn: "Войти",
     demoDone: "10 бесплатных кредитов активны. Загрузите исходники на этой странице с тем же email.",
     payOpened: "Страница оплаты Revolut открылась в новой вкладке. Через несколько минут после оплаты кредиты активируются: загрузите исходники на этой странице с тем же email.",
     payLink: "Открыть оплату ещё раз",
@@ -68,7 +74,8 @@ const text = {
 
 export type CheckoutText = typeof text.en;
 
-const NicsVideoCheckout = ({ plan, onClose, lang, onStarted }: Props) => {
+const NicsVideoCheckout = ({ plan, onClose, lang, onStarted, onSignIn }: Props) => {
+  const account = useAccount();
   const t = lang === "ru" ? text.ru : nicsVideoLocales[lang]?.checkout ?? text.en;
   const isDemo = plan?.id === "nics_video_demo";
   const [form, setForm] = useState({ name: "", email: "", website: "" });
@@ -100,12 +107,18 @@ const NicsVideoCheckout = ({ plan, onClose, lang, onStarted }: Props) => {
         method: "POST",
         // A simple content type avoids a cross-origin preflight, same as callCabinetApi.
         headers: { "Content-Type": "text/plain;charset=UTF-8" },
-        body: JSON.stringify({ action: isDemo ? "demo" : "order", plan: plan.id, language: lang, ...form }),
+        body: JSON.stringify({
+          action: isDemo ? "demo" : "order",
+          plan: plan.id,
+          language: lang,
+          ...form,
+          ...(isDemo && account ? { email: account.email, session: account.session } : {}),
+        }),
       });
       const data = (await res.json().catch(() => null)) as { ok?: boolean; error?: string; checkout_url?: string } | null;
       if (!res.ok || !data?.ok) {
         tab?.close();
-        setError(data?.error === "demo_exists" ? t.demoExists : t.error);
+        setError(data?.error === "demo_exists" ? t.demoExists : data?.error === "login_required" ? t.signInFirst : t.error);
         return;
       }
       if (!isDemo && data.checkout_url) {
@@ -156,6 +169,19 @@ const NicsVideoCheckout = ({ plan, onClose, lang, onStarted }: Props) => {
               </Button>
             )}
           </div>
+        ) : isDemo && !account ? (
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">{t.signInFirst}</p>
+            <Button
+              className="w-full rounded-full"
+              onClick={() => {
+                onClose();
+                onSignIn?.();
+              }}
+            >
+              {t.signIn}
+            </Button>
+          </div>
         ) : (
           <form onSubmit={submit} className="space-y-4">
             <div className="space-y-2">
@@ -164,7 +190,15 @@ const NicsVideoCheckout = ({ plan, onClose, lang, onStarted }: Props) => {
             </div>
             <div className="space-y-2">
               <Label htmlFor="nv-email">{t.email}</Label>
-              <Input id="nv-email" type="email" required maxLength={200} value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
+              <Input
+                id="nv-email"
+                type="email"
+                required
+                maxLength={200}
+                value={isDemo && account ? account.email : form.email}
+                disabled={isDemo && Boolean(account)}
+                onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+              />
             </div>
             {/* Honeypot: hidden from people, bots fill it in. */}
             <input
