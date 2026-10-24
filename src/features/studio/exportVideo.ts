@@ -4,7 +4,6 @@
 // and encoded locally.
 import {
   ALL_FORMATS,
-  AudioBufferSink,
   AudioBufferSource,
   BlobSource,
   BufferTarget,
@@ -24,11 +23,11 @@ import {
   type Clip,
   type FrameSource,
   type Project,
-  clipLength,
   clipSpans,
   drawFrame,
   totalDuration,
 } from "./model";
+import { decodeClipAudio } from "./audio";
 
 const SAMPLE_RATE = 48000;
 const MUSIC_FADE_OUT = 1.5;
@@ -51,30 +50,6 @@ const sinkSize = (w: number, h: number) => {
   return { width: Math.max(2, Math.round((w * scale) / 2) * 2), height: Math.max(2, Math.round((h * scale) / 2) * 2) };
 };
 
-// Collects the [in, out) part of a clip's sound into one AudioBuffer.
-const clipAudio = async (input: Input, clip: Clip, ctx: BaseAudioContext): Promise<AudioBuffer | null> => {
-  const track = await input.getPrimaryAudioTrack();
-  if (!track || !(await track.canDecode())) return null;
-  const first = await track.getFirstTimestamp();
-  const sink = new AudioBufferSink(track);
-  const rate = track.sampleRate;
-  const channels = Math.min(2, track.numberOfChannels);
-  const length = Math.ceil(clipLength(clip) * rate);
-  if (length <= 0) return null;
-  const out = ctx.createBuffer(channels, length, rate);
-  for await (const { buffer, timestamp } of sink.buffers(first + clip.in, first + clip.out)) {
-    const offset = Math.round((timestamp - first - clip.in) * rate);
-    for (let ch = 0; ch < channels; ch++) {
-      const data = buffer.getChannelData(Math.min(ch, buffer.numberOfChannels - 1));
-      const dest = out.getChannelData(ch);
-      const from = Math.max(0, -offset);
-      const to = Math.min(data.length, length - offset);
-      if (to > from) dest.set(data.subarray(from, to), offset + from);
-    }
-  }
-  return out;
-};
-
 const mixAudio = async (p: Project, total: number, isCanceled: () => boolean): Promise<AudioBuffer | null> => {
   const hasClipSound = p.clips.some((c) => c.kind === "video" && c.volume > 0);
   if (!hasClipSound && !(p.music && p.music.volume > 0)) return null;
@@ -83,19 +58,14 @@ const mixAudio = async (p: Project, total: number, isCanceled: () => boolean): P
     const { clip } = span;
     if (clip.kind !== "video" || clip.volume <= 0) continue;
     if (isCanceled()) throw new ExportError("canceled");
-    const input = new Input({ source: new BlobSource(clip.file), formats: ALL_FORMATS });
-    try {
-      const buf = await clipAudio(input, clip, ctx);
-      if (!buf) continue;
-      const src = ctx.createBufferSource();
-      src.buffer = buf;
-      const gain = ctx.createGain();
-      gain.gain.value = clip.volume;
-      src.connect(gain).connect(ctx.destination);
-      src.start(span.start);
-    } finally {
-      input.dispose();
-    }
+    const buf = await decodeClipAudio(clip);
+    if (!buf) continue;
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    const gain = ctx.createGain();
+    gain.gain.value = clip.volume;
+    src.connect(gain).connect(ctx.destination);
+    src.start(span.start);
   }
   if (p.music && p.music.volume > 0) {
     const data = await p.music.file.arrayBuffer();

@@ -33,6 +33,39 @@ export interface TextItem {
   box: boolean;
 }
 
+export interface CaptionWord {
+  text: string;
+  start: number;
+  end: number;
+}
+
+export interface Caption {
+  id: string;
+  start: number;
+  end: number;
+  words: CaptionWord[];
+}
+
+export interface CaptionStyle {
+  size: number;
+  y: number;
+  color: string;
+  // Colour of the word being spoken; same as `color` turns highlighting off.
+  accent: string;
+  box: boolean;
+  upper: boolean;
+  wordsPerCaption: number;
+}
+
+export interface ZoomEffect {
+  id: string;
+  kind: "zoom";
+  start: number;
+  end: number;
+  // Extra scale at the peak, 0.15 = 115 %.
+  amount: number;
+}
+
 export interface Music {
   file: File;
   url: string;
@@ -41,12 +74,22 @@ export interface Music {
   volume: number;
 }
 
+export interface Background {
+  kind: "blur" | "color";
+  color: string;
+}
+
 export interface Project {
+  title: string;
   aspect: Aspect;
   fit: Fit;
   transition: Transition;
+  background: Background;
   clips: Clip[];
   texts: TextItem[];
+  captions: Caption[];
+  captionStyle: CaptionStyle;
+  effects: ZoomEffect[];
   music: Music | null;
 }
 
@@ -72,6 +115,31 @@ export const FILTERS: Record<FilterId, string> = {
 };
 
 export const TEXT_COLORS = ["#ffffff", "#ffd400", "#ff3b6b", "#2ee6a6", "#3ab4ff", "#111111"];
+export const BACKGROUND_COLORS = ["#000000", "#ffffff", "#f5e6c8", "#1e293b", "#7c3aed", "#0ea5e9"];
+
+export const DEFAULT_CAPTION_STYLE: CaptionStyle = {
+  size: 0.075,
+  y: 0.72,
+  color: "#ffffff",
+  accent: "#ffd400",
+  box: false,
+  upper: true,
+  wordsPerCaption: 3,
+};
+
+export const newProject = (): Project => ({
+  title: "",
+  aspect: "9:16",
+  fit: "cover",
+  transition: "none",
+  background: { kind: "blur", color: "#000000" },
+  clips: [],
+  texts: [],
+  captions: [],
+  captionStyle: { ...DEFAULT_CAPTION_STYLE },
+  effects: [],
+  music: null,
+});
 
 export const uid = () => Math.random().toString(36).slice(2, 10);
 
@@ -120,6 +188,20 @@ export const edgeFade = (p: Project, total: number, t: number) => {
   return 0;
 };
 
+// Punch-in zoom: eases in over the first 30 % of the effect, holds, eases out over the last 30 %.
+export const zoomAt = (effects: ZoomEffect[], t: number) => {
+  let scale = 1;
+  for (const e of effects) {
+    if (t < e.start || t >= e.end) continue;
+    const len = e.end - e.start;
+    const ramp = Math.max(0.05, len * 0.3);
+    const k = Math.min(1, (t - e.start) / ramp, (e.end - t) / ramp);
+    const eased = k * k * (3 - 2 * k);
+    scale = Math.max(scale, 1 + e.amount * eased);
+  }
+  return scale;
+};
+
 let filterSupport: boolean | null = null;
 export const canvasFilterSupported = () => {
   if (filterSupport === null) {
@@ -137,8 +219,9 @@ const drawFitted = (
   w: number,
   h: number,
   mode: Fit,
+  zoom = 1,
 ) => {
-  const scale = mode === "cover" ? Math.max(w / sw, h / sh) : Math.min(w / sw, h / sh);
+  const scale = (mode === "cover" ? Math.max(w / sw, h / sh) : Math.min(w / sw, h / sh)) * zoom;
   const dw = sw * scale;
   const dh = sh * scale;
   ctx.drawImage(src, (w - dw) / 2, (h - dh) / 2, dw, dh);
@@ -163,11 +246,23 @@ const wrapLines = (ctx: CanvasRenderingContext2D, text: string, maxWidth: number
   return lines;
 };
 
+const FONT = 'Inter, "Segoe UI", Roboto, Arial, sans-serif';
+
+const boxFill = (color: string) => (color === "#111111" ? "rgba(255,255,255,0.88)" : "rgba(0,0,0,0.62)");
+const strokeFill = (color: string) => (color === "#111111" ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.75)");
+
+const roundRect = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) => {
+  ctx.beginPath();
+  if (typeof ctx.roundRect === "function") ctx.roundRect(x, y, w, h, r);
+  else ctx.rect(x, y, w, h);
+  ctx.fill();
+};
+
 export const drawText = (ctx: CanvasRenderingContext2D, item: TextItem, w: number, h: number) => {
   if (!item.text.trim()) return;
   const fontSize = Math.round(Math.min(w, h) * item.size);
   ctx.save();
-  ctx.font = `800 ${fontSize}px Inter, "Segoe UI", Roboto, Arial, sans-serif`;
+  ctx.font = `800 ${fontSize}px ${FONT}`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   const lines = wrapLines(ctx, item.text, w * 0.86);
@@ -179,21 +274,77 @@ export const drawText = (ctx: CanvasRenderingContext2D, item: TextItem, w: numbe
     if (item.box) {
       const tw = ctx.measureText(line).width;
       const padX = fontSize * 0.35;
-      ctx.fillStyle = item.color === "#111111" ? "rgba(255,255,255,0.88)" : "rgba(0,0,0,0.62)";
-      ctx.beginPath();
-      const rx = w / 2 - tw / 2 - padX;
-      const ry = cy - lineH / 2;
-      if (typeof ctx.roundRect === "function") ctx.roundRect(rx, ry, tw + padX * 2, lineH, fontSize * 0.2);
-      else ctx.rect(rx, ry, tw + padX * 2, lineH);
-      ctx.fill();
+      ctx.fillStyle = boxFill(item.color);
+      roundRect(ctx, w / 2 - tw / 2 - padX, cy - lineH / 2, tw + padX * 2, lineH, fontSize * 0.2);
     } else {
       ctx.lineJoin = "round";
       ctx.lineWidth = Math.max(2, fontSize * 0.12);
-      ctx.strokeStyle = item.color === "#111111" ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.75)";
+      ctx.strokeStyle = strokeFill(item.color);
       ctx.strokeText(line, w / 2, cy);
     }
     ctx.fillStyle = item.color;
     ctx.fillText(line, w / 2, cy);
+  });
+  ctx.restore();
+};
+
+// Captions are drawn word by word so the word being spoken can take the accent colour.
+export const drawCaption = (
+  ctx: CanvasRenderingContext2D,
+  cap: Caption,
+  style: CaptionStyle,
+  w: number,
+  h: number,
+  t: number,
+) => {
+  const words = cap.words.map((wd) => ({ ...wd, text: style.upper ? wd.text.toUpperCase() : wd.text }));
+  if (!words.length) return;
+  const fontSize = Math.round(Math.min(w, h) * style.size);
+  ctx.save();
+  ctx.font = `900 ${fontSize}px ${FONT}`;
+  ctx.textBaseline = "middle";
+  ctx.textAlign = "left";
+  const space = ctx.measureText(" ").width;
+  const maxW = w * 0.86;
+  const lines: { words: typeof words; width: number }[] = [];
+  let cur: typeof words = [];
+  let curW = 0;
+  for (const wd of words) {
+    const ww = ctx.measureText(wd.text).width;
+    const next = cur.length ? curW + space + ww : ww;
+    if (cur.length && next > maxW) {
+      lines.push({ words: cur, width: curW });
+      cur = [wd];
+      curW = ww;
+    } else {
+      cur.push(wd);
+      curW = next;
+    }
+  }
+  if (cur.length) lines.push({ words: cur, width: curW });
+  const lineH = fontSize * 1.2;
+  const blockH = lineH * lines.length;
+  const top = Math.min(Math.max(style.y * h - blockH / 2, h * 0.03), h * 0.97 - blockH);
+  lines.forEach((line, i) => {
+    const cy = top + lineH * (i + 0.5);
+    let x = w / 2 - line.width / 2;
+    if (style.box) {
+      const padX = fontSize * 0.35;
+      ctx.fillStyle = boxFill(style.color);
+      roundRect(ctx, x - padX, cy - lineH / 2, line.width + padX * 2, lineH, fontSize * 0.2);
+    }
+    for (const wd of line.words) {
+      const active = t >= wd.start && t < wd.end;
+      if (!style.box) {
+        ctx.lineJoin = "round";
+        ctx.lineWidth = Math.max(2, fontSize * 0.14);
+        ctx.strokeStyle = strokeFill(style.color);
+        ctx.strokeText(wd.text, x, cy);
+      }
+      ctx.fillStyle = active ? style.accent : style.color;
+      ctx.fillText(wd.text, x, cy);
+      x += ctx.measureText(wd.text).width + space;
+    }
   });
   ctx.restore();
 };
@@ -218,29 +369,66 @@ export const drawFrame = (
   total: number,
 ) => {
   ctx.save();
-  ctx.fillStyle = "#000";
+  ctx.fillStyle = p.fit === "contain" && p.background.kind === "color" ? p.background.color : "#000";
   ctx.fillRect(0, 0, w, h);
   if (frame && frame.width > 0 && frame.height > 0) {
     const useFilter = canvasFilterSupported();
-    if (p.fit === "contain") {
+    const zoom = zoomAt(p.effects, t);
+    if (p.fit === "contain" && p.background.kind === "blur" && useFilter) {
       // Blurred, darkened copy behind the full picture, like the phone editors do.
-      if (useFilter) {
-        ctx.filter = `blur(${Math.round(Math.min(w, h) / 30)}px) brightness(0.55)`;
-        drawFitted(ctx, frame.image, frame.width, frame.height, w, h, "cover");
-        ctx.filter = "none";
-      }
+      ctx.filter = `blur(${Math.round(Math.min(w, h) / 30)}px) brightness(0.55)`;
+      drawFitted(ctx, frame.image, frame.width, frame.height, w, h, "cover");
+      ctx.filter = "none";
     }
     if (useFilter) ctx.filter = FILTERS[filter];
-    drawFitted(ctx, frame.image, frame.width, frame.height, w, h, p.fit);
+    drawFitted(ctx, frame.image, frame.width, frame.height, w, h, p.fit, zoom);
     if (useFilter) ctx.filter = "none";
   }
   for (const item of p.texts) if (t >= item.start && t < item.end) drawText(ctx, item, w, h);
+  for (const cap of p.captions) if (t >= cap.start && t < cap.end) drawCaption(ctx, cap, p.captionStyle, w, h, t);
   const dip = Math.max(fadeAmount(p, spans, t), edgeFade(p, total, t));
   if (dip > 0) {
     ctx.fillStyle = `rgba(0,0,0,${dip.toFixed(3)})`;
     ctx.fillRect(0, 0, w, h);
   }
   ctx.restore();
+};
+
+// Groups recognised words into captions of `perCaption` words, also breaking at
+// pauses and sentence ends so a caption never spans silence.
+export const buildCaptions = (words: CaptionWord[], perCaption: number): Caption[] => {
+  const out: Caption[] = [];
+  let cur: CaptionWord[] = [];
+  const flush = () => {
+    if (!cur.length) return;
+    out.push({ id: uid(), start: cur[0].start, end: cur[cur.length - 1].end, words: cur });
+    cur = [];
+  };
+  for (const wd of words) {
+    const prev = cur[cur.length - 1];
+    if (prev && (wd.start - prev.end > 0.6 || /[.!?…]$/.test(prev.text))) flush();
+    cur.push(wd);
+    if (cur.length >= perCaption) flush();
+  }
+  flush();
+  // Keep each caption up until the next one starts, unless there is a real pause.
+  for (let i = 0; i < out.length - 1; i++) {
+    const gap = out[i + 1].start - out[i].end;
+    if (gap > 0 && gap < 0.6) out[i].end = out[i + 1].start;
+  }
+  return out;
+};
+
+export const captionWords = (captions: Caption[]) => captions.flatMap((c) => c.words);
+
+// Re-times edited caption text evenly across the caption's span.
+export const retimeCaption = (cap: Caption, text: string): Caption => {
+  const parts = text.split(/\s+/).filter(Boolean);
+  const len = (cap.end - cap.start) / Math.max(1, parts.length);
+  return {
+    ...cap,
+    words: parts.map((p, i) => ({ text: p, start: cap.start + i * len, end: cap.start + (i + 1) * len })),
+  };
 };
 
 export const formatTime = (s: number) => {

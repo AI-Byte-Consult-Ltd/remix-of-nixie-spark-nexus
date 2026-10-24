@@ -30,19 +30,19 @@ const NicsStudio = () => {
       />
       <main className="min-h-screen bg-background">
         <Header />
-        <section className="pt-28 pb-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto space-y-6">
+        <section className="pt-24 pb-16">
+          <div className="mx-auto px-3 sm:px-4">
+            <div className="max-w-[1600px] mx-auto space-y-5">
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <h1 className="text-3xl md:text-4xl font-semibold text-foreground">
+                  <h1 className="text-2xl md:text-3xl font-semibold text-foreground">
                     <span className="text-gradient-gold">{s.title}</span>
                   </h1>
                   <span className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
                     {s.badge}
                   </span>
                 </div>
-                <p className="text-lg text-muted-foreground max-w-3xl">{s.subtitle}</p>
+                <p className="text-base text-muted-foreground max-w-4xl">{s.subtitle}</p>
                 <p className="text-sm text-muted-foreground max-w-3xl flex gap-2">
                   <ShieldCheck className="w-4 h-4 shrink-0 mt-0.5 text-primary" />
                   <span>{s.devNote}</span>
