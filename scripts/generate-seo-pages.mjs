@@ -212,6 +212,14 @@ const pages = [
     type: "website",
     schemaType: "SoftwareApplication",
   },
+  {
+    route: "/nics-studio",
+    title: "NICS Studio — Online Video Editor for Shorts and YouTube",
+    description:
+      "Edit your video yourself in the browser: cut and split clips, add text, music, filters and fades, and export a 9:16 or 16:9 MP4. Your files stay on your device.",
+    type: "website",
+    schemaType: "SoftwareApplication",
+  },
 ];
 
 const escapeAttribute = (value) =>
@@ -315,6 +323,7 @@ const sitemapMeta = {
   "/nics-multimedia": { priority: "0.5", changefreq: "monthly" },
   "/nics-forge": { priority: "0.5", changefreq: "monthly" },
   "/nics-video": { priority: "0.6", changefreq: "monthly" },
+  "/nics-studio": { priority: "0.6", changefreq: "monthly" },
   "/terms": { priority: "0.4", changefreq: "yearly" },
   "/privacy": { priority: "0.3", changefreq: "yearly" },
   "/delete": { priority: "0.3", changefreq: "yearly" },

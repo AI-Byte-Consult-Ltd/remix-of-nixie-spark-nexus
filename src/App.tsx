@@ -17,6 +17,7 @@ const NicsEcosystem = lazy(() => import("./pages/NicsEcosystem"));
 const NicsMultimedia = lazy(() => import("./pages/NicsMultimedia"));
 const NicsForge = lazy(() => import("./pages/NicsForge"));
 const NicsVideo = lazy(() => import("./pages/NicsVideo"));
+const NicsStudio = lazy(() => import("./pages/NicsStudio"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const DataDeletion = lazy(() => import("./pages/DataDeletion"));
@@ -89,6 +90,7 @@ const App = () => (
             <Route path="/nics-multimedia" element={<NicsMultimedia />} />
             <Route path="/nics-forge" element={<NicsForge />} />
             <Route path="/nics-video" element={<NicsVideo />} />
+            <Route path="/nics-studio" element={<NicsStudio />} />
             <Route
               path="/cabinet/login"
               element={
