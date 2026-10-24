@@ -5,10 +5,12 @@ import type { Language } from "@/contexts/LanguageContext";
 
 // Videos made with NICS Video. Plain links, no TikTok embed script: the site
 // stays static and loads nothing from third parties until the visitor clicks.
-// Covers are copies of the TikTok/YouTube covers in public/examples/<video id>.webp,
-// served from our own site. To add an example, save its cover there and
-// append { platform, id, format, title } below.
+// Covers are copies of the TikTok/YouTube covers in public/examples/, named
+// tt-<id>.webp or yt-<id>.webp and served from our own site. The prefix also
+// keeps names from starting with "_", which GitHub Pages does not publish.
+// To add an example, save its cover there and append { platform, id, format, title } below.
 const TIKTOK_PROFILE = "https://www.tiktok.com/@alexander.nics";
+const YOUTUBE_CHANNEL = "https://www.youtube.com/channel/UCfC75nacgk2RLwaRm1Q0NIg";
 
 interface Example {
   platform: "tiktok" | "youtube";
@@ -37,7 +39,6 @@ interface ExamplesStrings {
   intro: string;
   profileTitle: string;
   profileText: string;
-  profileButton: string;
   shorts: string;
   long: string;
   watch: string;
@@ -48,9 +49,8 @@ const strings: Record<Language, ExamplesStrings> = {
   en: {
     heading: "Examples",
     intro: "Real videos edited by NICS Video from raw clips, without manual editing.",
-    profileTitle: "All examples on TikTok",
-    profileText: "We publish videos made by NICS Video on our TikTok channel. New examples appear there first.",
-    profileButton: "Open TikTok",
+    profileTitle: "All examples on TikTok and YouTube",
+    profileText: "We publish videos made by NICS Video on our TikTok and YouTube channels. New examples appear there first.",
     shorts: "Vertical",
     long: "Horizontal",
     watch: "Watch on TikTok",
@@ -59,9 +59,8 @@ const strings: Record<Language, ExamplesStrings> = {
   ru: {
     heading: "Примеры",
     intro: "Настоящие видео, смонтированные NICS Video из исходных клипов, без ручного монтажа.",
-    profileTitle: "Все примеры в TikTok",
-    profileText: "Видео, сделанные NICS Video, мы публикуем в нашем TikTok. Новые примеры появляются там первыми.",
-    profileButton: "Открыть TikTok",
+    profileTitle: "Все примеры в TikTok и на YouTube",
+    profileText: "Видео, сделанные NICS Video, мы публикуем в наших каналах TikTok и YouTube. Новые примеры появляются там первыми.",
     shorts: "Вертикальное",
     long: "Горизонтальное",
     watch: "Смотреть в TikTok",
@@ -70,9 +69,8 @@ const strings: Record<Language, ExamplesStrings> = {
   de: {
     heading: "Beispiele",
     intro: "Echte Videos, die NICS Video aus Rohclips geschnitten hat, ganz ohne manuellen Schnitt.",
-    profileTitle: "Alle Beispiele auf TikTok",
-    profileText: "Mit NICS Video erstellte Videos veröffentlichen wir auf unserem TikTok-Kanal. Neue Beispiele erscheinen dort zuerst.",
-    profileButton: "TikTok öffnen",
+    profileTitle: "Alle Beispiele auf TikTok und YouTube",
+    profileText: "Mit NICS Video erstellte Videos veröffentlichen wir auf unseren TikTok- und YouTube-Kanälen. Neue Beispiele erscheinen dort zuerst.",
     shorts: "Hochformat",
     long: "Querformat",
     watch: "Auf TikTok ansehen",
@@ -81,9 +79,8 @@ const strings: Record<Language, ExamplesStrings> = {
   fr: {
     heading: "Exemples",
     intro: "De vraies vidéos montées par NICS Video à partir de clips bruts, sans montage manuel.",
-    profileTitle: "Tous les exemples sur TikTok",
-    profileText: "Nous publions les vidéos réalisées avec NICS Video sur notre chaîne TikTok. Les nouveaux exemples y apparaissent en premier.",
-    profileButton: "Ouvrir TikTok",
+    profileTitle: "Tous les exemples sur TikTok et YouTube",
+    profileText: "Nous publions les vidéos réalisées avec NICS Video sur nos chaînes TikTok et YouTube. Les nouveaux exemples y apparaissent en premier.",
     shorts: "Vertical",
     long: "Horizontal",
     watch: "Voir sur TikTok",
@@ -92,9 +89,8 @@ const strings: Record<Language, ExamplesStrings> = {
   ar: {
     heading: "أمثلة",
     intro: "فيديوهات حقيقية حرّرها NICS Video من مقاطع خام، دون مونتاج يدوي.",
-    profileTitle: "جميع الأمثلة على TikTok",
-    profileText: "ننشر الفيديوهات المصنوعة بواسطة NICS Video على قناتنا في TikTok. تظهر الأمثلة الجديدة هناك أولاً.",
-    profileButton: "فتح TikTok",
+    profileTitle: "جميع الأمثلة على TikTok وYouTube",
+    profileText: "ننشر الفيديوهات المصنوعة بواسطة NICS Video على قناتينا في TikTok وYouTube. تظهر الأمثلة الجديدة هناك أولاً.",
     shorts: "عمودي",
     long: "أفقي",
     watch: "شاهد على TikTok",
@@ -103,9 +99,8 @@ const strings: Record<Language, ExamplesStrings> = {
   zh: {
     heading: "作品示例",
     intro: "由 NICS Video 从原始素材自动剪辑的真实视频，无需手动剪辑。",
-    profileTitle: "TikTok 上的全部示例",
-    profileText: "我们在 TikTok 频道发布用 NICS Video 制作的视频，新示例会首先在那里发布。",
-    profileButton: "打开 TikTok",
+    profileTitle: "TikTok 和 YouTube 上的全部示例",
+    profileText: "我们在 TikTok 和 YouTube 频道发布用 NICS Video 制作的视频，新示例会首先在那里发布。",
     shorts: "竖屏",
     long: "横屏",
     watch: "在 TikTok 观看",
@@ -114,9 +109,8 @@ const strings: Record<Language, ExamplesStrings> = {
   pl: {
     heading: "Przykłady",
     intro: "Prawdziwe filmy zmontowane przez NICS Video z surowych klipów, bez ręcznego montażu.",
-    profileTitle: "Wszystkie przykłady na TikToku",
-    profileText: "Filmy zrobione w NICS Video publikujemy na naszym kanale TikTok. Nowe przykłady pojawiają się tam najpierw.",
-    profileButton: "Otwórz TikTok",
+    profileTitle: "Wszystkie przykłady na TikToku i YouTube",
+    profileText: "Filmy zrobione w NICS Video publikujemy na naszych kanałach TikTok i YouTube. Nowe przykłady pojawiają się tam najpierw.",
     shorts: "Pionowy",
     long: "Poziomy",
     watch: "Obejrzyj na TikToku",
@@ -125,9 +119,8 @@ const strings: Record<Language, ExamplesStrings> = {
   tr: {
     heading: "Örnekler",
     intro: "NICS Video'nun ham kliplerden elle kurgu yapmadan hazırladığı gerçek videolar.",
-    profileTitle: "Tüm örnekler TikTok'ta",
-    profileText: "NICS Video ile yapılan videoları TikTok kanalımızda yayınlıyoruz. Yeni örnekler önce orada görünür.",
-    profileButton: "TikTok'u aç",
+    profileTitle: "Tüm örnekler TikTok ve YouTube'da",
+    profileText: "NICS Video ile yapılan videoları TikTok ve YouTube kanallarımızda yayınlıyoruz. Yeni örnekler önce orada görünür.",
     shorts: "Dikey",
     long: "Yatay",
     watch: "TikTok'ta izle",
@@ -136,9 +129,8 @@ const strings: Record<Language, ExamplesStrings> = {
   it: {
     heading: "Esempi",
     intro: "Video reali montati da NICS Video a partire da clip grezze, senza montaggio manuale.",
-    profileTitle: "Tutti gli esempi su TikTok",
-    profileText: "Pubblichiamo i video realizzati con NICS Video sul nostro canale TikTok. I nuovi esempi compaiono prima lì.",
-    profileButton: "Apri TikTok",
+    profileTitle: "Tutti gli esempi su TikTok e YouTube",
+    profileText: "Pubblichiamo i video realizzati con NICS Video sui nostri canali TikTok e YouTube. I nuovi esempi compaiono prima lì.",
     shorts: "Verticale",
     long: "Orizzontale",
     watch: "Guarda su TikTok",
@@ -147,9 +139,8 @@ const strings: Record<Language, ExamplesStrings> = {
   bg: {
     heading: "Примери",
     intro: "Истински видеа, монтирани от NICS Video от сурови клипове, без ръчен монтаж.",
-    profileTitle: "Всички примери в TikTok",
-    profileText: "Видеата, направени с NICS Video, публикуваме в нашия TikTok канал. Новите примери се появяват първо там.",
-    profileButton: "Отвори TikTok",
+    profileTitle: "Всички примери в TikTok и YouTube",
+    profileText: "Видеата, направени с NICS Video, публикуваме в нашите канали в TikTok и YouTube. Новите примери се появяват първо там.",
     shorts: "Вертикално",
     long: "Хоризонтално",
     watch: "Гледай в TikTok",
@@ -158,9 +149,8 @@ const strings: Record<Language, ExamplesStrings> = {
   es: {
     heading: "Ejemplos",
     intro: "Vídeos reales editados por NICS Video a partir de clips en bruto, sin edición manual.",
-    profileTitle: "Todos los ejemplos en TikTok",
-    profileText: "Publicamos los vídeos hechos con NICS Video en nuestro canal de TikTok. Los nuevos ejemplos aparecen allí primero.",
-    profileButton: "Abrir TikTok",
+    profileTitle: "Todos los ejemplos en TikTok y YouTube",
+    profileText: "Publicamos los vídeos hechos con NICS Video en nuestros canales de TikTok y YouTube. Los nuevos ejemplos aparecen allí primero.",
     shorts: "Vertical",
     long: "Horizontal",
     watch: "Ver en TikTok",
@@ -169,9 +159,8 @@ const strings: Record<Language, ExamplesStrings> = {
   pt: {
     heading: "Exemplos",
     intro: "Vídeos reais editados pelo NICS Video a partir de clipes brutos, sem edição manual.",
-    profileTitle: "Todos os exemplos no TikTok",
-    profileText: "Publicamos os vídeos feitos com o NICS Video no nosso canal do TikTok. Os novos exemplos aparecem lá primeiro.",
-    profileButton: "Abrir TikTok",
+    profileTitle: "Todos os exemplos no TikTok e no YouTube",
+    profileText: "Publicamos os vídeos feitos com o NICS Video nos nossos canais do TikTok e do YouTube. Os novos exemplos aparecem lá primeiro.",
     shorts: "Vertical",
     long: "Horizontal",
     watch: "Ver no TikTok",
@@ -213,7 +202,7 @@ const NicsVideoExamples = ({ lang }: { lang: Language }) => {
                         }`}
                       >
                         <img
-                          src={`/examples/${e.id}.webp`}
+                          src={`/examples/${e.platform === "youtube" ? "yt" : "tt"}-${e.id}.webp`}
                           alt={title}
                           loading="lazy"
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -245,14 +234,20 @@ const NicsVideoExamples = ({ lang }: { lang: Language }) => {
               <div className="flex-1 space-y-2">
                 <h3 className="text-lg font-semibold text-foreground">{s.profileTitle}</h3>
                 <p className="text-muted-foreground leading-relaxed">{s.profileText}</p>
-                <p className="text-sm text-primary">@alexander.nics</p>
               </div>
-              <a href={TIKTOK_PROFILE} target="_blank" rel="noopener noreferrer">
-                <Button className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-6">
-                  {s.profileButton}
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </a>
+              <div className="flex flex-col gap-2 shrink-0">
+                {[
+                  { href: TIKTOK_PROFILE, label: "TikTok" },
+                  { href: YOUTUBE_CHANNEL, label: "YouTube" },
+                ].map((ch) => (
+                  <a key={ch.label} href={ch.href} target="_blank" rel="noopener noreferrer">
+                    <Button className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-full px-6">
+                      {ch.label}
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </a>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>
