@@ -113,9 +113,9 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       "Vertical video in a dynamic editing style, about 28–33 seconds — for TikTok, Instagram Reels and YouTube Shorts.",
     longTitle: "Long · 16:9",
     longText: "Horizontal video in a smooth travel style, about 60–90 seconds — for YouTube, your website or portfolio.",
-    coversTitle: "4 covers · EN / RU",
+    coversTitle: "4 covers · 2 languages",
     coversText:
-      "Poster-style covers for the Short and the Long, in English and Russian: a real frame from your video with a bold, layered title.",
+      "Poster-style covers for the Short and the Long, in your language and in English: a real frame from your video with a bold, layered title.",
     outputsFootnote:
       "Both videos are H.264/AAC, without burned-in subtitles, with optional background music that starts from the most energetic part of the track.",
     howHeading: "How it works",

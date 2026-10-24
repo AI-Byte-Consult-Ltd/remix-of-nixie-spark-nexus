@@ -62,7 +62,7 @@ import {
 import { ExportError, browserCanEdit, exportProject } from "./exportVideo";
 import { removeSilence } from "./audio";
 import { TranscribeError, transcribeProject } from "./transcribe";
-import { type AgentStep, parseCommand } from "./agent";
+import { type AgentStep, type CaptionLang, parseCommand, requestLanguage } from "./agent";
 import { studioStrings } from "./strings";
 import Timeline, { type Selection } from "./Timeline";
 import AgentPanel, { type AgentMessage, type StepStatus } from "./AgentPanel";
@@ -80,7 +80,18 @@ const PREVIEW_SIZE: Record<Aspect, { w: number; h: number }> = {
 
 type Tool = "projects" | "media" | "sounds" | "captions" | "text" | "effects" | "transitions" | "background" | "settings";
 type Media = HTMLVideoElement | HTMLImageElement;
-type CaptionLang = "ru" | "en";
+
+const CAPTION_LANGS: CaptionLang[] = ["en", "ru", "de", "fr", "es", "it", "pt", "pl", "tr", "bg", "ar", "zh"];
+
+// A language's name in the site language, e.g. "Deutsch" -> "German" on the English site.
+const languageName = (code: CaptionLang, ui: Language) => {
+  try {
+    const name = new Intl.DisplayNames([ui], { type: "language" }).of(code) ?? code;
+    return name.charAt(0).toLocaleUpperCase(ui) + name.slice(1);
+  } catch {
+    return code;
+  }
+};
 
 const TOOLS: { id: Tool; icon: typeof Film }[] = [
   { id: "projects", icon: FolderOpen },
@@ -158,7 +169,7 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
   const [notice, setNotice] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [agentBusy, setAgentBusy] = useState(false);
-  const [captionLang, setCaptionLang] = useState<CaptionLang>(lang === "ru" ? "ru" : "en");
+  const [captionLang, setCaptionLang] = useState<CaptionLang>(lang);
   const [captionStatus, setCaptionStatus] = useState<string | null>(null);
   const [messages, setMessages] = useState<AgentMessage[]>([{ id: "hello", role: "agent", text: s.agent.hello }]);
   const [saved, setSaved] = useState<SavedSummary[]>([]);
@@ -796,7 +807,7 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
 
   const runAgent = async (text: string) => {
     // Speech language for captions: what the user asked for, else the language they write in.
-    const writtenIn: CaptionLang = /[а-яё]/i.test(text) ? "ru" : "en";
+    const writtenIn = requestLanguage(text, lang);
     const userMsg: AgentMessage = { id: uid(), role: "user", text };
     if (!projectRef.current.clips.length) {
       setMessages((m) => [...m, userMsg, { id: uid(), role: "agent", text: s.agent.noClips }]);
@@ -1097,15 +1108,17 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
               />
             </Field>
             <Field label={s.captionLanguage}>
-              <Segmented<CaptionLang>
-                size="sm"
+              <select
                 value={captionLang}
-                onChange={setCaptionLang}
-                options={[
-                  { value: "ru", label: s.langRu },
-                  { value: "en", label: s.langEn },
-                ]}
-              />
+                onChange={(e) => setCaptionLang(e.target.value as CaptionLang)}
+                className="w-full rounded-lg border border-border bg-background px-2.5 py-1.5 text-sm"
+              >
+                {CAPTION_LANGS.map((code) => (
+                  <option key={code} value={code}>
+                    {languageName(code, lang)}
+                  </option>
+                ))}
+              </select>
             </Field>
             <Button onClick={runCaptionsPanel} disabled={busy || total <= 0} className="w-full rounded-full">
               {agentBusy ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Captions className="w-4 h-4 mr-2" />}

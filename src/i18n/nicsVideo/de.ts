@@ -22,9 +22,9 @@ const de: NicsVideoLocale = {
       "Vertikales Video im dynamischen Schnittstil, etwa 28–33 Sekunden – für TikTok, Instagram Reels und YouTube Shorts.",
     longTitle: "Long · 16:9",
     longText: "Horizontales Video im ruhigen Reisestil, etwa 60–90 Sekunden – für YouTube, Ihre Website oder Ihr Portfolio.",
-    coversTitle: "4 Cover · EN / RU",
+    coversTitle: "4 Cover · DE / EN",
     coversText:
-      "Cover im Posterstil für Short und Long, auf Englisch und Russisch: ein echtes Bild aus Ihrem Video mit einem großen, plastischen Titel.",
+      "Cover im Posterstil für Short und Long, auf Deutsch und Englisch: ein echtes Bild aus Ihrem Video mit einem großen, plastischen Titel.",
     outputsFootnote:
       "Beide Videos sind H.264/AAC, ohne eingebrannte Untertitel, optional mit Hintergrundmusik, die am energiereichsten Teil des Tracks beginnt.",
     howHeading: "So funktioniert es",
@@ -280,8 +280,6 @@ const de: NicsVideoLocale = {
     regenerate: "Neu erstellen",
     wordsPerCaption: "Wörter pro Untertitel",
     captionLanguage: "Sprache",
-    langRu: "Russisch",
-    langEn: "Englisch",
     removeCaptions: "Alle Untertitel entfernen",
     captionText: "Untertiteltext",
     captionsList: "Untertitel",
@@ -312,19 +310,19 @@ const de: NicsVideoLocale = {
       placeholder: "Sagen Sie dem Agenten, was er ändern soll…",
       send: "Senden",
       hello:
-        "Hallo! Ich bin der NICS-Studio-Agent. Fügen Sie Ihre Clips hinzu und sagen Sie mir, was ich tun soll. Im Moment verstehe ich Anfragen auf Englisch und Russisch, zum Beispiel: „cut the pauses, add captions 3 words at a time, a little bigger, and add zooms“.",
+        "Hallo! Ich bin der NICS-Studio-Agent. Fügen Sie Ihre Clips hinzu und sagen Sie mir, was ich tun soll, zum Beispiel: „Schneide die Pausen, füge Untertitel mit 3 Wörtern hinzu, etwas größer, und Zooms“.",
       examples: [
-        "Cut the pauses and add captions 3 words at a time",
-        "Add zooms throughout the video",
-        "Make it vertical for TikTok, up to 30 seconds",
-        "Add text “My trip” at the top and fades",
+        "Schneide die Pausen und füge Untertitel mit 3 Wörtern hinzu",
+        "Füge Zooms im ganzen Video hinzu",
+        "Mach es vertikal für TikTok, bis 30 Sekunden",
+        "Füge den Text „Meine Reise“ oben und Übergänge hinzu",
       ],
       steps: (n: number) => (n === 1 ? "1 Schritt" : `${n} Schritte`),
       working: "Ihr Schnitt wird bearbeitet",
       finished: "Fertig. Prüfen Sie die Vorschau; jeder Schritt lässt sich rückgängig machen.",
       noClips: "Fügen Sie zuerst einen Clip hinzu: Ich bearbeite das Video auf Ihrer Timeline.",
       unknown:
-        "Ich habe nicht verstanden, was ich ändern soll. Schreiben Sie die Anfrage bitte auf Englisch oder Russisch. Ich kann: Pausen schneiden, auf eine Länge kürzen, Untertitel hinzufügen oder gestalten, Zooms, Text, Blenden, Filter hinzufügen, Format, Bildausschnitt und Musiklautstärke ändern.",
+        "Ich habe nicht verstanden, was ich ändern soll. Ich kann: Pausen schneiden, auf eine Länge kürzen, Untertitel hinzufügen oder gestalten, Zooms, Text, Blenden, Filter hinzufügen, Format, Bildausschnitt und Musiklautstärke ändern.",
       upNext: "Als Nächstes",
       running: "Läuft",
       done: "Erledigt",
@@ -393,7 +391,7 @@ const de: NicsVideoLocale = {
     },
     sectionHeading: "NICS Studio: selbst schneiden",
     sectionText:
-      "Lieber selbst schneiden? NICS Studio ist ein Videoeditor direkt auf unserer Website, im Stil von CapCut und Edits, mit einem KI-Agenten: Schreiben Sie „cut the pauses, add captions and zooms“, und er schneidet Schritt für Schritt. Untertitel, Text, Musik, Filter, Export in 9:16 oder 16:9. Läuft im Browser, Ihre Dateien bleiben auf Ihrem Gerät.",
+      "Lieber selbst schneiden? NICS Studio ist ein Videoeditor direkt auf unserer Website, im Stil von CapCut und Edits, mit einem KI-Agenten: Schreiben Sie „Schneide die Pausen, füge Untertitel und Zooms hinzu“, und er schneidet Schritt für Schritt. Untertitel, Text, Musik, Filter, Export in 9:16 oder 16:9. Läuft im Browser, Ihre Dateien bleiben auf Ihrem Gerät.",
     sectionButton: "NICS Studio öffnen",
   },
 };

@@ -22,9 +22,9 @@ const es: NicsVideoLocale = {
       "Vídeo vertical con edición dinámica, unos 28–33 segundos, para TikTok, Instagram Reels y YouTube Shorts.",
     longTitle: "Long · 16:9",
     longText: "Vídeo horizontal con un estilo de viaje fluido, unos 60–90 segundos, para YouTube, tu web o tu portfolio.",
-    coversTitle: "4 portadas · EN / RU",
+    coversTitle: "4 portadas · ES / EN",
     coversText:
-      "Portadas tipo póster para el Short y el Long, en inglés y ruso: un fotograma real de tu vídeo con un título grande y con volumen.",
+      "Portadas tipo póster para el Short y el Long, en español e inglés: un fotograma real de tu vídeo con un título grande y con volumen.",
     outputsFootnote:
       "Ambos vídeos son H.264/AAC, sin subtítulos incrustados, con música de fondo opcional que empieza en la parte más enérgica de la pista.",
     howHeading: "Cómo funciona",
@@ -280,8 +280,6 @@ const es: NicsVideoLocale = {
     regenerate: "Generar de nuevo",
     wordsPerCaption: "Palabras por subtítulo",
     captionLanguage: "Idioma",
-    langRu: "Ruso",
-    langEn: "Inglés",
     removeCaptions: "Quitar todos los subtítulos",
     captionText: "Texto del subtítulo",
     captionsList: "Subtítulos",
@@ -312,19 +310,19 @@ const es: NicsVideoLocale = {
       placeholder: "Dile al agente qué cambiar…",
       send: "Enviar",
       hello:
-        "¡Hola! Soy el agente de NICS Studio. Añade tus clips y dime qué hacer. Por ahora entiendo peticiones en inglés y ruso, por ejemplo: «cut the pauses, add captions 3 words at a time, a little bigger, and add zooms».",
+        "¡Hola! Soy el agente de NICS Studio. Añade tus clips y dime qué hacer, por ejemplo: «corta las pausas, añade subtítulos de 3 palabras, un poco más grandes, y zooms».",
       examples: [
-        "Cut the pauses and add captions 3 words at a time",
-        "Add zooms throughout the video",
-        "Make it vertical for TikTok, up to 30 seconds",
-        "Add text “My trip” at the top and fades",
+        "Corta las pausas y añade subtítulos de 3 palabras",
+        "Añade zooms en todo el vídeo",
+        "Ponlo vertical para TikTok, hasta 30 segundos",
+        "Añade el texto «Mi viaje» arriba y fundidos",
       ],
       steps: (n: number) => (n === 1 ? "1 paso" : `${n} pasos`),
       working: "Trabajando en tu edición",
       finished: "Listo. Revisa la vista previa; cada paso se puede deshacer.",
       noClips: "Primero añade un clip: edito el vídeo en tu línea de tiempo.",
       unknown:
-        "No entendí qué cambiar. Escribe la petición en inglés o ruso. Puedo: cortar pausas, recortar a una duración, añadir o dar estilo a subtítulos, añadir zooms, texto, fundidos, filtros, cambiar el formato, el encuadre y el volumen de la música.",
+        "No entendí qué cambiar. Puedo: cortar pausas, recortar a una duración, añadir o dar estilo a subtítulos, añadir zooms, texto, fundidos, filtros, cambiar el formato, el encuadre y el volumen de la música.",
       upNext: "A continuación",
       running: "En curso",
       done: "Hecho",
@@ -393,7 +391,7 @@ const es: NicsVideoLocale = {
     },
     sectionHeading: "NICS Studio: edítalo tú mismo",
     sectionText:
-      "¿Prefieres editar a mano? NICS Studio es un editor de vídeo dentro de nuestra web, al estilo de CapCut y Edits, con un agente de IA: escribe «cut the pauses, add captions and zooms» y hace la edición paso a paso. Subtítulos, texto, música, filtros, exportación en 9:16 o 16:9. Funciona en el navegador, tus archivos se quedan en tu dispositivo.",
+      "¿Prefieres editar a mano? NICS Studio es un editor de vídeo dentro de nuestra web, al estilo de CapCut y Edits, con un agente de IA: escribe «corta las pausas, añade subtítulos y zooms» y hace la edición paso a paso. Subtítulos, texto, música, filtros, exportación en 9:16 o 16:9. Funciona en el navegador, tus archivos se quedan en tu dispositivo.",
     sectionButton: "Abrir NICS Studio",
   },
 };

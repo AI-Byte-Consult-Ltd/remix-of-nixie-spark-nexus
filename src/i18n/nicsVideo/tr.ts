@@ -22,9 +22,9 @@ const tr: NicsVideoLocale = {
       "Dinamik kurgu tarzında dikey video, yaklaşık 28–33 saniye – TikTok, Instagram Reels ve YouTube Shorts için.",
     longTitle: "Long · 16:9",
     longText: "Akıcı seyahat tarzında yatay video, yaklaşık 60–90 saniye – YouTube, web siteniz veya portfolyonuz için.",
-    coversTitle: "4 kapak · EN / RU",
+    coversTitle: "4 kapak · TR / EN",
     coversText:
-      "Short ve Long için İngilizce ve Rusça afiş tarzı kapaklar: videonuzdan gerçek bir kare ve büyük, katmanlı bir başlık.",
+      "Short ve Long için Türkçe ve İngilizce afiş tarzı kapaklar: videonuzdan gerçek bir kare ve büyük, katmanlı bir başlık.",
     outputsFootnote:
       "İki video da H.264/AAC, gömülü altyazı olmadan; isteğe bağlı fon müziği parçanın en enerjik bölümünden başlar.",
     howHeading: "Nasıl çalışır",
@@ -280,8 +280,6 @@ const tr: NicsVideoLocale = {
     regenerate: "Yeniden oluştur",
     wordsPerCaption: "Altyazı başına kelime",
     captionLanguage: "Dil",
-    langRu: "Rusça",
-    langEn: "İngilizce",
     removeCaptions: "Tüm altyazıları kaldır",
     captionText: "Altyazı metni",
     captionsList: "Altyazılar",
@@ -312,19 +310,19 @@ const tr: NicsVideoLocale = {
       placeholder: "Ajana neyi değiştireceğini yazın…",
       send: "Gönder",
       hello:
-        "Merhaba! Ben NICS Studio ajanıyım. Kliplerinizi ekleyin ve ne yapacağımı söyleyin. Şimdilik İngilizce ve Rusça istekleri anlıyorum, örneğin: “cut the pauses, add captions 3 words at a time, a little bigger, and add zooms”.",
+        "Merhaba! Ben NICS Studio ajanıyım. Kliplerinizi ekleyin ve ne yapacağımı söyleyin, örneğin: “duraklamaları kes, 3 kelimelik altyazı ekle, biraz daha büyük, ve zoom ekle”.",
       examples: [
-        "Cut the pauses and add captions 3 words at a time",
-        "Add zooms throughout the video",
-        "Make it vertical for TikTok, up to 30 seconds",
-        "Add text “My trip” at the top and fades",
+        "Duraklamaları kes ve 3 kelimelik altyazı ekle",
+        "Tüm videoya zoom ekle",
+        "TikTok için dikey yap, 30 saniyeye kadar",
+        "Üstte “Seyahatim” metnini ve geçişleri ekle",
       ],
       steps: (n: number) => `${n} adım`,
       working: "Kurgunuz üzerinde çalışıyorum",
       finished: "Bitti. Önizlemeye bakın; her adım geri alınabilir.",
       noClips: "Önce bir klip ekleyin: videoyu zaman çizelgenizde düzenliyorum.",
       unknown:
-        "Neyi değiştireceğimi anlamadım. Lütfen isteği İngilizce veya Rusça yazın. Yapabildiklerim: duraklamaları kesmek, belirli bir süreye kısaltmak, altyazı eklemek veya biçimlendirmek, zoom, metin, geçiş, filtre eklemek, formatı, kadrajı ve müzik sesini değiştirmek.",
+        "Neyi değiştireceğimi anlamadım. Yapabildiklerim: duraklamaları kesmek, belirli bir süreye kısaltmak, altyazı eklemek veya biçimlendirmek, zoom, metin, geçiş, filtre eklemek, formatı, kadrajı ve müzik sesini değiştirmek.",
       upNext: "Sırada",
       running: "Sürüyor",
       done: "Tamamlandı",
@@ -393,7 +391,7 @@ const tr: NicsVideoLocale = {
     },
     sectionHeading: "NICS Studio: kendiniz kurgulayın",
     sectionText:
-      "Elle kurgulamayı mı tercih edersiniz? NICS Studio, CapCut ve Edits tarzında, doğrudan sitemizde çalışan, yapay zekâ ajanlı bir video editörüdür: “cut the pauses, add captions and zooms” yazın, kurguyu adım adım yapsın. Altyazı, metin, müzik, filtreler, 9:16 veya 16:9 dışa aktarma. Tarayıcıda çalışır, dosyalarınız cihazınızda kalır.",
+      "Elle kurgulamayı mı tercih edersiniz? NICS Studio, CapCut ve Edits tarzında, doğrudan sitemizde çalışan, yapay zekâ ajanlı bir video editörüdür: “duraklamaları kes, altyazı ve zoom ekle” yazın, kurguyu adım adım yapsın. Altyazı, metin, müzik, filtreler, 9:16 veya 16:9 dışa aktarma. Tarayıcıda çalışır, dosyalarınız cihazınızda kalır.",
     sectionButton: "NICS Studio'yu açın",
   },
 };
