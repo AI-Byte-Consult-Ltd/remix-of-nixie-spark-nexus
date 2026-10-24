@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import StudioEditor from "@/features/studio/StudioEditor";
 import { studioStrings } from "@/features/studio/strings";
+import { videoGuides } from "@/i18n/nicsVideoGuide";
 
 const NicsStudio = () => {
   const { language } = useLanguage();
   const s = studioStrings(language);
+  const guide = videoGuides[language] ?? videoGuides.en;
 
   return (
     <>
@@ -49,13 +51,23 @@ const NicsStudio = () => {
                 </p>
               </div>
               <StudioEditor lang={language} />
-              <div>
+              <div className="flex flex-wrap gap-2">
                 <Link to="/nics-video">
                   <Button variant="ghost" className="rounded-full">
                     <ArrowLeft className="mr-2 w-4 h-4" />
                     NICS Video
                   </Button>
                 </Link>
+                <a href="/nics-video#guide">
+                  <Button variant="ghost" className="rounded-full">
+                    {guide.guideHeading}
+                  </Button>
+                </a>
+                <a href="/nics-video#faq">
+                  <Button variant="ghost" className="rounded-full">
+                    {guide.faqHeading}
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
