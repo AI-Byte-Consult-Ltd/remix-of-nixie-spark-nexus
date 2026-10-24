@@ -5,15 +5,32 @@ import type { Language } from "@/contexts/LanguageContext";
 
 // Videos made with NICS Video. Plain links, no TikTok embed script: the site
 // stays static and loads nothing from third parties until the visitor clicks.
-// To add an example, append { url, format } with the full TikTok video link.
+// Covers are copies of the TikTok/YouTube covers in public/examples/<video id>.webp,
+// served from our own site. To add an example, save its cover there and
+// append { platform, id, format, title } below.
 const TIKTOK_PROFILE = "https://www.tiktok.com/@alexander.nics";
 
 interface Example {
-  url: string;
+  platform: "tiktok" | "youtube";
+  id: string;
   format: "shorts" | "long";
+  title: { en: string; ru: string };
 }
 
-const EXAMPLES: Example[] = [];
+const EXAMPLES: Example[] = [
+  { platform: "tiktok", id: "7699976101874961686", format: "shorts", title: { en: "Taiko drums, Japan", ru: "Барабаны тайко, Япония" } },
+  { platform: "tiktok", id: "7699181389463260438", format: "shorts", title: { en: "Miami Beach, Florida", ru: "Майами-Бич, Флорида" } },
+  { platform: "tiktok", id: "7698887330911898902", format: "shorts", title: { en: "Everglades, Florida", ru: "Эверглейдс, Флорида" } },
+  { platform: "tiktok", id: "7697650004147703062", format: "shorts", title: { en: "Brighton Beach, New York", ru: "Брайтон-Бич, Нью-Йорк" } },
+  { platform: "tiktok", id: "7697585024002034966", format: "shorts", title: { en: "New York", ru: "Нью-Йорк" } },
+  { platform: "youtube", id: "xVdtNjRyXdo", format: "long", title: { en: "Miami Beach, Florida", ru: "Майами-Бич, Флорида" } },
+  { platform: "youtube", id: "Lb6Cns-mVjc", format: "long", title: { en: "Hawaii", ru: "Гавайи" } },
+  { platform: "youtube", id: "_mfzGzlV6jA", format: "long", title: { en: "Las Vegas, Nevada", ru: "Лас-Вегас, Невада" } },
+  { platform: "youtube", id: "B9fwmU_LJ48", format: "long", title: { en: "San Antonio, Texas", ru: "Сан-Антонио, Техас" } },
+];
+
+const videoUrl = (e: Example) =>
+  e.platform === "youtube" ? `https://www.youtube.com/watch?v=${e.id}` : `${TIKTOK_PROFILE}/video/${e.id}`;
 
 interface ExamplesStrings {
   heading: string;
@@ -24,6 +41,7 @@ interface ExamplesStrings {
   shorts: string;
   long: string;
   watch: string;
+  watchYoutube: string;
 }
 
 const strings: Record<Language, ExamplesStrings> = {
@@ -36,6 +54,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "Vertical",
     long: "Horizontal",
     watch: "Watch on TikTok",
+    watchYoutube: "Watch on YouTube",
   },
   ru: {
     heading: "Примеры",
@@ -46,6 +65,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "Вертикальное",
     long: "Горизонтальное",
     watch: "Смотреть в TikTok",
+    watchYoutube: "Смотреть на YouTube",
   },
   de: {
     heading: "Beispiele",
@@ -56,6 +76,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "Hochformat",
     long: "Querformat",
     watch: "Auf TikTok ansehen",
+    watchYoutube: "Auf YouTube ansehen",
   },
   fr: {
     heading: "Exemples",
@@ -66,6 +87,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "Vertical",
     long: "Horizontal",
     watch: "Voir sur TikTok",
+    watchYoutube: "Voir sur YouTube",
   },
   ar: {
     heading: "أمثلة",
@@ -76,6 +98,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "عمودي",
     long: "أفقي",
     watch: "شاهد على TikTok",
+    watchYoutube: "شاهد على YouTube",
   },
   zh: {
     heading: "作品示例",
@@ -86,6 +109,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "竖屏",
     long: "横屏",
     watch: "在 TikTok 观看",
+    watchYoutube: "在 YouTube 观看",
   },
   pl: {
     heading: "Przykłady",
@@ -96,6 +120,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "Pionowy",
     long: "Poziomy",
     watch: "Obejrzyj na TikToku",
+    watchYoutube: "Obejrzyj na YouTube",
   },
   tr: {
     heading: "Örnekler",
@@ -106,6 +131,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "Dikey",
     long: "Yatay",
     watch: "TikTok'ta izle",
+    watchYoutube: "YouTube'da izle",
   },
   it: {
     heading: "Esempi",
@@ -116,6 +142,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "Verticale",
     long: "Orizzontale",
     watch: "Guarda su TikTok",
+    watchYoutube: "Guarda su YouTube",
   },
   bg: {
     heading: "Примери",
@@ -126,6 +153,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "Вертикално",
     long: "Хоризонтално",
     watch: "Гледай в TikTok",
+    watchYoutube: "Гледай в YouTube",
   },
   es: {
     heading: "Ejemplos",
@@ -136,6 +164,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "Vertical",
     long: "Horizontal",
     watch: "Ver en TikTok",
+    watchYoutube: "Ver en YouTube",
   },
   pt: {
     heading: "Exemplos",
@@ -146,6 +175,7 @@ const strings: Record<Language, ExamplesStrings> = {
     shorts: "Vertical",
     long: "Horizontal",
     watch: "Ver no TikTok",
+    watchYoutube: "Ver no YouTube",
   },
 };
 
@@ -161,31 +191,51 @@ const NicsVideoExamples = ({ lang }: { lang: Language }) => {
           </h2>
           <p className="text-lg text-muted-foreground text-center mb-12">{s.intro}</p>
 
-          {EXAMPLES.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              {EXAMPLES.map((e) => {
-                const FormatIcon = e.format === "shorts" ? Smartphone : MonitorPlay;
-                return (
-                  <a key={e.url} href={e.url} target="_blank" rel="noopener noreferrer" className="group">
-                    <div
-                      className={`relative rounded-2xl overflow-hidden bg-gradient-gold flex items-center justify-center ${
-                        e.format === "shorts" ? "aspect-[9/16]" : "aspect-video"
-                      }`}
-                    >
-                      <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center transition-transform group-hover:scale-110">
-                        <Play className="w-6 h-6 text-foreground ml-1" />
+          {(["shorts", "long"] as const).map((format) => {
+            const items = EXAMPLES.filter((e) => e.format === format);
+            if (items.length === 0) return null;
+            const FormatIcon = format === "shorts" ? Smartphone : MonitorPlay;
+            return (
+              <div
+                key={format}
+                className={`grid gap-4 mb-8 ${
+                  format === "shorts" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5" : "grid-cols-2 lg:grid-cols-4"
+                }`}
+              >
+                {items.map((e) => {
+                  const title = lang === "ru" ? e.title.ru : e.title.en;
+                  const watch = e.platform === "youtube" ? s.watchYoutube : s.watch;
+                  return (
+                    <a key={e.id} href={videoUrl(e)} target="_blank" rel="noopener noreferrer" className="group" aria-label={`${title}. ${watch}`}>
+                      <div
+                        className={`relative rounded-2xl overflow-hidden bg-muted border border-border/50 ${
+                          format === "shorts" ? "aspect-[3/4]" : "aspect-video"
+                        }`}
+                      >
+                        <img
+                          src={`/examples/${e.id}.webp`}
+                          alt={title}
+                          loading="lazy"
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-colors">
+                          <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow transition-transform group-hover:scale-110">
+                            <Play className="w-5 h-5 text-foreground ml-0.5" />
+                          </div>
+                        </div>
+                        <span className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-black/50 px-2 py-1 text-xs text-white">
+                          <FormatIcon className="w-3 h-3" />
+                          {format === "shorts" ? s.shorts : s.long}
+                        </span>
                       </div>
-                      <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-black/40 px-2 py-1 text-xs text-white">
-                        <FormatIcon className="w-3 h-3" />
-                        {e.format === "shorts" ? s.shorts : s.long}
-                      </span>
-                    </div>
-                    <div className="mt-2 text-sm text-muted-foreground group-hover:text-primary">{s.watch}</div>
-                  </a>
-                );
-              })}
-            </div>
-          )}
+                      <div className="mt-2 text-sm font-medium text-foreground group-hover:text-primary">{title}</div>
+                      <div className="text-xs text-muted-foreground">{watch}</div>
+                    </a>
+                  );
+                })}
+              </div>
+            );
+          })}
 
           <Card className="bg-card border-border/50 max-w-2xl mx-auto">
             <CardContent className="pt-6 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
