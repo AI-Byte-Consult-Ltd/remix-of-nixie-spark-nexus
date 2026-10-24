@@ -31,12 +31,12 @@ import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/co
 import NicsVideoStudio from "@/components/video/NicsVideoStudio";
 import { studioStrings } from "@/features/studio/strings";
 
-// Plan prices, EUR. Keep in sync with the Revolut order amounts once
-// NICS Video checkout is wired in n8n. A package is 1 Short + 1 Long + 4 covers.
-const NICS_VIDEO_BASIC_EUR = 9.99;
-const NICS_VIDEO_PRO_EUR = 24.99;
-const NICS_VIDEO_EXTRA_PACKAGE_EUR = 1.49;
-const NICS_VIDEO_ANNUAL_DISCOUNT_PCT = 30;
+// Credit plans, EUR per 30 days. Keep in sync with PLAN_PRICES in n8n
+// [24 VIDEO] Validate Request and the credit amounts in [26 VIDEO] Check Access.
+// A package (1 Short + 1 Long + 4 covers) costs PACKAGE_CREDITS.
+const NICS_VIDEO_START_EUR = 14.99;
+const NICS_VIDEO_CREATOR_EUR = 34.99;
+const NICS_VIDEO_PRO_EUR = 69.99;
 
 interface VideoContent {
   badge: string;
@@ -76,11 +76,15 @@ interface VideoContent {
   basicPeriod: string;
   basicFeatures: string[];
   basicButton: string;
+  maxName: string;
+  maxPeriod: string;
+  maxFeatures: string[];
+  maxButton: string;
   proName: string;
   proPeriod: string;
   proFeatures: string[];
   proButton: string;
-  extrasNote: (extraPrice: string, annualDiscount: number) => string;
+  creditsNote: string;
   pricingNote: string;
   backButton: string;
 }
@@ -93,7 +97,7 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       "Upload a folder of raw clips from your trip — get back a vertical Short, a horizontal travel film and four covers in two languages. No manual storyboarding, no editing timeline.",
     heroNote:
       "This is not generative video: the AI invents nothing and draws nothing in. It edits the footage you actually shot — finds the best moments, builds the timing and the cuts by itself.",
-    ctaPrimary: "Start a free 3-day demo",
+    ctaPrimary: "Get 10 free credits",
     ctaSecondary: "How it works",
     outputsHeading: "What you get",
     outputsIntro: "Six ready files from every folder you upload:",
@@ -148,38 +152,44 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       { title: "Everyone with a phone archive", text: "A lot of raw video and no time to edit it." },
     ],
     pricingHeading: "Pricing",
-    pricingIntro: "Try it free for 3 days, then pick a plan. One package = 1 Short + 1 Long video + 4 covers.",
-    demoName: "Demo",
+    pricingIntro: "Pay with credits. One package (1 Short + 1 Long video + 4 covers) = 10 credits. Start with 10 free credits.",
+    demoName: "Free start",
     demoPrice: "Free",
-    demoPeriod: "3 days",
+    demoPeriod: "once",
     demoFeatures: [
-      "Up to 2 packages",
-      "Up to 15 minutes of source footage per package",
+      "10 credits = 1 package",
+      "Up to 15 minutes of source footage",
       "Both styles: dynamic and travel",
       "No card required",
     ],
-    demoButton: "Start demo",
-    basicName: "Basic",
+    demoButton: "Get 10 credits",
+    basicName: "Start",
     basicPeriod: "per month",
     basicFeatures: [
-      "10 packages per month",
+      "60 credits = 6 packages",
       "Up to 20 minutes of source footage per package",
       "No watermark",
       "Background music and cover regeneration",
-      "Secure card payment via Revolut",
     ],
-    basicButton: "Get Basic",
-    proName: "Pro",
+    basicButton: "Get Start",
+    proName: "Creator",
     proPeriod: "per month",
     proFeatures: [
-      "30 packages per month",
+      "250 credits = 25 packages",
       "Up to 60 minutes of source footage per package",
-      "Everything in Basic",
+      "Everything in Start",
+    ],
+    proButton: "Get Creator",
+    maxName: "Pro",
+    maxPeriod: "per month",
+    maxFeatures: [
+      "700 credits = 70 packages",
+      "Up to 60 minutes of source footage per package",
+      "Everything in Creator",
       "Priority processing",
     ],
-    proButton: "Get Pro",
-    extrasNote: (extraPrice, annualDiscount) =>
-      `Extra package: ${extraPrice}. Pay yearly and save ${annualDiscount}%.`,
+    maxButton: "Get Pro",
+    creditsNote: "Credits are valid for 30 days from payment. Secure card payment via Revolut, charged in EUR.",
     pricingNote:
       "Processing time depends on the amount of footage: from a few minutes for a small folder to several hours for long source files — you will get a notification when it is ready.",
     backButton: "Explore the Ecosystem",
@@ -191,7 +201,7 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       "Загружаете папку с сырыми клипами поездки — получаете вертикальный шортс, горизонтальный travel-ролик и четыре обложки на двух языках. Без ручной раскадровки и монтажа.",
     heroNote:
       "Это не генеративное видео: ИИ ничего не придумывает и не дорисовывает. Это автоматический монтаж того, что вы сняли, — система сама находит лучшие кадры, строит хронометраж и склейки.",
-    ctaPrimary: "Попробовать 3 дня бесплатно",
+    ctaPrimary: "Получить 10 кредитов бесплатно",
     ctaSecondary: "Как это работает",
     outputsHeading: "Что вы получаете",
     outputsIntro: "Шесть готовых файлов на каждую загруженную папку:",
@@ -246,38 +256,44 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       { title: "Все, у кого архив в телефоне", text: "Много сырого видео и нет времени монтировать." },
     ],
     pricingHeading: "Тарифы",
-    pricingIntro: "3 дня бесплатно, дальше выберите тариф. Один пакет = шортс + длинное видео + 4 обложки.",
-    demoName: "Демо",
+    pricingIntro: "Оплата кредитами. Один пакет (шортс + длинное видео + 4 обложки) = 10 кредитов. Начните с 10 бесплатных кредитов.",
+    demoName: "Бесплатный старт",
     demoPrice: "Бесплатно",
-    demoPeriod: "3 дня",
+    demoPeriod: "один раз",
     demoFeatures: [
-      "До 2 пакетов",
-      "До 15 минут исходника на пакет",
+      "10 кредитов = 1 пакет",
+      "До 15 минут исходника",
       "Оба стиля: динамичный и travel",
       "Без привязки карты",
     ],
-    demoButton: "Начать демо",
-    basicName: "Базовый",
+    demoButton: "Получить 10 кредитов",
+    basicName: "Start",
     basicPeriod: "в месяц",
     basicFeatures: [
-      "10 пакетов в месяц",
+      "60 кредитов = 6 пакетов",
       "До 20 минут исходника на пакет",
       "Без водяного знака",
       "Фоновая музыка и перегенерация обложек",
-      "Безопасная оплата картой через Revolut",
     ],
-    basicButton: "Оформить Базовый",
-    proName: "Про",
+    basicButton: "Оформить Start",
+    proName: "Creator",
     proPeriod: "в месяц",
     proFeatures: [
-      "30 пакетов в месяц",
+      "250 кредитов = 25 пакетов",
       "До 60 минут исходника на пакет",
-      "Всё, что в Базовом",
+      "Всё, что в Start",
+    ],
+    proButton: "Оформить Creator",
+    maxName: "Pro",
+    maxPeriod: "в месяц",
+    maxFeatures: [
+      "700 кредитов = 70 пакетов",
+      "До 60 минут исходника на пакет",
+      "Всё, что в Creator",
       "Приоритетная обработка",
     ],
-    proButton: "Оформить Про",
-    extrasNote: (extraPrice, annualDiscount) =>
-      `Дополнительный пакет: ${extraPrice}. При оплате за год скидка ${annualDiscount}%.`,
+    maxButton: "Оформить Pro",
+    creditsNote: "Кредиты действуют 30 дней с момента оплаты. Безопасная оплата картой через Revolut, списание в евро.",
     pricingNote:
       "Время обработки зависит от объёма материала: от нескольких минут для небольшой папки до нескольких часов для длинных исходников — о готовности придёт уведомление.",
     backButton: "Экосистема NICS",
@@ -305,19 +321,28 @@ const NicsVideo = () => {
     {
       id: "nics_video_basic" as NicsVideoPlanId,
       name: c.basicName,
-      price: formatPrice(NICS_VIDEO_BASIC_EUR, "EUR"),
+      price: formatPrice(NICS_VIDEO_START_EUR, "EUR"),
       period: c.basicPeriod,
       features: c.basicFeatures,
       button: c.basicButton,
-      featured: true,
+      featured: false,
     },
     {
       id: "nics_video_pro" as NicsVideoPlanId,
       name: c.proName,
-      price: formatPrice(NICS_VIDEO_PRO_EUR, "EUR"),
+      price: formatPrice(NICS_VIDEO_CREATOR_EUR, "EUR"),
       period: c.proPeriod,
       features: c.proFeatures,
       button: c.proButton,
+      featured: true,
+    },
+    {
+      id: "nics_video_max" as NicsVideoPlanId,
+      name: c.maxName,
+      price: formatPrice(NICS_VIDEO_PRO_EUR, "EUR"),
+      period: c.maxPeriod,
+      features: c.maxFeatures,
+      button: c.maxButton,
       featured: false,
     },
   ];
@@ -528,12 +553,12 @@ const NicsVideo = () => {
         {/* Pricing */}
         <section id="pricing" className="py-20 bg-background scroll-mt-24">
           <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-semibold text-foreground text-center mb-4">
                 <span className="text-gradient-gold">{c.pricingHeading}</span>
               </h2>
               <p className="text-lg text-muted-foreground text-center mb-12">{c.pricingIntro}</p>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {plans.map((plan) => (
                   <Card
                     key={plan.name}
@@ -569,7 +594,7 @@ const NicsVideo = () => {
                 ))}
               </div>
               <p className="text-sm text-muted-foreground text-center mt-8">
-                {c.extrasNote(formatPrice(NICS_VIDEO_EXTRA_PACKAGE_EUR, "EUR"), NICS_VIDEO_ANNUAL_DISCOUNT_PCT)}
+                {c.creditsNote}
               </p>
               <p className="text-sm text-muted-foreground text-center mt-4 max-w-2xl mx-auto flex items-start justify-center gap-2">
                 <Clock className="w-4 h-4 shrink-0 mt-0.5 text-primary" />

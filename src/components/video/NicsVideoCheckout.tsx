@@ -10,7 +10,7 @@ import type { Language } from "@/contexts/LanguageContext";
 // the amounts shown on the page must match that workflow's PLAN_PRICES.
 export const NICS_VIDEO_CHECKOUT_URL = "https://n8n.aibyteconsult.com/webhook/nics-video-checkout";
 
-export type NicsVideoPlanId = "nics_video_demo" | "nics_video_basic" | "nics_video_pro";
+export type NicsVideoPlanId = "nics_video_demo" | "nics_video_basic" | "nics_video_pro" | "nics_video_max";
 
 export interface CheckoutPlan {
   id: NicsVideoPlanId;
@@ -29,35 +29,35 @@ interface Props {
 
 const text = {
   en: {
-    demoTitle: "Start your free demo",
-    demoDesc: "3 days, up to 2 packages. Upload your footage right on this page.",
+    demoTitle: "Get 10 free credits",
+    demoDesc: "Enough for 1 package, valid 30 days. Upload your footage right on this page.",
     payTitle: "Subscribe",
     payDesc: "You will be redirected to a secure Revolut checkout. Charged in EUR.",
     name: "Name",
     email: "Email",
-    submitDemo: "Start demo",
+    submitDemo: "Get credits",
     submitPay: "Continue to payment",
     error: "Something went wrong. Please try again or write to info@aibyteconsult.com.",
-    demoExists: "A demo has already been started with this email.",
-    demoDone: "Your demo is active. Upload your footage on this page with the same email.",
-    payOpened: "The Revolut checkout opened in a new tab. A few minutes after payment your plan is active: upload your footage on this page with the same email.",
+    demoExists: "Free credits have already been claimed with this email.",
+    demoDone: "Your 10 free credits are active. Upload your footage on this page with the same email.",
+    payOpened: "The Revolut checkout opened in a new tab. A few minutes after payment your credits are active: upload your footage on this page with the same email.",
     payLink: "Open checkout again",
     upload: "Upload footage",
     close: "Close",
   },
   ru: {
-    demoTitle: "Начать бесплатное демо",
-    demoDesc: "3 дня, до 2 пакетов. Исходники загружаются прямо на этой странице.",
+    demoTitle: "Получить 10 бесплатных кредитов",
+    demoDesc: "Хватит на 1 пакет, действуют 30 дней. Исходники загружаются прямо на этой странице.",
     payTitle: "Оформить подписку",
     payDesc: "Оплата на защищённой странице Revolut, списание в евро.",
     name: "Имя",
     email: "Email",
-    submitDemo: "Начать демо",
+    submitDemo: "Получить кредиты",
     submitPay: "Перейти к оплате",
     error: "Что-то пошло не так. Попробуйте ещё раз или напишите на info@aibyteconsult.com.",
-    demoExists: "Демо на этот email уже было оформлено.",
-    demoDone: "Демо активно. Загрузите исходники на этой странице с тем же email.",
-    payOpened: "Страница оплаты Revolut открылась в новой вкладке. Через несколько минут после оплаты тариф активируется: загрузите исходники на этой странице с тем же email.",
+    demoExists: "Бесплатные кредиты на этот email уже были получены.",
+    demoDone: "10 бесплатных кредитов активны. Загрузите исходники на этой странице с тем же email.",
+    payOpened: "Страница оплаты Revolut открылась в новой вкладке. Через несколько минут после оплаты кредиты активируются: загрузите исходники на этой странице с тем же email.",
     payLink: "Открыть оплату ещё раз",
     upload: "Загрузить исходники",
     close: "Закрыть",

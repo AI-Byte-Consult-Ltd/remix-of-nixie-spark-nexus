@@ -50,7 +50,7 @@ interface Props {
 const text = {
   en: {
     heading: "Upload your footage",
-    intro: "Use the email of your demo or subscription. You will get a Short (9:16), a Long video (16:9) and covers.",
+    intro: "Use the email you got credits with. One package costs 10 credits: a Short (9:16), a Long video (16:9) and covers.",
     email: "Email",
     title: "Cover title",
     titleEn: "Cover title in English (optional)",
@@ -69,9 +69,9 @@ const text = {
     downloading: "Downloading",
     newJob: "New upload",
     errors: {
-      no_access: "No active demo or subscription for this email. Start a free demo or pick a plan below.",
-      demo_used: "Your demo packages are used up. Pick a plan to continue.",
-      limit_reached: "You have used all packages of your plan for this month.",
+      no_access: "No credits for this email. Get 10 free credits or pick a plan below.",
+      demo_used: "Your free credits are used up. Pick a plan to continue.",
+      limit_reached: "Not enough credits left for a package (10 credits). Pick a plan to top up.",
       job_in_progress: "You already have a job in progress. Wait for it to finish.",
       email: "Check the email address.",
       files_count: "Choose between 1 and 20 video files.",
@@ -97,7 +97,7 @@ const text = {
   },
   ru: {
     heading: "Загрузите исходники",
-    intro: "Укажите email демо или подписки. Вы получите Short (9:16), длинное видео (16:9) и обложки.",
+    intro: "Укажите email, на который получены кредиты. Один пакет стоит 10 кредитов: Short (9:16), длинное видео (16:9) и обложки.",
     email: "Email",
     title: "Заголовок для обложки",
     titleEn: "Заголовок на английском (необязательно)",
@@ -116,9 +116,9 @@ const text = {
     downloading: "Скачивание",
     newJob: "Новая загрузка",
     errors: {
-      no_access: "Для этого email нет активного демо или подписки. Начните бесплатное демо или выберите тариф ниже.",
-      demo_used: "Пакеты демо израсходованы. Выберите тариф, чтобы продолжить.",
-      limit_reached: "Все пакеты тарифа в этом месяце израсходованы.",
+      no_access: "Для этого email нет кредитов. Получите 10 бесплатных кредитов или выберите тариф ниже.",
+      demo_used: "Бесплатные кредиты израсходованы. Выберите тариф, чтобы продолжить.",
+      limit_reached: "Кредитов не хватает на пакет (10 кредитов). Выберите тариф, чтобы пополнить.",
       job_in_progress: "У вас уже есть задача в работе. Дождитесь её завершения.",
       email: "Проверьте email.",
       files_count: "Выберите от 1 до 20 видеофайлов.",
