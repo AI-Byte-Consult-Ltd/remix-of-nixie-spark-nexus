@@ -1,38 +1,60 @@
 import type { Language } from "@/contexts/LanguageContext";
 import type { FilterId } from "./model";
+import type { AgentStep } from "./agent";
 
 const en = {
   badge: "In development",
   title: "NICS Studio",
-  subtitle: "Edit your video yourself, right in the browser: cut, add text and music, and export a ready vertical or horizontal video.",
+  subtitle: "Edit your video yourself or just tell the agent what to change: cut pauses, add captions, zooms, text and music, export a ready vertical or horizontal video.",
   devNote:
     "NICS Studio is in development: the editor already works, and new tools are being added. Everything runs on your device, your files are not uploaded anywhere. The project lives in this tab, so export before closing it.",
   unsupported:
     "This browser cannot encode video. Open NICS Studio in a current Chrome, Edge or Safari on a computer or phone.",
+  untitled: "Untitled project",
+  undo: "Undo",
+  redo: "Redo",
+  export: "Export",
+  tools: {
+    media: "Media",
+    sounds: "Sounds",
+    captions: "Captions",
+    text: "Text",
+    effects: "Effects",
+    transitions: "Transitions",
+    background: "Background",
+    settings: "Settings",
+  },
   addMedia: "Add video or photos",
   addMusic: "Add music",
+  replaceMusic: "Replace music",
   addText: "Add text",
-  dropHint: "Add clips and photos to start. Up to 3 minutes of final video.",
+  dropHint: "Add clips and photos to start, then edit by hand or ask the agent. Up to 3 minutes of final video.",
   play: "Play",
   pause: "Pause",
   split: "Split",
-  undo: "Undo",
+  zoomIn: "Zoom in",
+  zoomOut: "Zoom out",
+  fitTimeline: "Fit",
   format: "Format",
   fit: "Framing",
   fitCover: "Fill frame",
   fitContain: "Whole picture",
+  background: "Behind the picture",
+  backgroundHint: "Shown when the picture does not fill the frame.",
+  bgBlur: "Blurred video",
+  bgColor: "Colour",
   transition: "Between clips",
   transitionNone: "Cut",
-  transitionFade: "Fade",
-  timelineVideo: "Video",
-  timelineText: "Text",
-  timelineMusic: "Music",
+  transitionFade: "Fade through black",
+  tracks: { captions: "Captions", text: "Text", effects: "Effects", video: "Video", audio: "Audio" },
   clip: "Clip",
   photo: "Photo",
+  clips: "Clips",
   trim: "Trim",
   duration: "Duration",
   volume: "Volume",
   mute: "Mute",
+  muteAll: "Mute all clips",
   filter: "Filter",
   filters: { none: "Original", vivid: "Vivid", warm: "Warm", cool: "Cool", bw: "B&W", fade: "Soft" } as Record<FilterId, string>,
   filtersUnsupported: "Filters are not shown in this browser and will not be applied.",
@@ -47,27 +69,104 @@ const en = {
   position: "Position",
   size: "Size",
   color: "Colour",
-  box: "Background",
+  accent: "Spoken word",
+  box: "Background box",
+  upper: "Capital letters",
   music: "Music",
-  selectHint: "Tap a clip, text or music on the timeline to edit it.",
+  noMusic: "No music yet. Add an MP3 or another audio file; it plays from the start and fades out at the end.",
+  captionsIntro:
+    "Captions are recognised from the speech in your clips by our own model, right on your device. The first run downloads the model (about 75 MB) once.",
+  generateCaptions: "Generate captions",
+  regenerate: "Generate again",
+  wordsPerCaption: "Words per caption",
+  captionLanguage: "Language",
+  langRu: "Russian",
+  langEn: "English",
+  removeCaptions: "Remove all captions",
+  captionText: "Caption text",
+  captionsList: "Captions",
+  noCaptions: "No captions yet.",
+  zoomHint: "Smooth zoom-in on a moment of the video.",
+  addZoom: "Add zoom at playhead",
+  autoZooms: "Zooms throughout the video",
+  removeZooms: "Remove all zooms",
+  zoomAmount: "Strength",
+  zoom: "Zoom",
+  selectHint: "Tap an item on the timeline to edit it here.",
   limitReached: "The video is limited to 3 minutes; the last clip was shortened.",
   cannotRead: (name: string) => `Cannot open “${name}”. Try MP4 or MOV, JPG or PNG.`,
-  export: "Export video",
   exporting: "Exporting",
   exportKeepOpen: "Keep this tab open. Export runs on your device and is faster on a computer.",
   cancel: "Cancel",
   exportDone: "Your video is ready",
   download: "Download",
-  newExport: "Close",
+  close: "Close",
   exportErrors: {
     no_encoder: "This browser cannot encode video in this size. Try a current Chrome or Edge.",
     decode: "One of the clips cannot be decoded in this browser. Convert it to MP4 (H.264) and try again.",
     canceled: "Export cancelled.",
     unknown: "Export failed. Try again, or try a shorter project.",
   },
+  agent: {
+    title: "Agent",
+    placeholder: "Tell the agent what to change…",
+    send: "Send",
+    hello:
+      "Hi! I'm the NICS Studio agent. Add your clips and tell me what to do, for example: “cut the pauses, add captions 3 words at a time, a little bigger, and add zooms”.",
+    examples: [
+      "Cut the pauses and add captions 3 words at a time",
+      "Add zooms throughout the video",
+      "Make it vertical for TikTok, up to 30 seconds",
+      "Add text “My trip” at the top and fades",
+    ],
+    steps: (n: number) => (n === 1 ? "1 step" : `${n} steps`),
+    working: "Working on your edit",
+    finished: "Done. Check the preview; every step can be undone.",
+    noClips: "Add a clip first: I edit the video on your timeline.",
+    unknown:
+      "I didn't catch what to change. I can: cut pauses, trim to a length, add or style captions, add zooms, text, fades, filters, change the format, framing and music volume.",
+    upNext: "Up next",
+    running: "In progress",
+    done: "Completed",
+    failed: "Failed",
+    note: "The agent runs on your device and uses no credits while NICS Studio is in development.",
+  },
+  stepLabel: (st: AgentStep): string => {
+    switch (st.kind) {
+      case "silence": return "Cut pauses";
+      case "limit": return `Trim to ${st.seconds} s`;
+      case "captions": return `Add captions, ${st.words} ${st.words === 1 ? "word" : "words"} at a time`;
+      case "captionStyle": return "Style captions";
+      case "removeCaptions": return "Remove captions";
+      case "zooms": return "Add zooms";
+      case "removeZooms": return "Remove zooms";
+      case "text": return `Add text “${st.text}”`;
+      case "aspect": return `Format ${st.aspect}`;
+      case "fit": return st.fit === "contain" ? "Show the whole picture" : "Fill the frame";
+      case "transition": return st.on ? "Fade between clips" : "Remove transitions";
+      case "filter": return "Apply filter";
+      case "musicVolume": return st.volume < 0.5 ? "Make music quieter" : "Make music louder";
+      case "muteClips": return "Mute clip sound";
+    }
+  },
+  stepNotes: {
+    silenceRemoved: (s: string) => `Removed ${s} s of pauses`,
+    silenceNone: "No pauses found",
+    noSound: "The clips have no sound",
+    captionsMade: (n: number) => `${n} captions`,
+    zoomsMade: (n: number) => `${n} zooms`,
+    noMusic: "There is no music track",
+    modelLoading: (p: number) => `Loading speech model ${p}%`,
+    readingAudio: "Reading the sound",
+    recognizing: "Recognising speech",
+  },
+  captionErrors: {
+    no_speech: "No speech found in the clips.",
+    failed: "Speech recognition failed in this browser. Try a current Chrome or Edge on a computer.",
+  },
   sectionHeading: "NICS Studio: edit it yourself",
   sectionText:
-    "Prefer to edit by hand? NICS Studio is a video editor right on our site, in the spirit of CapCut and Edits: cut and split clips, add text, music, filters and fades, and export a 9:16 or 16:9 video. It runs in your browser, your files stay on your device.",
+    "Prefer to edit by hand? NICS Studio is a video editor right on our site, in the spirit of CapCut and Edits, with an AI agent: write “cut the pauses, add captions and zooms” and it does the edit step by step. Captions, text, music, filters, 9:16 or 16:9 export. Runs in your browser, your files stay on your device.",
   sectionButton: "Open NICS Studio",
 };
 
@@ -76,35 +175,56 @@ type Strings = typeof en;
 const ru: Strings = {
   badge: "В разработке",
   title: "NICS Studio",
-  subtitle: "Монтируйте видео сами, прямо в браузере: режьте, добавляйте текст и музыку и выгружайте готовое вертикальное или горизонтальное видео.",
+  subtitle: "Монтируйте сами или просто напишите агенту, что изменить: вырезать паузы, добавить субтитры, зумы, текст и музыку, сохранить готовое вертикальное или горизонтальное видео.",
   devNote:
     "NICS Studio в разработке: редактор уже работает, новые инструменты добавляются. Всё обрабатывается на вашем устройстве, файлы никуда не загружаются. Проект живёт в этой вкладке, поэтому сохраните видео до того, как её закрыть.",
   unsupported:
     "Этот браузер не умеет кодировать видео. Откройте NICS Studio в свежем Chrome, Edge или Safari на компьютере или телефоне.",
+  untitled: "Без названия",
+  undo: "Отменить",
+  redo: "Повторить",
+  export: "Сохранить видео",
+  tools: {
+    media: "Медиа",
+    sounds: "Звук",
+    captions: "Субтитры",
+    text: "Текст",
+    effects: "Эффекты",
+    transitions: "Переходы",
+    background: "Фон",
+    settings: "Настройки",
+  },
   addMedia: "Добавить видео или фото",
   addMusic: "Добавить музыку",
+  replaceMusic: "Заменить музыку",
   addText: "Добавить текст",
-  dropHint: "Добавьте клипы и фото, чтобы начать. Итоговое видео до 3 минут.",
+  dropHint: "Добавьте клипы и фото, а дальше монтируйте сами или попросите агента. Итоговое видео до 3 минут.",
   play: "Смотреть",
   pause: "Пауза",
   split: "Разрезать",
-  undo: "Отменить",
+  zoomIn: "Крупнее",
+  zoomOut: "Мельче",
+  fitTimeline: "Целиком",
   format: "Формат",
   fit: "Кадр",
   fitCover: "Заполнить кадр",
   fitContain: "Целиком",
+  background: "Под картинкой",
+  backgroundHint: "Виден, когда картинка не заполняет кадр.",
+  bgBlur: "Размытое видео",
+  bgColor: "Цвет",
   transition: "Между клипами",
   transitionNone: "Склейка",
   transitionFade: "Затемнение",
-  timelineVideo: "Видео",
-  timelineText: "Текст",
-  timelineMusic: "Музыка",
+  tracks: { captions: "Субтитры", text: "Текст", effects: "Эффекты", video: "Видео", audio: "Аудио" },
   clip: "Клип",
   photo: "Фото",
+  clips: "Клипы",
   trim: "Обрезка",
   duration: "Длительность",
   volume: "Громкость",
   mute: "Без звука",
+  muteAll: "Выключить звук всех клипов",
   filter: "Фильтр",
   filters: { none: "Оригинал", vivid: "Сочный", warm: "Тёплый", cool: "Холодный", bw: "Ч/Б", fade: "Мягкий" },
   filtersUnsupported: "Этот браузер не показывает фильтры, и в видео они не попадут.",
@@ -119,28 +239,106 @@ const ru: Strings = {
   position: "Положение",
   size: "Размер",
   color: "Цвет",
+  accent: "Звучащее слово",
   box: "Подложка",
+  upper: "Заглавные буквы",
   music: "Музыка",
-  selectHint: "Нажмите на клип, текст или музыку на таймлайне, чтобы их настроить.",
+  noMusic: "Музыки пока нет. Добавьте MP3 или другой аудиофайл: он играет с начала и плавно затихает в конце.",
+  captionsIntro:
+    "Субтитры распознаются из речи в ваших клипах нашей собственной моделью прямо на вашем устройстве. При первом запуске модель (около 75 МБ) скачивается один раз.",
+  generateCaptions: "Сделать субтитры",
+  regenerate: "Распознать заново",
+  wordsPerCaption: "Слов в субтитре",
+  captionLanguage: "Язык",
+  langRu: "Русский",
+  langEn: "Английский",
+  removeCaptions: "Удалить все субтитры",
+  captionText: "Текст субтитра",
+  captionsList: "Субтитры",
+  noCaptions: "Субтитров пока нет.",
+  zoomHint: "Плавное приближение в нужный момент видео.",
+  addZoom: "Зум в точке плейхеда",
+  autoZooms: "Зумы по всему видео",
+  removeZooms: "Удалить все зумы",
+  zoomAmount: "Сила",
+  zoom: "Зум",
+  selectHint: "Нажмите на элемент на таймлайне, чтобы настроить его здесь.",
   limitReached: "Видео ограничено 3 минутами, последний клип укорочен.",
   cannotRead: (name: string) => `Не получилось открыть «${name}». Подойдут MP4 или MOV, JPG или PNG.`,
-  export: "Сохранить видео",
   exporting: "Собираем видео",
   exportKeepOpen: "Не закрывайте вкладку. Видео собирается на вашем устройстве, на компьютере это быстрее.",
   cancel: "Отмена",
   exportDone: "Видео готово",
   download: "Скачать",
-  newExport: "Закрыть",
+  close: "Закрыть",
   exportErrors: {
     no_encoder: "Этот браузер не умеет кодировать видео такого размера. Попробуйте свежий Chrome или Edge.",
     decode: "Один из клипов этот браузер не может прочитать. Переконвертируйте его в MP4 (H.264) и попробуйте снова.",
     canceled: "Сборка отменена.",
     unknown: "Не получилось собрать видео. Попробуйте ещё раз или сократите проект.",
   },
+  agent: {
+    title: "Агент",
+    placeholder: "Напишите агенту, что изменить…",
+    send: "Отправить",
+    hello:
+      "Привет! Я агент NICS Studio. Добавьте клипы и напишите, что сделать, например: «вырежи паузы, добавь субтитры по 3 слова, чуть крупнее, и добавь зумы».",
+    examples: [
+      "Вырежи паузы и добавь субтитры по 3 слова",
+      "Добавь зумы по всему видео",
+      "Сделай вертикальное для тикток до 30 секунд",
+      "Добавь текст «Моя поездка» сверху и затемнения",
+    ],
+    steps: (n: number) => `${n} ${n === 1 ? "шаг" : n < 5 ? "шага" : "шагов"}`,
+    working: "Делаю правку",
+    finished: "Готово. Посмотрите превью, любой шаг можно отменить.",
+    noClips: "Сначала добавьте клип: я монтирую видео на вашем таймлайне.",
+    unknown:
+      "Не понял, что изменить. Я умею: вырезать паузы, укоротить до нужной длины, добавить и оформить субтитры, добавить зумы, текст, затемнения, фильтры, сменить формат, кадр и громкость музыки.",
+    upNext: "Дальше",
+    running: "Выполняется",
+    done: "Готово",
+    failed: "Ошибка",
+    note: "Агент работает на вашем устройстве и не тратит кредиты, пока NICS Studio в разработке.",
+  },
+  stepLabel: (st: AgentStep): string => {
+    switch (st.kind) {
+      case "silence": return "Вырезать паузы";
+      case "limit": return `Укоротить до ${st.seconds} с`;
+      case "captions": return `Субтитры по ${st.words} ${st.words === 1 ? "слову" : st.words < 5 ? "слова" : "слов"}`;
+      case "captionStyle": return "Оформить субтитры";
+      case "removeCaptions": return "Удалить субтитры";
+      case "zooms": return "Добавить зумы";
+      case "removeZooms": return "Удалить зумы";
+      case "text": return `Добавить текст «${st.text}»`;
+      case "aspect": return `Формат ${st.aspect}`;
+      case "fit": return st.fit === "contain" ? "Показать кадр целиком" : "Заполнить кадр";
+      case "transition": return st.on ? "Затемнения между клипами" : "Убрать переходы";
+      case "filter": return "Применить фильтр";
+      case "musicVolume": return st.volume < 0.5 ? "Сделать музыку тише" : "Сделать музыку громче";
+      case "muteClips": return "Выключить звук клипов";
+    }
+  },
+  stepNotes: {
+    silenceRemoved: (s: string) => `Вырезано ${s} с пауз`,
+    silenceNone: "Пауз не найдено",
+    noSound: "В клипах нет звука",
+    captionsMade: (n: number) => `${n} субтитров`,
+    zoomsMade: (n: number) => `Зумов: ${n}`,
+    noMusic: "Музыкальной дорожки нет",
+    modelLoading: (p: number) => `Загрузка модели речи ${p}%`,
+    readingAudio: "Читаю звук",
+    recognizing: "Распознаю речь",
+  },
+  captionErrors: {
+    no_speech: "В клипах не найдено речи.",
+    failed: "Распознать речь в этом браузере не получилось. Попробуйте свежий Chrome или Edge на компьютере.",
+  },
   sectionHeading: "NICS Studio: монтаж своими руками",
   sectionText:
-    "Хотите смонтировать сами? NICS Studio — видеоредактор прямо на нашем сайте, по логике как CapCut и Edits: режьте и склеивайте клипы, добавляйте текст, музыку, фильтры и затемнения и сохраняйте видео 9:16 или 16:9. Работает в браузере, ваши файлы остаются у вас.",
+    "Хотите смонтировать сами? NICS Studio — видеоредактор прямо на нашем сайте, по логике как CapCut и Edits, с ИИ-агентом: напишите «вырежи паузы, добавь субтитры и зумы», и он сделает правку по шагам. Субтитры, текст, музыка, фильтры, сохранение в 9:16 или 16:9. Работает в браузере, ваши файлы остаются у вас.",
   sectionButton: "Открыть NICS Studio",
 };
 
+export type StudioStrings = Strings;
 export const studioStrings = (lang: Language): Strings => (lang === "ru" ? ru : en);
