@@ -10,8 +10,6 @@ const EVENT = "nics-account-change";
 
 export interface Account {
   email: string;
-  // Empty while email codes cannot be sent yet: the email is then taken on
-  // trust, the way NICS Video worked before sign-in existed.
   session: string;
 }
 
@@ -30,13 +28,9 @@ const call = async (body: Record<string, string>): Promise<{ ok: boolean; error:
 
 export const readAccount = (): Account | null => {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const a = JSON.parse(raw) as Account;
-      if (a?.email) return { email: a.email, session: a.session || "" };
-    }
-    const legacy = localStorage.getItem(LEGACY_EMAIL_KEY);
-    return legacy ? { email: legacy, session: "" } : null;
+    // Only a confirmed sign-in counts; emails saved before codes existed do not.
+    const a = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") as Account | null;
+    return a?.email && a.session ? { email: a.email, session: a.session } : null;
   } catch {
     return null;
   }
@@ -63,19 +57,16 @@ export const verifyCode = async (email: string, code: string) => {
   return r;
 };
 
-// Used only while the server cannot send codes yet.
-export const trustEmail = (email: string) => writeAccount({ email: email.trim().toLowerCase(), session: "" });
-
 export const signOut = () => {
   const a = readAccount();
-  if (a?.session) call({ action: "logout", session: a.session });
+  if (a) call({ action: "logout", session: a.session });
   writeAccount(null);
 };
 
 // Drops a session the server no longer knows (expired or signed out elsewhere).
 export const checkSession = async () => {
   const a = readAccount();
-  if (!a?.session) return;
+  if (!a) return;
   const r = await call({ action: "me", session: a.session });
   if (!r.ok && r.error === "session") writeAccount(null);
 };

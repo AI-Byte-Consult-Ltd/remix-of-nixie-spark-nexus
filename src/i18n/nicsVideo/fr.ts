@@ -120,6 +120,8 @@ const fr: NicsVideoLocale = {
     submitPay: "Continuer vers le paiement",
     error: "Une erreur s'est produite. Réessayez ou écrivez à info@aibyteconsult.com.",
     demoExists: "Les crédits gratuits ont déjà été obtenus avec cet e-mail.",
+    signInFirst: "Connectez-vous d'abord avec votre e-mail : les crédits gratuits vont à une adresse confirmée.",
+    signIn: "Se connecter",
     demoDone: "Vos 10 crédits gratuits sont actifs. Envoyez vos images sur cette page avec le même e-mail.",
     payOpened:
       "La page de paiement Revolut s'est ouverte dans un nouvel onglet. Quelques minutes après le paiement, vos crédits sont actifs : envoyez vos images sur cette page avec le même e-mail.",
@@ -130,6 +132,7 @@ const fr: NicsVideoLocale = {
   upload: {
     heading: "Envoyez vos images",
     intro: "Utilisez l'e-mail avec lequel vous avez obtenu vos crédits. Un pack coûte 10 crédits : un Short (9:16), une vidéo longue (16:9) et des couvertures.",
+    signIn: "Se connecter pour envoyer",
     email: "E-mail",
     title: "Titre de la couverture",
     titleEn: "Titre de la couverture en anglais (facultatif)",
@@ -153,6 +156,7 @@ const fr: NicsVideoLocale = {
       limit_reached: "Pas assez de crédits pour un pack (10 crédits). Choisissez une offre pour recharger.",
       job_in_progress: "Vous avez déjà une tâche en cours. Attendez qu'elle se termine.",
       email: "Vérifiez l'adresse e-mail.",
+      login_required: "Veuillez vous reconnecter.",
       files_count: "Choisissez entre 1 et 20 fichiers vidéo.",
       file_type: "Seuls les fichiers MP4, MOV, AVI, MKV, M4V et 3GP sont acceptés.",
       file_size: "Chaque fichier doit faire moins de 1 Go.",
@@ -185,7 +189,6 @@ const fr: NicsVideoLocale = {
     otherEmail: "Utiliser un autre e-mail",
     resend: "Renvoyer",
     signedIn: (e: string) => `Connecté en tant que ${e}`,
-    notVerified: "E-mail pas encore confirmé : la connexion par code arrive bientôt.",
     signOut: "Se déconnecter",
     errors: {
       email: "Saisissez un e-mail valide.",
@@ -194,7 +197,7 @@ const fr: NicsVideoLocale = {
       too_many: "Trop de codes pour cet e-mail. Réessayez dans une heure.",
       session: "Veuillez vous reconnecter.",
       network: "Pas de connexion au serveur. Réessayez.",
-      mail_unavailable: "",
+      mail_unavailable: "Impossible d'envoyer l'e-mail pour le moment. Réessayez dans quelques minutes.",
     } as Record<AccountError, string>,
   },
   studio: {

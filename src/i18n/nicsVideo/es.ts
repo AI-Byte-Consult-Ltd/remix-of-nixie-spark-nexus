@@ -120,6 +120,8 @@ const es: NicsVideoLocale = {
     submitPay: "Continuar al pago",
     error: "Algo salió mal. Inténtalo de nuevo o escribe a info@aibyteconsult.com.",
     demoExists: "Los créditos gratis ya se obtuvieron con este correo.",
+    signInFirst: "Primero inicia sesión con tu email: los créditos gratis van a una dirección confirmada.",
+    signIn: "Iniciar sesión",
     demoDone: "Tus 10 créditos gratis están activos. Sube tu material en esta página con el mismo correo.",
     payOpened:
       "La página de pago de Revolut se abrió en una pestaña nueva. Unos minutos después del pago tus créditos estarán activos: sube tu material en esta página con el mismo correo.",
@@ -130,6 +132,7 @@ const es: NicsVideoLocale = {
   upload: {
     heading: "Sube tu material",
     intro: "Usa el correo con el que obtuviste los créditos. Un paquete cuesta 10 créditos: un Short (9:16), un vídeo largo (16:9) y portadas.",
+    signIn: "Inicia sesión para subir",
     email: "Correo electrónico",
     title: "Título de la portada",
     titleEn: "Título de la portada en inglés (opcional)",
@@ -153,6 +156,7 @@ const es: NicsVideoLocale = {
       limit_reached: "No quedan créditos suficientes para un paquete (10 créditos). Elige un plan para recargar.",
       job_in_progress: "Ya tienes una tarea en curso. Espera a que termine.",
       email: "Revisa la dirección de correo.",
+      login_required: "Vuelve a iniciar sesión.",
       files_count: "Elige entre 1 y 20 archivos de vídeo.",
       file_type: "Solo se admiten archivos MP4, MOV, AVI, MKV, M4V y 3GP.",
       file_size: "Cada archivo debe pesar menos de 1 GB.",
@@ -185,7 +189,6 @@ const es: NicsVideoLocale = {
     otherEmail: "Usar otro correo",
     resend: "Enviar de nuevo",
     signedIn: (e: string) => `Sesión iniciada como ${e}`,
-    notVerified: "El correo aún no está confirmado: el acceso por código se activará pronto.",
     signOut: "Cerrar sesión",
     errors: {
       email: "Escribe un correo válido.",
@@ -194,7 +197,7 @@ const es: NicsVideoLocale = {
       too_many: "Demasiados códigos para este correo. Inténtalo dentro de una hora.",
       session: "Vuelve a iniciar sesión.",
       network: "Sin conexión con el servidor. Inténtalo de nuevo.",
-      mail_unavailable: "",
+      mail_unavailable: "No se pudo enviar el email ahora. Inténtalo de nuevo en unos minutos.",
     } as Record<AccountError, string>,
   },
   studio: {

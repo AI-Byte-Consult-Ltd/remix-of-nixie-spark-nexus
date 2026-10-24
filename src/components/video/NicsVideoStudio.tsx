@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { AlertCircle, CheckCircle2, Download, Film, Loader2, Upload } from "lucide-react";
 import type { Language } from "@/contexts/LanguageContext";
 import { nicsVideoLocales } from "@/i18n/nicsVideo";
+import type { Account } from "@/features/account/account";
 
 // n8n [26 VIDEO] Jobs API + [27 VIDEO] File Transfer. Files travel in parts of
 // at most PART_SIZE bytes; the server checks access (demo or paid order for the
@@ -43,15 +44,17 @@ interface JobStatus {
 
 interface Props {
   lang: Language;
-  email: string;
-  onEmailChange: (email: string) => void;
+  // Uploads need a confirmed sign-in: the credits belong to that email.
+  account: Account | null;
+  onSignIn: () => void;
   onNeedAccess: () => void;
 }
 
 const text = {
   en: {
     heading: "Upload your footage",
-    intro: "Use the email you got credits with. One package costs 10 credits: a Short (9:16), a Long video (16:9) and covers.",
+    intro: "Sign in with the email you got credits with. One package costs 10 credits: a Short (9:16), a Long video (16:9) and covers.",
+    signIn: "Sign in to upload",
     email: "Email",
     title: "Cover title",
     titleEn: "Cover title in English (optional)",
@@ -75,6 +78,7 @@ const text = {
       limit_reached: "Not enough credits left for a package (10 credits). Pick a plan to top up.",
       job_in_progress: "You already have a job in progress. Wait for it to finish.",
       email: "Check the email address.",
+      login_required: "Please sign in again.",
       files_count: "Choose between 1 and 20 video files.",
       file_type: "Only MP4, MOV, AVI, MKV, M4V and 3GP files are supported.",
       file_size: "Each file must be under 1 GB.",
@@ -98,7 +102,8 @@ const text = {
   },
   ru: {
     heading: "Загрузите исходники",
-    intro: "Укажите email, на который получены кредиты. Один пакет стоит 10 кредитов: Short (9:16), длинное видео (16:9) и обложки.",
+    intro: "Войдите по email, на который получены кредиты. Один пакет стоит 10 кредитов: Short (9:16), длинное видео (16:9) и обложки.",
+    signIn: "Войти, чтобы загрузить",
     email: "Email",
     title: "Заголовок для обложки",
     titleEn: "Заголовок на английском (необязательно)",
@@ -122,6 +127,7 @@ const text = {
       limit_reached: "Кредитов не хватает на пакет (10 кредитов). Выберите тариф, чтобы пополнить.",
       job_in_progress: "У вас уже есть задача в работе. Дождитесь её завершения.",
       email: "Проверьте email.",
+      login_required: "Войдите заново.",
       files_count: "Выберите от 1 до 20 видеофайлов.",
       file_type: "Поддерживаются только MP4, MOV, AVI, MKV, M4V и 3GP.",
       file_size: "Каждый файл должен быть меньше 1 ГБ.",
@@ -201,7 +207,7 @@ function saveJob(job: JobRef | null) {
 const formatSize = (bytes: number) =>
   bytes >= 1024 * 1024 * 1024 ? `${(bytes / 1024 ** 3).toFixed(1)} GB` : `${Math.max(1, Math.round(bytes / 1024 ** 2))} MB`;
 
-const NicsVideoStudio = ({ lang, email, onEmailChange, onNeedAccess }: Props) => {
+const NicsVideoStudio = ({ lang, account, onSignIn, onNeedAccess }: Props) => {
   const t = lang === "ru" ? text.ru : nicsVideoLocales[lang]?.upload ?? text.en;
   const [phase, setPhase] = useState<Phase>("form");
   const [title, setTitle] = useState("");
@@ -273,6 +279,7 @@ const NicsVideoStudio = ({ lang, email, onEmailChange, onNeedAccess }: Props) =>
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!account) return onSignIn();
     const invalid = validate();
     if (invalid) {
       setError(invalid);
@@ -283,7 +290,8 @@ const NicsVideoStudio = ({ lang, email, onEmailChange, onNeedAccess }: Props) =>
     setUploadPct(0);
     try {
       const created = await postJson("nics-video-create", {
-        email,
+        email: account.email,
+        session: account.session,
         title,
         titleEn,
         lang,
@@ -319,6 +327,7 @@ const NicsVideoStudio = ({ lang, email, onEmailChange, onNeedAccess }: Props) =>
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "generic");
       setPhase("form");
+      if (err instanceof ApiError && err.message === "login_required") onSignIn();
     }
   };
 
@@ -377,7 +386,13 @@ const NicsVideoStudio = ({ lang, email, onEmailChange, onNeedAccess }: Props) =>
           <form onSubmit={submit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="nvs-email">{t.email}</Label>
-              <Input id="nvs-email" type="email" required maxLength={200} value={email} onChange={(e) => onEmailChange(e.target.value)} />
+              {account ? (
+                <Input id="nvs-email" type="email" value={account.email} readOnly disabled />
+              ) : (
+                <Button type="button" variant="outline" className="w-full rounded-full" onClick={onSignIn}>
+                  {t.signIn}
+                </Button>
+              )}
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">

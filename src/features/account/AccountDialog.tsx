@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { Language } from "@/contexts/LanguageContext";
 import { nicsVideoLocales } from "@/i18n/nicsVideo";
-import { type AccountError, sendCode, signOut, trustEmail, useAccount, validEmail, verifyCode } from "./account";
+import { type AccountError, sendCode, signOut, useAccount, validEmail, verifyCode } from "./account";
 
 const copy = {
   en: {
@@ -19,7 +19,6 @@ const copy = {
     otherEmail: "Use another email",
     resend: "Send again",
     signedIn: (e: string) => `Signed in as ${e}`,
-    notVerified: "Email is not confirmed yet: sign-in by code turns on soon.",
     signOut: "Sign out",
     errors: {
       email: "Enter a valid email.",
@@ -28,7 +27,7 @@ const copy = {
       too_many: "Too many codes for this email. Try again in an hour.",
       session: "Please sign in again.",
       network: "No connection to the server. Try again.",
-      mail_unavailable: "",
+      mail_unavailable: "Could not send the email right now. Try again in a few minutes.",
     } as Record<AccountError, string>,
   },
   ru: {
@@ -42,7 +41,6 @@ const copy = {
     otherEmail: "Другой email",
     resend: "Отправить ещё раз",
     signedIn: (e: string) => `Вы вошли как ${e}`,
-    notVerified: "Email пока не подтверждён: вход по коду скоро включится.",
     signOut: "Выйти",
     errors: {
       email: "Введите корректный email.",
@@ -51,7 +49,7 @@ const copy = {
       too_many: "Слишком много кодов на этот email. Попробуйте через час.",
       session: "Войдите заново.",
       network: "Нет связи с сервером. Попробуйте ещё раз.",
-      mail_unavailable: "",
+      mail_unavailable: "Не получилось отправить письмо. Попробуйте через несколько минут.",
     } as Record<AccountError, string>,
   },
 };
@@ -96,12 +94,6 @@ const AccountDialog = ({ open, onOpenChange, lang, children, onSignedIn }: Props
       setCode("");
       return;
     }
-    if (r.error === "mail_unavailable") {
-      // Codes cannot be sent yet: keep the old way (email on trust) working.
-      trustEmail(email);
-      onSignedIn?.(email.trim().toLowerCase());
-      return;
-    }
     setError(t.errors[r.error ?? "network"]);
   };
 
@@ -117,7 +109,7 @@ const AccountDialog = ({ open, onOpenChange, lang, children, onSignedIn }: Props
   };
 
   // Already signed in with a confirmed email and not switching to another one.
-  const nothingToDo = step === "email" && Boolean(account?.session) && account?.email === email.trim().toLowerCase();
+  const nothingToDo = step === "email" && account?.email === email.trim().toLowerCase();
 
   return (
     <Dialog open={open} onOpenChange={(o) => !busy && onOpenChange(o)}>
@@ -133,7 +125,6 @@ const AccountDialog = ({ open, onOpenChange, lang, children, onSignedIn }: Props
         {account && step === "email" && (
           <div className="rounded-lg border border-border/60 p-3 text-sm space-y-2">
             <div className="font-medium break-all">{t.signedIn(account.email)}</div>
-            {!account.session && <div className="text-xs text-muted-foreground">{t.notVerified}</div>}
             <Button variant="outline" size="sm" className="rounded-full" onClick={() => signOut()}>
               {t.signOut}
             </Button>

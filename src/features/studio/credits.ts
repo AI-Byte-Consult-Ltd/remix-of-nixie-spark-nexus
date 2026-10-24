@@ -32,10 +32,6 @@ const call = async (body: Record<string, string>): Promise<CreditsResult> => {
   }
 };
 
-// A confirmed account sends its session; an email taken on trust (before
-// email codes work) sends the email itself.
-const who = (a: Account): Record<string, string> => (a.session ? { session: a.session } : { email: a.email });
+export const fetchBalance = (a: Account) => call({ action: "balance", session: a.session });
 
-export const fetchBalance = (a: Account) => call({ action: "balance", ...who(a) });
-
-export const spendCredits = (a: Account, reason: SpendReason) => call({ action: "spend", reason, ...who(a) });
+export const spendCredits = (a: Account, reason: SpendReason) => call({ action: "spend", reason, session: a.session });
