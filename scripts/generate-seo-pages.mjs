@@ -204,6 +204,14 @@ const pages = [
     type: "website",
     schemaType: "Organization",
   },
+  {
+    route: "/nics-video",
+    title: "NICS Video Editor — Automatic Shorts, Long Videos and Covers",
+    description:
+      "Upload raw clips from your trip and get a vertical Short, a horizontal travel video and four covers in two languages. Automatic editing of your real footage, fully offline.",
+    type: "website",
+    schemaType: "SoftwareApplication",
+  },
 ];
 
 const escapeAttribute = (value) =>
@@ -306,6 +314,7 @@ const sitemapMeta = {
   "/estate": { priority: "0.8", changefreq: "monthly" },
   "/nics-multimedia": { priority: "0.5", changefreq: "monthly" },
   "/nics-forge": { priority: "0.5", changefreq: "monthly" },
+  "/nics-video": { priority: "0.6", changefreq: "monthly" },
   "/terms": { priority: "0.4", changefreq: "yearly" },
   "/privacy": { priority: "0.3", changefreq: "yearly" },
   "/delete": { priority: "0.3", changefreq: "yearly" },
