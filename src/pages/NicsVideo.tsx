@@ -29,6 +29,7 @@ import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { formatPrice } from "@/data/nicsTraderPlans";
 import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/components/video/NicsVideoCheckout";
 import NicsVideoStudio from "@/components/video/NicsVideoStudio";
+import NicsVideoExamples from "@/components/video/NicsVideoExamples";
 import { studioStrings } from "@/features/studio/strings";
 import { signOut, useAccount } from "@/features/account/account";
 import AccountDialog from "@/features/account/AccountDialog";
@@ -462,6 +463,8 @@ const NicsVideo = () => {
             </div>
           </div>
         </section>
+
+        <NicsVideoExamples lang={language} />
 
         {/* How it works */}
         <section id="how" className="py-20 bg-background scroll-mt-24">
