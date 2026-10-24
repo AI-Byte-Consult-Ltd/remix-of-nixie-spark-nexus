@@ -2299,6 +2299,19 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     document.documentElement.lang = language;
   }, [language]);
 
+  // Opening a language URL (/de, /fr/trading, ...) picks that language for
+  // the rest of the site too, so a page opened later without a prefix (e.g.
+  // /nics-video in a new tab) does not fall back to an older stored choice.
+  useEffect(() => {
+    const fromPath = detectLanguageFromPath();
+    if (!fromPath) return;
+    try {
+      localStorage.setItem("language", fromPath);
+    } catch {
+      // Storage blocked: the URL still decides this page's language.
+    }
+  }, []);
+
   const t = (key: string): string => {
     return translations[language]?.[key] || subPageTranslations[language]?.[key] || componentTranslations[language]?.[key] || translations.en?.[key] || subPageTranslations.en?.[key] || componentTranslations.en?.[key] || key;
   };

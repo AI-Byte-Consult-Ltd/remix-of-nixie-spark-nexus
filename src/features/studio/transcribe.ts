@@ -1,6 +1,7 @@
 // Turns the timeline's speech into timed words for captions, using the
 // in-browser Whisper worker.
 import type { CaptionWord, Project } from "./model";
+import type { CaptionLang } from "./agent";
 import { SPEECH_RATE, timelineSpeechAudio } from "./audio";
 
 export type TranscribeProgress =
@@ -29,11 +30,17 @@ const phraseWords = (text: string, start: number, end: number): CaptionWord[] =>
   });
 };
 
+// Whisper's names for the caption languages.
+const WHISPER_LANGUAGES: Record<CaptionLang, string> = {
+  en: "english", ru: "russian", de: "german", fr: "french", es: "spanish", it: "italian",
+  pt: "portuguese", pl: "polish", tr: "turkish", bg: "bulgarian", ar: "arabic", zh: "chinese",
+};
+
 let worker: Worker | null = null;
 
 export const transcribeProject = async (
   p: Project,
-  language: "ru" | "en",
+  language: CaptionLang,
   onProgress: (p: TranscribeProgress) => void,
 ): Promise<CaptionWord[]> => {
   const audio = await timelineSpeechAudio(p, (share) => onProgress({ stage: "audio", share }));
@@ -54,7 +61,7 @@ export const transcribeProject = async (
       else if (m.type === "error") reject(new TranscribeError("failed", m.message));
     };
     w.onerror = (e) => reject(new TranscribeError("failed", e.message));
-    w.postMessage({ audio, language: language === "ru" ? "russian" : "english" });
+    w.postMessage({ audio, language: WHISPER_LANGUAGES[language] });
   });
   const words = chunks.flatMap((c) => {
     const start = c.timestamp[0] ?? 0;
