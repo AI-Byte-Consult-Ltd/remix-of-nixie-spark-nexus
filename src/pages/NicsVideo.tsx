@@ -4,7 +4,6 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
-  Clapperboard,
   Smartphone,
   MonitorPlay,
   Image,
@@ -30,6 +29,7 @@ import { formatPrice } from "@/data/nicsTraderPlans";
 import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/components/video/NicsVideoCheckout";
 import NicsVideoStudio from "@/components/video/NicsVideoStudio";
 import NicsVideoExamples from "@/components/video/NicsVideoExamples";
+import NicsVideoHero from "@/components/video/NicsVideoHero";
 import { studioStrings } from "@/features/studio/strings";
 import { signOut, useAccount } from "@/features/account/account";
 import AccountDialog from "@/features/account/AccountDialog";
@@ -403,42 +403,18 @@ const NicsVideo = () => {
       <main className="min-h-screen bg-background">
         <Header />
 
-        {/* Hero */}
-        <section className="pt-32 pb-16 relative overflow-hidden">
-          <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-20 w-64 h-64 bg-primary/3 rounded-full blur-3xl" />
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl mx-auto text-center space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
-                <Clapperboard className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">{c.badge}</span>
-              </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground">
-                <span className="text-gradient-gold">{c.heroHeading}</span>
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">{c.heroSubtitle}</p>
-              <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">{c.heroNote}</p>
-              <div className="flex flex-wrap gap-4 justify-center pt-2">
-                <a href="#pricing">
-                  <Button size="lg" className="w-full sm:w-auto bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                    {c.ctaPrimary}
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </a>
-                <a href="#how">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
-                    {c.ctaSecondary}
-                  </Button>
-                </a>
-                <a href="#guide">
-                  <Button size="lg" variant="ghost" className="w-full sm:w-auto rounded-full px-8">
-                    {guide.guideHeading}
-                  </Button>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+        <NicsVideoHero
+          lang={language}
+          badge={c.badge}
+          subtitle={c.heroSubtitle}
+          note={c.heroNote}
+          ctaPrimary={c.ctaPrimary}
+          ctaSecondary={c.ctaSecondary}
+          guideLabel={guide.guideHeading}
+          shortsTitle={c.shortsTitle}
+          longTitle={c.longTitle}
+          coversTitle={c.coversTitle}
+        />
 
         {/* Outputs */}
         <section className="py-20 bg-muted/30">
