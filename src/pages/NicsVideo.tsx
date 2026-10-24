@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -30,6 +30,8 @@ import { formatPrice } from "@/data/nicsTraderPlans";
 import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/components/video/NicsVideoCheckout";
 import NicsVideoStudio from "@/components/video/NicsVideoStudio";
 import { studioStrings } from "@/features/studio/strings";
+import { readAccount, signOut, useAccount } from "@/features/account/account";
+import AccountDialog from "@/features/account/AccountDialog";
 
 // Credit plans, EUR per 30 days. Keep in sync with PLAN_PRICES in n8n
 // [24 VIDEO] Validate Request and the credit amounts in [26 VIDEO] Check Access.
@@ -87,6 +89,9 @@ interface VideoContent {
   creditsNote: string;
   pricingNote: string;
   backButton: string;
+  signIn: string;
+  signOut: string;
+  signedInAs: (email: string) => string;
 }
 
 const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = {
@@ -193,6 +198,9 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
     pricingNote:
       "Processing time depends on the amount of footage: from a few minutes for a small folder to several hours for long source files — you will get a notification when it is ready.",
     backButton: "Explore the Ecosystem",
+    signIn: "Sign in",
+    signOut: "Sign out",
+    signedInAs: (email: string) => `Signed in as ${email}`,
   },
   ru: {
     badge: "NICS Video Монтажёр",
@@ -297,6 +305,9 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
     pricingNote:
       "Время обработки зависит от объёма материала: от нескольких минут для небольшой папки до нескольких часов для длинных исходников — о готовности придёт уведомление.",
     backButton: "Экосистема NICS",
+    signIn: "Войти",
+    signOut: "Выйти",
+    signedInAs: (email: string) => `Вы вошли как ${email}`,
   },
 };
 
@@ -306,7 +317,12 @@ const audienceIcons = [Plane, Building2, Camera, Users];
 const NicsVideo = () => {
   const { language } = useLanguage();
   const [checkoutPlan, setCheckoutPlan] = useState<CheckoutPlan | null>(null);
-  const [studioEmail, setStudioEmail] = useState("");
+  const [studioEmail, setStudioEmail] = useState(() => readAccount()?.email ?? "");
+  const [signInOpen, setSignInOpen] = useState(false);
+  const account = useAccount();
+  useEffect(() => {
+    if (account) setStudioEmail(account.email);
+  }, [account]);
   const c = content[language] ?? content.en;
   const studio = studioStrings(language);
 
@@ -616,6 +632,20 @@ const NicsVideo = () => {
         <section id="studio" className="py-20 bg-muted/30 scroll-mt-24">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
+              <div className="mb-4 flex flex-wrap items-center justify-end gap-2 text-sm">
+                {account ? (
+                  <>
+                    <span className="text-muted-foreground break-all">{c.signedInAs(account.email)}</span>
+                    <Button variant="ghost" size="sm" className="rounded-full" onClick={() => signOut()}>
+                      {c.signOut}
+                    </Button>
+                  </>
+                ) : (
+                  <Button variant="outline" size="sm" className="rounded-full" onClick={() => setSignInOpen(true)}>
+                    {c.signIn}
+                  </Button>
+                )}
+              </div>
               <NicsVideoStudio
                 lang={language}
                 email={studioEmail}
@@ -626,6 +656,7 @@ const NicsVideo = () => {
           </div>
         </section>
 
+        <AccountDialog open={signInOpen} onOpenChange={setSignInOpen} lang={language} onSignedIn={() => setSignInOpen(false)} />
         <NicsVideoCheckout plan={checkoutPlan} onClose={() => setCheckoutPlan(null)} lang={language} onStarted={setStudioEmail} />
         <Footer />
       </main>

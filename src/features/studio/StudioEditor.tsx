@@ -68,7 +68,9 @@ import Timeline, { type Selection } from "./Timeline";
 import AgentPanel, { type AgentMessage, type StepStatus } from "./AgentPanel";
 import { Field, RangeSlider, Segmented, Swatches } from "./ui";
 import { type SavedSummary, deleteProject, listProjects, loadProject, newProjectId, requestPersistence, saveProject } from "./storage";
-import { type CreditsError, type SpendReason, PRICES, fetchBalance, rememberEmail, savedEmail, spendCredits, validEmail } from "./credits";
+import { type CreditsError, type SpendReason, PRICES, fetchBalance, spendCredits } from "./credits";
+import { checkSession, useAccount } from "@/features/account/account";
+import AccountDialog from "@/features/account/AccountDialog";
 
 const PREVIEW_SIZE: Record<Aspect, { w: number; h: number }> = {
   "9:16": { w: 540, h: 960 },
@@ -162,9 +164,9 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
   const [saved, setSaved] = useState<SavedSummary[]>([]);
   const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "failed">("idle");
   const [currentId, setCurrentId] = useState<string | null>(null);
-  const [email, setEmail] = useState(savedEmail);
+  const account = useAccount();
   const [balance, setBalance] = useState<number | null>(null);
-  const [signIn, setSignIn] = useState<{ draft: string; error: string | null; checking: boolean } | null>(null);
+  const [signIn, setSignIn] = useState<string | null | false>(false);
   const [creditsIssue, setCreditsIssue] = useState<string | null>(null);
   const [exportState, setExportState] = useState<
     { phase: "running"; progress: number } | { phase: "done"; url: string; name: string } | { phase: "error"; message: string } | null
@@ -488,25 +490,36 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
   // --- Credits ----------------------------------------------------------------
 
   useEffect(() => {
-    if (!email) return;
-    fetchBalance(email).then((r) => {
+    checkSession();
+  }, []);
+
+  useEffect(() => {
+    setBalance(null);
+    if (!account) return;
+    fetchBalance(account).then((r) => {
       if (r.ok || r.error === "no_access") setBalance(r.credits);
     });
-  }, [email]);
+  }, [account]);
 
   const creditsText = (error: CreditsError | null, cost: number, left: number) =>
-    error === "no_access" ? s.credits.noAccess : error === "network" ? s.credits.network : s.credits.notEnough(cost, left);
+    error === "no_access"
+      ? s.credits.noAccess
+      : error === "network"
+        ? s.credits.network
+        : error === "session" || error === "email"
+          ? s.credits.needSignIn
+          : s.credits.notEnough(cost, left);
 
   // Checks there is enough for `reason` before the work starts; the credits are
   // taken only after it worked, so a failed export or recognition costs nothing.
   const ensureCredits = async (reason: SpendReason): Promise<boolean> => {
     setCreditsIssue(null);
-    if (!email) {
-      setSignIn({ draft: "", error: s.credits.needSignIn, checking: false });
+    if (!account) {
+      setSignIn(s.credits.needSignIn);
       return false;
     }
     const cost = PRICES[reason];
-    const r = await fetchBalance(email);
+    const r = await fetchBalance(account);
     if (r.ok || r.error === "no_access") setBalance(r.credits);
     if (r.ok && r.credits >= cost) return true;
     setCreditsIssue(creditsText(r.ok ? "not_enough" : r.error, cost, r.credits));
@@ -514,23 +527,9 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
   };
 
   const charge = async (reason: SpendReason) => {
-    const r = await spendCredits(email, reason);
+    if (!account) return;
+    const r = await spendCredits(account, reason);
     if (r.ok || r.error === "not_enough") setBalance(r.credits);
-  };
-
-  const submitSignIn = async () => {
-    if (!signIn) return;
-    const value = signIn.draft.trim().toLowerCase();
-    if (!validEmail(value)) return setSignIn({ ...signIn, error: s.credits.invalidEmail });
-    setSignIn({ ...signIn, checking: true, error: null });
-    const r = await fetchBalance(value);
-    if (!r.ok && r.error !== "no_access") return setSignIn({ ...signIn, checking: false, error: creditsText(r.error, 0, 0) });
-    setEmail(value);
-    rememberEmail(value);
-    setBalance(r.credits);
-    setCreditsIssue(null);
-    if (r.ok) setSignIn(null);
-    else setSignIn({ draft: value, checking: false, error: s.credits.noAccess });
   };
 
   const select = (sel: Selection) => {
@@ -812,7 +811,7 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
     const allowed = await ensureCredits("agent");
     if (!allowed) {
       setAgentBusy(false);
-      setMessages((m) => [...m, userMsg, { id: uid(), role: "agent", text: email ? s.agent.noCredits : s.credits.needSignIn }]);
+      setMessages((m) => [...m, userMsg, { id: uid(), role: "agent", text: account ? s.agent.noCredits : s.credits.needSignIn }]);
       return;
     }
     const id = uid();
@@ -1345,11 +1344,11 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
           variant="outline"
           size="sm"
           className="rounded-full h-9"
-          onClick={() => setSignIn({ draft: email, error: null, checking: false })}
-          title={email || s.credits.signIn}
+          onClick={() => setSignIn(null)}
+          title={account?.email || s.credits.signIn}
         >
           <Coins className="w-4 h-4 mr-1.5 text-primary" />
-          {email ? (balance === null ? "…" : s.credits.balance(balance)) : s.credits.signIn}
+          {account ? (balance === null ? "…" : s.credits.balance(balance)) : s.credits.signIn}
         </Button>
         <Button onClick={runExport} disabled={busy || total <= 0 || !canEncode} className="rounded-full h-9">
           <Download className="w-4 h-4 mr-2" />
@@ -1461,46 +1460,16 @@ const StudioEditor = ({ lang }: { lang: Language }) => {
       </div>
 
       {/* Sign in for credits */}
-      {signIn && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => !signIn.checking && setSignIn(null)}>
-          <form
-            className="w-full max-w-sm rounded-xl border border-border bg-card p-6 space-y-3"
-            onClick={(e) => e.stopPropagation()}
-            onSubmit={(e) => {
-              e.preventDefault();
-              submitSignIn();
-            }}
-          >
-            <div className="flex items-center gap-2 font-semibold">
-              <Coins className="w-5 h-5 text-primary" />
-              {s.credits.title}
-            </div>
-            <p className="text-sm text-muted-foreground">{s.credits.text}</p>
-            <p className="text-xs text-muted-foreground">{s.credits.prices}</p>
-            <input
-              type="email"
-              autoFocus
-              value={signIn.draft}
-              onChange={(e) => setSignIn({ ...signIn, draft: e.target.value, error: null })}
-              placeholder={s.credits.emailPlaceholder}
-              className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
-            />
-            {email && balance !== null && signIn.draft.trim().toLowerCase() === email && (
-              <p className="text-sm font-medium">{s.credits.balance(balance)}</p>
-            )}
-            {signIn.error && <p className="text-sm text-destructive">{signIn.error}</p>}
-            <div className="flex flex-wrap gap-2">
-              <Button type="submit" className="rounded-full" disabled={signIn.checking}>
-                {signIn.checking && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                {signIn.checking ? s.credits.checking : s.credits.continue}
-              </Button>
-              <Button asChild variant="outline" className="rounded-full">
-                <a href="/nics-video#pricing">{s.credits.getCredits}</a>
-              </Button>
-            </div>
-          </form>
+      <AccountDialog open={signIn !== false} onOpenChange={(o) => setSignIn(o ? null : false)} lang={lang} onSignedIn={() => setSignIn(false)}>
+        <div className="space-y-1.5 text-sm">
+          {signIn && <p className="text-destructive">{signIn}</p>}
+          {account && balance !== null && <p className="font-medium">{s.credits.balance(balance)}</p>}
+          <p className="text-xs text-muted-foreground">{s.credits.prices}</p>
+          <a href="/nics-video#pricing" className="text-xs text-primary underline underline-offset-2">
+            {s.credits.getCredits}
+          </a>
         </div>
-      )}
+      </AccountDialog>
 
       {/* Export */}
       {exportState && (

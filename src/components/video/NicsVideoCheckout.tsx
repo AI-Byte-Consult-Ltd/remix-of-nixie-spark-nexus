@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CheckCircle2, CreditCard, Loader2 } from "lucide-react";
 import type { Language } from "@/contexts/LanguageContext";
+import { readAccount } from "@/features/account/account";
 
 // n8n [24 VIDEO] Checkout. Prices are decided server-side from the plan id;
 // the amounts shown on the page must match that workflow's PLAN_PRICES.
@@ -79,6 +80,8 @@ const NicsVideoCheckout = ({ plan, onClose, lang, onStarted }: Props) => {
       setError(null);
       setDone(false);
       setCheckoutUrl(null);
+      const signedIn = readAccount();
+      if (signedIn) setForm((f) => ({ ...f, email: f.email || signedIn.email }));
     }
   }, [plan]);
 
