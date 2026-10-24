@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { CheckCircle2, CreditCard, Loader2 } from "lucide-react";
 import type { Language } from "@/contexts/LanguageContext";
 import { readAccount } from "@/features/account/account";
+import { nicsVideoLocales } from "@/i18n/nicsVideo";
 
 // n8n [24 VIDEO] Checkout. Prices are decided server-side from the plan id;
 // the amounts shown on the page must match that workflow's PLAN_PRICES.
@@ -65,8 +66,10 @@ const text = {
   },
 };
 
+export type CheckoutText = typeof text.en;
+
 const NicsVideoCheckout = ({ plan, onClose, lang, onStarted }: Props) => {
-  const t = lang === "ru" ? text.ru : text.en;
+  const t = lang === "ru" ? text.ru : nicsVideoLocales[lang]?.checkout ?? text.en;
   const isDemo = plan?.id === "nics_video_demo";
   const [form, setForm] = useState({ name: "", email: "", website: "" });
   const [busy, setBusy] = useState(false);

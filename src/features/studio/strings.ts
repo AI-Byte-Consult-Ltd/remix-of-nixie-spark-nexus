@@ -1,6 +1,7 @@
 import type { Language } from "@/contexts/LanguageContext";
 import type { FilterId } from "./model";
 import type { AgentStep } from "./agent";
+import { nicsVideoLocales } from "@/i18n/nicsVideo";
 
 const en = {
   badge: "In development",
@@ -395,4 +396,4 @@ const ru: Strings = {
 };
 
 export type StudioStrings = Strings;
-export const studioStrings = (lang: Language): Strings => (lang === "ru" ? ru : en);
+export const studioStrings = (lang: Language): Strings => (lang === "ru" ? ru : nicsVideoLocales[lang]?.studio ?? en);

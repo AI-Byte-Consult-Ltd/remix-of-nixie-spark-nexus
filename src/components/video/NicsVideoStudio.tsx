@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { AlertCircle, CheckCircle2, Download, Film, Loader2, Upload } from "lucide-react";
 import type { Language } from "@/contexts/LanguageContext";
+import { nicsVideoLocales } from "@/i18n/nicsVideo";
 
 // n8n [26 VIDEO] Jobs API + [27 VIDEO] File Transfer. Files travel in parts of
 // at most PART_SIZE bytes; the server checks access (demo or paid order for the
@@ -144,6 +145,8 @@ const text = {
   },
 };
 
+export type UploadText = typeof text.en;
+
 class ApiError extends Error {}
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -199,7 +202,7 @@ const formatSize = (bytes: number) =>
   bytes >= 1024 * 1024 * 1024 ? `${(bytes / 1024 ** 3).toFixed(1)} GB` : `${Math.max(1, Math.round(bytes / 1024 ** 2))} MB`;
 
 const NicsVideoStudio = ({ lang, email, onEmailChange, onNeedAccess }: Props) => {
-  const t = lang === "ru" ? text.ru : text.en;
+  const t = lang === "ru" ? text.ru : nicsVideoLocales[lang]?.upload ?? text.en;
   const [phase, setPhase] = useState<Phase>("form");
   const [title, setTitle] = useState("");
   const [titleEn, setTitleEn] = useState("");

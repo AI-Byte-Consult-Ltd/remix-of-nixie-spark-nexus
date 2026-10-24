@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { Language } from "@/contexts/LanguageContext";
+import { nicsVideoLocales } from "@/i18n/nicsVideo";
 import { type AccountError, sendCode, signOut, trustEmail, useAccount, validEmail, verifyCode } from "./account";
 
 const copy = {
@@ -55,6 +56,8 @@ const copy = {
   },
 };
 
+export type AccountText = typeof copy.en;
+
 interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -65,7 +68,7 @@ interface Props {
 }
 
 const AccountDialog = ({ open, onOpenChange, lang, children, onSignedIn }: Props) => {
-  const t = lang === "ru" ? copy.ru : copy.en;
+  const t = lang === "ru" ? copy.ru : nicsVideoLocales[lang]?.account ?? copy.en;
   const account = useAccount();
   const [step, setStep] = useState<"email" | "code">("email");
   const [email, setEmail] = useState("");
