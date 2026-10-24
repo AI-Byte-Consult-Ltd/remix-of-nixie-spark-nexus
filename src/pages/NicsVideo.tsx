@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,7 @@ import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { formatPrice } from "@/data/nicsTraderPlans";
+import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/components/video/NicsVideoCheckout";
 
 // Plan prices, EUR. Keep in sync with the Revolut order amounts once
 // NICS Video checkout is wired in n8n. A package is 1 Short + 1 Long + 4 covers.
@@ -284,6 +286,7 @@ const audienceIcons = [Plane, Building2, Camera, Users];
 
 const NicsVideo = () => {
   const { language } = useLanguage();
+  const [checkoutPlan, setCheckoutPlan] = useState<CheckoutPlan | null>(null);
   const c = content[language] ?? content.en;
 
   const outputs = [
@@ -293,8 +296,9 @@ const NicsVideo = () => {
   ];
 
   const plans = [
-    { name: c.demoName, price: c.demoPrice, period: c.demoPeriod, features: c.demoFeatures, button: c.demoButton, featured: false },
+    { id: "nics_video_demo" as NicsVideoPlanId, name: c.demoName, price: c.demoPrice, period: c.demoPeriod, features: c.demoFeatures, button: c.demoButton, featured: false },
     {
+      id: "nics_video_basic" as NicsVideoPlanId,
       name: c.basicName,
       price: formatPrice(NICS_VIDEO_BASIC_EUR, "EUR"),
       period: c.basicPeriod,
@@ -303,6 +307,7 @@ const NicsVideo = () => {
       featured: true,
     },
     {
+      id: "nics_video_pro" as NicsVideoPlanId,
       name: c.proName,
       price: formatPrice(NICS_VIDEO_PRO_EUR, "EUR"),
       period: c.proPeriod,
@@ -521,16 +526,15 @@ const NicsVideo = () => {
                           </li>
                         ))}
                       </ul>
-                      <Link to="/#contact">
-                        <Button
+                      <Button
                           size="lg"
+                          onClick={() => setCheckoutPlan({ id: plan.id, name: plan.name, price: plan.price })}
                           variant={plan.featured ? "default" : "outline"}
                           className={`w-full rounded-full px-8 ${plan.featured ? "bg-foreground hover:bg-foreground/90 text-background" : "border-2"}`}
                         >
                           {plan.button}
                           <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
-                      </Link>
                     </CardContent>
                   </Card>
                 ))}
@@ -554,6 +558,7 @@ const NicsVideo = () => {
           </div>
         </section>
 
+        <NicsVideoCheckout plan={checkoutPlan} onClose={() => setCheckoutPlan(null)} lang={language} />
         <Footer />
       </main>
     </>
