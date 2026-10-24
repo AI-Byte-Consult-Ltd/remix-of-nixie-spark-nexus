@@ -19,10 +19,16 @@ import {
   Building2,
   Camera,
   Users,
+  Check,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
+import { formatPrice } from "@/data/nicsTraderPlans";
+
+// Basic plan price, EUR per month. Keep in sync with the Revolut order
+// amount once NICS Video checkout is wired in n8n.
+const NICS_VIDEO_BASIC_EUR = 9.99;
 
 interface VideoContent {
   badge: string;
@@ -51,22 +57,30 @@ interface VideoContent {
   privacyP2: string;
   audienceHeading: string;
   audience: { title: string; text: string }[];
-  statusHeading: string;
-  statusP1: string;
-  statusP2: string;
-  statusButton: string;
+  pricingHeading: string;
+  pricingIntro: string;
+  demoName: string;
+  demoPrice: string;
+  demoPeriod: string;
+  demoFeatures: string[];
+  demoButton: string;
+  basicName: string;
+  basicPeriod: string;
+  basicFeatures: string[];
+  basicButton: string;
+  pricingNote: string;
   backButton: string;
 }
 
 const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = {
   en: {
-    badge: "NICS Video Editor · Early access",
+    badge: "NICS Video Editor",
     heroHeading: "NICS Video Editor",
     heroSubtitle:
       "Upload a folder of raw clips from your trip — get back a vertical Short, a horizontal travel film and four covers in two languages. No manual storyboarding, no editing timeline.",
     heroNote:
       "This is not generative video: the AI invents nothing and draws nothing in. It edits the footage you actually shot — finds the best moments, builds the timing and the cuts by itself.",
-    ctaPrimary: "Request early access",
+    ctaPrimary: "Start a free 3-day demo",
     ctaSecondary: "How it works",
     outputsHeading: "What you get",
     outputsIntro: "Six ready files from every folder you upload:",
@@ -120,21 +134,38 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       { title: "Event videographers", text: "Fast highlight cuts in two formats at once." },
       { title: "Everyone with a phone archive", text: "A lot of raw video and no time to edit it." },
     ],
-    statusHeading: "Status and pricing",
-    statusP1:
-      "NICS Video Editor works today as our in-house tool and is being turned into an online service. Processing time depends on the amount of footage: from a few minutes for a small folder to several hours for long source files — you will get a notification when it is ready.",
-    statusP2: "Pricing has not been fixed yet. Write to us to get early access and help shape it.",
-    statusButton: "Contact us",
+    pricingHeading: "Pricing",
+    pricingIntro: "Try it free for 3 days, then one simple plan.",
+    demoName: "Demo",
+    demoPrice: "Free",
+    demoPeriod: "3 days",
+    demoFeatures: [
+      "Full pipeline: Short, Long and 4 covers",
+      "Both styles: dynamic and travel",
+      "No card required",
+    ],
+    demoButton: "Start demo",
+    basicName: "Basic",
+    basicPeriod: "per month",
+    basicFeatures: [
+      "Everything in the demo",
+      "New videos every month",
+      "Background music and cover regeneration",
+      "Secure card payment via Revolut",
+    ],
+    basicButton: "Get Basic",
+    pricingNote:
+      "Processing time depends on the amount of footage: from a few minutes for a small folder to several hours for long source files — you will get a notification when it is ready.",
     backButton: "Explore the Ecosystem",
   },
   ru: {
-    badge: "NICS Video Монтажёр · Ранний доступ",
+    badge: "NICS Video Монтажёр",
     heroHeading: "NICS Video Монтажёр",
     heroSubtitle:
       "Загружаете папку с сырыми клипами поездки — получаете вертикальный шортс, горизонтальный travel-ролик и четыре обложки на двух языках. Без ручной раскадровки и монтажа.",
     heroNote:
       "Это не генеративное видео: ИИ ничего не придумывает и не дорисовывает. Это автоматический монтаж того, что вы сняли, — система сама находит лучшие кадры, строит хронометраж и склейки.",
-    ctaPrimary: "Получить ранний доступ",
+    ctaPrimary: "Попробовать 3 дня бесплатно",
     ctaSecondary: "Как это работает",
     outputsHeading: "Что вы получаете",
     outputsIntro: "Шесть готовых файлов на каждую загруженную папку:",
@@ -188,11 +219,28 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       { title: "Event-видеографы", text: "Быстрые нарезки сразу в двух форматах." },
       { title: "Все, у кого архив в телефоне", text: "Много сырого видео и нет времени монтировать." },
     ],
-    statusHeading: "Статус и цены",
-    statusP1:
-      "NICS Video Монтажёр уже работает как наш внутренний инструмент и сейчас превращается в онлайн-сервис. Время обработки зависит от объёма материала: от нескольких минут для небольшой папки до нескольких часов для длинных исходников — о готовности придёт уведомление.",
-    statusP2: "Тарифы пока не утверждены. Напишите нам, чтобы получить ранний доступ и повлиять на них.",
-    statusButton: "Связаться с нами",
+    pricingHeading: "Тарифы",
+    pricingIntro: "3 дня бесплатно, дальше один простой тариф.",
+    demoName: "Демо",
+    demoPrice: "Бесплатно",
+    demoPeriod: "3 дня",
+    demoFeatures: [
+      "Полный пайплайн: шортс, лонг и 4 обложки",
+      "Оба стиля: динамичный и travel",
+      "Без привязки карты",
+    ],
+    demoButton: "Начать демо",
+    basicName: "Базовый",
+    basicPeriod: "в месяц",
+    basicFeatures: [
+      "Всё, что в демо",
+      "Новые ролики каждый месяц",
+      "Фоновая музыка и перегенерация обложек",
+      "Безопасная оплата картой через Revolut",
+    ],
+    basicButton: "Оформить Базовый",
+    pricingNote:
+      "Время обработки зависит от объёма материала: от нескольких минут для небольшой папки до нескольких часов для длинных исходников — о готовности придёт уведомление.",
     backButton: "Экосистема NICS",
   },
 };
@@ -208,6 +256,18 @@ const NicsVideo = () => {
     { icon: Smartphone, title: c.shortsTitle, text: c.shortsText },
     { icon: MonitorPlay, title: c.longTitle, text: c.longText },
     { icon: Image, title: c.coversTitle, text: c.coversText },
+  ];
+
+  const plans = [
+    { name: c.demoName, price: c.demoPrice, period: c.demoPeriod, features: c.demoFeatures, button: c.demoButton, featured: false },
+    {
+      name: c.basicName,
+      price: formatPrice(NICS_VIDEO_BASIC_EUR, "EUR"),
+      period: c.basicPeriod,
+      features: c.basicFeatures,
+      button: c.basicButton,
+      featured: true,
+    },
   ];
 
   const seoProps = {
@@ -247,12 +307,12 @@ const NicsVideo = () => {
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">{c.heroSubtitle}</p>
               <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">{c.heroNote}</p>
               <div className="flex flex-wrap gap-4 justify-center pt-2">
-                <Link to="/#contact">
+                <a href="#pricing">
                   <Button size="lg" className="w-full sm:w-auto bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
                     {c.ctaPrimary}
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
-                </Link>
+                </a>
                 <a href="#how">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
                     {c.ctaSecondary}
@@ -389,23 +449,57 @@ const NicsVideo = () => {
           </div>
         </section>
 
-        {/* Status & pricing */}
-        <section className="py-20 bg-background">
+        {/* Pricing */}
+        <section id="pricing" className="py-20 bg-background scroll-mt-24">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center space-y-6 bg-card p-12 rounded-3xl border border-border/50 shadow-card">
-              <Clock className="w-8 h-8 mx-auto text-primary" />
-              <h2 className="text-3xl font-semibold text-foreground">{c.statusHeading}</h2>
-              <p className="text-muted-foreground leading-relaxed">{c.statusP1}</p>
-              <p className="text-muted-foreground leading-relaxed">{c.statusP2}</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/#contact">
-                  <Button size="lg" className="w-full sm:w-auto bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                    {c.statusButton}
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-semibold text-foreground text-center mb-4">
+                <span className="text-gradient-gold">{c.pricingHeading}</span>
+              </h2>
+              <p className="text-lg text-muted-foreground text-center mb-12">{c.pricingIntro}</p>
+              <div className="grid md:grid-cols-2 gap-6">
+                {plans.map((plan) => (
+                  <Card
+                    key={plan.name}
+                    className={`bg-card ${plan.featured ? "border-2 border-primary shadow-card" : "border-border/50"}`}
+                  >
+                    <CardContent className="pt-8 pb-8 space-y-6 flex flex-col h-full">
+                      <div className="space-y-2">
+                        <div className="text-sm font-semibold uppercase tracking-wide text-primary">{plan.name}</div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-4xl font-semibold text-foreground">{plan.price}</span>
+                          <span className="text-muted-foreground">{plan.period}</span>
+                        </div>
+                      </div>
+                      <ul className="space-y-3 flex-1">
+                        {plan.features.map((f) => (
+                          <li key={f} className="flex gap-3 text-muted-foreground">
+                            <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Link to="/#contact">
+                        <Button
+                          size="lg"
+                          variant={plan.featured ? "default" : "outline"}
+                          className={`w-full rounded-full px-8 ${plan.featured ? "bg-foreground hover:bg-foreground/90 text-background" : "border-2"}`}
+                        >
+                          {plan.button}
+                          <ArrowRight className="ml-2 w-4 h-4" />
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              <p className="text-sm text-muted-foreground text-center mt-8 max-w-2xl mx-auto flex items-start justify-center gap-2">
+                <Clock className="w-4 h-4 shrink-0 mt-0.5 text-primary" />
+                <span>{c.pricingNote}</span>
+              </p>
+              <div className="text-center mt-8">
                 <Link to="/nics-ecosystem">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-8 border-2">
+                  <Button variant="ghost" className="rounded-full">
                     <ArrowLeft className="mr-2 w-4 h-4" />
                     {c.backButton}
                   </Button>
