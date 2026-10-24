@@ -22,12 +22,15 @@ interface Props {
   plan: CheckoutPlan | null;
   onClose: () => void;
   lang: Language;
+  // Called with the email once the demo or order went through, so the page can
+  // prefill the upload form.
+  onStarted?: (email: string) => void;
 }
 
 const text = {
   en: {
     demoTitle: "Start your free demo",
-    demoDesc: "3 days, up to 2 packages. We will email you how to send your footage.",
+    demoDesc: "3 days, up to 2 packages. Upload your footage right on this page.",
     payTitle: "Subscribe",
     payDesc: "You will be redirected to a secure Revolut checkout. Charged in EUR.",
     name: "Name",
@@ -36,14 +39,15 @@ const text = {
     submitPay: "Continue to payment",
     error: "Something went wrong. Please try again or write to info@aibyteconsult.com.",
     demoExists: "A demo has already been started with this email.",
-    demoDone: "Your demo is registered. We will email you within one business day with how to send your footage.",
-    payOpened: "The Revolut checkout opened in a new tab. After payment we will email you to activate your plan.",
+    demoDone: "Your demo is active. Upload your footage on this page with the same email.",
+    payOpened: "The Revolut checkout opened in a new tab. A few minutes after payment your plan is active: upload your footage on this page with the same email.",
     payLink: "Open checkout again",
+    upload: "Upload footage",
     close: "Close",
   },
   ru: {
     demoTitle: "Начать бесплатное демо",
-    demoDesc: "3 дня, до 2 пакетов. Мы напишем вам на email, как передать исходники.",
+    demoDesc: "3 дня, до 2 пакетов. Исходники загружаются прямо на этой странице.",
     payTitle: "Оформить подписку",
     payDesc: "Оплата на защищённой странице Revolut, списание в евро.",
     name: "Имя",
@@ -52,14 +56,15 @@ const text = {
     submitPay: "Перейти к оплате",
     error: "Что-то пошло не так. Попробуйте ещё раз или напишите на info@aibyteconsult.com.",
     demoExists: "Демо на этот email уже было оформлено.",
-    demoDone: "Демо оформлено. В течение рабочего дня мы напишем вам на email, как передать исходники.",
-    payOpened: "Страница оплаты Revolut открылась в новой вкладке. После оплаты мы напишем вам на email и активируем тариф.",
+    demoDone: "Демо активно. Загрузите исходники на этой странице с тем же email.",
+    payOpened: "Страница оплаты Revolut открылась в новой вкладке. Через несколько минут после оплаты тариф активируется: загрузите исходники на этой странице с тем же email.",
     payLink: "Открыть оплату ещё раз",
+    upload: "Загрузить исходники",
     close: "Закрыть",
   },
 };
 
-const NicsVideoCheckout = ({ plan, onClose, lang }: Props) => {
+const NicsVideoCheckout = ({ plan, onClose, lang, onStarted }: Props) => {
   const t = lang === "ru" ? text.ru : text.en;
   const isDemo = plan?.id === "nics_video_demo";
   const [form, setForm] = useState({ name: "", email: "", website: "" });
@@ -103,6 +108,7 @@ const NicsVideoCheckout = ({ plan, onClose, lang }: Props) => {
         else window.location.href = data.checkout_url;
       }
       setDone(true);
+      onStarted?.(form.email.trim());
     } catch {
       tab?.close();
       setError(t.error);
@@ -134,9 +140,15 @@ const NicsVideoCheckout = ({ plan, onClose, lang }: Props) => {
                 </Button>
               </a>
             )}
-            <Button variant="outline" className="w-full rounded-full border-2" onClick={onClose}>
-              {t.close}
-            </Button>
+            {isDemo ? (
+              <a href="#studio" onClick={onClose} className="block">
+                <Button className="w-full rounded-full bg-foreground hover:bg-foreground/90 text-background">{t.upload}</Button>
+              </a>
+            ) : (
+              <Button variant="outline" className="w-full rounded-full border-2" onClick={onClose}>
+                {t.close}
+              </Button>
+            )}
           </div>
         ) : (
           <form onSubmit={submit} className="space-y-4">

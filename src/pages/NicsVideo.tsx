@@ -27,6 +27,7 @@ import SEO from "@/components/SEO";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { formatPrice } from "@/data/nicsTraderPlans";
 import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/components/video/NicsVideoCheckout";
+import NicsVideoStudio from "@/components/video/NicsVideoStudio";
 
 // Plan prices, EUR. Keep in sync with the Revolut order amounts once
 // NICS Video checkout is wired in n8n. A package is 1 Short + 1 Long + 4 covers.
@@ -153,7 +154,7 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       "Up to 2 packages",
       "Up to 15 minutes of source footage per package",
       "Both styles: dynamic and travel",
-      "Watermark on videos, no card required",
+      "No card required",
     ],
     demoButton: "Start demo",
     basicName: "Basic",
@@ -251,7 +252,7 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       "До 2 пакетов",
       "До 15 минут исходника на пакет",
       "Оба стиля: динамичный и travel",
-      "Водяной знак на роликах, без привязки карты",
+      "Без привязки карты",
     ],
     demoButton: "Начать демо",
     basicName: "Базовый",
@@ -287,6 +288,7 @@ const audienceIcons = [Plane, Building2, Camera, Users];
 const NicsVideo = () => {
   const { language } = useLanguage();
   const [checkoutPlan, setCheckoutPlan] = useState<CheckoutPlan | null>(null);
+  const [studioEmail, setStudioEmail] = useState("");
   const c = content[language] ?? content.en;
 
   const outputs = [
@@ -558,7 +560,21 @@ const NicsVideo = () => {
           </div>
         </section>
 
-        <NicsVideoCheckout plan={checkoutPlan} onClose={() => setCheckoutPlan(null)} lang={language} />
+        {/* Upload + job status */}
+        <section id="studio" className="py-20 bg-muted/30 scroll-mt-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <NicsVideoStudio
+                lang={language}
+                email={studioEmail}
+                onEmailChange={setStudioEmail}
+                onNeedAccess={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
+              />
+            </div>
+          </div>
+        </section>
+
+        <NicsVideoCheckout plan={checkoutPlan} onClose={() => setCheckoutPlan(null)} lang={language} onStarted={setStudioEmail} />
         <Footer />
       </main>
     </>
