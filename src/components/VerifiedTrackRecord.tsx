@@ -1,39 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { BadgeCheck, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-type PeriodStats = {
-  closedSignals: number;
-  wins: number;
-  losses: number;
-  breakeven: number;
-  winRatePercent: number;
-  totalR: number;
-  expectancyR: number;
-  averageMfeR: number;
-  averageMaeR: number;
-};
-
-// 2026-10-10, owner's instruction: STRONG/RELAXED ("confirmed") and WEAK
-// signals used to be blended into one number, which diluted the real gated
-// track record. Each tier now carries its own full stats; "overall" (the
-// old blended figure) is kept too, shown smaller, never shown alone.
-type TieredPeriodStats = {
-  confirmed: PeriodStats;
-  weak: PeriodStats;
-  overall: PeriodStats;
-};
-
-type PerformanceResponse = {
-  product: string;
-  verified: boolean;
-  source: string;
-  generatedAt: string;
-  performance: Record<"7d" | "30d" | "90d" | "all", TieredPeriodStats>;
-};
-
-const ENDPOINT = "https://n8n.aibyteconsult.com/webhook/nics-public-performance";
+import { usePublicPerformance, type PerformanceResponse, type PeriodStats } from "@/lib/publicPerformance";
 
 const PERIODS: { key: keyof PerformanceResponse["performance"]; labelKey: string }[] = [
   { key: "7d", labelKey: "track.period.7d" },
@@ -44,24 +13,8 @@ const PERIODS: { key: keyof PerformanceResponse["performance"]; labelKey: string
 
 const VerifiedTrackRecord = () => {
   const { t } = useLanguage();
-  const [data, setData] = useState<PerformanceResponse | null>(null);
-  const [error, setError] = useState(false);
+  const { data, error } = usePublicPerformance();
   const [period, setPeriod] = useState<keyof PerformanceResponse["performance"]>("30d");
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch(ENDPOINT)
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-      .then((json: PerformanceResponse) => {
-        if (!cancelled) setData(json);
-      })
-      .catch(() => {
-        if (!cancelled) setError(true);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   if (error || (data && !data.performance?.[period])) {
     return null;
@@ -128,7 +81,7 @@ const VerifiedTrackRecord = () => {
   );
 
   return (
-    <section className="py-24 relative bg-muted/30">
+    <section id="track-record" className="py-24 relative bg-muted/30 scroll-mt-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary">
