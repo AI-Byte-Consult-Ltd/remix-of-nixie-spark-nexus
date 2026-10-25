@@ -8,9 +8,8 @@ import {
   MonitorPlay,
   Image,
   Upload,
-  ScanSearch,
-  ListOrdered,
-  Film,
+  Timer,
+  Download,
   ShieldCheck,
   Clock,
   ArrowRight,
@@ -43,6 +42,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const NICS_VIDEO_START_EUR = 14.99;
 const NICS_VIDEO_CREATOR_EUR = 34.99;
 const NICS_VIDEO_PRO_EUR = 69.99;
+const START_CREDITS = 60;
+const PACKAGE_CREDITS = 10;
 
 // Weekend bonus (2026-10-25): Start bought before Sunday 23:59 Sofia time gives
 // 90 credits instead of 60. The credits are granted in n8n [26 VIDEO] Check Access
@@ -61,6 +62,7 @@ export interface VideoContent {
   heroNote: string;
   ctaPrimary: string;
   ctaSecondary: string;
+  heroPrice: (perPackage: string) => string;
   outputsHeading: string;
   outputsIntro: string;
   shortsTitle: string;
@@ -118,6 +120,7 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       "This is not generative video: nothing is invented or drawn in. An automatic editing algorithm works only with the footage you actually shot — it finds the best moments and builds the timing and the cuts.",
     ctaPrimary: "Get 10 free credits",
     ctaSecondary: "How it works",
+    heroPrice: (p: string) => `First package free, then ${p} or less per package`,
     outputsHeading: "What you get",
     outputsIntro: "Six ready files from every folder you upload:",
     shortsTitle: "Short · 9:16",
@@ -132,22 +135,9 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       "Both videos are H.264/AAC, without burned-in subtitles, with optional background music that starts from the most energetic part of the track.",
     howHeading: "How it works",
     steps: [
-      {
-        title: "Upload",
-        text: "Drop in a folder or several MP4/MOV files — from 3 to 40+ clips per location. Your originals are never modified.",
-      },
-      {
-        title: "Analysis",
-        text: "Scene detection, quality and motion scoring and content tagging (beach, mountains, food, people…) pick out the strongest shots.",
-      },
-      {
-        title: "Edit plan",
-        text: "A timeline is built from the best segments: sources alternate so no single clip dominates, with a strong opening and closing.",
-      },
-      {
-        title: "Render & covers",
-        text: "FFmpeg renders both videos with transitions, stabilisation and music, then generates the four covers and validates every file.",
-      },
+      { title: "Upload your clips", text: "Drop in a folder or a few files from your phone, from 3 clips. Your originals are never changed." },
+      { title: "Wait a few minutes", text: "The edit runs automatically: a few minutes for a small folder, longer for hours of footage. You get a notification when it is ready." },
+      { title: "Download and post", text: "A Short, a long video and 4 covers, ready for TikTok, Reels and YouTube." },
     ],
     styleHeading: "Short vs Long",
     styleIntro: "Both videos come from one analysis of your footage, with two different editing passes.",
@@ -225,6 +215,7 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       "Это не генеративное видео: ничего не придумывается и не дорисовывается. Алгоритм автоматического монтажа работает только с тем, что вы сняли, — сам находит лучшие кадры, строит хронометраж и склейки.",
     ctaPrimary: "Получить 10 кредитов бесплатно",
     ctaSecondary: "Как это работает",
+    heroPrice: (p: string) => `Первый пакет бесплатно, дальше не дороже ${p} за пакет`,
     outputsHeading: "Что вы получаете",
     outputsIntro: "Шесть готовых файлов на каждую загруженную папку:",
     shortsTitle: "Шортс · 9:16",
@@ -239,22 +230,9 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       "Оба видео — H.264/AAC, без вшитых субтитров, с фоновой музыкой по желанию: трек стартует с самой энергичной части.",
     howHeading: "Как это работает",
     steps: [
-      {
-        title: "Загрузка",
-        text: "Папка или несколько файлов MP4/MOV — от 3 до 40+ клипов на локацию. Исходники никогда не изменяются.",
-      },
-      {
-        title: "Анализ",
-        text: "Детекция сцен, оценка качества и движения кадра и теги по содержимому (пляж, горы, еда, люди…) отбирают сильные планы.",
-      },
-      {
-        title: "План монтажа",
-        text: "Из лучших отрезков строится таймлайн: источники чередуются, чтобы один файл не занял весь ролик, с сильным началом и финалом.",
-      },
-      {
-        title: "Рендер и обложки",
-        text: "FFmpeg собирает оба видео с переходами, стабилизацией и музыкой, затем делает четыре обложки и проверяет каждый файл.",
-      },
+      { title: "Загрузите клипы", text: "Перетащите папку или несколько файлов с телефона, от 3 клипов. Ваши оригиналы не меняются." },
+      { title: "Подождите несколько минут", text: "Монтаж идёт сам: несколько минут для небольшой папки, дольше для часов съёмки. Когда всё готово, придёт уведомление." },
+      { title: "Скачайте и публикуйте", text: "Шортс, длинное видео и 4 обложки, готовые для TikTok, Reels и YouTube." },
     ],
     styleHeading: "Шортс и лонг",
     styleIntro: "Оба видео строятся из одного анализа исходников, но двумя разными проходами монтажа.",
@@ -325,7 +303,7 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
   },
 };
 
-const stepIcons = [Upload, ScanSearch, ListOrdered, Film];
+const stepIcons = [Upload, Timer, Download];
 const audienceIcons = [Plane, Building2, Camera, Users];
 
 const NicsVideo = () => {
@@ -423,6 +401,7 @@ const NicsVideo = () => {
           note={c.heroNote}
           ctaPrimary={c.ctaPrimary}
           ctaSecondary={c.ctaSecondary}
+          price={c.heroPrice(formatPrice(NICS_VIDEO_START_EUR / (START_CREDITS / PACKAGE_CREDITS), "EUR"))}
           guideLabel={guide.guideHeading}
           shortsTitle={c.shortsTitle}
           longTitle={c.longTitle}
@@ -455,30 +434,6 @@ const NicsVideo = () => {
           </div>
         </section>
 
-        {/* NICS Studio: manual editor */}
-        <section id="nics-studio" className="py-20 bg-background scroll-mt-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
-                <Scissors className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">{studio.badge}</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
-                <span className="text-gradient-gold">{studio.sectionHeading}</span>
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">{studio.sectionText}</p>
-              <div>
-                <Link to="/nics-studio">
-                  <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
-                    {studio.sectionButton}
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <NicsVideoExamples lang={language} />
 
         {/* How it works */}
@@ -488,7 +443,7 @@ const NicsVideo = () => {
               <h2 className="text-3xl md:text-4xl font-semibold text-foreground text-center mb-12">
                 <span className="text-gradient-gold">{c.howHeading}</span>
               </h2>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid md:grid-cols-3 gap-6">
                 {c.steps.map((s, i) => {
                   const Icon = stepIcons[i];
                   return (
@@ -519,17 +474,17 @@ const NicsVideo = () => {
                 <span className="text-gradient-gold">{c.styleHeading}</span>
               </h2>
               <p className="text-lg text-muted-foreground text-center mb-10">{c.styleIntro}</p>
-              <div className="bg-card rounded-3xl border border-border/50 shadow-card overflow-hidden">
-                <div className="grid grid-cols-3 text-sm font-semibold uppercase tracking-wide text-primary border-b border-border/50">
-                  <div className="p-4" />
-                  <div className="p-4 flex items-center gap-2"><Smartphone className="w-4 h-4" />Shorts</div>
-                  <div className="p-4 flex items-center gap-2"><MonitorPlay className="w-4 h-4" />Long</div>
+              <div lang={language} className="bg-card rounded-3xl border border-border/50 shadow-card overflow-hidden">
+                <div className="grid grid-cols-[6.5rem_1fr_1fr] sm:grid-cols-3 text-xs sm:text-sm font-semibold uppercase tracking-wide text-primary border-b border-border/50">
+                  <div className="ps-4 pe-2 py-3 sm:p-4" />
+                  <div className="px-2 py-3 sm:p-4 flex items-center gap-2"><Smartphone className="w-4 h-4" />Shorts</div>
+                  <div className="px-2 py-3 sm:p-4 flex items-center gap-2"><MonitorPlay className="w-4 h-4" />Long</div>
                 </div>
                 {c.styleRows.map((r) => (
-                  <div key={r.label} className="grid grid-cols-3 border-b border-border/50 last:border-b-0">
-                    <div className="p-4 font-medium text-foreground">{r.label}</div>
-                    <div className="p-4 text-muted-foreground">{r.shorts}</div>
-                    <div className="p-4 text-muted-foreground">{r.long}</div>
+                  <div key={r.label} className="grid grid-cols-[6.5rem_1fr_1fr] sm:grid-cols-3 border-b border-border/50 last:border-b-0 text-sm sm:text-base hyphens-auto break-words">
+                    <div className="ps-4 pe-2 py-3 sm:p-4 font-medium text-foreground">{r.label}</div>
+                    <div className="px-2 py-3 sm:p-4 text-muted-foreground">{r.shorts}</div>
+                    <div className="px-2 py-3 sm:p-4 text-muted-foreground">{r.long}</div>
                   </div>
                 ))}
               </div>
@@ -722,6 +677,30 @@ const NicsVideo = () => {
                   </AccordionItem>
                 ))}
               </Accordion>
+            </div>
+          </div>
+        </section>
+
+        {/* NICS Studio: manual editor */}
+        <section id="nics-studio" className="py-20 bg-background scroll-mt-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent border border-primary/20">
+                <Scissors className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-primary">{studio.badge}</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
+                <span className="text-gradient-gold">{studio.sectionHeading}</span>
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">{studio.sectionText}</p>
+              <div>
+                <Link to="/nics-studio">
+                  <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background rounded-full px-8">
+                    {studio.sectionButton}
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </section>

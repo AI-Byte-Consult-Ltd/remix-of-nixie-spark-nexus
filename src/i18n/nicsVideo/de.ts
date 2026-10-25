@@ -15,6 +15,7 @@ const de: NicsVideoLocale = {
       "Das ist kein generatives Video: Nichts wird erfunden oder dazugemalt. Ein automatischer Schnittalgorithmus schneidet das Material, das Sie wirklich gefilmt haben, findet die besten Momente und baut Timing und Schnitte selbst.",
     ctaPrimary: "10 Credits gratis erhalten",
     ctaSecondary: "So funktioniert es",
+    heroPrice: (p: string) => `Erstes Paket gratis, danach höchstens ${p} pro Paket`,
     outputsHeading: "Was Sie bekommen",
     outputsIntro: "Sechs fertige Dateien aus jedem hochgeladenen Ordner:",
     shortsTitle: "Short · 9:16",
@@ -29,22 +30,9 @@ const de: NicsVideoLocale = {
       "Beide Videos sind H.264/AAC, ohne eingebrannte Untertitel, optional mit Hintergrundmusik, die am energiereichsten Teil des Tracks beginnt.",
     howHeading: "So funktioniert es",
     steps: [
-      {
-        title: "Hochladen",
-        text: "Ziehen Sie einen Ordner oder mehrere MP4/MOV-Dateien hinein – 3 bis 40+ Clips pro Ort. Ihre Originale werden nie verändert.",
-      },
-      {
-        title: "Analyse",
-        text: "Szenenerkennung, Bewertung von Qualität und Bewegung und Inhalts-Tags (Strand, Berge, Essen, Menschen…) wählen die stärksten Aufnahmen aus.",
-      },
-      {
-        title: "Schnittplan",
-        text: "Aus den besten Abschnitten entsteht eine Timeline: Die Quellen wechseln sich ab, kein Clip dominiert, mit starkem Anfang und Ende.",
-      },
-      {
-        title: "Rendern & Cover",
-        text: "FFmpeg rendert beide Videos mit Übergängen, Stabilisierung und Musik, erstellt dann die vier Cover und prüft jede Datei.",
-      },
+      { title: "Clips hochladen", text: "Ziehen Sie einen Ordner oder ein paar Dateien vom Handy hinein, ab 3 Clips. Ihre Originale bleiben unverändert." },
+      { title: "Ein paar Minuten warten", text: "Der Schnitt läuft automatisch: wenige Minuten für einen kleinen Ordner, länger bei stundenlangem Material. Sie werden benachrichtigt, sobald alles fertig ist." },
+      { title: "Herunterladen und posten", text: "Ein Short, ein langes Video und 4 Cover, fertig für TikTok, Reels und YouTube." },
     ],
     styleHeading: "Short und Long",
     styleIntro: "Beide Videos entstehen aus einer Analyse Ihres Materials, mit zwei verschiedenen Schnittdurchgängen.",

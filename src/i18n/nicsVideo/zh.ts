@@ -15,6 +15,7 @@ const zh: NicsVideoLocale = {
       "这不是生成式视频：不会凭空编造或添加任何画面。自动剪辑算法剪辑的是您真实拍摄的素材，自动找出最精彩的瞬间，自行安排节奏和剪切点。",
     ctaPrimary: "免费领取 10 积分",
     ctaSecondary: "工作原理",
+    heroPrice: (p: string) => `首个套餐免费，之后每个套餐不超过 ${p}`,
     outputsHeading: "您将获得",
     outputsIntro: "每上传一个文件夹，得到六个成品文件：",
     shortsTitle: "Short · 9:16",
@@ -26,22 +27,9 @@ const zh: NicsVideoLocale = {
     outputsFootnote: "两条视频均为 H.264/AAC 格式，不内嵌字幕；可选背景音乐，从曲目最有能量的部分开始播放。",
     howHeading: "工作原理",
     steps: [
-      {
-        title: "上传",
-        text: "拖入一个文件夹或多个 MP4/MOV 文件，每个地点 3 到 40 多个片段。您的原始文件永远不会被修改。",
-      },
-      {
-        title: "分析",
-        text: "场景检测、画质与运动评分以及内容标签（海滩、山脉、美食、人物……）挑选出最好的镜头。",
-      },
-      {
-        title: "剪辑方案",
-        text: "用最佳片段搭建时间线：素材交替出现，避免单个片段占满整片，开头和结尾都有力。",
-      },
-      {
-        title: "渲染与封面",
-        text: "FFmpeg 为两条视频加入转场、防抖和音乐并完成渲染，然后生成四张封面并检查每个文件。",
-      },
+      { title: "上传素材", text: "拖入一个文件夹或手机里的几个文件，至少 3 段素材。您的原始文件不会被修改。" },
+      { title: "稍等几分钟", text: "剪辑自动完成：小文件夹只需几分钟，数小时的素材需要更久。完成后会通知您。" },
+      { title: "下载并发布", text: "一条 Short、一条长视频和 4 张封面，可直接发布到 TikTok、Reels 和 YouTube。" },
     ],
     styleHeading: "Short 与 Long",
     styleIntro: "两条视频来自对素材的同一次分析，经过两种不同的剪辑流程。",

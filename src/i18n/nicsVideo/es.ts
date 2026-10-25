@@ -15,6 +15,7 @@ const es: NicsVideoLocale = {
       "No es vídeo generativo: no se inventa ni se dibuja nada. Un algoritmo de edición automática edita las imágenes que realmente grabaste, encuentra los mejores momentos y construye solo el ritmo y los cortes.",
     ctaPrimary: "Consigue 10 créditos gratis",
     ctaSecondary: "Cómo funciona",
+    heroPrice: (p: string) => `Primer paquete gratis, después ${p} o menos por paquete`,
     outputsHeading: "Qué recibes",
     outputsIntro: "Seis archivos listos por cada carpeta que subes:",
     shortsTitle: "Short · 9:16",
@@ -29,22 +30,9 @@ const es: NicsVideoLocale = {
       "Ambos vídeos son H.264/AAC, sin subtítulos incrustados, con música de fondo opcional que empieza en la parte más enérgica de la pista.",
     howHeading: "Cómo funciona",
     steps: [
-      {
-        title: "Subida",
-        text: "Arrastra una carpeta o varios archivos MP4/MOV, de 3 a más de 40 clips por lugar. Tus originales nunca se modifican.",
-      },
-      {
-        title: "Análisis",
-        text: "La detección de escenas, la valoración de calidad y movimiento y las etiquetas de contenido (playa, montaña, comida, personas…) eligen las mejores tomas.",
-      },
-      {
-        title: "Plan de edición",
-        text: "Con los mejores fragmentos se arma una línea de tiempo: las fuentes se alternan para que ningún clip domine, con un inicio y un final fuertes.",
-      },
-      {
-        title: "Render y portadas",
-        text: "FFmpeg renderiza ambos vídeos con transiciones, estabilización y música, luego genera las cuatro portadas y comprueba cada archivo.",
-      },
+      { title: "Sube tus clips", text: "Arrastra una carpeta o unos archivos del móvil, desde 3 clips. Tus originales nunca se modifican." },
+      { title: "Espera unos minutos", text: "La edición es automática: unos minutos para una carpeta pequeña, más para horas de grabación. Te avisamos cuando esté listo." },
+      { title: "Descarga y publica", text: "Un Short, un vídeo largo y 4 portadas, listos para TikTok, Reels y YouTube." },
     ],
     styleHeading: "Short y Long",
     styleIntro: "Ambos vídeos salen de un único análisis de tus imágenes, con dos pasadas de edición distintas.",

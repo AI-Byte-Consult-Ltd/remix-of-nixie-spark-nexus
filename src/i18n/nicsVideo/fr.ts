@@ -15,6 +15,7 @@ const fr: NicsVideoLocale = {
       "Ce n'est pas de la vidéo générative : rien n'est inventé ni ajouté à l'image. Un algorithme de montage automatique monte les images que vous avez réellement filmées, trouve les meilleurs moments et construit seul le rythme et les coupes.",
     ctaPrimary: "Obtenir 10 crédits gratuits",
     ctaSecondary: "Comment ça marche",
+    heroPrice: (p: string) => `Premier pack gratuit, puis ${p} maximum le pack`,
     outputsHeading: "Ce que vous recevez",
     outputsIntro: "Six fichiers prêts pour chaque dossier envoyé :",
     shortsTitle: "Short · 9:16",
@@ -29,22 +30,9 @@ const fr: NicsVideoLocale = {
       "Les deux vidéos sont en H.264/AAC, sans sous-titres incrustés, avec une musique de fond en option qui démarre sur la partie la plus énergique du morceau.",
     howHeading: "Comment ça marche",
     steps: [
-      {
-        title: "Envoi",
-        text: "Déposez un dossier ou plusieurs fichiers MP4/MOV, de 3 à plus de 40 clips par lieu. Vos originaux ne sont jamais modifiés.",
-      },
-      {
-        title: "Analyse",
-        text: "Détection des scènes, notation de la qualité et du mouvement et étiquettes de contenu (plage, montagne, cuisine, personnes…) sélectionnent les meilleurs plans.",
-      },
-      {
-        title: "Plan de montage",
-        text: "Une timeline est construite à partir des meilleurs segments : les sources alternent pour qu'aucun clip ne domine, avec une ouverture et une fin fortes.",
-      },
-      {
-        title: "Rendu et couvertures",
-        text: "FFmpeg rend les deux vidéos avec transitions, stabilisation et musique, puis génère les quatre couvertures et vérifie chaque fichier.",
-      },
+      { title: "Envoyez vos clips", text: "Déposez un dossier ou quelques fichiers depuis votre téléphone, à partir de 3 clips. Vos originaux ne sont jamais modifiés." },
+      { title: "Patientez quelques minutes", text: "Le montage se fait automatiquement : quelques minutes pour un petit dossier, plus pour des heures de rushes. Vous êtes prévenu dès que c'est prêt." },
+      { title: "Téléchargez et publiez", text: "Un Short, une vidéo longue et 4 couvertures, prêts pour TikTok, Reels et YouTube." },
     ],
     styleHeading: "Short et Long",
     styleIntro: "Les deux vidéos viennent d'une seule analyse de vos images, avec deux passes de montage différentes.",

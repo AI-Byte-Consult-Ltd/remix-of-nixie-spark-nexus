@@ -15,6 +15,7 @@ const it: NicsVideoLocale = {
       "Non è video generativo: nulla viene inventato o disegnato. Un algoritmo di montaggio automatico monta le riprese che hai davvero girato, trova i momenti migliori e costruisce da solo ritmo e tagli.",
     ctaPrimary: "Ottieni 10 crediti gratis",
     ctaSecondary: "Come funziona",
+    heroPrice: (p: string) => `Primo pacchetto gratis, poi al massimo ${p} a pacchetto`,
     outputsHeading: "Cosa ricevi",
     outputsIntro: "Sei file pronti per ogni cartella caricata:",
     shortsTitle: "Short · 9:16",
@@ -29,22 +30,9 @@ const it: NicsVideoLocale = {
       "Entrambi i video sono H.264/AAC, senza sottotitoli impressi, con musica di sottofondo opzionale che parte dalla parte più energica del brano.",
     howHeading: "Come funziona",
     steps: [
-      {
-        title: "Caricamento",
-        text: "Trascina una cartella o più file MP4/MOV, da 3 a oltre 40 clip per luogo. I tuoi originali non vengono mai modificati.",
-      },
-      {
-        title: "Analisi",
-        text: "Rilevamento delle scene, valutazione di qualità e movimento ed etichette di contenuto (spiaggia, montagna, cibo, persone…) scelgono le inquadrature migliori.",
-      },
-      {
-        title: "Piano di montaggio",
-        text: "Dai segmenti migliori nasce una timeline: le fonti si alternano perché nessuna clip domini, con un inizio e un finale forti.",
-      },
-      {
-        title: "Rendering e copertine",
-        text: "FFmpeg esegue il rendering di entrambi i video con transizioni, stabilizzazione e musica, poi crea le quattro copertine e verifica ogni file.",
-      },
+      { title: "Carica i tuoi clip", text: "Trascina una cartella o qualche file dal telefono, da 3 clip in su. I tuoi originali non vengono mai modificati." },
+      { title: "Attendi qualche minuto", text: "Il montaggio è automatico: pochi minuti per una cartella piccola, di più per ore di girato. Ricevi una notifica quando è pronto." },
+      { title: "Scarica e pubblica", text: "Uno Short, un video lungo e 4 copertine, pronti per TikTok, Reels e YouTube." },
     ],
     styleHeading: "Short e Long",
     styleIntro: "Entrambi i video nascono da un'unica analisi delle tue riprese, con due passaggi di montaggio diversi.",

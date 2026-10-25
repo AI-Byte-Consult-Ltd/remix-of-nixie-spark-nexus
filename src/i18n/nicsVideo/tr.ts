@@ -15,6 +15,7 @@ const tr: NicsVideoLocale = {
       "Bu üretken video değildir: Hiçbir şey uydurulmaz, hiçbir şey çizilmez. Otomatik kurgu algoritması gerçekten çektiğiniz görüntüleri kurgular, en iyi anları bulur, ritmi ve kesmeleri kendisi oluşturur.",
     ctaPrimary: "10 ücretsiz kredi alın",
     ctaSecondary: "Nasıl çalışır",
+    heroPrice: (p: string) => `İlk paket ücretsiz, sonra paket başına en fazla ${p}`,
     outputsHeading: "Neler alırsınız",
     outputsIntro: "Yüklediğiniz her klasörden altı hazır dosya:",
     shortsTitle: "Short · 9:16",
@@ -29,22 +30,9 @@ const tr: NicsVideoLocale = {
       "İki video da H.264/AAC, gömülü altyazı olmadan; isteğe bağlı fon müziği parçanın en enerjik bölümünden başlar.",
     howHeading: "Nasıl çalışır",
     steps: [
-      {
-        title: "Yükleme",
-        text: "Bir klasör ya da birkaç MP4/MOV dosyası bırakın – mekân başına 3 ile 40'tan fazla klip. Orijinalleriniz asla değiştirilmez.",
-      },
-      {
-        title: "Analiz",
-        text: "Sahne algılama, kalite ve hareket puanlaması ve içerik etiketleri (plaj, dağ, yemek, insanlar…) en güçlü çekimleri seçer.",
-      },
-      {
-        title: "Kurgu planı",
-        text: "En iyi bölümlerden bir zaman çizelgesi kurulur: kaynaklar dönüşümlü kullanılır, tek bir klip baskın olmaz; açılış ve kapanış güçlüdür.",
-      },
-      {
-        title: "Render ve kapaklar",
-        text: "FFmpeg iki videoyu geçişler, sabitleme ve müzikle render eder, ardından dört kapağı oluşturur ve her dosyayı kontrol eder.",
-      },
+      { title: "Kliplerinizi yükleyin", text: "Telefonunuzdan bir klasör ya da birkaç dosya sürükleyin, en az 3 klip. Orijinalleriniz asla değiştirilmez." },
+      { title: "Birkaç dakika bekleyin", text: "Kurgu otomatik yapılır: küçük bir klasör için birkaç dakika, saatlerce çekim için daha uzun. Hazır olduğunda bildirim alırsınız." },
+      { title: "İndirin ve paylaşın", text: "Bir Short, bir uzun video ve 4 kapak; TikTok, Reels ve YouTube için hazır." },
     ],
     styleHeading: "Short ve Long",
     styleIntro: "İki video da görüntülerinizin tek bir analizinden, iki farklı kurgu geçişiyle çıkar.",

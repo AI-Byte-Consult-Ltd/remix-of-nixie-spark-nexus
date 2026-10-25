@@ -15,6 +15,7 @@ const pt: NicsVideoLocale = {
       "Não é vídeo generativo: nada é inventado nem desenhado. Um algoritmo de edição automática edita as imagens que você realmente gravou, encontra os melhores momentos e monta sozinho o ritmo e os cortes.",
     ctaPrimary: "Ganhe 10 créditos grátis",
     ctaSecondary: "Como funciona",
+    heroPrice: (p: string) => `Primeiro pacote grátis, depois ${p} ou menos por pacote`,
     outputsHeading: "O que você recebe",
     outputsIntro: "Seis arquivos prontos para cada pasta enviada:",
     shortsTitle: "Short · 9:16",
@@ -29,22 +30,9 @@ const pt: NicsVideoLocale = {
       "Os dois vídeos são H.264/AAC, sem legendas embutidas, com música de fundo opcional que começa na parte mais enérgica da faixa.",
     howHeading: "Como funciona",
     steps: [
-      {
-        title: "Envio",
-        text: "Arraste uma pasta ou vários arquivos MP4/MOV, de 3 a mais de 40 clipes por local. Os originais nunca são alterados.",
-      },
-      {
-        title: "Análise",
-        text: "Detecção de cenas, avaliação de qualidade e movimento e etiquetas de conteúdo (praia, montanha, comida, pessoas…) escolhem as melhores tomadas.",
-      },
-      {
-        title: "Plano de edição",
-        text: "Com os melhores trechos monta-se uma linha do tempo: as fontes se alternam para nenhum clipe dominar, com abertura e final fortes.",
-      },
-      {
-        title: "Renderização e capas",
-        text: "O FFmpeg renderiza os dois vídeos com transições, estabilização e música, depois gera as quatro capas e verifica cada arquivo.",
-      },
+      { title: "Envie seus clipes", text: "Arraste uma pasta ou alguns arquivos do celular, a partir de 3 clipes. Seus originais nunca são alterados." },
+      { title: "Aguarde alguns minutos", text: "A edição é automática: alguns minutos para uma pasta pequena, mais para horas de gravação. Você recebe um aviso quando estiver pronto." },
+      { title: "Baixe e publique", text: "Um Short, um vídeo longo e 4 capas, prontos para TikTok, Reels e YouTube." },
     ],
     styleHeading: "Short e Long",
     styleIntro: "Os dois vídeos saem de uma única análise das suas imagens, com duas passagens de edição diferentes.",
