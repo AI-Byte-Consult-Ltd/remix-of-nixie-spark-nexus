@@ -44,6 +44,16 @@ const NICS_VIDEO_START_EUR = 14.99;
 const NICS_VIDEO_CREATOR_EUR = 34.99;
 const NICS_VIDEO_PRO_EUR = 69.99;
 
+// Weekend bonus (2026-10-25): Start bought before Sunday 23:59 Sofia time gives
+// 90 credits instead of 60. The credits are granted in n8n [26 VIDEO] Check Access
+// and [28 VIDEO] Studio Credits by the order's created_at; the badge hides itself after.
+const START_BONUS_UNTIL = Date.parse("2026-10-25T22:00:00Z");
+const startBonusText: Partial<Record<Language, string>> & { en: string } = {
+  en: "Weekend bonus: +30 credits (9 packages) until Sunday 23:59 Sofia time",
+  ru: "Бонус выходных: +30 кредитов (9 пакетов) до воскресенья 23:59 по Софии",
+  bg: "Бонус за уикенда: +30 кредита (9 пакета) до неделя 23:59 софийско време",
+};
+
 export interface VideoContent {
   badge: string;
   heroHeading: string;
@@ -350,6 +360,7 @@ const NicsVideo = () => {
       features: c.basicFeatures,
       button: c.basicButton,
       featured: false,
+      bonus: Date.now() < START_BONUS_UNTIL ? startBonusText[language] ?? startBonusText.en : undefined,
     },
     {
       id: "nics_video_pro" as NicsVideoPlanId,
@@ -590,6 +601,11 @@ const NicsVideo = () => {
                           <span className="text-muted-foreground">{plan.period}</span>
                         </div>
                       </div>
+                      {"bonus" in plan && plan.bonus && (
+                        <div className="rounded-lg bg-primary/10 border border-primary/30 px-3 py-2 text-sm font-medium text-primary">
+                          {plan.bonus}
+                        </div>
+                      )}
                       <ul className="space-y-3 flex-1">
                         {plan.features.map((f) => (
                           <li key={f} className="flex gap-3 text-muted-foreground">
