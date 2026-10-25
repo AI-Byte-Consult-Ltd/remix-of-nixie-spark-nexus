@@ -75,11 +75,11 @@ const it: VideoGuide = {
     },
     {
       q: "Che cos’è un credito?",
-      a: "Il credito è l’unità con cui si paga il lavoro dell’IA: montaggio automatico, riconoscimento vocale per i sottotitoli, richieste all’agente e rendering del video finale. Con il piano Start un credito costa circa 25 centesimi.",
+      a: "Il credito è l’unità con cui si paga l’elaborazione: montaggio automatico, riconoscimento vocale per i sottotitoli, richieste all’agente e rendering del video finale. Con il piano Start un credito costa circa 25 centesimi.",
     },
     {
       q: "Dove vengono conservati i miei file?",
-      a: "Il montaggio automatico gira sul nostro hardware con modelli locali, mai su cloud di IA esterni; i file finiti restano disponibili 7 giorni. NICS Studio funziona sul tuo dispositivo e non carica i tuoi file da nessuna parte.",
+      a: "Il montaggio automatico gira sul nostro hardware, mai su cloud esterni; i file finiti restano disponibili 7 giorni. NICS Studio funziona sul tuo dispositivo e non carica i tuoi file da nessuna parte.",
     },
     {
       q: "Il codice di accesso non è arrivato",

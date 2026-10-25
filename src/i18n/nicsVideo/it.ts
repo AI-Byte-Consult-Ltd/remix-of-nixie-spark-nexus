@@ -12,7 +12,7 @@ const it: NicsVideoLocale = {
     heroSubtitle:
       "Carica una cartella di clip grezze del tuo viaggio e ricevi uno Short verticale, un video di viaggio orizzontale e quattro copertine in due lingue. Niente storyboard manuale, niente timeline di montaggio.",
     heroNote:
-      "Non è video generativo: l'IA non inventa e non disegna nulla. Monta le riprese che hai davvero girato, trova i momenti migliori e costruisce da sola ritmo e tagli.",
+      "Non è video generativo: nulla viene inventato o disegnato. Un algoritmo di montaggio automatico monta le riprese che hai davvero girato, trova i momenti migliori e costruisce da solo ritmo e tagli.",
     ctaPrimary: "Ottieni 10 crediti gratis",
     ctaSecondary: "Come funziona",
     outputsHeading: "Cosa ricevi",
@@ -58,7 +58,7 @@ const it: NicsVideoLocale = {
       "Se il materiale è poco, il video diventa onestamente più corto: i fotogrammi non vengono mai duplicati per allungarlo, e vedrai un avviso.",
     privacyHeading: "Le tue riprese restano private",
     privacyP1:
-      "Tutta l'elaborazione avviene sul nostro hardware con modelli locali. Nessun file video o fotogramma viene mai inviato a un servizio di IA esterno nel cloud: importante quando si tratta di video personali o di famiglia.",
+      "Tutta l'elaborazione avviene sul nostro hardware. Nessun file video o fotogramma viene mai inviato a un servizio cloud esterno: importante quando si tratta di video personali o di famiglia.",
     privacyP2: "Testato dall'inizio alla fine senza Internet, su decine di luoghi.",
     audienceHeading: "Per chi è",
     audience: [
@@ -391,7 +391,7 @@ const it: NicsVideoLocale = {
     },
     sectionHeading: "NICS Studio: monta da solo",
     sectionText:
-      "Preferisci montare a mano? NICS Studio è un editor video direttamente sul nostro sito, nello stile di CapCut ed Edits, con un agente IA: scrivi «taglia le pause, aggiungi sottotitoli e zoom» e fa il montaggio passo dopo passo. Sottotitoli, testo, musica, filtri, esportazione in 9:16 o 16:9. Funziona nel browser, i tuoi file restano sul tuo dispositivo.",
+      "Preferisci montare a mano? NICS Studio è un editor video direttamente sul nostro sito, con un assistente integrato: scrivi «taglia le pause, aggiungi sottotitoli e zoom» e fa il montaggio passo dopo passo. Sottotitoli, testo, musica, filtri, esportazione in 9:16 o 16:9. Funziona nel browser, i tuoi file restano sul tuo dispositivo.",
     sectionButton: "Apri NICS Studio",
   },
 };

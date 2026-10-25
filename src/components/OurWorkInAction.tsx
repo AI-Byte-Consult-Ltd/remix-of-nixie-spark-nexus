@@ -103,13 +103,13 @@ type Case = {
 const CASES: Case[] = [
   {
     id: "nicsvideo",
-    industry: "Content Creation · AI Video Editing",
+    industry: "Content Creation · Automatic Video Editing",
     name: "NICS Video",
     problem: "Creators spend hours cutting raw clips into Shorts, Reels, TikToks and long YouTube videos, and still have to design covers by hand.",
     solution: "Upload your raw footage and NICS Video edits it automatically: a vertical short and a horizontal long video with covers in Russian and English, plus NICS Studio for fine-tuning in the browser.",
     result: "Ready-to-post videos for TikTok, YouTube and Instagram without sitting in an editor.",
     metric: { value: 2, suffix: "", label: "Formats from one upload: short + long", static: true },
-    tags: ["AI Video", "TikTok · YouTube · Reels", "Auto Covers", "NICS Studio"],
+    tags: ["Auto Editing", "TikTok · YouTube · Reels", "Auto Covers", "NICS Studio"],
     cta: "Try NICS Video",
     href: "/nics-video",
     image: nicsVideoImg,

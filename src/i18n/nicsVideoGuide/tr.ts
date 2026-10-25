@@ -75,11 +75,11 @@ const tr: VideoGuide = {
     },
     {
       q: "Kredi nedir?",
-      a: "Kredi, buradaki yapay zekâ işinin ödeme birimidir: otomatik kurgu, altyazı için konuşma tanıma, asistan istekleri ve son videonun render’ı. Start paketinde bir kredi yaklaşık 25 sent eder.",
+      a: "Kredi, buradaki işlemlerin ödeme birimidir: otomatik kurgu, altyazı için konuşma tanıma, asistan istekleri ve son videonun render’ı. Start paketinde bir kredi yaklaşık 25 sent eder.",
     },
     {
       q: "Dosyalarım nerede saklanıyor?",
-      a: "Otomatik kurgu kendi donanımımızda yerel modellerle çalışır, dış yapay zekâ bulutlarına gitmez; hazır dosyalar 7 gün saklanır. NICS Studio cihazınızda çalışır ve dosyalarınızı hiçbir yere yüklemez.",
+      a: "Otomatik kurgu kendi donanımımızda çalışır, dış bulutlara gitmez; hazır dosyalar 7 gün saklanır. NICS Studio cihazınızda çalışır ve dosyalarınızı hiçbir yere yüklemez.",
     },
     {
       q: "Giriş kodu gelmedi",

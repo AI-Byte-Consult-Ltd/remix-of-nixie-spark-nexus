@@ -12,7 +12,7 @@ const tr: NicsVideoLocale = {
     heroSubtitle:
       "Seyahatinizin ham kliplerinden oluşan bir klasör yükleyin; dikey bir Short, yatay bir seyahat filmi ve iki dilde dört kapak alın. Elle senaryo taslağı yok, kurgu zaman çizelgesi yok.",
     heroNote:
-      "Bu üretken video değildir: Yapay zekâ hiçbir şey uydurmaz, hiçbir şey çizmez. Gerçekten çektiğiniz görüntüleri kurgular, en iyi anları bulur, ritmi ve kesmeleri kendisi oluşturur.",
+      "Bu üretken video değildir: Hiçbir şey uydurulmaz, hiçbir şey çizilmez. Otomatik kurgu algoritması gerçekten çektiğiniz görüntüleri kurgular, en iyi anları bulur, ritmi ve kesmeleri kendisi oluşturur.",
     ctaPrimary: "10 ücretsiz kredi alın",
     ctaSecondary: "Nasıl çalışır",
     outputsHeading: "Neler alırsınız",
@@ -58,7 +58,7 @@ const tr: NicsVideoLocale = {
       "Görüntü azsa video dürüstçe kısalır – süreyi doldurmak için kareler asla kopyalanmaz ve bir uyarı görürsünüz.",
     privacyHeading: "Görüntüleriniz gizli kalır",
     privacyP1:
-      "Tüm işlem kendi donanımımızda yerel modellerle çalışır. Hiçbir video dosyası veya kare harici bir bulut yapay zekâ hizmetine gönderilmez – aile ve kişisel görüntüler için önemli.",
+      "Tüm işlem kendi donanımımızda çalışır. Hiçbir video dosyası veya kare harici bir bulut hizmetine gönderilmez – aile ve kişisel görüntüler için önemli.",
     privacyP2: "İnternet kapalıyken, onlarca mekânda baştan sona test edildi.",
     audienceHeading: "Kimler için",
     audience: [
@@ -391,7 +391,7 @@ const tr: NicsVideoLocale = {
     },
     sectionHeading: "NICS Studio: kendiniz kurgulayın",
     sectionText:
-      "Elle kurgulamayı mı tercih edersiniz? NICS Studio, CapCut ve Edits tarzında, doğrudan sitemizde çalışan, yapay zekâ ajanlı bir video editörüdür: “duraklamaları kes, altyazı ve zoom ekle” yazın, kurguyu adım adım yapsın. Altyazı, metin, müzik, filtreler, 9:16 veya 16:9 dışa aktarma. Tarayıcıda çalışır, dosyalarınız cihazınızda kalır.",
+      "Elle kurgulamayı mı tercih edersiniz? NICS Studio, doğrudan sitemizde çalışan, yerleşik asistanlı bir video editörüdür: “duraklamaları kes, altyazı ve zoom ekle” yazın, kurguyu adım adım yapsın. Altyazı, metin, müzik, filtreler, 9:16 veya 16:9 dışa aktarma. Tarayıcıda çalışır, dosyalarınız cihazınızda kalır.",
     sectionButton: "NICS Studio'yu açın",
   },
 };

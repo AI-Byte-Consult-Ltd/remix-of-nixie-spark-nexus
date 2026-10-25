@@ -15,7 +15,7 @@ const pl: NicsVideoLocale = {
     heroSubtitle:
       "Wgraj folder z surowymi klipami z podróży i otrzymaj pionowy Short, poziomy film podróżniczy i cztery okładki w dwóch językach. Bez ręcznego scenorysu i bez osi czasu montażu.",
     heroNote:
-      "To nie jest wideo generatywne: AI niczego nie wymyśla i niczego nie dorysowuje. Montuje to, co naprawdę nagrałeś, sama znajduje najlepsze momenty, buduje tempo i cięcia.",
+      "To nie jest wideo generatywne: nic nie jest wymyślane ani dorysowywane. Algorytm automatycznego montażu montuje to, co naprawdę nagrałeś, sam znajduje najlepsze momenty, buduje tempo i cięcia.",
     ctaPrimary: "Odbierz 10 darmowych kredytów",
     ctaSecondary: "Jak to działa",
     outputsHeading: "Co otrzymujesz",
@@ -61,7 +61,7 @@ const pl: NicsVideoLocale = {
       "Jeśli materiału jest za mało, film uczciwie robi się krótszy – klatki nigdy nie są powielane dla wydłużenia, a Ty zobaczysz ostrzeżenie.",
     privacyHeading: "Twój materiał pozostaje prywatny",
     privacyP1:
-      "Całe przetwarzanie działa na naszym własnym sprzęcie z lokalnymi modelami. Żaden plik wideo ani klatka nie trafia do zewnętrznej chmurowej usługi AI – to ważne przy nagraniach rodzinnych i prywatnych.",
+      "Całe przetwarzanie działa na naszym własnym sprzęcie. Żaden plik wideo ani klatka nie trafia do zewnętrznej usługi chmurowej – to ważne przy nagraniach rodzinnych i prywatnych.",
     privacyP2: "Przetestowane od początku do końca bez internetu, w dziesiątkach lokalizacji.",
     audienceHeading: "Dla kogo",
     audience: [
@@ -394,7 +394,7 @@ const pl: NicsVideoLocale = {
     },
     sectionHeading: "NICS Studio: montuj sam",
     sectionText:
-      "Wolisz montować ręcznie? NICS Studio to edytor wideo bezpośrednio na naszej stronie, w duchu CapCut i Edits, z agentem AI: napisz „wytnij pauzy, dodaj napisy i zoomy”, a zmontuje krok po kroku. Napisy, tekst, muzyka, filtry, eksport w 9:16 lub 16:9. Działa w przeglądarce, pliki zostają na Twoim urządzeniu.",
+      "Wolisz montować ręcznie? NICS Studio to edytor wideo bezpośrednio na naszej stronie, z wbudowanym asystentem: napisz „wytnij pauzy, dodaj napisy i zoomy”, a zmontuje krok po kroku. Napisy, tekst, muzyka, filtry, eksport w 9:16 lub 16:9. Działa w przeglądarce, pliki zostają na Twoim urządzeniu.",
     sectionButton: "Otwórz NICS Studio",
   },
 };
