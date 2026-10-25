@@ -12,7 +12,7 @@ const pt: NicsVideoLocale = {
     heroSubtitle:
       "Envie uma pasta com os clipes brutos da sua viagem e receba um Short vertical, um vídeo de viagem horizontal e quatro capas em dois idiomas. Sem storyboard manual, sem linha do tempo de edição.",
     heroNote:
-      "Não é vídeo generativo: a IA não inventa nem desenha nada. Ela edita as imagens que você realmente gravou, encontra os melhores momentos e monta sozinha o ritmo e os cortes.",
+      "Não é vídeo generativo: nada é inventado nem desenhado. Um algoritmo de edição automática edita as imagens que você realmente gravou, encontra os melhores momentos e monta sozinho o ritmo e os cortes.",
     ctaPrimary: "Ganhe 10 créditos grátis",
     ctaSecondary: "Como funciona",
     outputsHeading: "O que você recebe",
@@ -58,7 +58,7 @@ const pt: NicsVideoLocale = {
       "Se houver pouco material, o vídeo fica honestamente mais curto: nenhum quadro é duplicado para preencher, e você verá um aviso.",
     privacyHeading: "Suas imagens continuam privadas",
     privacyP1:
-      "Todo o processamento roda no nosso próprio hardware com modelos locais. Nenhum arquivo de vídeo ou quadro é enviado a um serviço de IA externo na nuvem, o que importa quando são vídeos pessoais ou de família.",
+      "Todo o processamento roda no nosso próprio hardware. Nenhum arquivo de vídeo ou quadro é enviado a um serviço externo na nuvem, o que importa quando são vídeos pessoais ou de família.",
     privacyP2: "Testado de ponta a ponta sem internet, em dezenas de locais.",
     audienceHeading: "Para quem é",
     audience: [
@@ -391,7 +391,7 @@ const pt: NicsVideoLocale = {
     },
     sectionHeading: "NICS Studio: edite você mesmo",
     sectionText:
-      "Prefere editar à mão? O NICS Studio é um editor de vídeo direto no nosso site, no estilo do CapCut e do Edits, com um agente de IA: escreva “corte as pausas, adicione legendas e zooms” e ele faz a edição passo a passo. Legendas, texto, música, filtros, exportação em 9:16 ou 16:9. Funciona no navegador, seus arquivos ficam no seu dispositivo.",
+      "Prefere editar à mão? O NICS Studio é um editor de vídeo direto no nosso site, com um assistente integrado: escreva “corte as pausas, adicione legendas e zooms” e ele faz a edição passo a passo. Legendas, texto, música, filtros, exportação em 9:16 ou 16:9. Funciona no navegador, seus arquivos ficam no seu dispositivo.",
     sectionButton: "Abrir o NICS Studio",
   },
 };

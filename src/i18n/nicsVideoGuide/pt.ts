@@ -75,11 +75,11 @@ const pt: VideoGuide = {
     },
     {
       q: "O que é um crédito?",
-      a: "O crédito é a unidade com que se paga o trabalho da IA: edição automática, reconhecimento de fala para legendas, pedidos ao agente e renderização do vídeo final. No plano Start, um crédito custa cerca de 25 centavos de euro.",
+      a: "O crédito é a unidade com que se paga o processamento: edição automática, reconhecimento de fala para legendas, pedidos ao agente e renderização do vídeo final. No plano Start, um crédito custa cerca de 25 centavos de euro.",
     },
     {
       q: "Onde meus arquivos ficam guardados?",
-      a: "A edição automática roda no nosso próprio hardware com modelos locais, nunca em nuvens de IA externas; os arquivos prontos ficam guardados por 7 dias. O NICS Studio funciona no seu dispositivo e não envia seus arquivos para lugar nenhum.",
+      a: "A edição automática roda no nosso próprio hardware, nunca em nuvens externas; os arquivos prontos ficam guardados por 7 dias. O NICS Studio funciona no seu dispositivo e não envia seus arquivos para lugar nenhum.",
     },
     {
       q: "O código de login não chegou",

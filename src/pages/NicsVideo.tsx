@@ -115,7 +115,7 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
     heroSubtitle:
       "Upload a folder of raw clips from your trip — get back a vertical Short, a horizontal travel film and four covers in two languages. No manual storyboarding, no editing timeline.",
     heroNote:
-      "This is not generative video: the AI invents nothing and draws nothing in. It edits the footage you actually shot — finds the best moments, builds the timing and the cuts by itself.",
+      "This is not generative video: nothing is invented or drawn in. An automatic editing algorithm works only with the footage you actually shot — it finds the best moments and builds the timing and the cuts.",
     ctaPrimary: "Get 10 free credits",
     ctaSecondary: "How it works",
     outputsHeading: "What you get",
@@ -161,7 +161,7 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       "If there is too little footage, the video honestly gets shorter — frames are never duplicated to pad it out, and you will see a warning.",
     privacyHeading: "Your footage stays private",
     privacyP1:
-      "The whole pipeline runs on our own hardware with local models. No video file or frame is ever sent to an external cloud AI service — important when it is your family or personal footage.",
+      "The whole pipeline runs on our own hardware. No video file or frame is ever sent to outside cloud services — important when it is your family or personal footage.",
     privacyP2: "It has been tested end-to-end with the internet switched off, on dozens of locations.",
     audienceHeading: "Who it is for",
     audience: [
@@ -222,7 +222,7 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
     heroSubtitle:
       "Загружаете папку с сырыми клипами поездки — получаете вертикальный шортс, горизонтальный travel-ролик и четыре обложки на двух языках. Без ручной раскадровки и монтажа.",
     heroNote:
-      "Это не генеративное видео: ИИ ничего не придумывает и не дорисовывает. Это автоматический монтаж того, что вы сняли, — система сама находит лучшие кадры, строит хронометраж и склейки.",
+      "Это не генеративное видео: ничего не придумывается и не дорисовывается. Алгоритм автоматического монтажа работает только с тем, что вы сняли, — сам находит лучшие кадры, строит хронометраж и склейки.",
     ctaPrimary: "Получить 10 кредитов бесплатно",
     ctaSecondary: "Как это работает",
     outputsHeading: "Что вы получаете",
@@ -268,7 +268,7 @@ const content: Partial<Record<Language, VideoContent>> & { en: VideoContent } = 
       "Если исходников мало, ролик честно становится короче — кадры не дублируются ради хронометража, и вы увидите предупреждение.",
     privacyHeading: "Ваши видео остаются приватными",
     privacyP1:
-      "Весь пайплайн работает на нашем собственном железе с локальными моделями. Ни один видеофайл и кадр не отправляется во внешние облачные AI-сервисы — это важно для личных и семейных видео.",
+      "Весь монтаж идёт на нашем собственном железе. Ни один видеофайл и кадр не отправляется во внешние облачные сервисы — это важно для личных и семейных видео.",
     privacyP2: "Проверено полностью оффлайн, с отключённым интернетом, на десятках локаций.",
     audienceHeading: "Для кого",
     audience: [

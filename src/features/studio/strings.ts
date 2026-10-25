@@ -192,7 +192,7 @@ const en = {
   },
   sectionHeading: "NICS Studio: edit it yourself",
   sectionText:
-    "Prefer to edit by hand? NICS Studio is a video editor right on our site, in the spirit of CapCut and Edits, with an AI agent: write “cut the pauses, add captions and zooms” and it does the edit step by step. Captions, text, music, filters, 9:16 or 16:9 export. Runs in your browser, your files stay on your device.",
+    "Prefer to edit by hand? NICS Studio is a video editor right on our site, with a built-in assistant: write “cut the pauses, add captions and zooms” and it does the edit step by step. Captions, text, music, filters, 9:16 or 16:9 export. Runs in your browser, your files stay on your device.",
   sectionButton: "Open NICS Studio",
 };
 
@@ -387,7 +387,7 @@ const ru: Strings = {
   },
   sectionHeading: "NICS Studio: монтаж своими руками",
   sectionText:
-    "Хотите смонтировать сами? NICS Studio — видеоредактор прямо на нашем сайте, по логике как CapCut и Edits, с ИИ-агентом: напишите «вырежи паузы, добавь субтитры и зумы», и он сделает правку по шагам. Субтитры, текст, музыка, фильтры, сохранение в 9:16 или 16:9. Работает в браузере, ваши файлы остаются у вас.",
+    "Хотите смонтировать сами? NICS Studio — видеоредактор прямо на нашем сайте, со встроенным помощником: напишите «вырежи паузы, добавь субтитры и зумы», и он сделает правку по шагам. Субтитры, текст, музыка, фильтры, сохранение в 9:16 или 16:9. Работает в браузере, ваши файлы остаются у вас.",
   sectionButton: "Открыть NICS Studio",
 };
 

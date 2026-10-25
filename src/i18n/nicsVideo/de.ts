@@ -12,7 +12,7 @@ const de: NicsVideoLocale = {
     heroSubtitle:
       "Laden Sie einen Ordner mit Rohclips Ihrer Reise hoch und erhalten Sie ein vertikales Short, einen horizontalen Reisefilm und vier Cover in zwei Sprachen. Kein manuelles Storyboard, keine Schnitt-Timeline.",
     heroNote:
-      "Das ist kein generatives Video: Die KI erfindet nichts und malt nichts dazu. Sie schneidet das Material, das Sie wirklich gefilmt haben, findet die besten Momente und baut Timing und Schnitte selbst.",
+      "Das ist kein generatives Video: Nichts wird erfunden oder dazugemalt. Ein automatischer Schnittalgorithmus schneidet das Material, das Sie wirklich gefilmt haben, findet die besten Momente und baut Timing und Schnitte selbst.",
     ctaPrimary: "10 Credits gratis erhalten",
     ctaSecondary: "So funktioniert es",
     outputsHeading: "Was Sie bekommen",
@@ -58,7 +58,7 @@ const de: NicsVideoLocale = {
       "Ist zu wenig Material da, wird das Video ehrlich kürzer – Bilder werden nie doppelt verwendet, um es zu strecken, und Sie sehen einen Hinweis.",
     privacyHeading: "Ihr Material bleibt privat",
     privacyP1:
-      "Die gesamte Verarbeitung läuft auf unserer eigenen Hardware mit lokalen Modellen. Keine Videodatei und kein Bild wird je an einen externen Cloud-KI-Dienst gesendet – wichtig, wenn es um Familien- oder private Aufnahmen geht.",
+      "Die gesamte Verarbeitung läuft auf unserer eigenen Hardware. Keine Videodatei und kein Bild wird je an externe Cloud-Dienste gesendet – wichtig, wenn es um Familien- oder private Aufnahmen geht.",
     privacyP2: "Komplett ohne Internetverbindung getestet, an Dutzenden Orten.",
     audienceHeading: "Für wen",
     audience: [
@@ -391,7 +391,7 @@ const de: NicsVideoLocale = {
     },
     sectionHeading: "NICS Studio: selbst schneiden",
     sectionText:
-      "Lieber selbst schneiden? NICS Studio ist ein Videoeditor direkt auf unserer Website, im Stil von CapCut und Edits, mit einem KI-Agenten: Schreiben Sie „Schneide die Pausen, füge Untertitel und Zooms hinzu“, und er schneidet Schritt für Schritt. Untertitel, Text, Musik, Filter, Export in 9:16 oder 16:9. Läuft im Browser, Ihre Dateien bleiben auf Ihrem Gerät.",
+      "Lieber selbst schneiden? NICS Studio ist ein Videoeditor direkt auf unserer Website, mit einem eingebauten Assistenten: Schreiben Sie „Schneide die Pausen, füge Untertitel und Zooms hinzu“, und er schneidet Schritt für Schritt. Untertitel, Text, Musik, Filter, Export in 9:16 oder 16:9. Läuft im Browser, Ihre Dateien bleiben auf Ihrem Gerät.",
     sectionButton: "NICS Studio öffnen",
   },
 };

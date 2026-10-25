@@ -75,11 +75,11 @@ const de: VideoGuide = {
     },
     {
       q: "Was ist ein Credit?",
-      a: "Mit Credits wird hier KI-Arbeit bezahlt: automatischer Schnitt, Spracherkennung für Untertitel, Agenten-Anfragen und das Rendern des fertigen Videos. Im Start-Tarif kostet ein Credit etwa 25 Cent.",
+      a: "Mit Credits wird hier die Verarbeitung bezahlt: automatischer Schnitt, Spracherkennung für Untertitel, Agenten-Anfragen und das Rendern des fertigen Videos. Im Start-Tarif kostet ein Credit etwa 25 Cent.",
     },
     {
       q: "Wo werden meine Dateien gespeichert?",
-      a: "Der automatische Schnitt läuft auf unserer eigenen Hardware mit lokalen Modellen, nie in fremden KI-Clouds; fertige Dateien werden 7 Tage aufbewahrt. NICS Studio arbeitet auf Ihrem Gerät und lädt Ihre Dateien nirgendwohin hoch.",
+      a: "Der automatische Schnitt läuft auf unserer eigenen Hardware, nie in fremden Clouds; fertige Dateien werden 7 Tage aufbewahrt. NICS Studio arbeitet auf Ihrem Gerät und lädt Ihre Dateien nirgendwohin hoch.",
     },
     {
       q: "Der Anmeldecode ist nicht angekommen",

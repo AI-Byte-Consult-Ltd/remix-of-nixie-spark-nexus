@@ -75,11 +75,11 @@ const fr: VideoGuide = {
     },
     {
       q: "Qu’est-ce qu’un crédit ?",
-      a: "Le crédit sert à payer le travail de l’IA : montage automatique, reconnaissance vocale pour les sous-titres, demandes à l’agent et rendu de la vidéo finale. Avec la formule Start, un crédit coûte environ 25 centimes.",
+      a: "Le crédit sert à payer le traitement : montage automatique, reconnaissance vocale pour les sous-titres, demandes à l’agent et rendu de la vidéo finale. Avec la formule Start, un crédit coûte environ 25 centimes.",
     },
     {
       q: "Où sont conservés mes fichiers ?",
-      a: "Le montage automatique tourne sur notre propre matériel avec des modèles locaux, jamais sur des clouds d’IA externes ; les fichiers finis sont conservés 7 jours. NICS Studio fonctionne sur votre appareil et n’envoie vos fichiers nulle part.",
+      a: "Le montage automatique tourne sur notre propre matériel, jamais sur des clouds externes ; les fichiers finis sont conservés 7 jours. NICS Studio fonctionne sur votre appareil et n’envoie vos fichiers nulle part.",
     },
     {
       q: "Je n’ai pas reçu le code de connexion",

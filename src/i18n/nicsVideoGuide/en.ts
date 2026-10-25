@@ -75,11 +75,11 @@ const en: VideoGuide = {
     },
     {
       q: "What is a credit?",
-      a: "A credit is how AI work is paid for here: automatic editing, speech recognition for captions, agent requests and rendering the final video. On the Start plan one credit costs about 25 cents.",
+      a: "A credit is how processing is paid for here: automatic editing, speech recognition for captions, agent requests and rendering the final video. On the Start plan one credit costs about 25 cents.",
     },
     {
       q: "Where are my files kept?",
-      a: "Automatic editing runs on our own hardware with local models, never on outside AI clouds; finished files are kept for 7 days. NICS Studio works on your device and does not upload your files anywhere.",
+      a: "Automatic editing runs on our own hardware, never in outside clouds; finished files are kept for 7 days. NICS Studio works on your device and does not upload your files anywhere.",
     },
     {
       q: "The sign-in code did not arrive",

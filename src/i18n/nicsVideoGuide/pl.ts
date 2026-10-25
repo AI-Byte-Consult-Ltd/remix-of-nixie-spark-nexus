@@ -75,11 +75,11 @@ const pl: VideoGuide = {
     },
     {
       q: "Czym jest kredyt?",
-      a: "Kredytem płacisz za pracę AI: automatyczny montaż, rozpoznawanie mowy do napisów, prośby do agenta i renderowanie gotowego filmu. W planie Start jeden kredyt kosztuje około 25 centów.",
+      a: "Kredytem płacisz za przetwarzanie: automatyczny montaż, rozpoznawanie mowy do napisów, prośby do agenta i renderowanie gotowego filmu. W planie Start jeden kredyt kosztuje około 25 centów.",
     },
     {
       q: "Gdzie są przechowywane moje pliki?",
-      a: "Automatyczny montaż działa na naszym własnym sprzęcie z lokalnymi modelami, nigdy w zewnętrznych chmurach AI; gotowe pliki są przechowywane 7 dni. NICS Studio działa na Twoim urządzeniu i nigdzie nie wysyła plików.",
+      a: "Automatyczny montaż działa na naszym własnym sprzęcie, nigdy w zewnętrznych chmurach; gotowe pliki są przechowywane 7 dni. NICS Studio działa na Twoim urządzeniu i nigdzie nie wysyła plików.",
     },
     {
       q: "Kod logowania nie dotarł",
