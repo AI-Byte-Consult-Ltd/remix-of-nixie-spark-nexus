@@ -137,7 +137,7 @@ const Trading = () => {
     title: t("tradingpage.seo.title"),
     description: t("tradingpage.seo.description"),
     ...localizedSeo,
-    ogImage: "https://aibyteconsult.com/og-home.jpg",
+    ogImage: "https://aibyteconsult.com/og-trading.jpg",
     jsonLd: [
       {
         "@context": "https://schema.org",
