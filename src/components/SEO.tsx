@@ -40,6 +40,21 @@ interface SEOProps {
 
 const DEFAULT_IMAGE = "https://aibyteconsult.com/android-chrome-512x512.png";
 
+// GitHub Pages answers "/trading" with a 301 to "/trading/" (each route is a
+// folder with an index.html), so the canonical and hreflang URLs carry the
+// trailing slash: they must name the address that answers 200. Same rule as
+// urlFor() in scripts/generate-seo-pages.mjs.
+const withTrailingSlash = (url: string) => {
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname !== "aibyteconsult.com" || parsed.pathname.endsWith("/")) return url;
+    parsed.pathname += "/";
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+};
+
 const SEO = ({
   title,
   description,
@@ -53,12 +68,13 @@ const SEO = ({
   jsonLd,
   noindex,
 }: SEOProps) => {
-  const canonicalUrl = noindex
+  const rawCanonical = noindex
     ? undefined
     : canonical ||
       (typeof window !== "undefined"
         ? window.location.origin + window.location.pathname
         : undefined);
+  const canonicalUrl = rawCanonical && withTrailingSlash(rawCanonical);
   const resolvedImage = ogImage || DEFAULT_IMAGE;
   const jsonLdEntries = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
@@ -81,7 +97,7 @@ const SEO = ({
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
       {!noindex &&
         alternates?.map((alt) => (
-          <link key={alt.lang} rel="alternate" hrefLang={alt.lang} href={alt.href} />
+          <link key={alt.lang} rel="alternate" hrefLang={alt.lang} href={withTrailingSlash(alt.href)} />
         ))}
 
       <meta property="og:site_name" content="AI Byte Consult" />

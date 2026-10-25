@@ -22,6 +22,12 @@ const OG_LOCALE = {
 
 const t = (lang, key) => subPageTranslations[lang]?.[key] ?? subPageTranslations.en[key];
 
+// GitHub Pages serves every route from <route>/index.html and answers the
+// bare "/trading" with a 301 to "/trading/". Canonicals, hreflang and the
+// sitemap must name the URL that answers 200, or Google sees every page as a
+// redirect (Search Console: "Redirect error", "Discovered – not indexed").
+const urlFor = (route) => (route === "/" ? `${siteUrl}/` : `${siteUrl}${route}/`);
+
 const localePath = (lang, base) => {
   if (lang === "en") return base;
   return base === "/" ? `/${lang}` : `/${lang}${base}`;
@@ -192,7 +198,7 @@ const localizedPages = ALL_LANGUAGES.flatMap((lang) => {
       ogImage: `${siteUrl}/og-trading.jpg`,
       ogImageAlt: "NICS AI Trader — structured trading signals in Telegram",
       alternates: tradingAlternates,
-      schema: tradingSchema(`${siteUrl}${tradingRoute}`, lang),
+      schema: tradingSchema(urlFor(tradingRoute), lang),
     },
     {
       route: videoRoute,
@@ -204,7 +210,7 @@ const localizedPages = ALL_LANGUAGES.flatMap((lang) => {
       ogImage: `${siteUrl}/og-video.jpg`,
       ogImageAlt: "NICS Video — raw clips in, ready Shorts and YouTube videos out",
       alternates: videoAlternates,
-      schema: videoSchema(`${siteUrl}${videoRoute}`, lang),
+      schema: videoSchema(urlFor(videoRoute), lang),
     },
     {
       route: studioRoute,
@@ -216,7 +222,7 @@ const localizedPages = ALL_LANGUAGES.flatMap((lang) => {
       ogImage: `${siteUrl}/og-video.jpg`,
       ogImageAlt: "NICS Studio — online video editor",
       alternates: studioAlternates,
-      schema: studioSchema(`${siteUrl}${studioRoute}`, lang),
+      schema: studioSchema(urlFor(studioRoute), lang),
     },
   ];
 });
@@ -344,13 +350,13 @@ const NAV = [
 const staticBody = (page) => {
   const lang = page.lang || "en";
   const links = NAV.map(
-    (item) => `<a href="${item.enOnly ? item.base : localePath(lang, item.base)}">${escapeAttribute(item.label)}</a>`,
+    (item) => `<a href="${urlFor(item.enOnly ? item.base : localePath(lang, item.base))}">${escapeAttribute(item.label)}</a>`,
   ).join(" · ");
   return `<div style="max-width:720px;margin:0 auto;padding:96px 16px;font-family:system-ui,sans-serif;color:#0f172a"><h1 style="font-size:28px;line-height:1.25">${escapeAttribute(page.title)}</h1><p style="font-size:16px;line-height:1.6;color:#475569">${escapeAttribute(page.description)}</p><nav style="font-size:14px;line-height:2">${links}</nav></div>`;
 };
 
 const renderPage = (page, noindex = false) => {
-  const canonical = page.route === "/" ? `${siteUrl}/` : `${siteUrl}${page.route}`;
+  const canonical = urlFor(page.route);
   const clean = removeManagedTags(baseHtml);
   const robots = noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large";
   const schema = JSON.stringify(pageSchema(page, canonical)).replaceAll("<", "\\u003c");
@@ -363,7 +369,7 @@ const renderPage = (page, noindex = false) => {
   const alternateTags = noindex
     ? ""
     : (page.alternates || [])
-        .map((alt) => `\n    <link rel="alternate" hreflang="${alt.lang}" href="${siteUrl}${alt.path}" />`)
+        .map((alt) => `\n    <link rel="alternate" hreflang="${alt.lang}" href="${urlFor(alt.path)}" />`)
         .join("");
   const image = page.ogImage || defaultImage;
   const size = OG_IMAGE_SIZES[image.replace(siteUrl, "")];
@@ -449,12 +455,12 @@ for (const lang of ALL_LANGUAGES) {
 const today = new Date().toISOString().slice(0, 10);
 const sitemapUrls = pages
   .map((page) => {
-    const loc = page.route === "/" ? `${siteUrl}/` : `${siteUrl}${page.route}`;
+    const loc = urlFor(page.route);
     const { priority = "0.5", changefreq = "monthly" } = sitemapMeta[page.route] || {};
     // Language versions are listed in the sitemap too (Google reads hreflang
     // from either place; having both makes the grouping explicit).
     const links = (page.alternates || [])
-      .map((alt) => `\n    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${siteUrl}${alt.path}" />`)
+      .map((alt) => `\n    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${urlFor(alt.path)}" />`)
       .join("");
     return `  <url>\n    <loc>${loc}</loc>${links}\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
   })
