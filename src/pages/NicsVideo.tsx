@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
-import { useLanguage, Language } from "@/contexts/LanguageContext";
+import { useLanguage, getLocalizedSeoMeta, Language } from "@/contexts/LanguageContext";
 import { formatPrice } from "@/data/nicsTraderPlans";
 import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/components/video/NicsVideoCheckout";
 import NicsVideoStudio from "@/components/video/NicsVideoStudio";
@@ -329,7 +329,8 @@ const stepIcons = [Upload, ScanSearch, ListOrdered, Film];
 const audienceIcons = [Plane, Building2, Camera, Users];
 
 const NicsVideo = () => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
+  const localizedSeo = getLocalizedSeoMeta("/nics-video", language);
   const [checkoutPlan, setCheckoutPlan] = useState<CheckoutPlan | null>(null);
   const [signInOpen, setSignInOpen] = useState(false);
   const account = useAccount();
@@ -383,17 +384,18 @@ const NicsVideo = () => {
   ];
 
   const seoProps = {
-    title: "NICS Video Editor — Automatic Shorts, Long Videos and Covers",
-    description:
-      "Upload raw clips from your trip and get a vertical Short, a horizontal travel video and four covers in two languages. Automatic editing of your real footage, fully offline.",
-    canonical: "https://aibyteconsult.com/nics-video",
+    title: t("seo.nicsvideo.title"),
+    description: t("seo.nicsvideo.description"),
+    ...localizedSeo,
+    ogImage: "https://aibyteconsult.com/og-video.jpg",
+    imageAlt: "NICS Video — raw clips in, ready Shorts and YouTube videos out",
     jsonLd: [
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         name: "NICS Video Editor",
         applicationCategory: "MultimediaApplication",
-        url: "https://aibyteconsult.com/nics-video",
+        url: localizedSeo.canonical,
         provider: { "@type": "Organization", name: "AI Byte Consult Ltd." },
       },
       {

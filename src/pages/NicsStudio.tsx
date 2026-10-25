@@ -4,29 +4,32 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage, getLocalizedSeoMeta } from "@/contexts/LanguageContext";
 import StudioEditor from "@/features/studio/StudioEditor";
 import { studioStrings } from "@/features/studio/strings";
 import { videoGuides } from "@/i18n/nicsVideoGuide";
 
 const NicsStudio = () => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
+  const localizedSeo = getLocalizedSeoMeta("/nics-studio", language);
   const s = studioStrings(language);
   const guide = videoGuides[language] ?? videoGuides.en;
 
   return (
     <>
       <SEO
-        title="NICS Studio — Online Video Editor for Shorts and YouTube"
-        description="Edit your video yourself in the browser: cut and split clips, add text, music, filters and fades, and export a 9:16 or 16:9 MP4. Your files stay on your device."
-        canonical="https://aibyteconsult.com/nics-studio"
+        title={t("seo.nicsstudio.title")}
+        description={t("seo.nicsstudio.description")}
+        {...localizedSeo}
+        ogImage="https://aibyteconsult.com/og-video.jpg"
+        imageAlt="NICS Studio — online video editor"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
           name: "NICS Studio",
           applicationCategory: "MultimediaApplication",
           operatingSystem: "Web browser",
-          url: "https://aibyteconsult.com/nics-studio",
+          url: localizedSeo.canonical,
           provider: { "@type": "Organization", name: "AI Byte Consult Ltd." },
         }}
       />

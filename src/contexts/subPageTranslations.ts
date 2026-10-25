@@ -313,12 +313,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.button1": "Get in Touch",
     "aboutpage.cta.button2": "Explore Services",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, AI Systems & NICS Ecosystem",
-    "seo.home.description": "AI Byte Consult builds production AI systems and the NICS ecosystem — NICS AI Trader delivers AI technical analysis and signals for gold, forex and crypto.",
+    "seo.home.title": "AI Byte Consult — AI Consulting & Automation in Bulgaria | NICS AI",
+    "seo.home.description": "AI consulting and business automation from Bulgaria: custom AI agents and systems, NICS AI Trader signals for gold, forex and crypto, and NICS Video automatic video editing.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — AI Technical Analysis & Trading Signals",
     "tradingpage.seo.description": "AI-powered technical analysis for gold, forex and crypto. Structured trading signals with Entry, Stop Loss and TP1–TP4 in Telegram and the NICS Mini App.",
+    "seo.nicsvideo.title": "NICS Video — Automatic Video Editing for Shorts, Reels & YouTube",
+    "seo.nicsvideo.description": "Upload your raw clips and get a vertical Short, a horizontal YouTube video and covers in two languages. AI edits your real footage, it invents nothing. 10 free credits to start.",
+    "seo.nicsstudio.title": "NICS Studio — Online Video Editor for Shorts and YouTube",
+    "seo.nicsstudio.description": "Edit your video yourself in the browser: cut and split clips, add captions, text, music, filters and fades, and export a 9:16 or 16:9 MP4. Your files stay on your device.",
     "tradingpage.schema.description": "A Telegram-first trading assistant that delivers structured market scenarios, personal risk controls, signal tracking and history for supported markets.",
     "tradingpage.hero.badge": "AI Technical Analysis · Gold · Forex · Crypto",
     "tradingpage.hero.title1": "Trade with a clear plan,",
@@ -482,12 +486,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
   es: {
     "nav.trading": "Trading IA NICS",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, sistemas de IA y ecosistema NICS",
-    "seo.home.description": "AI Byte Consult construye sistemas de IA en producción y el ecosistema NICS — NICS AI Trader ofrece análisis técnico y señales de IA para oro, forex y cripto.",
+    "seo.home.title": "AI Byte Consult — Consultoría de IA y automatización en Bulgaria | NICS AI",
+    "seo.home.description": "Consultoría de IA y automatización empresarial desde Bulgaria: agentes y sistemas de IA a medida, señales NICS AI Trader para oro, forex y cripto, y edición automática de vídeo con NICS Video.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Análisis Técnico con IA y Señales de Trading",
     "tradingpage.seo.description": "Análisis técnico con IA para oro, forex y cripto. Señales de trading estructuradas con Entry, Stop Loss y TP1–TP4 en Telegram y la NICS Mini App.",
+    "seo.nicsvideo.title": "NICS Video — edición automática de vídeo para Shorts, Reels y YouTube",
+    "seo.nicsvideo.description": "Sube tus clips sin editar y recibe un Short vertical, un vídeo horizontal para YouTube y portadas en dos idiomas. La IA edita tus imágenes reales y no inventa nada. 10 créditos gratis.",
+    "seo.nicsstudio.title": "NICS Studio — editor de vídeo online para Shorts y YouTube",
+    "seo.nicsstudio.description": "Edita tu vídeo tú mismo en el navegador: corta clips, añade subtítulos, texto, música, filtros y transiciones y exporta un MP4 9:16 o 16:9. Tus archivos se quedan en tu dispositivo.",
     "tradingpage.schema.description": "Un asistente de trading centrado en Telegram que ofrece escenarios de mercado estructurados, control de riesgo personal, seguimiento de señales e historial para los mercados soportados.",
     "tradingpage.hero.badge": "Análisis Técnico con IA · Oro · Forex · Cripto",
     "tradingpage.hero.title1": "Opera con un plan claro,",
@@ -651,12 +659,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
   pt: {
     "nav.trading": "Trading IA NICS",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, sistemas de IA e ecossistema NICS",
-    "seo.home.description": "A AI Byte Consult constrói sistemas de IA em produção e o ecossistema NICS — o NICS AI Trader oferece análise técnica e sinais de IA para ouro, forex e criptomoedas.",
+    "seo.home.title": "AI Byte Consult — Consultoria de IA e automação na Bulgária | NICS AI",
+    "seo.home.description": "Consultoria de IA e automação empresarial a partir da Bulgária: agentes e sistemas de IA sob medida, sinais NICS AI Trader para ouro, forex e cripto, e edição automática de vídeo com NICS Video.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Análise Técnica com IA e Sinais de Trading",
     "tradingpage.seo.description": "Análise técnica com IA para ouro, forex e criptomoedas. Sinais de trading estruturados com Entry, Stop Loss e TP1–TP4 no Telegram e no NICS Mini App.",
+    "seo.nicsvideo.title": "NICS Video — edição automática de vídeo para Shorts, Reels e YouTube",
+    "seo.nicsvideo.description": "Envie seus clipes brutos e receba um Short vertical, um vídeo horizontal para o YouTube e capas em dois idiomas. A IA edita suas imagens reais e não inventa nada. 10 créditos grátis.",
+    "seo.nicsstudio.title": "NICS Studio — editor de vídeo online para Shorts e YouTube",
+    "seo.nicsstudio.description": "Edite seu vídeo você mesmo no navegador: corte clipes, adicione legendas, texto, música, filtros e transições e exporte um MP4 9:16 ou 16:9. Seus arquivos ficam no seu dispositivo.",
     "tradingpage.schema.description": "Um assistente de trading focado no Telegram que oferece cenários de mercado estruturados, controle de risco pessoal, acompanhamento de sinais e histórico para os mercados suportados.",
     "tradingpage.hero.badge": "Análise Técnica com IA · Ouro · Forex · Cripto",
     "tradingpage.hero.title1": "Opere com um plano claro,",
@@ -1085,12 +1097,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.button1": "Kontakt aufnehmen",
     "aboutpage.cta.button2": "Dienste erkunden",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, KI-Systeme und NICS-Ökosystem",
-    "seo.home.description": "AI Byte Consult entwickelt Produktions-KI-Systeme und das NICS-Ökosystem — NICS AI Trader liefert KI-technische Analyse und Signale für Gold, Forex und Krypto.",
+    "seo.home.title": "AI Byte Consult — KI-Beratung & Automatisierung in Bulgarien | NICS AI",
+    "seo.home.description": "KI-Beratung und Geschäftsautomatisierung aus Bulgarien: maßgeschneiderte KI-Agenten und Systeme, NICS AI Trader Signale für Gold, Forex und Krypto und automatischer Videoschnitt mit NICS Video.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — KI-Technische Analyse & Handelssignale",
     "tradingpage.seo.description": "KI-gestützte technische Analyse für Gold, Forex und Krypto. Strukturierte Handelssignale mit Entry, Stop Loss und TP1–TP4 in Telegram und der NICS Mini App.",
+    "seo.nicsvideo.title": "NICS Video — automatischer Videoschnitt für Shorts, Reels & YouTube",
+    "seo.nicsvideo.description": "Lade deine Rohclips hoch und erhalte einen vertikalen Short, ein horizontales YouTube-Video und Cover in zwei Sprachen. Die KI schneidet dein echtes Material und erfindet nichts. 10 Gratis-Credits.",
+    "seo.nicsstudio.title": "NICS Studio — Online-Videoeditor für Shorts und YouTube",
+    "seo.nicsstudio.description": "Schneide dein Video selbst im Browser: Clips teilen, Untertitel, Text, Musik, Filter und Übergänge hinzufügen und als MP4 in 9:16 oder 16:9 exportieren. Deine Dateien bleiben auf deinem Gerät.",
     "tradingpage.schema.description": "Ein Telegram-first Handelsassistent, der strukturierte Marktszenarien, persönliche Risikokontrolle, Signal-Tracking und Historie für unterstützte Märkte liefert.",
     "tradingpage.hero.badge": "KI-Technische Analyse · Gold · Forex · Krypto",
     "tradingpage.hero.title1": "Handeln Sie mit klarem Plan,",
@@ -1457,12 +1473,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "Découvrez comment AI Byte Consult peut transformer votre entreprise.",
     "aboutpage.cta.button1": "Nous contacter", "aboutpage.cta.button2": "Explorer les services",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, systèmes d'IA et écosystème NICS",
-    "seo.home.description": "AI Byte Consult développe des systèmes d'IA en production et l'écosystème NICS — NICS AI Trader fournit une analyse technique et des signaux IA pour l'or, le forex et les cryptos.",
+    "seo.home.title": "AI Byte Consult — Conseil en IA et automatisation en Bulgarie | NICS AI",
+    "seo.home.description": "Conseil en IA et automatisation d'entreprise depuis la Bulgarie : agents et systèmes d'IA sur mesure, signaux NICS AI Trader sur l'or, le forex et les cryptos, et montage vidéo automatique NICS Video.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Analyse technique IA & signaux de trading",
     "tradingpage.seo.description": "Analyse technique par IA pour l'or, le forex et les cryptos. Signaux de trading structurés avec Entry, Stop Loss et TP1–TP4 sur Telegram et la NICS Mini App.",
+    "seo.nicsvideo.title": "NICS Video — montage vidéo automatique pour Shorts, Reels et YouTube",
+    "seo.nicsvideo.description": "Importez vos rushes et recevez un Short vertical, une vidéo YouTube horizontale et des miniatures en deux langues. L'IA monte vos vraies images et n'invente rien. 10 crédits offerts.",
+    "seo.nicsstudio.title": "NICS Studio — éditeur vidéo en ligne pour Shorts et YouTube",
+    "seo.nicsstudio.description": "Montez votre vidéo vous-même dans le navigateur : découpe, sous-titres, texte, musique, filtres et transitions, export MP4 en 9:16 ou 16:9. Vos fichiers restent sur votre appareil.",
     "tradingpage.schema.description": "Un assistant de trading Telegram-first qui fournit des scénarios de marché structurés, un contrôle du risque personnel, un suivi des signaux et un historique pour les marchés pris en charge.",
     "tradingpage.hero.badge": "Analyse technique IA · Or · Forex · Crypto",
     "tradingpage.hero.title1": "Tradez avec un plan clair,",
@@ -1829,12 +1849,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "اكتشف كيف يمكن لـ AI Byte Consult تحويل أعمالك.",
     "aboutpage.cta.button1": "تواصل معنا", "aboutpage.cta.button2": "استكشف الخدمات",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader وأنظمة الذكاء الاصطناعي ونظام NICS",
-    "seo.home.description": "تبني AI Byte Consult أنظمة ذكاء اصطناعي إنتاجية ونظام NICS البيئي — يقدم NICS AI Trader تحليلاً تقنياً وإشارات بالذكاء الاصطناعي للذهب والفوركس والعملات المشفرة.",
+    "seo.home.title": "AI Byte Consult — استشارات الذكاء الاصطناعي والأتمتة في بلغاريا | NICS AI",
+    "seo.home.description": "استشارات الذكاء الاصطناعي وأتمتة الأعمال من بلغاريا: وكلاء وأنظمة ذكاء اصطناعي مخصصة، وإشارات NICS AI Trader للذهب والفوركس والعملات المشفرة، ومونتاج فيديو تلقائي مع NICS Video.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — تحليل تقني بالذكاء الاصطناعي وإشارات تداول",
     "tradingpage.seo.description": "تحليل تقني مدعوم بالذكاء الاصطناعي للذهب والفوركس والعملات المشفرة. إشارات تداول منظمة مع نقطة الدخول وStop Loss وTP1–TP4 عبر تيليجرام وتطبيق NICS المصغر.",
+    "seo.nicsvideo.title": "NICS Video — مونتاج فيديو تلقائي لـ Shorts وReels ويوتيوب",
+    "seo.nicsvideo.description": "ارفع مقاطعك الخام واحصل على فيديو Short عمودي وفيديو أفقي ليوتيوب وأغلفة بلغتين. يحرّر الذكاء الاصطناعي لقطاتك الحقيقية ولا يختلق شيئًا. 10 أرصدة مجانية للبدء.",
+    "seo.nicsstudio.title": "NICS Studio — محرر فيديو عبر الإنترنت لـ Shorts ويوتيوب",
+    "seo.nicsstudio.description": "حرّر الفيديو بنفسك في المتصفح: قص المقاطع وأضف الترجمة والنص والموسيقى والفلاتر والانتقالات وصدّر MP4 بنسبة 9:16 أو 16:9. تبقى ملفاتك على جهازك.",
     "tradingpage.schema.description": "مساعد تداول يعتمد على تيليجرام يقدم سيناريوهات سوق منظمة وضبطًا شخصيًا للمخاطر وتتبعًا للإشارات وسجلًا للأسواق المدعومة.",
     "tradingpage.hero.badge": "تحليل تقني بالذكاء الاصطناعي · ذهب · فوركس · عملات مشفرة",
     "tradingpage.hero.title1": "تداول بخطة واضحة،",
@@ -2196,12 +2220,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "了解AI Byte Consult如何变革您的业务。",
     "aboutpage.cta.button1": "联系我们", "aboutpage.cta.button2": "探索服务",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader、AI系统与NICS生态系统",
-    "seo.home.description": "AI Byte Consult构建生产级AI系统和NICS生态系统——NICS AI Trader为黄金、外汇和加密货币提供AI技术分析和信号。",
+    "seo.home.title": "AI Byte Consult — 保加利亚 AI 咨询与自动化 | NICS AI",
+    "seo.home.description": "来自保加利亚的 AI 咨询与业务自动化：定制 AI 智能体与系统、面向黄金、外汇和加密货币的 NICS AI Trader 信号，以及 NICS Video 自动视频剪辑。",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — AI技术分析与交易信号",
     "tradingpage.seo.description": "面向黄金、外汇和加密货币的AI技术分析。在Telegram和NICS迷你应用中提供包含入场点、止损和TP1–TP4的结构化交易信号。",
+    "seo.nicsvideo.title": "NICS Video — 面向 Shorts、Reels 和 YouTube 的自动视频剪辑",
+    "seo.nicsvideo.description": "上传原始素材，即可获得竖屏 Short、横屏 YouTube 视频和双语封面。AI 剪辑您真实拍摄的画面，不凭空生成任何内容。首次赠送 10 个积分。",
+    "seo.nicsstudio.title": "NICS Studio — 面向 Shorts 和 YouTube 的在线视频编辑器",
+    "seo.nicsstudio.description": "在浏览器中自己剪辑视频：切割片段，添加字幕、文字、音乐、滤镜和转场，导出 9:16 或 16:9 的 MP4。文件始终保存在您的设备上。",
     "tradingpage.schema.description": "一款以Telegram为核心的交易助手，为受支持的市场提供结构化市场方案、个人风险控制、信号追踪和历史记录。",
     "tradingpage.hero.badge": "AI技术分析 · 黄金 · 外汇 · 加密货币",
     "tradingpage.hero.title1": "以清晰的计划交易，",
@@ -2565,12 +2593,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "Odkryj, jak AI Byte Consult może przekształcić Twój biznes.",
     "aboutpage.cta.button1": "Skontaktuj się", "aboutpage.cta.button2": "Odkryj usługi",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, systemy AI i ekosystem NICS",
-    "seo.home.description": "AI Byte Consult tworzy produkcyjne systemy AI i ekosystem NICS — NICS AI Trader zapewnia analizę techniczną i sygnały AI dla złota, forexu i kryptowalut.",
+    "seo.home.title": "AI Byte Consult — Doradztwo AI i automatyzacja w Bułgarii | NICS AI",
+    "seo.home.description": "Doradztwo AI i automatyzacja biznesu z Bułgarii: agenci i systemy AI na zamówienie, sygnały NICS AI Trader na złoto, forex i krypto oraz automatyczny montaż wideo NICS Video.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Analiza techniczna AI i sygnały tradingowe",
     "tradingpage.seo.description": "Analiza techniczna wspierana przez AI dla złota, forexu i kryptowalut. Ustrukturyzowane sygnały tradingowe z Entry, Stop Loss i TP1–TP4 w Telegramie i NICS Mini App.",
+    "seo.nicsvideo.title": "NICS Video — automatyczny montaż wideo dla Shorts, Reels i YouTube",
+    "seo.nicsvideo.description": "Wgraj surowe klipy i otrzymaj pionowy Short, poziomy film na YouTube i okładki w dwóch językach. AI montuje Twoje prawdziwe nagrania i niczego nie wymyśla. 10 darmowych kredytów.",
+    "seo.nicsstudio.title": "NICS Studio — edytor wideo online dla Shorts i YouTube",
+    "seo.nicsstudio.description": "Montuj film samodzielnie w przeglądarce: tnij klipy, dodawaj napisy, tekst, muzykę, filtry i przejścia, eksportuj MP4 9:16 lub 16:9. Pliki zostają na Twoim urządzeniu.",
     "tradingpage.schema.description": "Asystent tradingowy oparty na Telegramie, dostarczający ustrukturyzowane scenariusze rynkowe, osobistą kontrolę ryzyka, śledzenie sygnałów i historię dla obsługiwanych rynków.",
     "tradingpage.hero.badge": "Analiza techniczna AI · Złoto · Forex · Krypto",
     "tradingpage.hero.title1": "Handluj z jasnym planem,",
@@ -2934,12 +2966,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "AI Byte Consult'un işinizi nasıl dönüştürebileceğini keşfedin.",
     "aboutpage.cta.button1": "İletişime geçin", "aboutpage.cta.button2": "Hizmetleri keşfedin",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, Yapay Zeka Sistemleri ve NICS Ekosistemi",
-    "seo.home.description": "AI Byte Consult, üretim yapay zeka sistemleri ve NICS ekosistemini geliştirir — NICS AI Trader, altın, forex ve kripto için yapay zeka teknik analizi ve sinyalleri sunar.",
+    "seo.home.title": "AI Byte Consult — Bulgaristan'da Yapay Zeka Danışmanlığı ve Otomasyon | NICS AI",
+    "seo.home.description": "Bulgaristan'dan yapay zeka danışmanlığı ve iş otomasyonu: özel yapay zeka ajanları ve sistemleri, altın, forex ve kripto için NICS AI Trader sinyalleri ve NICS Video ile otomatik video kurgusu.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Yapay Zeka Teknik Analiz ve Alım Satım Sinyalleri",
     "tradingpage.seo.description": "Altın, forex ve kripto için yapay zeka destekli teknik analiz. Telegram ve NICS Mini Uygulamasında Entry, Stop Loss ve TP1–TP4 içeren yapılandırılmış alım satım sinyalleri.",
+    "seo.nicsvideo.title": "NICS Video — Shorts, Reels ve YouTube için otomatik video kurgusu",
+    "seo.nicsvideo.description": "Ham kliplerinizi yükleyin; dikey bir Short, yatay bir YouTube videosu ve iki dilde kapaklar alın. Yapay zeka gerçek çekimlerinizi kurgular, hiçbir şey uydurmaz. 10 ücretsiz kredi.",
+    "seo.nicsstudio.title": "NICS Studio — Shorts ve YouTube için çevrimiçi video editörü",
+    "seo.nicsstudio.description": "Videonuzu tarayıcıda kendiniz düzenleyin: klipleri kesin, altyazı, metin, müzik, filtre ve geçiş ekleyin, 9:16 veya 16:9 MP4 olarak dışa aktarın. Dosyalarınız cihazınızda kalır.",
     "tradingpage.schema.description": "Desteklenen piyasalar için yapılandırılmış piyasa senaryoları, kişisel risk kontrolü, sinyal takibi ve geçmiş sunan Telegram öncelikli bir alım satım asistanı.",
     "tradingpage.hero.badge": "Yapay Zeka Teknik Analiz · Altın · Forex · Kripto",
     "tradingpage.hero.title1": "Net bir planla işlem yapın,",
@@ -3303,12 +3339,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "Scopri come AI Byte Consult può trasformare il tuo business.",
     "aboutpage.cta.button1": "Contattaci", "aboutpage.cta.button2": "Esplora i servizi",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, Sistemi IA ed Ecosistema NICS",
-    "seo.home.description": "AI Byte Consult sviluppa sistemi IA in produzione e l'ecosistema NICS — NICS AI Trader offre analisi tecnica e segnali IA per oro, forex e crypto.",
+    "seo.home.title": "AI Byte Consult — Consulenza IA e automazione in Bulgaria | NICS AI",
+    "seo.home.description": "Consulenza IA e automazione aziendale dalla Bulgaria: agenti e sistemi IA su misura, segnali NICS AI Trader su oro, forex e crypto, e montaggio video automatico con NICS Video.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — Analisi Tecnica IA e Segnali di Trading",
     "tradingpage.seo.description": "Analisi tecnica basata su IA per oro, forex e crypto. Segnali di trading strutturati con Entry, Stop Loss e TP1–TP4 su Telegram e la NICS Mini App.",
+    "seo.nicsvideo.title": "NICS Video — montaggio video automatico per Shorts, Reels e YouTube",
+    "seo.nicsvideo.description": "Carica le tue clip grezze e ricevi uno Short verticale, un video orizzontale per YouTube e copertine in due lingue. L'IA monta le tue riprese reali e non inventa nulla. 10 crediti gratis.",
+    "seo.nicsstudio.title": "NICS Studio — editor video online per Shorts e YouTube",
+    "seo.nicsstudio.description": "Monta il tuo video da solo nel browser: taglia le clip, aggiungi sottotitoli, testo, musica, filtri e transizioni ed esporta un MP4 9:16 o 16:9. I tuoi file restano sul tuo dispositivo.",
     "tradingpage.schema.description": "Un assistente di trading Telegram-first che offre scenari di mercato strutturati, controllo personale del rischio, monitoraggio dei segnali e storico per i mercati supportati.",
     "tradingpage.hero.badge": "Analisi Tecnica IA · Oro · Forex · Crypto",
     "tradingpage.hero.title1": "Fai trading con un piano chiaro,",
@@ -3672,12 +3712,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "Открийте как AI Byte Consult може да трансформира вашия бизнес.",
     "aboutpage.cta.button1": "Свържете се", "aboutpage.cta.button2": "Разгледайте услугите",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, ИИ системи и екосистема NICS",
-    "seo.home.description": "AI Byte Consult изгражда production ИИ системи и екосистемата NICS — NICS AI Trader предлага технически анализ и сигнали за злато, форекс и крипто.",
+    "seo.home.title": "AI Byte Consult — ИИ консултации и автоматизация в България | NICS AI",
+    "seo.home.description": "ИИ консултации и автоматизация на бизнеса от България: ИИ агенти и системи по поръчка, сигнали NICS AI Trader за злато, форекс и крипто и автоматичен видеомонтаж с NICS Video.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — ИИ технически анализ и търговски сигнали",
     "tradingpage.seo.description": "ИИ технически анализ за злато, форекс и крипто. Структурирани търговски сигнали с Entry, Stop Loss и TP1–TP4 в Telegram и NICS Mini App.",
+    "seo.nicsvideo.title": "NICS Video — автоматичен видеомонтаж за Shorts, Reels и YouTube",
+    "seo.nicsvideo.description": "Качете суровите си клипове и получете вертикален Short, хоризонтално видео за YouTube и корици на два езика. ИИ монтира истинските ви кадри и не измисля нищо. 10 безплатни кредита.",
+    "seo.nicsstudio.title": "NICS Studio — онлайн видеоредактор за Shorts и YouTube",
+    "seo.nicsstudio.description": "Монтирайте видеото си сами в браузъра: рязане на клипове, субтитри, текст, музика, филтри и преходи, експорт в MP4 9:16 или 16:9. Файловете остават на вашето устройство.",
     "tradingpage.schema.description": "Търговски асистент от типа Telegram-first, който предоставя структурирани пазарни сценарии, личен контрол на риска, следене на сигнали и история за поддържаните пазари.",
     "tradingpage.hero.badge": "ИИ технически анализ · Злато · Форекс · Крипто",
     "tradingpage.hero.title1": "Търгувайте с ясен план,",
@@ -4041,12 +4085,16 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "aboutpage.cta.desc": "Узнайте, как AI Byte Consult может трансформировать ваш бизнес.",
     "aboutpage.cta.button1": "Связаться", "aboutpage.cta.button2": "Обзор услуг",
 
-    "seo.home.title": "AI Byte Consult — NICS AI Trader, ИИ-системы и экосистема NICS",
-    "seo.home.description": "AI Byte Consult создаёт продакшн ИИ-системы и экосистему NICS — NICS AI Trader даёт технический анализ и сигналы по золоту, форекс и крипте.",
+    "seo.home.title": "AI Byte Consult — ИИ-консалтинг и автоматизация в Болгарии | NICS AI",
+    "seo.home.description": "ИИ-консалтинг и автоматизация бизнеса из Болгарии: ИИ-агенты и системы под задачу, сигналы NICS AI Trader по золоту, форекс и крипте и автоматический монтаж видео NICS Video.",
 
     // === TRADING PAGE ===
     "tradingpage.seo.title": "NICS AI Trader — ИИ технический анализ и торговые сигналы",
     "tradingpage.seo.description": "ИИ-анализ рынка золота, форекс и крипты. Структурированные сигналы с точкой входа, стоп-лоссом и TP1–TP4 в Telegram и NICS Mini App.",
+    "seo.nicsvideo.title": "NICS Video — автоматический монтаж видео для Shorts, Reels и YouTube",
+    "seo.nicsvideo.description": "Загрузите исходники и получите вертикальный Short, горизонтальное видео для YouTube и обложки на двух языках. ИИ монтирует ваши реальные кадры и ничего не выдумывает. 10 кредитов бесплатно.",
+    "seo.nicsstudio.title": "NICS Studio — онлайн-редактор видео для Shorts и YouTube",
+    "seo.nicsstudio.description": "Монтируйте видео сами прямо в браузере: резка клипов, субтитры, текст, музыка, фильтры и переходы, экспорт в MP4 9:16 или 16:9. Файлы остаются на вашем устройстве.",
     "tradingpage.schema.description": "Торговый помощник в Telegram, предоставляющий структурированные рыночные сценарии, личный контроль риска, отслеживание сигналов и историю по поддерживаемым рынкам.",
     "tradingpage.hero.badge": "ИИ технический анализ · Золото · Форекс · Крипто",
     "tradingpage.hero.title1": "Торгуйте по чёткому плану,",

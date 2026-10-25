@@ -51,15 +51,22 @@ const App = () => (
                 URL_LANGUAGES and getLocalizedSeoMeta(), and
                 scripts/generate-seo-pages.mjs (which derives its own
                 route list from the same language set, so the two can't
-                drift apart). Index and Trading are fully translated via
+                drift apart). Index, Trading, NICS Video and NICS Studio are fully translated via
                 t() for every one of these languages, so these are
                 genuine localized content pages, not just a translated
-                meta tag over English copy. */}
+                meta tag over English copy. NICS Video and NICS Studio
+                are translated the same way (src/i18n/nicsVideo*). */}
             {URL_LANGUAGES.map((lang) => (
               <Route key={lang} path={`/${lang}`} element={<Index />} />
             ))}
             {URL_LANGUAGES.map((lang) => (
               <Route key={`${lang}-trading`} path={`/${lang}/trading`} element={<Trading />} />
+            ))}
+            {URL_LANGUAGES.map((lang) => (
+              <Route key={`${lang}-nics-video`} path={`/${lang}/nics-video`} element={<NicsVideo />} />
+            ))}
+            {URL_LANGUAGES.map((lang) => (
+              <Route key={`${lang}-nics-studio`} path={`/${lang}/nics-studio`} element={<NicsStudio />} />
             ))}
             <Route path="/about" element={<About />} />
             <Route path="/estate" element={<Estate />} />

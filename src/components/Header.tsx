@@ -7,8 +7,8 @@ import {
   DropdownMenuTrigger } from
 "@/components/ui/dropdown-menu";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
-import { useLanguage, Language } from "@/contexts/LanguageContext";
-import { Link, useLocation } from "react-router-dom";
+import { useLanguage, Language, localizedPathFor } from "@/contexts/LanguageContext";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoImg from "@/assets/logo.jpeg";
 
 const languages: {code: Language;flag: string;name: string;}[] = [
@@ -41,6 +41,18 @@ const Header = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const { language, setLanguage, t, isRTL } = useLanguage();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // On a page that has language versions (/trading, /ru/trading, ...) switching
+  // the language also moves to that version's URL, so the address, canonical
+  // and content always agree.
+  const switchLanguage = (code: Language) => {
+    setLanguage(code);
+    const target = localizedPathFor(location.pathname, code);
+    if (target && target !== location.pathname) {
+      navigate(target + location.search + location.hash);
+    }
+  };
 
   const currentLang = languages.find((l) => l.code === language);
 
@@ -132,7 +144,7 @@ const Header = () => {
                 {languages.map((lang) =>
                 <DropdownMenuItem
                   key={lang.code}
-                  onSelect={() => setLanguage(lang.code)}
+                  onSelect={() => switchLanguage(lang.code)}
                   className={`gap-2 cursor-pointer ${language === lang.code ? "bg-accent" : ""}`}>
                   
                     <span className="text-lg">{lang.flag}</span>
@@ -154,7 +166,7 @@ const Header = () => {
                 {languages.map((lang) =>
                 <DropdownMenuItem
                   key={lang.code}
-                  onSelect={() => setLanguage(lang.code)}
+                  onSelect={() => switchLanguage(lang.code)}
                   className={`gap-2 cursor-pointer ${language === lang.code ? "bg-accent" : ""}`}>
                   
                     <span className="text-lg">{lang.flag}</span>

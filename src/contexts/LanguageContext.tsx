@@ -2224,16 +2224,33 @@ export const translations: Record<Language, Record<string, string>> = {
 };
 
 // Every non-English language now has a crawlable, self-contained URL
-// prefix (/ru, /bg, /de, ...) for "/" and "/trading" — see App.tsx's
+// prefix (/ru, /bg, /de, ...) for "/", "/trading", "/nics-video" and
+// "/nics-studio" — see App.tsx's
 // routes, generated from this same list, and scripts/generate-seo-pages.mjs,
 // which derives its own copy from ALL_LANGUAGES so the two never drift
 // apart. A visit to one of these paths must render in that language
 // immediately, both for the static prerendered HTML search engines see
 // and for a real browser on first paint — so this takes priority over any
-// stored preference for THOSE two pages. Every other page stays
+// stored preference for THOSE pages. Every other page stays
 // localStorage/client-state only, same as before URL-based languages
 // existed at all.
 export const URL_LANGUAGES: Language[] = ["de", "fr", "ar", "zh", "pl", "tr", "it", "bg", "ru", "es", "pt"];
+
+// Routes that exist under every language prefix (see App.tsx).
+export const LOCALIZED_BASE_PATHS = ["/", "/trading", "/nics-video", "/nics-studio"];
+
+// The same page in another language: "/ru/trading" + "en" -> "/trading",
+// "/nics-video" + "de" -> "/de/nics-video". Returns null for routes that have
+// no language versions, so the caller keeps the current URL.
+export const localizedPathFor = (pathname: string, lang: Language): string | null => {
+  const segments = pathname.split("/");
+  const prefixed = URL_LANGUAGES.includes(segments[1] as Language);
+  const base = prefixed ? "/" + segments.slice(2).join("/") : pathname;
+  const normalized = base.length > 1 ? base.replace(/\/+$/, "") : "/";
+  if (!LOCALIZED_BASE_PATHS.includes(normalized)) return null;
+  if (!URL_LANGUAGES.includes(lang)) return normalized;
+  return normalized === "/" ? `/${lang}` : `/${lang}${normalized}`;
+};
 
 const OG_LOCALE: Record<Language, string> = {
   en: "en_US", de: "de_DE", fr: "fr_FR", ar: "ar_SA", zh: "zh_CN",
@@ -2250,7 +2267,8 @@ const detectLanguageFromPath = (): Language | null => {
 const SITE_URL = "https://aibyteconsult.com";
 
 // Shared canonical/hreflang/og:locale computation for any route that has a
-// crawlable localized variant (currently "/" and "/trading" — see App.tsx).
+// crawlable localized variant ("/", "/trading", "/nics-video", "/nics-studio"
+// — see App.tsx).
 // basePath must start with "/" and have no trailing slash except for the
 // root ("/"). Centralized here so every such page computes the same
 // alternates set instead of re-deriving (and risking drift on) its own.

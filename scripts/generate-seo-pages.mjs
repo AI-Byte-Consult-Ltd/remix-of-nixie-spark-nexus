@@ -38,34 +38,91 @@ const alternatesFor = (base) => [
 
 const homeAlternates = alternatesFor("/");
 const tradingAlternates = alternatesFor("/trading");
+const videoAlternates = alternatesFor("/nics-video");
+const studioAlternates = alternatesFor("/nics-studio");
+
+// Public profiles of the company, listed as Organization.sameAs so search
+// engines can tie them to the site.
+const SAME_AS = [
+  "https://t.me/TravelTradeBook",
+  "https://t.me/nics_ai_bot",
+  "https://www.youtube.com/channel/UCfC75nacgk2RLwaRm1Q0NIg",
+];
+
+const organizationNode = {
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  name: "AI Byte Consult Ltd",
+  alternateName: "AI Byte Consult",
+  url: `${siteUrl}/`,
+  logo: defaultImage,
+  email: "info@aibyteconsult.com",
+  telephone: "+359988899109",
+  foundingDate: "2011",
+  address: { "@type": "PostalAddress", addressCountry: "BG" },
+  areaServed: "Worldwide",
+  sameAs: SAME_AS,
+};
+
+const websiteNode = {
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  url: `${siteUrl}/`,
+  name: "AI Byte Consult",
+  inLanguage: ALL_LANGUAGES,
+  publisher: { "@id": `${siteUrl}/#organization` },
+};
 
 const homeSchema = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": `${siteUrl}/#organization`,
-      name: "AI Byte Consult Ltd",
-      url: `${siteUrl}/`,
-      logo: defaultImage,
-      email: "info@aibyteconsult.com",
-      telephone: "+359988899109",
-      foundingDate: "2011",
-      areaServed: "Worldwide",
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${siteUrl}/#website`,
-      url: `${siteUrl}/`,
-      name: "AI Byte Consult",
-      publisher: { "@id": `${siteUrl}/#organization` },
-    },
-  ],
+  "@graph": [organizationNode, websiteNode],
 };
 
-const tradingSchema = (canonical, lang) => ({
+// Every page carries the Organization and WebSite nodes in its own graph, so
+// the publisher/isPartOf @id references below always resolve on that page.
+const withSiteNodes = (nodes) => ({
   "@context": "https://schema.org",
-  "@graph": [
+  "@graph": [organizationNode, websiteNode, ...nodes],
+});
+
+const videoSchema = (canonical, lang) =>
+  withSiteNodes([
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${siteUrl}/nics-video#software`,
+      name: "NICS Video",
+      applicationCategory: "MultimediaApplication",
+      operatingSystem: "Web",
+      url: canonical,
+      inLanguage: lang,
+      description: t(lang, "seo.nicsvideo.description"),
+      provider: { "@id": `${siteUrl}/#organization` },
+      offers: [
+        { "@type": "Offer", name: "Free start — 10 credits", price: "0", priceCurrency: "EUR" },
+        { "@type": "Offer", name: "Start — 60 credits / 30 days", price: "14.99", priceCurrency: "EUR" },
+        { "@type": "Offer", name: "Creator — 250 credits / 30 days", price: "34.99", priceCurrency: "EUR" },
+        { "@type": "Offer", name: "Pro — 700 credits / 30 days", price: "69.99", priceCurrency: "EUR" },
+      ],
+    },
+  ]);
+
+const studioSchema = (canonical, lang) =>
+  withSiteNodes([
+    {
+      "@type": "WebApplication",
+      "@id": `${siteUrl}/nics-studio#software`,
+      name: "NICS Studio",
+      applicationCategory: "MultimediaApplication",
+      operatingSystem: "Web",
+      browserRequirements: "Requires a current Chrome, Edge or Safari with WebCodecs",
+      url: canonical,
+      inLanguage: lang,
+      description: t(lang, "seo.nicsstudio.description"),
+      provider: { "@id": `${siteUrl}/#organization` },
+    },
+  ]);
+
+const tradingSchema = (canonical, lang) => withSiteNodes([
     {
       "@type": "SoftwareApplication",
       "@id": `${siteUrl}/trading#software`,
@@ -101,21 +158,23 @@ const tradingSchema = (canonical, lang) => ({
         acceptedAnswer: { "@type": "Answer", text: t(lang, `tradingpage.faq${n}.a`) },
       })),
     },
-  ],
-});
+]);
 
-// Home (/) and /trading exist in every supported language — see
+// Home (/), /trading, /nics-video and /nics-studio exist in every supported language — see
 // src/App.tsx's routes and src/contexts/LanguageContext.tsx's
 // getLocalizedSeoMeta(). Every other route below stays English-only.
 const localizedPages = ALL_LANGUAGES.flatMap((lang) => {
   const homeRoute = localePath(lang, "/");
   const tradingRoute = localePath(lang, "/trading");
+  const videoRoute = localePath(lang, "/nics-video");
+  const studioRoute = localePath(lang, "/nics-studio");
   return [
     {
       route: homeRoute,
       title: t(lang, "seo.home.title"),
       description: t(lang, "seo.home.description"),
       type: "website",
+      lang,
       locale: OG_LOCALE[lang],
       ogImage: `${siteUrl}/og-home.jpg`,
       alternates: homeAlternates,
@@ -126,12 +185,38 @@ const localizedPages = ALL_LANGUAGES.flatMap((lang) => {
       title: t(lang, "tradingpage.seo.title"),
       description: t(lang, "tradingpage.seo.description"),
       type: "product",
+      lang,
       locale: OG_LOCALE[lang],
       // No dedicated og-trading.jpg exists yet — reuse the real home banner
       // rather than point social previews at a missing file.
-      ogImage: `${siteUrl}/og-home.jpg`,
+      ogImage: `${siteUrl}/og-trading.jpg`,
+      ogImageAlt: "NICS AI Trader — structured trading signals in Telegram",
       alternates: tradingAlternates,
       schema: tradingSchema(`${siteUrl}${tradingRoute}`, lang),
+    },
+    {
+      route: videoRoute,
+      title: t(lang, "seo.nicsvideo.title"),
+      description: t(lang, "seo.nicsvideo.description"),
+      type: "website",
+      lang,
+      locale: OG_LOCALE[lang],
+      ogImage: `${siteUrl}/og-video.jpg`,
+      ogImageAlt: "NICS Video — raw clips in, ready Shorts and YouTube videos out",
+      alternates: videoAlternates,
+      schema: videoSchema(`${siteUrl}${videoRoute}`, lang),
+    },
+    {
+      route: studioRoute,
+      title: t(lang, "seo.nicsstudio.title"),
+      description: t(lang, "seo.nicsstudio.description"),
+      type: "website",
+      lang,
+      locale: OG_LOCALE[lang],
+      ogImage: `${siteUrl}/og-video.jpg`,
+      ogImageAlt: "NICS Studio — online video editor",
+      alternates: studioAlternates,
+      schema: studioSchema(`${siteUrl}${studioRoute}`, lang),
     },
   ];
 });
@@ -204,23 +289,18 @@ const pages = [
     type: "website",
     schemaType: "Organization",
   },
-  {
-    route: "/nics-video",
-    title: "NICS Video Editor — Automatic Shorts, Long Videos and Covers",
-    description:
-      "Upload raw clips from your trip and get a vertical Short, a horizontal travel video and four covers in two languages. Automatic editing of your real footage, fully offline.",
-    type: "website",
-    schemaType: "SoftwareApplication",
-  },
-  {
-    route: "/nics-studio",
-    title: "NICS Studio — Online Video Editor for Shorts and YouTube",
-    description:
-      "Edit your video yourself in the browser: cut and split clips, add text, music, filters and fades, and export a 9:16 or 16:9 MP4. Your files stay on your device.",
-    type: "website",
-    schemaType: "SoftwareApplication",
-  },
 ];
+
+// Pixel sizes of the social preview images in public/, so og:image can carry
+// width/height (lets Facebook/Telegram/LinkedIn render the card on first share).
+const OG_IMAGE_SIZES = {
+  "/og-home.jpg": [1200, 630],
+  "/og-trading.jpg": [1200, 630],
+  "/og-video.jpg": [1200, 630],
+  "/og-about.jpg": [1200, 630],
+  "/og-estate.jpg": [1200, 630],
+  "/android-chrome-512x512.png": [512, 512],
+};
 
 const escapeAttribute = (value) =>
   value
@@ -233,18 +313,41 @@ const removeManagedTags = (html) =>
   html
     .replace(/\s*<title>[\s\S]*?<\/title>/gi, "")
     .replace(/\s*<meta\s+(?:name|property)=["'](?:description|robots|googlebot|og:[^"']+|twitter:[^"']+)["'][^>]*>/gi, "")
-    .replace(/\s*<link\s+rel=["']canonical["'][^>]*>/gi, "");
+    .replace(/\s*<link\s+rel=["']canonical["'][^>]*>/gi, "")
+    .replace(/\s*<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, "");
 
 const pageSchema = (page, canonical) =>
-  page.schema || {
-    "@context": "https://schema.org",
-    "@type": page.schemaType || "WebPage",
-    name: page.title,
-    description: page.description,
-    url: canonical,
-    isPartOf: { "@id": `${siteUrl}/#website` },
-    publisher: { "@id": `${siteUrl}/#organization` },
-  };
+  page.schema ||
+  withSiteNodes([
+    {
+      "@type": page.schemaType || "WebPage",
+      name: page.title,
+      description: page.description,
+      url: canonical,
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+  ]);
+
+// Plain-HTML first paint inside #root: the page's own heading, summary and
+// links to the main sections. React replaces it on mount; until then (and for
+// crawlers that do not run JavaScript: Bing, GPTBot and other AI crawlers,
+// link previews) the page is not an empty <div>.
+const NAV = [
+  { base: "/", label: "AI Byte Consult" },
+  { base: "/trading", label: "NICS AI Trader" },
+  { base: "/nics-video", label: "NICS Video" },
+  { base: "/nics-studio", label: "NICS Studio" },
+  { base: "/nics-ecosystem", label: "NICS AI Ecosystem", enOnly: true },
+  { base: "/about", label: "About", enOnly: true },
+];
+const staticBody = (page) => {
+  const lang = page.lang || "en";
+  const links = NAV.map(
+    (item) => `<a href="${item.enOnly ? item.base : localePath(lang, item.base)}">${escapeAttribute(item.label)}</a>`,
+  ).join(" · ");
+  return `<div style="max-width:720px;margin:0 auto;padding:96px 16px;font-family:system-ui,sans-serif;color:#0f172a"><h1 style="font-size:28px;line-height:1.25">${escapeAttribute(page.title)}</h1><p style="font-size:16px;line-height:1.6;color:#475569">${escapeAttribute(page.description)}</p><nav style="font-size:14px;line-height:2">${links}</nav></div>`;
+};
 
 const renderPage = (page, noindex = false) => {
   const canonical = page.route === "/" ? `${siteUrl}/` : `${siteUrl}${page.route}`;
@@ -263,6 +366,10 @@ const renderPage = (page, noindex = false) => {
         .map((alt) => `\n    <link rel="alternate" hreflang="${alt.lang}" href="${siteUrl}${alt.path}" />`)
         .join("");
   const image = page.ogImage || defaultImage;
+  const size = OG_IMAGE_SIZES[image.replace(siteUrl, "")];
+  const ogImageSize = size
+    ? `\n    <meta property="og:image:width" content="${size[0]}" />\n    <meta property="og:image:height" content="${size[1]}" />`
+    : "";
 
   const tags = `
     <title>${escapeAttribute(page.title)}</title>
@@ -275,7 +382,7 @@ const renderPage = (page, noindex = false) => {
     <meta property="og:title" content="${escapeAttribute(page.title)}" />
     <meta property="og:description" content="${escapeAttribute(page.description)}" />${ogUrlTag}
     <meta property="og:image" content="${image}" />
-    <meta property="og:image:alt" content="AI Byte Consult and the NICS AI Ecosystem" />
+    <meta property="og:image:alt" content="${escapeAttribute(page.ogImageAlt || "AI Byte Consult and the NICS AI Ecosystem")}" />${ogImageSize}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@aibyteconsult" />
     <meta name="twitter:title" content="${escapeAttribute(page.title)}" />
@@ -283,7 +390,11 @@ const renderPage = (page, noindex = false) => {
     <meta name="twitter:image" content="${image}" />
     <script type="application/ld+json">${schema}</script>`;
 
-  return clean.replace("</head>", `${tags}\n  </head>`);
+  const htmlLang = page.lang || "en";
+  return clean
+    .replace('<html lang="en">', `<html lang="${htmlLang}"${htmlLang === "ar" ? ' dir="rtl"' : ""}>`)
+    .replace("</head>", `${tags}\n  </head>`)
+    .replace('<div id="root"></div>', `<div id="root">${staticBody(page)}</div>`);
 };
 
 for (const page of pages) {
@@ -322,7 +433,7 @@ const sitemapMeta = {
   "/estate": { priority: "0.8", changefreq: "monthly" },
   "/nics-multimedia": { priority: "0.5", changefreq: "monthly" },
   "/nics-forge": { priority: "0.5", changefreq: "monthly" },
-  "/nics-video": { priority: "0.6", changefreq: "monthly" },
+  "/nics-video": { priority: "0.8", changefreq: "weekly" },
   "/nics-studio": { priority: "0.6", changefreq: "monthly" },
   "/terms": { priority: "0.4", changefreq: "yearly" },
   "/privacy": { priority: "0.3", changefreq: "yearly" },
@@ -332,16 +443,23 @@ for (const lang of ALL_LANGUAGES) {
   if (lang === "en") continue;
   sitemapMeta[localePath(lang, "/")] = { priority: "0.9", changefreq: "weekly" };
   sitemapMeta[localePath(lang, "/trading")] = { priority: "0.85", changefreq: "weekly" };
+  sitemapMeta[localePath(lang, "/nics-video")] = { priority: "0.6", changefreq: "monthly" };
+  sitemapMeta[localePath(lang, "/nics-studio")] = { priority: "0.5", changefreq: "monthly" };
 }
 const today = new Date().toISOString().slice(0, 10);
 const sitemapUrls = pages
   .map((page) => {
     const loc = page.route === "/" ? `${siteUrl}/` : `${siteUrl}${page.route}`;
     const { priority = "0.5", changefreq = "monthly" } = sitemapMeta[page.route] || {};
-    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+    // Language versions are listed in the sitemap too (Google reads hreflang
+    // from either place; having both makes the grouping explicit).
+    const links = (page.alternates || [])
+      .map((alt) => `\n    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${siteUrl}${alt.path}" />`)
+      .join("");
+    return `  <url>\n    <loc>${loc}</loc>${links}\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
   })
   .join("\n");
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls}\n</urlset>\n`;
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapUrls}\n</urlset>\n`;
 await writeFile(path.join(distDir, "sitemap.xml"), sitemap, "utf8");
 
 console.log(`Generated static SEO metadata for ${pages.length} public routes and a fresh sitemap.xml.`);
