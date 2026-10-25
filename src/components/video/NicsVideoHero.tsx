@@ -61,13 +61,14 @@ interface Props {
   note: string;
   ctaPrimary: string;
   ctaSecondary: string;
+  price: string;
   guideLabel: string;
   shortsTitle: string;
   longTitle: string;
   coversTitle: string;
 }
 
-const NicsVideoHero = ({ lang, badge, subtitle, note, ctaPrimary, ctaSecondary, guideLabel, shortsTitle, longTitle, coversTitle }: Props) => {
+const NicsVideoHero = ({ lang, badge, subtitle, note, ctaPrimary, ctaSecondary, price, guideLabel, shortsTitle, longTitle, coversTitle }: Props) => {
   const s = strings[lang] ?? strings.en;
   const [still] = useState(prefersReducedMotion);
   const [cover, setCover] = useState(0);
@@ -115,6 +116,9 @@ const NicsVideoHero = ({ lang, badge, subtitle, note, ctaPrimary, ctaSecondary, 
                 </Button>
               </a>
             </div>
+            <a href="#pricing" className="block text-sm font-medium text-primary hover:underline">
+              {price}
+            </a>
             <div className="flex items-center gap-4 justify-center lg:justify-start text-muted-foreground">
               <span className="text-xs font-medium uppercase tracking-[0.15em]">{s.postTo}</span>
               {PLATFORMS.map(({ label, Icon }) => (

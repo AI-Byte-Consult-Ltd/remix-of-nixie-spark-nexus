@@ -18,6 +18,7 @@ const pl: NicsVideoLocale = {
       "To nie jest wideo generatywne: nic nie jest wymyślane ani dorysowywane. Algorytm automatycznego montażu montuje to, co naprawdę nagrałeś, sam znajduje najlepsze momenty, buduje tempo i cięcia.",
     ctaPrimary: "Odbierz 10 darmowych kredytów",
     ctaSecondary: "Jak to działa",
+    heroPrice: (p: string) => `Pierwszy pakiet za darmo, potem najwyżej ${p} za pakiet`,
     outputsHeading: "Co otrzymujesz",
     outputsIntro: "Sześć gotowych plików z każdego wgranego folderu:",
     shortsTitle: "Short · 9:16",
@@ -32,22 +33,9 @@ const pl: NicsVideoLocale = {
       "Oba filmy to H.264/AAC, bez wypalonych napisów, z opcjonalną muzyką w tle, która startuje od najbardziej energicznej części utworu.",
     howHeading: "Jak to działa",
     steps: [
-      {
-        title: "Wgrywanie",
-        text: "Przeciągnij folder lub kilka plików MP4/MOV – od 3 do ponad 40 klipów na lokalizację. Oryginały nigdy nie są zmieniane.",
-      },
-      {
-        title: "Analiza",
-        text: "Wykrywanie scen, ocena jakości i ruchu oraz tagi treści (plaża, góry, jedzenie, ludzie…) wybierają najmocniejsze ujęcia.",
-      },
-      {
-        title: "Plan montażu",
-        text: "Z najlepszych fragmentów powstaje oś czasu: źródła się przeplatają, żeby żaden klip nie dominował, z mocnym początkiem i końcem.",
-      },
-      {
-        title: "Render i okładki",
-        text: "FFmpeg renderuje oba filmy z przejściami, stabilizacją i muzyką, potem tworzy cztery okładki i sprawdza każdy plik.",
-      },
+      { title: "Wgraj klipy", text: "Przeciągnij folder lub kilka plików z telefonu, od 3 klipów. Twoje oryginały nigdy nie są zmieniane." },
+      { title: "Poczekaj kilka minut", text: "Montaż dzieje się automatycznie: kilka minut dla małego folderu, dłużej dla godzin nagrań. Dostaniesz powiadomienie, gdy wszystko będzie gotowe." },
+      { title: "Pobierz i publikuj", text: "Short, długie wideo i 4 okładki, gotowe na TikTok, Reels i YouTube." },
     ],
     styleHeading: "Short i Long",
     styleIntro: "Oba filmy powstają z jednej analizy Twojego materiału, w dwóch różnych przebiegach montażu.",
