@@ -38,7 +38,7 @@ Core product functions:
 NICS AI Trader does not guarantee profit and does not replace professional financial advice. Trading involves substantial risk.
 
 Product access:
-- [Telegram bot](https://t.me/nics_ai_bot)
+- [Telegram bot](https://t.me/nics_ai_bot?start=src_site)
 - [Public Telegram channel](https://t.me/TravelTradeBook)
 - [Mini App](https://aibyteconsult.com/nics-app)
 

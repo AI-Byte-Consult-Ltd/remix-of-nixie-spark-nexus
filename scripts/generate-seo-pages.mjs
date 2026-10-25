@@ -150,10 +150,10 @@ const tradingSchema = (canonical, lang) => withSiteNodes([
       "@type": "OfferCatalog",
       name: "NICS AI Trader access plans",
       itemListElement: [
-        { "@type": "Offer", name: "AI Trader Demo", price: "0", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot" },
-        { "@type": "Offer", name: "AI Trader Single Market — 30 days", price: "34.99", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot" },
-        { "@type": "Offer", name: "AI Trader Multi-Market — 30 days", price: "52.99", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot" },
-        { "@type": "Offer", name: "AI Trader Full Coverage — 30 days", price: "79.99", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot" },
+        { "@type": "Offer", name: "AI Trader Demo", price: "0", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot?start=src_site" },
+        { "@type": "Offer", name: "AI Trader Single Market — 30 days", price: "34.99", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot?start=src_site" },
+        { "@type": "Offer", name: "AI Trader Multi-Market — 30 days", price: "52.99", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot?start=src_site" },
+        { "@type": "Offer", name: "AI Trader Full Coverage — 30 days", price: "79.99", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot?start=src_site" },
       ],
     },
     {
