@@ -8,7 +8,8 @@
  * before (see runbook).
  */
 
-export const TELEGRAM_BOT_URL = "https://t.me/nics_ai_bot";
+// ?start=src_site lets the bot record signup_source = site for first-time users.
+export const TELEGRAM_BOT_URL = "https://t.me/nics_ai_bot?start=src_site";
 
 export type Period = "7d" | "30d" | "90d";
 export type Currency = "EUR" | "USD";
