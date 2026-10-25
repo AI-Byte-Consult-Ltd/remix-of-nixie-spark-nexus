@@ -4,6 +4,9 @@ import SEO from "@/components/SEO";
 import TradingViewTicker from "@/components/TradingViewTicker";
 import NicsTraderPlans from "@/components/NicsTraderPlans";
 import VerifiedTrackRecord from "@/components/VerifiedTrackRecord";
+import TradingSignalDemo from "@/components/trading/TradingSignalDemo";
+import TradingLiveStats from "@/components/trading/TradingLiveStats";
+import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,6 +45,7 @@ const VANTAGE_URL = "https://fwd.cx/Yj25BCrDzEHB";
 const Trading = () => {
   const { t, language } = useLanguage();
   const localizedSeo = getLocalizedSeoMeta("/trading", language);
+  const pageRef = useRevealOnScroll<HTMLElement>();
 
   const benefits = [
     { title: t("tradingpage.benefit1.title"), description: t("tradingpage.benefit1.desc"), icon: Target },
@@ -170,7 +174,7 @@ const Trading = () => {
   return (
     <>
       <SEO {...seoProps} />
-      <main className="min-h-screen bg-background text-foreground">
+      <main ref={pageRef} className="min-h-screen bg-background text-foreground">
         <Header />
 
         <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
@@ -213,59 +217,39 @@ const Trading = () => {
                     </span>
                   ))}
                 </div>
+
+                <TradingLiveStats lang={language} />
               </div>
 
               <div id="example-signal" className="mx-auto w-full max-w-md scroll-mt-28">
-                <div className="rounded-[2rem] border border-border/70 bg-card/90 p-3 shadow-2xl shadow-primary/10 backdrop-blur">
-                  <div className="rounded-[1.5rem] border border-border/60 bg-background p-6">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">{t("tradingpage.example.label")}</p>
-                        <h2 className="mt-2 text-2xl font-semibold">{t("tradingpage.example.pair")}</h2>
-                      </div>
-                      <Badge className="bg-green-500/10 text-green-600 hover:bg-green-500/10">{t("tradingpage.example.live")}</Badge>
-                    </div>
-
-                    <div className="mt-6 rounded-2xl border border-primary/20 bg-primary/5 p-5">
-                      <p className="text-sm text-muted-foreground">{t("tradingpage.example.orderTypeLabel")}</p>
-                      <p className="mt-1 text-xl font-semibold">{t("tradingpage.example.orderTypeValue")}</p>
-                    </div>
-
-                    <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
-                      <div className="rounded-xl border border-border/60 p-4">
-                        <p className="text-muted-foreground">{t("tradingpage.example.entryLabel")}</p>
-                        <p className="mt-1 font-semibold">{t("tradingpage.example.entryValue")}</p>
-                      </div>
-                      <div className="rounded-xl border border-border/60 p-4">
-                        <p className="text-muted-foreground">{t("tradingpage.example.slLabel")}</p>
-                        <p className="mt-1 font-semibold">{t("tradingpage.example.slValue")}</p>
-                      </div>
-                      <div className="rounded-xl border border-border/60 p-4">
-                        <p className="text-muted-foreground">{t("tradingpage.example.tpLabel")}</p>
-                        <p className="mt-1 font-semibold">{t("tradingpage.example.tpValue")}</p>
-                      </div>
-                      <div className="rounded-xl border border-border/60 p-4">
-                        <p className="text-muted-foreground">{t("tradingpage.example.validLabel")}</p>
-                        <p className="mt-1 font-semibold">{t("tradingpage.example.validValue")}</p>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 grid grid-cols-2 gap-3">
-                      <Button className="rounded-xl">{t("tradingpage.example.accept")}</Button>
-                      <Button variant="outline" className="rounded-xl">{t("tradingpage.example.skip")}</Button>
-                    </div>
-
-                    <p className="mt-5 text-center text-xs text-muted-foreground">
-                      {t("tradingpage.example.note")}
-                    </p>
-                  </div>
-                </div>
+                <TradingSignalDemo
+                  lang={language}
+                  label={t("tradingpage.example.label")}
+                  marketNames={{
+                    gold: t("tradingpage.market.gold.name"),
+                    forex: t("tradingpage.market.forex.name"),
+                    brent: t("tradingpage.market.brent.name"),
+                    bitcoin: t("tradingpage.market.bitcoin.name"),
+                  }}
+                  orderTypeLabel={t("tradingpage.example.orderTypeLabel")}
+                  entryLabel={t("tradingpage.example.entryLabel")}
+                  entryValue={t("tradingpage.example.entryValue")}
+                  slLabel={t("tradingpage.example.slLabel")}
+                  slValue={t("tradingpage.example.slValue")}
+                  validLabel={t("tradingpage.example.validLabel")}
+                  validValue={t("tradingpage.example.validValue")}
+                  accept={t("tradingpage.example.accept")}
+                  skip={t("tradingpage.example.skip")}
+                  note={t("tradingpage.example.note")}
+                />
               </div>
             </div>
           </div>
         </section>
 
         <TradingViewTicker />
+
+        <VerifiedTrackRecord />
 
         <section className="border-y border-border/60 bg-muted/25 py-20">
           <div className="container mx-auto px-4">
@@ -325,7 +309,7 @@ const Trading = () => {
 
             <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
               {benefits.map((benefit) => (
-                <Card key={benefit.title} className="h-full border-border/60 bg-card/70">
+                <Card key={benefit.title} className="h-full border-border/60 transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 bg-card/70">
                   <CardHeader>
                     <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <benefit.icon className="h-5 w-5" />
@@ -421,8 +405,6 @@ const Trading = () => {
           </div>
         </section>
 
-        <VerifiedTrackRecord />
-
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center">
@@ -432,7 +414,7 @@ const Trading = () => {
 
             <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-3">
               {steps.map((item) => (
-                <Card key={item.step} className="relative h-full border-border/60">
+                <Card key={item.step} className="relative h-full border-border/60 transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
                   <CardHeader>
                     <span className="absolute right-5 top-5 text-sm font-semibold text-muted-foreground">{item.step}</span>
                     <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
@@ -461,7 +443,7 @@ const Trading = () => {
 
             <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
               {markets.map((market) => (
-                <Card key={market.name} className="h-full border-border/60 bg-background/80">
+                <Card key={market.name} className="h-full border-border/60 transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 bg-background/80">
                   <CardHeader>
                     <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <market.icon className="h-5 w-5" />
@@ -490,7 +472,7 @@ const Trading = () => {
 
             <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
               {protections.map((item) => (
-                <Card key={item.title} className="h-full border-border/60 bg-card/70">
+                <Card key={item.title} className="h-full border-border/60 transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 bg-card/70">
                   <CardHeader>
                     <item.icon className="mb-3 h-7 w-7 text-primary" />
                     <CardTitle className="text-lg">{item.title}</CardTitle>
@@ -539,7 +521,7 @@ const Trading = () => {
 
             <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
               {platformCapabilities.map((item) => (
-                <Card key={item.title} className="h-full border-border/60 bg-card/70">
+                <Card key={item.title} className="h-full border-border/60 transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 bg-card/70">
                   <CardHeader>
                     <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <item.icon className="h-5 w-5" />
