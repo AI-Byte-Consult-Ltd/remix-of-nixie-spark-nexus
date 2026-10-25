@@ -9,6 +9,8 @@ Contact: info@aibyteconsult.com
 
 - [Company and ecosystem overview](https://aibyteconsult.com/)
 - [NICS AI Trader product page](https://aibyteconsult.com/trading)
+- [NICS Video — automatic video editing](https://aibyteconsult.com/nics-video)
+- [NICS Studio — online video editor](https://aibyteconsult.com/nics-studio)
 - [NICS AI Ecosystem](https://aibyteconsult.com/nics-ecosystem)
 - [About AI Byte Consult](https://aibyteconsult.com/about)
 - [Terms and trading risk disclosures](https://aibyteconsult.com/terms)
@@ -39,6 +41,16 @@ Product access:
 - [Telegram bot](https://t.me/nics_ai_bot)
 - [Public Telegram channel](https://t.me/TravelTradeBook)
 - [Mini App](https://aibyteconsult.com/nics-app)
+
+## NICS Video and NICS Studio
+
+NICS Video edits a user's own raw clips automatically: from one upload it returns a vertical Short (9:16, about 30 seconds), a horizontal YouTube video (16:9) and covers in two languages (Russian and English). It does not generate footage; it selects and cuts what the user filmed.
+
+Access is credit-based: 10 free credits once at sign-up, then Start (14.99 EUR / 60 credits), Creator (34.99 EUR / 250 credits) or Pro (69.99 EUR / 700 credits) for 30 days. One automatic package costs 10 credits.
+
+NICS Studio is an in-browser editor (in development) for editing a video by hand: cut, captions, text, music, filters, transitions and MP4 export. Files stay on the user's device.
+
+Every page is available in 12 languages: en, de, fr, ar, zh, pl, tr, it, bg, ru, es, pt (for example https://aibyteconsult.com/ru/nics-video).
 
 ## Public pricing
 
