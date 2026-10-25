@@ -29,6 +29,7 @@ import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/co
 import NicsVideoStudio from "@/components/video/NicsVideoStudio";
 import NicsVideoExamples from "@/components/video/NicsVideoExamples";
 import NicsVideoHero from "@/components/video/NicsVideoHero";
+import NicsVideoDemo from "@/components/video/NicsVideoDemo";
 import { studioStrings } from "@/features/studio/strings";
 import { signOut, useAccount } from "@/features/account/account";
 import AccountDialog from "@/features/account/AccountDialog";
@@ -312,6 +313,14 @@ const NicsVideo = () => {
   const [checkoutPlan, setCheckoutPlan] = useState<CheckoutPlan | null>(null);
   const [signInOpen, setSignInOpen] = useState(false);
   const account = useAccount();
+  // A job started earlier is tracked by the real form even when signed out.
+  const [hasSavedJob] = useState(() => {
+    try {
+      return Boolean(localStorage.getItem("nicsVideoJob"));
+    } catch {
+      return false;
+    }
+  });
   const c = content[language] ?? nicsVideoLocales[language]?.page ?? content.en;
   const studio = studioStrings(language);
   const guide = videoGuides[language] ?? videoGuides.en;
@@ -621,12 +630,24 @@ const NicsVideo = () => {
                   </Button>
                 )}
               </div>
-              <NicsVideoStudio
-                lang={language}
-                account={account}
-                onSignIn={() => setSignInOpen(true)}
-                onNeedAccess={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
-              />
+              {account || hasSavedJob ? (
+                <NicsVideoStudio
+                  lang={language}
+                  account={account}
+                  onSignIn={() => setSignInOpen(true)}
+                  onNeedAccess={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
+                />
+              ) : (
+                <NicsVideoDemo
+                  lang={language}
+                  shortsTitle={c.shortsTitle}
+                  longTitle={c.longTitle}
+                  coversTitle={c.coversTitle}
+                  ctaPrimary={c.ctaPrimary}
+                  onSignIn={() => setSignInOpen(true)}
+                  onGetCredits={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
+                />
+              )}
             </div>
           </div>
         </section>
