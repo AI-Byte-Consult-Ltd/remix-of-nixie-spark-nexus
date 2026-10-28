@@ -27,11 +27,11 @@ const languages: {code: Language;flag: string;name: string;}[] = [
 
 
 const nicsServices = [
+{ href: "/trading", label: "NICS AI Trading", external: false },
+{ href: "/nics-video", label: "NICS Video", external: false },
 { href: "https://estate.aibyteconsult.com", label: "NICS Real Estate", external: true },
 { href: "/nics-ecosystem", label: "NICS AI Ecosystem", external: false },
-{ href: "/trading", label: "NICS AI Trading", external: false },
-{ href: "/nics-multimedia", label: "NICS Multimedia", external: false },
-{ href: "/nics-video", label: "NICS Video", external: false }];
+{ href: "/nics-multimedia", label: "NICS Multimedia", external: false }];
 
 const partnersLink = { href: "https://alessandro-studio.eu", label: "Partners" };
 
