@@ -12,14 +12,14 @@ export type PeriodStats = {
   averageMaeR: number;
 };
 
-// 2026-10-10, owner's instruction: STRONG/RELAXED ("confirmed") and WEAK
-// signals used to be blended into one number, which diluted the real gated
-// track record. Each tier now carries its own full stats; "overall" (the
-// old blended figure) is kept too, shown smaller, never shown alone.
+// 2026-10-28, owner's instruction: WEAK signals are no longer delivered
+// automatically and are excluded from every statistic, so the endpoint only
+// returns signals that cleared the quality gate. "overall" is kept by the API
+// for older clients and is now identical to "confirmed"; the site shows only
+// "confirmed".
 export type TieredPeriodStats = {
   confirmed: PeriodStats;
-  weak: PeriodStats;
-  overall: PeriodStats;
+  overall?: PeriodStats;
 };
 
 export type PerformanceResponse = {
