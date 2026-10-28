@@ -10,6 +10,7 @@ import { useCabinetAuth } from "@/features/cabinet/useCabinetAuth";
 import { useCabinetQuery } from "@/features/cabinet/useCabinetQuery";
 import type { CabinetLanguage, DashboardResponseData } from "@/features/cabinet/types";
 import { Wallet } from "lucide-react";
+import { useInstallableApp } from "@/lib/installableApp";
 
 export interface CabinetOutletContext {
   session: string;
@@ -26,6 +27,7 @@ export const useCabinetOutletContext = () => useOutletContext<CabinetOutletConte
 const CabinetLayout = () => {
   const { language: siteLanguage } = useLanguage();
   const auth = useCabinetAuth();
+  useInstallableApp("trading");
 
   const cabinetLanguage: CabinetLanguage = useMemo(() => {
     return (CABINET_LANGUAGES as string[]).includes(siteLanguage)

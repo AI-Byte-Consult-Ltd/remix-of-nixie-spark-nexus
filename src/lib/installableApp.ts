@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 
 // /trading and /nics-video install as their own home-screen apps ("NICS
-// Trading", "NICS Video"), each opening on its own page; the rest of the
+// Trading", "NICS Video"), each opening on its own page; the trader cabinet
+// (/cabinet) belongs to NICS Trading; the rest of the
 // site keeps the AI Byte Consult manifest. The pre-rendered HTML of each
 // route already names the right manifest (scripts/generate-seo-pages.mjs);
 // this hook keeps it right after client-side navigation, because Chrome
