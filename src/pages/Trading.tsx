@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -27,6 +28,7 @@ import {
   Globe,
   History,
   LineChart,
+  LogIn,
   Rocket,
   Send,
   Settings,
@@ -208,6 +210,22 @@ const Trading = () => {
                       {t("tradingpage.hero.cta2")}
                     </Button>
                   </a>
+                </div>
+
+                <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-primary/30 bg-primary/5 p-5 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex items-start gap-3">
+                    <LogIn className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                    <div>
+                      <p className="font-semibold">{t("tradingpage.cabinet.title")}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">{t("tradingpage.cabinet.desc")}</p>
+                    </div>
+                  </div>
+                  <Link to="/cabinet" className="shrink-0">
+                    <Button size="lg" variant="secondary" className="w-full rounded-full px-6 sm:w-auto">
+                      {t("tradingpage.cabinet.button")}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </div>
 
                 <div className="mt-9 flex flex-wrap gap-3 text-sm text-muted-foreground">
@@ -581,6 +599,12 @@ const Trading = () => {
                       {t("tradingpage.cta.button2")}
                     </Button>
                   </a>
+                  <Link to="/cabinet">
+                    <Button size="lg" variant="secondary" className="w-full rounded-full px-8 sm:w-auto">
+                      <LogIn className="mr-2 h-4 w-4" />
+                      {t("tradingpage.cabinet.button")}
+                    </Button>
+                  </Link>
                 </div>
 
                 <a href={VANTAGE_URL} target="_blank" rel="noopener noreferrer sponsored" className="mt-6 inline-flex items-center text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
