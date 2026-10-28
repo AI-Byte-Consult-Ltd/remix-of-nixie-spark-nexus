@@ -1,25 +1,32 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Phone, MessageCircle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+
+// n8n [12 WEB] Contact Form: checks the honeypot, timing, content and rate limits, then emails us.
+const CONTACT_FORM_URL = "https://n8n.aibyteconsult.com/webhook/contact-form";
 
 const Contact = () => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
+  // Anti-bot: a hidden field people never see, and how long the form was open before sending.
+  const [website, setWebsite] = useState("");
+  const openedAt = useRef(Date.now());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const { error } = await supabase.functions.invoke("send-contact-email", {
-        body: formData,
+      const response = await fetch(CONTACT_FORM_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, website, elapsed_ms: Date.now() - openedAt.current }),
       });
-      if (error) throw error;
+      if (!response.ok) throw new Error(`Contact form failed with status ${response.status}`);
       toast.success(t("contact.success"));
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
@@ -60,7 +67,11 @@ const Contact = () => {
             </a>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 bg-card p-8 rounded-3xl border border-border/50 shadow-card">
+          <form onSubmit={handleSubmit} className="relative space-y-6 bg-card p-8 rounded-3xl border border-border/50 shadow-card">
+            <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}>
+              <label htmlFor="website">Website</label>
+              <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
+            </div>
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-medium text-foreground">{t("contact.name")}</label>
               <Input id="name" name="name" value={formData.name} onChange={handleChange} required placeholder={t("contact.name.placeholder")} className="bg-background border-border focus:border-primary rounded-xl" />
