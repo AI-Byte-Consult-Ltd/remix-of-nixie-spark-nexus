@@ -8,6 +8,7 @@ import NicsTraderPlans from "@/components/NicsTraderPlans";
 import VerifiedTrackRecord from "@/components/VerifiedTrackRecord";
 import TradingSignalDemo from "@/components/trading/TradingSignalDemo";
 import TradingLiveStats from "@/components/trading/TradingLiveStats";
+import HeroFly from "@/components/trading/HeroFly";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -183,6 +184,7 @@ const Trading = () => {
 
         <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,hsl(var(--primary)/0.16),transparent_35%),radial-gradient(circle_at_85%_65%,rgba(34,197,94,0.12),transparent_35%)]" />
+          <HeroFly />
           <div className="container relative z-10 mx-auto px-4">
             <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
               <div>
