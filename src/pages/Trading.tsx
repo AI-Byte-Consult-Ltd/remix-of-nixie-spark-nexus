@@ -9,6 +9,7 @@ import VerifiedTrackRecord from "@/components/VerifiedTrackRecord";
 import TradingSignalDemo from "@/components/trading/TradingSignalDemo";
 import TradingLiveStats from "@/components/trading/TradingLiveStats";
 import HeroFly from "@/components/trading/HeroFly";
+import TradingFlyStory from "@/components/trading/TradingFlyStory";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -272,6 +273,8 @@ const Trading = () => {
         <TradingViewTicker />
 
         <VerifiedTrackRecord />
+
+        <TradingFlyStory lang={language} />
 
         <section className="border-y border-border/60 bg-muted/25 py-20">
           <div className="container mx-auto px-4">

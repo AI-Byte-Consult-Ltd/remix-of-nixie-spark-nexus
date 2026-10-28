@@ -11,8 +11,8 @@ const SIZE = 56;
 const prefersReducedMotion = () =>
   typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-const FlySvg = () => (
-  <svg viewBox="0 0 64 64" width={SIZE} height={SIZE} className="overflow-visible drop-shadow-md">
+export const FlySvg = ({ size = SIZE }: { size?: number }) => (
+  <svg viewBox="0 0 64 64" width={size} height={size} className="overflow-visible drop-shadow-md">
     {/* wings */}
     <g className="hero-fly-wings" style={{ transformOrigin: "30px 26px" }}>
       <ellipse cx="22" cy="16" rx="9" ry="15" transform="rotate(-35 22 16)" fill="#dbeafe" fillOpacity="0.75" stroke="#93c5fd" strokeWidth="1.2" />
@@ -62,7 +62,7 @@ const HeroFly = () => {
     const rand = (min: number, max: number) => min + Math.random() * (max - min);
     const pickTarget = () => ({ x: rand(margin, w - SIZE - margin), y: rand(margin + 60, h - SIZE - margin) });
 
-    let pos = { x: w * 0.6, y: h * 0.3 };
+    const pos = { x: w * 0.6, y: h * 0.3 };
     let vel = { x: 0, y: 0 };
     let target = pickTarget();
     let hoverUntil = 0;
