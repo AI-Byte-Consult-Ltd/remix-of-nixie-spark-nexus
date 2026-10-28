@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play, Calendar, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import HalloweenHero from "@/components/halloween/HalloweenHero";
 
 const HERO_VIDEO =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4";
@@ -155,6 +156,7 @@ const Hero = () => {
       </motion.div>
 
       <Particles />
+      <HalloweenHero />
 
       {/* Lens flare */}
       <motion.div

@@ -16,6 +16,10 @@ import { useCabinetQuery } from "@/features/cabinet/useCabinetQuery";
 import { callCabinetApi } from "@/features/cabinet/api";
 import type { SubscriptionResponseData } from "@/features/cabinet/types";
 import { formatPrice, plans, TELEGRAM_BOT_URL } from "@/data/nicsTraderPlans";
+import { Input } from "@/components/ui/input";
+import { isHalloweenPromo } from "@/lib/halloween";
+import { halloweenText } from "@/components/halloween/halloweenText";
+import type { Language } from "@/contexts/LanguageContext";
 
 const CabinetSubscription = () => {
   const { session, language, t, updateSession } = useCabinetOutletContext();
@@ -33,6 +37,10 @@ const CabinetSubscription = () => {
   const [payErrorPlanId, setPayErrorPlanId] = useState<string | null>(null);
   const [marketPickerPlanId, setMarketPickerPlanId] = useState<string | null>(null);
   const [pickedMarkets, setPickedMarkets] = useState<string[]>([]);
+  // Halloween code: [16 CABINET] passes it to [21 REVOLUT], which checks it and
+  // lowers the Revolut amount. The page itself never sets a price.
+  const [promo, setPromo] = useState("");
+  const showPromo = isHalloweenPromo();
 
   const ALL_MARKETS = ["gold", "oil", "forex", "crypto", "stocks", "metals", "indices"] as const;
   const PRODUCT_MARKET_CAP: Record<string, number> = { single: 1, multi: 2, full: 7 };
@@ -54,7 +62,12 @@ const CabinetSubscription = () => {
         action: "create_payment_order",
         session,
         language,
-        payload: { plan: planId, period: "30d", markets },
+        payload: {
+          plan: planId,
+          period: "30d",
+          markets,
+          ...(showPromo && promo.trim() ? { promo_code: promo.trim() } : {}),
+        },
       });
       if (result.data?.renewedToken) updateSession(result.data.renewedToken);
       if (result.data?.checkoutUrl) {
@@ -131,6 +144,21 @@ const CabinetSubscription = () => {
       <div>
         <h2 className="text-lg font-semibold text-foreground">{t("subscriptionPlansTitle")}</h2>
         <p className="mt-1 text-sm text-muted-foreground">{t("subscriptionPlansLead")}</p>
+
+        {showPromo && (
+          <div className="mt-4 max-w-xs space-y-1">
+            <label htmlFor="cabinet-promo" className="text-sm font-medium text-foreground">
+              🎃 {halloweenText(language as Language).promoLabel}
+            </label>
+            <Input
+              id="cabinet-promo"
+              maxLength={32}
+              autoComplete="off"
+              value={promo}
+              onChange={(e) => setPromo(e.target.value.toUpperCase())}
+            />
+          </div>
+        )}
 
         <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan) => {

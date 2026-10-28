@@ -1,17 +1,21 @@
 import { useEffect, useRef } from "react";
+import { isHalloween } from "@/lib/halloween";
 
 // A cartoon fly in a helmet that wanders around the /trading hero. Pure
 // decoration: aria-hidden, pointer-events none (never blocks a click), moved by
 // one requestAnimationFrame loop writing a transform (no React re-renders),
 // paused while the hero is off screen or the tab is hidden. With
-// prefers-reduced-motion it just sits still in a corner.
+// prefers-reduced-motion it just sits still in a corner. Until the end of
+// Halloween (src/lib/halloween.ts) it wears a witch hat instead of the helmet.
 
 const SIZE = 56;
 
 const prefersReducedMotion = () =>
   typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-export const FlySvg = ({ size = SIZE }: { size?: number }) => (
+export type FlyCostume = "helmet" | "witch";
+
+export const FlySvg = ({ size = SIZE, costume = "helmet" }: { size?: number; costume?: FlyCostume }) => (
   <svg viewBox="0 0 64 64" width={size} height={size} className="overflow-visible drop-shadow-md">
     {/* wings */}
     <g className="hero-fly-wings" style={{ transformOrigin: "30px 26px" }}>
@@ -37,11 +41,23 @@ export const FlySvg = ({ size = SIZE }: { size?: number }) => (
     <circle cx="45.5" cy="31" r="1" fill="#fff" />
     {/* smile */}
     <path d="M44 38 q4 3.5 8 -0.5" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" fill="none" />
-    {/* helmet with visor and a little antenna light */}
-    <path d="M33 28 a11.5 11.5 0 0 1 22 -2 l-2 2 h-18 z" fill="#f59e0b" stroke="#b45309" strokeWidth="1.2" />
-    <rect x="34" y="26.5" width="20" height="3" rx="1.5" fill="#b45309" />
-    <line x1="44" y1="17.5" x2="44" y2="13" stroke="#b45309" strokeWidth="1.5" />
-    <circle cx="44" cy="12" r="2" fill="#22c55e" />
+    {costume === "witch" ? (
+      // witch hat: purple cone with a bent tip, orange band and buckle
+      <g transform="rotate(-8 44 22)">
+        <ellipse cx="44" cy="23.5" rx="13.5" ry="3.2" fill="#3b0764" />
+        <path d="M36.5 23 L43 6 Q45 1 50 3.5 Q46 5 46.5 9 L52 23 Z" fill="#6d28d9" stroke="#3b0764" strokeWidth="1" />
+        <rect x="37.6" y="18.8" width="13.6" height="3" fill="#f97316" />
+        <rect x="42.6" y="18.3" width="3.6" height="4" rx="0.6" fill="none" stroke="#fde047" strokeWidth="1" />
+      </g>
+    ) : (
+      <>
+        {/* helmet with visor and a little antenna light */}
+        <path d="M33 28 a11.5 11.5 0 0 1 22 -2 l-2 2 h-18 z" fill="#f59e0b" stroke="#b45309" strokeWidth="1.2" />
+        <rect x="34" y="26.5" width="20" height="3" rx="1.5" fill="#b45309" />
+        <line x1="44" y1="17.5" x2="44" y2="13" stroke="#b45309" strokeWidth="1.5" />
+        <circle cx="44" cy="12" r="2" fill="#22c55e" />
+      </>
+    )}
   </svg>
 );
 
@@ -155,7 +171,7 @@ const HeroFly = () => {
         className={reduced ? "absolute right-6 top-24" : "absolute left-0 top-0 will-change-transform"}
         style={reduced ? undefined : { transform: "translate3d(-100px, -100px, 0)" }}
       >
-        <FlySvg />
+        <FlySvg costume={isHalloween() ? "witch" : "helmet"} />
       </div>
     </div>
   );
