@@ -7,7 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { AlertCircle, CheckCircle2, Download, Film, Loader2, Upload } from "lucide-react";
 import type { Language } from "@/contexts/LanguageContext";
 import { nicsVideoLocales } from "@/i18n/nicsVideo";
-import type { Account } from "@/features/account/account";
+import { type Account, signOut } from "@/features/account/account";
 
 // n8n [26 VIDEO] Jobs API + [27 VIDEO] File Transfer. Files travel in parts of
 // at most PART_SIZE bytes; the server checks access (demo or paid order for the
@@ -219,6 +219,12 @@ const NicsVideoStudio = ({ lang, account, onSignIn, onNeedAccess }: Props) => {
   const [status, setStatus] = useState<JobStatus | null>(null);
   const [downloads, setDownloads] = useState<Record<string, number | string>>({});
   const fileInput = useRef<HTMLInputElement>(null);
+  const errorBox = useRef<HTMLDivElement>(null);
+
+  // The button sits below the form: bring the reason into view so a click never looks ignored.
+  useEffect(() => {
+    if (error) errorBox.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [error]);
 
   useEffect(() => {
     const saved = readSavedJob();
@@ -327,7 +333,11 @@ const NicsVideoStudio = ({ lang, account, onSignIn, onNeedAccess }: Props) => {
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "generic");
       setPhase("form");
-      if (err instanceof ApiError && err.message === "login_required") onSignIn();
+      if (err instanceof ApiError && err.message === "login_required") {
+        // The saved session is dead: forget it so the dialog asks for a new code.
+        signOut();
+        onSignIn();
+      }
     }
   };
 
@@ -382,63 +392,61 @@ const NicsVideoStudio = ({ lang, account, onSignIn, onNeedAccess }: Props) => {
           <p className="text-muted-foreground">{t.intro}</p>
         </div>
 
-        {phase === "form" && (
-          <form onSubmit={submit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="nvs-email">{t.email}</Label>
-              {account ? (
-                <Input id="nvs-email" type="email" value={account.email} readOnly disabled />
-              ) : (
-                <Button type="button" variant="outline" className="w-full rounded-full" onClick={onSignIn}>
-                  {t.signIn}
-                </Button>
-              )}
-            </div>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="nvs-title">{t.title}</Label>
-                <Input id="nvs-title" maxLength={80} value={title} onChange={(e) => setTitle(e.target.value)} />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="nvs-title-en">{t.titleEn}</Label>
-                <Input id="nvs-title-en" maxLength={80} value={titleEn} onChange={(e) => setTitleEn(e.target.value)} />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="nvs-files">{t.files}</Label>
-              <Input
-                id="nvs-files"
-                ref={fileInput}
-                type="file"
-                multiple
-                required
-                accept={EXTENSIONS.join(",") + ",video/*"}
-                onChange={(e) => pickFiles(e.target.files)}
-              />
-              <p className="text-sm text-muted-foreground">
-                {files.length > 0 ? `${files.length} · ${formatSize(files.reduce((s, f) => s + f.size, 0))}. ` : ""}
-                {t.filesHint}
-              </p>
-            </div>
-            {error && (
-              <div className="flex gap-2 text-sm text-destructive">
-                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-                <span>{t.errors[error] ?? t.errors.generic}</span>
-              </div>
-            )}
-            <div className="flex flex-wrap gap-3">
-              <Button type="submit" size="lg" className="rounded-full px-8 bg-foreground hover:bg-foreground/90 text-background">
-                <Upload className="mr-2 w-4 h-4" />
-                {t.submit}
+        {/* Hidden, not unmounted, while uploading: the chosen files survive an error and a retry. */}
+        <form onSubmit={submit} noValidate hidden={phase !== "form"} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="nvs-email">{t.email}</Label>
+            {account ? (
+              <Input id="nvs-email" type="email" value={account.email} readOnly disabled />
+            ) : (
+              <Button type="button" variant="outline" className="w-full rounded-full" onClick={onSignIn}>
+                {t.signIn}
               </Button>
-              {accessError && (
-                <Button type="button" size="lg" variant="outline" className="rounded-full px-8 border-2" onClick={onNeedAccess}>
-                  {t.getAccess}
-                </Button>
-              )}
+            )}
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="nvs-title">{t.title}</Label>
+              <Input id="nvs-title" maxLength={80} value={title} onChange={(e) => setTitle(e.target.value)} />
             </div>
-          </form>
-        )}
+            <div className="space-y-2">
+              <Label htmlFor="nvs-title-en">{t.titleEn}</Label>
+              <Input id="nvs-title-en" maxLength={80} value={titleEn} onChange={(e) => setTitleEn(e.target.value)} />
+            </div>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="nvs-files">{t.files}</Label>
+            <Input
+              id="nvs-files"
+              ref={fileInput}
+              type="file"
+              multiple
+              accept={EXTENSIONS.join(",") + ",video/*"}
+              onChange={(e) => pickFiles(e.target.files)}
+            />
+            <p className="text-sm text-muted-foreground">
+              {files.length > 0 ? `${files.length} · ${formatSize(files.reduce((s, f) => s + f.size, 0))}. ` : ""}
+              {t.filesHint}
+            </p>
+          </div>
+          {error && (
+            <div ref={errorBox} role="alert" className="flex gap-2 rounded-lg border border-destructive/40 bg-destructive/5 px-3 py-2 text-sm text-destructive">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+              <span>{t.errors[error] ?? t.errors.generic}</span>
+            </div>
+          )}
+          <div className="flex flex-wrap gap-3">
+            <Button type="submit" size="lg" className="rounded-full px-8 bg-foreground hover:bg-foreground/90 text-background">
+              <Upload className="mr-2 w-4 h-4" />
+              {t.submit}
+            </Button>
+            {accessError && (
+              <Button type="button" size="lg" variant="outline" className="rounded-full px-8 border-2" onClick={onNeedAccess}>
+                {t.getAccess}
+              </Button>
+            )}
+          </div>
+        </form>
 
         {phase === "uploading" && (
           <div className="space-y-3">

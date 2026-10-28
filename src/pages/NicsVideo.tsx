@@ -31,7 +31,7 @@ import NicsVideoExamples from "@/components/video/NicsVideoExamples";
 import NicsVideoHero from "@/components/video/NicsVideoHero";
 import NicsVideoDemo from "@/components/video/NicsVideoDemo";
 import { studioStrings } from "@/features/studio/strings";
-import { signOut, useAccount } from "@/features/account/account";
+import { checkSession, signOut, useAccount } from "@/features/account/account";
 import AccountDialog from "@/features/account/AccountDialog";
 import { nicsVideoLocales } from "@/i18n/nicsVideo";
 import { videoGuides } from "@/i18n/nicsVideoGuide";
@@ -324,6 +324,12 @@ const NicsVideo = () => {
   const c = content[language] ?? nicsVideoLocales[language]?.page ?? content.en;
   const studio = studioStrings(language);
   const guide = videoGuides[language] ?? videoGuides.en;
+
+  // Drop a session the server no longer knows, so "Upload" asks for a fresh code
+  // instead of failing on a dead one.
+  useEffect(() => {
+    checkSession();
+  }, []);
 
   // Links like /nics-video#faq from NICS Studio: the section exists only
   // after the first render, so scroll to it here.
