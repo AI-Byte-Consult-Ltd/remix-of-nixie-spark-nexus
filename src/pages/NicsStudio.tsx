@@ -3,6 +3,7 @@ import { ArrowLeft, ShieldCheck } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { useInstallableApp } from "@/lib/installableApp";
 import { Button } from "@/components/ui/button";
 import { useLanguage, getLocalizedSeoMeta } from "@/contexts/LanguageContext";
 import StudioEditor from "@/features/studio/StudioEditor";
@@ -12,6 +13,7 @@ import { videoGuides } from "@/i18n/nicsVideoGuide";
 const NicsStudio = () => {
   const { language, t } = useLanguage();
   const localizedSeo = getLocalizedSeoMeta("/nics-studio", language);
+  useInstallableApp("video");
   const s = studioStrings(language);
   const guide = videoGuides[language] ?? videoGuides.en;
 
