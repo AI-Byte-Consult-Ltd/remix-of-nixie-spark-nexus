@@ -4,8 +4,7 @@ import { usePublicPerformance } from "@/lib/publicPerformance";
 
 // Hero strip of /trading: the real 30-day figures of the signals that passed
 // the quality gate, from the same public endpoint as the Verified Track
-// Record section below (which also shows the weak tier and the combined
-// figure). Nothing is shown while loading or if the endpoint is down: no
+// Record section below. Nothing is shown while loading or if the endpoint is down: no
 // placeholder numbers.
 
 interface StatsStrings {

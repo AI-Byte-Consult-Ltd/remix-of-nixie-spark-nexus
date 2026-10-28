@@ -123,33 +123,6 @@ const VerifiedTrackRecord = () => {
               </div>
               {renderStatGrid(tiered.confirmed, false)}
             </div>
-
-            <div>
-              <div className="text-center mb-4 space-y-1">
-                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground">
-                  <span className="w-2 h-2 rounded-full bg-yellow-500" />
-                  {t("track.tier.weak")}
-                </span>
-                <p className="text-xs text-muted-foreground max-w-md mx-auto">{t("track.tier.weakNote")}</p>
-              </div>
-              {renderStatGrid(tiered.weak, true)}
-            </div>
-
-            <p className="text-center text-xs text-muted-foreground">
-              {t("track.overall")}: {tiered.overall.closedSignals} · {tiered.overall.winRatePercent}% ·{" "}
-              <span
-                className={
-                  tiered.overall.totalR > 0
-                    ? "text-green-600"
-                    : tiered.overall.totalR < 0
-                      ? "text-red-600"
-                      : undefined
-                }
-              >
-                {tiered.overall.totalR > 0 ? "+" : ""}
-                {tiered.overall.totalR}R
-              </span>
-            </p>
           </div>
         )}
 
