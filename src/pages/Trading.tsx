@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { useInstallableApp } from "@/lib/installableApp";
 import TradingViewTicker from "@/components/TradingViewTicker";
 import NicsTraderPlans from "@/components/NicsTraderPlans";
 import VerifiedTrackRecord from "@/components/VerifiedTrackRecord";
@@ -47,6 +48,7 @@ const VANTAGE_URL = "https://fwd.cx/Yj25BCrDzEHB";
 const Trading = () => {
   const { t, language } = useLanguage();
   const localizedSeo = getLocalizedSeoMeta("/trading", language);
+  useInstallableApp("trading");
   const pageRef = useRevealOnScroll<HTMLElement>();
 
   const benefits = [

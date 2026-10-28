@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
+import { useInstallableApp } from "@/lib/installableApp";
 import { useLanguage, getLocalizedSeoMeta, Language } from "@/contexts/LanguageContext";
 import { formatPrice } from "@/data/nicsTraderPlans";
 import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/components/video/NicsVideoCheckout";
@@ -310,6 +311,7 @@ const audienceIcons = [Plane, Building2, Camera, Users];
 const NicsVideo = () => {
   const { language, t } = useLanguage();
   const localizedSeo = getLocalizedSeoMeta("/nics-video", language);
+  useInstallableApp("video");
   const [checkoutPlan, setCheckoutPlan] = useState<CheckoutPlan | null>(null);
   const [signInOpen, setSignInOpen] = useState(false);
   const account = useAccount();

@@ -188,6 +188,7 @@ const localizedPages = ALL_LANGUAGES.flatMap((lang) => {
     },
     {
       route: tradingRoute,
+      app: "trading",
       title: t(lang, "tradingpage.seo.title"),
       description: t(lang, "tradingpage.seo.description"),
       type: "product",
@@ -202,6 +203,7 @@ const localizedPages = ALL_LANGUAGES.flatMap((lang) => {
     },
     {
       route: videoRoute,
+      app: "video",
       title: t(lang, "seo.nicsvideo.title"),
       description: t(lang, "seo.nicsvideo.description"),
       type: "website",
@@ -214,6 +216,7 @@ const localizedPages = ALL_LANGUAGES.flatMap((lang) => {
     },
     {
       route: studioRoute,
+      app: "video",
       title: t(lang, "seo.nicsstudio.title"),
       description: t(lang, "seo.nicsstudio.description"),
       type: "website",
@@ -308,6 +311,11 @@ const OG_IMAGE_SIZES = {
   "/android-chrome-512x512.png": [512, 512],
 };
 
+const APP_HEAD = {
+  trading: { manifest: "/trading.webmanifest", icon: "/apps/trading-apple-touch.png", title: "NICS Trading" },
+  video: { manifest: "/nics-video.webmanifest", icon: "/apps/video-apple-touch.png", title: "NICS Video" },
+};
+
 const escapeAttribute = (value) =>
   value
     .replaceAll("&", "&amp;")
@@ -396,8 +404,18 @@ const renderPage = (page, noindex = false) => {
     <meta name="twitter:image" content="${image}" />
     <script type="application/ld+json">${schema}</script>`;
 
+  // /trading and /nics-video (+ /nics-studio) install as their own apps:
+  // same mapping as APP_HEAD in src/lib/installableApp.ts.
+  const appHead = APP_HEAD[page.app];
+  const withAppHead = appHead
+    ? clean
+        .replace('href="/site.webmanifest"', `href="${appHead.manifest}"`)
+        .replace('href="/apple-touch-icon.png"', `href="${appHead.icon}"`)
+        .replace('name="apple-mobile-web-app-title" content="AI Byte Consult"', `name="apple-mobile-web-app-title" content="${appHead.title}"`)
+    : clean;
+
   const htmlLang = page.lang || "en";
-  return clean
+  return withAppHead
     .replace('<html lang="en">', `<html lang="${htmlLang}"${htmlLang === "ar" ? ' dir="rtl"' : ""}>`)
     .replace("</head>", `${tags}\n  </head>`)
     .replace('<div id="root"></div>', `<div id="root">${staticBody(page)}</div>`);
