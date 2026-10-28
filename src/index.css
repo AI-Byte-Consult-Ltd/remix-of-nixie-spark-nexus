@@ -168,3 +168,18 @@
   opacity: 1;
   transform: none;
 }
+
+/* Halloween 2026 header (src/lib/halloween.ts decides when): dark purple to
+   orange, with the header's own colour tokens flipped so text stays readable.
+   Dropdown menus render in a portal and keep the normal light theme. */
+.halloween-header {
+  --background: 275 60% 10%;
+  --foreground: 30 100% 94%;
+  --muted: 275 45% 22%;
+  --muted-foreground: 30 60% 78%;
+  --border: 25 90% 50%;
+  --accent: 275 45% 22%;
+  --accent-foreground: 30 100% 94%;
+  background: linear-gradient(90deg, rgba(30, 9, 46, 0.94) 0%, rgba(59, 7, 100, 0.9) 55%, rgba(124, 45, 18, 0.9) 100%);
+  border-color: rgba(249, 115, 22, 0.45);
+}

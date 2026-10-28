@@ -37,6 +37,8 @@ import AccountDialog from "@/features/account/AccountDialog";
 import { nicsVideoLocales } from "@/i18n/nicsVideo";
 import { videoGuides } from "@/i18n/nicsVideoGuide";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { HALLOWEEN_PROMO, isHalloweenPromo } from "@/lib/halloween";
+import { fillHalloween, halloweenText } from "@/components/halloween/halloweenText";
 
 // Credit plans, EUR per 30 days. Keep in sync with PLAN_PRICES in n8n
 // [24 VIDEO] Validate Request and the credit amounts in [26 VIDEO] Check Access.
@@ -51,6 +53,15 @@ const PACKAGE_CREDITS = 10;
 // 90 credits instead of 60. The credits are granted in n8n [26 VIDEO] Check Access
 // and [28 VIDEO] Studio Credits by the order's created_at; the badge hides itself after.
 const START_BONUS_UNTIL = Date.parse("2026-10-25T22:00:00Z");
+// Halloween 2026: +50% credits on every paid plan until 31.10 23:59 Sofia time,
+// granted the same way (created_at CASE lines in [26] and [28]).
+const halloweenBadge = (lang: Language, credits: number) =>
+  isHalloweenPromo()
+    ? fillHalloween(halloweenText(lang).videoBadge, {
+        m: credits,
+        n: Math.round(credits * (1 + HALLOWEEN_PROMO.videoBonusPercent / 100)),
+      })
+    : undefined;
 const startBonusText: Partial<Record<Language, string>> & { en: string } = {
   en: "Weekend bonus: +30 credits (9 packages) until Sunday 23:59 Sofia time",
   ru: "Бонус выходных: +30 кредитов (9 пакетов) до воскресенья 23:59 по Софии",
@@ -356,7 +367,7 @@ const NicsVideo = () => {
       features: c.basicFeatures,
       button: c.basicButton,
       featured: false,
-      bonus: Date.now() < START_BONUS_UNTIL ? startBonusText[language] ?? startBonusText.en : undefined,
+      bonus: Date.now() < START_BONUS_UNTIL ? startBonusText[language] ?? startBonusText.en : halloweenBadge(language, START_CREDITS),
     },
     {
       id: "nics_video_pro" as NicsVideoPlanId,
@@ -366,6 +377,7 @@ const NicsVideo = () => {
       features: c.proFeatures,
       button: c.proButton,
       featured: true,
+      bonus: halloweenBadge(language, 250),
     },
     {
       id: "nics_video_max" as NicsVideoPlanId,
@@ -375,6 +387,7 @@ const NicsVideo = () => {
       features: c.maxFeatures,
       button: c.maxButton,
       featured: false,
+      bonus: halloweenBadge(language, 700),
     },
   ];
 

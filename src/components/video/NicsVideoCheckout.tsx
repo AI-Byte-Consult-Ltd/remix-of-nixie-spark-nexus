@@ -7,6 +7,8 @@ import { CheckCircle2, CreditCard, Loader2 } from "lucide-react";
 import type { Language } from "@/contexts/LanguageContext";
 import { readAccount, useAccount } from "@/features/account/account";
 import { nicsVideoLocales } from "@/i18n/nicsVideo";
+import { isHalloweenPromo } from "@/lib/halloween";
+import { halloweenText } from "@/components/halloween/halloweenText";
 
 // n8n [24 VIDEO] Checkout. Prices are decided server-side from the plan id;
 // the amounts shown on the page must match that workflow's PLAN_PRICES.
@@ -79,6 +81,9 @@ const NicsVideoCheckout = ({ plan, onClose, lang, onStarted, onSignIn }: Props) 
   const t = lang === "ru" ? text.ru : nicsVideoLocales[lang]?.checkout ?? text.en;
   const isDemo = plan?.id === "nics_video_demo";
   const [form, setForm] = useState({ name: "", email: "", website: "" });
+  // Halloween code ([24 VIDEO] checks it and lowers the Revolut amount).
+  const [promo, setPromo] = useState("");
+  const showPromo = !isDemo && isHalloweenPromo();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
@@ -113,6 +118,7 @@ const NicsVideoCheckout = ({ plan, onClose, lang, onStarted, onSignIn }: Props) 
           language: lang,
           ...form,
           ...(isDemo && account ? { email: account.email, session: account.session } : {}),
+          ...(showPromo && promo.trim() ? { promo_code: promo.trim() } : {}),
         }),
       });
       const data = (await res.json().catch(() => null)) as { ok?: boolean; error?: string; checkout_url?: string } | null;
@@ -200,6 +206,12 @@ const NicsVideoCheckout = ({ plan, onClose, lang, onStarted, onSignIn }: Props) 
                 onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
               />
             </div>
+            {showPromo && (
+              <div className="space-y-2">
+                <Label htmlFor="nv-promo">🎃 {halloweenText(lang).promoLabel}</Label>
+                <Input id="nv-promo" maxLength={32} autoComplete="off" value={promo} onChange={(e) => setPromo(e.target.value.toUpperCase())} />
+              </div>
+            )}
             {/* Honeypot: hidden from people, bots fill it in. */}
             <input
               type="text"
