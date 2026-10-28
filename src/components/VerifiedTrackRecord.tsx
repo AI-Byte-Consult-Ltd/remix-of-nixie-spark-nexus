@@ -14,7 +14,7 @@ const PERIODS: { key: keyof PerformanceResponse["performance"]; labelKey: string
 const VerifiedTrackRecord = () => {
   const { t } = useLanguage();
   const { data, error } = usePublicPerformance();
-  const [period, setPeriod] = useState<keyof PerformanceResponse["performance"]>("30d");
+  const [period, setPeriod] = useState<keyof PerformanceResponse["performance"]>("all");
 
   if (error || (data && !data.performance?.[period])) {
     return null;
