@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { CABINET_LANGUAGES, createCabinetTranslator, type CabinetTranslationKey } from "@/features/cabinet/i18n";
 import { useCabinetAuth } from "@/features/cabinet/useCabinetAuth";
 import type { CabinetLanguage, TelegramLoginPayload } from "@/features/cabinet/types";
+import { useInstallableApp } from "@/lib/installableApp";
 
 const TELEGRAM_BOT_USERNAME = "nics_ai_bot";
 
@@ -19,6 +20,7 @@ declare global {
 const CabinetLogin = () => {
   const { language: siteLanguage } = useLanguage();
   const auth = useCabinetAuth();
+  useInstallableApp("trading");
   const widgetContainerRef = useRef<HTMLDivElement>(null);
   const [consentChecked, setConsentChecked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
