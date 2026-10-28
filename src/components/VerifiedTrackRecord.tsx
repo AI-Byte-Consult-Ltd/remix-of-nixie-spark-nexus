@@ -26,7 +26,7 @@ const VerifiedTrackRecord = () => {
     <div className={`max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 ${muted ? "opacity-80" : ""}`}>
       <Card className={`bg-card ${muted ? "border-border/30" : "border-border/50"}`}>
         <CardContent className="pt-6 text-center">
-          <div className={`font-semibold text-foreground ${muted ? "text-2xl" : "text-3xl"}`}>
+          <div className={`font-semibold text-foreground ${muted ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"}`}>
             {stats.closedSignals}
           </div>
           <div className="text-xs text-muted-foreground mt-1">{t("track.closedSignals")}</div>
@@ -34,7 +34,7 @@ const VerifiedTrackRecord = () => {
       </Card>
       <Card className={`bg-card ${muted ? "border-border/30" : "border-border/50"}`}>
         <CardContent className="pt-6 text-center">
-          <div className={`font-semibold text-foreground ${muted ? "text-2xl" : "text-3xl"}`}>
+          <div className={`font-semibold text-foreground ${muted ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"}`}>
             {stats.winRatePercent}%
           </div>
           <div className="text-xs text-muted-foreground mt-1">{t("track.winRate")}</div>
@@ -43,7 +43,7 @@ const VerifiedTrackRecord = () => {
       <Card className={`bg-card ${muted ? "border-border/30" : "border-border/50"}`}>
         <CardContent className="pt-6 text-center">
           <div
-            className={`flex items-center justify-center gap-1 font-semibold ${muted ? "text-2xl" : "text-3xl"} ${
+            className={`flex items-center justify-center gap-1 font-semibold ${muted ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"} ${
               stats.expectancyR > 0
                 ? "text-green-600"
                 : stats.expectancyR < 0
@@ -59,7 +59,7 @@ const VerifiedTrackRecord = () => {
               <Minus className="w-6 h-6" />
             )}
             {stats.expectancyR > 0 ? "+" : ""}
-            {stats.expectancyR}R
+            {(Math.round(stats.expectancyR * 100) / 100).toFixed(2)}R
           </div>
           <div className="text-xs text-muted-foreground mt-1">{t("track.expectancy")}</div>
         </CardContent>
@@ -67,12 +67,12 @@ const VerifiedTrackRecord = () => {
       <Card className={`bg-card ${muted ? "border-border/30" : "border-border/50"}`}>
         <CardContent className="pt-6 text-center">
           <div
-            className={`font-semibold ${muted ? "text-2xl" : "text-3xl"} ${
+            className={`font-semibold ${muted ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"} ${
               stats.totalR > 0 ? "text-green-600" : stats.totalR < 0 ? "text-red-600" : "text-foreground"
             }`}
           >
             {stats.totalR > 0 ? "+" : ""}
-            {stats.totalR}R
+            {(Math.round(stats.totalR * 10) / 10).toFixed(1)}R
           </div>
           <div className="text-xs text-muted-foreground mt-1">{t("track.totalR")}</div>
         </CardContent>
