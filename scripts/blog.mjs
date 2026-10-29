@@ -40,7 +40,7 @@ const UI = {
   bg: {
     blog: "Статии",
     blogTitle: "Статии — AI Byte Consult",
-    blogDescription: "Практически статии от AI Byte Consult: автоматизация за малкия бизнес, видео за Shorts и YouTube.",
+    blogDescription: "Практически статии от AI Byte Consult: монтаж на видео за Shorts и YouTube, автоматизация за малкия бизнес.",
     home: "Начало",
     published: "Публикувано",
     readAlso: "Прочетете на",
@@ -48,6 +48,7 @@ const UI = {
     locale: "bg_BG",
   },
 };
+const REQUIRED_LANGUAGES = ["bg"];
 const LANG_NAME = { en: "English", ru: "Русский", bg: "Български" };
 
 const escapeHtml = (value) =>
@@ -207,6 +208,11 @@ export const buildBlog = async (distDir) => {
   const articles = [];
   for (const slug of slugs) {
     const files = (await readdir(path.join(contentDir, slug))).filter((file) => file.endsWith(".md"));
+    // The company is based in Bulgaria: every article must have a Bulgarian
+    // version (Alexander, 2026-10-29). The build fails without it.
+    for (const lang of REQUIRED_LANGUAGES) {
+      if (!files.includes(`${lang}.md`)) throw new Error(`content/blog/${slug}: missing required ${lang}.md`);
+    }
     for (const file of files) {
       const lang = file.replace(/\.md$/, "");
       if (!UI[lang]) throw new Error(`content/blog/${slug}/${file}: no UI strings for language "${lang}"`);
