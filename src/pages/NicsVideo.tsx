@@ -47,6 +47,16 @@ import { fillHalloween, halloweenText } from "@/components/halloween/halloweenTe
 const NICS_VIDEO_START_EUR = 14.99;
 const NICS_VIDEO_CREATOR_EUR = 34.99;
 const NICS_VIDEO_PRO_EUR = 69.99;
+// Intro offer: 3 packages (30 credits) for 7 days, once per email, only within
+// 72 h after email 3 of the free subtitles chain (n8n [32 WEB]); [24 VIDEO]
+// checks eligibility. The card shows only on links with ?offer=intro.
+const NICS_VIDEO_INTRO_EUR = 2.99;
+
+const introText: Partial<Record<Language, { badge: string; title: string; text: string; button: string }>> = {
+  en: { badge: "72 hours only", title: "Intro offer: 3 packages", text: "30 credits for 7 days: 3 times a Short, a long video and 4 covers. Once per email, for people who got our email.", button: "Get 3 packages" },
+  ru: { badge: "Только 72 часа", title: "Знакомство: 3 пакета", text: "30 кредитов на 7 дней: 3 раза Short, длинное видео и 4 обложки. Один раз на email, для тех, кто получил наше письмо.", button: "Забрать 3 пакета" },
+  bg: { badge: "Само 72 часа", title: "Запознанство: 3 пакета", text: "30 кредита за 7 дни: 3 пъти Short, дълго видео и 4 корици. Веднъж на имейл, за получилите нашето писмо.", button: "Вземете 3 пакета" },
+};
 const START_CREDITS = 60;
 const PACKAGE_CREDITS = 10;
 
@@ -325,6 +335,13 @@ const NicsVideo = () => {
   const localizedSeo = getLocalizedSeoMeta("/nics-video", language);
   useInstallableApp("video");
   const [checkoutPlan, setCheckoutPlan] = useState<CheckoutPlan | null>(null);
+  const [showIntro] = useState(() => {
+    try {
+      return new URLSearchParams(window.location.search).get("offer") === "intro";
+    } catch {
+      return false;
+    }
+  });
   const [signInOpen, setSignInOpen] = useState(false);
   const account = useAccount();
   // A job started earlier is tracked by the real form even when signed out.
@@ -336,6 +353,7 @@ const NicsVideo = () => {
     }
   });
   const c = content[language] ?? nicsVideoLocales[language]?.page ?? content.en;
+  const intro = introText[language] ?? introText.en!;
   const studio = studioStrings(language);
   const guide = videoGuides[language] ?? videoGuides.en;
 
@@ -580,6 +598,27 @@ const NicsVideo = () => {
                 <span className="text-gradient-gold">{c.pricingHeading}</span>
               </h2>
               <p className="text-lg text-muted-foreground text-center mb-12">{c.pricingIntro}</p>
+              {showIntro && (
+                <Card className="mb-8 border-2 border-primary bg-gradient-to-br from-primary/10 via-card to-card shadow-card">
+                  <CardContent className="flex flex-col gap-4 pt-6 pb-6 md:flex-row md:items-center md:justify-between">
+                    <div className="space-y-1">
+                      <div className="text-sm font-semibold uppercase tracking-wide text-primary">{intro.badge}</div>
+                      <div className="text-2xl font-semibold text-foreground">
+                        {intro.title} · {formatPrice(NICS_VIDEO_INTRO_EUR, "EUR")}
+                      </div>
+                      <p className="text-muted-foreground">{intro.text}</p>
+                    </div>
+                    <Button
+                      size="lg"
+                      onClick={() => setCheckoutPlan({ id: "nics_video_intro", name: intro.title, price: formatPrice(NICS_VIDEO_INTRO_EUR, "EUR") })}
+                      className="shrink-0 rounded-full bg-foreground px-8 text-background hover:bg-foreground/90"
+                    >
+                      {intro.button}
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              )}
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {plans.map((plan) => (
                   <Card

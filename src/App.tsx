@@ -19,6 +19,7 @@ const NicsForge = lazy(() => import("./pages/NicsForge"));
 const NicsVideo = lazy(() => import("./pages/NicsVideo"));
 const NicsStudio = lazy(() => import("./pages/NicsStudio"));
 const Go = lazy(() => import("./pages/Go"));
+const Subtitles = lazy(() => import("./pages/Subtitles"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const DataDeletion = lazy(() => import("./pages/DataDeletion"));
@@ -75,6 +76,10 @@ const App = () => (
             <Route path="/go" element={<Go />} />
             <Route path="/ru/go" element={<Go />} />
             <Route path="/bg/go" element={<Go />} />
+            {/* Free subtitles tool, the NICS Video lead magnet (en, ru, bg). */}
+            <Route path="/subtitles" element={<Subtitles />} />
+            <Route path="/ru/subtitles" element={<Subtitles />} />
+            <Route path="/bg/subtitles" element={<Subtitles />} />
             <Route path="/about" element={<About />} />
             <Route path="/estate" element={<Estate />} />
             <Route path="/trading" element={<Trading />} />

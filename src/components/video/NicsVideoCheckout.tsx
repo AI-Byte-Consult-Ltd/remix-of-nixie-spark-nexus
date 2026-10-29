@@ -14,7 +14,7 @@ import { halloweenText } from "@/components/halloween/halloweenText";
 // the amounts shown on the page must match that workflow's PLAN_PRICES.
 export const NICS_VIDEO_CHECKOUT_URL = "https://n8n.aibyteconsult.com/webhook/nics-video-checkout";
 
-export type NicsVideoPlanId = "nics_video_demo" | "nics_video_basic" | "nics_video_pro" | "nics_video_max";
+export type NicsVideoPlanId = "nics_video_demo" | "nics_video_intro" | "nics_video_basic" | "nics_video_pro" | "nics_video_max";
 
 export interface CheckoutPlan {
   id: NicsVideoPlanId;
@@ -76,6 +76,14 @@ const text = {
 
 export type CheckoutText = typeof text.en;
 
+// [24 VIDEO] answers offer_closed when the 2.99 intro offer (free subtitles
+// email chain) has expired or was already used with this email.
+const OFFER_CLOSED: Partial<Record<Language, string>> = {
+  en: "This offer is no longer available for this email: it lasts 72 hours after our email and can be used once.",
+  ru: "Предложение для этого email уже недоступно: оно действует 72 часа после нашего письма и только один раз.",
+  bg: "Офертата вече не е достъпна за този имейл: важи 72 часа след нашето писмо и само веднъж.",
+};
+
 const NicsVideoCheckout = ({ plan, onClose, lang, onStarted, onSignIn }: Props) => {
   const account = useAccount();
   const t = lang === "ru" ? text.ru : nicsVideoLocales[lang]?.checkout ?? text.en;
@@ -83,7 +91,7 @@ const NicsVideoCheckout = ({ plan, onClose, lang, onStarted, onSignIn }: Props) 
   const [form, setForm] = useState({ name: "", email: "", website: "" });
   // Halloween code ([24 VIDEO] checks it and lowers the Revolut amount).
   const [promo, setPromo] = useState("");
-  const showPromo = !isDemo && isHalloweenPromo();
+  const showPromo = !isDemo && plan?.id !== "nics_video_intro" && isHalloweenPromo();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
@@ -124,7 +132,7 @@ const NicsVideoCheckout = ({ plan, onClose, lang, onStarted, onSignIn }: Props) 
       const data = (await res.json().catch(() => null)) as { ok?: boolean; error?: string; checkout_url?: string } | null;
       if (!res.ok || !data?.ok) {
         tab?.close();
-        setError(data?.error === "demo_exists" ? t.demoExists : data?.error === "login_required" ? t.signInFirst : t.error);
+        setError(data?.error === "demo_exists" ? t.demoExists : data?.error === "login_required" ? t.signInFirst : data?.error === "offer_closed" ? OFFER_CLOSED[lang] ?? OFFER_CLOSED.en! : t.error);
         return;
       }
       if (!isDemo && data.checkout_url) {
