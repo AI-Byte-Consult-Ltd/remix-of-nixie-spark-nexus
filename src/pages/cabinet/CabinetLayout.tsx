@@ -3,6 +3,7 @@ import { Navigate, Outlet, useLocation, useOutletContext } from "react-router-do
 import { useLanguage } from "@/contexts/LanguageContext";
 import SEO from "@/components/SEO";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { CabinetLanguageSwitch } from "@/features/cabinet/CabinetLanguageSwitch";
 import { CabinetSidebar } from "@/features/cabinet/CabinetSidebar";
 import { CABINET_LANGUAGES, createCabinetTranslator } from "@/features/cabinet/i18n";
 import { callCabinetApi, CabinetApiError } from "@/features/cabinet/api";
@@ -91,6 +92,7 @@ const CabinetLayout = () => {
               <div className="flex items-center gap-2">
                 <SidebarTrigger className="md:hidden" />
                 <span className="text-sm font-medium md:hidden">{t("appTitle")}</span>
+                <CabinetLanguageSwitch className="md:hidden" />
               </div>
               {telegramLinked && (
                 <CashbackBadge

@@ -5,6 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import SEO from "@/components/SEO";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CABINET_LANGUAGES, createCabinetTranslator, type CabinetTranslationKey } from "@/features/cabinet/i18n";
+import { CabinetLanguageSwitch } from "@/features/cabinet/CabinetLanguageSwitch";
 import { EmailLogin, GOOGLE_CLIENT_ID, GoogleLoginButton, TelegramLoginButton } from "@/features/cabinet/LoginMethods";
 import { useCabinetAuth } from "@/features/cabinet/useCabinetAuth";
 import type { CabinetLanguage } from "@/features/cabinet/types";
@@ -48,6 +49,7 @@ const CabinetLogin = () => {
       />
       <main className="grid min-h-screen place-items-center bg-background px-4 py-10 text-foreground">
         <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-8 text-center shadow-sm">
+          <CabinetLanguageSwitch className="mb-4" />
           <h1 className="text-xl font-bold text-gradient-gold">{t("loginTitle")}</h1>
           <p className="mt-2 text-sm text-muted-foreground">{t(GOOGLE_CLIENT_ID ? "loginSubtitleAll" : "loginSubtitleNoGoogle")}</p>
 
