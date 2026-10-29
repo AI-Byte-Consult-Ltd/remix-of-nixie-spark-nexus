@@ -1,0 +1,12 @@
+{
+  "name": "nics-trader-desktop",
+  "private": true,
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "scripts": {
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.12.4"
+  }
+}

@@ -1,0 +1,82 @@
+name: Windows app (NICS AI Trader)
+
+# Builds the Windows installer (.exe) for the desktop shell in desktop/
+# and publishes it as a GitHub Release, so the download link stays stable:
+# https://github.com/AI-Byte-Consult-Ltd/remix-of-nixie-spark-nexus/releases/latest/download/NICS-AI-Trader-Setup.exe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "desktop/**"
+      - ".github/workflows/desktop-windows.yml"
+  pull_request:
+    paths:
+      - "desktop/**"
+      - ".github/workflows/desktop-windows.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: desktop-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: desktop
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: desktop/src-tauri -> target
+
+      - name: Install Tauri CLI
+        run: npm ci
+
+      - name: Build installer
+        run: npm run tauri build
+
+      - name: Collect installer
+        id: collect
+        shell: pwsh
+        run: |
+          $version = (Get-Content src-tauri/tauri.conf.json -Raw | ConvertFrom-Json).version
+          $exe = Get-ChildItem src-tauri/target/release/bundle/nsis/*.exe | Select-Object -First 1
+          New-Item -ItemType Directory -Force out | Out-Null
+          Copy-Item $exe.FullName out/NICS-AI-Trader-Setup.exe
+          Copy-Item $exe.FullName "out/NICS-AI-Trader-Setup-$version.exe"
+          "version=$version" >> $env:GITHUB_OUTPUT
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: NICS-AI-Trader-Setup-${{ steps.collect.outputs.version }}
+          path: desktop/out/NICS-AI-Trader-Setup.exe
+
+      - name: Publish release
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: desktop-v${{ steps.collect.outputs.version }}
+          name: NICS AI Trader for Windows ${{ steps.collect.outputs.version }}
+          make_latest: true
+          body: |
+            Windows installer for NICS AI Trader.
+
+            Download `NICS-AI-Trader-Setup.exe`, run it, and the app appears in the Start menu and on the desktop.
+            The installer is not code-signed yet, so Windows SmartScreen may show "Windows protected your PC":
+            click "More info" → "Run anyway".
+          files: |
+            desktop/out/NICS-AI-Trader-Setup.exe
+            desktop/out/NICS-AI-Trader-Setup-${{ steps.collect.outputs.version }}.exe

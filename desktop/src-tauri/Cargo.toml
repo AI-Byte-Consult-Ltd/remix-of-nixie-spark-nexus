@@ -1,0 +1,26 @@
+[package]
+name = "nics-trader-desktop"
+version = "1.0.0"
+description = "NICS AI Trader for Windows"
+authors = ["AI Byte Consult Ltd"]
+license = "UNLICENSED"
+edition = "2021"
+
+[lib]
+name = "nics_trader_desktop_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.7", features = [] }
+
+[dependencies]
+tauri = { version = "2.12", features = [] }
+tauri-plugin-opener = "2.7"
+tauri-plugin-single-instance = "2"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NICS AI Trader</title>
+<style>
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: grid; place-items: center;
+    background: #07090f; color: #e2e8f0;
+    font: 15px/1.5 "Segoe UI", system-ui, sans-serif;
+  }
+  main { max-width: 360px; padding: 24px; text-align: center; }
+  h1 { font-size: 20px; margin: 0 0 8px; color: #f5c451; }
+  p { margin: 0 0 20px; color: #94a3b8; }
+  button {
+    border: 0; border-radius: 10px; padding: 10px 22px;
+    background: #f5c451; color: #07090f; font: inherit; font-weight: 600; cursor: pointer;
+  }
+  [hidden] { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>NICS AI Trader</h1>
+  <p id="status">…</p>
+  <button id="retry" type="button" hidden>Retry</button>
+</main>
+<script>
+  // The app is the live cabinet on the site; this page only routes there
+  // and tells the truth when there is no connection.
+  var APP_URL = "https://aibyteconsult.com/cabinet?source=desktop";
+  var lang = (navigator.language || "en").slice(0, 2);
+  var text = {
+    ru: { loading: "Подключаемся…", offline: "Нет подключения к интернету. Проверьте сеть и попробуйте снова.", retry: "Повторить" },
+    bg: { loading: "Свързване…", offline: "Няма връзка с интернет. Проверете мрежата и опитайте отново.", retry: "Опитай пак" },
+    en: { loading: "Connecting…", offline: "No internet connection. Check your network and try again.", retry: "Retry" }
+  }[lang] || null;
+  if (!text) text = { loading: "Connecting…", offline: "No internet connection. Check your network and try again.", retry: "Retry" };
+
+  var status = document.getElementById("status");
+  var retry = document.getElementById("retry");
+  retry.textContent = text.retry;
+
+  function go() {
+    status.textContent = text.loading;
+    retry.hidden = true;
+    // no-cors probe: resolves when the site answers, rejects when offline.
+    fetch("https://aibyteconsult.com/favicon.ico?ping=" + Date.now(), { mode: "no-cors", cache: "no-store" })
+      .then(function () { location.replace(APP_URL); })
+      .catch(function () {
+        status.textContent = text.offline;
+        retry.hidden = false;
+      });
+  }
+  retry.addEventListener("click", go);
+  window.addEventListener("online", go);
+  go();
+</script>
+</body>
+</html>
