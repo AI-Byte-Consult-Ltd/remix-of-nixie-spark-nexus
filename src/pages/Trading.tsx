@@ -10,7 +10,7 @@ import TradingSignalDemo from "@/components/trading/TradingSignalDemo";
 import TradingLiveStats from "@/components/trading/TradingLiveStats";
 import HeroFly from "@/components/trading/HeroFly";
 import TradingFlyStory from "@/components/trading/TradingFlyStory";
-import LeadMagnet from "@/components/LeadMagnet";
+import ProductCta from "@/components/ProductCta";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -583,7 +583,7 @@ const Trading = () => {
           </div>
         </section>
 
-        <LeadMagnet product="trader" />
+        <ProductCta kind="trader" />
 
         <NicsTraderPlans />
 

@@ -18,6 +18,7 @@ const NicsMultimedia = lazy(() => import("./pages/NicsMultimedia"));
 const NicsForge = lazy(() => import("./pages/NicsForge"));
 const NicsVideo = lazy(() => import("./pages/NicsVideo"));
 const NicsStudio = lazy(() => import("./pages/NicsStudio"));
+const Go = lazy(() => import("./pages/Go"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const DataDeletion = lazy(() => import("./pages/DataDeletion"));
@@ -68,6 +69,10 @@ const App = () => (
             {URL_LANGUAGES.map((lang) => (
               <Route key={`${lang}-nics-studio`} path={`/${lang}/nics-studio`} element={<NicsStudio />} />
             ))}
+            {/* Link-in-bio page for social profiles (noindex), see src/pages/Go.tsx. */}
+            <Route path="/go" element={<Go />} />
+            <Route path="/ru/go" element={<Go />} />
+            <Route path="/bg/go" element={<Go />} />
             <Route path="/about" element={<About />} />
             <Route path="/estate" element={<Estate />} />
             <Route path="/trading" element={<Trading />} />
