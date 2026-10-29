@@ -1,6 +1,8 @@
 import { Linkedin, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import foundersImg from "@/assets/team-founders.jpg";
+// Halloween 2026 photo. The previous one stays in src/assets/team-founders.jpg for restoring.
+import foundersImg from "@/assets/team-founders-halloween.webp";
+import foundersImgSmall from "@/assets/team-founders-halloween-900.webp";
 
 const teamDefs = [
   { nameKey: "team.alex.name", roleKey: "team.alex.role", bioKey: "team.alex.bio", link: { url: "https://www.linkedin.com/in/luntick", type: "linkedin" as const } },
@@ -25,6 +27,12 @@ const Team = () => {
         <div className="w-full mb-12 rounded-2xl overflow-hidden shadow-gold">
           <img
             src={foundersImg}
+            srcSet={`${foundersImgSmall} 900w, ${foundersImg} 1672w`}
+            sizes="(max-width: 900px) 100vw, 1400px"
+            width={1672}
+            height={941}
+            loading="lazy"
+            decoding="async"
             alt={t("team.title")}
             className="w-full h-auto object-cover"
           />
