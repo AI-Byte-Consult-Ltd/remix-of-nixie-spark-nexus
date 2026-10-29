@@ -231,8 +231,30 @@ const localizedPages = ALL_LANGUAGES.flatMap((lang) => {
   ];
 });
 
+// Free subtitles tool (src/pages/Subtitles.tsx): English, Russian and
+// Bulgarian versions, each listing the other two as alternates.
+const subtitlesAlternates = [
+  ...["en", "ru", "bg"].map((lang) => ({ lang, path: localePath(lang, "/subtitles") })),
+  { lang: "x-default", path: "/subtitles" },
+];
+const subtitlesPages = [
+  { lang: "en", title: "Free subtitles for your video online — NICS Video", description: "Add subtitles to a clip up to 1 minute for free: speech is recognised right in your browser, the video is not uploaded anywhere. Download the video with subtitles and an .srt file." },
+  { lang: "ru", title: "Субтитры к видео онлайн бесплатно — NICS Video", description: "Бесплатно добавьте субтитры к ролику до 1 минуты: речь распознаётся прямо в вашем браузере, видео никуда не загружается. Скачайте ролик с субтитрами и файл .srt." },
+  { lang: "bg", title: "Безплатни субтитри за видео онлайн — NICS Video", description: "Добавете безплатно субтитри към клип до 1 минута: речта се разпознава направо в браузъра ви, видеото не се качва никъде. Изтеглете видеото със субтитри и .srt файл." },
+].map((page) => ({
+  ...page,
+  route: localePath(page.lang, "/subtitles"),
+  app: "video",
+  type: "website",
+  schemaType: "WebApplication",
+  locale: OG_LOCALE[page.lang],
+  ogImage: `${siteUrl}/og-video.jpg`,
+  alternates: subtitlesAlternates,
+}));
+
 const pages = [
   ...localizedPages,
+  ...subtitlesPages,
   {
     route: "/about",
     title: "About AI Byte Consult — Mission, Vision & NICS Divisions",
@@ -479,6 +501,9 @@ const sitemapMeta = {
   "/nics-forge": { priority: "0.5", changefreq: "monthly" },
   "/nics-video": { priority: "0.8", changefreq: "weekly" },
   "/nics-studio": { priority: "0.6", changefreq: "monthly" },
+  "/subtitles": { priority: "0.7", changefreq: "monthly" },
+  "/ru/subtitles": { priority: "0.7", changefreq: "monthly" },
+  "/bg/subtitles": { priority: "0.6", changefreq: "monthly" },
   "/terms": { priority: "0.4", changefreq: "yearly" },
   "/privacy": { priority: "0.3", changefreq: "yearly" },
   "/delete": { priority: "0.3", changefreq: "yearly" },

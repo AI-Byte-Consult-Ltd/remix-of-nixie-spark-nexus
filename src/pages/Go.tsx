@@ -28,7 +28,7 @@ const copy: Record<Lang, {
   en: {
     name: "Alexander Lunin",
     about: "Founder of AI Byte Consult, Bulgaria. I build tools that save time: video editing, market scanning, business automation.",
-    video: ["Turn your clips into a finished video", "First package free: a Short, a long video and 4 covers"],
+    video: ["Free subtitles for your video", "Upload a clip up to 1 minute and download it with subtitles"],
     trader: ["Gold and forex signals in Telegram", "3 days free: entry, stop and targets in every signal"],
     consult: ["Automate routine work in your business", "Free 20-minute review of where you lose time"],
     consultMessage: "Hello! I would like a free 20-minute review of what can be automated in my business.",
@@ -39,7 +39,7 @@ const copy: Record<Lang, {
   ru: {
     name: "Александр Лунин",
     about: "Основатель AI Byte Consult, Болгария. Делаю инструменты, которые экономят время: монтаж видео, сканер рынков, автоматизация бизнеса.",
-    video: ["Смонтировать ролик из своих клипов", "Первый пакет бесплатно: Short, длинное видео и 4 обложки"],
+    video: ["Бесплатные субтитры к вашему ролику", "Загрузите клип до 1 минуты и скачайте его с субтитрами"],
     trader: ["Сигналы по золоту и форексу в Telegram", "3 дня бесплатно: вход, стоп и тейки в каждом сигнале"],
     consult: ["Автоматизировать рутину в вашем бизнесе", "Бесплатный разбор на 20 минут: где вы теряете время"],
     consultMessage: "Здравствуйте! Хочу бесплатный разбор на 20 минут: что можно автоматизировать в моём бизнесе.",
@@ -50,7 +50,7 @@ const copy: Record<Lang, {
   bg: {
     name: "Александър Лунин",
     about: "Основател на AI Byte Consult, България. Правя инструменти, които пестят време: видео монтаж, скенер на пазари, автоматизация на бизнеса.",
-    video: ["Готово видео от вашите клипове", "Първият пакет е безплатен: Short, дълго видео и 4 корици"],
+    video: ["Безплатни субтитри за вашето видео", "Качете клип до 1 минута и го изтеглете със субтитри"],
     trader: ["Сигнали за злато и форекс в Telegram", "3 дни безплатно: вход, стоп и цели във всеки сигнал"],
     consult: ["Автоматизирайте рутината в бизнеса си", "Безплатен 20-минутен преглед: къде губите време"],
     consultMessage: "Здравейте! Искам безплатен 20-минутен преглед какво може да се автоматизира в моя бизнес.",
@@ -80,7 +80,7 @@ const Go = () => {
   const utm = `utm_source=${tag}&utm_medium=bio&utm_campaign=go`;
 
   const buttons = [
-    { icon: Clapperboard, title: c.video[0], text: c.video[1], href: `${prefix}/nics-video?${utm}#free`, external: false },
+    { icon: Clapperboard, title: c.video[0], text: c.video[1], href: `${prefix}/subtitles?${utm}`, external: false },
     { icon: Send, title: c.trader[0], text: c.trader[1], href: `${BOT}?start=src_${tag}`, external: true },
     { icon: Briefcase, title: c.consult[0], text: c.consult[1], href: `${WHATSAPP}?text=${encodeURIComponent(c.consultMessage)}`, external: true },
   ];
