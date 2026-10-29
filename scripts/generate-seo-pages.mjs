@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { subPageTranslations } from "../src/contexts/subPageTranslations.ts";
+import { buildBlog } from "./blog.mjs";
 
 const distDir = path.resolve("dist");
 const basePath = path.join(distDir, "index.html");
@@ -354,11 +355,15 @@ const NAV = [
   { base: "/nics-studio", label: "NICS Studio" },
   { base: "/nics-ecosystem", label: "NICS AI Ecosystem", enOnly: true },
   { base: "/about", label: "About", enOnly: true },
+  { base: "/blog", label: "Articles", langs: ["en", "ru", "bg"] },
 ];
 const staticBody = (page) => {
   const lang = page.lang || "en";
   const links = NAV.map(
-    (item) => `<a href="${urlFor(item.enOnly ? item.base : localePath(lang, item.base))}">${escapeAttribute(item.label)}</a>`,
+    (item) => {
+      const own = item.enOnly || (item.langs && !item.langs.includes(lang)) ? item.base : localePath(lang, item.base);
+      return `<a href="${urlFor(own)}">${escapeAttribute(item.label)}</a>`;
+    },
   ).join(" · ");
   return `<div style="max-width:720px;margin:0 auto;padding:96px 16px;font-family:system-ui,sans-serif;color:#0f172a"><h1 style="font-size:28px;line-height:1.25">${escapeAttribute(page.title)}</h1><p style="font-size:16px;line-height:1.6;color:#475569">${escapeAttribute(page.description)}</p><nav style="font-size:14px;line-height:2">${links}</nav></div>`;
 };
@@ -483,7 +488,17 @@ const sitemapUrls = pages
     return `  <url>\n    <loc>${loc}</loc>${links}\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
   })
   .join("\n");
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapUrls}\n</urlset>\n`;
+// Articles (content/blog) are written as complete static pages by blog.mjs.
+const blogEntries = await buildBlog(distDir);
+const blogUrls = blogEntries
+  .map((entry) => {
+    const links = entry.alternates
+      .map((alt) => `\n    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${alt.href}" />`)
+      .join("");
+    return `  <url>\n    <loc>${entry.loc}</loc>${links}\n    <lastmod>${entry.lastmod || today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`;
+  })
+  .join("\n");
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapUrls}\n${blogUrls}\n</urlset>\n`;
 await writeFile(path.join(distDir, "sitemap.xml"), sitemap, "utf8");
 
-console.log(`Generated static SEO metadata for ${pages.length} public routes and a fresh sitemap.xml.`);
+console.log(`Generated static SEO metadata for ${pages.length} public routes, ${blogEntries.length} article pages and a fresh sitemap.xml.`);
