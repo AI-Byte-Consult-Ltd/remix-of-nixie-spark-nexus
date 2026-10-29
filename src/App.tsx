@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import SEO from "@/components/SEO";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { LanguageProvider, URL_LANGUAGES } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
@@ -36,6 +36,8 @@ const CabinetServices = lazy(() => import("./pages/cabinet/CabinetServices"));
 const CabinetSupport = lazy(() => import("./pages/cabinet/CabinetSupport"));
 const CabinetJournal = lazy(() => import("./pages/cabinet/CabinetJournal"));
 const CabinetPro = lazy(() => import("./pages/cabinet/CabinetPro"));
+const CabinetTrader = lazy(() => import("./pages/cabinet/CabinetTrader"));
+const CabinetAccount = lazy(() => import("./pages/cabinet/CabinetAccount"));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -124,7 +126,10 @@ const App = () => (
                 </Suspense>
               }
             >
-              <Route index element={<CabinetHome />} />
+              <Route index element={<Navigate to="trader" replace />} />
+              <Route path="trader/:screen?" element={<CabinetTrader />} />
+              <Route path="overview" element={<CabinetHome />} />
+              <Route path="account" element={<CabinetAccount />} />
               <Route path="academy" element={<CabinetAcademy />} />
               <Route path="academy/:lessonId" element={<CabinetLessonView />} />
               <Route path="achievements" element={<CabinetAchievements />} />

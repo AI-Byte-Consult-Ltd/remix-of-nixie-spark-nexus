@@ -12,3 +12,8 @@ default browser; the Telegram login popup stays in the app.
   (and `Cargo.toml`), merge to `main`.
 - Not code-signed yet: SmartScreen shows "Windows protected your PC" until a
   company code-signing certificate is added to the workflow.
+
+Current installer for direct download: `public/downloads/NICS-AI-Trader-Setup.exe`,
+served at https://aibyteconsult.com/downloads/NICS-AI-Trader-Setup.exe
+(cross-compiled with `npx tauri build --runner cargo-xwin --target x86_64-pc-windows-msvc`
+while GitHub Actions is unavailable).

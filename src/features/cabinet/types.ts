@@ -29,6 +29,11 @@ export interface CabinetUser {
   username: string;
   photoUrl: string;
   language: CabinetLanguage;
+  // Absent on sessions saved before e-mail/Google login existed: those
+  // were always Telegram logins.
+  telegramLinked?: boolean;
+  email?: string | null;
+  googleLinked?: boolean;
 }
 
 export interface CabinetSubscription {

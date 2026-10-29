@@ -1,4 +1,5 @@
 import type { CabinetLanguage } from "./types";
+import { webTranslations, type WebTranslationKey } from "./i18nWeb";
 
 export const translations = {
   ru: {
@@ -1497,7 +1498,7 @@ export const translations = {
   },
 } satisfies Record<CabinetLanguage, Record<string, string>>;
 
-export type CabinetTranslationKey = keyof typeof translations.en;
+export type CabinetTranslationKey = keyof typeof translations.en | WebTranslationKey;
 
 export type CabinetTranslation = (key: CabinetTranslationKey) => string;
 
@@ -1506,6 +1507,11 @@ export const CABINET_LANGUAGES = Object.keys(translations) as CabinetLanguage[];
 export const createCabinetTranslator = (
   language: CabinetLanguage,
 ): CabinetTranslation => {
-  const dictionary = translations[language] ?? translations.en;
-  return (key) => dictionary[key] ?? translations.en[key] ?? key;
+  const dictionary: Record<string, string> = {
+    ...translations.en,
+    ...webTranslations.en,
+    ...(translations[language] ?? {}),
+    ...(webTranslations[language] ?? {}),
+  };
+  return (key) => dictionary[key] ?? key;
 };

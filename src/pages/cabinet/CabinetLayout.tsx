@@ -1,12 +1,14 @@
-import { useMemo } from "react";
-import { Navigate, Outlet, useOutletContext } from "react-router-dom";
+import { useEffect, useMemo } from "react";
+import { Navigate, Outlet, useLocation, useOutletContext } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import SEO from "@/components/SEO";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { CabinetLanguageSwitch } from "@/features/cabinet/CabinetLanguageSwitch";
 import { CabinetSidebar } from "@/features/cabinet/CabinetSidebar";
 import { CABINET_LANGUAGES, createCabinetTranslator } from "@/features/cabinet/i18n";
 import { callCabinetApi, CabinetApiError } from "@/features/cabinet/api";
-import { useCabinetAuth } from "@/features/cabinet/useCabinetAuth";
+import { isTelegramLinked, useCabinetAuth } from "@/features/cabinet/useCabinetAuth";
+import { LinkTelegramNotice } from "@/features/cabinet/LinkTelegramNotice";
 import { useCabinetQuery } from "@/features/cabinet/useCabinetQuery";
 import type { CabinetLanguage, DashboardResponseData } from "@/features/cabinet/types";
 import { Wallet } from "lucide-react";
@@ -20,6 +22,7 @@ export interface CabinetOutletContext {
   updateSession: (session: string) => void;
   callApi: typeof callCabinetApi;
   logout: () => void;
+  auth: ReturnType<typeof useCabinetAuth>;
 }
 
 export const useCabinetOutletContext = () => useOutletContext<CabinetOutletContext>();
@@ -36,6 +39,15 @@ const CabinetLayout = () => {
   }, [siteLanguage]);
 
   const t = useMemo(() => createCabinetTranslator(cabinetLanguage), [cabinetLanguage]);
+  const location = useLocation();
+  const { isAuthenticated, refresh } = auth;
+
+  // Once per visit: renews the session and picks up sign-in methods (and a
+  // Telegram link) added on another device.
+  useEffect(() => {
+    if (isAuthenticated) void refresh(cabinetLanguage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
 
   if (auth.isLoading) {
     return (
@@ -57,7 +69,12 @@ const CabinetLayout = () => {
     updateSession: auth.updateSession,
     callApi: callCabinetApi,
     logout: auth.logout,
+    auth,
   };
+
+  const telegramLinked = isTelegramLinked(auth.user);
+  // Everything but the sign-in methods page needs the Telegram bot user.
+  const showLinkNotice = !telegramLinked && location.pathname !== "/cabinet/account";
 
   return (
     <>
@@ -75,16 +92,26 @@ const CabinetLayout = () => {
               <div className="flex items-center gap-2">
                 <SidebarTrigger className="md:hidden" />
                 <span className="text-sm font-medium md:hidden">{t("appTitle")}</span>
+                <CabinetLanguageSwitch className="md:hidden" />
               </div>
-              <CashbackBadge
-                session={auth.session}
-                language={cabinetLanguage}
-                onRenewedToken={auth.updateSession}
-                label={t("cashbackLabel")}
-              />
+              {telegramLinked && (
+                <CashbackBadge
+                  session={auth.session}
+                  language={cabinetLanguage}
+                  onRenewedToken={auth.updateSession}
+                  label={t("cashbackLabel")}
+                />
+              )}
             </div>
             <div className="flex-1 px-4 py-6 md:px-8 md:py-8">
-              <Outlet context={context} />
+              {showLinkNotice ? (
+                <LinkTelegramNotice
+                  t={t}
+                  onTelegramAuth={(user) => auth.login(user, cabinetLanguage)}
+                />
+              ) : (
+                <Outlet context={context} />
+              )}
             </div>
           </SidebarInset>
         </div>
