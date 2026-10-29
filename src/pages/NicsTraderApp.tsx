@@ -93,9 +93,49 @@ const defaultPreferences: UserPreferences = {
   riskDisclosureAcceptedAt: null,
 };
 
-const NicsTraderApp = () => {
-  const telegram = window.Telegram?.WebApp;
-  const telegramLanguage = telegram?.initDataUnsafe?.user?.language_code?.slice(0, 2);
+const SCREENS: Screen[] = [
+  "dashboard",
+  "performance",
+  "signals",
+  "history",
+  "risk",
+  "referral",
+  "rewards",
+  "admin",
+  "markets",
+  "settings",
+  "updates",
+];
+
+export const isTraderScreen = (value: string | undefined): value is Screen =>
+  Boolean(value && (SCREENS as string[]).includes(value));
+
+/*
+ * Outside Telegram (the web cabinet and the Windows app) the same dashboard
+ * runs on the cabinet session instead of Telegram initData: the API calls go
+ * through [30 CABINET] Trader Bridge, the screen lives in the URL and the
+ * cabinet's own header and sidebar replace the Mini App chrome.
+ */
+export interface NicsTraderAppProps {
+  cabinetSession?: string;
+  cabinetLanguage?: string;
+  cabinetScreen?: string;
+  onCabinetNavigate?: (screen: Screen) => void;
+  onCabinetSessionInvalid?: () => void;
+}
+
+const NicsTraderApp = ({
+  cabinetSession,
+  cabinetLanguage,
+  cabinetScreen,
+  onCabinetNavigate,
+  onCabinetSessionInvalid,
+}: NicsTraderAppProps = {}) => {
+  const embedded = Boolean(cabinetSession);
+  const telegram = embedded ? undefined : window.Telegram?.WebApp;
+  const telegramLanguage = embedded
+    ? cabinetLanguage?.slice(0, 2)
+    : telegram?.initDataUnsafe?.user?.language_code?.slice(0, 2);
   const initialSignalId = useMemo(() => {
     const parameters = new URLSearchParams(window.location.search);
     const directSignalId = parameters.get("signalId");
@@ -114,12 +154,20 @@ const NicsTraderApp = () => {
       : "en",
   );
   const [screen, setScreen] = useState<Screen>(
-    initialSignalId
+    embedded
+      ? isTraderScreen(cabinetScreen)
+        ? cabinetScreen
+        : "dashboard"
+      : initialSignalId
       ? "signals"
       : new URLSearchParams(window.location.search).get("screen") === "referral"
       ? "referral"
       : "dashboard",
   );
+
+  useEffect(() => {
+    if (embedded) setScreen(isTraderScreen(cabinetScreen) ? cabinetScreen : "dashboard");
+  }, [embedded, cabinetScreen]);
   const [data, setData] = useState<AppPayload | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<"telegram" | "network" | null>(null);
@@ -150,11 +198,12 @@ const NicsTraderApp = () => {
     (action: string, payload: Record<string, unknown> = {}) =>
       callNicsApi({
         action,
-        initData: window.Telegram?.WebApp?.initData ?? "",
+        initData: cabinetSession ? "" : window.Telegram?.WebApp?.initData ?? "",
+        cabinetSession,
         language,
         payload,
       }),
-    [language],
+    [cabinetSession, language],
   );
 
   const applyPayload = useCallback((payload: AppPayload) => {
@@ -187,11 +236,12 @@ const NicsTraderApp = () => {
       applyPayload(result.data);
     } catch (requestError) {
       const code = requestError instanceof NicsApiError ? requestError.code : "";
+      if (embedded && code.startsWith("SESSION_")) onCabinetSessionInvalid?.();
       setError(code === "TELEGRAM_REQUIRED" ? "telegram" : "network");
     } finally {
       setLoading(false);
     }
-  }, [applyPayload, callApi, initialSignalId]);
+  }, [applyPayload, callApi, initialSignalId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const trackEvent = useCallback(
     async (eventName: string, metadata: Record<string, unknown> = {}) => {
@@ -200,7 +250,7 @@ const NicsTraderApp = () => {
           eventName,
           metadata: {
             ...metadata,
-            source: "mini_app",
+            source: embedded ? "web_cabinet" : "mini_app",
             appVersion: APP_VERSION,
           },
         });
@@ -218,11 +268,12 @@ const NicsTraderApp = () => {
   }, [loadDashboard, telegram]);
 
   useEffect(() => {
+    if (embedded) return;
     document.title = "NICS AI Trader";
     const theme = document.querySelector('meta[name="theme-color"]');
     theme?.setAttribute("content", "#07090f");
 
-  }, []);
+  }, [embedded]);
 
   useEffect(() => {
     if (data) {
@@ -413,6 +464,7 @@ const NicsTraderApp = () => {
 
   const openScreen = (next: Screen) => {
     setScreen(next);
+    onCabinetNavigate?.(next);
     telegram?.HapticFeedback?.impactOccurred("light");
     const eventName =
       next === "performance"
@@ -446,9 +498,13 @@ const NicsTraderApp = () => {
     openTelegramUrl("https://t.me/nics_ai_bot?start=payout");
   };
 
+  const shellClass = embedded
+    ? "grid min-h-[60vh] place-items-center rounded-3xl bg-[#07090f] px-6 text-white"
+    : "grid min-h-screen place-items-center bg-[#07090f] px-6 text-white";
+
   if (loading) {
     return (
-      <main className="grid min-h-screen place-items-center bg-[#07090f] px-6 text-white">
+      <main className={shellClass}>
         <div className="space-y-4 text-center">
           <div className="mx-auto grid h-16 w-16 place-items-center rounded-3xl bg-gradient-to-br from-amber-300 to-orange-500 shadow-[0_20px_60px_rgba(245,158,11,0.25)]">
             <Bot className="h-8 w-8 text-[#14100a]" />
@@ -462,7 +518,7 @@ const NicsTraderApp = () => {
 
   if (!data) {
     return (
-      <main className="grid min-h-screen place-items-center bg-[#07090f] px-6 text-white">
+      <main className={shellClass}>
         <Card className="max-w-sm border-white/10 bg-white/[0.04] text-white">
           <CardContent className="space-y-5 p-7 text-center">
             <ShieldCheck className="mx-auto h-10 w-10 text-amber-300" />
@@ -525,8 +581,33 @@ const NicsTraderApp = () => {
     />
   );
 
+  const navButtons = navItems.map(({ key, icon: Icon, label }) => (
+    <button
+      key={key}
+      onClick={() => openScreen(key)}
+      className={cn(
+        "flex min-w-[68px] flex-1 flex-col items-center gap-1 rounded-xl px-2 py-2 text-[9px] transition",
+        screen === key ? "bg-amber-300/10 text-amber-300" : "text-slate-500",
+      )}
+    >
+      <Icon className="h-4 w-4" />
+      <span className="max-w-full truncate">{label}</span>
+    </button>
+  ));
+
   return (
-    <main className="min-h-screen bg-[#07090f] pb-24 text-white">
+    <main
+      className={cn(
+        "bg-[#07090f] text-white",
+        embedded ? "overflow-hidden rounded-3xl pb-4" : "min-h-screen pb-24",
+      )}
+    >
+      {embedded && (
+        <nav className="border-b border-white/10 px-2 pt-2">
+          <div className="flex gap-1 overflow-x-auto pb-2">{navButtons}</div>
+        </nav>
+      )}
+      {!embedded && (
       <header className="sticky top-0 z-30 border-b border-white/10 bg-[#07090f]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -546,6 +627,7 @@ const NicsTraderApp = () => {
           </div>
         </div>
       </header>
+      )}
 
       <div className="mx-auto max-w-5xl space-y-5 px-4 py-5">
         {error === "network" && (
@@ -990,23 +1072,11 @@ const NicsTraderApp = () => {
         )}
       </div>
 
-      <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#090b11]/95 pb-[max(env(safe-area-inset-bottom),8px)] pt-2 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-3xl gap-1 overflow-x-auto px-2">
-          {navItems.map(({ key, icon: Icon, label }) => (
-            <button
-              key={key}
-              onClick={() => openScreen(key)}
-              className={cn(
-                "flex min-w-[68px] flex-1 flex-col items-center gap-1 rounded-xl px-2 py-2 text-[9px] transition",
-                screen === key ? "bg-amber-300/10 text-amber-300" : "text-slate-500",
-              )}
-            >
-              <Icon className="h-4 w-4" />
-              <span className="max-w-full truncate">{label}</span>
-            </button>
-          ))}
-        </div>
-      </nav>
+      {!embedded && (
+        <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#090b11]/95 pb-[max(env(safe-area-inset-bottom),8px)] pt-2 backdrop-blur-xl">
+          <div className="mx-auto flex max-w-3xl gap-1 overflow-x-auto px-2">{navButtons}</div>
+        </nav>
+      )}
     </main>
   );
 };

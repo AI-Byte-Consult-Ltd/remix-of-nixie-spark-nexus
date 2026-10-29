@@ -55,12 +55,42 @@ export const callCabinetApi = async <T = unknown>({
   return result;
 };
 
+// Each login may carry the current session: the new method is then linked
+// to that same account instead of starting another one.
 export const loginWithTelegram = (
   telegramAuth: TelegramLoginPayload,
   language: CabinetLanguage,
+  session?: string | null,
 ) =>
   callCabinetApi<{ session: string; user: unknown }>({
     action: "telegram_login",
+    session,
     language,
     payload: { telegramAuth },
+  });
+
+// accountSession: the e-mail code session from src/features/account.
+export const loginWithEmail = (
+  accountSession: string,
+  language: CabinetLanguage,
+  session?: string | null,
+) =>
+  callCabinetApi<{ session: string; user: unknown }>({
+    action: "email_login",
+    session,
+    language,
+    payload: { accountSession },
+  });
+
+// credential: the Google Identity Services ID token.
+export const loginWithGoogle = (
+  credential: string,
+  language: CabinetLanguage,
+  session?: string | null,
+) =>
+  callCabinetApi<{ session: string; user: unknown }>({
+    action: "google_login",
+    session,
+    language,
+    payload: { credential },
   });
