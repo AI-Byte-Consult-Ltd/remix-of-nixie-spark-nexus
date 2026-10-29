@@ -28,6 +28,7 @@ import { useLanguage, getLocalizedSeoMeta, Language } from "@/contexts/LanguageC
 import { formatPrice } from "@/data/nicsTraderPlans";
 import NicsVideoCheckout, { type CheckoutPlan, type NicsVideoPlanId } from "@/components/video/NicsVideoCheckout";
 import NicsVideoStudio from "@/components/video/NicsVideoStudio";
+import NicsVideoReferral from "@/components/video/NicsVideoReferral";
 import NicsVideoExamples from "@/components/video/NicsVideoExamples";
 import NicsVideoHero from "@/components/video/NicsVideoHero";
 import NicsVideoDemo from "@/components/video/NicsVideoDemo";
@@ -714,6 +715,7 @@ const NicsVideo = () => {
                   onGetCredits={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
                 />
               )}
+              {account && <NicsVideoReferral account={account} lang={language} />}
             </div>
           </div>
         </section>
