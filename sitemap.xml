@@ -943,36 +943,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://aibyteconsult.com/go/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://aibyteconsult.com/go/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://aibyteconsult.com/ru/go/" />
-    <xhtml:link rel="alternate" hreflang="bg" href="https://aibyteconsult.com/bg/go/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aibyteconsult.com/go/" />
-    <lastmod>2026-10-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://aibyteconsult.com/ru/go/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://aibyteconsult.com/go/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://aibyteconsult.com/ru/go/" />
-    <xhtml:link rel="alternate" hreflang="bg" href="https://aibyteconsult.com/bg/go/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aibyteconsult.com/go/" />
-    <lastmod>2026-10-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://aibyteconsult.com/bg/go/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://aibyteconsult.com/go/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://aibyteconsult.com/ru/go/" />
-    <xhtml:link rel="alternate" hreflang="bg" href="https://aibyteconsult.com/bg/go/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aibyteconsult.com/go/" />
-    <lastmod>2026-10-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://aibyteconsult.com/about/</loc>
     <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
