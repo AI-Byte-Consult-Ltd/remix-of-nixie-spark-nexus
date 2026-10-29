@@ -103,7 +103,12 @@ const Go = () => {
         description={c.about}
         canonical={`https://aibyteconsult.com${prefix}/go`}
         htmlLang={lang}
-        noindex
+        alternates={[
+          { lang: "en", href: "https://aibyteconsult.com/go" },
+          { lang: "ru", href: "https://aibyteconsult.com/ru/go" },
+          { lang: "bg", href: "https://aibyteconsult.com/bg/go" },
+          { lang: "x-default", href: "https://aibyteconsult.com/go" },
+        ]}
       />
       <main className="min-h-screen bg-background px-4 py-10">
         <div className="mx-auto flex max-w-md flex-col items-center gap-6">
