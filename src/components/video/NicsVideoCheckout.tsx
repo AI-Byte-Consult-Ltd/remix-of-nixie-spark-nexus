@@ -9,6 +9,7 @@ import { readAccount, useAccount } from "@/features/account/account";
 import { nicsVideoLocales } from "@/i18n/nicsVideo";
 import { isHalloweenPromo } from "@/lib/halloween";
 import { halloweenText } from "@/components/halloween/halloweenText";
+import { claimReferral } from "@/features/referral/videoReferral";
 
 // n8n [24 VIDEO] Checkout. Prices are decided server-side from the plan id;
 // the amounts shown on the page must match that workflow's PLAN_PRICES.
@@ -115,6 +116,8 @@ const NicsVideoCheckout = ({ plan, onClose, lang, onStarted, onSignIn }: Props) 
     const tab = isDemo ? null : window.open("about:blank", "_blank");
     setBusy(true);
     setError(null);
+    // A friend's invite link counts once this email pays ([38 VIDEO] Referrals).
+    if (!isDemo) claimReferral(form.email);
     try {
       const res = await fetch(NICS_VIDEO_CHECKOUT_URL, {
         method: "POST",
