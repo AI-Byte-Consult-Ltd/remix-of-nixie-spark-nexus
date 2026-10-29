@@ -439,6 +439,21 @@ for (const page of pages) {
   await writeFile(path.join(routeDirectory, "index.html"), html, "utf8");
 }
 
+// Link-in-bio pages for social profiles (src/pages/Go.tsx): served as real
+// files so the profile link answers 200, but noindex and kept out of the
+// sitemap, they only repeat the product pages.
+const goPages = [
+  { lang: "en", title: "Alexander Lunin — AI Byte Consult", description: "Free first steps: video editing from your clips, gold and forex signals in Telegram, a business automation review." },
+  { lang: "ru", title: "Александр Лунин — AI Byte Consult", description: "Бесплатный первый шаг: монтаж ролика из ваших клипов, сигналы по золоту и форексу в Telegram, разбор автоматизации бизнеса." },
+  { lang: "bg", title: "Александър Лунин — AI Byte Consult", description: "Безплатна първа стъпка: видео от вашите клипове, сигнали за злато и форекс в Telegram, преглед на автоматизацията на бизнеса." },
+];
+for (const go of goPages) {
+  const route = localePath(go.lang, "/go");
+  const html = renderPage({ route, type: "website", schemaType: "ProfilePage", locale: OG_LOCALE[go.lang], ...go }, true);
+  await mkdir(path.join(distDir, route.slice(1)), { recursive: true });
+  await writeFile(path.join(distDir, route.slice(1), "index.html"), html, "utf8");
+}
+
 const notFound = renderPage(
   {
     route: "/404",

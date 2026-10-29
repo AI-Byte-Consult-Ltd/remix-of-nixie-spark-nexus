@@ -31,7 +31,7 @@ import NicsVideoStudio from "@/components/video/NicsVideoStudio";
 import NicsVideoExamples from "@/components/video/NicsVideoExamples";
 import NicsVideoHero from "@/components/video/NicsVideoHero";
 import NicsVideoDemo from "@/components/video/NicsVideoDemo";
-import LeadMagnet from "@/components/LeadMagnet";
+import ProductCta from "@/components/ProductCta";
 import { studioStrings } from "@/features/studio/strings";
 import { checkSession, signOut, useAccount } from "@/features/account/account";
 import AccountDialog from "@/features/account/AccountDialog";
@@ -350,6 +350,9 @@ const NicsVideo = () => {
   useEffect(() => {
     const id = window.location.hash.slice(1);
     if (id) document.getElementById(id)?.scrollIntoView();
+    // /nics-video#free (the /go profile link): open the free credits dialog at once.
+    if (id === "free") setCheckoutPlan({ id: "nics_video_demo", name: c.demoName, price: c.demoPrice });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const outputs = [
@@ -467,7 +470,7 @@ const NicsVideo = () => {
 
         <NicsVideoExamples lang={language} />
 
-        <LeadMagnet product="video" />
+        <ProductCta kind="video" onStart={() => setCheckoutPlan({ id: "nics_video_demo", name: c.demoName, price: c.demoPrice })} />
 
         {/* How it works */}
         <section id="how" className="py-20 bg-background scroll-mt-24">
