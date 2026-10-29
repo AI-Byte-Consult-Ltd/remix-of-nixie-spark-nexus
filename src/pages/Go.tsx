@@ -78,6 +78,12 @@ const Go = () => {
   const tag = sourceTag();
   const prefix = lang === "en" ? "" : `/${lang}`;
   const utm = `utm_source=${tag}&utm_medium=bio&utm_campaign=go`;
+  const search = typeof window !== "undefined" ? window.location.search : "";
+  const langLinks: { code: Lang; label: string; href: string }[] = [
+    { code: "ru", label: "RU", href: `/ru/go${search}` },
+    { code: "bg", label: "BG", href: `/bg/go${search}` },
+    { code: "en", label: "EN", href: `/go${search}` },
+  ];
 
   const buttons = [
     { icon: Clapperboard, title: c.video[0], text: c.video[1], href: `${prefix}/subtitles?${utm}`, external: false },
@@ -96,6 +102,19 @@ const Go = () => {
       />
       <main className="min-h-screen bg-background px-4 py-10">
         <div className="mx-auto flex max-w-md flex-col items-center gap-6">
+          <nav className="flex gap-2 self-end text-sm" aria-label="Language">
+            {langLinks.map((l) => (
+              <a
+                key={l.code}
+                href={l.href}
+                hrefLang={l.code}
+                aria-current={l.code === lang ? "page" : undefined}
+                className={`rounded-full border px-3 py-1 ${l.code === lang ? "border-primary bg-primary/10 font-semibold text-foreground" : "border-primary/25 text-muted-foreground hover:border-primary/60"}`}
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
           <img
             src={alexanderPhoto}
             alt={c.name}
