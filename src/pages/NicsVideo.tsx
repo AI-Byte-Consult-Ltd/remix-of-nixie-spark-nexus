@@ -31,6 +31,7 @@ import NicsVideoStudio from "@/components/video/NicsVideoStudio";
 import NicsVideoExamples from "@/components/video/NicsVideoExamples";
 import NicsVideoHero from "@/components/video/NicsVideoHero";
 import NicsVideoDemo from "@/components/video/NicsVideoDemo";
+import LeadMagnet from "@/components/LeadMagnet";
 import { studioStrings } from "@/features/studio/strings";
 import { checkSession, signOut, useAccount } from "@/features/account/account";
 import AccountDialog from "@/features/account/AccountDialog";
@@ -465,6 +466,8 @@ const NicsVideo = () => {
         </section>
 
         <NicsVideoExamples lang={language} />
+
+        <LeadMagnet product="video" />
 
         {/* How it works */}
         <section id="how" className="py-20 bg-background scroll-mt-24">
