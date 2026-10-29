@@ -32,6 +32,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { CabinetLanguageSwitch } from "./CabinetLanguageSwitch";
 import type { CabinetTranslation } from "./i18n";
 import type { CabinetUser } from "./types";
 
@@ -114,6 +115,7 @@ export const CabinetSidebar = ({ t, user, onLogout }: CabinetSidebarProps) => {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className="px-4 py-4">
+        <CabinetLanguageSwitch className="self-start" />
         <SidebarMenuButton onClick={onLogout} className="text-muted-foreground">
           <LogOut className="h-4 w-4" />
           <span>{t("logout")}</span>

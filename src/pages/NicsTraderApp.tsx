@@ -168,6 +168,15 @@ const NicsTraderApp = ({
   useEffect(() => {
     if (embedded) setScreen(isTraderScreen(cabinetScreen) ? cabinetScreen : "dashboard");
   }, [embedded, cabinetScreen]);
+  // In the cabinet the language menu decides, not the bot profile.
+  useEffect(() => {
+    if (!embedded) return;
+    setLanguage(
+      telegramLanguage === "ru" || telegramLanguage === "bg" || telegramLanguage === "es"
+        ? telegramLanguage
+        : "en",
+    );
+  }, [embedded, telegramLanguage]);
   const [data, setData] = useState<AppPayload | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<"telegram" | "network" | null>(null);
@@ -209,7 +218,7 @@ const NicsTraderApp = ({
   const applyPayload = useCallback((payload: AppPayload) => {
     setError(null);
     setData(payload);
-    setLanguage(payload.user.language);
+    if (!embedded) setLanguage(payload.user.language);
     setRiskForm((current) => {
       const serverProfile = { ...defaultRiskProfile, ...payload.riskProfile };
       return {
@@ -221,7 +230,7 @@ const NicsTraderApp = ({
     });
     setPreferencesForm({ ...defaultPreferences, ...payload.preferences });
     if (payload.sizing) setSizing(payload.sizing);
-  }, []);
+  }, [embedded]);
 
   const loadDashboard = useCallback(async () => {
     setLoading(true);
