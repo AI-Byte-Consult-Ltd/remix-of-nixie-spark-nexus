@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  // Articles are static pages outside the SPA (scripts/blog.mjs), so a plain
+  // <a> with a full page load, in the reader's language where one exists.
+  const blogHref = language === "ru" || language === "bg" ? `/${language}/blog/` : "/blog/";
+  const blogLabel = language === "ru" ? "Статьи" : language === "bg" ? "Статии" : "Articles";
   const currentYear = new Date().getFullYear();
 
   return (
@@ -25,6 +29,7 @@ const Footer = () => {
                 <li><Link to="/#projects" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.projects")}</Link></li>
                 <li><Link to="/#contact" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.contact")}</Link></li>
                 <li><Link to="/nics-multimedia" className="text-muted-foreground hover:text-primary transition-colors">NICS Multimedia</Link></li>
+                <li><a href={blogHref} className="text-muted-foreground hover:text-primary transition-colors">{blogLabel}</a></li>
                 <li><a href="https://alessandro-studio.eu" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">Partners</a></li>
               </ul>
             </div>
