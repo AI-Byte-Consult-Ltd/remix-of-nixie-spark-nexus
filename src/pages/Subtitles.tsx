@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { type Aspect, type Caption, type Project, buildCaptions, newProject, uid } from "@/features/studio/model";
 import { TranscribeError, transcribeProject } from "@/features/studio/transcribe";
 import { browserCanEdit, exportProject } from "@/features/studio/exportVideo";
@@ -163,9 +162,15 @@ const sourceTag = () => {
   return "subtitles";
 };
 
+// These pages exist only as /x, /ru/x and /bg/x: the URL decides the language,
+// not a choice stored from an earlier visit (an unprefixed URL is English).
+const pathLang = (): Lang => {
+  const seg = typeof window !== "undefined" ? window.location.pathname.split("/")[1] : "";
+  return seg === "ru" || seg === "bg" ? seg : "en";
+};
+
 const Subtitles = () => {
-  const { language } = useLanguage();
-  const lang: Lang = language === "ru" || language === "bg" ? language : "en";
+  const lang: Lang = pathLang();
   const c = copy[lang];
   const prefix = lang === "en" ? "" : `/${lang}`;
   const [speech, setSpeech] = useState<CaptionLang>(lang === "en" ? "en" : lang);

@@ -1,6 +1,5 @@
 import { ArrowRight, Briefcase, Clapperboard, Send } from "lucide-react";
 import SEO from "@/components/SEO";
-import { useLanguage } from "@/contexts/LanguageContext";
 import alexanderPhoto from "@/assets/go-alexander.webp";
 
 // Link-in-bio page for Instagram, TikTok, YouTube and Threads profiles:
@@ -71,9 +70,15 @@ const sourceTag = (): string => {
   }
 };
 
+// These pages exist only as /x, /ru/x and /bg/x: the URL decides the language,
+// not a choice stored from an earlier visit (an unprefixed URL is English).
+const pathLang = (): Lang => {
+  const seg = typeof window !== "undefined" ? window.location.pathname.split("/")[1] : "";
+  return seg === "ru" || seg === "bg" ? seg : "en";
+};
+
 const Go = () => {
-  const { language } = useLanguage();
-  const lang: Lang = language === "ru" || language === "bg" ? language : "en";
+  const lang: Lang = pathLang();
   const c = copy[lang];
   const tag = sourceTag();
   const prefix = lang === "en" ? "" : `/${lang}`;
