@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play, Calendar } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import HalloweenHero from "@/components/halloween/HalloweenHero";
+import NewYearHero from "@/components/newyear/NewYearHero";
 import HeroGradient from "@/components/hero/HeroGradient";
 import HeroOrbit from "@/components/hero/HeroOrbit";
 
@@ -29,6 +30,7 @@ const Hero = () => {
       </motion.div>
 
       <HalloweenHero />
+      <NewYearHero />
 
       <motion.div
         style={{ opacity: contentOpacity, y: contentY }}

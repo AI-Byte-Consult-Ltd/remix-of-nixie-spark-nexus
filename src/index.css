@@ -183,3 +183,17 @@
   background: linear-gradient(90deg, rgba(30, 9, 46, 0.94) 0%, rgba(59, 7, 100, 0.9) 55%, rgba(124, 45, 18, 0.9) 100%);
   border-color: rgba(249, 115, 22, 0.45);
 }
+
+/* New Year 2027 header (src/lib/newYear.ts decides when): winter night blue
+   to festive red, header colour tokens flipped so text stays readable. */
+.newyear-header {
+  --background: 220 60% 12%;
+  --foreground: 210 40% 98%;
+  --muted: 220 45% 22%;
+  --muted-foreground: 210 30% 80%;
+  --border: 0 70% 50%;
+  --accent: 220 45% 22%;
+  --accent-foreground: 210 40% 98%;
+  background: linear-gradient(90deg, rgba(12, 26, 56, 0.94) 0%, rgba(22, 50, 92, 0.9) 55%, rgba(127, 29, 29, 0.9) 100%);
+  border-color: rgba(248, 250, 252, 0.35);
+}
