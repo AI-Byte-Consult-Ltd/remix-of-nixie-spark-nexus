@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { isHalloween } from "@/lib/halloween";
+import { isNewYear } from "@/lib/newYear";
 
 // A cartoon fly in a helmet that wanders around the /trading hero. Pure
 // decoration: aria-hidden, pointer-events none (never blocks a click), moved by
@@ -7,6 +8,8 @@ import { isHalloween } from "@/lib/halloween";
 // paused while the hero is off screen or the tab is hidden. With
 // prefers-reduced-motion it just sits still in a corner. Until the end of
 // Halloween (src/lib/halloween.ts) it wears a witch hat instead of the helmet.
+// During the New Year theme (src/lib/newYear.ts) the fly is replaced by a wasp
+// dressed as Santa Claus (red coat, belt, hat, white beard).
 
 const SIZE = 56;
 
@@ -58,6 +61,61 @@ export const FlySvg = ({ size = SIZE, costume = "helmet" }: { size?: number; cos
         <circle cx="44" cy="12" r="2" fill="#22c55e" />
       </>
     )}
+  </svg>
+);
+
+// Wasp in a Santa Claus outfit, same 64x64 box and orientation as the fly
+// (head on the right) so the flight loop and flipping work unchanged.
+export const SantaWaspSvg = ({ size = SIZE }: { size?: number }) => (
+  <svg viewBox="0 0 64 64" width={size} height={size} className="overflow-visible drop-shadow-md">
+    {/* wings */}
+    <g className="hero-fly-wings" style={{ transformOrigin: "32px 26px" }}>
+      <ellipse cx="25" cy="16" rx="7" ry="14" transform="rotate(-30 25 16)" fill="#e0f2fe" fillOpacity="0.75" stroke="#7dd3fc" strokeWidth="1.1" />
+      <ellipse cx="35" cy="15" rx="6" ry="12" transform="rotate(18 35 15)" fill="#f0f9ff" fillOpacity="0.7" stroke="#7dd3fc" strokeWidth="1.1" />
+    </g>
+    {/* legs in black boots */}
+    <g stroke="#1f2937" strokeWidth="1.7" strokeLinecap="round" fill="none">
+      <path d="M26 41 q-2 5 -5 7" />
+      <path d="M31 42 q0 5 -2 8" />
+      <path d="M36 41 q2 5 2 8" />
+    </g>
+    <circle cx="20.5" cy="48.5" r="1.8" fill="#111827" />
+    <circle cx="29" cy="50.5" r="1.8" fill="#111827" />
+    <circle cx="38" cy="49.5" r="1.8" fill="#111827" />
+    {/* striped abdomen with a stinger */}
+    <path d="M6 37 L1 39.5 L6 40.5 Z" fill="#111827" />
+    <ellipse cx="15" cy="37" rx="11" ry="7.5" fill="#facc15" />
+    <path d="M10 30.2 q-2.4 6.8 0 13.6" stroke="#111827" strokeWidth="2.6" fill="none" />
+    <path d="M15.5 29.5 q-2.6 7.5 0 15" stroke="#111827" strokeWidth="2.6" fill="none" />
+    <path d="M21 30 q-2.4 7 0 14" stroke="#111827" strokeWidth="2.6" fill="none" />
+    {/* Santa coat on the thorax: red with white fur trim, black belt, gold buckle */}
+    <ellipse cx="31" cy="35" rx="8.5" ry="8.5" fill="#dc2626" />
+    <path d="M24.5 29.5 q6.5 -3.5 13 0" stroke="#f8fafc" strokeWidth="2.6" strokeLinecap="round" fill="none" />
+    <rect x="22.5" y="35" width="17" height="3" fill="#111827" />
+    <rect x="29" y="34.4" width="4.2" height="4.2" rx="0.6" fill="none" stroke="#fbbf24" strokeWidth="1.2" />
+    <path d="M23.5 42 q7.5 3 15 0" stroke="#f8fafc" strokeWidth="2.4" strokeLinecap="round" fill="none" />
+    {/* head */}
+    <circle cx="45" cy="32" r="9.5" fill="#fde047" />
+    {/* big eyes */}
+    <ellipse cx="48" cy="30" rx="4.2" ry="5" fill="#111827" />
+    <circle cx="49.4" cy="28.3" r="1.5" fill="#fff" />
+    {/* rosy cheek and smile */}
+    <circle cx="42" cy="34.5" r="1.8" fill="#fb7185" fillOpacity="0.7" />
+    {/* white Santa beard */}
+    <path d="M38 35 q2 11 9 10 q7 -1 8 -9 q-3 3 -6 2.5 q-3 2 -6 0 q-3 1.5 -5 -3.5 z" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="0.6" />
+    <path d="M45.5 39 q3 2 6 -0.5" stroke="#9f1239" strokeWidth="1.3" strokeLinecap="round" fill="none" />
+    {/* antennae */}
+    <g stroke="#111827" strokeWidth="1.3" strokeLinecap="round" fill="none">
+      <path d="M50 24 q4 -5 8 -4" />
+      <circle cx="58.3" cy="20" r="0.9" fill="#111827" />
+    </g>
+    {/* Santa hat: red cone flopping back, white brim and pom-pom */}
+    <g transform="rotate(-10 45 23)">
+      <path d="M36.5 24 Q40 9 47 8 Q53 9 54 24 Z" fill="#dc2626" />
+      <path d="M47 8 Q37 6 33 14" stroke="#dc2626" strokeWidth="4.5" strokeLinecap="round" fill="none" />
+      <circle cx="32.5" cy="15" r="3" fill="#f8fafc" />
+      <rect x="35" y="22" width="20.5" height="4.6" rx="2.3" fill="#f8fafc" />
+    </g>
   </svg>
 );
 
@@ -171,7 +229,7 @@ const HeroFly = () => {
         className={reduced ? "absolute right-6 top-24" : "absolute left-0 top-0 will-change-transform"}
         style={reduced ? undefined : { transform: "translate3d(-100px, -100px, 0)" }}
       >
-        <FlySvg costume={isHalloween() ? "witch" : "helmet"} />
+        {isNewYear() ? <SantaWaspSvg /> : <FlySvg costume={isHalloween() ? "witch" : "helmet"} />}
       </div>
     </div>
   );

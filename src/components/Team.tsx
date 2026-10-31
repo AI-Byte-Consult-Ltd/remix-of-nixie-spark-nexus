@@ -1,8 +1,10 @@
 import { Linkedin, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-// Halloween 2026 photo. The previous one stays in src/assets/team-founders.jpg for restoring.
-import foundersImg from "@/assets/team-founders-halloween.webp";
-import foundersImgSmall from "@/assets/team-founders-halloween-900.webp";
+import { isHalloween } from "@/lib/halloween";
+// Halloween 2026 photo until the Halloween deadline, then the usual team photo.
+import halloweenImg from "@/assets/team-founders-halloween.webp";
+import halloweenImgSmall from "@/assets/team-founders-halloween-900.webp";
+import foundersImg from "@/assets/team-founders.jpg";
 
 const teamDefs = [
   { nameKey: "team.alex.name", roleKey: "team.alex.role", bioKey: "team.alex.bio", link: { url: "https://www.linkedin.com/in/luntick", type: "linkedin" as const } },
@@ -26,9 +28,9 @@ const Team = () => {
         {/* Full-width founders image */}
         <div className="w-full mb-12 rounded-2xl overflow-hidden shadow-gold">
           <img
-            src={foundersImg}
-            srcSet={`${foundersImgSmall} 900w, ${foundersImg} 1672w`}
-            sizes="(max-width: 900px) 100vw, 1400px"
+            src={isHalloween() ? halloweenImg : foundersImg}
+            srcSet={isHalloween() ? `${halloweenImgSmall} 900w, ${halloweenImg} 1672w` : undefined}
+            sizes={isHalloween() ? "(max-width: 900px) 100vw, 1400px" : undefined}
             width={1672}
             height={941}
             loading="lazy"

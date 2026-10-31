@@ -11,6 +11,7 @@ import { useLanguage, Language, localizedPathFor } from "@/contexts/LanguageCont
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoImg from "@/assets/logo.jpeg";
 import { isHalloween } from "@/lib/halloween";
+import { isNewYear } from "@/lib/newYear";
 
 const languages: {code: Language;flag: string;name: string;}[] = [
 { code: "en", flag: "🇬🇧", name: "English" },
@@ -75,7 +76,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b ${
-      isHalloween() ? "halloween-header text-foreground" : "bg-background/80 border-border/50"}`
+      isHalloween() ? "halloween-header text-foreground" : isNewYear() ? "newyear-header text-foreground" : "bg-background/80 border-border/50"}`
       }>
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div className="flex items-center justify-between h-16">
