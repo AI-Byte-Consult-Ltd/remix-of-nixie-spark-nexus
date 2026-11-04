@@ -141,3 +141,55 @@ export const AuthorBlock = () => {
     </section>
   );
 };
+
+// NICS Trading Lab: the project's own YouTube channel (trading, technical
+// analysis, how the NICS AI Trader app is being built).
+export const TRADING_LAB_URL = "https://www.youtube.com/@NICSTradingLab";
+
+const TRADING_LAB_COPY = {
+  ru: {
+    title: "NICS Trading Lab на YouTube",
+    text: "Трейдинг, технический анализ и как мы разрабатываем приложение NICS AI Trader — изнутри.",
+    button: "Смотреть канал",
+  },
+  bg: {
+    title: "NICS Trading Lab в YouTube",
+    text: "Трейдинг, технически анализ и как разработваме приложението NICS AI Trader — отвътре.",
+    button: "Към канала",
+  },
+  en: {
+    title: "NICS Trading Lab on YouTube",
+    text: "Trading, technical analysis and how we build the NICS AI Trader app, from the inside.",
+    button: "Watch the channel",
+  },
+};
+
+/** Banner for the project's YouTube channel, shown on /trading. */
+export const TradingLabBanner = () => {
+  const { language } = useLanguage();
+  const c = language === "ru" ? TRADING_LAB_COPY.ru : language === "bg" ? TRADING_LAB_COPY.bg : TRADING_LAB_COPY.en;
+  return (
+    <section className="pt-4">
+      <div className="container mx-auto px-4">
+        <a
+          href={TRADING_LAB_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mx-auto flex max-w-5xl flex-col items-center gap-6 rounded-3xl border border-red-500/30 bg-gradient-to-br from-red-500/10 via-background to-primary/10 p-8 text-center transition-colors hover:border-red-500/60 md:flex-row md:p-10 md:text-left"
+        >
+          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-red-600 text-white">
+            <SocialIcon id="youtube" className="h-8 w-8" />
+          </span>
+          <span className="flex-1">
+            <span className="block text-2xl font-semibold md:text-3xl">{c.title}</span>
+            <span className="mt-1 block text-sm text-muted-foreground">@NICSTradingLab</span>
+            <span className="mt-3 block leading-7 text-muted-foreground">{c.text}</span>
+          </span>
+          <span className="inline-flex shrink-0 items-center rounded-full bg-red-600 px-6 py-3 font-medium text-white transition-transform group-hover:scale-105">
+            {c.button}
+          </span>
+        </a>
+      </div>
+    </section>
+  );
+};

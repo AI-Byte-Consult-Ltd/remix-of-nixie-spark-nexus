@@ -1,7 +1,7 @@
 import { Mail, Phone, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { AuthorSocialIcons } from "@/components/AuthorSocials";
+import { AuthorSocialIcons, TRADING_LAB_URL } from "@/components/AuthorSocials";
 
 const Footer = () => {
   const { t, language } = useLanguage();
@@ -46,6 +46,7 @@ const Footer = () => {
                 <li><Link to="/nics-ecosystem" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Ecosystem</Link></li>
                 <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Trading</Link></li>
                 <li><Link to="/nics-video" className="text-muted-foreground hover:text-primary transition-colors">NICS Video</Link></li>
+                <li><a href={TRADING_LAB_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Trading Lab (YouTube)</a></li>
                 <li><a href="https://pridesocial.org" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Social</a></li>
                 <li><a href="https://aquaterra.aibyteconsult.com/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">AquaTerra World</a></li>
               </ul>
