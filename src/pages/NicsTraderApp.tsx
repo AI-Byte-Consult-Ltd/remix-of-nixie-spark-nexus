@@ -38,6 +38,8 @@ import { cn } from "@/lib/utils";
 import { callNicsApi, NicsApiError } from "@/features/nics/api";
 import { AdminHealthDashboard } from "@/features/nics/AdminHealthDashboard";
 import { periodLabels, translations } from "@/features/nics/i18n";
+import TrackRecordAnalytics from "@/components/trading/TrackRecordAnalytics";
+import { usePublicPerformance } from "@/lib/publicPerformance";
 import { ReferralCabinet } from "@/features/nics/ReferralCabinet";
 import { RewardsCabinet } from "@/features/nics/RewardsCabinet";
 import { RiskProfileForm } from "@/features/nics/RiskProfileForm";
@@ -202,6 +204,7 @@ const NicsTraderApp = ({
   const [spinNonce, setSpinNonce] = useState(0);
   const [redeemLoading, setRedeemLoading] = useState(false);
   const t = translations[language];
+  const { data: publicPerformance } = usePublicPerformance();
 
   const callApi = useCallback(
     (action: string, payload: Record<string, unknown> = {}) =>
@@ -761,6 +764,17 @@ const NicsTraderApp = ({
                 );
               })}
             </section>
+
+            {/* 2026-11-04: equity curve, drawdown, profit factor, per-instrument
+                table and calendar periods, from the same public track record
+                the site shows (only strong signals). */}
+            {publicPerformance?.trades?.length ? (
+              <TrackRecordAnalytics
+                trades={publicPerformance.trades}
+                language={language}
+                variant="app"
+              />
+            ) : null}
 
             <Card className="border-emerald-300/15 bg-emerald-400/[0.045] text-white shadow-none">
               <CardContent className="p-5">
