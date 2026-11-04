@@ -10,11 +10,13 @@ import {
   GraduationCap,
   Grid2x2,
   History,
+  Info,
   KeyRound,
   LayoutDashboard,
   LifeBuoy,
   LogOut,
   Newspaper,
+  Radar,
   Settings2,
   Signal,
   UserRound,
@@ -46,6 +48,7 @@ export const CabinetSidebar = ({ t, user, onLogout }: CabinetSidebarProps) => {
   // The Telegram Mini App's screens (CabinetTrader), then the cabinet's own.
   const traderItems: Array<{ to: string; label: string; icon: typeof LayoutDashboard }> = [
     { to: "/cabinet/trader", label: t("navTraderDashboard"), icon: LayoutDashboard },
+    { to: "/cabinet/trader/request", label: t("navRequest"), icon: Radar },
     { to: "/cabinet/trader/signals", label: t("navSignals"), icon: Signal },
     { to: "/cabinet/trader/performance", label: t("navPerformance"), icon: BarChart3 },
     { to: "/cabinet/trader/history", label: t("navHistory"), icon: History },
@@ -54,6 +57,7 @@ export const CabinetSidebar = ({ t, user, onLogout }: CabinetSidebarProps) => {
     { to: "/cabinet/trader/referral", label: t("navReferrals"), icon: Users },
     { to: "/cabinet/trader/rewards", label: t("navRewards"), icon: Gift },
     { to: "/cabinet/trader/settings", label: t("navTraderSettings"), icon: Settings2 },
+    { to: "/cabinet/trader/about", label: t("navAbout"), icon: Info },
   ];
 
   const items: Array<{ to: string; label: string; icon: typeof LayoutDashboard }> = [
