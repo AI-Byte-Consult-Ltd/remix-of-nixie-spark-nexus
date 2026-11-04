@@ -1,5 +1,6 @@
 import { Linkedin, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { AuthorSocialIcons } from "@/components/AuthorSocials";
 import { isHalloween } from "@/lib/halloween";
 // Halloween 2026 photo until the Halloween deadline, then the usual team photo.
 import halloweenImg from "@/assets/team-founders-halloween.webp";
@@ -48,7 +49,7 @@ const Team = () => {
               <p className="text-primary font-medium text-lg">{t(member.roleKey)}</p>
               <p className="text-muted-foreground leading-relaxed">{t(member.bioKey)}</p>
               {member.link && (
-                <div className="flex justify-center pt-2">
+                <div className="flex flex-wrap justify-center gap-2 pt-2">
                   <a href={member.link.url} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-accent hover:bg-primary/10 transition-colors group/btn" aria-label={`${t(member.nameKey)} — LinkedIn`}>
                     {member.link.type === "linkedin" ? (
                       <Linkedin className="w-5 h-5 text-primary group-hover/btn:scale-110 transition-transform" />
@@ -56,6 +57,7 @@ const Team = () => {
                       <Globe className="w-5 h-5 text-primary group-hover/btn:scale-110 transition-transform" />
                     )}
                   </a>
+                  {member.nameKey === "team.alex.name" && <AuthorSocialIcons className="justify-center" />}
                 </div>
               )}
             </div>

@@ -11,6 +11,7 @@ import TradingLiveStats from "@/components/trading/TradingLiveStats";
 import HeroFly from "@/components/trading/HeroFly";
 import TradingFlyStory from "@/components/trading/TradingFlyStory";
 import ProductCta from "@/components/ProductCta";
+import { AuthorBlock } from "@/components/AuthorSocials";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -625,6 +626,8 @@ const Trading = () => {
             </Card>
           </div>
         </section>
+
+        <AuthorBlock />
 
         <section className="py-20">
           <div className="container mx-auto px-4">

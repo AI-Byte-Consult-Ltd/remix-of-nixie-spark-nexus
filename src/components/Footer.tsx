@@ -1,6 +1,7 @@
 import { Mail, Phone, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { AuthorSocialIcons } from "@/components/AuthorSocials";
 
 const Footer = () => {
   const { t, language } = useLanguage();
@@ -18,6 +19,10 @@ const Footer = () => {
             <div className="space-y-4">
               <h3 className="text-xl font-semibold text-foreground">AI Byte Consult Ltd.</h3>
               <p className="text-muted-foreground leading-relaxed">{t("footer.description")}</p>
+              <div className="pt-2 space-y-2">
+                <p className="text-sm font-medium text-foreground">Alexander Lunin</p>
+                <AuthorSocialIcons size="sm" />
+              </div>
             </div>
 
             <div className="space-y-4">
