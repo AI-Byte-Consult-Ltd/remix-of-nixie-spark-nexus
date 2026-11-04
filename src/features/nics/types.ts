@@ -11,7 +11,9 @@ export type Screen =
   | "admin"
   | "markets"
   | "settings"
-  | "updates";
+  | "updates"
+  | "request"
+  | "about";
 
 export interface TelegramWebApp {
   initData: string;
@@ -221,14 +223,39 @@ export interface SizingResult {
   methodologyVersion?: string;
 }
 
+export interface MarketInstrument {
+  symbol: string;
+  label: string;
+  open: boolean;
+  dataFresh?: boolean;
+}
+
 export interface MarketRow {
   key: string;
   label: string;
   symbols: string[];
+  instruments?: MarketInstrument[];
   selected: boolean;
   open: boolean;
   schedule: string;
   dataFresh?: boolean;
+}
+
+export interface SignalRequestResult {
+  status:
+    | "QUEUED"
+    | "TOO_SOON"
+    | "NO_ACCESS"
+    | "MARKET_NOT_INCLUDED"
+    | "MARKET_CLOSED"
+    | "INVALID"
+    | string;
+  requestId?: string;
+  scope: "instrument" | "scan";
+  market?: string | null;
+  symbol?: string | null;
+  markets?: string[];
+  requestedAt?: string;
 }
 
 export interface FeatureFlags {
@@ -389,6 +416,7 @@ export interface AppPayload {
   adminHealth?: AdminHealth | null;
   sizing?: SizingResult | null;
   markets: MarketRow[];
+  signalRequest?: SignalRequestResult | null;
   features: FeatureFlags;
   updates: Array<{
     version: string;

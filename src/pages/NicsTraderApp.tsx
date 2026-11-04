@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Activity,
   BarChart3,
@@ -10,9 +10,11 @@ import {
   Gauge,
   Gift,
   History,
+  Info,
   LayoutDashboard,
   LineChart,
   Loader2,
+  Radar,
   RefreshCw,
   Settings2,
   ShieldCheck,
@@ -36,6 +38,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { callNicsApi, NicsApiError } from "@/features/nics/api";
+import { AboutPanel } from "@/features/nics/AboutPanel";
 import { AdminHealthDashboard } from "@/features/nics/AdminHealthDashboard";
 import { periodLabels, translations } from "@/features/nics/i18n";
 import TrackRecordAnalytics from "@/components/trading/TrackRecordAnalytics";
@@ -46,6 +49,11 @@ import { RiskProfileForm } from "@/features/nics/RiskProfileForm";
 import { RiskSummaryCard } from "@/features/nics/RiskSummaryCard";
 import { SettingsForm } from "@/features/nics/SettingsForm";
 import { SignalCard } from "@/features/nics/SignalCard";
+import {
+  RequestStatusBanner,
+  SignalRequestPanel,
+  type RequestState,
+} from "@/features/nics/SignalRequestPanel";
 import type {
   AppLanguage,
   AppPayload,
@@ -62,7 +70,7 @@ import {
   signedR,
 } from "@/features/nics/utils";
 
-const APP_VERSION = "2.4.0";
+const APP_VERSION = "2.5.0";
 
 const emptyPerformance: PerformanceBlock = {
   closedSignals: 0,
@@ -107,7 +115,55 @@ const SCREENS: Screen[] = [
   "markets",
   "settings",
   "updates",
+  "request",
+  "about",
 ];
+
+// After a signal request the panel re-reads the dashboard this often, this
+// many times (about 3 minutes), to show the new signal as soon as it lands.
+const REQUEST_POLL_MS = 20_000;
+const REQUEST_POLL_TIMES = 9;
+
+type HorizonFilter = "all" | "short" | "mid" | "long";
+type ResultFilter = "all" | "win" | "loss" | "flat";
+
+const horizonOf = (minutes?: number | null): Exclude<HorizonFilter, "all"> => {
+  const value = Number(minutes ?? 180);
+  if (value <= 60) return "short";
+  if (value <= 180) return "mid";
+  return "long";
+};
+
+const FilterChips = <T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T;
+  options: Array<{ key: T; label: string }>;
+  onChange: (next: T) => void;
+}) => (
+  <div className="flex flex-wrap items-center gap-1.5">
+    <span className="mr-1 text-[11px] uppercase tracking-wide text-slate-500">{label}</span>
+    {options.map((option) => (
+      <button
+        key={option.key}
+        type="button"
+        onClick={() => onChange(option.key)}
+        className={cn(
+          "rounded-full border px-3 py-1 text-xs transition",
+          value === option.key
+            ? "border-amber-300/50 bg-amber-300/15 text-amber-200"
+            : "border-white/10 text-slate-400 hover:text-slate-200",
+        )}
+      >
+        {option.label}
+      </button>
+    ))}
+  </div>
+);
 
 export const isTraderScreen = (value: string | undefined): value is Screen =>
   Boolean(value && (SCREENS as string[]).includes(value));
@@ -203,8 +259,21 @@ const NicsTraderApp = ({
    */
   const [spinNonce, setSpinNonce] = useState(0);
   const [redeemLoading, setRedeemLoading] = useState(false);
+  const [requestState, setRequestState] = useState<RequestState | null>(null);
+  const pollTimer = useRef<number | null>(null);
+  const [signalMarket, setSignalMarket] = useState("all");
+  const [signalHorizon, setSignalHorizon] = useState<HorizonFilter>("all");
+  const [historyMarket, setHistoryMarket] = useState("all");
+  const [historyResult, setHistoryResult] = useState<ResultFilter>("all");
   const t = translations[language];
   const { data: publicPerformance } = usePublicPerformance();
+
+  useEffect(
+    () => () => {
+      if (pollTimer.current) window.clearTimeout(pollTimer.current);
+    },
+    [],
+  );
 
   const callApi = useCallback(
     (action: string, payload: Record<string, unknown> = {}) =>
@@ -474,6 +543,72 @@ const NicsTraderApp = ({
     }
   };
 
+  /*
+   * Items 4 and 5: analysis of one instrument / extra scan. [07 APP] checks
+   * access exactly like the bot's "Get signal" button and starts the
+   * engine; the new signal then arrives here and in Telegram.
+   */
+  const orderSignal = async (
+    scope: "instrument" | "scan",
+    market?: string,
+    symbol?: string,
+    label?: string,
+  ) => {
+    if (pollTimer.current) window.clearTimeout(pollTimer.current);
+    const key = scope === "scan" ? "scan" : `${market}:${symbol}`;
+    const title = label || symbol || t.extraScan;
+    const knownSignals = new Set((data?.activeSignals ?? []).map((signal) => signal.signalId));
+    setRequestState({ key, label: title, phase: "sending" });
+    telegram?.HapticFeedback?.impactOccurred("medium");
+
+    try {
+      const result = await callApi("dashboard", {
+        signalRequest: { scope, market: market ?? null, symbol: symbol ?? null },
+        source: embedded ? "web_cabinet" : "mini_app",
+      });
+      if (!result.data) throw new NicsApiError("REQUEST_FAILED");
+      applyPayload(result.data);
+      const status = result.data.signalRequest?.status ?? "INVALID";
+      if (status !== "QUEUED") {
+        setRequestState({ key, label: title, phase: "rejected", status });
+        telegram?.HapticFeedback?.notificationOccurred("warning");
+        return;
+      }
+      setRequestState({ key, label: title, phase: "waiting", status });
+      telegram?.HapticFeedback?.notificationOccurred("success");
+
+      let attempts = 0;
+      const poll = async () => {
+        attempts += 1;
+        try {
+          const next = await callApi("dashboard");
+          if (next.data) {
+            applyPayload(next.data);
+            const fresh = next.data.activeSignals.some((signal) => !knownSignals.has(signal.signalId));
+            if (fresh) {
+              setRequestState({ key, label: title, phase: "done", status });
+              telegram?.HapticFeedback?.notificationOccurred("success");
+              return;
+            }
+          }
+        } catch {
+          // A missed refresh is retried on the next tick.
+        }
+        if (attempts >= REQUEST_POLL_TIMES) {
+          setRequestState({ key, label: title, phase: "no_result", status });
+          return;
+        }
+        pollTimer.current = window.setTimeout(() => void poll(), REQUEST_POLL_MS);
+      };
+      pollTimer.current = window.setTimeout(() => void poll(), REQUEST_POLL_MS);
+    } catch (requestError) {
+      const code = requestError instanceof NicsApiError ? requestError.code : "";
+      if (embedded && code.startsWith("SESSION_")) onCabinetSessionInvalid?.();
+      setRequestState({ key, label: title, phase: "failed" });
+      telegram?.HapticFeedback?.notificationOccurred("error");
+    }
+  };
+
   const openScreen = (next: Screen) => {
     setScreen(next);
     onCabinetNavigate?.(next);
@@ -553,6 +688,7 @@ const NicsTraderApp = ({
   const allTime = data.performance.periods.all ?? emptyPerformance;
   const navItems: Array<{ key: Screen; icon: typeof LayoutDashboard; label: string }> = [
     { key: "dashboard", icon: LayoutDashboard, label: t.dashboard },
+    { key: "request", icon: Radar, label: t.request },
     { key: "signals", icon: Signal, label: t.signals },
     { key: "risk", icon: Calculator, label: t.risk },
     { key: "referral", icon: Users, label: t.referrals },
@@ -561,6 +697,7 @@ const NicsTraderApp = ({
     { key: "history", icon: History, label: t.history },
     { key: "markets", icon: Activity, label: t.markets },
     { key: "settings", icon: Settings2, label: t.settings },
+    { key: "about", icon: Info, label: t.about },
     ...(data.user.isAdmin && data.adminHealth
       ? [{ key: "admin" as Screen, icon: Server, label: t.adminHealth }]
       : []),
@@ -577,6 +714,24 @@ const NicsTraderApp = ({
       tone: "text-rose-300",
     },
   ];
+
+  const marketOptions: Array<{ key: string; label: string }> = [
+    { key: "all", label: t.filterAll },
+    ...data.markets.map((market) => ({ key: market.key, label: market.label })),
+  ];
+  const filteredSignals = data.activeSignals.filter(
+    (signal) =>
+      (signalMarket === "all" || signal.marketGroup === signalMarket) &&
+      (signalHorizon === "all" || horizonOf(signal.maxHoldMinutes) === signalHorizon),
+  );
+  const filteredHistory = data.history.filter((row) => {
+    if (historyMarket !== "all" && row.marketGroup !== historyMarket) return false;
+    const r = Number(row.realizedR);
+    if (historyResult === "win") return r > 0;
+    if (historyResult === "loss") return r < 0;
+    if (historyResult === "flat") return r === 0;
+    return true;
+  });
 
   const renderSignal = (signal: AppPayload["activeSignals"][number]) => (
     <SignalCard
@@ -690,6 +845,21 @@ const NicsTraderApp = ({
               ))}
             </section>
 
+            <button
+              type="button"
+              onClick={() => openScreen("request")}
+              className="flex w-full items-center justify-between gap-4 rounded-2xl border border-amber-300/25 bg-amber-300/[0.06] px-4 py-3 text-left transition hover:bg-amber-300/10"
+            >
+              <span className="flex items-center gap-3">
+                <Radar className="h-5 w-5 text-amber-300" />
+                <span>
+                  <span className="block text-sm font-medium">{t.request}</span>
+                  <span className="block text-xs text-slate-400">{t.extraScan}</span>
+                </span>
+              </span>
+              <ChevronRight className="h-4 w-4 text-amber-300" />
+            </button>
+
             <RiskSummaryCard summary={data.riskSummary} t={t} />
 
             <section>
@@ -722,12 +892,35 @@ const NicsTraderApp = ({
                 {data.activeSignals.length} {t.active.toLowerCase()}
               </p>
             </div>
-            {data.activeSignals.length ? (
-              data.activeSignals.map(renderSignal)
+            {requestState && (
+              <RequestStatusBanner state={requestState} t={t} onOpenSignals={() => openScreen("signals")} />
+            )}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="space-y-2">
+                <FilterChips label={t.filterMarket} value={signalMarket} options={marketOptions} onChange={setSignalMarket} />
+                <FilterChips<HorizonFilter>
+                  label={t.filterHorizon}
+                  value={signalHorizon}
+                  options={[
+                    { key: "all", label: t.filterAll },
+                    { key: "short", label: t.horizonShort },
+                    { key: "mid", label: t.horizonMid },
+                    { key: "long", label: t.horizonLong },
+                  ]}
+                  onChange={setSignalHorizon}
+                />
+              </div>
+              <Button size="sm" onClick={() => openScreen("request")} className="bg-amber-400 text-black hover:bg-amber-300">
+                <Radar className="mr-1.5 h-4 w-4" />
+                {t.request}
+              </Button>
+            </div>
+            {filteredSignals.length ? (
+              filteredSignals.map(renderSignal)
             ) : (
               <Card className="border-dashed border-white/10 bg-white/[0.025] text-white">
                 <CardContent className="p-8 text-center text-sm text-slate-500">
-                  {t.noSignals}
+                  {data.activeSignals.length ? t.noMatches : t.noSignals}
                 </CardContent>
               </Card>
             )}
@@ -889,8 +1082,22 @@ const NicsTraderApp = ({
               <h1 className="text-xl font-semibold">{t.history}</h1>
               <p className="mt-1 text-xs text-slate-500">{t.scenarioResults}</p>
             </div>
-            {data.history.length ? (
-              data.history.map((row) => (
+            <div className="space-y-2">
+              <FilterChips label={t.filterMarket} value={historyMarket} options={marketOptions} onChange={setHistoryMarket} />
+              <FilterChips<ResultFilter>
+                label={t.filterResult}
+                value={historyResult}
+                options={[
+                  { key: "all", label: t.filterAll },
+                  { key: "win", label: t.resultWin },
+                  { key: "loss", label: t.resultLoss },
+                  { key: "flat", label: t.resultFlat },
+                ]}
+                onChange={setHistoryResult}
+              />
+            </div>
+            {filteredHistory.length ? (
+              filteredHistory.map((row) => (
                 <Card key={row.signalId} className="border-white/10 bg-white/[0.045] text-white shadow-none">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between gap-4">
@@ -935,7 +1142,7 @@ const NicsTraderApp = ({
             ) : (
               <Card className="border-dashed border-white/10 bg-white/[0.025] text-white">
                 <CardContent className="p-8 text-center text-sm text-slate-500">
-                  {t.noHistory}
+                  {data.history.length ? t.noMatches : t.noHistory}
                 </CardContent>
               </Card>
             )}
@@ -1011,7 +1218,28 @@ const NicsTraderApp = ({
                         {market.dataFresh ? t.dataFresh : t.dataStale}
                       </Badge>
                     </div>
-                    <p className="mt-1 text-xs text-slate-500">{market.symbols.join(" · ")}</p>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {(market.instruments ?? market.symbols.map((symbol) => ({ symbol, label: symbol, open: market.open }))).map((item) => (
+                        <button
+                          key={item.symbol}
+                          type="button"
+                          disabled={!item.open || requestState?.phase === "sending" || requestState?.phase === "waiting"}
+                          onClick={() => {
+                            openScreen("request");
+                            void orderSignal("instrument", market.key, item.symbol, item.label);
+                          }}
+                          title={t.analyse}
+                          className={cn(
+                            "rounded-full border px-2.5 py-0.5 text-[11px] transition",
+                            item.open
+                              ? "border-amber-300/30 text-amber-100 hover:bg-amber-300/10"
+                              : "border-white/10 text-slate-600",
+                          )}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
                     <p className="mt-2 text-xs text-slate-400">{market.schedule}</p>
                   </div>
                   <div className="text-right">
@@ -1049,7 +1277,7 @@ const NicsTraderApp = ({
                   <Button
                     size="sm"
                     variant="ghost"
-                    onClick={() => openScreen("updates")}
+                    onClick={() => openScreen("about")}
                     className="text-amber-200 hover:bg-amber-300/10 hover:text-amber-100"
                   >
                     <Sparkles className="mr-1.5 h-4 w-4" />
@@ -1060,6 +1288,20 @@ const NicsTraderApp = ({
               </CardContent>
             </Card>
           </>
+        )}
+
+        {screen === "request" && (
+          <SignalRequestPanel
+            markets={data.markets}
+            t={t}
+            request={requestState}
+            onRequest={(scope, market, symbol, label) => void orderSignal(scope, market, symbol, label)}
+            onOpenSignals={() => openScreen("signals")}
+          />
+        )}
+
+        {screen === "about" && (
+          <AboutPanel t={t} language={language} appVersion={APP_VERSION} updates={data.updates} />
         )}
 
         {screen === "updates" && (
