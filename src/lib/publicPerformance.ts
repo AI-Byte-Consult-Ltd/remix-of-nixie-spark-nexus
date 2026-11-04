@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { TradeRow } from "@/lib/trackRecordMetrics";
 
 export type PeriodStats = {
   closedSignals: number;
@@ -28,6 +29,11 @@ export type PerformanceResponse = {
   source: string;
   generatedAt: string;
   performance: Record<"7d" | "30d" | "90d" | "all", TieredPeriodStats>;
+  // Since 2026-11-04: every closed gated signal, oldest first, as
+  // [closedAtEpochSeconds, symbol, assetClass, realizedR]. Source for the
+  // equity curve, drawdown, per-instrument table and calendar periods.
+  tradeFields?: string[];
+  trades?: TradeRow[];
 };
 
 const ENDPOINT = "https://n8n.aibyteconsult.com/webhook/nics-public-performance";

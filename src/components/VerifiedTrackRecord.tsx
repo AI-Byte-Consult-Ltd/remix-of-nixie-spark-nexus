@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BadgeCheck, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { usePublicPerformance, type PerformanceResponse, type PeriodStats } from "@/lib/publicPerformance";
+import TrackRecordAnalytics from "@/components/trading/TrackRecordAnalytics";
 
 const PERIODS: { key: keyof PerformanceResponse["performance"]; labelKey: string }[] = [
   { key: "7d", labelKey: "track.period.7d" },
@@ -12,7 +13,7 @@ const PERIODS: { key: keyof PerformanceResponse["performance"]; labelKey: string
 ];
 
 const VerifiedTrackRecord = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { data, error } = usePublicPerformance();
   const [period, setPeriod] = useState<keyof PerformanceResponse["performance"]>("all");
 
@@ -44,11 +45,7 @@ const VerifiedTrackRecord = () => {
         <CardContent className="pt-6 text-center">
           <div
             className={`flex items-center justify-center gap-1 font-semibold ${muted ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"} ${
-              stats.expectancyR > 0
-                ? "text-green-600"
-                : stats.expectancyR < 0
-                  ? "text-red-600"
-                  : "text-foreground"
+              stats.expectancyR > 0 ? "text-green-600" : stats.expectancyR < 0 ? "text-red-600" : "text-foreground"
             }`}
           >
             {stats.expectancyR > 0 ? (
@@ -94,36 +91,48 @@ const VerifiedTrackRecord = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("track.subtitle")}</p>
         </div>
 
-        <div className="flex justify-center gap-2 mb-8 flex-wrap">
-          {PERIODS.map((p) => (
-            <button
-              key={p.key}
-              onClick={() => setPeriod(p.key)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors border ${
-                period === p.key
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-transparent text-muted-foreground border-border hover:border-primary/40"
-              }`}
-            >
-              {t(p.labelKey)}
-            </button>
-          ))}
-        </div>
-
-        {!data ? (
-          <div className="text-center text-sm text-muted-foreground">{t("track.loading")}</div>
-        ) : (
-          <div className="space-y-10">
-            <div>
-              <div className="text-center mb-4">
-                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
-                  <span className="w-2 h-2 rounded-full bg-green-600" />
-                  {t("track.tier.confirmed")}
-                </span>
-              </div>
-              {renderStatGrid(tiered.confirmed, false)}
-            </div>
+        {data?.trades?.length ? (
+          // Since 2026-11-04: full analytics (equity curve, drawdown, profit
+          // factor, per-instrument table, calendar periods) from the real
+          // closed-signal list. The four-card fallback below stays for an API
+          // that does not return the list yet.
+          <div className="max-w-5xl mx-auto">
+            <TrackRecordAnalytics trades={data.trades} language={language} variant="site" />
           </div>
+        ) : (
+          <>
+            <div className="flex justify-center gap-2 mb-8 flex-wrap">
+              {PERIODS.map((p) => (
+                <button
+                  key={p.key}
+                  onClick={() => setPeriod(p.key)}
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors border ${
+                    period === p.key
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-transparent text-muted-foreground border-border hover:border-primary/40"
+                  }`}
+                >
+                  {t(p.labelKey)}
+                </button>
+              ))}
+            </div>
+
+            {!data ? (
+              <div className="text-center text-sm text-muted-foreground">{t("track.loading")}</div>
+            ) : (
+              <div className="space-y-10">
+                <div>
+                  <div className="text-center mb-4">
+                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
+                      <span className="w-2 h-2 rounded-full bg-green-600" />
+                      {t("track.tier.confirmed")}
+                    </span>
+                  </div>
+                  {renderStatGrid(tiered.confirmed, false)}
+                </div>
+              </div>
+            )}
+          </>
         )}
 
         <p className="text-center text-xs text-muted-foreground mt-8 max-w-xl mx-auto">{t("track.disclaimer")}</p>
