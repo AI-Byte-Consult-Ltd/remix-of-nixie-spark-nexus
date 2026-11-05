@@ -1,4 +1,5 @@
-import { CheckCircle2, Clock3, Loader2, Radar, ScanSearch, XCircle } from "lucide-react";
+import { CheckCircle2, Clock3, ExternalLink, Loader2, Radar, ScanSearch, XCircle } from "lucide-react";
+import { BROKER_REFERRAL_URL, openExternal } from "./externalLinks";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -154,6 +155,19 @@ export const SignalRequestPanel = ({ markets, t, request, onRequest, onOpenSigna
                         )}
                         {!item.open && <span className="text-[11px] text-slate-500">{t.closedShort}</span>}
                       </div>
+                      <div className="flex items-center gap-1">
+                      {BROKER_REFERRAL_URL && (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          title={`${t.openAtBroker}: ${item.brokerSymbol || item.label}`}
+                          aria-label={t.openAtBroker}
+                          onClick={() => openExternal(BROKER_REFERRAL_URL)}
+                          className="h-8 px-2 text-sky-300 hover:bg-sky-300/10 hover:text-sky-200"
+                        >
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </Button>
+                      )}
                       <Button
                         size="sm"
                         variant="ghost"
@@ -164,6 +178,7 @@ export const SignalRequestPanel = ({ markets, t, request, onRequest, onOpenSigna
                         {request?.key === key && busy ? <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" /> : <Radar className="mr-1.5 h-3.5 w-3.5" />}
                         {t.analyse}
                       </Button>
+                      </div>
                     </div>
                   );
                 })}
