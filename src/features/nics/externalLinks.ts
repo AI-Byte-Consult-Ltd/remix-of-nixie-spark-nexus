@@ -6,7 +6,7 @@
 
 // Alexander's broker referral link. Empty = the "Open at broker" buttons
 // stay hidden. Set it here when the link is known (public, not a secret).
-export const BROKER_REFERRAL_URL = "";
+export const BROKER_REFERRAL_URL = "https://vigco.co/la-com-inv/mGaes8ub";
 
 export const openExternal = (url: string) => {
   const telegram = window.Telegram?.WebApp;
