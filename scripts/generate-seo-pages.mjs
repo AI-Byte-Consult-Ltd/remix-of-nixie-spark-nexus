@@ -476,6 +476,15 @@ for (const go of goPages) {
   await writeFile(path.join(distDir, route.slice(1), "index.html"), html, "utf8");
 }
 
+// NICS AI Trader card trial checkout (src/pages/Trial.tsx), opened from the bot
+// and as Revolut's return URL: a real file so it answers 200, noindex, not in the sitemap.
+{
+  const html = renderPage({ route: "/trial", type: "website", schemaType: "WebPage", locale: OG_LOCALE.en, lang: "en",
+    title: "NICS AI Trader — 7 days for €1.99", description: "Start the NICS AI Trader trial: 7 days of full access for €1.99, then €19.99 a month, cancel any time in the bot." }, true);
+  await mkdir(path.join(distDir, "trial"), { recursive: true });
+  await writeFile(path.join(distDir, "trial", "index.html"), html, "utf8");
+}
+
 const notFound = renderPage(
   {
     route: "/404",
