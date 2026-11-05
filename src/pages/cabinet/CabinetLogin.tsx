@@ -36,7 +36,15 @@ const CabinetLogin = () => {
   };
 
   if (auth.isAuthenticated) {
-    return <Navigate to="/cabinet" replace />;
+    let returnTo = "/cabinet";
+    try {
+      const saved = sessionStorage.getItem("cabinet_return_to");
+      if (saved && saved.startsWith("/cabinet/") && !saved.startsWith("/cabinet/login")) returnTo = saved;
+      sessionStorage.removeItem("cabinet_return_to");
+    } catch {
+      /* storage unavailable */
+    }
+    return <Navigate to={returnTo} replace />;
   }
 
   return (
