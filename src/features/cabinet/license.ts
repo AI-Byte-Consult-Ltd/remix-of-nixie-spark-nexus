@@ -244,6 +244,8 @@ const en = {
   reasonDEVICE_LIMIT: "This key is already used on 2 computers.",
   reasonOFFLINE: "No connection to the license server. Check the internet and try again.",
   openLicensePage: "My key",
+  download: "Download for Windows",
+  downloadNote: "Installer for Windows 10 and 11. The Microsoft Store version is coming soon.",
 };
 
 type LicenseStrings = typeof en;
@@ -287,6 +289,8 @@ const ru: LicenseStrings = {
   reasonDEVICE_LIMIT: "Ключ уже используется на 2 компьютерах.",
   reasonOFFLINE: "Нет связи с сервером лицензий. Проверьте интернет и попробуйте снова.",
   openLicensePage: "Мой ключ",
+  download: "Скачать для Windows",
+  downloadNote: "Установщик для Windows 10 и 11. Версия в Microsoft Store появится в ближайшее время.",
 };
 
 const bg: LicenseStrings = {
@@ -328,6 +332,8 @@ const bg: LicenseStrings = {
   reasonDEVICE_LIMIT: "Ключът вече се използва на 2 компютъра.",
   reasonOFFLINE: "Няма връзка със сървъра за лицензи. Проверете интернета и опитайте отново.",
   openLicensePage: "Моят ключ",
+  download: "Изтегли за Windows",
+  downloadNote: "Инсталатор за Windows 10 и 11. Версията в Microsoft Store идва скоро.",
 };
 
 const es: LicenseStrings = {
@@ -369,6 +375,8 @@ const es: LicenseStrings = {
   reasonDEVICE_LIMIT: "La clave ya se usa en 2 ordenadores.",
   reasonOFFLINE: "Sin conexión con el servidor de licencias. Revisa internet e inténtalo de nuevo.",
   openLicensePage: "Mi clave",
+  download: "Descargar para Windows",
+  downloadNote: "Instalador para Windows 10 y 11. La versión de Microsoft Store llegará pronto.",
 };
 
 const STRINGS: Partial<Record<CabinetLanguage, LicenseStrings>> = { en, ru, bg, es };
