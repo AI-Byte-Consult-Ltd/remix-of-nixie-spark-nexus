@@ -13,6 +13,12 @@ import { useCabinetQuery } from "@/features/cabinet/useCabinetQuery";
 import type { CabinetLanguage, DashboardResponseData } from "@/features/cabinet/types";
 import { Wallet } from "lucide-react";
 import { useInstallableApp } from "@/lib/installableApp";
+import { isDesktopApp, useDesktopLicense } from "@/features/cabinet/license";
+import { DesktopLicenseGate } from "@/features/cabinet/DesktopLicenseGate";
+
+// Pages the Windows app opens without a license: where the key is shown,
+// bought, or the account is set up.
+const LICENSE_FREE_PATHS = ["/cabinet/license", "/cabinet/subscription", "/cabinet/account", "/cabinet/support"];
 
 export interface CabinetOutletContext {
   session: string;
@@ -41,6 +47,11 @@ const CabinetLayout = () => {
   const t = useMemo(() => createCabinetTranslator(cabinetLanguage), [cabinetLanguage]);
   const location = useLocation();
   const { isAuthenticated, refresh } = auth;
+  const desktop = useMemo(() => isDesktopApp(), []);
+  const license = useDesktopLicense(
+    desktop && isAuthenticated && isTelegramLinked(auth.user),
+    auth.session,
+  );
 
   // Once per visit: renews the session and picks up sign-in methods (and a
   // Telegram link) added on another device.
@@ -108,6 +119,14 @@ const CabinetLayout = () => {
                 <LinkTelegramNotice
                   t={t}
                   onTelegramAuth={(user) => auth.login(user, cabinetLanguage)}
+                />
+              ) : desktop &&
+                license.state.status !== "ok" &&
+                !LICENSE_FREE_PATHS.includes(location.pathname) ? (
+                <DesktopLicenseGate
+                  language={cabinetLanguage}
+                  state={license.state}
+                  onActivate={license.activate}
                 />
               ) : (
                 <Outlet context={context} />

@@ -15,6 +15,52 @@ type ReleaseText = Record<AppLanguage, { title: string; items: string[] }>;
 
 export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseText }> = [
   {
+    version: "2.6.0",
+    date: "05.11.2026",
+    text: {
+      ru: {
+        title: "Лицензионный ключ, статьи и предупреждение о рисках",
+        items: [
+          "Windows-приложение работает по лицензионному ключу. Ключ выдаётся в кабинете при активной подписке Trader и подставляется сам; один ключ работает на 2 компьютерах.",
+          "Подарочные ключи на месяц или бессрочно.",
+          "Новый раздел «Статьи»: разборы рынков и экономический календарь Александра Лунина с Substack и Medium, обновляется сам.",
+          "Предупреждение о рисках внизу каждого экрана.",
+          "Экономический календарь: все важные события недели, на что и как они могут повлиять.",
+        ],
+      },
+      bg: {
+        title: "Лицензионен ключ, статии и предупреждение за рисковете",
+        items: [
+          "Windows приложението работи с лицензионен ключ. Ключът се дава в кабинета при активен абонамент за Trader и се попълва сам; един ключ работи на 2 компютъра.",
+          "Подаръчни ключове за един месец или безсрочно.",
+          "Нов раздел „Статии“: пазарни анализи и икономически календар от Александър Лунин от Substack и Medium, обновява се сам.",
+          "Предупреждение за рисковете под всеки екран.",
+          "Икономически календар: всички важни събития за седмицата и върху какво могат да повлияят.",
+        ],
+      },
+      en: {
+        title: "License key, articles and risk warning",
+        items: [
+          "The Windows app works with a license key. The key is issued in the cabinet with an active Trader subscription and fills in by itself; one key works on 2 computers.",
+          "Gift keys for one month or with no expiry.",
+          "New “Articles” section: market breakdowns and the economic calendar by Alexander Lunin from Substack and Medium, updated automatically.",
+          "Risk warning under every screen.",
+          "Economic calendar: the week's key events and what they may move.",
+        ],
+      },
+      es: {
+        title: "Clave de licencia, artículos y aviso de riesgo",
+        items: [
+          "La app de Windows funciona con una clave de licencia. La clave se emite en el panel con una suscripción activa a Trader y se rellena sola; una clave funciona en 2 ordenadores.",
+          "Claves de regalo por un mes o sin caducidad.",
+          "Nueva sección «Artículos»: análisis de mercado y calendario económico de Alexander Lunin desde Substack y Medium, se actualiza sola.",
+          "Aviso de riesgo debajo de cada pantalla.",
+          "Calendario económico: los eventos clave de la semana y qué pueden mover.",
+        ],
+      },
+    },
+  },
+  {
     version: "2.5.0",
     date: "04.11.2026",
     text: {

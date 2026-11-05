@@ -1,0 +1,18 @@
+/*
+ * External links from the Trader app (Mini App, cabinet, Windows app).
+ * Inside Telegram a plain <a target="_blank"> is swallowed, so links go
+ * through Telegram.WebApp.openLink there.
+ */
+
+// Alexander's broker referral link. Empty = the "Open at broker" buttons
+// stay hidden. Set it here when the link is known (public, not a secret).
+export const BROKER_REFERRAL_URL = "";
+
+export const openExternal = (url: string) => {
+  const telegram = window.Telegram?.WebApp;
+  if (telegram?.initData && telegram.openLink) {
+    telegram.openLink(url);
+    return;
+  }
+  window.open(url, "_blank", "noopener,noreferrer");
+};

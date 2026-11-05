@@ -39,6 +39,7 @@ const CabinetJournal = lazy(() => import("./pages/cabinet/CabinetJournal"));
 const CabinetPro = lazy(() => import("./pages/cabinet/CabinetPro"));
 const CabinetTrader = lazy(() => import("./pages/cabinet/CabinetTrader"));
 const CabinetAccount = lazy(() => import("./pages/cabinet/CabinetAccount"));
+const CabinetLicense = lazy(() => import("./pages/cabinet/CabinetLicense"));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -142,6 +143,7 @@ const App = () => (
               <Route path="support" element={<CabinetSupport />} />
               <Route path="journal" element={<CabinetJournal />} />
               <Route path="pro" element={<CabinetPro />} />
+              <Route path="license" element={<CabinetLicense />} />
             </Route>
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />

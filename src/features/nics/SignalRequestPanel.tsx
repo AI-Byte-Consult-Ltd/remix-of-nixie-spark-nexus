@@ -140,13 +140,18 @@ export const SignalRequestPanel = ({ markets, t, request, onRequest, onOpenSigna
                 )}
               </div>
               <div className="space-y-2">
-                {(market.instruments ?? market.symbols.map((symbol) => ({ symbol, label: symbol, open: market.open }))).map((item) => {
+                {(market.instruments ?? market.symbols.map((symbol) => ({ symbol, label: symbol, open: market.open, brokerSymbol: null as string | null }))).map((item) => {
                   const key = `${market.key}:${item.symbol}`;
                   return (
                     <div key={key} className="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-black/10 px-3 py-2">
                       <div className="flex items-center gap-2">
                         <span className={cn("h-2 w-2 rounded-full", item.open ? "bg-emerald-400" : "bg-slate-600")} />
                         <span className="text-sm">{item.label}</span>
+                        {item.brokerSymbol && item.brokerSymbol !== item.label && (
+                          <span className="text-[11px] text-slate-500" title={t.brokerSymbolHint}>
+                            {item.brokerSymbol}
+                          </span>
+                        )}
                         {!item.open && <span className="text-[11px] text-slate-500">{t.closedShort}</span>}
                       </div>
                       <Button
