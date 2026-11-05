@@ -10,6 +10,9 @@
 
 // ?start=src_site lets the bot record signup_source = site for first-time users.
 export const TELEGRAM_BOT_URL = "https://t.me/nics_ai_bot?start=src_site";
+// 2026-11-04 paid card trial: /start src_trial opens the 1.99 EUR / 7 days offer
+// in the bot ([39 TRADER] Card Subscription), then 19.99 EUR/month auto-renew.
+export const TRIAL_BOT_URL = "https://t.me/nics_ai_bot?start=src_trial";
 
 export type Period = "7d" | "30d" | "90d";
 export type Currency = "EUR" | "USD";
@@ -23,6 +26,9 @@ export interface Plan {
   subtitle: string;
   markets: string;
   free?: boolean;
+  /** Paid trial plan: headline price and the line under it. */
+  trialPrice?: string;
+  trialNote?: string;
   prices?: PaidPrice;
   features: string[];
   cta: string;
@@ -44,20 +50,22 @@ export interface Plan {
 export const plans: Plan[] = [
   {
     id: "demo",
-    name: "AI Trader Free Trial",
-    badge: "FREE 3-DAY TRIAL",
-    subtitle: "Full access to your chosen markets for 3 days, no payment required.",
-    markets: "Any currently available markets",
+    name: "AI Trader 7-Day Trial",
+    badge: "7 DAYS FOR €1.99",
+    subtitle: "Full access to every market for 7 days, then €19.99 a month. Cancel any time in the bot.",
+    markets: "Gold, Oil, Forex, Crypto, Stocks, Silver, Indices",
     free: true,
+    trialPrice: "€1.99",
+    trialNote: "first 7 days, then €19.99/month until you cancel",
     features: [
-      "Full access to every market you select",
-      "Request signals on demand, any time during the trial",
+      "Full access to every supported market",
+      "Request signals on demand, any time",
       "Entry zone, Stop Loss and TP1–TP4",
       "AI explanation and risk notes",
-      "Lifecycle updates after accepting a signal",
-      "Granted once per account, no payment required",
+      "Reminder in the bot and by e-mail a day before the first €19.99 charge",
+      "Cancel with one button in the bot, access stays until the paid period ends",
     ],
-    cta: "Start Free Trial",
+    cta: "Start for €1.99",
   },
   {
     id: "full",

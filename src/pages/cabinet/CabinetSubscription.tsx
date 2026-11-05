@@ -15,7 +15,7 @@ import { useCabinetOutletContext } from "./CabinetLayout";
 import { useCabinetQuery } from "@/features/cabinet/useCabinetQuery";
 import { callCabinetApi } from "@/features/cabinet/api";
 import type { SubscriptionResponseData } from "@/features/cabinet/types";
-import { formatPrice, plans, TELEGRAM_BOT_URL } from "@/data/nicsTraderPlans";
+import { formatPrice, plans, TELEGRAM_BOT_URL, TRIAL_BOT_URL } from "@/data/nicsTraderPlans";
 import { Input } from "@/components/ui/input";
 import { isHalloweenPromo } from "@/lib/halloween";
 import { halloweenText } from "@/components/halloween/halloweenText";
@@ -193,7 +193,10 @@ const CabinetSubscription = () => {
 
                   <div className="border-b border-border pb-3">
                     {plan.free ? (
-                      <span className="text-2xl font-bold text-foreground">FREE</span>
+                      <>
+                        <span className="text-2xl font-bold text-foreground">{plan.trialPrice ?? "€1.99"}</span>
+                        <span className="ml-1 text-xs text-muted-foreground">/ 7 days, then €19.99/month</span>
+                      </>
                     ) : price30d !== undefined ? (
                       <>
                         <span className="text-2xl font-bold text-foreground">
@@ -212,7 +215,7 @@ const CabinetSubscription = () => {
 
                   {plan.free ? (
                     <Button asChild variant={plan.featured ? "default" : "outline"} size="sm">
-                      <a href={TELEGRAM_BOT_URL} target="_blank" rel="noopener noreferrer">
+                      <a href={TRIAL_BOT_URL} target="_blank" rel="noopener noreferrer">
                         {plan.cta}
                       </a>
                     </Button>

@@ -7,11 +7,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 // Free first step on /nics-video and /trading: the product itself instead of a
 // checklist by email. Video opens the 10 free credits dialog; Trader gives a lot
-// size calculator right on the page and the bot's free trial.
+// size calculator right on the page and the bot's 7-day trial for 1.99 EUR.
 export type ProductCtaKind = "video" | "trader";
 type Lang = "en" | "ru" | "bg";
 
-const BOT_URL = "https://t.me/nics_ai_bot?start=src_site_cta";
+// src_trial_* opens the 1.99 EUR / 7 days card trial offer in the bot.
+const BOT_URL = "https://t.me/nics_ai_bot?start=src_trial_site_cta";
 
 const videoCopy: Record<Lang, { badge: string; title: string; text: string; bullets: string[]; button: string }> = {
   en: {
@@ -42,9 +43,9 @@ const traderCopy: Record<Lang, {
   instrument: string; result: (lot: string, money: string) => string; hint: string; bad: string; button: string; note: string;
 }> = {
   en: {
-    badge: "Free",
-    title: "Lot size calculator and 3 days of signals",
-    text: "Paste the entry and stop from any signal: the calculator shows the lot that risks exactly the share of the deposit you chose. Then try our signals in Telegram for 3 days free.",
+    badge: "Free calculator",
+    title: "Lot size calculator and 7 days of signals for €1.99",
+    text: "Paste the entry and stop from any signal: the calculator shows the lot that risks exactly the share of the deposit you chose. Then try our signals in Telegram: 7 days for €1.99, then €19.99 a month, cancel any time.",
     calc: "Lot size from your risk",
     deposit: "Deposit, USD",
     risk: "Risk per trade, %",
@@ -54,13 +55,13 @@ const traderCopy: Record<Lang, {
     result: (lot, money) => `Lot: ${lot}. If the stop is hit you lose about ${money}.`,
     hint: "For a USD account. Contract size can differ by broker, check it in your terminal.",
     bad: "Enter a deposit, a risk and two different prices.",
-    button: "Start the free trial in Telegram",
+    button: "Try 7 days for €1.99 in Telegram",
     note: "Trading involves risk of loss. Signals are not investment advice.",
   },
   ru: {
-    badge: "Бесплатно",
-    title: "Калькулятор лота и 3 дня сигналов",
-    text: "Вставьте вход и стоп из любого сигнала: калькулятор покажет лот, при котором вы рискуете ровно выбранной долей депозита. А сигналы попробуйте в Telegram 3 дня бесплатно.",
+    badge: "Бесплатный калькулятор",
+    title: "Калькулятор лота и 7 дней сигналов за 1,99 €",
+    text: "Вставьте вход и стоп из любого сигнала: калькулятор покажет лот, при котором вы рискуете ровно выбранной долей депозита. А сигналы попробуйте в Telegram: 7 дней за 1,99 €, дальше 19,99 € в месяц, отменить можно в любой момент.",
     calc: "Лот от вашего риска",
     deposit: "Депозит, USD",
     risk: "Риск на сделку, %",
@@ -70,13 +71,13 @@ const traderCopy: Record<Lang, {
     result: (lot, money) => `Лот: ${lot}. Если сработает стоп, потеря около ${money}.`,
     hint: "Для счёта в USD. Размер контракта у брокеров бывает разным, сверьте в терминале.",
     bad: "Введите депозит, риск и две разные цены.",
-    button: "Начать бесплатный период в Telegram",
+    button: "7 дней за 1,99 € в Telegram",
     note: "Торговля связана с риском потерь. Сигналы не являются инвестиционным советом.",
   },
   bg: {
-    badge: "Безплатно",
-    title: "Калкулатор на лота и 3 дни сигнали",
-    text: "Поставете входа и стопа от всеки сигнал: калкулаторът показва лота, при който рискувате точно избрания дял от депозита. А сигналите пробвайте в Telegram 3 дни безплатно.",
+    badge: "Безплатен калкулатор",
+    title: "Калкулатор на лота и 7 дни сигнали за 1,99 €",
+    text: "Поставете входа и стопа от всеки сигнал: калкулаторът показва лота, при който рискувате точно избрания дял от депозита. А сигналите пробвайте в Telegram: 7 дни за 1,99 €, след това 19,99 € на месец, можете да откажете по всяко време.",
     calc: "Лот според риска ви",
     deposit: "Депозит, USD",
     risk: "Риск на сделка, %",
@@ -86,7 +87,7 @@ const traderCopy: Record<Lang, {
     result: (lot, money) => `Лот: ${lot}. Ако стопът се задейства, загубата е около ${money}.`,
     hint: "За сметка в USD. Размерът на контракта зависи от брокера, проверете в терминала.",
     bad: "Въведете депозит, риск и две различни цени.",
-    button: "Започнете безплатния период в Telegram",
+    button: "7 дни за 1,99 € в Telegram",
     note: "Търговията е свързана с риск от загуби. Сигналите не са инвестиционен съвет.",
   },
 };
