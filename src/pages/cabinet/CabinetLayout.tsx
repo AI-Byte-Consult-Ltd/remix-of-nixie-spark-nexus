@@ -69,6 +69,15 @@ const CabinetLayout = () => {
   }
 
   if (!auth.isAuthenticated || !auth.session || !auth.user) {
+    // Remember a deep link (e.g. a lesson opened from the bot) so the
+    // user lands back on it after signing in.
+    try {
+      if (location.pathname !== "/cabinet" && location.pathname.startsWith("/cabinet/")) {
+        sessionStorage.setItem("cabinet_return_to", location.pathname + location.search);
+      }
+    } catch {
+      /* storage unavailable: fall back to the cabinet home */
+    }
     return <Navigate to="/cabinet/login" replace />;
   }
 
