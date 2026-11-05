@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Check, Copy, Gift, KeyRound, Loader2 } from "lucide-react";
+import { Check, Copy, Download, Gift, KeyRound, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { useCabinetOutletContext } from "./CabinetLayout";
 import {
   callLicenseApi,
+  isDesktopApp,
   licenseStrings,
   type GiftKey,
   type MyKeyResult,
@@ -155,6 +156,17 @@ const CabinetLicense = () => {
                   </p>
                 </div>
                 <p className="text-sm leading-6 text-muted-foreground">{s.howTo}</p>
+                {!isDesktopApp() && (
+                  <div className="space-y-2 border-t border-border pt-4">
+                    <Button asChild>
+                      <a href="/downloads/NICS-AI-Trader-Setup.exe" download>
+                        <Download className="mr-2 h-4 w-4" />
+                        {s.download}
+                      </a>
+                    </Button>
+                    <p className="text-xs text-muted-foreground">{s.downloadNote}</p>
+                  </div>
+                )}
               </>
             ) : (
               <div className="space-y-3">
