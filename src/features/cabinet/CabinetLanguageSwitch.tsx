@@ -1,5 +1,6 @@
 import { useLanguage, type Language } from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
+import { trackUsage } from "@/lib/usageAnalytics";
 
 // The cabinet's own language menu. English is the default (LanguageContext
 // falls back to "en" when nothing was chosen); the choice is remembered.
@@ -24,7 +25,10 @@ export const CabinetLanguageSwitch = ({ className }: { className?: string }) => 
           type="button"
           title={option.title}
           aria-pressed={language === option.value}
-          onClick={() => setLanguage(option.value)}
+          onClick={() => {
+            setLanguage(option.value);
+            trackUsage("language_changed", { language: option.value });
+          }}
           className={cn(
             "rounded-md px-2.5 py-1 text-xs font-medium transition-colors",
             language === option.value

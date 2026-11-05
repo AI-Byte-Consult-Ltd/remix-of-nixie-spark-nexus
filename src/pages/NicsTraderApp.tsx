@@ -49,6 +49,8 @@ import { RiskDisclaimer } from "@/features/nics/RiskDisclaimer";
 import { useAppTheme } from "@/lib/appTheme";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AdminHealthDashboard } from "@/features/nics/AdminHealthDashboard";
+import { UsageStatsPanel } from "@/features/nics/UsageStatsPanel";
+import { TRADER_APP_VERSION, trackUsage } from "@/lib/usageAnalytics";
 import { periodLabels, translations } from "@/features/nics/i18n";
 import TrackRecordAnalytics from "@/components/trading/TrackRecordAnalytics";
 import { usePublicPerformance } from "@/lib/publicPerformance";
@@ -79,7 +81,7 @@ import {
   signedR,
 } from "@/features/nics/utils";
 
-const APP_VERSION = "2.7.0";
+const APP_VERSION = TRADER_APP_VERSION;
 
 const emptyPerformance: PerformanceBlock = {
   closedSignals: 0,
@@ -340,6 +342,20 @@ const NicsTraderApp = ({
 
   const trackEvent = useCallback(
     async (eventName: string, metadata: Record<string, unknown> = {}) => {
+      // Cabinet and Windows app: [43 OPS] App Usage Analytics (platform,
+      // version, language). Telegram Mini App: [07 APP] track_event.
+      if (embedded && cabinetSession) {
+        trackUsage(
+          eventName,
+          {
+            screen: typeof metadata.screen === "string" ? metadata.screen : undefined,
+            signalId: typeof metadata.signalId === "string" ? metadata.signalId : undefined,
+            language,
+          },
+          cabinetSession,
+        );
+        return;
+      }
       try {
         await callApi("track_event", {
           eventName,
@@ -353,7 +369,7 @@ const NicsTraderApp = ({
         // Analytics never blocks the product flow.
       }
     },
-    [callApi],
+    [callApi, cabinetSession, embedded, language],
   );
 
   useEffect(() => {
@@ -583,6 +599,9 @@ const NicsTraderApp = ({
       if (!result.data) throw new NicsApiError("REQUEST_FAILED");
       applyPayload(result.data);
       const status = result.data.signalRequest?.status ?? "INVALID";
+      if (embedded && cabinetSession) {
+        trackUsage("signal_order_sent", { scope, market: market ?? null, result: status, language }, cabinetSession);
+      }
       if (status !== "QUEUED") {
         setRequestState({ key, label: title, phase: "rejected", status });
         telegram?.HapticFeedback?.notificationOccurred("warning");
@@ -1214,11 +1233,14 @@ const NicsTraderApp = ({
         )}
 
         {screen === "admin" && data.user.isAdmin && data.adminHealth && (
-          <AdminHealthDashboard
-            health={data.adminHealth}
-            language={language}
-            t={t}
-          />
+          <div className="space-y-6">
+            <UsageStatsPanel session={embedded ? cabinetSession ?? null : null} language={language} />
+            <AdminHealthDashboard
+              health={data.adminHealth}
+              language={language}
+              t={t}
+            />
+          </div>
         )}
 
         {screen === "markets" && (

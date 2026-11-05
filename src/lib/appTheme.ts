@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { trackUsage } from "./usageAnalytics";
 
 /*
  * Light / dark theme for the NICS AI Trader app: the Telegram Mini App,
@@ -40,6 +41,7 @@ export const useAppTheme = () => {
     }
     setThemeState(next);
     window.dispatchEvent(new Event(EVENT));
+    trackUsage("theme_changed");
   }, []);
 
   const toggle = useCallback(() => setTheme(read() === "dark" ? "light" : "dark"), [setTheme]);

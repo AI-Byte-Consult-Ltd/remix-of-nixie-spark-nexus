@@ -138,6 +138,7 @@ const Privacy = () => {
       icon: Cookie,
       content: [
         "This website does not use third-party advertising or cross-site tracking cookies. We do not currently run Google Analytics or a comparable analytics platform. Any cookie or local-storage use is limited to functional purposes, such as remembering a language preference or a signed-in session in the NICS AI Trader Mini App.",
+        "First-party usage statistics in the NICS AI Trader app (Telegram Mini App, web cabinet and Windows app): to improve the app we record which screens are opened and which features are used (for example \"signal ordered\" or \"theme changed\"), together with the platform, app version, language and theme. These records are stored on our own servers, linked to your NICS account only internally, never sold or shared, and reviewed only as totals (active users, popular screens). We do not record message texts, trade amounts, license keys, passwords or e-mail content. You can ask us to delete them together with the rest of your data.",
       ],
     },
     {
