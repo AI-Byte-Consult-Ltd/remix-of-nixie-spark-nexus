@@ -15,6 +15,44 @@ type ReleaseText = Record<AppLanguage, { title: string; items: string[] }>;
 
 export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseText }> = [
   {
+    version: "2.7.0",
+    date: "05.11.2026",
+    text: {
+      ru: {
+        title: "Светлая тема и без тупиков",
+        items: [
+          "Светлая и тёмная тема: кнопка с солнцем или луной вверху экрана.",
+          "«Журнал о трейдинге» показывает 10 свежих постов нашего Telegram-канала.",
+          "Форма обратной связи прямо в разделе «Поддержка»; со страниц сайта всегда есть кнопка «Вернуться в приложение».",
+        ],
+      },
+      bg: {
+        title: "Светла тема и без задънени улици",
+        items: [
+          "Светла и тъмна тема: бутон със слънце или луна в горната част на екрана.",
+          "„Трейдинг дневник“ показва 10 свежи публикации от нашия Telegram канал.",
+          "Формата за връзка е направо в „Поддръжка“; от страниците на сайта винаги има бутон „Обратно към приложението“.",
+        ],
+      },
+      en: {
+        title: "Light theme and no dead ends",
+        items: [
+          "Light and dark theme: the sun or moon button at the top of the screen.",
+          "“Trading journal” shows the 10 latest posts of our Telegram channel.",
+          "The contact form is right in “Support”; site pages always have a “Back to the app” button.",
+        ],
+      },
+      es: {
+        title: "Tema claro y sin callejones sin salida",
+        items: [
+          "Tema claro y oscuro: el botón de sol o luna en la parte superior.",
+          "«Diario de trading» muestra las 10 publicaciones más recientes de nuestro canal de Telegram.",
+          "El formulario de contacto está en «Soporte»; las páginas del sitio siempre tienen el botón «Volver a la aplicación».",
+        ],
+      },
+    },
+  },
+  {
     version: "2.6.0",
     date: "05.11.2026",
     text: {

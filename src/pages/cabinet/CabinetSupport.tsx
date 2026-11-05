@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
+import Contact from "@/components/Contact";
 import { useCabinetOutletContext } from "./CabinetLayout";
 
 const BOT_URL = "https://t.me/nics_ai_bot";
 
+// Support: the bot link and the site's contact form right here, so the
+// cabinet (and the Windows app) never has to leave for the public site.
 const CabinetSupport = () => {
   const { t } = useCabinetOutletContext();
 
@@ -19,9 +22,10 @@ const CabinetSupport = () => {
             {t("supportBotLink")}
           </a>
         </Button>
-        <Button asChild variant="outline">
-          <a href="/#contact">{t("supportSiteContact")}</a>
-        </Button>
+      </div>
+
+      <div className="-mx-4 overflow-hidden rounded-3xl [&_section]:py-10">
+        <Contact />
       </div>
     </div>
   );
