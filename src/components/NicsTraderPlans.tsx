@@ -14,6 +14,7 @@ import {
   formatPrice,
   plans,
   TELEGRAM_BOT_URL,
+  TRIAL_BOT_URL,
   type Currency,
   type Period,
 } from "@/data/nicsTraderPlans";
@@ -180,10 +181,10 @@ const NicsTraderPlans = () => {
                     {plan.free ? (
                       <div>
                         <div className="flex items-baseline gap-2">
-                          <span className="text-3xl font-semibold text-white">FREE</span>
-                          <span className="text-sm text-white/50">3-day trial</span>
+                          <span className="text-3xl font-semibold text-white">{plan.trialPrice ?? "€1.99"}</span>
+                          <span className="text-sm text-white/50">7-day trial</span>
                         </div>
-                        <p className="mt-2 text-xs text-white/50">No payment required</p>
+                        <p className="mt-2 text-xs text-white/50">{plan.trialNote}</p>
                       </div>
                     ) : amount !== undefined ? (
                       <AnimatePresence mode="wait">
@@ -214,7 +215,7 @@ const NicsTraderPlans = () => {
 
                   {plan.free ? (
                     <a
-                      href={TELEGRAM_BOT_URL}
+                      href={TRIAL_BOT_URL}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`relative inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0f1f] ${

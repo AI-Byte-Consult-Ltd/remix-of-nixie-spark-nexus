@@ -20,6 +20,7 @@ const NicsVideo = lazy(() => import("./pages/NicsVideo"));
 const NicsStudio = lazy(() => import("./pages/NicsStudio"));
 const Go = lazy(() => import("./pages/Go"));
 const Subtitles = lazy(() => import("./pages/Subtitles"));
+const Trial = lazy(() => import("./pages/Trial"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const DataDeletion = lazy(() => import("./pages/DataDeletion"));
@@ -80,6 +81,8 @@ const App = () => (
             <Route path="/subtitles" element={<Subtitles />} />
             <Route path="/ru/subtitles" element={<Subtitles />} />
             <Route path="/bg/subtitles" element={<Subtitles />} />
+            {/* NICS AI Trader card trial checkout (1.99 EUR / 7 days, then 19.99 EUR/month), linked from the bot; noindex. */}
+            <Route path="/trial" element={<Trial />} />
             <Route path="/about" element={<About />} />
             <Route path="/estate" element={<Estate />} />
             <Route path="/trading" element={<Trading />} />
