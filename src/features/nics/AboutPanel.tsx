@@ -15,6 +15,40 @@ type ReleaseText = Record<AppLanguage, { title: string; items: string[] }>;
 
 export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseText }> = [
   {
+    version: "2.8.0",
+    date: "05.11.2026",
+    text: {
+      ru: {
+        title: "Статистика использования",
+        items: [
+          "Приложение отмечает, какие экраны и функции используются (без текстов, сумм и ключей), чтобы мы улучшали самое нужное.",
+          "Для администратора во вкладке «Система»: активные пользователи за день, 7 и 30 дней, популярные экраны, действия, версии и платформы.",
+        ],
+      },
+      bg: {
+        title: "Статистика на използването",
+        items: [
+          "Приложението отбелязва кои екрани и функции се използват (без текстове, суми и ключове), за да подобряваме най-нужното.",
+          "За администратора в раздел „Система“: активни потребители за ден, 7 и 30 дни, популярни екрани, действия, версии и платформи.",
+        ],
+      },
+      en: {
+        title: "Usage statistics",
+        items: [
+          "The app records which screens and features are used (no texts, amounts or keys) so we improve what matters most.",
+          "For the admin on the “System” tab: active users per day, 7 and 30 days, popular screens, actions, versions and platforms.",
+        ],
+      },
+      es: {
+        title: "Estadísticas de uso",
+        items: [
+          "La app registra qué pantallas y funciones se usan (sin textos, importes ni claves) para mejorar lo más necesario.",
+          "Para el administrador en la pestaña «Sistema»: usuarios activos por día, 7 y 30 días, pantallas populares, acciones, versiones y plataformas.",
+        ],
+      },
+    },
+  },
+  {
     version: "2.7.0",
     date: "05.11.2026",
     text: {

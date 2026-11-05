@@ -17,6 +17,10 @@ import { isDesktopApp, useDesktopLicense } from "@/features/cabinet/license";
 import { DesktopLicenseGate } from "@/features/cabinet/DesktopLicenseGate";
 import { useAppTheme, useHtmlDarkClass } from "@/lib/appTheme";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { cabinetPageKey, trackUsage } from "@/lib/usageAnalytics";
+
+// One "app_opened" per page load (the Windows app or a browser tab).
+let appOpenTracked = false;
 
 // Pages the Windows app opens without a license: where the key is shown,
 // bought, or the account is set up.
@@ -63,6 +67,21 @@ const CabinetLayout = () => {
     if (isAuthenticated) void refresh(cabinetLanguage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
+
+  // Usage statistics: one app start per load plus every cabinet page. The
+  // Trader screens (/cabinet/trader/...) report themselves from the panel.
+  useEffect(() => {
+    if (!isAuthenticated || !auth.session) return;
+    if (!appOpenTracked) {
+      appOpenTracked = true;
+      trackUsage("app_opened", { language: cabinetLanguage }, auth.session);
+    }
+    const page = cabinetPageKey(location.pathname);
+    if (page && !page.startsWith("trader")) {
+      trackUsage("page_opened", { page, language: cabinetLanguage }, auth.session);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, location.pathname]);
 
   if (auth.isLoading) {
     return (
