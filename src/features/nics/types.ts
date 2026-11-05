@@ -13,7 +13,8 @@ export type Screen =
   | "settings"
   | "updates"
   | "request"
-  | "about";
+  | "about"
+  | "articles";
 
 export interface TelegramWebApp {
   initData: string;
@@ -228,6 +229,8 @@ export interface MarketInstrument {
   label: string;
   open: boolean;
   dataFresh?: boolean;
+  // Exact name to search for in MT5 (e.g. NAS100ft.r), when [07 APP] sends it.
+  brokerSymbol?: string | null;
 }
 
 export interface MarketRow {

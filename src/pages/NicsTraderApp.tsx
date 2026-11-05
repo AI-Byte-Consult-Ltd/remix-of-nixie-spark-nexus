@@ -13,6 +13,8 @@ import {
   Info,
   LayoutDashboard,
   LineChart,
+  ExternalLink,
+  Newspaper,
   Loader2,
   Radar,
   RefreshCw,
@@ -39,6 +41,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { callNicsApi, NicsApiError } from "@/features/nics/api";
 import { AboutPanel } from "@/features/nics/AboutPanel";
+import { ArticlesPanel } from "@/features/nics/ArticlesPanel";
+import { BROKER_REFERRAL_URL, openExternal } from "@/features/nics/externalLinks";
+import { RiskDisclaimer } from "@/features/nics/RiskDisclaimer";
 import { AdminHealthDashboard } from "@/features/nics/AdminHealthDashboard";
 import { periodLabels, translations } from "@/features/nics/i18n";
 import TrackRecordAnalytics from "@/components/trading/TrackRecordAnalytics";
@@ -70,7 +75,7 @@ import {
   signedR,
 } from "@/features/nics/utils";
 
-const APP_VERSION = "2.5.0";
+const APP_VERSION = "2.6.0";
 
 const emptyPerformance: PerformanceBlock = {
   closedSignals: 0,
@@ -117,6 +122,7 @@ const SCREENS: Screen[] = [
   "updates",
   "request",
   "about",
+  "articles",
 ];
 
 // After a signal request the panel re-reads the dashboard this often, this
@@ -218,9 +224,11 @@ const NicsTraderApp = ({
         : "dashboard"
       : initialSignalId
       ? "signals"
-      : new URLSearchParams(window.location.search).get("screen") === "referral"
-      ? "referral"
-      : "dashboard",
+      : (() => {
+          // Deep links from the bot, e.g. /nics-app/?screen=articles.
+          const requested = new URLSearchParams(window.location.search).get("screen") ?? undefined;
+          return isTraderScreen(requested) && requested !== "admin" ? requested : "dashboard";
+        })(),
   );
 
   useEffect(() => {
@@ -696,6 +704,7 @@ const NicsTraderApp = ({
     { key: "performance", icon: BarChart3, label: t.performance },
     { key: "history", icon: History, label: t.history },
     { key: "markets", icon: Activity, label: t.markets },
+    { key: "articles", icon: Newspaper, label: t.articles },
     { key: "settings", icon: Settings2, label: t.settings },
     { key: "about", icon: Info, label: t.about },
     ...(data.user.isAdmin && data.adminHealth
@@ -1240,6 +1249,16 @@ const NicsTraderApp = ({
                         </button>
                       ))}
                     </div>
+                    {BROKER_REFERRAL_URL && (
+                      <button
+                        type="button"
+                        onClick={() => openExternal(BROKER_REFERRAL_URL)}
+                        className="mt-2 inline-flex items-center gap-1 text-[11px] text-sky-300 hover:text-sky-200"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        {t.openAtBroker}
+                      </button>
+                    )}
                     <p className="mt-2 text-xs text-slate-400">{market.schedule}</p>
                   </div>
                   <div className="text-right">
@@ -1304,6 +1323,8 @@ const NicsTraderApp = ({
           <AboutPanel t={t} language={language} appVersion={APP_VERSION} updates={data.updates} />
         )}
 
+        {screen === "articles" && <ArticlesPanel t={t} language={language} />}
+
         {screen === "updates" && (
           <section className="space-y-4">
             <div className="mb-5">
@@ -1335,6 +1356,8 @@ const NicsTraderApp = ({
             ))}
           </section>
         )}
+
+        <RiskDisclaimer t={t} />
       </div>
 
       {!embedded && (

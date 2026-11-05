@@ -11,6 +11,7 @@ import {
   Grid2x2,
   History,
   Info,
+  Key,
   KeyRound,
   LayoutDashboard,
   LifeBuoy,
@@ -53,11 +54,13 @@ export const CabinetSidebar = ({ t, user, onLogout }: CabinetSidebarProps) => {
     { to: "/cabinet/trader/performance", label: t("navPerformance"), icon: BarChart3 },
     { to: "/cabinet/trader/history", label: t("navHistory"), icon: History },
     { to: "/cabinet/trader/markets", label: t("navMarkets"), icon: Activity },
+    { to: "/cabinet/trader/articles", label: t("navArticles"), icon: Newspaper },
     { to: "/cabinet/trader/risk", label: t("navRisk"), icon: Calculator },
     { to: "/cabinet/trader/referral", label: t("navReferrals"), icon: Users },
     { to: "/cabinet/trader/rewards", label: t("navRewards"), icon: Gift },
     { to: "/cabinet/trader/settings", label: t("navTraderSettings"), icon: Settings2 },
     { to: "/cabinet/trader/about", label: t("navAbout"), icon: Info },
+    { to: "/cabinet/license", label: t("navLicense"), icon: Key },
   ];
 
   const items: Array<{ to: string; label: string; icon: typeof LayoutDashboard }> = [
