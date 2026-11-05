@@ -15,6 +15,8 @@ import { Wallet } from "lucide-react";
 import { useInstallableApp } from "@/lib/installableApp";
 import { isDesktopApp, useDesktopLicense } from "@/features/cabinet/license";
 import { DesktopLicenseGate } from "@/features/cabinet/DesktopLicenseGate";
+import { useAppTheme, useHtmlDarkClass } from "@/lib/appTheme";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // Pages the Windows app opens without a license: where the key is shown,
 // bought, or the account is set up.
@@ -47,6 +49,8 @@ const CabinetLayout = () => {
   const t = useMemo(() => createCabinetTranslator(cabinetLanguage), [cabinetLanguage]);
   const location = useLocation();
   const { isAuthenticated, refresh } = auth;
+  const { theme } = useAppTheme();
+  useHtmlDarkClass(theme);
   const desktop = useMemo(() => isDesktopApp(), []);
   const license = useDesktopLicense(
     desktop && isAuthenticated && isTelegramLinked(auth.user),
@@ -105,6 +109,8 @@ const CabinetLayout = () => {
                 <span className="text-sm font-medium md:hidden">{t("appTitle")}</span>
                 <CabinetLanguageSwitch className="md:hidden" />
               </div>
+              <div className="flex items-center gap-2">
+              <ThemeToggle language={cabinetLanguage} />
               {telegramLinked && (
                 <CashbackBadge
                   session={auth.session}
@@ -113,6 +119,7 @@ const CabinetLayout = () => {
                   label={t("cashbackLabel")}
                 />
               )}
+              </div>
             </div>
             <div className="flex-1 px-4 py-6 md:px-8 md:py-8">
               {showLinkNotice ? (

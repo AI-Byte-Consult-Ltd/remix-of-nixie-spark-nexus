@@ -46,6 +46,8 @@ import { ArticlesPanel } from "@/features/nics/ArticlesPanel";
 import { EconomicCalendar } from "@/features/nics/EconomicCalendar";
 import { BROKER_REFERRAL_URL, openExternal } from "@/features/nics/externalLinks";
 import { RiskDisclaimer } from "@/features/nics/RiskDisclaimer";
+import { useAppTheme } from "@/lib/appTheme";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { AdminHealthDashboard } from "@/features/nics/AdminHealthDashboard";
 import { periodLabels, translations } from "@/features/nics/i18n";
 import TrackRecordAnalytics from "@/components/trading/TrackRecordAnalytics";
@@ -77,7 +79,7 @@ import {
   signedR,
 } from "@/features/nics/utils";
 
-const APP_VERSION = "2.6.0";
+const APP_VERSION = "2.7.0";
 
 const emptyPerformance: PerformanceBlock = {
   closedSignals: 0,
@@ -246,6 +248,7 @@ const NicsTraderApp = ({
         : "en",
     );
   }, [embedded, telegramLanguage]);
+  const { theme } = useAppTheme();
   const [data, setData] = useState<AppPayload | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<"telegram" | "network" | null>(null);
@@ -779,6 +782,7 @@ const NicsTraderApp = ({
     <main
       className={cn(
         "bg-[#07090f] text-white",
+        theme === "light" && "nics-light",
         embedded ? "overflow-hidden rounded-3xl pb-4" : "min-h-screen pb-24",
       )}
     >
@@ -799,11 +803,14 @@ const NicsTraderApp = ({
               <p className="text-[11px] text-slate-500">{t.hello}</p>
             </div>
           </div>
+          <div className="flex items-center gap-3">
+          <ThemeToggle language={language} className="border-white/10 text-slate-400 hover:text-white" />
           <div className="text-right">
             <Badge className="bg-emerald-400/10 text-emerald-300 hover:bg-emerald-400/10">
               {data.access.label}
             </Badge>
             <p className="mt-1 text-[10px] text-slate-600">{t.secure}</p>
+          </div>
           </div>
         </div>
       </header>

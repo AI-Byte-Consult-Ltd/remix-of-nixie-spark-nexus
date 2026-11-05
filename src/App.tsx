@@ -1,3 +1,4 @@
+import { DesktopBackBar } from "./components/DesktopBackBar";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -49,6 +50,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Suspense fallback={<div className="min-h-screen bg-background" />}>
+          <DesktopBackBar />
           <Routes>
             <Route path="/" element={<Index />} />
             {/* Crawlable localized entry points for every non-English
