@@ -14,7 +14,8 @@ export type Screen =
   | "updates"
   | "request"
   | "about"
-  | "articles";
+  | "articles"
+  | "calendar";
 
 export interface TelegramWebApp {
   initData: string;

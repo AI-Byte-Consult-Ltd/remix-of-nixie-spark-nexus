@@ -4,6 +4,7 @@ import {
   BarChart3,
   Bot,
   Calculator,
+  CalendarDays,
   ChevronRight,
   Clock3,
   FileClock,
@@ -42,6 +43,7 @@ import { cn } from "@/lib/utils";
 import { callNicsApi, NicsApiError } from "@/features/nics/api";
 import { AboutPanel } from "@/features/nics/AboutPanel";
 import { ArticlesPanel } from "@/features/nics/ArticlesPanel";
+import { EconomicCalendar } from "@/features/nics/EconomicCalendar";
 import { BROKER_REFERRAL_URL, openExternal } from "@/features/nics/externalLinks";
 import { RiskDisclaimer } from "@/features/nics/RiskDisclaimer";
 import { AdminHealthDashboard } from "@/features/nics/AdminHealthDashboard";
@@ -123,6 +125,7 @@ const SCREENS: Screen[] = [
   "request",
   "about",
   "articles",
+  "calendar",
 ];
 
 // After a signal request the panel re-reads the dashboard this often, this
@@ -698,6 +701,7 @@ const NicsTraderApp = ({
     { key: "dashboard", icon: LayoutDashboard, label: t.dashboard },
     { key: "request", icon: Radar, label: t.request },
     { key: "signals", icon: Signal, label: t.signals },
+    { key: "calendar", icon: CalendarDays, label: t.calendar },
     { key: "risk", icon: Calculator, label: t.risk },
     { key: "referral", icon: Users, label: t.referrals },
     { key: "rewards", icon: Gift, label: t.rewards },
@@ -1324,6 +1328,8 @@ const NicsTraderApp = ({
         )}
 
         {screen === "articles" && <ArticlesPanel t={t} language={language} />}
+
+        {screen === "calendar" && <EconomicCalendar language={language} />}
 
         {screen === "updates" && (
           <section className="space-y-4">

@@ -25,6 +25,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Подарочные ключи на месяц или бессрочно.",
           "Новый раздел «Статьи»: разборы рынков и экономический календарь Александра Лунина с Substack и Medium, обновляется сам.",
           "Предупреждение о рисках внизу каждого экрана.",
+          "Экономический календарь: все важные события недели, на что и как они могут повлиять.",
         ],
       },
       bg: {
@@ -34,6 +35,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Подаръчни ключове за един месец или безсрочно.",
           "Нов раздел „Статии“: пазарни анализи и икономически календар от Александър Лунин от Substack и Medium, обновява се сам.",
           "Предупреждение за рисковете под всеки екран.",
+          "Икономически календар: всички важни събития за седмицата и върху какво могат да повлияят.",
         ],
       },
       en: {
@@ -43,6 +45,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Gift keys for one month or with no expiry.",
           "New “Articles” section: market breakdowns and the economic calendar by Alexander Lunin from Substack and Medium, updated automatically.",
           "Risk warning under every screen.",
+          "Economic calendar: the week's key events and what they may move.",
         ],
       },
       es: {
@@ -52,6 +55,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Claves de regalo por un mes o sin caducidad.",
           "Nueva sección «Artículos»: análisis de mercado y calendario económico de Alexander Lunin desde Substack y Medium, se actualiza sola.",
           "Aviso de riesgo debajo de cada pantalla.",
+          "Calendario económico: los eventos clave de la semana y qué pueden mover.",
         ],
       },
     },
