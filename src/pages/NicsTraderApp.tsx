@@ -83,6 +83,16 @@ import {
 
 const APP_VERSION = TRADER_APP_VERSION;
 
+// Access card: show market names ("Gold", "Forex"), not internal keys.
+const selectedMarketNames = (payload: AppPayload) =>
+  payload.selectedMarkets.map(
+    (key) => payload.markets?.find((market) => market.key === key)?.label ?? key,
+  );
+
+const APP_LANGUAGES: AppLanguage[] = ["ru", "bg", "en", "es", "pt"];
+const toAppLanguage = (value?: string | null): AppLanguage =>
+  APP_LANGUAGES.includes(value as AppLanguage) ? (value as AppLanguage) : "en";
+
 const emptyPerformance: PerformanceBlock = {
   closedSignals: 0,
   wins: 0,
@@ -217,13 +227,7 @@ const NicsTraderApp = ({
       ? startParameter.slice("signal_".length, "signal_".length + 160)
       : "";
   }, [telegram?.initDataUnsafe?.start_param]);
-  const [language, setLanguage] = useState<AppLanguage>(
-    telegramLanguage === "ru" ||
-      telegramLanguage === "bg" ||
-      telegramLanguage === "es"
-      ? telegramLanguage
-      : "en",
-  );
+  const [language, setLanguage] = useState<AppLanguage>(toAppLanguage(telegramLanguage));
   const [screen, setScreen] = useState<Screen>(
     embedded
       ? isTraderScreen(cabinetScreen)
@@ -244,11 +248,7 @@ const NicsTraderApp = ({
   // In the cabinet the language menu decides, not the bot profile.
   useEffect(() => {
     if (!embedded) return;
-    setLanguage(
-      telegramLanguage === "ru" || telegramLanguage === "bg" || telegramLanguage === "es"
-        ? telegramLanguage
-        : "en",
-    );
+    setLanguage(toAppLanguage(telegramLanguage));
   }, [embedded, telegramLanguage]);
   const { theme } = useAppTheme();
   const [data, setData] = useState<AppPayload | null>(null);
@@ -306,7 +306,12 @@ const NicsTraderApp = ({
   const applyPayload = useCallback((payload: AppPayload) => {
     setError(null);
     setData(payload);
-    if (!embedded) setLanguage(payload.user.language);
+    // The bot speaks ru/bg/en/es; a Portuguese Telegram profile keeps the
+    // Portuguese app instead of the bot's English fallback.
+    if (!embedded) {
+      const botLanguage = toAppLanguage(payload.user.language);
+      setLanguage(botLanguage === "en" && telegramLanguage === "pt" ? "pt" : botLanguage);
+    }
     setRiskForm((current) => {
       const serverProfile = { ...defaultRiskProfile, ...payload.riskProfile };
       return {
@@ -318,7 +323,7 @@ const NicsTraderApp = ({
     });
     setPreferencesForm({ ...defaultPreferences, ...payload.preferences });
     if (payload.sizing) setSizing(payload.sizing);
-  }, [embedded]);
+  }, [embedded, telegramLanguage]);
 
   const loadDashboard = useCallback(async () => {
     setLoading(true);
@@ -861,7 +866,7 @@ const NicsTraderApp = ({
                     {data.user.firstName || data.user.username || "NICS Trader"}
                   </h1>
                   <p className="mt-2 text-sm text-slate-400">
-                    {data.selectedMarkets.join(" · ") || "—"}
+                    {selectedMarketNames(data).join(" · ") || "—"}
                   </p>
                 </div>
                 <ShieldCheck className="h-8 w-8 text-amber-300" />
@@ -1247,7 +1252,7 @@ const NicsTraderApp = ({
           <section className="space-y-3">
             <div className="mb-5">
               <h1 className="text-xl font-semibold">{t.markets}</h1>
-              <p className="mt-1 text-xs text-slate-500">{data.selectedMarkets.join(" · ")}</p>
+              <p className="mt-1 text-xs text-slate-500">{selectedMarketNames(data).join(" · ")}</p>
             </div>
             {data.markets.map((market) => (
               <Card key={market.key} className="border-white/10 bg-white/[0.045] text-white shadow-none">

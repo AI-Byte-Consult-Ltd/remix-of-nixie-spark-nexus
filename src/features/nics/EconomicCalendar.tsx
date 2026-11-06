@@ -102,6 +102,14 @@ const LOCAL_TEXT: Record<
     localTime: "Las horas se muestran en tu zona horaria",
     allDay: "todo el día",
   },
+  pt: {
+    loading: "Carregando o calendário…",
+    error: "Não foi possível carregar o calendário.",
+    retry: "Tentar novamente",
+    low: "baixa importância",
+    localTime: "Os horários são mostrados no seu fuso horário",
+    allDay: "dia inteiro",
+  },
 };
 
 const LOCALE: Record<AppLanguage, string> = {
@@ -109,6 +117,7 @@ const LOCALE: Record<AppLanguage, string> = {
   bg: "bg-BG",
   en: "en-GB",
   es: "es-ES",
+  pt: "pt-BR",
 };
 
 const IMPACT_STYLE: Record<Impact, string> = {

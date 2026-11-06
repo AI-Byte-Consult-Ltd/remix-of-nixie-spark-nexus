@@ -8,6 +8,8 @@ const OPTIONS: Array<{ value: Language; label: string; title: string }> = [
   { value: "en", label: "EN", title: "English" },
   { value: "ru", label: "RU", title: "Русский" },
   { value: "bg", label: "BG", title: "Български" },
+  { value: "es", label: "ES", title: "Español" },
+  { value: "pt", label: "PT", title: "Português" },
 ];
 
 export const CabinetLanguageSwitch = ({ className }: { className?: string }) => {
@@ -30,7 +32,7 @@ export const CabinetLanguageSwitch = ({ className }: { className?: string }) => 
             trackUsage("language_changed", { language: option.value });
           }}
           className={cn(
-            "rounded-md px-2.5 py-1 text-xs font-medium transition-colors",
+            "rounded-md px-2 py-1 text-xs font-medium transition-colors",
             language === option.value
               ? "bg-primary text-primary-foreground"
               : "text-muted-foreground hover:text-foreground",

@@ -379,7 +379,50 @@ const es: LicenseStrings = {
   downloadNote: "Instalador para Windows 10 y 11. La versión de Microsoft Store llegará pronto.",
 };
 
-const STRINGS: Partial<Record<CabinetLanguage, LicenseStrings>> = { en, ru, bg, es };
+const pt: LicenseStrings = {
+  title: "Licença do aplicativo para Windows",
+  lead: "O aplicativo NICS AI Trader para Windows funciona com uma chave de licença. A chave vem com uma assinatura Trader ativa.",
+  yourKey: "Sua chave de licença",
+  copy: "Copiar",
+  copied: "Copiado",
+  validUntil: "Válida até",
+  validWhileSub: "Válida enquanto a assinatura estiver ativa",
+  forever: "Sem prazo",
+  devices: "Computadores com esta chave",
+  howTo: "No aplicativo para Windows a chave é preenchida sozinha quando você entra nesta conta. Em outro computador, digite-a manualmente. Uma chave funciona em no máximo 2 computadores.",
+  notEligible: "Esta conta ainda não tem uma assinatura Trader ativa. Depois do pagamento, a sua chave aparecerá aqui.",
+  buy: "Escolher plano",
+  adminTitle: "Presentear uma chave",
+  adminLead: "Crie uma chave para alguém: por um mês ou sem prazo. Envie a chave; a pessoa a digita no aplicativo para Windows.",
+  note: "Nota (para quem é)",
+  giftMonth: "Presentear 1 mês",
+  giftForever: "Presentear sem prazo",
+  newKey: "Nova chave",
+  gifts: "Chaves presenteadas",
+  noGifts: "Ainda não há chaves presenteadas.",
+  statusActive: "Não usada",
+  statusUsed: "Usada por",
+  statusRevoked: "Revogada",
+  statusExpired: "Expirada",
+  monthUntil: "1 mês, até",
+  revoke: "Revogar",
+  error: "Algo deu errado. Tente novamente.",
+  gateTitle: "Ativar o NICS AI Trader",
+  gateLead: "Digite a sua chave de licença. Ela fica no painel, em «Licença do aplicativo para Windows», depois de pagar uma assinatura Trader.",
+  keyPlaceholder: "NICS-XXXX-XXXX-XXXX",
+  activate: "Ativar",
+  checking: "Verificando a licença…",
+  reasonKEY_INVALID: "Esta chave não foi encontrada. Confira as letras e os hífens.",
+  reasonKEY_REVOKED: "Esta chave foi revogada.",
+  reasonKEY_EXPIRED: "A chave expirou ou a assinatura terminou.",
+  reasonDEVICE_LIMIT: "A chave já está em uso em 2 computadores.",
+  reasonOFFLINE: "Sem conexão com o servidor de licenças. Verifique a internet e tente novamente.",
+  openLicensePage: "Minha chave",
+  download: "Baixar para Windows",
+  downloadNote: "Instalador para Windows 10 e 11. A versão da Microsoft Store chegará em breve.",
+};
+
+const STRINGS: Partial<Record<CabinetLanguage, LicenseStrings>> = { en, ru, bg, es, pt };
 
 export const licenseStrings = (language: CabinetLanguage): LicenseStrings => STRINGS[language] ?? en;
 

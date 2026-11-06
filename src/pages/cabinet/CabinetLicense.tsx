@@ -151,7 +151,7 @@ const CabinetLicense = () => {
                     {mine.validUntil ? `${s.validUntil} ${formatDate(mine.validUntil)}. ${s.validWhileSub}.` : s.forever}
                   </p>
                   <p>
-                    {s.devices}: {mine.devices}
+                    {s.devices}: {mine.devices ?? 0}
                     {mine.isAdmin ? "" : " / 2"}
                   </p>
                 </div>
