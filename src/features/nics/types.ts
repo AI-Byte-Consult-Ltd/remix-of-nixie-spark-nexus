@@ -1,4 +1,4 @@
-export type AppLanguage = "ru" | "bg" | "en" | "es";
+export type AppLanguage = "ru" | "bg" | "en" | "es" | "pt";
 
 export type Screen =
   | "dashboard"

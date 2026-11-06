@@ -15,6 +15,52 @@ type ReleaseText = Record<AppLanguage, { title: string; items: string[] }>;
 
 export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseText }> = [
   {
+    version: "2.9.0",
+    date: "06.11.2026",
+    text: {
+      ru: {
+        title: "Португальский язык и исправления",
+        items: [
+          "Приложение доступно на испанском и португальском: кнопки ES и PT добавлены в меню языков кабинета и приложения для Windows (раньше там были только EN, RU, BG).",
+          "Дополнительный скан снова присылает сигналы по всем рынкам, а не один.",
+          "Карточка доступа показывает названия рынков, а не служебные коды; на странице ключа число компьютеров больше не пропадает.",
+        ],
+      },
+      bg: {
+        title: "Португалски език и поправки",
+        items: [
+          "Приложението е достъпно на испански и португалски: бутоните ES и PT са добавени в менюто за езици на кабинета и приложението за Windows.",
+          "Допълнителното сканиране отново изпраща сигнали за всички пазари, а не само един.",
+          "Картата за достъп показва имената на пазарите, а не служебни кодове; броят компютри на страницата с ключа вече не изчезва.",
+        ],
+      },
+      en: {
+        title: "Portuguese and fixes",
+        items: [
+          "The app is available in Spanish and Portuguese: ES and PT buttons added to the language menu of the cabinet and the Windows app.",
+          "The extra scan again sends signals for every market, not just one.",
+          "The access card shows market names instead of internal codes; the computer count on the key page no longer goes missing.",
+        ],
+      },
+      es: {
+        title: "Portugués y correcciones",
+        items: [
+          "La app está disponible en español y portugués: botones ES y PT en el menú de idiomas del gabinete y de la app para Windows.",
+          "El escaneo extra vuelve a enviar señales de todos los mercados, no solo de uno.",
+          "La tarjeta de acceso muestra los nombres de los mercados, no códigos internos; el número de ordenadores en la página de la clave ya no desaparece.",
+        ],
+      },
+      pt: {
+        title: "Português e correções",
+        items: [
+          "O aplicativo está disponível em espanhol e português: botões ES e PT no menu de idiomas do painel e do aplicativo para Windows.",
+          "A varredura extra volta a enviar sinais de todos os mercados, não só de um.",
+          "O cartão de acesso mostra os nomes dos mercados, não códigos internos; o número de computadores na página da chave não some mais.",
+        ],
+      },
+    },
+  },
+  {
     version: "2.8.0",
     date: "05.11.2026",
     text: {
@@ -44,6 +90,13 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
         items: [
           "La app registra qué pantallas y funciones se usan (sin textos, importes ni claves) para mejorar lo más necesario.",
           "Para el administrador en la pestaña «Sistema»: usuarios activos por día, 7 y 30 días, pantallas populares, acciones, versiones y plataformas.",
+        ],
+      },
+      pt: {
+        title: "Estatísticas de uso",
+        items: [
+          "O aplicativo registra quais telas e funções são usadas (sem textos, valores ou chaves) para melhorarmos o que mais importa.",
+          "Para o administrador na aba “Sistema”: usuários ativos por dia, 7 e 30 dias, telas populares, ações, versões e plataformas.",
         ],
       },
     },
@@ -82,6 +135,14 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Tema claro y oscuro: el botón de sol o luna en la parte superior.",
           "«Diario de trading» muestra las 10 publicaciones más recientes de nuestro canal de Telegram.",
           "El formulario de contacto está en «Soporte»; las páginas del sitio siempre tienen el botón «Volver a la aplicación».",
+        ],
+      },
+      pt: {
+        title: "Tema claro e sem becos sem saída",
+        items: [
+          "Tema claro e escuro: o botão de sol ou lua no topo da tela.",
+          "“Diário de trading” mostra os 10 posts mais recentes do nosso canal no Telegram.",
+          "O formulário de contato fica direto em “Suporte”; as páginas do site sempre têm o botão “Voltar ao aplicativo”.",
         ],
       },
     },
@@ -134,6 +195,17 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Calendario económico: los eventos clave de la semana y qué pueden mover.",
         ],
       },
+      pt: {
+        title: "Chave de licença, artigos e aviso de risco",
+        items: [
+          "O aplicativo para Windows funciona com uma chave de licença. A chave é emitida no painel com uma assinatura Trader ativa e é preenchida sozinha; uma chave funciona em 2 computadores.",
+          "Chaves de presente por um mês ou sem prazo.",
+          "Nova seção “Artigos”: análises de mercado e o calendário econômico de Alexander Lunin no Substack e no Medium, atualizados automaticamente.",
+          "Aviso de risco abaixo de cada tela.",
+          "Botão “Abrir na corretora” ao lado de cada instrumento: cadastro na corretora Vantage.",
+          "Calendário econômico: os eventos-chave da semana e o que eles podem mover.",
+        ],
+      },
     },
   },
   {
@@ -176,6 +248,15 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Página Acerca de con el historial de versiones.",
         ],
       },
+      pt: {
+        title: "Espaço do trader: peça sinais direto do aplicativo",
+        items: [
+          "Nova seção Pedir um sinal: analise qualquer instrumento com um botão ou faça uma varredura extra de todos os mercados do seu acesso sem esperar a varredura programada.",
+          "Lista de mercados sincronizada com o motor: 19 instrumentos, incluindo prata, GER40, US100 e EUR/JPY, GBP/JPY, USD/CAD, USD/CHF, USD/CNH. Indicador de atualidade dos dados corrigido.",
+          "Filtros por mercado e horizonte em Sinais, por mercado e resultado em Histórico.",
+          "Página Sobre com o histórico de versões.",
+        ],
+      },
     },
   },
   {
@@ -212,6 +293,14 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Todas las pantallas de la Mini App están en el gabinete web y en la app para Windows.",
           "Acceso con Telegram, Google o un código por e-mail.",
           "Menú de idiomas: inglés, ruso, búlgaro.",
+        ],
+      },
+      pt: {
+        title: "Aplicativo para Windows e painel web",
+        items: [
+          "Todas as telas do Mini App estão disponíveis no painel web e no aplicativo para Windows.",
+          "Entre com Telegram, Google ou um código por e-mail.",
+          "Menu de idiomas: inglês, russo, búlgaro.",
         ],
       },
     },

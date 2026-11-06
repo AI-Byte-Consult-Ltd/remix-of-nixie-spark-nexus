@@ -6,6 +6,7 @@ const LABELS: Record<string, { light: string; dark: string }> = {
   ru: { light: "Светлая тема", dark: "Тёмная тема" },
   bg: { light: "Светла тема", dark: "Тъмна тема" },
   es: { light: "Tema claro", dark: "Tema oscuro" },
+  pt: { light: "Tema claro", dark: "Tema escuro" },
   en: { light: "Light theme", dark: "Dark theme" },
 };
 

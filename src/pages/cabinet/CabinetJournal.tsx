@@ -24,6 +24,7 @@ const MORE: Record<string, { open: string; error: string }> = {
   ru: { open: "Открыть в Telegram", error: "Не удалось загрузить посты канала. Попробуйте позже." },
   bg: { open: "Отвори в Telegram", error: "Публикациите не можаха да се заредят. Опитайте по-късно." },
   es: { open: "Abrir en Telegram", error: "No se pudieron cargar las publicaciones. Inténtalo más tarde." },
+  pt: { open: "Abrir no Telegram", error: "Não foi possível carregar as publicações. Tente mais tarde." },
   en: { open: "Open in Telegram", error: "Could not load the channel posts. Please try again later." },
 };
 

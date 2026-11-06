@@ -23,7 +23,7 @@ interface Article {
   publishedAt?: string | null;
 }
 
-const LOCALES: Record<AppLanguage, string> = { ru: "ru-RU", bg: "bg-BG", en: "en-GB", es: "es-ES" };
+const LOCALES: Record<AppLanguage, string> = { ru: "ru-RU", bg: "bg-BG", en: "en-GB", es: "es-ES", pt: "pt-BR" };
 
 export const ArticlesPanel = ({ t, language }: { t: Translation; language: AppLanguage }) => {
   const [articles, setArticles] = useState<Article[] | null>(null);

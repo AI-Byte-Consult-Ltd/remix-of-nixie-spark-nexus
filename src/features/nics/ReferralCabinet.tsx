@@ -31,6 +31,7 @@ const locales: Record<AppLanguage, string> = {
   bg: "bg-BG",
   en: "en-GB",
   es: "es-ES",
+  pt: "pt-BR",
 };
 
 const formatStars = (value: number, language: AppLanguage) =>
