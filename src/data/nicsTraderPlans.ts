@@ -51,7 +51,7 @@ export const plans: Plan[] = [
   {
     id: "demo",
     name: "Monthly subscription",
-    badge: "BEST VALUE · START FOR €1.99",
+    badge: "START FOR €1.99",
     subtitle: "€1.99 for the first 7 days, then €19.99 every month. Renews automatically by card, cancel any time.",
     markets: "Gold & silver · Forex · Brent oil · Crypto · US stocks · Indices",
     free: true,

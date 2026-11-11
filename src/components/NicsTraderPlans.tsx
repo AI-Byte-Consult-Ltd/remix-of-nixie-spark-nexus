@@ -10,9 +10,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { localizedPlans, plansUi } from "@/i18n/traderPlans";
 import {
   formatPrice,
-  plans,
   TELEGRAM_BOT_URL,
   TRIAL_BOT_URL,
   type Currency,
@@ -20,8 +21,10 @@ import {
 } from "@/data/nicsTraderPlans";
 
 const NicsTraderPlans = () => {
+  const { language } = useLanguage();
+  const ui = plansUi(language);
+  const plans = localizedPlans(language);
   const [period, setPeriod] = useState<Period>("30d");
-  const periodLabel = (value: Period) => (value === "7d" ? "7 days" : value === "90d" ? "3 months" : "30 days");
   const [currency, setCurrency] = useState<Currency>("EUR");
 
   return (
@@ -53,19 +56,19 @@ const NicsTraderPlans = () => {
             NICS AI TRADER ACCESS
           </div>
           <h2 className="mb-6 text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-            One price, every market.{" "}
+            {ui.title1}{" "}
             <span className="bg-gradient-to-r from-orange-300 via-orange-400 to-amber-300 bg-clip-text text-transparent">
-              Two ways to pay.
+              {ui.title2}
             </span>
           </h2>
           <p className="mb-6 text-lg leading-relaxed text-white/70 md:text-xl">
-            Both options give the same full access: every market, the Windows app, the web dashboard and Telegram. The only difference is how you pay.
+            {ui.desc}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              { icon: Zap, label: "Fast Telegram access" },
-              { icon: ShieldCheck, label: "No setup fee" },
-              { icon: Target, label: "Entry, SL and TP1–TP4" },
+              { icon: Zap, label: ui.chips[0] },
+              { icon: ShieldCheck, label: ui.chips[1] },
+              { icon: Target, label: ui.chips[2] },
             ].map((item) => (
               <div
                 key={item.label}
@@ -99,7 +102,7 @@ const NicsTraderPlans = () => {
                   />
                 )}
                 <span className="relative">
-                  {value === "7d" ? "7 Days" : value === "90d" ? "3 Months" : "30 Days"}
+                  {ui.periods[value]}
                 </span>
               </button>
             ))}
@@ -182,7 +185,7 @@ const NicsTraderPlans = () => {
                       <div>
                         <div className="flex items-baseline gap-2">
                           <span className="text-3xl font-semibold text-white">{plan.trialPrice ?? "€1.99"}</span>
-                          <span className="text-sm text-white/50">7-day trial</span>
+                          <span className="text-sm text-white/50">{ui.trialLabel}</span>
                         </div>
                         <p className="mt-2 text-xs text-white/50">{plan.trialNote}</p>
                       </div>
@@ -196,7 +199,7 @@ const NicsTraderPlans = () => {
                           transition={{ duration: 0.2 }}
                         >
                           <div className="text-3xl font-semibold text-white">{formatPrice(amount, currency)}</div>
-                          <p className="mt-2 text-xs text-white/55">for {periodLabel(period)}</p>
+                          <p className="mt-2 text-xs text-white/55">{ui.periodFor[period]}</p>
                         </motion.div>
                       </AnimatePresence>
                     ) : null}
@@ -248,8 +251,8 @@ const NicsTraderPlans = () => {
                         <DialogHeader>
                           <DialogTitle className="text-white">{plan.name}</DialogTitle>
                           <DialogDescription className="text-white/60">
-                            {periodLabel(period)} ·{" "}
-                            {amount !== undefined ? formatPrice(amount, currency) : ""} — choose how you'd like to pay.
+                            {ui.periods[period]} ·{" "}
+                            {amount !== undefined ? formatPrice(amount, currency) : ""} — {ui.choosePay}
                           </DialogDescription>
                         </DialogHeader>
 
@@ -264,9 +267,9 @@ const NicsTraderPlans = () => {
                               <Bot className="h-5 w-5 text-orange-300" />
                             </span>
                             <span className="flex-1">
-                              <span className="block text-sm font-medium text-white">Pay with Telegram Stars</span>
+                              <span className="block text-sm font-medium text-white">{ui.starsTitle}</span>
                               <span className="block text-xs text-white/55">
-                                Pick your market(s) and pay directly in @nics_ai_bot — fully automatic.
+                                {ui.starsDesc}
                               </span>
                             </span>
                             <ArrowRight className="h-4 w-4 flex-shrink-0 text-white/40" />
@@ -280,11 +283,9 @@ const NicsTraderPlans = () => {
                               <CreditCard className="h-5 w-5 text-white/80" />
                             </span>
                             <span className="flex-1">
-                              <span className="block text-sm font-medium text-white">Pay by card via Revolut</span>
+                              <span className="block text-sm font-medium text-white">{ui.cardTitle}</span>
                               <span className="block text-xs text-white/55">
-                                {currency === "EUR"
-                                  ? "Log in with Telegram in your account, then complete a secure Revolut checkout — access activates automatically."
-                                  : "Charged in EUR on Revolut's checkout. Log in with Telegram in your account to pay — access activates automatically."}
+                                {currency === "EUR" ? ui.cardDescEur : ui.cardDescUsd}
                               </span>
                             </span>
                             <ArrowRight className="h-4 w-4 flex-shrink-0 text-white/40" />
@@ -300,22 +301,16 @@ const NicsTraderPlans = () => {
         </div>
 
         <div className="mx-auto mt-10 grid max-w-4xl gap-3 text-sm text-white/75 md:grid-cols-3">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-            <p className="font-semibold text-white">€1.99 — trial week</p>
-            <p className="mt-1">The first 7 days of the subscription. Your card is saved for the renewal; cancel before day 7 and you pay nothing more.</p>
-          </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-            <p className="font-semibold text-white">€19.99 / month — subscription</p>
-            <p className="mt-1">Charged automatically every month after the trial. The lowest monthly price. Cancel in one tap, access stays to the end of the paid month.</p>
-          </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-            <p className="font-semibold text-white">€9 / €29 / €69 — one-time pass</p>
-            <p className="mt-1">A single payment for 7, 30 or 90 days, without saving a card or auto-renewal. Costs more per month in exchange for no commitment.</p>
-          </div>
+          {ui.explain.map((box) => (
+            <div key={box.title} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <p className="font-semibold text-white">{box.title}</p>
+              <p className="mt-1">{box.body}</p>
+            </div>
+          ))}
         </div>
 
         <p className="mx-auto mt-8 max-w-3xl text-center text-xs leading-relaxed text-white/50">
-          Prices are displayed directly in the selected currency. Trading involves substantial risk. NICS provides analytical trading scenarios and risk-management tools, not guaranteed returns or financial advice.
+          {ui.disclaimer}
         </p>
       </div>
     </section>
