@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { Translation } from "./i18n";
-import type { MarketRow } from "./types";
+import type { AnalysisProgress, AppLanguage, MarketRow } from "./types";
+import { AnalysisHelix } from "./AnalysisHelix";
+import { analysisTexts, buildAnalysisStages, type AnalysisOutcome } from "./analysisStages";
 
 /*
  * "Order a signal" screen: analysis of one instrument (item 4) and an
@@ -13,19 +15,24 @@ import type { MarketRow } from "./types";
  * same NICS engine as the bot's "Get signal" button, through [07 APP].
  */
 
-export type RequestPhase = "sending" | "waiting" | "done" | "no_result" | "rejected" | "failed";
+export type RequestPhase = "sending" | "waiting" | "done" | "no_setup" | "no_result" | "rejected" | "failed";
 
 export interface RequestState {
   key: string;
   label: string;
   phase: RequestPhase;
   status?: string;
+  scope?: "instrument" | "scan";
+  symbol?: string | null;
+  requestId?: string | null;
+  progress?: AnalysisProgress | null;
 }
 
 interface SignalRequestPanelProps {
   markets: MarketRow[];
   t: Translation;
   request: RequestState | null;
+  language: AppLanguage;
   onRequest: (scope: "instrument" | "scan", market?: string, symbol?: string, label?: string) => void;
   onOpenSignals: () => void;
 }
@@ -35,6 +42,7 @@ export const requestStatusText = (t: Translation, state: RequestState): string =
   if (state.phase === "waiting") return `${t.requestQueued} ${t.requestWaiting}`;
   if (state.phase === "done") return t.requestDone;
   if (state.phase === "no_result") return t.requestNoResult;
+  if (state.phase === "no_setup") return t.requestNoResult;
   if (state.phase === "failed") return t.requestFailed;
   switch (state.status) {
     case "TOO_SOON":
@@ -50,15 +58,46 @@ export const requestStatusText = (t: Translation, state: RequestState): string =
   }
 };
 
+const HELIX_PHASES: RequestPhase[] = ["sending", "waiting", "done", "no_setup", "no_result"];
+
+const outcomeOf = (phase: RequestPhase): AnalysisOutcome =>
+  phase === "done" ? "signal" : phase === "no_setup" ? "no_setup" : phase === "no_result" ? "no_result" : "running";
+
 export const RequestStatusBanner = ({
   state,
   t,
+  language,
   onOpenSignals,
 }: {
   state: RequestState;
   t: Translation;
+  language: AppLanguage;
   onOpenSignals: () => void;
 }) => {
+  // 2026-11-11: an accepted analysis is shown as the DNA helix with the
+  // real stages from [07 APP]; rejections keep the compact banner.
+  if (state.scope && HELIX_PHASES.includes(state.phase)) {
+    const outcome = outcomeOf(state.phase);
+    const stages = buildAnalysisStages({
+      language,
+      scope: state.scope,
+      symbol: state.symbol,
+      accepted: state.phase !== "sending",
+      progress: state.progress ?? null,
+      outcome,
+    });
+    return (
+      <div className="space-y-2" role="status">
+        <AnalysisHelix stages={stages} outcome={outcome} language={language} label={state.label} />
+        {state.phase === "done" && (
+          <Button size="sm" onClick={onOpenSignals} className="w-full bg-emerald-400 text-black hover:bg-emerald-300">
+            {t.openSignals}
+          </Button>
+        )}
+        {state.phase === "no_result" && <p className="px-1 text-xs text-slate-400">{analysisTexts(language).outcomeNoResult}</p>}
+      </div>
+    );
+  }
   const busy = state.phase === "sending" || state.phase === "waiting";
   const good = state.phase === "done";
   const bad = state.phase === "rejected" || state.phase === "failed";
@@ -91,7 +130,7 @@ export const RequestStatusBanner = ({
   );
 };
 
-export const SignalRequestPanel = ({ markets, t, request, onRequest, onOpenSignals }: SignalRequestPanelProps) => {
+export const SignalRequestPanel = ({ markets, t, request, language, onRequest, onOpenSignals }: SignalRequestPanelProps) => {
   const busy = request?.phase === "sending" || request?.phase === "waiting";
 
   return (
@@ -106,7 +145,7 @@ export const SignalRequestPanel = ({ markets, t, request, onRequest, onOpenSigna
         <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">{t.requestLead}</p>
       </div>
 
-      {request && <RequestStatusBanner state={request} t={t} onOpenSignals={onOpenSignals} />}
+      {request && <RequestStatusBanner state={request} t={t} language={language} onOpenSignals={onOpenSignals} />}
 
       <Card className="border-white/10 bg-white/[0.045] text-white shadow-none">
         <CardContent className="flex flex-wrap items-center justify-between gap-4 p-5">

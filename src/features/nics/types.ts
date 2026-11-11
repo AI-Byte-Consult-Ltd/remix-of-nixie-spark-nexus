@@ -245,6 +245,49 @@ export interface MarketRow {
   dataFresh?: boolean;
 }
 
+/*
+ * 2026-11-11: real progress of an ordered analysis, from [07 APP]
+ * "Load Analysis Progress". scan = the [01 CORE] audit row of this
+ * request (null until the engine has read the market); delivered = the
+ * signals stored for this request.
+ */
+export interface AnalysisCandidate {
+  symbol: string;
+  direction?: string | null;
+  status?: string | null;
+  htfTrend?: string | null;
+  macroSlowBias?: string | null;
+  setupType?: string | null;
+  regime?: string | null;
+  orderType?: string | null;
+  d1?: string | null;
+  h4?: string | null;
+  alignment?: string | null;
+  m15Correction?: string | null;
+  eventBlackout?: boolean;
+  relevantEvents?: number;
+}
+
+export interface AnalysedInstrument {
+  symbol: string;
+  fresh?: boolean | null;
+  freshFrames?: number | null;
+  tf?: Record<string, number | null> | null;
+}
+
+export interface AnalysisProgress {
+  requestId: string;
+  checkedAt: string;
+  scan: {
+    generatedAt: string;
+    dataQuality?: { receivedSeries?: number; validSeries?: number; invalidSeries?: number } | null;
+    highImpactSoon?: number;
+    candidates: AnalysisCandidate[];
+    analysed: AnalysedInstrument[];
+  } | null;
+  delivered: Array<{ signalId: string; symbol: string; direction: string; createdAt: string }>;
+}
+
 export interface SignalRequestResult {
   status:
     | "QUEUED"
@@ -421,6 +464,7 @@ export interface AppPayload {
   sizing?: SizingResult | null;
   markets: MarketRow[];
   signalRequest?: SignalRequestResult | null;
+  analysisProgress?: AnalysisProgress | null;
   features: FeatureFlags;
   updates: Array<{
     version: string;
