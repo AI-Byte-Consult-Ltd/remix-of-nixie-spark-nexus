@@ -19,6 +19,8 @@ const NicsMultimedia = lazy(() => import("./pages/NicsMultimedia"));
 const NicsForge = lazy(() => import("./pages/NicsForge"));
 const NicsVideo = lazy(() => import("./pages/NicsVideo"));
 const NicsStudio = lazy(() => import("./pages/NicsStudio"));
+const NicsWindowsApp = lazy(() => import("./pages/NicsWindowsApp"));
+const TelegramOnly = lazy(() => import("./components/TelegramOnly"));
 const Go = lazy(() => import("./pages/Go"));
 const Subtitles = lazy(() => import("./pages/Subtitles"));
 const Trial = lazy(() => import("./pages/Trial"));
@@ -106,7 +108,9 @@ const App = () => (
                       </main>
                     }
                   >
-                    <NicsTraderApp />
+                    <TelegramOnly>
+                      <NicsTraderApp />
+                    </TelegramOnly>
                   </Suspense>
                 </>
               }
@@ -116,6 +120,11 @@ const App = () => (
             <Route path="/nics-forge" element={<NicsForge />} />
             <Route path="/nics-video" element={<NicsVideo />} />
             <Route path="/nics-studio" element={<NicsStudio />} />
+            {/* Windows app page: EN + phased SEO languages (src/i18n/windowsApp.ts WINDOWS_APP_LANGS). */}
+            <Route path="/nics-windows-app" element={<NicsWindowsApp />} />
+            {["ru", "bg", "de", "es"].map((lang) => (
+              <Route key={`${lang}-win`} path={`/${lang}/nics-windows-app`} element={<NicsWindowsApp />} />
+            ))}
             <Route
               path="/cabinet/login"
               element={

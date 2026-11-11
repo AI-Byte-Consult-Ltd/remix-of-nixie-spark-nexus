@@ -2,6 +2,12 @@ import { Mail, Phone, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { AuthorSocialIcons, TRADING_LAB_URL } from "@/components/AuthorSocials";
+import { windowsAppPath } from "@/i18n/windowsApp";
+
+const ABOUT_LABEL: Record<string, string> = {
+  en: "About us", ru: "О компании", bg: "За нас", de: "Über uns", es: "Sobre nosotros", pt: "Sobre nós",
+  fr: "À propos", it: "Chi siamo", pl: "O nas", tr: "Hakkımızda", ar: "من نحن", zh: "关于我们",
+};
 
 const Footer = () => {
   const { t, language } = useLanguage();
@@ -29,6 +35,7 @@ const Footer = () => {
               <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">{t("footer.quicklinks")}</h3>
               <ul className="space-y-2">
                 <li><Link to="/" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.home")}</Link></li>
+                <li><Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">{ABOUT_LABEL[language] ?? "About us"}</Link></li>
                 <li><Link to="/#ecosystem" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.ecosystem")}</Link></li>
                 <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.trading")}</Link></li>
                 <li><Link to="/#projects" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.projects")}</Link></li>
@@ -45,6 +52,7 @@ const Footer = () => {
                 <li><a href="https://estate.aibyteconsult.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Real Estate</a></li>
                 <li><Link to="/nics-ecosystem" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Ecosystem</Link></li>
                 <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Trading</Link></li>
+                <li><Link to={windowsAppPath(language)} className="text-muted-foreground hover:text-primary transition-colors">NICS AI Trader for Windows</Link></li>
                 <li><Link to="/nics-video" className="text-muted-foreground hover:text-primary transition-colors">NICS Video</Link></li>
                 <li><a href={TRADING_LAB_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Trading Lab (YouTube)</a></li>
                 <li><a href="https://pridesocial.org" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Social</a></li>

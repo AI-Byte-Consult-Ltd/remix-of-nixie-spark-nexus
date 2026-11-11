@@ -17,6 +17,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage, getLocalizedSeoMeta } from "@/contexts/LanguageContext";
+import { tradingPlatformTexts } from "@/i18n/tradingPlatform";
+import { windowsAppPath } from "@/i18n/windowsApp";
+import { TELEGRAM_BOT_URL } from "@/data/nicsTraderPlans";
 import {
   Activity,
   ArrowRight,
@@ -33,7 +36,10 @@ import {
   Globe,
   History,
   LineChart,
+  GraduationCap,
+  Landmark,
   LogIn,
+  Monitor,
   Rocket,
   Send,
   Settings,
@@ -45,7 +51,6 @@ import {
   Zap,
 } from "lucide-react";
 
-const MINI_APP_URL = "https://aibyteconsult.com/nics-app";
 const TELEGRAM_URL = "https://t.me/TravelTradeBook";
 const VANTAGE_URL = "https://fwd.cx/Yj25BCrDzEHB";
 
@@ -54,6 +59,8 @@ const Trading = () => {
   const localizedSeo = getLocalizedSeoMeta("/trading", language);
   useInstallableApp("trading");
   const pageRef = useRevealOnScroll<HTMLElement>();
+  const px = tradingPlatformTexts(language);
+  const windowsHref = windowsAppPath(language);
 
   const benefits = [
     { title: t("tradingpage.benefit1.title"), description: t("tradingpage.benefit1.desc"), icon: Target },
@@ -77,31 +84,16 @@ const Trading = () => {
     { step: "03", title: t("tradingpage.step3.title"), description: t("tradingpage.step3.desc"), icon: Send },
   ];
 
-  const markets = [
-    {
-      name: t("tradingpage.market.gold.name"),
-      description: t("tradingpage.market.gold.desc"),
-      availability: t("tradingpage.market.gold.availability"),
-      icon: Coins,
-    },
-    {
-      name: t("tradingpage.market.forex.name"),
-      description: t("tradingpage.market.forex.desc"),
-      availability: t("tradingpage.market.forex.availability"),
-      icon: TrendingUp,
-    },
-    {
-      name: t("tradingpage.market.brent.name"),
-      description: t("tradingpage.market.brent.desc"),
-      availability: t("tradingpage.market.brent.availability"),
-      icon: Activity,
-    },
-    {
-      name: t("tradingpage.market.bitcoin.name"),
-      description: t("tradingpage.market.bitcoin.desc"),
-      availability: t("tradingpage.market.bitcoin.availability"),
-      icon: Bitcoin,
-    },
+  // One market list for the whole page (hero chips, markets block): see
+  // src/i18n/tradingPlatform.ts, kept in sync with the engine's instruments.
+  const MARKET_ICONS = [Coins, TrendingUp, Activity, Bitcoin, LineChart, Landmark];
+  const markets = px.markets.map((market, index) => ({ ...market, icon: MARKET_ICONS[index] ?? Coins }));
+
+  const surfaces = [
+    { ...px.surfaces[0], icon: Monitor, href: windowsHref, internal: true },
+    { ...px.surfaces[1], icon: LogIn, href: "/cabinet", internal: true },
+    { ...px.surfaces[2], icon: Send, href: TELEGRAM_BOT_URL, internal: false },
+    { ...px.surfaces[3], icon: GraduationCap, href: "/cabinet/academy", internal: true },
   ];
 
   const protections = [
@@ -156,7 +148,7 @@ const Trading = () => {
         "@type": "SoftwareApplication",
         name: "NICS AI Trader",
         applicationCategory: "FinanceApplication",
-        operatingSystem: "Telegram Web App",
+        operatingSystem: "Windows, Web, Telegram",
         provider: {
           "@type": "Organization",
           name: "AI Byte Consult Ltd",
@@ -193,31 +185,47 @@ const Trading = () => {
               <div>
                 <Badge className="mb-6 border-primary/25 bg-primary/10 text-primary hover:bg-primary/10">
                   <Bot className="mr-2 h-3.5 w-3.5" />
-                  {t("tradingpage.hero.badge")}
+                  {px.heroBadge}
                 </Badge>
 
-                <h1 className="max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl md:text-7xl">
-                  {t("tradingpage.hero.title1")}
-                  <span className="block text-gradient-gold">{t("tradingpage.hero.title2")}</span>
+                <h1 className="max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
+                  {px.heroTitle1}
+                  <span className="block text-gradient-gold">{px.heroTitle2}</span>
                 </h1>
 
                 <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">
-                  {t("tradingpage.hero.desc")}
+                  {px.heroDesc}
                 </p>
 
-                <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-                  <a href={MINI_APP_URL} target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="w-full rounded-full px-8 sm:w-auto">
-                      {t("tradingpage.hero.cta1")}
+                <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <Link to={windowsHref}>
+                    <Button size="lg" className="w-full rounded-full px-7 sm:w-auto">
+                      <Monitor className="mr-2 h-4 w-4" />
+                      {px.ctaWindows}
+                    </Button>
+                  </Link>
+                  <a href="#track-record">
+                    <Button size="lg" variant="outline" className="w-full rounded-full px-7 sm:w-auto">
+                      <BadgeCheck className="mr-2 h-4 w-4" />
+                      {px.ctaPerformance}
+                    </Button>
+                  </a>
+                  <a href="#nics-trader-plans">
+                    <Button size="lg" variant="outline" className="w-full rounded-full px-7 sm:w-auto">
+                      {px.ctaPro}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
-                  <a href="#example-signal">
-                    <Button size="lg" variant="outline" className="w-full rounded-full px-8 sm:w-auto">
-                      {t("tradingpage.hero.cta2")}
-                    </Button>
-                  </a>
                 </div>
+                <a
+                  href={TELEGRAM_BOT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+                >
+                  <Send className="mr-2 h-4 w-4" />
+                  {px.telegramLine}
+                </a>
 
                 <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-primary/30 bg-primary/5 p-5 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-start gap-3">
@@ -273,6 +281,46 @@ const Trading = () => {
         </section>
 
         <TradingViewTicker />
+
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl text-center">
+              <Badge variant="outline" className="mb-4">{px.platformBadge}</Badge>
+              <h2 className="text-3xl font-semibold md:text-5xl">{px.platformTitle}</h2>
+              <p className="mt-5 text-lg leading-8 text-muted-foreground">{px.platformDesc}</p>
+            </div>
+            <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {surfaces.map((item) => {
+                const inner = (
+                  <Card className="h-full border-border/60 bg-card/70 transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+                    <CardHeader>
+                      <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <item.icon className="h-5 w-5" />
+                      </div>
+                      <CardTitle className="text-lg">{item.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm leading-6 text-muted-foreground">{item.desc}</p>
+                      <p className="mt-4 inline-flex items-center text-sm font-medium text-primary">
+                        {item.cta}
+                        <ArrowRight className="ml-1 h-4 w-4" />
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+                return item.internal ? (
+                  <Link key={item.title} to={item.href} className="block">
+                    {inner}
+                  </Link>
+                ) : (
+                  <a key={item.title} href={item.href} target="_blank" rel="noopener noreferrer" className="block">
+                    {inner}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </section>
 
         <VerifiedTrackRecord />
 
@@ -371,9 +419,9 @@ const Trading = () => {
                   ))}
                 </div>
 
-                <a href={MINI_APP_URL} target="_blank" rel="noopener noreferrer" className="mt-9 inline-block">
+                <a href={TELEGRAM_BOT_URL} target="_blank" rel="noopener noreferrer" className="mt-9 inline-block">
                   <Button size="lg" className="rounded-full px-8">
-                    {t("tradingpage.miniapp.cta")}
+                    {px.telegramCta}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </a>
@@ -468,7 +516,7 @@ const Trading = () => {
               </p>
             </div>
 
-            <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
               {markets.map((market) => (
                 <Card key={market.name} className="h-full border-border/60 transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 bg-background/80">
                   <CardHeader>
@@ -478,8 +526,9 @@ const Trading = () => {
                     <CardTitle>{market.name}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="leading-7">{market.description}</p>
-                    <p className="mt-4 text-sm leading-6 text-muted-foreground">{market.availability}</p>
+                    <p className="text-xs font-medium tracking-wide text-primary/90">{market.symbols}</p>
+                    <p className="mt-3 leading-7">{market.desc}</p>
+                    <p className="mt-4 text-sm leading-6 text-muted-foreground">{market.hours}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -599,11 +648,12 @@ const Trading = () => {
                 </p>
 
                 <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-                  <a href={MINI_APP_URL} target="_blank" rel="noopener noreferrer">
+                  <Link to={windowsHref}>
                     <Button size="lg" className="w-full rounded-full px-8 sm:w-auto">
-                      {t("tradingpage.hero.cta1")}
+                      <Monitor className="mr-2 h-4 w-4" />
+                      {px.ctaWindows}
                     </Button>
-                  </a>
+                  </Link>
                   <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
                     <Button size="lg" variant="outline" className="w-full rounded-full px-8 sm:w-auto">
                       <Send className="mr-2 h-4 w-4" />
