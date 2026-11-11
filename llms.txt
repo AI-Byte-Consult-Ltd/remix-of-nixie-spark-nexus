@@ -9,6 +9,7 @@ Contact: info@aibyteconsult.com
 
 - [Company and ecosystem overview](https://aibyteconsult.com/)
 - [NICS AI Trader product page](https://aibyteconsult.com/trading/)
+- [NICS AI Trader for Windows](https://aibyteconsult.com/nics-windows-app/)
 - [NICS Video — automatic video editing](https://aibyteconsult.com/nics-video/)
 - [NICS Studio — online video editor](https://aibyteconsult.com/nics-studio/)
 - [NICS AI Ecosystem](https://aibyteconsult.com/nics-ecosystem/)
@@ -18,13 +19,15 @@ Contact: info@aibyteconsult.com
 
 ## NICS AI Trader
 
-NICS AI Trader is a Telegram-first AI technical analysis and trading signals product with a secure Mini App, covering gold, forex and crypto markets.
+NICS AI Trader is an AI trading platform: a Windows app, a web dashboard, a Telegram bot with Mini App and an academy. Its engine scans gold, silver, forex, Brent oil, crypto, US stocks and indices around the clock and publishes trade setups with Entry, Stop Loss and TP1–TP4; users decide and trade with their own broker (no automatic execution for users). A public verified track record lists every closed strong signal.
 
 Supported market groups:
-- Gold
-- Forex
-- Brent Oil
-- Bitcoin
+- Gold and silver (XAU/USD, XAG/USD)
+- Forex (EUR/USD, GBP/USD, USD/JPY, AUD/USD, EUR/JPY, GBP/JPY, USD/CAD, USD/CHF, USD/CNH)
+- Brent crude oil (cash CFD)
+- Crypto (BTC/USD, ETH/USD)
+- US stocks (NVIDIA, Tesla)
+- Indices (US100, US500, GER40; cash CFD)
 
 Core product functions:
 - AI technical analysis producing structured market scenarios with Entry, Stop Loss and TP1-TP4
@@ -40,7 +43,9 @@ NICS AI Trader does not guarantee profit and does not replace professional finan
 Product access:
 - [Telegram bot](https://t.me/nics_ai_bot?start=src_site)
 - [Public Telegram channel](https://t.me/TravelTradeBook)
-- [Mini App](https://aibyteconsult.com/nics-app)
+- [Windows app](https://aibyteconsult.com/nics-windows-app/)
+- [Web dashboard](https://aibyteconsult.com/cabinet)
+- Telegram Mini App (opens inside @nics_ai_bot)
 
 ## NICS Video and NICS Studio
 
@@ -56,10 +61,12 @@ The home, NICS AI Trader, NICS Video and NICS Studio pages are available in 12 l
 
 Prices are shown directly in EUR or USD on the product page.
 
-- AI Trader Demo: one signal, free
-- AI Trader Single Market: 7-day or 30-day access
-- AI Trader Multi-Market: 7-day or 30-day access
-- AI Trader Full Coverage: 7-day or 30-day access
+NICS AI Trader has one access level covering every market (gold, silver, forex, Brent oil, crypto, US stocks, indices), paid in one of two ways:
+
+- Subscription: 1.99 EUR for the first 7 days, then 19.99 EUR per month, renews automatically by card, cancel any time.
+- One-time pass: 9 EUR / 7 days, 29 EUR / 30 days or 69 EUR / 90 days, single payment, no card saved, no auto-renewal.
+
+Both include the Windows app Pro license key, the web dashboard and Telegram delivery. There is no free plan.
 
 For current prices and plan details, use the canonical product page: [https://aibyteconsult.com/trading/#nics-trader-plans](https://aibyteconsult.com/trading/#nics-trader-plans)
 
