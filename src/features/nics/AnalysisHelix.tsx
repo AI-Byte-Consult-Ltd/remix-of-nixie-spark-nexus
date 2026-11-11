@@ -118,6 +118,18 @@ const HelixCanvas = ({ stages, outcome, height = 300 }: HelixCanvasProps) => {
     const observer = typeof ResizeObserver !== "undefined" ? new ResizeObserver(resize) : null;
     observer?.observe(canvas);
 
+    // Fixed random cloud, generated once per mount.
+    const gauss = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
+    const dust = Array.from({ length: reduce ? 900 : 2000 }, (_, i) => ({
+      s: i % 2,
+      v: Math.random(),
+      jr: gauss() * 11,
+      ja: gauss() * 0.12,
+      size: 0.9 + Math.random() * 1.5,
+      alpha: 0.45 + Math.random() * 0.55,
+      hue: Math.random(),
+    }));
+
     const start = performance.now();
     const draw = (now: number) => {
       const { stages: list, outcome: result } = stateRef.current;
@@ -135,8 +147,8 @@ const HelixCanvas = ({ stages, outcome, height = 300 }: HelixCanvasProps) => {
       const bottom = height - 22;
       const span = bottom - top;
       const breath = 1 + Math.sin(t * (running ? 2.2 : 1.2)) * 0.05;
-      const radius = Math.min(78, width * 0.24) * breath;
-      const turns = 1.6;
+      const radius = Math.min(96, width * 0.3) * breath;
+      const turns = 2;
       const phase = t * speed;
 
       // Pulses travelling from a rung along both strands.
@@ -163,78 +175,61 @@ const HelixCanvas = ({ stages, outcome, height = 300 }: HelixCanvasProps) => {
         return { boost, rgb };
       };
 
-      // Strands: 2 x 70 glowing dots, colour flowing along the helix.
-      const dots = 70;
-      type Dot = { x: number; y: number; z: number; rgb: [number, number, number]; size: number; alpha: number };
-      const drawList: Dot[] = [];
-      for (let s = 0; s < 2; s += 1) {
-        for (let i = 0; i < dots; i += 1) {
-          const y = top + (span * i) / (dots - 1);
-          const a = angleAt(y) + s * Math.PI;
-          const z = Math.cos(a);
-          const x = cx + Math.sin(a) * radius;
-          const base = paletteAt(i / dots * 0.9 + t * 0.06 + s * 0.5);
-          const { boost, rgb } = pulseBoost(y);
-          const color = rgb ? mix(base, rgb, Math.min(1, boost)) : base;
-          drawList.push({
-            x,
-            y,
-            z,
-            rgb: color,
-            size: (2.1 + z * 0.9) * (1 + boost * 0.9),
-            alpha: (0.35 + (z + 1) * 0.3) * (running || result === "signal" ? 1 : 0.85) + boost * 0.4,
-          });
-        }
+      /*
+       * Strands as clouds of fine "dust" (~520 particles each) scattered
+       * around the helix curve; base pairs (rungs) as bright white bridges.
+       * A strand section takes the colour of its stage once that stage has
+       * a real result; before that it shimmers in the NICS palette.
+       */
+      const stageAt = (y: number) => Math.max(0, Math.min(rungs - 1, Math.floor(((y - top) / span) * rungs)));
+      for (const d of dust) {
+        const y = top + span * d.v;
+        const a = angleAt(y) + d.s * Math.PI + d.ja;
+        const z = Math.cos(a);
+        const r = radius + d.jr;
+        const x = cx + Math.sin(a) * r;
+        const stage = list[stageAt(y)];
+        const lit = stage?.state === "done";
+        const active = stage?.state === "active";
+        const base = lit
+          ? mix(TONE_RGB[stage.tone], paletteAt(d.hue), 0.25)
+          : paletteAt(d.hue + t * 0.05 + d.s * 0.5);
+        const { boost, rgb } = pulseBoost(y);
+        const color = rgb ? mix(base, rgb, Math.min(1, boost)) : base;
+        const depth = 0.35 + (z + 1) * 0.32;
+        const shimmer = active ? 0.75 + 0.25 * Math.sin(t * 7 + d.v * 40) : 1;
+        const alpha = (lit ? 1 : 0.8) * depth * shimmer * d.alpha + boost * 0.5;
+        const size = d.size * (0.7 + (z + 1) * 0.25) * (1 + boost * 0.8);
+        ctx.fillStyle = rgba(color, alpha);
+        ctx.fillRect(x - size / 2, y - size / 2, size, size);
       }
 
-      // Rungs = stages.
+      // Rungs = stages: white bridge dots between the strands.
       list.forEach((stage, index) => {
         const y = rungY(index);
         const a = angleAt(y);
         const x1 = cx + Math.sin(a) * radius;
         const x2 = cx + Math.sin(a + Math.PI) * radius;
-        const z1 = Math.cos(a);
-        const z2 = Math.cos(a + Math.PI);
-        const segments = 9;
         const lit = stage.state === "done";
         const active = stage.state === "active";
-        const tone = TONE_RGB[lit ? stage.tone : "neutral"];
-        const flicker = active ? 0.45 + 0.4 * (0.5 + 0.5 * Math.sin(t * 6 + index)) : 0;
+        const tone = TONE_RGB[stage.tone];
+        const glowA = lit ? 0.85 : active ? 0.3 + 0.4 * (0.5 + 0.5 * Math.sin(t * 6)) : 0.1;
+        const segments = 9;
         for (let k = 1; k < segments; k += 1) {
           const u = k / segments;
           const x = x1 + (x2 - x1) * u;
-          const z = z1 + (z2 - z1) * u;
-          // Two-colour base pairs, like nucleotides: half from each strand colour.
-          const pair = u < 0.5 ? paletteAt(index / rungs) : paletteAt(index / rungs + 0.5);
-          const rgb = lit ? mix(pair, tone, 0.55) : active ? pair : ([100, 116, 139] as [number, number, number]);
-          drawList.push({
-            x,
-            y,
-            z,
-            rgb,
-            size: lit ? 1.9 + z * 0.4 : 1.3 + z * 0.3,
-            alpha: lit ? 0.75 + (z + 1) * 0.12 : active ? flicker : 0.16 + (z + 1) * 0.05,
-          });
+          const rgb = lit ? mix([255, 255, 255], tone, 0.35) : ([226, 232, 240] as [number, number, number]);
+          const r = lit ? 1.6 : 1.1;
+          const g = ctx.createRadialGradient(x, y, 0, x, y, r * 4);
+          g.addColorStop(0, rgba(rgb, glowA));
+          g.addColorStop(0.3, rgba(rgb, glowA * 0.35));
+          g.addColorStop(1, rgba(rgb, 0));
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(x, y, r * 4, 0, Math.PI * 2);
+          ctx.fill();
         }
       });
-
-      // Back to front.
-      drawList.sort((a, b) => a.z - b.z);
-      for (const dot of drawList) {
-        const r = Math.max(0.6, dot.size);
-        const glow = ctx.createRadialGradient(dot.x, dot.y, 0, dot.x, dot.y, r * 4);
-        glow.addColorStop(0, rgba(dot.rgb, dot.alpha));
-        glow.addColorStop(0.35, rgba(dot.rgb, dot.alpha * 0.35));
-        glow.addColorStop(1, rgba(dot.rgb, 0));
-        ctx.fillStyle = glow;
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, r * 4, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = rgba([255, 255, 255], dot.alpha * 0.55);
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, r * 0.55, 0, Math.PI * 2);
-        ctx.fill();
-      }
 
       // Sparks: born at a rung when it lights, drifting like free RNA bases.
       for (const p of pulses) {
