@@ -15,7 +15,8 @@ export type Screen =
   | "request"
   | "about"
   | "articles"
-  | "calendar";
+  | "calendar"
+  | "requested";
 
 export interface TelegramWebApp {
   initData: string;
@@ -125,6 +126,12 @@ export interface SignalRow {
   confidence?: number | null;
   userDecision?: "PENDING" | "ACCEPTED" | "DECLINED" | string;
   decisionReason?: string | null;
+  // 2026-11-11: stored-for-user time, Telegram delivery state and origin.
+  deliveredAt?: string | null;
+  deliveryStatus?: "PENDING" | "SENT" | "FAILED" | string;
+  originMode?: "SCHEDULED" | "TARGETED" | string;
+  requestId?: string | null;
+  setupQuality?: "STRONG" | "RELAXED" | "WEAK" | string;
   analysis?: {
     why?: string[];
     news?: string[];
@@ -448,6 +455,7 @@ export interface AppPayload {
   };
   selectedMarkets: string[];
   activeSignals: SignalRow[];
+  requestedSignals?: RequestedSignalRow[];
   history: SignalHistoryRow[];
   performance: {
     periods: Record<"7d" | "30d" | "90d" | "all", PerformanceBlock>;
@@ -472,6 +480,37 @@ export interface AppPayload {
     title: string;
     items: string[];
   }>;
+}
+
+/*
+ * 2026-11-11: a signal this user ordered (bot button or app), any state.
+ * [07 APP] requestedSignals, last 30 days. Same rows as signal_deliveries,
+ * so a decision made in Telegram shows here and the other way round.
+ */
+export interface RequestedSignalRow {
+  signalId: string;
+  symbol: string;
+  label?: string;
+  marketGroup?: string;
+  direction: "LONG" | "SHORT" | string;
+  entryLow?: string | number | null;
+  entryHigh?: string | number | null;
+  stopLoss?: string | number | null;
+  tp1?: string | number | null;
+  status: string;
+  finalResult?: string | null;
+  realizedR?: number | string | null;
+  hitTargets?: number[] | null;
+  createdAt?: string | null;
+  validUntil?: string | null;
+  closedAt?: string | null;
+  requestId?: string | null;
+  setupQuality?: string | null;
+  deliveredAt?: string | null;
+  deliveryStatus?: string | null;
+  userDecision?: string | null;
+  decisionReason?: string | null;
+  decisionAt?: string | null;
 }
 
 export interface ApiResponse {

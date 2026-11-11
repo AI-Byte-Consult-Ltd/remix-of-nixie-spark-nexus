@@ -11,6 +11,7 @@ import {
   Gauge,
   Gift,
   History,
+  Inbox,
   Info,
   LayoutDashboard,
   LineChart,
@@ -60,6 +61,7 @@ import { RiskProfileForm } from "@/features/nics/RiskProfileForm";
 import { RiskSummaryCard } from "@/features/nics/RiskSummaryCard";
 import { SettingsForm } from "@/features/nics/SettingsForm";
 import { SignalCard } from "@/features/nics/SignalCard";
+import { RequestedSignalsPanel } from "@/features/nics/RequestedSignalsPanel";
 import {
   RequestStatusBanner,
   SignalRequestPanel,
@@ -141,6 +143,7 @@ const SCREENS: Screen[] = [
   "about",
   "articles",
   "calendar",
+  "requested",
 ];
 
 // After a signal request the panel re-reads the dashboard this often, this
@@ -753,6 +756,7 @@ const NicsTraderApp = ({
     { key: "dashboard", icon: LayoutDashboard, label: t.dashboard },
     { key: "request", icon: Radar, label: t.request },
     { key: "signals", icon: Signal, label: t.signals },
+    { key: "requested", icon: Inbox, label: t.requested },
     { key: "calendar", icon: CalendarDays, label: t.calendar },
     { key: "risk", icon: Calculator, label: t.risk },
     { key: "referral", icon: Users, label: t.referrals },
@@ -1380,6 +1384,17 @@ const NicsTraderApp = ({
             language={language}
             onRequest={(scope, market, symbol, label) => void orderSignal(scope, market, symbol, label)}
             onOpenSignals={() => openScreen("signals")}
+          />
+        )}
+
+        {screen === "requested" && (
+          <RequestedSignalsPanel
+            rows={data.requestedSignals ?? []}
+            activeSignals={data.activeSignals}
+            t={t}
+            language={language}
+            renderSignal={renderSignal}
+            onOrder={() => openScreen("request")}
           />
         )}
 

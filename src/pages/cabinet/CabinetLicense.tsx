@@ -13,6 +13,7 @@ import {
   type GiftKey,
   type MyKeyResult,
 } from "@/features/cabinet/license";
+import { WINDOWS_APP_DOWNLOAD_PATH, WINDOWS_APP_PAGE_URL } from "@/features/nics/externalLinks";
 
 const formatDate = (value?: string | null) => {
   if (!value) return "";
@@ -106,6 +107,13 @@ const CabinetLicense = () => {
     }
   };
 
+  // Ready-to-send text for a gift key: the key, its term and the installer link.
+  const inviteText = (g: GiftKey) =>
+    s.invite
+      .replace("{key}", g.key)
+      .replace("{validity}", g.forever ? s.forever : `${s.monthUntil} ${formatDate(g.expiresAt)}`)
+      .replace("{url}", WINDOWS_APP_PAGE_URL);
+
   const giftStatus = (g: GiftKey) => {
     if (g.revoked) return <Badge variant="outline" className="border-rose-400/40 text-rose-400">{s.statusRevoked}</Badge>;
     if (!g.forever && g.expiresAt && new Date(g.expiresAt).getTime() < Date.now())
@@ -156,17 +164,6 @@ const CabinetLicense = () => {
                   </p>
                 </div>
                 <p className="text-sm leading-6 text-muted-foreground">{s.howTo}</p>
-                {!isDesktopApp() && (
-                  <div className="space-y-2 border-t border-border pt-4">
-                    <Button asChild>
-                      <a href="/downloads/NICS-AI-Trader-Setup.exe" download>
-                        <Download className="mr-2 h-4 w-4" />
-                        {s.download}
-                      </a>
-                    </Button>
-                    <p className="text-xs text-muted-foreground">{s.downloadNote}</p>
-                  </div>
-                )}
               </>
             ) : (
               <div className="space-y-3">
@@ -176,6 +173,26 @@ const CabinetLicense = () => {
                 </Button>
               </div>
             )}
+          </CardContent>
+        </Card>
+      )}
+
+      {/* 2026-11-11: the installer is for everyone with a key, including
+          gift keys (no subscription needed), so it is not tied to "eligible". */}
+      {!isDesktopApp() && (
+        <Card className="border-border bg-card">
+          <CardHeader>
+            <CardTitle className="text-base">{s.haveKeyTitle}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <p className="text-sm leading-6 text-muted-foreground">{s.haveKeySteps}</p>
+            <Button asChild>
+              <a href={WINDOWS_APP_DOWNLOAD_PATH} download>
+                <Download className="mr-2 h-4 w-4" />
+                {s.download}
+              </a>
+            </Button>
+            <p className="text-xs text-muted-foreground">{s.downloadNote}</p>
           </CardContent>
         </Card>
       )}
@@ -207,6 +224,7 @@ const CabinetLicense = () => {
                 <span className="text-sm text-muted-foreground">{s.newKey}:</span>
                 <code className="font-mono text-base tracking-wider text-foreground">{newGift.key}</code>
                 <CopyButton value={newGift.key} label={s.copy} doneLabel={s.copied} />
+                <CopyButton value={inviteText(newGift)} label={s.copyInvite} doneLabel={s.copied} />
                 <span className="text-xs text-muted-foreground">
                   {newGift.forever ? s.forever : `${s.monthUntil} ${formatDate(newGift.expiresAt)}`}
                 </span>
@@ -233,6 +251,7 @@ const CabinetLicense = () => {
                   </div>
                   <div className="flex gap-2">
                     <CopyButton value={g.key} label={s.copy} doneLabel={s.copied} />
+                    {!g.revoked && <CopyButton value={inviteText(g)} label={s.copyInvite} doneLabel={s.copied} />}
                     {!g.revoked && (
                       <Button
                         size="sm"

@@ -10,6 +10,14 @@ import { trackUsage } from "@/lib/usageAnalytics";
 // stay hidden. Set it here when the link is known (public, not a secret).
 export const BROKER_REFERRAL_URL = "https://vigco.co/la-com-inv/mGaes8ub";
 
+// The Windows app installer, served by the site (public/downloads). The
+// same link is shown in the app (sidebar, About), on the license page and
+// in the text an admin sends with a gift key.
+export const WINDOWS_APP_DOWNLOAD_PATH = "/downloads/NICS-AI-Trader-Setup.exe";
+export const WINDOWS_APP_DOWNLOAD_URL = `https://aibyteconsult.com${WINDOWS_APP_DOWNLOAD_PATH}`;
+// Public page about the app (features, install steps, download).
+export const WINDOWS_APP_PAGE_URL = "https://aibyteconsult.com/nics-windows-app";
+
 export const openExternal = (url: string) => {
   if (url === BROKER_REFERRAL_URL) trackUsage("broker_link_opened");
   const telegram = window.Telegram?.WebApp;

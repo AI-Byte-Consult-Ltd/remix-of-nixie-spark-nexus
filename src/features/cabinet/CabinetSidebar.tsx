@@ -7,10 +7,12 @@ import {
   Calculator,
   CalendarDays,
   Crown,
+  Download,
   Gift,
   GraduationCap,
   Grid2x2,
   History,
+  Inbox,
   Info,
   Key,
   KeyRound,
@@ -36,7 +38,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { WINDOWS_APP_DOWNLOAD_PATH, WINDOWS_APP_DOWNLOAD_URL, openExternal } from "@/features/nics/externalLinks";
 import { CabinetLanguageSwitch } from "./CabinetLanguageSwitch";
+import { isDesktopApp } from "./license";
 import type { CabinetTranslation } from "./i18n";
 import type { CabinetUser } from "./types";
 
@@ -52,6 +56,7 @@ export const CabinetSidebar = ({ t, user, onLogout }: CabinetSidebarProps) => {
     { to: "/cabinet/trader", label: t("navTraderDashboard"), icon: LayoutDashboard },
     { to: "/cabinet/trader/request", label: t("navRequest"), icon: Radar },
     { to: "/cabinet/trader/signals", label: t("navSignals"), icon: Signal },
+    { to: "/cabinet/trader/requested", label: t("navRequested"), icon: Inbox },
     { to: "/cabinet/trader/calendar", label: t("navCalendar"), icon: CalendarDays },
     { to: "/cabinet/trader/performance", label: t("navPerformance"), icon: BarChart3 },
     { to: "/cabinet/trader/history", label: t("navHistory"), icon: History },
@@ -113,7 +118,28 @@ export const CabinetSidebar = ({ t, user, onLogout }: CabinetSidebarProps) => {
         <SidebarGroup>
           <SidebarGroupLabel>{t("navTraderGroup")}</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>{renderItems(traderItems)}</SidebarMenu>
+            <SidebarMenu>
+              {renderItems(traderItems)}
+              {/* 2026-11-11: the installer link inside the app itself (web
+                  cabinet: direct download; Windows app: opens the browser). */}
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <a
+                    href={WINDOWS_APP_DOWNLOAD_PATH}
+                    download
+                    className="text-muted-foreground"
+                    onClick={(event) => {
+                      if (!isDesktopApp()) return;
+                      event.preventDefault();
+                      openExternal(WINDOWS_APP_DOWNLOAD_URL);
+                    }}
+                  >
+                    <Download className="h-4 w-4" />
+                    <span>{t("navDownloadApp")}</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>

@@ -1,4 +1,6 @@
-import { Bot, Sparkles } from "lucide-react";
+import { Bot, Download, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { WINDOWS_APP_DOWNLOAD_URL, openExternal } from "./externalLinks";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import type { Translation } from "./i18n";
@@ -14,6 +16,57 @@ import type { AppLanguage, AppPayload } from "./types";
 type ReleaseText = Record<AppLanguage, { title: string; items: string[] }>;
 
 export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseText }> = [
+  {
+    version: "2.11.0",
+    date: "11.11.2026",
+    text: {
+      ru: {
+        title: "Приложение работает без Telegram",
+        items: [
+          "Новый сигнал виден в приложении сразу, как только движок его рассчитал, а не после того, как вы приняли его в Telegram.",
+          "Принять или отклонить сигнал можно прямо в приложении. Решение одно на всех: в Telegram, Mini App и Windows-приложении статус одинаковый.",
+          "Новый раздел «Запрошенные сигналы»: всё, что вы заказали за 30 дней, с текущим статусом и итогом.",
+          "Ссылка на скачивание приложения для Windows теперь есть внутри приложения: в меню и в разделе «О программе».",
+        ],
+      },
+      bg: {
+        title: "Приложението работи без Telegram",
+        items: [
+          "Новият сигнал се вижда в приложението веднага щом двигателят го изчисли, а не след като го приемете в Telegram.",
+          "Можете да приемете или откажете сигнала направо в приложението. Решението е едно навсякъде: в Telegram, Mini App и Windows приложението статусът е един и същ.",
+          "Нов раздел „Поръчани сигнали“: всичко, което сте поръчали за 30 дни, с текущия статус и резултата.",
+          "Връзката за изтегляне на приложението за Windows вече е вътре в приложението: в менюто и в „За програмата“.",
+        ],
+      },
+      en: {
+        title: "The app works without Telegram",
+        items: [
+          "A new signal shows in the app as soon as the engine has calculated it, not only after you accepted it in Telegram.",
+          "Accept or decline a signal right in the app. It is one decision everywhere: Telegram, the Mini App and the Windows app show the same status.",
+          "New \"Requested signals\" page: everything you ordered over 30 days, with its current status and outcome.",
+          "The Windows app download link is now inside the app: in the menu and on the About page.",
+        ],
+      },
+      es: {
+        title: "La app funciona sin Telegram",
+        items: [
+          "Una señal nueva aparece en la app en cuanto el motor la calcula, no solo después de aceptarla en Telegram.",
+          "Acepta o rechaza una señal directamente en la app. Es una sola decisión: Telegram, la Mini App y la app de Windows muestran el mismo estado.",
+          "Nueva página «Señales solicitadas»: todo lo que pediste en 30 días, con su estado y resultado.",
+          "El enlace de descarga de la app para Windows ya está dentro de la app: en el menú y en «Acerca de».",
+        ],
+      },
+      pt: {
+        title: "O app funciona sem Telegram",
+        items: [
+          "Um sinal novo aparece no app assim que o motor o calcula, e não só depois de aceitá-lo no Telegram.",
+          "Aceite ou recuse um sinal diretamente no app. É uma única decisão: Telegram, Mini App e o app para Windows mostram o mesmo estado.",
+          "Nova página «Sinais pedidos»: tudo o que pediu em 30 dias, com o estado atual e o resultado.",
+          "O link para baixar o app para Windows agora está dentro do app: no menu e em «Sobre».",
+        ],
+      },
+    },
+  },
   {
     version: "2.10.0",
     date: "11.11.2026",
@@ -386,6 +439,23 @@ export const AboutPanel = ({ t, language, appVersion, updates }: AboutPanelProps
         <p className="mt-3 text-lg font-semibold">Александр Лунин · Alexander Lunin</p>
         <p className="mt-1 text-sm text-slate-300">NICS AI Ecosystem</p>
         <p className="mt-1 text-sm text-slate-400">by AI Byte Consult Ltd</p>
+      </CardContent>
+    </Card>
+
+    {/* 2026-11-11: the installer link inside the app (Mini App, cabinet, Windows app). */}
+    <Card className="border-white/10 bg-white/[0.045] text-white shadow-none">
+      <CardContent className="flex flex-wrap items-center justify-between gap-4 p-5">
+        <div className="max-w-xl">
+          <p className="font-semibold">{t.downloadApp}</p>
+          <p className="mt-1 text-sm leading-6 text-slate-400">{t.downloadAppLead}</p>
+        </div>
+        <Button
+          onClick={() => openExternal(WINDOWS_APP_DOWNLOAD_URL)}
+          className="bg-amber-400 text-black hover:bg-amber-300"
+        >
+          <Download className="mr-1.5 h-4 w-4" />
+          {t.downloadAppButton}
+        </Button>
       </CardContent>
     </Card>
 
