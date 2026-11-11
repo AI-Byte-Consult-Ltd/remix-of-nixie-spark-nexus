@@ -66,6 +66,7 @@ import {
   type RequestState,
 } from "@/features/nics/SignalRequestPanel";
 import type {
+  AnalysisProgress,
   AppLanguage,
   AppPayload,
   PerformanceBlock,
@@ -146,6 +147,9 @@ const SCREENS: Screen[] = [
 // many times (about 3 minutes), to show the new signal as soon as it lands.
 const REQUEST_POLL_MS = 20_000;
 const REQUEST_POLL_TIMES = 9;
+// DNA helix: fast progress polling right after an analysis is accepted.
+const PROGRESS_POLL_MS = 3_000;
+const PROGRESS_POLL_TIMES = 30;
 
 type HorizonFilter = "all" | "short" | "mid" | "long";
 type ResultFilter = "all" | "win" | "loss" | "flat";
@@ -593,7 +597,8 @@ const NicsTraderApp = ({
     const key = scope === "scan" ? "scan" : `${market}:${symbol}`;
     const title = label || symbol || t.extraScan;
     const knownSignals = new Set((data?.activeSignals ?? []).map((signal) => signal.signalId));
-    setRequestState({ key, label: title, phase: "sending" });
+    const base = { key, label: title, scope, symbol: scope === "instrument" ? symbol ?? null : null };
+    setRequestState({ ...base, phase: "sending" });
     telegram?.HapticFeedback?.impactOccurred("medium");
 
     try {
@@ -604,45 +609,65 @@ const NicsTraderApp = ({
       if (!result.data) throw new NicsApiError("REQUEST_FAILED");
       applyPayload(result.data);
       const status = result.data.signalRequest?.status ?? "INVALID";
+      const requestId = result.data.signalRequest?.requestId ?? null;
       if (embedded && cabinetSession) {
         trackUsage("signal_order_sent", { scope, market: market ?? null, result: status, language }, cabinetSession);
       }
       if (status !== "QUEUED") {
-        setRequestState({ key, label: title, phase: "rejected", status });
+        setRequestState({ ...base, phase: "rejected", status });
         telegram?.HapticFeedback?.notificationOccurred("warning");
         return;
       }
-      setRequestState({ key, label: title, phase: "waiting", status });
+      setRequestState({ ...base, phase: "waiting", status, requestId });
       telegram?.HapticFeedback?.notificationOccurred("success");
 
+      /*
+       * 2026-11-11: while the engine works, poll every few seconds with
+       * analysisProgress {requestId}; [07 APP] returns the real stage
+       * results (DNA helix). After the fast window, fall back to the old
+       * slow polling until REQUEST_POLL_TIMES.
+       */
       let attempts = 0;
+      let fastLeft = requestId ? PROGRESS_POLL_TIMES : 0;
+      let lastProgress: AnalysisProgress | null = null;
       const poll = async () => {
-        attempts += 1;
+        const fast = fastLeft > 0;
+        if (fast) fastLeft -= 1;
+        else attempts += 1;
         try {
-          const next = await callApi("dashboard");
+          const next = await callApi("dashboard", requestId ? { analysisProgress: { requestId } } : undefined);
           if (next.data) {
             applyPayload(next.data);
+            const progress = next.data.analysisProgress ?? null;
+            if (progress && progress.requestId === requestId) lastProgress = progress;
             const fresh = next.data.activeSignals.some((signal) => !knownSignals.has(signal.signalId));
-            if (fresh) {
-              setRequestState({ key, label: title, phase: "done", status });
+            if ((lastProgress?.delivered.length ?? 0) > 0 || fresh) {
+              setRequestState({ ...base, phase: "done", status, requestId, progress: lastProgress });
               telegram?.HapticFeedback?.notificationOccurred("success");
               return;
             }
+            const scanRow = lastProgress?.scan;
+            if (scanRow && scanRow.candidates.length === 0) {
+              setRequestState({ ...base, phase: "no_setup", status, requestId, progress: lastProgress });
+              telegram?.HapticFeedback?.notificationOccurred("warning");
+              return;
+            }
+            setRequestState({ ...base, phase: "waiting", status, requestId, progress: lastProgress });
           }
         } catch {
           // A missed refresh is retried on the next tick.
         }
-        if (attempts >= REQUEST_POLL_TIMES) {
-          setRequestState({ key, label: title, phase: "no_result", status });
+        if (!fast && attempts >= REQUEST_POLL_TIMES) {
+          setRequestState({ ...base, phase: "no_result", status, requestId, progress: lastProgress });
           return;
         }
-        pollTimer.current = window.setTimeout(() => void poll(), REQUEST_POLL_MS);
+        pollTimer.current = window.setTimeout(() => void poll(), fastLeft > 0 ? PROGRESS_POLL_MS : REQUEST_POLL_MS);
       };
-      pollTimer.current = window.setTimeout(() => void poll(), REQUEST_POLL_MS);
+      pollTimer.current = window.setTimeout(() => void poll(), requestId ? PROGRESS_POLL_MS : REQUEST_POLL_MS);
     } catch (requestError) {
       const code = requestError instanceof NicsApiError ? requestError.code : "";
       if (embedded && code.startsWith("SESSION_")) onCabinetSessionInvalid?.();
-      setRequestState({ key, label: title, phase: "failed" });
+      setRequestState({ ...base, phase: "failed" });
       telegram?.HapticFeedback?.notificationOccurred("error");
     }
   };
@@ -937,7 +962,7 @@ const NicsTraderApp = ({
               </p>
             </div>
             {requestState && (
-              <RequestStatusBanner state={requestState} t={t} onOpenSignals={() => openScreen("signals")} />
+              <RequestStatusBanner state={requestState} t={t} language={language} onOpenSignals={() => openScreen("signals")} />
             )}
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="space-y-2">
@@ -1352,6 +1377,7 @@ const NicsTraderApp = ({
             markets={data.markets}
             t={t}
             request={requestState}
+            language={language}
             onRequest={(scope, market, symbol, label) => void orderSignal(scope, market, symbol, label)}
             onOpenSignals={() => openScreen("signals")}
           />

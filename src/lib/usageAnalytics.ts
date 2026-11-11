@@ -15,7 +15,7 @@
 import { CABINET_SESSION_STORAGE_KEY } from "@/features/cabinet/api";
 import { isDesktopApp } from "@/features/cabinet/license";
 
-export const TRADER_APP_VERSION = "2.9.0";
+export const TRADER_APP_VERSION = "2.10.0";
 
 export const USAGE_API_URL = "https://n8n.aibyteconsult.com/webhook/nics-usage";
 

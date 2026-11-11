@@ -15,6 +15,52 @@ type ReleaseText = Record<AppLanguage, { title: string; items: string[] }>;
 
 export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseText }> = [
   {
+    version: "2.10.0",
+    date: "11.11.2026",
+    text: {
+      ru: {
+        title: "Живая спираль анализа",
+        items: [
+          "Когда вы заказываете анализ инструмента или дополнительный скан, на экране вращается многоцветная спираль, похожая на ДНК.",
+          "Каждая её перекладина загорается, когда движок NICS действительно прошёл этап: свежие данные, D1/H4, M15, M5, M1, новости и итог. Рядом видно, что именно он нашёл.",
+          "Если сильного входа нет, приложение сразу честно об этом говорит, а не ждёт впустую.",
+        ],
+      },
+      bg: {
+        title: "Жива спирала на анализа",
+        items: [
+          "Когато поръчате анализ на инструмент или допълнително сканиране, на екрана се върти многоцветна спирала, подобна на ДНК.",
+          "Всяко стъпало светва, когато двигателят NICS наистина е минал етапа: свежи данни, D1/H4, M15, M5, M1, новини и резултат. До него се вижда какво е открил.",
+          "Ако няма силен вход, приложението веднага го казва честно, вместо да чака напразно.",
+        ],
+      },
+      en: {
+        title: "Live analysis helix",
+        items: [
+          "When you order an instrument analysis or an extra scan, a multi-coloured DNA-like helix spins on screen.",
+          "Each rung lights up when the NICS engine has really completed that stage: fresh data, D1/H4, M15, M5, M1, news and result, with what it found next to it.",
+          "If there is no strong entry, the app tells you right away instead of waiting in vain.",
+        ],
+      },
+      es: {
+        title: "Hélice de análisis en vivo",
+        items: [
+          "Al pedir el análisis de un instrumento o un escaneo extra, en pantalla gira una hélice multicolor parecida al ADN.",
+          "Cada peldaño se ilumina cuando el motor NICS ha completado de verdad esa etapa: datos frescos, D1/H4, M15, M5, M1, noticias y resultado, con lo que encontró al lado.",
+          "Si no hay una entrada fuerte, la app lo dice enseguida en lugar de esperar en vano.",
+        ],
+      },
+      pt: {
+        title: "Hélice de análise ao vivo",
+        items: [
+          "Ao pedir a análise de um instrumento ou uma varredura extra, uma hélice multicolorida parecida com DNA gira na tela.",
+          "Cada degrau acende quando o motor NICS realmente concluiu a etapa: dados frescos, D1/H4, M15, M5, M1, notícias e resultado, com o que encontrou ao lado.",
+          "Se não houver entrada forte, o app avisa na hora em vez de esperar à toa.",
+        ],
+      },
+    },
+  },
+  {
     version: "2.9.0",
     date: "06.11.2026",
     text: {
