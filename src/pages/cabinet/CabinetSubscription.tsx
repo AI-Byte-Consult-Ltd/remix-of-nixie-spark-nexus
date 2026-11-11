@@ -15,7 +15,8 @@ import { useCabinetOutletContext } from "./CabinetLayout";
 import { useCabinetQuery } from "@/features/cabinet/useCabinetQuery";
 import { callCabinetApi } from "@/features/cabinet/api";
 import type { SubscriptionResponseData } from "@/features/cabinet/types";
-import { formatPrice, plans, TELEGRAM_BOT_URL, TRIAL_BOT_URL } from "@/data/nicsTraderPlans";
+import { formatPrice, TELEGRAM_BOT_URL, TRIAL_BOT_URL } from "@/data/nicsTraderPlans";
+import { localizedPlans } from "@/i18n/traderPlans";
 import { Input } from "@/components/ui/input";
 import { isHalloweenPromo } from "@/lib/halloween";
 import { halloweenText } from "@/components/halloween/halloweenText";
@@ -23,6 +24,7 @@ import type { Language } from "@/contexts/LanguageContext";
 
 const CabinetSubscription = () => {
   const { session, language, t, updateSession } = useCabinetOutletContext();
+  const plans = localizedPlans(language);
 
   const { data, isLoading, errorCode } = useCabinetQuery<SubscriptionResponseData>({
     action: "subscription",
