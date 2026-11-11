@@ -53,13 +53,13 @@ const NicsTraderPlans = () => {
             NICS AI TRADER ACCESS
           </div>
           <h2 className="mb-6 text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-            Choose Your Markets.{" "}
+            One price, every market.{" "}
             <span className="bg-gradient-to-r from-orange-300 via-orange-400 to-amber-300 bg-clip-text text-transparent">
-              Start Trading with NICS.
+              Two ways to pay.
             </span>
           </h2>
           <p className="mb-6 text-lg leading-relaxed text-white/70 md:text-xl">
-            Choose your coverage and receive structured AI trading scenarios directly in Telegram and the NICS Mini App.
+            Both options give the same full access: every market, the Windows app, the web dashboard and Telegram. The only difference is how you pay.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {[
@@ -130,7 +130,7 @@ const NicsTraderPlans = () => {
           </div>
         </div>
 
-        <div className="mx-auto grid max-w-7xl items-stretch gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mx-auto grid max-w-4xl items-stretch gap-6 md:grid-cols-2">
           {plans.map((plan, index) => {
             const amount = plan.prices?.[period]?.[currency];
 
@@ -297,6 +297,21 @@ const NicsTraderPlans = () => {
               </motion.div>
             );
           })}
+        </div>
+
+        <div className="mx-auto mt-10 grid max-w-4xl gap-3 text-sm text-white/75 md:grid-cols-3">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <p className="font-semibold text-white">€1.99 — trial week</p>
+            <p className="mt-1">The first 7 days of the subscription. Your card is saved for the renewal; cancel before day 7 and you pay nothing more.</p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <p className="font-semibold text-white">€19.99 / month — subscription</p>
+            <p className="mt-1">Charged automatically every month after the trial. The lowest monthly price. Cancel in one tap, access stays to the end of the paid month.</p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <p className="font-semibold text-white">€9 / €29 / €69 — one-time pass</p>
+            <p className="mt-1">A single payment for 7, 30 or 90 days, without saving a card or auto-renewal. Costs more per month in exchange for no commitment.</p>
+          </div>
         </div>
 
         <p className="mx-auto mt-8 max-w-3xl text-center text-xs leading-relaxed text-white/50">

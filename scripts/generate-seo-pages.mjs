@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { subPageTranslations } from "../src/contexts/subPageTranslations.ts";
 import { buildBlog } from "./blog.mjs";
+import { windowsAppTexts, WINDOWS_APP_LANGS, WINDOWS_APP_DOWNLOAD } from "../src/i18n/windowsApp.ts";
 
 const distDir = path.resolve("dist");
 const basePath = path.join(distDir, "index.html");
@@ -135,26 +136,30 @@ const tradingSchema = (canonical, lang) => withSiteNodes([
       "@id": `${siteUrl}/trading#software`,
       name: "NICS AI Trader",
       applicationCategory: "FinanceApplication",
-      operatingSystem: "Telegram Web App",
+      operatingSystem: "Windows, Web, Telegram",
       url: canonical,
       description: t(lang, "tradingpage.schema.description"),
       provider: { "@id": `${siteUrl}/#organization` },
       featureList: [
         "Entry, Stop Loss and TP1–TP4",
-        "Gold, Forex, Brent Oil and Bitcoin coverage",
-        "Personal risk profile",
-        "Signal acceptance and lifecycle tracking",
-        "Telegram and Mini App delivery",
+        "Gold, silver, forex, Brent oil, crypto, US stocks and indices",
+        "Windows app and web dashboard",
+        "On-demand analysis of one instrument",
+        "Signal lifecycle tracking: TP, SL and breakeven",
+        "Public verified track record",
+        "Telegram bot and Mini App delivery",
       ],
     },
     {
       "@type": "OfferCatalog",
       name: "NICS AI Trader access plans",
       itemListElement: [
-        { "@type": "Offer", name: "AI Trader Demo", price: "0", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot?start=src_site" },
-        { "@type": "Offer", name: "AI Trader Single Market — 30 days", price: "34.99", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot?start=src_site" },
-        { "@type": "Offer", name: "AI Trader Multi-Market — 30 days", price: "52.99", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot?start=src_site" },
-        { "@type": "Offer", name: "AI Trader Full Coverage — 30 days", price: "79.99", priceCurrency: "EUR", url: "https://t.me/nics_ai_bot?start=src_site" },
+        // Must match src/data/nicsTraderPlans.ts and the n8n price keys.
+        { "@type": "Offer", name: "NICS AI Trader subscription — 7-day trial, then €19.99/month", price: "1.99", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
+        { "@type": "Offer", name: "NICS AI Trader subscription — monthly, auto-renews", price: "19.99", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
+        { "@type": "Offer", name: "NICS AI Trader one-time pass — 7 days, no renewal", price: "9", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
+        { "@type": "Offer", name: "NICS AI Trader one-time pass — 30 days, no renewal", price: "29", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
+        { "@type": "Offer", name: "NICS AI Trader one-time pass — 90 days, no renewal", price: "69", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
       ],
     },
     {
@@ -252,8 +257,55 @@ const subtitlesPages = [
   alternates: subtitlesAlternates,
 }));
 
+// NICS AI Trader Windows app page (src/pages/NicsWindowsApp.tsx): phased SEO
+// languages only (WINDOWS_APP_LANGS in src/i18n/windowsApp.ts), each listing
+// the others as alternates.
+const windowsAlternates = [
+  ...WINDOWS_APP_LANGS.map((lang) => ({ lang, path: localePath(lang, "/nics-windows-app") })),
+  { lang: "x-default", path: "/nics-windows-app" },
+];
+const windowsPages = WINDOWS_APP_LANGS.map((lang) => {
+  const tx = windowsAppTexts[lang];
+  const route = localePath(lang, "/nics-windows-app");
+  return {
+    route,
+    app: "trading",
+    lang,
+    locale: OG_LOCALE[lang],
+    title: tx.seoTitle,
+    description: tx.seoDescription,
+    type: "website",
+    ogImage: `${siteUrl}/og-trading.jpg`,
+    ogImageAlt: "NICS AI Trader for Windows",
+    alternates: windowsAlternates,
+    schema: withSiteNodes([
+      {
+        "@type": "SoftwareApplication",
+        name: "NICS AI Trader for Windows",
+        applicationCategory: "FinanceApplication",
+        operatingSystem: "Windows 10, Windows 11",
+        downloadUrl: `${siteUrl}${WINDOWS_APP_DOWNLOAD}`,
+        url: urlFor(route),
+        inLanguage: lang,
+        description: tx.seoDescription,
+        publisher: { "@id": `${siteUrl}/#organization` },
+        offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: tx.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      },
+    ]),
+  };
+});
+
 const pages = [
   ...localizedPages,
+  ...windowsPages,
   ...subtitlesPages,
   {
     route: "/about",
@@ -373,6 +425,7 @@ const pageSchema = (page, canonical) =>
 const NAV = [
   { base: "/", label: "AI Byte Consult" },
   { base: "/trading", label: "NICS AI Trader" },
+  { base: "/nics-windows-app", label: "Windows app", langs: [...WINDOWS_APP_LANGS] },
   { base: "/nics-video", label: "NICS Video" },
   { base: "/nics-studio", label: "NICS Studio" },
   { base: "/nics-ecosystem", label: "NICS AI Ecosystem", enOnly: true },
@@ -485,6 +538,16 @@ for (const go of goPages) {
   await writeFile(path.join(distDir, "trial", "index.html"), html, "utf8");
 }
 
+// Telegram Mini App entry (/nics-app, src/App.tsx): a real file so Telegram and
+// old links get 200 instead of the 404 page; noindex, not in the sitemap.
+// Outside Telegram the page itself forwards to the web cabinet.
+{
+  const html = renderPage({ route: "/nics-app", type: "website", schemaType: "WebPage", locale: OG_LOCALE.en, lang: "en",
+    title: "NICS AI Trader Mini App", description: "NICS AI Trader inside Telegram. In a browser, use the web dashboard at aibyteconsult.com/cabinet." }, true);
+  await mkdir(path.join(distDir, "nics-app"), { recursive: true });
+  await writeFile(path.join(distDir, "nics-app", "index.html"), html, "utf8");
+}
+
 const notFound = renderPage(
   {
     route: "/404",
@@ -510,6 +573,7 @@ const sitemapMeta = {
   "/nics-forge": { priority: "0.5", changefreq: "monthly" },
   "/nics-video": { priority: "0.8", changefreq: "weekly" },
   "/nics-studio": { priority: "0.6", changefreq: "monthly" },
+  "/nics-windows-app": { priority: "0.9", changefreq: "weekly" },
   "/subtitles": { priority: "0.7", changefreq: "monthly" },
   "/ru/subtitles": { priority: "0.7", changefreq: "monthly" },
   "/bg/subtitles": { priority: "0.6", changefreq: "monthly" },
@@ -523,6 +587,7 @@ for (const lang of ALL_LANGUAGES) {
   sitemapMeta[localePath(lang, "/trading")] = { priority: "0.85", changefreq: "weekly" };
   sitemapMeta[localePath(lang, "/nics-video")] = { priority: "0.6", changefreq: "monthly" };
   sitemapMeta[localePath(lang, "/nics-studio")] = { priority: "0.5", changefreq: "monthly" };
+  if (WINDOWS_APP_LANGS.includes(lang)) sitemapMeta[localePath(lang, "/nics-windows-app")] = { priority: "0.8", changefreq: "weekly" };
 }
 const today = new Date().toISOString().slice(0, 10);
 const sitemapUrls = pages

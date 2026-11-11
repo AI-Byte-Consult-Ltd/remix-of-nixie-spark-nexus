@@ -317,8 +317,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "AI consulting and business automation from Bulgaria: custom AI agents and systems, NICS AI Trader signals for gold, forex and crypto, and NICS Video automatic video editing.",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — AI Technical Analysis & Trading Signals",
-    "tradingpage.seo.description": "AI-powered technical analysis for gold, forex and crypto. Structured trading signals with Entry, Stop Loss and TP1–TP4 in Telegram and the NICS Mini App.",
+    "tradingpage.seo.title": "NICS AI Trader — AI Trading Platform: Windows App, Signals, Verified Track Record",
+    "tradingpage.seo.description": "AI trading platform for gold, forex, oil, crypto, stocks and indices: Windows app, web dashboard and Telegram with Entry, Stop Loss, TP1–TP4 and a public verified track record.",
     "seo.nicsvideo.title": "NICS Video — Automatic Video Editing for Shorts, Reels & YouTube",
     "seo.nicsvideo.description": "Upload your raw clips and get a vertical Short, a horizontal YouTube video and covers in two languages. An automatic algorithm edits your real footage and invents nothing. 10 free credits to start.",
     "seo.nicsstudio.title": "NICS Studio — Online Video Editor for Shorts and YouTube",
@@ -493,8 +493,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "Consultoría de IA y automatización empresarial desde Bulgaria: agentes y sistemas de IA a medida, señales NICS AI Trader para oro, forex y cripto, y edición automática de vídeo con NICS Video.",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — Análisis Técnico con IA y Señales de Trading",
-    "tradingpage.seo.description": "Análisis técnico con IA para oro, forex y cripto. Señales de trading estructuradas con Entry, Stop Loss y TP1–TP4 en Telegram y la NICS Mini App.",
+    "tradingpage.seo.title": "NICS AI Trader — Plataforma de trading con IA: app para Windows, señales, historial verificado",
+    "tradingpage.seo.description": "Plataforma de trading con IA para oro, forex, petróleo, cripto, acciones e índices: app para Windows, panel web y Telegram con Entry, Stop Loss, TP1–TP4 e historial público verificado.",
     "seo.nicsvideo.title": "NICS Video — edición automática de vídeo para Shorts, Reels y YouTube",
     "seo.nicsvideo.description": "Sube tus clips sin editar y recibe un Short vertical, un vídeo horizontal para YouTube y portadas en dos idiomas. Un algoritmo automático edita tus imágenes reales y no inventa nada. 10 créditos gratis.",
     "seo.nicsstudio.title": "NICS Studio — editor de vídeo online para Shorts y YouTube",
@@ -669,8 +669,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "Consultoria de IA e automação empresarial a partir da Bulgária: agentes e sistemas de IA sob medida, sinais NICS AI Trader para ouro, forex e cripto, e edição automática de vídeo com NICS Video.",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — Análise Técnica com IA e Sinais de Trading",
-    "tradingpage.seo.description": "Análise técnica com IA para ouro, forex e criptomoedas. Sinais de trading estruturados com Entry, Stop Loss e TP1–TP4 no Telegram e no NICS Mini App.",
+    "tradingpage.seo.title": "NICS AI Trader — Plataforma de trading com IA: app para Windows, sinais, histórico verificado",
+    "tradingpage.seo.description": "Plataforma de trading com IA para ouro, forex, petróleo, cripto, ações e índices: app para Windows, painel web e Telegram com Entry, Stop Loss, TP1–TP4 e histórico público verificado.",
     "seo.nicsvideo.title": "NICS Video — edição automática de vídeo para Shorts, Reels e YouTube",
     "seo.nicsvideo.description": "Envie seus clipes brutos e receba um Short vertical, um vídeo horizontal para o YouTube e capas em dois idiomas. Um algoritmo automático edita suas imagens reais e não inventa nada. 10 créditos grátis.",
     "seo.nicsstudio.title": "NICS Studio — editor de vídeo online para Shorts e YouTube",
@@ -1110,8 +1110,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "KI-Beratung und Geschäftsautomatisierung aus Bulgarien: maßgeschneiderte KI-Agenten und Systeme, NICS AI Trader Signale für Gold, Forex und Krypto und automatischer Videoschnitt mit NICS Video.",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — KI-Technische Analyse & Handelssignale",
-    "tradingpage.seo.description": "KI-gestützte technische Analyse für Gold, Forex und Krypto. Strukturierte Handelssignale mit Entry, Stop Loss und TP1–TP4 in Telegram und der NICS Mini App.",
+    "tradingpage.seo.title": "NICS AI Trader — KI-Trading-Plattform: Windows-App, Signale, verifizierte Performance",
+    "tradingpage.seo.description": "KI-Trading-Plattform für Gold, Forex, Öl, Krypto, Aktien und Indizes: Windows-App, Web-Dashboard und Telegram mit Entry, Stop Loss, TP1–TP4 und öffentlichem verifiziertem Track Record.",
     "seo.nicsvideo.title": "NICS Video — automatischer Videoschnitt für Shorts, Reels & YouTube",
     "seo.nicsvideo.description": "Lade deine Rohclips hoch und erhalte einen vertikalen Short, ein horizontales YouTube-Video und Cover in zwei Sprachen. Ein automatischer Algorithmus schneidet dein echtes Material und erfindet nichts. 10 Gratis-Credits.",
     "seo.nicsstudio.title": "NICS Studio — Online-Videoeditor für Shorts und YouTube",
@@ -1489,8 +1489,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "Conseil en IA et automatisation d'entreprise depuis la Bulgarie : agents et systèmes d'IA sur mesure, signaux NICS AI Trader sur l'or, le forex et les cryptos, et montage vidéo automatique NICS Video.",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — Analyse technique IA & signaux de trading",
-    "tradingpage.seo.description": "Analyse technique par IA pour l'or, le forex et les cryptos. Signaux de trading structurés avec Entry, Stop Loss et TP1–TP4 sur Telegram et la NICS Mini App.",
+    "tradingpage.seo.title": "NICS AI Trader — Plateforme de trading IA : app Windows, signaux, performance vérifiée",
+    "tradingpage.seo.description": "Plateforme de trading IA pour l'or, le forex, le pétrole, les cryptos, les actions et les indices : app Windows, tableau de bord web et Telegram avec Entry, Stop Loss, TP1–TP4 et historique public vérifié.",
     "seo.nicsvideo.title": "NICS Video — montage vidéo automatique pour Shorts, Reels et YouTube",
     "seo.nicsvideo.description": "Importez vos rushes et recevez un Short vertical, une vidéo YouTube horizontale et des miniatures en deux langues. Un algorithme automatique monte vos vraies images et n'invente rien. 10 crédits offerts.",
     "seo.nicsstudio.title": "NICS Studio — éditeur vidéo en ligne pour Shorts et YouTube",
@@ -1868,8 +1868,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "استشارات الذكاء الاصطناعي وأتمتة الأعمال من بلغاريا: وكلاء وأنظمة ذكاء اصطناعي مخصصة، وإشارات NICS AI Trader للذهب والفوركس والعملات المشفرة، ومونتاج فيديو تلقائي مع NICS Video.",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — تحليل تقني بالذكاء الاصطناعي وإشارات تداول",
-    "tradingpage.seo.description": "تحليل تقني مدعوم بالذكاء الاصطناعي للذهب والفوركس والعملات المشفرة. إشارات تداول منظمة مع نقطة الدخول وStop Loss وTP1–TP4 عبر تيليجرام وتطبيق NICS المصغر.",
+    "tradingpage.seo.title": "NICS AI Trader — منصة تداول بالذكاء الاصطناعي: تطبيق Windows وإشارات وأداء موثق",
+    "tradingpage.seo.description": "منصة تداول بالذكاء الاصطناعي للذهب والفوركس والنفط والعملات المشفرة والأسهم والمؤشرات: تطبيق Windows ولوحة ويب وتيليجرام مع الدخول وStop Loss وTP1–TP4 وسجل عام موثق.",
     "seo.nicsvideo.title": "NICS Video — مونتاج فيديو تلقائي لـ Shorts وReels ويوتيوب",
     "seo.nicsvideo.description": "ارفع مقاطعك الخام واحصل على فيديو Short عمودي وفيديو أفقي ليوتيوب وأغلفة بلغتين. تحرّر خوارزمية تلقائية لقطاتك الحقيقية ولا تختلق شيئًا. 10 أرصدة مجانية للبدء.",
     "seo.nicsstudio.title": "NICS Studio — محرر فيديو عبر الإنترنت لـ Shorts ويوتيوب",
@@ -2242,8 +2242,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "来自保加利亚的 AI 咨询与业务自动化：定制 AI 智能体与系统、面向黄金、外汇和加密货币的 NICS AI Trader 信号，以及 NICS Video 自动视频剪辑。",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — AI技术分析与交易信号",
-    "tradingpage.seo.description": "面向黄金、外汇和加密货币的AI技术分析。在Telegram和NICS迷你应用中提供包含入场点、止损和TP1–TP4的结构化交易信号。",
+    "tradingpage.seo.title": "NICS AI Trader — AI 交易平台：Windows 应用、交易信号、验证业绩",
+    "tradingpage.seo.description": "面向黄金、外汇、原油、加密货币、股票和指数的 AI 交易平台：Windows 应用、网页面板和 Telegram，含入场、止损、TP1–TP4 及公开验证的业绩记录。",
     "seo.nicsvideo.title": "NICS Video — 面向 Shorts、Reels 和 YouTube 的自动视频剪辑",
     "seo.nicsvideo.description": "上传原始素材，即可获得竖屏 Short、横屏 YouTube 视频和双语封面。自动算法剪辑您真实拍摄的画面，不凭空生成任何内容。首次赠送 10 个积分。",
     "seo.nicsstudio.title": "NICS Studio — 面向 Shorts 和 YouTube 的在线视频编辑器",
@@ -2618,8 +2618,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "Doradztwo AI i automatyzacja biznesu z Bułgarii: agenci i systemy AI na zamówienie, sygnały NICS AI Trader na złoto, forex i krypto oraz automatyczny montaż wideo NICS Video.",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — Analiza techniczna AI i sygnały tradingowe",
-    "tradingpage.seo.description": "Analiza techniczna wspierana przez AI dla złota, forexu i kryptowalut. Ustrukturyzowane sygnały tradingowe z Entry, Stop Loss i TP1–TP4 w Telegramie i NICS Mini App.",
+    "tradingpage.seo.title": "NICS AI Trader — Platforma tradingowa AI: aplikacja Windows, sygnały, zweryfikowane wyniki",
+    "tradingpage.seo.description": "Platforma tradingowa AI dla złota, forexu, ropy, krypto, akcji i indeksów: aplikacja Windows, panel web i Telegram z Entry, Stop Loss, TP1–TP4 i publiczną zweryfikowaną historią.",
     "seo.nicsvideo.title": "NICS Video — automatyczny montaż wideo dla Shorts, Reels i YouTube",
     "seo.nicsvideo.description": "Wgraj surowe klipy i otrzymaj pionowy Short, poziomy film na YouTube i okładki w dwóch językach. Automatyczny algorytm montuje Twoje prawdziwe nagrania i niczego nie wymyśla. 10 darmowych kredytów.",
     "seo.nicsstudio.title": "NICS Studio — edytor wideo online dla Shorts i YouTube",
@@ -2994,8 +2994,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "Bulgaristan'dan yapay zeka danışmanlığı ve iş otomasyonu: özel yapay zeka ajanları ve sistemleri, altın, forex ve kripto için NICS AI Trader sinyalleri ve NICS Video ile otomatik video kurgusu.",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — Yapay Zeka Teknik Analiz ve Alım Satım Sinyalleri",
-    "tradingpage.seo.description": "Altın, forex ve kripto için yapay zeka destekli teknik analiz. Telegram ve NICS Mini Uygulamasında Entry, Stop Loss ve TP1–TP4 içeren yapılandırılmış alım satım sinyalleri.",
+    "tradingpage.seo.title": "NICS AI Trader — Yapay zekâ trading platformu: Windows uygulaması, sinyaller, doğrulanmış performans",
+    "tradingpage.seo.description": "Altın, forex, petrol, kripto, hisse ve endeksler için yapay zekâ trading platformu: Windows uygulaması, web paneli ve Telegram; Entry, Stop Loss, TP1–TP4 ve herkese açık doğrulanmış geçmiş.",
     "seo.nicsvideo.title": "NICS Video — Shorts, Reels ve YouTube için otomatik video kurgusu",
     "seo.nicsvideo.description": "Ham kliplerinizi yükleyin; dikey bir Short, yatay bir YouTube videosu ve iki dilde kapaklar alın. Otomatik algoritma gerçek çekimlerinizi kurgular, hiçbir şey uydurmaz. 10 ücretsiz kredi.",
     "seo.nicsstudio.title": "NICS Studio — Shorts ve YouTube için çevrimiçi video editörü",
@@ -3370,8 +3370,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "Consulenza IA e automazione aziendale dalla Bulgaria: agenti e sistemi IA su misura, segnali NICS AI Trader su oro, forex e crypto, e montaggio video automatico con NICS Video.",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — Analisi Tecnica IA e Segnali di Trading",
-    "tradingpage.seo.description": "Analisi tecnica basata su IA per oro, forex e crypto. Segnali di trading strutturati con Entry, Stop Loss e TP1–TP4 su Telegram e la NICS Mini App.",
+    "tradingpage.seo.title": "NICS AI Trader — Piattaforma di trading IA: app Windows, segnali, performance verificata",
+    "tradingpage.seo.description": "Piattaforma di trading IA per oro, forex, petrolio, cripto, azioni e indici: app Windows, dashboard web e Telegram con Entry, Stop Loss, TP1–TP4 e storico pubblico verificato.",
     "seo.nicsvideo.title": "NICS Video — montaggio video automatico per Shorts, Reels e YouTube",
     "seo.nicsvideo.description": "Carica le tue clip grezze e ricevi uno Short verticale, un video orizzontale per YouTube e copertine in due lingue. Un algoritmo automatico monta le tue riprese reali e non inventa nulla. 10 crediti gratis.",
     "seo.nicsstudio.title": "NICS Studio — editor video online per Shorts e YouTube",
@@ -3746,8 +3746,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "ИИ консултации и автоматизация на бизнеса от България: ИИ агенти и системи по поръчка, сигнали NICS AI Trader за злато, форекс и крипто и автоматичен видеомонтаж с NICS Video.",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — ИИ технически анализ и търговски сигнали",
-    "tradingpage.seo.description": "ИИ технически анализ за злато, форекс и крипто. Структурирани търговски сигнали с Entry, Stop Loss и TP1–TP4 в Telegram и NICS Mini App.",
+    "tradingpage.seo.title": "NICS AI Trader — AI платформа за търговия: приложение за Windows, сигнали, резултати",
+    "tradingpage.seo.description": "AI платформа за търговия със злато, форекс, петрол, крипто, акции и индекси: приложение за Windows, уеб табло и Telegram с вход, стоп загуба, TP1–TP4 и публични проверени резултати.",
     "seo.nicsvideo.title": "NICS Video — автоматичен видеомонтаж за Shorts, Reels и YouTube",
     "seo.nicsvideo.description": "Качете суровите си клипове и получете вертикален Short, хоризонтално видео за YouTube и корици на два езика. Автоматичен алгоритъм монтира истинските ви кадри и не измисля нищо. 10 безплатни кредита.",
     "seo.nicsstudio.title": "NICS Studio — онлайн видеоредактор за Shorts и YouTube",
@@ -4122,8 +4122,8 @@ export const subPageTranslations: Record<Language, Record<string, string>> = {
     "seo.home.description": "ИИ-консалтинг и автоматизация бизнеса из Болгарии: ИИ-агенты и системы под задачу, сигналы NICS AI Trader по золоту, форекс и крипте и автоматический монтаж видео NICS Video.",
 
     // === TRADING PAGE ===
-    "tradingpage.seo.title": "NICS AI Trader — ИИ технический анализ и торговые сигналы",
-    "tradingpage.seo.description": "ИИ-анализ рынка золота, форекс и крипты. Структурированные сигналы с точкой входа, стоп-лоссом и TP1–TP4 в Telegram и NICS Mini App.",
+    "tradingpage.seo.title": "NICS AI Trader — AI-платформа для трейдинга: приложение для Windows, сигналы, статистика",
+    "tradingpage.seo.description": "AI-платформа для трейдинга по золоту, форексу, нефти, крипте, акциям и индексам: приложение для Windows, веб-кабинет и Telegram, вход, стоп-лосс, TP1–TP4 и открытая проверенная статистика.",
     "seo.nicsvideo.title": "NICS Video — автоматический монтаж видео для Shorts, Reels и YouTube",
     "seo.nicsvideo.description": "Загрузите исходники и получите вертикальный Short, горизонтальное видео для YouTube и обложки на двух языках. Автоматический алгоритм монтирует ваши реальные кадры и ничего не выдумывает. 10 кредитов бесплатно.",
     "seo.nicsstudio.title": "NICS Studio — онлайн-редактор видео для Shorts и YouTube",
