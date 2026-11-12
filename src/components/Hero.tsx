@@ -6,7 +6,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import HalloweenHero from "@/components/halloween/HalloweenHero";
 import NewYearHero from "@/components/newyear/NewYearHero";
 import HeroGradient from "@/components/hero/HeroGradient";
-import HeroOrbit from "@/components/hero/HeroOrbit";
+import HeroDnaProducts, { HeroProductChips } from "@/components/hero/HeroDnaProducts";
+import QuantumCloud from "@/components/hero/QuantumCloud";
 import HeroDna from "@/components/hero/HeroDna";
 
 const Hero = () => {
@@ -32,6 +33,8 @@ const Hero = () => {
 
       {/* Rotating DNA spiral (2026-11-11, Alexander) */}
       <HeroDna variant="home" />
+      {/* Breathing "quantum plasma" cloud on the spiral (2026-11-12, Alexander) */}
+      <QuantumCloud />
 
       <HalloweenHero />
       <NewYearHero />
@@ -115,16 +118,25 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right — the NICS products on an orbit, each one a link */}
+          {/* Right — below xl the products are plain buttons; from xl up they
+              sit on the DNA spiral (HeroDnaProducts, outside this grid). */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full"
+            className="w-full xl:hidden"
           >
-            <HeroOrbit />
+            <HeroProductChips />
           </motion.div>
         </div>
+      </motion.div>
+
+      {/* The NICS products as nodes on the DNA spiral (xl and up) */}
+      <motion.div
+        style={{ opacity: contentOpacity }}
+        className="pointer-events-none absolute inset-0 z-[11] hidden xl:block"
+      >
+        <HeroDnaProducts />
       </motion.div>
 
       {/* Scroll cue */}

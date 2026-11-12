@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { DnaHelix } from "@/components/dna/DnaHelix";
+import { HOME_DNA } from "./homeDna";
 
 // On a phone the spiral runs behind the text, so it is drawn softer there.
 const useNarrow = () => useState(() => typeof window !== "undefined" && window.innerWidth < 768)[0];
@@ -16,8 +17,8 @@ const HeroDna = ({ variant }: { variant: "home" | "trading" }) => {
     return (
       <div className="pointer-events-none absolute inset-0 z-[1]" aria-hidden="true">
         <DnaHelix
-          from={[0.36, 1.04]}
-          to={[1.04, 0.02]}
+          from={HOME_DNA.from}
+          to={HOME_DNA.to}
           radius={0.08}
           taper={[0.55, 1.2]}
           turns={3}
