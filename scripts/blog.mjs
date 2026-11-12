@@ -173,7 +173,7 @@ const pageShell = ({ lang, title, description, canonical, alternates, ogType, og
 <meta property="og:url" content="${canonical}" />
 <meta property="og:image" content="${ogImage}" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@aibyteconsult" />
+<meta name="twitter:site" content="@EarthAuthor" />
 <meta name="theme-color" content="#0f172a" />
 <link rel="icon" href="/favicon.ico" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

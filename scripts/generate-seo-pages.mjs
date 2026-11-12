@@ -55,6 +55,7 @@ const SAME_AS = [
   "https://t.me/TravelTradeBook",
   "https://t.me/nics_ai_bot",
   "https://www.youtube.com/channel/UCfC75nacgk2RLwaRm1Q0NIg",
+  "https://x.com/EarthAuthor",
 ];
 
 const organizationNode = {
@@ -478,7 +479,7 @@ const renderPage = (page, noindex = false) => {
     <meta property="og:image" content="${image}" />
     <meta property="og:image:alt" content="${escapeAttribute(page.ogImageAlt || "AI Byte Consult and the NICS AI Ecosystem")}" />${ogImageSize}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@aibyteconsult" />
+    <meta name="twitter:site" content="@EarthAuthor" />
     <meta name="twitter:title" content="${escapeAttribute(page.title)}" />
     <meta name="twitter:description" content="${escapeAttribute(page.description)}" />
     <meta name="twitter:image" content="${image}" />
