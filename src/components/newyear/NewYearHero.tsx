@@ -1,17 +1,12 @@
-import { useState } from "react";
-import Link from "@/components/SiteLink";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import HeroFly from "@/components/trading/HeroFly";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { isNewYear } from "@/lib/newYear";
-import { newYearText } from "./newYearText";
 
 // New Year layer for the home hero (Alexander, 2026-10-31): Santa's sleigh
-// pulled by flying reindeer, falling snowflakes and candy canes, two snowmen,
-// a waving Santa, the wasp in a Santa outfit (HeroFly) and the gift easter
-// egg. Renders nothing outside the dates in src/lib/newYear.ts. Decoration is
-// aria-hidden and pointer-events none; only the gifts are clickable.
+// pulled by flying reindeer, falling snowflakes and candy canes and the wasp
+// in a Santa outfit (HeroFly). Static figures (snowmen, standing Santa, gift
+// boxes) removed at Alexander's request 2026-11-12; only moving things stay.
+// Renders nothing outside the dates in src/lib/newYear.ts. All decoration is
+// aria-hidden and pointer-events none.
 
 // Deterministic pseudo-random so the layout is the same on every render.
 const rnd = (i: number, salt: number) => {
@@ -99,65 +94,6 @@ const Sleigh = () => (
   </svg>
 );
 
-const Snowman = ({ className, flip = false }: { className: string; flip?: boolean }) => (
-  <svg viewBox="0 0 60 84" className={className} style={flip ? { transform: "scaleX(-1)" } : undefined}>
-    <ellipse cx="30" cy="80" rx="26" ry="4" fill="#ffffff" fillOpacity="0.35" />
-    <circle cx="30" cy="62" r="18" fill="#f8fafc" />
-    <circle cx="30" cy="36" r="13" fill="#ffffff" />
-    <circle cx="30" cy="16" r="10" fill="#ffffff" />
-    <path d="M12 34 L2 24 M48 34 L58 26 M5 27 l-3 0 M55 28 l2 -3" stroke="#78350f" strokeWidth="2" strokeLinecap="round" />
-    <circle cx="26.5" cy="14" r="1.4" fill="#111827" />
-    <circle cx="33.5" cy="14" r="1.4" fill="#111827" />
-    <path d="M30 17 L40 19 L30 19.5 Z" fill="#f97316" />
-    <path d="M25 21 q5 3 10 0" stroke="#111827" strokeWidth="1.2" strokeLinecap="round" fill="none" />
-    <circle cx="30" cy="32" r="1.4" fill="#111827" />
-    <circle cx="30" cy="38" r="1.4" fill="#111827" />
-    <circle cx="30" cy="58" r="1.6" fill="#111827" />
-    <path d="M19 25 q11 5 22 0 l1 4 q-12 5 -24 0 z" fill="#dc2626" />
-    <path d="M38 27 l3 9 l-4 0 z" fill="#b91c1c" />
-    <rect x="20" y="4" width="20" height="2.6" rx="1" fill="#111827" />
-    <rect x="23" y="-6" width="14" height="11" rx="1" fill="#111827" />
-    <rect x="23" y="1" width="14" height="2" fill="#dc2626" />
-  </svg>
-);
-
-const WavingSanta = ({ className }: { className: string }) => (
-  <svg viewBox="0 0 60 84" className={className}>
-    <ellipse cx="30" cy="81" rx="22" ry="3.5" fill="#ffffff" fillOpacity="0.3" />
-    <rect x="18" y="68" width="9" height="12" rx="2" fill="#111827" />
-    <rect x="33" y="68" width="9" height="12" rx="2" fill="#111827" />
-    <path d="M12 72 Q12 36 30 36 Q48 36 48 72 Z" fill="#dc2626" />
-    <rect x="12" y="68" width="36" height="5" rx="2.5" fill="#f8fafc" />
-    <rect x="28" y="38" width="4" height="32" fill="#f8fafc" />
-    <rect x="13" y="56" width="34" height="4" fill="#111827" />
-    <rect x="27" y="55" width="6" height="6" rx="1" fill="none" stroke="#fbbf24" strokeWidth="1.4" />
-    <g className="ny-santa-wave" style={{ transformOrigin: "45px 44px" }}>
-      <path d="M45 44 Q54 36 54 24" stroke="#dc2626" strokeWidth="7" strokeLinecap="round" fill="none" />
-      <circle cx="54" cy="21" r="4" fill="#f8fafc" />
-    </g>
-    <path d="M15 44 Q8 54 12 62" stroke="#dc2626" strokeWidth="7" strokeLinecap="round" fill="none" />
-    <circle cx="30" cy="26" r="10" fill="#fcd9b6" />
-    <path d="M19 26 q1 16 11 16 q10 0 11 -16 q-4 5 -11 4 q-7 1 -11 -4 z" fill="#f8fafc" />
-    <path d="M25 30 q5 -3 10 0 q-5 2 -10 0 z" fill="#f1f5f9" />
-    <circle cx="26.5" cy="23.5" r="1.2" fill="#111827" />
-    <circle cx="33.5" cy="23.5" r="1.2" fill="#111827" />
-    <circle cx="30" cy="27" r="1.8" fill="#f87171" />
-    <path d="M20 19 Q24 4 34 6 Q42 8 46 16 Q42 14 40 18 Z" fill="#dc2626" />
-    <rect x="19" y="16.5" width="23" height="4.5" rx="2.2" fill="#f8fafc" />
-    <circle cx="46.5" cy="16.5" r="3" fill="#f8fafc" />
-  </svg>
-);
-
-export const GiftSvg = ({ size = 56, color = "#dc2626", ribbon = "#fbbf24" }: { size?: number; color?: string; ribbon?: string }) => (
-  <svg viewBox="0 0 64 64" width={size} height={size} className="drop-shadow-[0_0_14px_rgba(251,191,36,0.6)]">
-    <rect x="8" y="26" width="48" height="34" rx="3" fill={color} />
-    <rect x="5" y="18" width="54" height="11" rx="2.5" fill={color} stroke="rgba(0,0,0,0.12)" />
-    <rect x="28" y="18" width="8" height="42" fill={ribbon} />
-    <path d="M32 18 C24 6 12 8 16 15 C18 19 26 18 32 18 Z M32 18 C40 6 52 8 48 15 C46 19 38 18 32 18 Z" fill={ribbon} />
-    <circle cx="32" cy="18" r="3" fill={ribbon} stroke="rgba(0,0,0,0.15)" />
-  </svg>
-);
-
 const SNOWFLAKES = Array.from({ length: 26 }, (_, i) => ({
   left: rnd(i, 1) * 100,
   size: 8 + rnd(i, 2) * 12,
@@ -176,10 +112,7 @@ const CANES = Array.from({ length: 7 }, (_, i) => ({
 }));
 
 const NewYearHero = () => {
-  const { language } = useLanguage();
-  const [open, setOpen] = useState(false);
   if (!isNewYear()) return null;
-  const t = newYearText(language);
 
   return (
     <>
@@ -196,17 +129,13 @@ const NewYearHero = () => {
           100% { transform: translate(calc(100vw + 40px), -1vh) rotate(-6deg); }
         }
         @keyframes ny-gallop { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(14deg); } }
-        @keyframes ny-wave { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-22deg); } }
-        @keyframes ny-gift-bob { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-6px) rotate(4deg); } }
         .ny-fall { position: absolute; top: 0; animation: ny-fall linear infinite; will-change: transform; }
         .ny-sleigh { position: absolute; left: 0; width: 230px; animation: ny-sleigh-fly 24s linear infinite; }
         .ny-legs-a, .ny-legs-b { transform-box: fill-box; transform-origin: top center; animation: ny-gallop 0.5s ease-in-out infinite; }
         .ny-legs-b { animation-delay: -0.25s; }
-        .ny-santa-wave { animation: ny-wave 1.2s ease-in-out infinite; }
-        .ny-gift { animation: ny-gift-bob 2.8s ease-in-out infinite; }
         @media (max-width: 640px) { .ny-sleigh { width: 160px; } }
         @media (prefers-reduced-motion: reduce) {
-          .ny-fall, .ny-legs-a, .ny-legs-b, .ny-santa-wave, .ny-gift { animation: none; }
+          .ny-fall, .ny-legs-a, .ny-legs-b { animation: none; }
           .ny-fall { display: none; }
           .ny-sleigh { animation: none; left: auto; right: 8%; }
         }
@@ -245,46 +174,8 @@ const NewYearHero = () => {
         <div className="ny-sleigh top-[16%]">
           <Sleigh />
         </div>
-        <Snowman className="absolute bottom-4 left-3 h-20 w-14 md:left-8 md:h-28 md:w-20" />
-        <WavingSanta className="absolute bottom-4 left-16 hidden h-24 w-16 sm:block md:left-28 md:h-28 md:w-20" />
-        <Snowman className="absolute bottom-4 right-24 hidden h-20 w-14 sm:block md:right-32 md:h-24 md:w-16" flip />
       </div>
       <HeroFly />
-
-      <button
-        type="button"
-        aria-label={t.giftLabel}
-        onClick={() => setOpen(true)}
-        className="ny-gift absolute bottom-6 right-4 z-30 flex cursor-pointer items-end rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 md:right-10"
-      >
-        <GiftSvg size={52} />
-        <span className="-ml-3">
-          <GiftSvg size={36} color="#15803d" ribbon="#f8fafc" />
-        </span>
-      </button>
-
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <div className="mx-auto mb-2 flex items-end">
-              <GiftSvg size={72} />
-              <span className="-ml-4">
-                <GiftSvg size={48} color="#15803d" ribbon="#f8fafc" />
-              </span>
-            </div>
-            <DialogTitle className="text-center">{t.eggTitle}</DialogTitle>
-            <DialogDescription className="text-center">{t.eggText}</DialogDescription>
-          </DialogHeader>
-          <div className="grid grid-cols-2 gap-2">
-            <Button asChild className="rounded-full">
-              <Link to="/trading">{t.trader}</Link>
-            </Button>
-            <Button asChild variant="outline" className="rounded-full">
-              <Link to="/nics-video">{t.video}</Link>
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </>
   );
 };
