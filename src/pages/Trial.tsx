@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CheckCircle2, CreditCard, Loader2, ShieldCheck } from "lucide-react";
 import SEO from "@/components/SEO";
+import { trackSiteEvent } from "@/lib/siteAnalytics";
 
 /*
  * /trial?t=<token>&lang=ru|bg|en|es -- NICS AI Trader card subscription.
@@ -212,6 +213,7 @@ const Trial = () => {
     try {
       const r = await post({ action: "start", token, email: email.trim(), agree: true });
       if (r.ok && r.checkout_url && /^https:\/\//.test(r.checkout_url)) {
+        trackSiteEvent("trader_checkout", { variation });
         window.location.href = r.checkout_url;
         return;
       }

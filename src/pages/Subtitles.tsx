@@ -10,6 +10,7 @@ import { type Aspect, type Caption, type Project, buildCaptions, newProject, uid
 import { TranscribeError, transcribeProject } from "@/features/studio/transcribe";
 import { browserCanEdit, exportProject } from "@/features/studio/exportVideo";
 import type { CaptionLang } from "@/features/studio/agent";
+import { trackSiteEvent } from "@/lib/siteAnalytics";
 
 // Free subtitles tool (NICS Video lead magnet): the visitor's clip is
 // transcribed and rendered in their own browser with the NICS Studio engine,
@@ -245,6 +246,7 @@ const Subtitles = () => {
         body: JSON.stringify({ email: value, product: "video", lang, src: sourceTag(), consent: true, website, elapsed_ms: Date.now() - openedAt.current }),
       });
       if (!r.ok) throw new Error(String(r.status));
+      trackSiteEvent("lead_signup", { product: "video" });
     } catch (err) {
       // The download is the promise of this page: a failed signup must not take it away.
       console.error(err);

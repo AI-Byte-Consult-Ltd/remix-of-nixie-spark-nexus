@@ -8,6 +8,7 @@ import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { LanguageProvider, URL_LANGUAGES } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
+import SiteAnalytics from "./components/SiteAnalytics";
 
 const queryClient = new QueryClient();
 const NicsTraderApp = lazy(() => import("./pages/NicsTraderApp"));
@@ -52,6 +53,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Suspense fallback={<div className="min-h-screen bg-background" />}>
+          <SiteAnalytics />
           <DesktopBackBar />
           <Routes>
             <Route path="/" element={<Index />} />

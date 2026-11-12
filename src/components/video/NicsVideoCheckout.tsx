@@ -10,6 +10,7 @@ import { nicsVideoLocales } from "@/i18n/nicsVideo";
 import { isHalloweenPromo } from "@/lib/halloween";
 import { halloweenText } from "@/components/halloween/halloweenText";
 import { claimReferral } from "@/features/referral/videoReferral";
+import { trackSiteEvent } from "@/lib/siteAnalytics";
 
 // n8n [24 VIDEO] Checkout. Prices are decided server-side from the plan id;
 // the amounts shown on the page must match that workflow's PLAN_PRICES.
@@ -143,6 +144,7 @@ const NicsVideoCheckout = ({ plan, onClose, lang, onStarted, onSignIn }: Props) 
         if (tab) tab.location.href = data.checkout_url;
         else window.location.href = data.checkout_url;
       }
+      trackSiteEvent(isDemo ? "video_free_credits" : "video_checkout", { plan: plan.id });
       setDone(true);
       onStarted?.(form.email.trim());
     } catch {

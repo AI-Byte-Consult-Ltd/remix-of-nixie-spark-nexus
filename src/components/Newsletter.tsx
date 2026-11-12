@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { trackSiteEvent } from "@/lib/siteAnalytics";
 
 const NEWSLETTER_SIGNUP_URL = "https://n8n.aibyteconsult.com/webhook/newsletter-signup";
 
@@ -21,6 +22,7 @@ const Newsletter = () => {
         body: JSON.stringify({ email }),
       });
       if (!response.ok) throw new Error(`Signup failed with status ${response.status}`);
+      trackSiteEvent("newsletter_signup");
       toast.success(t("newsletter.success"));
       setEmail("");
     } catch (err) {
