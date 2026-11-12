@@ -7,6 +7,7 @@ import HalloweenHero from "@/components/halloween/HalloweenHero";
 import NewYearHero from "@/components/newyear/NewYearHero";
 import HeroGradient from "@/components/hero/HeroGradient";
 import HeroOrbit from "@/components/hero/HeroOrbit";
+import HeroDna from "@/components/hero/HeroDna";
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -28,6 +29,9 @@ const Hero = () => {
       <motion.div style={{ scale: bgScale }} className="absolute inset-0 z-0">
         <HeroGradient />
       </motion.div>
+
+      {/* Rotating DNA spiral (2026-11-11, Alexander) */}
+      <HeroDna variant="home" />
 
       <HalloweenHero />
       <NewYearHero />

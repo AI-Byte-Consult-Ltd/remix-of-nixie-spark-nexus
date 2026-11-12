@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 import { statusLabels, type Translation } from "./i18n";
 import type { AppLanguage, SignalRow, SizingResult } from "./types";
 import { formatDate, formatMoney, formatNumber, freshnessTone } from "./utils";
+import { SignalDnaStrip } from "./SignalDna";
 
 interface SignalCardProps {
   signal: SignalRow;
@@ -120,6 +121,8 @@ export const SignalCard = ({
             {status}
           </Badge>
         </div>
+
+        <SignalDnaStrip signal={signal} language={language} />
 
         <div className="grid grid-cols-2 gap-px bg-white/10">
           <div className="bg-[#0e1119] p-4">

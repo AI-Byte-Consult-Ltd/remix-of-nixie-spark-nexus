@@ -9,6 +9,7 @@ import VerifiedTrackRecord from "@/components/VerifiedTrackRecord";
 import TradingSignalDemo from "@/components/trading/TradingSignalDemo";
 import TradingLiveStats from "@/components/trading/TradingLiveStats";
 import HeroFly from "@/components/trading/HeroFly";
+import HeroDna from "@/components/hero/HeroDna";
 import TradingFlyStory from "@/components/trading/TradingFlyStory";
 import ProductCta from "@/components/ProductCta";
 import { AuthorBlock, TradingLabBanner } from "@/components/AuthorSocials";
@@ -177,8 +178,12 @@ const Trading = () => {
       <main ref={pageRef} className="min-h-screen bg-background text-foreground">
         <Header />
 
-        <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+        {/* 2026-11-11 (Alexander): dark banner with the rotating DNA spiral,
+            like the home page hero. `dark` switches the shadcn tokens for
+            this section only; the rest of the page stays light. */}
+        <section className="dark relative overflow-hidden bg-background pt-32 pb-20 text-foreground md:pt-40 md:pb-28">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,hsl(var(--primary)/0.16),transparent_35%),radial-gradient(circle_at_85%_65%,rgba(34,197,94,0.12),transparent_35%)]" />
+          <HeroDna variant="trading" />
           <HeroFly />
           <div className="container relative z-10 mx-auto px-4">
             <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">

@@ -17,6 +17,52 @@ type ReleaseText = Record<AppLanguage, { title: string; items: string[] }>;
 
 export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseText }> = [
   {
+    version: "2.12.0",
+    date: "12.11.2026",
+    text: {
+      ru: {
+        title: "ДНК-спираль во всём приложении",
+        items: [
+          "«Моё ДНК» в разделе «Результаты»: большая спираль из вашей реальной истории сигналов. Зелёные мостики в плюс, красные в минус, серые в ноль.",
+          "Спираль на главной странице приложения, построенная из ваших последних сигналов.",
+          "«ДНК сигнала» в каждой карточке сигнала: стоп, вход и цели; цель загорается, только когда она реально достигнута.",
+        ],
+      },
+      bg: {
+        title: "ДНК спирала в цялото приложение",
+        items: [
+          "„Моето ДНК“ в „Резултати“: голяма спирала от вашата реална история на сигналите. Зелените мостове са печалба, червените загуба, сивите нула.",
+          "Спирала на началния екран на приложението, изградена от последните ви сигнали.",
+          "„ДНК на сигнала“ във всяка карта на сигнал: стоп, вход и цели; целта светва само когато е реално достигната.",
+        ],
+      },
+      en: {
+        title: "DNA spiral across the app",
+        items: [
+          "\"My DNA\" in Results: a large spiral built from your real signal history. Green bridges are profit, red are loss, grey are zero.",
+          "A spiral on the app home screen, built from your latest signals.",
+          "\"Signal DNA\" on every signal card: stop, entry and targets; a target lights up only when it was really hit.",
+        ],
+      },
+      es: {
+        title: "Espiral de ADN en toda la app",
+        items: [
+          "\"Mi ADN\" en Resultados: una gran espiral hecha con tu historial real de señales. Puentes verdes en ganancia, rojos en pérdida, grises en cero.",
+          "Una espiral en la pantalla principal, hecha con tus últimas señales.",
+          "\"ADN de la señal\" en cada tarjeta: stop, entrada y objetivos; un objetivo se ilumina solo cuando se alcanzó de verdad.",
+        ],
+      },
+      pt: {
+        title: "Espiral de DNA em todo o app",
+        items: [
+          "\"Meu DNA\" em Resultados: uma grande espiral feita com o seu histórico real de sinais. Pontes verdes no lucro, vermelhas na perda, cinzas no zero.",
+          "Uma espiral na tela inicial, feita com os seus últimos sinais.",
+          "\"DNA do sinal\" em cada cartão: stop, entrada e alvos; um alvo acende só quando foi realmente atingido.",
+        ],
+      },
+    },
+  },
+  {
     version: "2.11.0",
     date: "11.11.2026",
     text: {

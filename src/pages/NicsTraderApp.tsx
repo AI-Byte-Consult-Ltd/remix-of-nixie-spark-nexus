@@ -61,6 +61,7 @@ import { RiskProfileForm } from "@/features/nics/RiskProfileForm";
 import { RiskSummaryCard } from "@/features/nics/RiskSummaryCard";
 import { SettingsForm } from "@/features/nics/SettingsForm";
 import { SignalCard } from "@/features/nics/SignalCard";
+import { DashboardDna, MyDnaPanel } from "@/features/nics/SignalDna";
 import { RequestedSignalsPanel } from "@/features/nics/RequestedSignalsPanel";
 import {
   RequestStatusBanner,
@@ -887,8 +888,9 @@ const NicsTraderApp = ({
 
         {screen === "dashboard" && (
           <>
-            <section className="overflow-hidden rounded-[28px] border border-amber-300/20 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.22),transparent_42%),linear-gradient(145deg,#151923,#0b0d13)] p-5">
-              <div className="flex items-start justify-between gap-4">
+            <section className="relative overflow-hidden rounded-[28px] border border-amber-300/20 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.18),transparent_42%),linear-gradient(145deg,#151923,#0b0d13)] p-5 sm:min-h-[190px]">
+              <DashboardDna history={data.history} />
+              <div className="relative flex items-start justify-between gap-4">
                 <div>
                   <p className="text-xs uppercase tracking-[0.18em] text-amber-300/80">{t.access}</p>
                   <h1 className="mt-2 text-2xl font-semibold">
@@ -900,7 +902,7 @@ const NicsTraderApp = ({
                 </div>
                 <ShieldCheck className="h-8 w-8 text-amber-300" />
               </div>
-              <div className="mt-6 flex items-center justify-between text-xs text-slate-500">
+              <div className="relative mt-6 flex items-center justify-between text-xs text-slate-500">
                 <span>{t.updated}</span>
                 <span>{formatDate(data.generatedAt, language)}</span>
               </div>
@@ -1030,6 +1032,10 @@ const NicsTraderApp = ({
                 );
               })}
             </section>
+
+            {/* 2026-11-11 (Alexander): "Моё ДНК", a big spiral from this
+                user's own closed signals. */}
+            <MyDnaPanel history={data.history} total={data.performance.periods.all} language={language} />
 
             {/* 2026-11-04: equity curve, drawdown, profit factor, per-instrument
                 table and calendar periods, from the same public track record
