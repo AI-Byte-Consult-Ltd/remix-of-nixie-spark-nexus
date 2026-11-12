@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Что такое соотношение риска и прибыли: винрейт, матожидание и профит-фактор | AI Byte Consult</title>
+<meta name="description" content="Что означает соотношение риск/прибыль, как оно связано с процентом прибыльных сделок, таблица безубыточности и как оценивать стратегию по матожиданию, а не по одному числу." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://aibyteconsult.com/ru/blog/risk-to-reward-ratio/" />
+<link rel="alternate" hreflang="bg" href="https://aibyteconsult.com/bg/blog/risk-to-reward-ratio/" />
+<link rel="alternate" hreflang="en" href="https://aibyteconsult.com/blog/risk-to-reward-ratio/" />
+<link rel="alternate" hreflang="ru" href="https://aibyteconsult.com/ru/blog/risk-to-reward-ratio/" />
+<link rel="alternate" hreflang="x-default" href="https://aibyteconsult.com/blog/risk-to-reward-ratio/" />
+<meta property="og:site_name" content="AI Byte Consult" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Что такое соотношение риска и прибыли: винрейт, матожидание и профит-фактор | AI Byte Consult" />
+<meta property="og:description" content="Что означает соотношение риск/прибыль, как оно связано с процентом прибыльных сделок, таблица безубыточности и как оценивать стратегию по матожиданию, а не по одному числу." />
+<meta property="og:url" content="https://aibyteconsult.com/ru/blog/risk-to-reward-ratio/" />
+<meta property="og:image" content="https://aibyteconsult.com/og-trading.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@EarthAuthor" />
+<meta name="theme-color" content="#0f172a" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://aibyteconsult.com/#organization","name":"AI Byte Consult Ltd","url":"https://aibyteconsult.com/","logo":"https://aibyteconsult.com/android-chrome-512x512.png"},{"@type":"Article","headline":"Что такое соотношение риска и прибыли: винрейт, матожидание и профит-фактор","description":"Что означает соотношение риск/прибыль, как оно связано с процентом прибыльных сделок, таблица безубыточности и как оценивать стратегию по матожиданию, а не по одному числу.","inLanguage":"ru","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://aibyteconsult.com/og-trading.jpg","mainEntityOfPage":"https://aibyteconsult.com/ru/blog/risk-to-reward-ratio/","author":{"@id":"https://aibyteconsult.com/#organization"},"publisher":{"@id":"https://aibyteconsult.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://aibyteconsult.com/ru/"},{"@type":"ListItem","position":2,"name":"Статьи","item":"https://aibyteconsult.com/ru/blog/"},{"@type":"ListItem","position":3,"name":"Что такое соотношение риска и прибыли: винрейт, матожидание и профит-фактор","item":"https://aibyteconsult.com/ru/blog/risk-to-reward-ratio/"}]}]}</script>
+<style>
+:root{--bg:#ffffff;--fg:#0f172a;--muted:#475569;--line:#e2e8f0;--accent:#2563eb;--soft:#f1f5f9}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1120;--fg:#e2e8f0;--muted:#94a3b8;--line:#1e293b;--accent:#60a5fa;--soft:#111a2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+header,footer{border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line);border-bottom:0;margin-top:64px;color:var(--muted);font-size:14px}
+.bar{max-width:760px;margin:0 auto;padding:16px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+.bar .brand{font-weight:700;color:var(--fg);text-decoration:none;margin-right:auto}
+.bar a{text-decoration:none;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:24px 16px}
+.crumbs{font-size:14px;color:var(--muted)}
+.crumbs a{color:var(--muted)}
+h1{font-size:clamp(28px,5vw,38px);line-height:1.2;margin:16px 0 8px}
+h2{font-size:24px;line-height:1.3;margin:40px 0 8px}
+h3{font-size:19px;margin:28px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:24px}
+.lead{font-size:19px;color:var(--muted)}
+aside{background:var(--soft);border-left:4px solid var(--accent);padding:12px 16px;border-radius:6px;margin:20px 0}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+.cta{margin:40px 0;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.cta a.button{display:inline-block;margin-top:8px;padding:10px 18px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600}
+.list article{padding:20px 0;border-bottom:1px solid var(--line)}
+.list h2{margin:0 0 4px;font-size:21px}
+.list p{margin:4px 0;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><nav class="bar">
+<a class="brand" href="/ru/">AI Byte Consult</a>
+<a href="/ru/nics-video/">NICS Video</a>
+<a href="/ru/trading/">NICS AI Trader</a>
+<a href="/ru/nics-trading-software/">Программа для трейдинга</a>
+<a href="/ru/blog/">Статьи</a>
+</nav></header>
+<main>
+<div class="crumbs"><a href="/ru/">Главная</a> › <a href="/ru/blog/">Статьи</a></div>
+<article>
+<h1>Что такое соотношение риска и прибыли: винрейт, матожидание и профит-фактор</h1>
+<div class="meta">Опубликовано: <time datetime="2026-11-12">2026-11-12</time> · AI Byte Consult · Читать на языке: <a href="/bg/blog/risk-to-reward-ratio/" hreflang="bg">Български</a> · <a href="/blog/risk-to-reward-ratio/" hreflang="en">English</a></div>
+<p class="lead">Что означает соотношение риск/прибыль, как оно связано с процентом прибыльных сделок, таблица безубыточности и как оценивать стратегию по матожиданию, а не по одному числу.</p>
+<p>Соотношение риска и прибыли (R:R, RRR) сравнивает, сколько вы можете потерять в сделке и сколько собираетесь заработать. Это просто — и этим часто злоупотребляют.</p>
+<h2>Определение</h2>
+<p><strong>Риск/прибыль = (вход − стоп) : (цель − вход)</strong></p>
+<p>Покупка по 2000 со стопом 1990 и целью 2020 рискует 10, чтобы заработать 20: соотношение <strong>1:2</strong>. В терминах R сделка рискует 1R и целится в +2R. (Если R для вас новое понятие, начните со статьи <a href="/ru/blog/how-to-calculate-risk-per-trade/">как рассчитать риск на сделку</a>.)</p>
+<h2>Без винрейта соотношение ничего не значит</h2>
+<p>1:3 звучит отлично, но если цена доходит до цели лишь в 15% случаев, вы теряете деньги. Важно сочетание. Процент прибыльных сделок, при котором соотношение даёт ровно ноль:</p>
+<p><strong>Винрейт безубыточности = 1 ÷ (1 + прибыль/риск)</strong></p>
+<div class="table"><table><thead><tr><th>Риск : прибыль</th><th>Винрейт безубыточности</th></tr></thead><tbody><tr><td>1 : 0,5</td><td>66,7%</td></tr><tr><td>1 : 1</td><td>50%</td></tr><tr><td>1 : 1,5</td><td>40%</td></tr><tr><td>1 : 2</td><td>33,3%</td></tr><tr><td>1 : 3</td><td>25%</td></tr></tbody></table></div>
+<p>Выше этого процента стратегия со временем зарабатывает, ниже — теряет, причём ещё до учёта спреда и комиссий.</p>
+<h2>Матожидание: число, которое действительно решает</h2>
+<p><strong>Матожидание = доля прибыльных × средняя прибыль − доля убыточных × средний убыток</strong> (в R)</p>
+<ul><li>40% прибыльных по +2R, 60% убыточных по −1R: 0,4 × 2 − 0,6 × 1 = <strong>+0,2R на сделку</strong></li><li>60% прибыльных по +0,5R, 40% убыточных по −1R: 0,6 × 0,5 − 0,4 × 1 = <strong>−0,1R на сделку</strong></li></ul>
+<p>Вторая стратегия выигрывает чаще и всё равно теряет деньги. Поэтому высокий винрейт сам по себе ничего не доказывает.</p>
+<h2>Профит-фактор</h2>
+<p>Связанная мера — <strong>профит-фактор</strong>: сумма прибыли прибыльных сделок, делённая на сумму убытков убыточных. Выше 1,0 — стратегия за период заработала; 1,3–1,5 на большой выборке — хороший результат; очень высокие значения на нескольких сделках обычно означают, что выборка слишком мала.</p>
+<h2>Поэтапные цели меняют картину</h2>
+<p>Во многих торговых планах несколько целей (TP1, TP2, TP3, TP4). На каждой закрывается часть позиции, а после первой стоп часто переносится в безубыток. Тогда реальная прибыль — это среднее по частям, а часть сделок заканчивается в безубытке (0R), а не полным убытком. Поэтому результаты нужно оценивать по фактическому R, а не по самой дальней цели на бумаге.</p>
+<h2>Частые ошибки</h2>
+<ol><li><strong>Отодвигать цель, чтобы «улучшить» соотношение.</strong> Цель, до которой рынок редко доходит, ровно настолько же снижает винрейт.</li><li><strong>Придвигать стоп ради того же.</strong> Стоп внутри обычного шума срабатывает чаще.</li><li><strong>Забывать про издержки.</strong> Спред и комиссия съедают бо́льшую долю сделок с маленьким R.</li><li><strong>Судить по нескольким сделкам.</strong> Матожиданию можно доверять на сотнях результатов.</li></ol>
+<h2>Как проверить провайдера сигналов</h2>
+<p>Попросите три числа на большой выборке: винрейт, среднюю прибыль и убыток в R и профит-фактор — плюс худшую просадку. <a href="/ru/trading/#track-record">Статистика NICS AI Trader</a> публикует именно это для каждого закрытого сильного сигнала, с кривой доходности и итогами по инструментам. Слабые идеи «Watchlist Setup» туда не входят вообще, так что цифры описывают то, что реально приходит подписчикам.</p>
+<aside>Торговля связана с высоким риском. Прошлые результаты — в R или в деньгах — не гарантируют будущих.</aside>
+<div class="cta">Статистика NICS AI Trader открыта и ведётся в R: каждый закрытый сильный сигнал, профит-фактор и просадка.<br /><a class="button" href="/ru/trading/#track-record">Открыть статистику</a></div>
+</article>
+<p><a href="/ru/blog/">← Все статьи</a></p>
+</main>
+<footer><div class="bar">© 2026 AI Byte Consult Ltd · <a href="mailto:info@aibyteconsult.com">info@aibyteconsult.com</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></div></footer>
+</body>
+</html>

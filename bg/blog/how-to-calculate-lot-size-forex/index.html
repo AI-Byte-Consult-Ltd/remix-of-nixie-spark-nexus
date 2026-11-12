@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Как да изчислим размера на лота във форекс и златото: примери с числа | AI Byte Consult</title>
+<meta name="description" content="Една формула за размера на позицията, стойността на пипса за EUR/USD, USD/JPY и злато, закръгляне до стъпката на брокера и какво да правите, когато дори минималният лот е твърде голям." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://aibyteconsult.com/bg/blog/how-to-calculate-lot-size-forex/" />
+<link rel="alternate" hreflang="bg" href="https://aibyteconsult.com/bg/blog/how-to-calculate-lot-size-forex/" />
+<link rel="alternate" hreflang="en" href="https://aibyteconsult.com/blog/how-to-calculate-lot-size-forex/" />
+<link rel="alternate" hreflang="ru" href="https://aibyteconsult.com/ru/blog/how-to-calculate-lot-size-forex/" />
+<link rel="alternate" hreflang="x-default" href="https://aibyteconsult.com/blog/how-to-calculate-lot-size-forex/" />
+<meta property="og:site_name" content="AI Byte Consult" />
+<meta property="og:locale" content="bg_BG" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Как да изчислим размера на лота във форекс и златото: примери с числа | AI Byte Consult" />
+<meta property="og:description" content="Една формула за размера на позицията, стойността на пипса за EUR/USD, USD/JPY и злато, закръгляне до стъпката на брокера и какво да правите, когато дори минималният лот е твърде голям." />
+<meta property="og:url" content="https://aibyteconsult.com/bg/blog/how-to-calculate-lot-size-forex/" />
+<meta property="og:image" content="https://aibyteconsult.com/og-trading.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@EarthAuthor" />
+<meta name="theme-color" content="#0f172a" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://aibyteconsult.com/#organization","name":"AI Byte Consult Ltd","url":"https://aibyteconsult.com/","logo":"https://aibyteconsult.com/android-chrome-512x512.png"},{"@type":"Article","headline":"Как да изчислим размера на лота във форекс и златото: примери с числа","description":"Една формула за размера на позицията, стойността на пипса за EUR/USD, USD/JPY и злато, закръгляне до стъпката на брокера и какво да правите, когато дори минималният лот е твърде голям.","inLanguage":"bg","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://aibyteconsult.com/og-trading.jpg","mainEntityOfPage":"https://aibyteconsult.com/bg/blog/how-to-calculate-lot-size-forex/","author":{"@id":"https://aibyteconsult.com/#organization"},"publisher":{"@id":"https://aibyteconsult.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Начало","item":"https://aibyteconsult.com/bg/"},{"@type":"ListItem","position":2,"name":"Статии","item":"https://aibyteconsult.com/bg/blog/"},{"@type":"ListItem","position":3,"name":"Как да изчислим размера на лота във форекс и златото: примери с числа","item":"https://aibyteconsult.com/bg/blog/how-to-calculate-lot-size-forex/"}]}]}</script>
+<style>
+:root{--bg:#ffffff;--fg:#0f172a;--muted:#475569;--line:#e2e8f0;--accent:#2563eb;--soft:#f1f5f9}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1120;--fg:#e2e8f0;--muted:#94a3b8;--line:#1e293b;--accent:#60a5fa;--soft:#111a2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+header,footer{border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line);border-bottom:0;margin-top:64px;color:var(--muted);font-size:14px}
+.bar{max-width:760px;margin:0 auto;padding:16px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+.bar .brand{font-weight:700;color:var(--fg);text-decoration:none;margin-right:auto}
+.bar a{text-decoration:none;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:24px 16px}
+.crumbs{font-size:14px;color:var(--muted)}
+.crumbs a{color:var(--muted)}
+h1{font-size:clamp(28px,5vw,38px);line-height:1.2;margin:16px 0 8px}
+h2{font-size:24px;line-height:1.3;margin:40px 0 8px}
+h3{font-size:19px;margin:28px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:24px}
+.lead{font-size:19px;color:var(--muted)}
+aside{background:var(--soft);border-left:4px solid var(--accent);padding:12px 16px;border-radius:6px;margin:20px 0}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+.cta{margin:40px 0;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.cta a.button{display:inline-block;margin-top:8px;padding:10px 18px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600}
+.list article{padding:20px 0;border-bottom:1px solid var(--line)}
+.list h2{margin:0 0 4px;font-size:21px}
+.list p{margin:4px 0;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><nav class="bar">
+<a class="brand" href="/bg/">AI Byte Consult</a>
+<a href="/bg/nics-video/">NICS Video</a>
+<a href="/bg/trading/">NICS AI Trader</a>
+<a href="/bg/nics-trading-software/">Софтуер за трейдинг</a>
+<a href="/bg/blog/">Статии</a>
+</nav></header>
+<main>
+<div class="crumbs"><a href="/bg/">Начало</a> › <a href="/bg/blog/">Статии</a></div>
+<article>
+<h1>Как да изчислим размера на лота във форекс и златото: примери с числа</h1>
+<div class="meta">Публикувано: <time datetime="2026-11-12">2026-11-12</time> · AI Byte Consult · Прочетете на: <a href="/blog/how-to-calculate-lot-size-forex/" hreflang="en">English</a> · <a href="/ru/blog/how-to-calculate-lot-size-forex/" hreflang="ru">Русский</a></div>
+<p class="lead">Една формула за размера на позицията, стойността на пипса за EUR/USD, USD/JPY и злато, закръгляне до стъпката на брокера и какво да правите, когато дори минималният лот е твърде голям.</p>
+<p>Размерът на лота е единственото число в сделката, което контролирате изцяло. Накъде ще тръгне цената решава пазарът; колко ще загубите, ако грешите, решавате вие. Ето как да го изчислите правилно.</p>
+<h2>Формулата</h2>
+<p><strong>Лот = сума на риска ÷ (разстояние до стопа × стойност на единица от това разстояние за 1 лот)</strong></p>
+<p>Три входни стойности:</p>
+<ol><li><strong>Сума на риска</strong> — колко пари приемате да загубите в тази сделка: баланс × процент риск.</li><li><strong>Разстояние до стопа</strong> — от входа до стоп загубата, в пипсове (форекс) или в цена (злато).</li><li><strong>Стойност за 1 лот</strong> — колко струва един пипс (или един долар движение на цената) за един стандартен лот.</li></ol>
+<h2>Пример 1: EUR/USD</h2>
+<ul><li>Баланс $5000, риск 1% → сума на риска <strong>$50</strong></li><li>Стоп: 25 пипса</li><li>За EUR/USD при сметка в долари един пипс за 1 стандартен лот (100 000 единици) струва <strong>$10</strong></li></ul>
+<p>Лот = 50 ÷ (25 × 10) = <strong>0,20 лота</strong>. Ако стопът се задейства, губите 25 × $10 × 0,20 = $50 — точно планирания риск.</p>
+<h2>Пример 2: USD/JPY</h2>
+<p>При двойките в йени пипсът е 0,01 и стойността му зависи от курса. Един пипс за 1 лот = 100 000 × 0,01 = 1000 йени. При USD/JPY 150 това са 1000 ÷ 150 ≈ <strong>$6,67</strong>.</p>
+<ul><li>Риск $50, стоп 30 пипса → 50 ÷ (30 × 6,67) ≈ <strong>0,25 лота</strong></li></ul>
+<h2>Пример 3: злато (XAU/USD)</h2>
+<p>Златото обикновено се котира в долари за унция и при повечето MT5 сметки 1 лот = <strong>100 унции</strong> — но проверете при брокера си, размерите на договорите се различават. При 100 унции движение от $1 струва $100 на лот.</p>
+<ul><li>Риск $50, стоп $8 под входа → 50 ÷ (8 × 100) = 0,0625 лота</li><li>Стъпката на лота при брокера е 0,01, затова закръгляме <strong>надолу</strong> до <strong>0,06 лота</strong></li><li>Реален риск: 0,06 × 100 × 8 = <strong>$48</strong></li></ul>
+<p>Винаги закръглявайте надолу. Закръглянето нагоре тихо увеличава риска, който сте решили да поемете.</p>
+<h2>Сметка в друга валута</h2>
+<p>Ако сметката е в евро, първо превърнете сумата на риска. При сметка €5000 и риск 1% рискувате €50; при EUR/USD 1,08 това са $54 и с тях изчислявате обема.</p>
+<h2>Когато минималният лот е твърде голям</h2>
+<p>При малки сметки това се случва често. Баланс $500, риск 1% = $5, стоп за злато $8: формулата дава 0,00625 лота, а минимумът е 0,01. При 0,01 лота стопът струва $8 — това е 1,6% от сметката, а не 1%.</p>
+<p>Честните варианти са два: да пропуснете сделката или да влезете, знаейки, че реалният риск е 1,6%. Това, което не бива да правите, е да приближите стопа само за да излязат числата. Стопът стои там, където идеята е грешна, а не където е удобно за лота.</p>
+<h2>Проверете и маржина</h2>
+<p>Лотът определя риска, ливъриджът — маржина. Уверете се, че след отваряне на позицията остават достатъчно свободни средства, за да не доведат обичайните колебания до маржин кол, преди цената да стигне стопа.</p>
+<h2>Кратък списък за проверка</h2>
+<ul><li>Процентът риск е избран преди сделката (вижте <a href="/bg/blog/how-to-calculate-risk-per-trade/">как да изчислим риска на сделка</a>)</li><li>Стопът е там, където идеята престава да е валидна</li><li>Стойността на пипса е взета от спецификацията на договора при брокера</li><li>Лотът е закръглен надолу до стъпката на брокера</li><li>При малка сметка е проверена загубата при минимален лот</li></ul>
+<h2>Как помага NICS AI Trader</h2>
+<p>Всяка карта на сигнал в <a href="/bg/nics-trading-software/">NICS AI Trader</a> вече показва това изчисление: сумата на риска по вашия баланс и настройка за риск, точния лот, лота по стъпката на брокера, загубата при минимален лот и приблизителния маржин. Използва се MT5 спецификацията на договора при брокера, така че златото, индексите и двойките с йена се изчисляват правилно. Ако спецификацията или курсът липсват, картата казва, че изчислението не е достъпно, вместо да гадае.</p>
+<aside>Търговията носи висок риск. Примерите показват аритметиката и не са търговски съвет.</aside>
+<div class="cta">NICS AI Trader изчислява лота за всеки сигнал по вашия баланс, вашия риск и MT5 спецификацията на договора при брокера.<br /><a class="button" href="/bg/nics-trading-software/">Размер на позицията в NICS</a></div>
+</article>
+<p><a href="/bg/blog/">← Всички статии</a></p>
+</main>
+<footer><div class="bar">© 2026 AI Byte Consult Ltd · <a href="mailto:info@aibyteconsult.com">info@aibyteconsult.com</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></div></footer>
+</body>
+</html>

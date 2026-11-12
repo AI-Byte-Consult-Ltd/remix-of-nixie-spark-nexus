@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Какво е съотношение риск/печалба: процент печеливши, очаквана стойност и профит фактор | AI Byte Consult</title>
+<meta name="description" content="Какво означава съотношението риск/печалба, как е свързано с процента печеливши сделки, таблицата за безубитък и как да оценявате стратегия по очакваната стойност, а не по едно число." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://aibyteconsult.com/bg/blog/risk-to-reward-ratio/" />
+<link rel="alternate" hreflang="bg" href="https://aibyteconsult.com/bg/blog/risk-to-reward-ratio/" />
+<link rel="alternate" hreflang="en" href="https://aibyteconsult.com/blog/risk-to-reward-ratio/" />
+<link rel="alternate" hreflang="ru" href="https://aibyteconsult.com/ru/blog/risk-to-reward-ratio/" />
+<link rel="alternate" hreflang="x-default" href="https://aibyteconsult.com/blog/risk-to-reward-ratio/" />
+<meta property="og:site_name" content="AI Byte Consult" />
+<meta property="og:locale" content="bg_BG" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Какво е съотношение риск/печалба: процент печеливши, очаквана стойност и профит фактор | AI Byte Consult" />
+<meta property="og:description" content="Какво означава съотношението риск/печалба, как е свързано с процента печеливши сделки, таблицата за безубитък и как да оценявате стратегия по очакваната стойност, а не по едно число." />
+<meta property="og:url" content="https://aibyteconsult.com/bg/blog/risk-to-reward-ratio/" />
+<meta property="og:image" content="https://aibyteconsult.com/og-trading.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@EarthAuthor" />
+<meta name="theme-color" content="#0f172a" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://aibyteconsult.com/#organization","name":"AI Byte Consult Ltd","url":"https://aibyteconsult.com/","logo":"https://aibyteconsult.com/android-chrome-512x512.png"},{"@type":"Article","headline":"Какво е съотношение риск/печалба: процент печеливши, очаквана стойност и профит фактор","description":"Какво означава съотношението риск/печалба, как е свързано с процента печеливши сделки, таблицата за безубитък и как да оценявате стратегия по очакваната стойност, а не по едно число.","inLanguage":"bg","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://aibyteconsult.com/og-trading.jpg","mainEntityOfPage":"https://aibyteconsult.com/bg/blog/risk-to-reward-ratio/","author":{"@id":"https://aibyteconsult.com/#organization"},"publisher":{"@id":"https://aibyteconsult.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Начало","item":"https://aibyteconsult.com/bg/"},{"@type":"ListItem","position":2,"name":"Статии","item":"https://aibyteconsult.com/bg/blog/"},{"@type":"ListItem","position":3,"name":"Какво е съотношение риск/печалба: процент печеливши, очаквана стойност и профит фактор","item":"https://aibyteconsult.com/bg/blog/risk-to-reward-ratio/"}]}]}</script>
+<style>
+:root{--bg:#ffffff;--fg:#0f172a;--muted:#475569;--line:#e2e8f0;--accent:#2563eb;--soft:#f1f5f9}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1120;--fg:#e2e8f0;--muted:#94a3b8;--line:#1e293b;--accent:#60a5fa;--soft:#111a2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+header,footer{border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line);border-bottom:0;margin-top:64px;color:var(--muted);font-size:14px}
+.bar{max-width:760px;margin:0 auto;padding:16px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+.bar .brand{font-weight:700;color:var(--fg);text-decoration:none;margin-right:auto}
+.bar a{text-decoration:none;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:24px 16px}
+.crumbs{font-size:14px;color:var(--muted)}
+.crumbs a{color:var(--muted)}
+h1{font-size:clamp(28px,5vw,38px);line-height:1.2;margin:16px 0 8px}
+h2{font-size:24px;line-height:1.3;margin:40px 0 8px}
+h3{font-size:19px;margin:28px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:24px}
+.lead{font-size:19px;color:var(--muted)}
+aside{background:var(--soft);border-left:4px solid var(--accent);padding:12px 16px;border-radius:6px;margin:20px 0}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+.cta{margin:40px 0;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.cta a.button{display:inline-block;margin-top:8px;padding:10px 18px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600}
+.list article{padding:20px 0;border-bottom:1px solid var(--line)}
+.list h2{margin:0 0 4px;font-size:21px}
+.list p{margin:4px 0;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><nav class="bar">
+<a class="brand" href="/bg/">AI Byte Consult</a>
+<a href="/bg/nics-video/">NICS Video</a>
+<a href="/bg/trading/">NICS AI Trader</a>
+<a href="/bg/nics-trading-software/">Софтуер за трейдинг</a>
+<a href="/bg/blog/">Статии</a>
+</nav></header>
+<main>
+<div class="crumbs"><a href="/bg/">Начало</a> › <a href="/bg/blog/">Статии</a></div>
+<article>
+<h1>Какво е съотношение риск/печалба: процент печеливши, очаквана стойност и профит фактор</h1>
+<div class="meta">Публикувано: <time datetime="2026-11-12">2026-11-12</time> · AI Byte Consult · Прочетете на: <a href="/blog/risk-to-reward-ratio/" hreflang="en">English</a> · <a href="/ru/blog/risk-to-reward-ratio/" hreflang="ru">Русский</a></div>
+<p class="lead">Какво означава съотношението риск/печалба, как е свързано с процента печеливши сделки, таблицата за безубитък и как да оценявате стратегия по очакваната стойност, а не по едно число.</p>
+<p>Съотношението риск/печалба (R:R, RRR) сравнява колко можете да загубите в една сделка с колко искате да спечелите. Просто е — и често се злоупотребява с него.</p>
+<h2>Определение</h2>
+<p><strong>Риск/печалба = (вход − стоп) : (цел − вход)</strong></p>
+<p>Покупка на 2000 със стоп на 1990 и цел 2020 рискува 10, за да спечели 20: съотношение <strong>1:2</strong>. В R сделката рискува 1R и се цели в +2R. (Ако R е ново за вас, започнете с <a href="/bg/blog/how-to-calculate-risk-per-trade/">как да изчислим риска на сделка</a>.)</p>
+<h2>Без процента печеливши съотношението не значи нищо</h2>
+<p>1:3 звучи чудесно, но ако цената стига целта само в 15% от случаите, губите пари. Важна е комбинацията. Процентът печеливши сделки, при който съотношението дава точно нула, е:</p>
+<p><strong>Процент за безубитък = 1 ÷ (1 + печалба/риск)</strong></p>
+<div class="table"><table><thead><tr><th>Риск : печалба</th><th>Процент печеливши за безубитък</th></tr></thead><tbody><tr><td>1 : 0,5</td><td>66,7%</td></tr><tr><td>1 : 1</td><td>50%</td></tr><tr><td>1 : 1,5</td><td>40%</td></tr><tr><td>1 : 2</td><td>33,3%</td></tr><tr><td>1 : 3</td><td>25%</td></tr></tbody></table></div>
+<p>Над този процент стратегията печели с времето, под него губи — и то преди спреда и комисионите.</p>
+<h2>Очаквана стойност: числото, което наистина решава</h2>
+<p><strong>Очаквана стойност = дял печеливши × средна печалба − дял губещи × средна загуба</strong> (в R)</p>
+<ul><li>40% печеливши по +2R, 60% губещи по −1R: 0,4 × 2 − 0,6 × 1 = <strong>+0,2R на сделка</strong></li><li>60% печеливши по +0,5R, 40% губещи по −1R: 0,6 × 0,5 − 0,4 × 1 = <strong>−0,1R на сделка</strong></li></ul>
+<p>Втората стратегия печели по-често и въпреки това губи пари. Затова високият процент печеливши сам по себе си не доказва нищо.</p>
+<h2>Профит фактор</h2>
+<p>Свързана мярка е <strong>профит факторът</strong>: общата печалба от печелившите сделки, разделена на общата загуба от губещите. Над 1,0 — стратегията е спечелила за периода; 1,3–1,5 при голяма извадка е солиден резултат; много високи стойности при няколко сделки обикновено значат, че извадката е малка.</p>
+<h2>Целите на етапи променят картината</h2>
+<p>Много планове за сделки имат няколко цели (TP1, TP2, TP3, TP4). На всяка се затваря част от позицията, а след първата стопът често се мести на безубитък. Тогава реалната печалба е средна стойност по частите, а част от сделките завършват на безубитък (0R) вместо с пълна загуба. Затова резултатите се оценяват по реализирания R, а не по най-далечната цел на хартия.</p>
+<h2>Чести грешки</h2>
+<ol><li><strong>Отместване на целта, за да се „подобри“ съотношението.</strong> Цел, която пазарът рядко достига, намалява процента печеливши точно толкова.</li><li><strong>Приближаване на стопа по същата причина.</strong> Стоп вътре в обичайния шум се задейства по-често.</li><li><strong>Пренебрегване на разходите.</strong> Спредът и комисионата изяждат по-голям дял от сделките с малък R.</li><li><strong>Оценка по няколко сделки.</strong> На очакваната стойност може да се вярва при стотици резултати.</li></ol>
+<h2>Как да проверите доставчик на сигнали</h2>
+<p>Поискайте три числа при голяма извадка: процент печеливши, средна печалба и загуба в R и профит фактор — плюс най-лошата просадка. <a href="/bg/trading/#track-record">Статистиката на NICS AI Trader</a> публикува точно това за всеки затворен силен сигнал, с крива на капитала и резултати по инструменти. Слабите идеи „Watchlist Setup“ изобщо не влизат в нея, така че числата описват това, което реално се изпраща.</p>
+<aside>Търговията носи висок риск. Миналите резултати — в R или в пари — не гарантират бъдещи.</aside>
+<div class="cta">Статистиката на NICS AI Trader е публична и се води в R: всеки затворен силен сигнал, профит фактор и просадка.<br /><a class="button" href="/bg/trading/#track-record">Вижте статистиката</a></div>
+</article>
+<p><a href="/bg/blog/">← Всички статии</a></p>
+</main>
+<footer><div class="bar">© 2026 AI Byte Consult Ltd · <a href="mailto:info@aibyteconsult.com">info@aibyteconsult.com</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></div></footer>
+</body>
+</html>

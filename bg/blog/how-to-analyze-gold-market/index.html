@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Как да анализираме пазара на злато (XAU/USD): фактори, сесии и нива | AI Byte Consult</title>
+<meta name="description" content="Практичен ред за анализ на златото — макро факторите зад цената, часовете, в които се движи, нивата отгоре надолу от дневната до 5-минутната графика и как да поставите стоп според волатилността на златото." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://aibyteconsult.com/bg/blog/how-to-analyze-gold-market/" />
+<link rel="alternate" hreflang="bg" href="https://aibyteconsult.com/bg/blog/how-to-analyze-gold-market/" />
+<link rel="alternate" hreflang="en" href="https://aibyteconsult.com/blog/how-to-analyze-gold-market/" />
+<link rel="alternate" hreflang="ru" href="https://aibyteconsult.com/ru/blog/how-to-analyze-gold-market/" />
+<link rel="alternate" hreflang="x-default" href="https://aibyteconsult.com/blog/how-to-analyze-gold-market/" />
+<meta property="og:site_name" content="AI Byte Consult" />
+<meta property="og:locale" content="bg_BG" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Как да анализираме пазара на злато (XAU/USD): фактори, сесии и нива | AI Byte Consult" />
+<meta property="og:description" content="Практичен ред за анализ на златото — макро факторите зад цената, часовете, в които се движи, нивата отгоре надолу от дневната до 5-минутната графика и как да поставите стоп според волатилността на златото." />
+<meta property="og:url" content="https://aibyteconsult.com/bg/blog/how-to-analyze-gold-market/" />
+<meta property="og:image" content="https://aibyteconsult.com/og-trading.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@EarthAuthor" />
+<meta name="theme-color" content="#0f172a" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://aibyteconsult.com/#organization","name":"AI Byte Consult Ltd","url":"https://aibyteconsult.com/","logo":"https://aibyteconsult.com/android-chrome-512x512.png"},{"@type":"Article","headline":"Как да анализираме пазара на злато (XAU/USD): фактори, сесии и нива","description":"Практичен ред за анализ на златото — макро факторите зад цената, часовете, в които се движи, нивата отгоре надолу от дневната до 5-минутната графика и как да поставите стоп според волатилността на златото.","inLanguage":"bg","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://aibyteconsult.com/og-trading.jpg","mainEntityOfPage":"https://aibyteconsult.com/bg/blog/how-to-analyze-gold-market/","author":{"@id":"https://aibyteconsult.com/#organization"},"publisher":{"@id":"https://aibyteconsult.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Начало","item":"https://aibyteconsult.com/bg/"},{"@type":"ListItem","position":2,"name":"Статии","item":"https://aibyteconsult.com/bg/blog/"},{"@type":"ListItem","position":3,"name":"Как да анализираме пазара на злато (XAU/USD): фактори, сесии и нива","item":"https://aibyteconsult.com/bg/blog/how-to-analyze-gold-market/"}]}]}</script>
+<style>
+:root{--bg:#ffffff;--fg:#0f172a;--muted:#475569;--line:#e2e8f0;--accent:#2563eb;--soft:#f1f5f9}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1120;--fg:#e2e8f0;--muted:#94a3b8;--line:#1e293b;--accent:#60a5fa;--soft:#111a2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+header,footer{border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line);border-bottom:0;margin-top:64px;color:var(--muted);font-size:14px}
+.bar{max-width:760px;margin:0 auto;padding:16px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+.bar .brand{font-weight:700;color:var(--fg);text-decoration:none;margin-right:auto}
+.bar a{text-decoration:none;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:24px 16px}
+.crumbs{font-size:14px;color:var(--muted)}
+.crumbs a{color:var(--muted)}
+h1{font-size:clamp(28px,5vw,38px);line-height:1.2;margin:16px 0 8px}
+h2{font-size:24px;line-height:1.3;margin:40px 0 8px}
+h3{font-size:19px;margin:28px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:24px}
+.lead{font-size:19px;color:var(--muted)}
+aside{background:var(--soft);border-left:4px solid var(--accent);padding:12px 16px;border-radius:6px;margin:20px 0}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+.cta{margin:40px 0;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.cta a.button{display:inline-block;margin-top:8px;padding:10px 18px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600}
+.list article{padding:20px 0;border-bottom:1px solid var(--line)}
+.list h2{margin:0 0 4px;font-size:21px}
+.list p{margin:4px 0;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><nav class="bar">
+<a class="brand" href="/bg/">AI Byte Consult</a>
+<a href="/bg/nics-video/">NICS Video</a>
+<a href="/bg/trading/">NICS AI Trader</a>
+<a href="/bg/nics-trading-software/">Софтуер за трейдинг</a>
+<a href="/bg/blog/">Статии</a>
+</nav></header>
+<main>
+<div class="crumbs"><a href="/bg/">Начало</a> › <a href="/bg/blog/">Статии</a></div>
+<article>
+<h1>Как да анализираме пазара на злато (XAU/USD): фактори, сесии и нива</h1>
+<div class="meta">Публикувано: <time datetime="2026-11-12">2026-11-12</time> · AI Byte Consult · Прочетете на: <a href="/blog/how-to-analyze-gold-market/" hreflang="en">English</a> · <a href="/ru/blog/how-to-analyze-gold-market/" hreflang="ru">Русский</a></div>
+<p class="lead">Практичен ред за анализ на златото — макро факторите зад цената, часовете, в които се движи, нивата отгоре надолу от дневната до 5-минутната графика и как да поставите стоп според волатилността на златото.</p>
+<p>Златото е един от най-търгуваните и най-емоционални инструменти в света. То реагира на щатския долар, лихвите, страха и покупките на централните банки — понякога на всичко през една и съща седмица. Повторяем ред на действие помага повече от всеки отделен индикатор. Ето един такъв.</p>
+<h2>1. Разберете какво движи златото</h2>
+<ul><li><strong>Щатският долар.</strong> Златото се котира в долари. По-силен долар често натиска златото надолу, по-слаб го подкрепя — тенденция, а не закон.</li><li><strong>Реалните лихви.</strong> Златото не носи лихва. Когато доходността след инфлацията расте, държането на злато „струва“ повече като пропусната доходност и то обикновено поевтинява; спадът на реалните лихви обикновено му помага.</li><li><strong>Страх и несигурност.</strong> В кризи инвеститорите купуват злато като убежище, понякога независимо от долара.</li><li><strong>Покупки на централни банки.</strong> Големите и стабилни покупки на централните банки подкрепяха търсенето през последните години.</li></ul>
+<p>Не е нужно да прогнозирате всичко това. Нужно е да знаете на какво точно реагира пазарът <em>тази седмица</em> — тогава е ясно кои новини могат да преместят цената.</p>
+<h2>2. Познавайте календара</h2>
+<p>Най-големите движения на златото се събират около данните от САЩ и решенията на централните банки: инфлация (CPI), данните за заетостта, решенията на Фед и пресконференцията на председателя му. Преди всяка сделка проверете какво предстои в следващите часове. Добър сетъп две минути преди решение за лихвите не е добър сетъп.</p>
+<h2>3. Съобразявайте се със сесиите</h2>
+<p>Златото се търгува почти денонощно в делничните дни, но не се движи равномерно:</p>
+<div class="table"><table><thead><tr><th>Сесия</th><th>Типично поведение</th></tr></thead><tbody><tr><td>Азия</td><td>По-спокойно, често в диапазон</td></tr><tr><td>Откриване на Лондон</td><td>Волатилността расте, азиатският диапазон често се тества</td></tr><tr><td>Сутрин в Ню Йорк</td><td>Данните от САЩ и припокриването на Лондон и Ню Йорк носят най-големите движения</td></tr><tr><td>Края на американската сесия / ролоувър</td><td>Слаба ликвидност; около дневния ролоувър спредовете може рязко да се разширят</td></tr></tbody></table></div>
+<h2>4. Анализирайте отгоре надолу на няколко таймфрейма</h2>
+<ol><li><strong>Дневен (D1):</strong> посоката на основния тренд и главните върхове и дъна — там големите движения често спират.</li><li><strong>4-часов (H4):</strong> текущата вълна — цената прави ли нов връх или се връща?</li><li><strong>15-минутен (M15):</strong> структурата, в която се оформя входът: връщане към ниво, пробив и ретест.</li><li><strong>5-минутен (M5):</strong> точният момент на входа и мястото на стопа.</li></ol>
+<p>Сделките в посоката на по-високите таймфреймове изискват по-малко доказателства. Срещу тях трябва ясна причина и обикновено по-скромна цел.</p>
+<h2>5. Стоп според волатилността на златото</h2>
+<p>Златото се движи много в долари. Стоп от няколко долара в активен ден може да е вътре в обичайния шум. Гледайте <strong>ATR</strong> (средния истински диапазон) на таймфрейма за вход, за да видите колко обикновено се движи цената, и поставете стопа зад нивото <em>и</em> извън този шум. После изчислете лота от стопа: при повечето MT5 сметки един лот е 100 унции, така че $1 от цената е $100 на лот. Пример с изчисление: <a href="/bg/blog/how-to-calculate-lot-size-forex/">как да изчислим лота за злато</a>.</p>
+<h2>6. Запишете плана преди входа</h2>
+<p>Посока, зона за вход, стоп, една или няколко цели, събитието, което може да отмени идеята, и сумата на риска. Ако не можете да го напишете на един ред, сетъпът още не е ясен.</p>
+<h2>Дневен преглед на златото за пет минути</h2>
+<ul><li>Проверете календара за данни от САЩ и събития на Фед днес.</li><li>Отбележете върховете и дъната на D1 и H4.</li><li>Определете дали на H4 има тренд или диапазон.</li><li>Чакайте сетъп на M15/M5 при отбелязано ниво в посоката на по-високия таймфрейм.</li><li>Изчислете обема от стопа и своя <a href="/bg/blog/how-to-calculate-risk-per-trade/">риск на сделка</a>.</li></ul>
+<h2>Златото в NICS AI Trader</h2>
+<p>XAU/USD е един от основните пазари на <a href="/bg/nics-trading-software/">NICS AI Trader</a>, заедно със среброто. Системата го сканира на всеки 15 минути, филтрира сетъпите по сесия, волатилност и предстоящи новини и публикува силните сетъпи със зона за вход, стоп загуба и TP1–TP4. Всяка карта има блок с няколко таймфрейма с върховете и дъната на D1, H4, M15 и M5 — вижда се къде е сетъпът в общата картина — и лота за вашата сметка по спецификацията на договора за злато при брокера ви. Резултатите по всеки инструмент са в публичната <a href="/bg/trading/#track-record">статистика</a>.</p>
+<aside>Търговията с CFD на злато носи висок риск. Статията е с образователна цел и не е инвестиционен съвет.</aside>
+<div class="cta">NICS AI Trader сканира XAU/USD денонощно и добавя към всеки сигнал за злато блок с върховете и дъната на D1, H4, M15 и M5.<br /><a class="button" href="/bg/trading/">Сигнали за злато в NICS</a></div>
+</article>
+<p><a href="/bg/blog/">← Всички статии</a></p>
+</main>
+<footer><div class="bar">© 2026 AI Byte Consult Ltd · <a href="mailto:info@aibyteconsult.com">info@aibyteconsult.com</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></div></footer>
+</body>
+</html>
