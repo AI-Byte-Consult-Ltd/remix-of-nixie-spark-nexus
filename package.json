@@ -16,6 +16,7 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
+    "postdeploy": "node scripts/indexnow.mjs",
     "publish-all": "git add . && git commit -m 'update: site changes' && git push origin main && npm run build && npm run deploy",
     "predev": "node scripts/copy-ort.mjs"
   },

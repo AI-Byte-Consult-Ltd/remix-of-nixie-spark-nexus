@@ -17,6 +17,14 @@ Contact: info@aibyteconsult.com
 - [Terms and trading risk disclosures](https://aibyteconsult.com/terms/)
 - [Privacy Policy](https://aibyteconsult.com/privacy/)
 
+## Company facts
+
+- Legal name: AI Byte Consult Ltd, registered in Bulgaria (European Union).
+- Official Meta Tech Provider.
+- Products: NICS AI Trader (trading platform), NICS Video (automatic editing of a user's own clips), NICS Studio (in-browser video editor), AI consulting and automation for businesses.
+- Public verified track record of NICS AI Trader: https://aibyteconsult.com/trading/#track-record
+- Articles: https://aibyteconsult.com/blog/
+
 ## NICS AI Trader
 
 NICS AI Trader is an AI trading platform: a Windows app, a web dashboard, a Telegram bot with Mini App and an academy. Its engine scans gold, silver, forex, Brent oil, crypto, US stocks and indices around the clock and publishes trade setups with Entry, Stop Loss and TP1–TP4; users decide and trade with their own broker (no automatic execution for users). A public verified track record lists every closed strong signal.
