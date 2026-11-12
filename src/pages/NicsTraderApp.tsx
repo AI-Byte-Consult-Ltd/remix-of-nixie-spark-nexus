@@ -394,7 +394,7 @@ const NicsTraderApp = ({
 
   useEffect(() => {
     if (embedded) return;
-    document.title = "NICS AI Trader";
+    document.title = "NICS Trading Ecosystem";
     const theme = document.querySelector('meta[name="theme-color"]');
     theme?.setAttribute("content", "#07090f");
 
@@ -855,7 +855,7 @@ const NicsTraderApp = ({
               <Bot className="h-5 w-5 text-[#171006]" />
             </div>
             <div>
-              <p className="text-sm font-semibold">NICS AI Trader</p>
+              <p className="text-sm font-semibold">NICS Trading Ecosystem</p>
               <p className="text-[11px] text-slate-500">{t.hello}</p>
             </div>
           </div>
@@ -1418,7 +1418,7 @@ const NicsTraderApp = ({
           <section className="space-y-4">
             <div className="mb-5">
               <h1 className="text-xl font-semibold">{t.latest}</h1>
-              <p className="mt-1 text-xs text-slate-500">NICS AI Trader</p>
+              <p className="mt-1 text-xs text-slate-500">NICS Trading Ecosystem</p>
             </div>
             {data.updates.map((update, index) => (
               <Card key={`${update.version}-${update.date}`} className="border-white/10 bg-white/[0.045] text-white shadow-none">

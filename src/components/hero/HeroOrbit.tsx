@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 type Product = { label: string; href: string; external?: boolean; color: string; ring: 0 | 1; phase: number };
 
 const PRODUCTS: Product[] = [
-  { label: "NICS AI Trading", href: "/trading", color: "#f5b83d", ring: 0, phase: 0 },
+  { label: "NICS Trading Ecosystem", href: "/trading", color: "#f5b83d", ring: 0, phase: 0 },
   { label: "NICS Video", href: "/nics-video", color: "#f472b6", ring: 0, phase: Math.PI },
   { label: "NICS Real Estate", href: "https://estate.aibyteconsult.com", external: true, color: "#4ade80", ring: 1, phase: 1.2 },
   { label: "NICS Multimedia", href: "/nics-multimedia", color: "#a78bfa", ring: 1, phase: 4.3 },

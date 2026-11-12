@@ -4,7 +4,7 @@ description: What the risk-to-reward ratio means, how it connects to win rate, t
 date: 2026-11-12
 image: /og-trading.jpg
 service: /trading#track-record
-cta: The NICS AI Trader track record is public and kept in R: every closed strong signal, profit factor and drawdown included.
+cta: The NICS Trading Ecosystem track record is public and kept in R: every closed strong signal, profit factor and drawdown included.
 ctaButton: View the track record
 ---
 
@@ -58,6 +58,6 @@ Many trade plans have several targets (TP1, TP2, TP3, TP4). Part of the position
 
 ## How to check a signal provider
 
-Ask for three numbers over a large sample: win rate, average win and loss in R, and profit factor — plus the worst drawdown. The [NICS AI Trader track record](/trading/#track-record) publishes exactly these for every closed strong signal, with an equity curve and results per instrument. Weak "Watchlist" ideas are excluded from it entirely, so the numbers describe what is actually delivered.
+Ask for three numbers over a large sample: win rate, average win and loss in R, and profit factor — plus the worst drawdown. The [NICS Trading Ecosystem track record](/trading/#track-record) publishes exactly these for every closed strong signal, with an equity curve and results per instrument. Weak "Watchlist" ideas are excluded from it entirely, so the numbers describe what is actually delivered.
 
 > Trading involves substantial risk. Past results, in R or in money, do not guarantee future results.

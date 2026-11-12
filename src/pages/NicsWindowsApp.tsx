@@ -36,8 +36,8 @@ const FEATURE_ICONS = [BellRing, Search, History, CalendarDays, BarChart3, BookO
 // Real screenshots of the Windows app go here (files in public/apps/windows/).
 // The section stays hidden while the list is empty: no mock-ups on this page.
 const SCREENSHOTS: { src: string; alt: string }[] = [
-  { src: "/apps/windows/win-order-signal.webp", alt: "NICS AI Trader for Windows: signals list with an analysis request in progress" },
-  { src: "/apps/windows/win-calendar.webp", alt: "NICS AI Trader for Windows: economic calendar for the week" },
+  { src: "/apps/windows/win-order-signal.webp", alt: "NICS Trading Ecosystem for Windows: signals list with an analysis request in progress" },
+  { src: "/apps/windows/win-calendar.webp", alt: "NICS Trading Ecosystem for Windows: economic calendar for the week" },
 ];
 
 const tradingPath = (lang: string) =>
@@ -63,7 +63,7 @@ const NicsWindowsApp = () => {
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        name: "NICS AI Trader for Windows",
+        name: "NICS Trading Ecosystem for Windows",
         applicationCategory: "FinanceApplication",
         operatingSystem: "Windows 10, Windows 11",
         downloadUrl: `${SITE_URL}${WINDOWS_APP_DOWNLOAD}`,

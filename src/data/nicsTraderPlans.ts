@@ -1,5 +1,5 @@
 /*
- * Single source of truth for NICS AI Trader pricing, shared between the
+ * Single source of truth for NICS Trading Ecosystem pricing, shared between the
  * public marketing page (NicsTraderPlans.tsx) and the cabinet's
  * subscription page (CabinetSubscription.tsx). Previously this data
  * only lived inline in the marketing component -- duplicating it into

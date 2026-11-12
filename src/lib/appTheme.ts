@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { trackUsage } from "./usageAnalytics";
 
 /*
- * Light / dark theme for the NICS AI Trader app: the Telegram Mini App,
+ * Light / dark theme for the NICS Trading Ecosystem app: the Telegram Mini App,
  * the web cabinet and the Windows app (which is the cabinet). The choice
  * is kept per device. Default: dark.
  */

@@ -21,13 +21,13 @@ export interface AboutTexts {
 const en: AboutTexts = {
   seoTitle: "About AI Byte Consult — AI Company Behind NICS AI, Bulgaria",
   seoDescription:
-    "AI Byte Consult Ltd is an AI company registered in Bulgaria and an official Meta Tech Provider. We build the NICS AI ecosystem: NICS AI Trader, NICS Video, NICS Studio and an open AI lab.",
+    "AI Byte Consult Ltd is an AI company registered in Bulgaria and an official Meta Tech Provider. We build the NICS AI ecosystem: NICS Trading Ecosystem, NICS Video, NICS Studio and an open AI lab.",
   heading: "About",
   learnAbout: "Learn about",
   nicsTitle: "NICS AI — what we build",
   nicsDesc:
     "NICS AI is our own family of AI products: an autonomous AI trading platform, automatic video editing for creators and an open lab that trains its own models from scratch.",
-  nicsLinks: { trader: "NICS AI Trader", software: "AI trading software", ecosystem: "NICS AI Ecosystem" },
+  nicsLinks: { trader: "NICS Trading Ecosystem", software: "AI trading software", ecosystem: "NICS AI Ecosystem" },
   multimedia:
     "Original music — lyrics, musical idea and visual direction by Aleksandr Tochilov, technical production by NICS Multimedia — released on Spotify and other streaming platforms, starting with the track \"Just Live\".",
   social:
@@ -39,13 +39,13 @@ const en: AboutTexts = {
 const ru: AboutTexts = {
   seoTitle: "О компании AI Byte Consult — AI-компания, создатель NICS AI, Болгария",
   seoDescription:
-    "AI Byte Consult Ltd — AI-компания, зарегистрированная в Болгарии, официальный Meta Tech Provider. Мы создаём экосистему NICS AI: NICS AI Trader, NICS Video, NICS Studio и открытую AI-лабораторию.",
+    "AI Byte Consult Ltd — AI-компания, зарегистрированная в Болгарии, официальный Meta Tech Provider. Мы создаём экосистему NICS AI: NICS Trading Ecosystem, NICS Video, NICS Studio и открытую AI-лабораторию.",
   heading: "О компании",
   learnAbout: "Подробнее:",
   nicsTitle: "NICS AI — что мы создаём",
   nicsDesc:
     "NICS AI — наше собственное семейство AI-продуктов: автономная AI-платформа для трейдинга, автоматический монтаж видео для авторов и открытая лаборатория, которая обучает свои модели с нуля.",
-  nicsLinks: { trader: "NICS AI Trader", software: "Программа для трейдинга с ИИ", ecosystem: "Экосистема NICS AI" },
+  nicsLinks: { trader: "NICS Trading Ecosystem", software: "Программа для трейдинга с ИИ", ecosystem: "Экосистема NICS AI" },
   multimedia:
     "Авторская музыка: текст, музыкальная идея и визуальный образ — Александр Точилов, техническое производство — NICS Multimedia. Выходит на Spotify и других стриминговых площадках, начиная с трека «Just Live».",
   social:
@@ -57,13 +57,13 @@ const ru: AboutTexts = {
 const bg: AboutTexts = {
   seoTitle: "За AI Byte Consult — AI компанията зад NICS AI, България",
   seoDescription:
-    "AI Byte Consult Ltd е AI компания, регистрирана в България, официален Meta Tech Provider. Създаваме екосистемата NICS AI: NICS AI Trader, NICS Video, NICS Studio и отворена AI лаборатория.",
+    "AI Byte Consult Ltd е AI компания, регистрирана в България, официален Meta Tech Provider. Създаваме екосистемата NICS AI: NICS Trading Ecosystem, NICS Video, NICS Studio и отворена AI лаборатория.",
   heading: "За",
   learnAbout: "Научете повече:",
   nicsTitle: "NICS AI — какво създаваме",
   nicsDesc:
     "NICS AI е нашето собствено семейство AI продукти: автономна AI платформа за трейдинг, автоматичен видео монтаж за автори и отворена лаборатория, която обучава собствени модели от нулата.",
-  nicsLinks: { trader: "NICS AI Trader", software: "Софтуер за трейдинг с ИИ", ecosystem: "Екосистема NICS AI" },
+  nicsLinks: { trader: "NICS Trading Ecosystem", software: "Софтуер за трейдинг с ИИ", ecosystem: "Екосистема NICS AI" },
   multimedia:
     "Авторска музика: текст, музикална идея и визия — Александър Точилов, техническа продукция — NICS Multimedia. Излиза в Spotify и други стрийминг платформи, започвайки с песента „Just Live“.",
   social:
@@ -75,13 +75,13 @@ const bg: AboutTexts = {
 const de: AboutTexts = {
   seoTitle: "Über AI Byte Consult — das KI-Unternehmen hinter NICS AI, Bulgarien",
   seoDescription:
-    "AI Byte Consult Ltd ist ein in Bulgarien registriertes KI-Unternehmen und offizieller Meta Tech Provider. Wir bauen das NICS AI Ecosystem: NICS AI Trader, NICS Video, NICS Studio und ein offenes KI-Labor.",
+    "AI Byte Consult Ltd ist ein in Bulgarien registriertes KI-Unternehmen und offizieller Meta Tech Provider. Wir bauen das NICS AI Ecosystem: NICS Trading Ecosystem, NICS Video, NICS Studio und ein offenes KI-Labor.",
   heading: "Über",
   learnAbout: "Mehr über",
   nicsTitle: "NICS AI — was wir bauen",
   nicsDesc:
     "NICS AI ist unsere eigene KI-Produktfamilie: eine autonome KI-Trading-Plattform, automatischer Videoschnitt für Creator und ein offenes Labor, das eigene Modelle von Grund auf trainiert.",
-  nicsLinks: { trader: "NICS AI Trader", software: "KI-Trading-Software", ecosystem: "NICS AI Ecosystem" },
+  nicsLinks: { trader: "NICS Trading Ecosystem", software: "KI-Trading-Software", ecosystem: "NICS AI Ecosystem" },
   multimedia:
     "Eigene Musik: Text, musikalische Idee und visuelle Gestaltung von Aleksandr Tochilov, technische Produktion von NICS Multimedia. Erscheint auf Spotify und anderen Streaming-Plattformen, beginnend mit dem Titel „Just Live“.",
   social:
@@ -93,13 +93,13 @@ const de: AboutTexts = {
 const es: AboutTexts = {
   seoTitle: "Sobre AI Byte Consult — la empresa de IA detrás de NICS AI, Bulgaria",
   seoDescription:
-    "AI Byte Consult Ltd es una empresa de IA registrada en Bulgaria y Meta Tech Provider oficial. Creamos el ecosistema NICS AI: NICS AI Trader, NICS Video, NICS Studio y un laboratorio de IA abierto.",
+    "AI Byte Consult Ltd es una empresa de IA registrada en Bulgaria y Meta Tech Provider oficial. Creamos el ecosistema NICS AI: NICS Trading Ecosystem, NICS Video, NICS Studio y un laboratorio de IA abierto.",
   heading: "Sobre",
   learnAbout: "Más sobre",
   nicsTitle: "NICS AI — lo que construimos",
   nicsDesc:
     "NICS AI es nuestra propia familia de productos de IA: una plataforma autónoma de trading con IA, edición automática de vídeo para creadores y un laboratorio abierto que entrena sus propios modelos desde cero.",
-  nicsLinks: { trader: "NICS AI Trader", software: "Software de trading con IA", ecosystem: "Ecosistema NICS AI" },
+  nicsLinks: { trader: "NICS Trading Ecosystem", software: "Software de trading con IA", ecosystem: "Ecosistema NICS AI" },
   multimedia:
     "Música original: letra, idea musical y dirección visual de Aleksandr Tochilov, producción técnica de NICS Multimedia. Publicada en Spotify y otras plataformas, empezando por el tema «Just Live».",
   social:

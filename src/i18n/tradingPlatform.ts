@@ -1,7 +1,7 @@
 /*
  * /trading first screen, platform block and market list (2026-11-11).
  *
- * The page presents NICS AI Trader as a platform: Windows app, web
+ * The page presents NICS Trading Ecosystem as a platform: Windows app, web
  * dashboard, Telegram bot + Mini App, academy. Telegram is a secondary
  * channel here, not the product itself.
  *
@@ -42,7 +42,7 @@ const SYM = {
 
 const en: TradingPlatformTexts = {
   heroBadge: "Windows app · Web dashboard · Telegram · Academy",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "Autonomous AI Trading Platform",
   heroDesc:
     "The engine scans gold, forex, oil, crypto, stocks and indices around the clock and publishes ready setups with Entry, Stop Loss and TP1–TP4. Work with them in the Windows app or the web dashboard, get them in Telegram, learn in the academy, and check every result in the verified track record.",
@@ -73,7 +73,7 @@ const en: TradingPlatformTexts = {
 
 const ru: TradingPlatformTexts = {
   heroBadge: "Приложение для Windows · Веб-кабинет · Telegram · Академия",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "автономная AI-платформа для трейдинга",
   heroDesc:
     "Движок круглосуточно сканирует золото, форекс, нефть, крипту, акции и индексы и публикует готовые сетапы со входом, стоп-лоссом и TP1–TP4. Работайте с ними в приложении для Windows или веб-кабинете, получайте в Telegram, учитесь в академии и проверяйте каждый результат в открытой статистике.",
@@ -104,7 +104,7 @@ const ru: TradingPlatformTexts = {
 
 const bg: TradingPlatformTexts = {
   heroBadge: "Приложение за Windows · Уеб табло · Telegram · Академия",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "автономна AI платформа за търговия",
   heroDesc:
     "Двигателят сканира денонощно злато, форекс, петрол, крипто, акции и индекси и публикува готови сетъпи с вход, стоп загуба и TP1–TP4. Работете с тях в приложението за Windows или в уеб таблото, получавайте ги в Telegram, учете в академията и проверявайте всеки резултат в публичната статистика.",
@@ -135,7 +135,7 @@ const bg: TradingPlatformTexts = {
 
 const de: TradingPlatformTexts = {
   heroBadge: "Windows-App · Web-Dashboard · Telegram · Academy",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "autonome KI-Trading-Plattform",
   heroDesc:
     "Die Engine scannt rund um die Uhr Gold, Forex, Öl, Krypto, Aktien und Indizes und veröffentlicht fertige Setups mit Entry, Stop Loss und TP1–TP4. Arbeiten Sie damit in der Windows-App oder im Web-Dashboard, erhalten Sie sie in Telegram, lernen Sie in der Academy und prüfen Sie jedes Ergebnis im verifizierten Track Record.",
@@ -166,7 +166,7 @@ const de: TradingPlatformTexts = {
 
 const es: TradingPlatformTexts = {
   heroBadge: "App para Windows · Panel web · Telegram · Academia",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "plataforma autónoma de trading con IA",
   heroDesc:
     "El motor analiza oro, forex, petróleo, cripto, acciones e índices las 24 horas y publica setups listos con Entry, Stop Loss y TP1–TP4. Trabaja con ellos en la app para Windows o en el panel web, recíbelos en Telegram, aprende en la academia y comprueba cada resultado en el historial verificado.",
@@ -197,7 +197,7 @@ const es: TradingPlatformTexts = {
 
 const pt: TradingPlatformTexts = {
   heroBadge: "App para Windows · Painel web · Telegram · Academia",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "plataforma autônoma de trading com IA",
   heroDesc:
     "O motor analisa ouro, forex, petróleo, cripto, ações e índices 24 horas por dia e publica setups prontos com Entry, Stop Loss e TP1–TP4. Use-os no app para Windows ou no painel web, receba no Telegram, aprenda na academia e confira cada resultado no histórico verificado.",
@@ -228,7 +228,7 @@ const pt: TradingPlatformTexts = {
 
 const fr: TradingPlatformTexts = {
   heroBadge: "Application Windows · Tableau de bord web · Telegram · Académie",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "plateforme de trading IA autonome",
   heroDesc:
     "Le moteur analyse jour et nuit l'or, le forex, le pétrole, les cryptos, les actions et les indices et publie des setups prêts avec Entry, Stop Loss et TP1–TP4. Utilisez-les dans l'application Windows ou le tableau de bord web, recevez-les sur Telegram, apprenez à l'académie et vérifiez chaque résultat dans l'historique vérifié.",
@@ -259,7 +259,7 @@ const fr: TradingPlatformTexts = {
 
 const it: TradingPlatformTexts = {
   heroBadge: "App per Windows · Dashboard web · Telegram · Academy",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "piattaforma di trading IA autonoma",
   heroDesc:
     "Il motore analizza 24 ore su 24 oro, forex, petrolio, cripto, azioni e indici e pubblica setup pronti con Entry, Stop Loss e TP1–TP4. Usali nell'app per Windows o nella dashboard web, ricevili su Telegram, impara nell'academy e verifica ogni risultato nello storico verificato.",
@@ -290,7 +290,7 @@ const it: TradingPlatformTexts = {
 
 const pl: TradingPlatformTexts = {
   heroBadge: "Aplikacja Windows · Panel web · Telegram · Akademia",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "autonomiczna platforma tradingowa AI",
   heroDesc:
     "Silnik przez całą dobę analizuje złoto, forex, ropę, krypto, akcje i indeksy i publikuje gotowe setupy z Entry, Stop Loss i TP1–TP4. Korzystaj z nich w aplikacji Windows lub panelu web, otrzymuj je w Telegramie, ucz się w akademii i sprawdzaj każdy wynik w zweryfikowanej historii.",
@@ -321,7 +321,7 @@ const pl: TradingPlatformTexts = {
 
 const tr: TradingPlatformTexts = {
   heroBadge: "Windows uygulaması · Web paneli · Telegram · Akademi",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "otonom yapay zekâ trading platformu",
   heroDesc:
     "Motor altın, forex, petrol, kripto, hisse ve endeksleri günün her saati tarar ve Entry, Stop Loss ve TP1–TP4 içeren hazır kurulumlar yayınlar. Bunları Windows uygulamasında veya web panelinde kullanın, Telegram'da alın, akademide öğrenin ve her sonucu doğrulanmış geçmişte kontrol edin.",
@@ -352,7 +352,7 @@ const tr: TradingPlatformTexts = {
 
 const ar: TradingPlatformTexts = {
   heroBadge: "تطبيق Windows · لوحة ويب · تيليجرام · الأكاديمية",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "منصة تداول مستقلة بالذكاء الاصطناعي",
   heroDesc:
     "يفحص المحرك الذهب والفوركس والنفط والعملات المشفرة والأسهم والمؤشرات على مدار الساعة وينشر إعدادات جاهزة مع نقطة الدخول وStop Loss وTP1–TP4. استخدمها في تطبيق Windows أو لوحة الويب، واستلمها في تيليجرام، وتعلّم في الأكاديمية، وتحقق من كل نتيجة في السجل الموثق.",
@@ -383,7 +383,7 @@ const ar: TradingPlatformTexts = {
 
 const zh: TradingPlatformTexts = {
   heroBadge: "Windows 应用 · 网页面板 · Telegram · 学院",
-  heroTitle1: "NICS AI Trader —",
+  heroTitle1: "NICS Trading Ecosystem —",
   heroTitle2: "自主 AI 交易平台",
   heroDesc:
     "引擎全天候扫描黄金、外汇、原油、加密货币、股票和指数，发布包含入场、止损和 TP1–TP4 的现成交易方案。在 Windows 应用或网页面板中使用，在 Telegram 接收，在学院学习，并在经过验证的业绩记录中核对每个结果。",

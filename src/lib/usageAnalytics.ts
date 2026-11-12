@@ -1,5 +1,5 @@
 /*
- * Usage statistics for the NICS AI Trader app (Windows app + web cabinet).
+ * Usage statistics for the NICS Trading Ecosystem app (Windows app + web cabinet).
  * Alexander, 2026-11-05: "collect statistics on how users use the app".
  *
  * Events go to n8n [43 OPS] App Usage Analytics (POST /webhook/nics-usage)
@@ -15,7 +15,7 @@
 import { CABINET_SESSION_STORAGE_KEY } from "@/features/cabinet/api";
 import { isDesktopApp } from "@/features/cabinet/license";
 
-export const TRADER_APP_VERSION = "2.13.0";
+export const TRADER_APP_VERSION = "2.14.0";
 
 export const USAGE_API_URL = "https://n8n.aibyteconsult.com/webhook/nics-usage";
 

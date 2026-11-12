@@ -24,8 +24,8 @@ const DataDeletion = () => {
               <p>
                 AI Byte Consult Ltd. is an applied-AI company — this page covers
                 data collected across all of our products, not only our Meta/Threads
-                integration: the website contact form and newsletter, the NICS AI
-                Trader Telegram bot and Mini App, the personal cabinet at
+                integration: the website contact form and newsletter, the NICS Trading
+                Ecosystem Telegram bot and Mini App, the personal cabinet at
                 aibyteconsult.com/cabinet, and our connected Threads account.
                 If you have used any of these and provided us with personal data,
                 you can request that we delete it at any time.
@@ -41,7 +41,7 @@ const DataDeletion = () => {
                 </a>{" "}
                 with the subject line "Data deletion request", from the email
                 address or account you used with us. Please tell us which
-                product the request relates to (Telegram bot, NICS AI Trader
+                product the request relates to (Telegram bot, NICS Trading Ecosystem
                 Mini App, personal cabinet, newsletter, contact form, or our
                 Meta/Threads integration), so we can locate your data.
               </p>

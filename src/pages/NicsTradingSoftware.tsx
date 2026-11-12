@@ -54,7 +54,7 @@ const NicsTradingSoftware = () => {
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        name: "NICS AI Trader",
+        name: "NICS Trading Ecosystem",
         applicationCategory: "FinanceApplication",
         operatingSystem: "Windows, Web, Telegram",
         url: canonical,

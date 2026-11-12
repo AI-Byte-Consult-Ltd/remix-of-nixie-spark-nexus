@@ -4,7 +4,7 @@ description: A practical routine for analysing gold — the macro drivers behind
 date: 2026-11-12
 image: /og-trading.jpg
 service: /trading
-cta: NICS AI Trader scans XAU/USD around the clock and adds a D1, H4, M15 and M5 high/low block to every gold signal.
+cta: NICS Trading Ecosystem scans XAU/USD around the clock and adds a D1, H4, M15 and M5 high/low block to every gold signal.
 ctaButton: See gold signals in NICS
 ---
 
@@ -59,8 +59,8 @@ Direction, entry zone, stop, one or more targets, the event that could invalidat
 - Wait for an M15/M5 setup at a marked level, in the direction of the higher timeframe.
 - Size the position from your stop and your [risk per trade](/blog/how-to-calculate-risk-per-trade/).
 
-## Gold in NICS AI Trader
+## Gold in NICS Trading Ecosystem
 
-XAU/USD is one of the core markets of [NICS AI Trader](/nics-trading-software/), together with silver. The engine scans it every 15 minutes, filters setups by session, volatility and upcoming news, and publishes strong setups with an entry zone, stop loss and TP1–TP4. Every card includes a multi-timeframe block with the D1, H4, M15 and M5 highs and lows, so you can see where the setup sits in the bigger picture, plus the lot size for your account based on your broker's gold contract. Results are recorded per instrument in the public [track record](/trading/#track-record).
+XAU/USD is one of the core markets of [NICS Trading Ecosystem](/nics-trading-software/), together with silver. The engine scans it every 15 minutes, filters setups by session, volatility and upcoming news, and publishes strong setups with an entry zone, stop loss and TP1–TP4. Every card includes a multi-timeframe block with the D1, H4, M15 and M5 highs and lows, so you can see where the setup sits in the bigger picture, plus the lot size for your account based on your broker's gold contract. Results are recorded per instrument in the public [track record](/trading/#track-record).
 
 > Trading gold CFDs involves substantial risk. This article is educational and is not investment advice.

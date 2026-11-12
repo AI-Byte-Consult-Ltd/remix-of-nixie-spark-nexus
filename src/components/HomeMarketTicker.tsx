@@ -27,7 +27,7 @@ function formatPrice(q: Quote): string {
 
 /**
  * Home page market ticker — real quotes from our `market-quotes` edge function,
- * refreshed every 15s. Clicking the strip opens the NICS AI Trading page.
+ * refreshed every 15s. Clicking the strip opens the NICS Trading Ecosystem page.
  */
 const HomeMarketTicker = () => {
   const { t } = useLanguage();

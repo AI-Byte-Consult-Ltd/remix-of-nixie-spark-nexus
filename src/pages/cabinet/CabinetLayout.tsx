@@ -122,8 +122,8 @@ const CabinetLayout = () => {
   return (
     <>
       <SEO
-        title="NICS AI Trader — Cabinet"
-        description="Personal cabinet for NICS AI Trader subscribers."
+        title="NICS Trading Ecosystem — Cabinet"
+        description="Personal cabinet for NICS Trading Ecosystem subscribers."
         canonical="https://aibyteconsult.com/cabinet"
         noindex
       />

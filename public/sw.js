@@ -1,4 +1,4 @@
-// Service worker for the installable apps (NICS Trading, NICS Video).
+// Service worker for the installable apps (NICS Trading Ecosystem, NICS Video).
 // Deliberately caches nothing but the offline page: every page, script and
 // API call still goes to the network, so a new deploy is live on the next
 // open and nobody gets stuck on a stale build. When the network is down, a

@@ -4,7 +4,7 @@ description: The three kinds of AI trading software you can run on a Windows PC,
 date: 2026-11-12
 image: /og-trading.jpg
 service: /nics-windows-app
-cta: NICS AI Trader for Windows puts live setups, analysis on request, the economic calendar and the verified track record in one desktop window.
+cta: NICS Trading Ecosystem for Windows puts live setups, analysis on request, the economic calendar and the verified track record in one desktop window.
 ctaButton: About the Windows app
 ---
 
@@ -38,16 +38,16 @@ None of these is automatically better. The question is which one fits how much c
 - Pressure to deposit with a specific broker before you can see anything
 - No company name, address or registration behind the product
 
-## NICS AI Trader for Windows
+## NICS Trading Ecosystem for Windows
 
-The [NICS AI Trader Windows app](/nics-windows-app/) is the second kind: a signal and analysis workspace. It does not place trades on your account.
+The [NICS Trading Ecosystem Windows app](/nics-windows-app/) is the second kind: a signal and analysis workspace. It does not place trades on your account.
 
 - **What you see:** live setups with entry zone, stop loss and TP1–TP4, the lot size for your balance, analysis of one instrument on request, the economic calendar, the academy and the same public [track record](/trading/#track-record) as the website.
 - **Data:** a live Vantage MT5 price feed; sizing uses MT5 contract specifications.
 - **Requirements:** Windows 10 or 11 (64-bit), Microsoft Edge WebView2 (the installer adds it if missing), an internet connection.
 - **Sign-in:** with Telegram or with an e-mail code — the app works without Telegram.
 - **Installer:** about 1.3 MB from aibyteconsult.com. It is not code-signed yet, so Windows may show "Windows protected your PC"; click "More info", then "Run anyway". A Microsoft Store version is being prepared.
-- **License:** Pro comes with any active paid NICS AI Trader subscription, including the €1.99 7-day trial. One key works on two computers, is checked once a day and keeps working offline for up to 7 days.
+- **License:** Pro comes with any active paid NICS Trading Ecosystem subscription, including the €1.99 7-day trial. One key works on two computers, is checked once a day and keeps working offline for up to 7 days.
 - **Updates:** the workspace loads the current version at every start, so there is nothing to reinstall.
 
 On a Mac, phone or tablet the same account works in the web dashboard or the Telegram Mini App.

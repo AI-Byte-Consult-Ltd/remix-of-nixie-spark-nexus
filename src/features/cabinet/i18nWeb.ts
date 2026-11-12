@@ -3,7 +3,7 @@ import type { CabinetLanguage } from "./types";
 // Strings for the cabinet's e-mail/Google login, the linked sign-in methods
 // and the Trader screens brought over from the Telegram Mini App.
 const en = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "Trading panel",
   navSignals: "Signals",
   navPerformance: "Results and charts",
@@ -58,7 +58,7 @@ const en = {
   accountSaved: "Done, the sign-in method is connected.",
 
   linkTelegramTitle: "Connect Telegram to see your signals",
-  linkTelegramLead: "Signals, subscription and statistics of NICS AI Trader are tied to your Telegram account in the bot. Connect it once: after that you can sign in here with e-mail or Google.",
+  linkTelegramLead: "Signals, subscription and statistics of NICS Trading Ecosystem are tied to your Telegram account in the bot. Connect it once: after that you can sign in here with e-mail or Google.",
   linkTelegramStep1: "1. Open the bot @nics_ai_bot and press Start (if you have not yet).",
   linkTelegramStep2: "2. Come back here and press the Telegram button below.",
   linkTelegramOpenBot: "Open the bot",
@@ -68,7 +68,7 @@ const en = {
 type WebStrings = typeof en;
 
 const ru: WebStrings = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "Панель трейдера",
   navSignals: "Сигналы",
   navPerformance: "Результаты и графики",
@@ -123,7 +123,7 @@ const ru: WebStrings = {
   accountSaved: "Готово, способ входа подключён.",
 
   linkTelegramTitle: "Подключите Telegram, чтобы видеть свои сигналы",
-  linkTelegramLead: "Сигналы, подписка и статистика NICS AI Trader привязаны к вашему Telegram-аккаунту в боте. Подключите его один раз: после этого сюда можно входить по e-mail или через Google.",
+  linkTelegramLead: "Сигналы, подписка и статистика NICS Trading Ecosystem привязаны к вашему Telegram-аккаунту в боте. Подключите его один раз: после этого сюда можно входить по e-mail или через Google.",
   linkTelegramStep1: "1. Откройте бота @nics_ai_bot и нажмите «Старт» (если ещё не нажимали).",
   linkTelegramStep2: "2. Вернитесь сюда и нажмите кнопку Telegram ниже.",
   linkTelegramOpenBot: "Открыть бота",
@@ -131,7 +131,7 @@ const ru: WebStrings = {
 };
 
 const bg: WebStrings = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "Панел на трейдъра",
   navSignals: "Сигнали",
   navPerformance: "Резултати и графики",
@@ -186,7 +186,7 @@ const bg: WebStrings = {
   accountSaved: "Готово, начинът за вход е свързан.",
 
   linkTelegramTitle: "Свържете Telegram, за да виждате сигналите си",
-  linkTelegramLead: "Сигналите, абонаментът и статистиката на NICS AI Trader са свързани с вашия Telegram акаунт в бота. Свържете го веднъж: след това можете да влизате тук с имейл или Google.",
+  linkTelegramLead: "Сигналите, абонаментът и статистиката на NICS Trading Ecosystem са свързани с вашия Telegram акаунт в бота. Свържете го веднъж: след това можете да влизате тук с имейл или Google.",
   linkTelegramStep1: "1. Отворете бота @nics_ai_bot и натиснете Start (ако още не сте).",
   linkTelegramStep2: "2. Върнете се тук и натиснете бутона Telegram по-долу.",
   linkTelegramOpenBot: "Отвори бота",
@@ -194,7 +194,7 @@ const bg: WebStrings = {
 };
 
 const es: WebStrings = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "Panel de trading",
   navSignals: "Señales",
   navPerformance: "Resultados y gráficos",
@@ -249,7 +249,7 @@ const es: WebStrings = {
   accountSaved: "Listo, el método de acceso está conectado.",
 
   linkTelegramTitle: "Conecta Telegram para ver tus señales",
-  linkTelegramLead: "Las señales, la suscripción y las estadísticas de NICS AI Trader están ligadas a tu cuenta de Telegram en el bot. Conéctala una vez: después podrás entrar aquí con e-mail o Google.",
+  linkTelegramLead: "Las señales, la suscripción y las estadísticas de NICS Trading Ecosystem están ligadas a tu cuenta de Telegram en el bot. Conéctala una vez: después podrás entrar aquí con e-mail o Google.",
   linkTelegramStep1: "1. Abre el bot @nics_ai_bot y pulsa Start (si aún no lo hiciste).",
   linkTelegramStep2: "2. Vuelve aquí y pulsa el botón de Telegram de abajo.",
   linkTelegramOpenBot: "Abrir el bot",
@@ -257,7 +257,7 @@ const es: WebStrings = {
 };
 
 const de: WebStrings = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "Trading-Panel",
   navSignals: "Signale",
   navPerformance: "Ergebnisse und Charts",
@@ -312,7 +312,7 @@ const de: WebStrings = {
   accountSaved: "Fertig, die Anmeldemethode ist verbunden.",
 
   linkTelegramTitle: "Verbinden Sie Telegram, um Ihre Signale zu sehen",
-  linkTelegramLead: "Signale, Abo und Statistiken von NICS AI Trader sind an Ihr Telegram-Konto im Bot gebunden. Verbinden Sie es einmal: danach können Sie sich hier mit E-Mail oder Google anmelden.",
+  linkTelegramLead: "Signale, Abo und Statistiken von NICS Trading Ecosystem sind an Ihr Telegram-Konto im Bot gebunden. Verbinden Sie es einmal: danach können Sie sich hier mit E-Mail oder Google anmelden.",
   linkTelegramStep1: "1. Öffnen Sie den Bot @nics_ai_bot und tippen Sie auf Start (falls noch nicht geschehen).",
   linkTelegramStep2: "2. Kommen Sie hierher zurück und klicken Sie unten auf den Telegram-Button.",
   linkTelegramOpenBot: "Bot öffnen",
@@ -320,7 +320,7 @@ const de: WebStrings = {
 };
 
 const fr: WebStrings = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "Panneau de trading",
   navSignals: "Signaux",
   navPerformance: "Résultats et graphiques",
@@ -375,7 +375,7 @@ const fr: WebStrings = {
   accountSaved: "C'est fait, le mode de connexion est ajouté.",
 
   linkTelegramTitle: "Connectez Telegram pour voir vos signaux",
-  linkTelegramLead: "Les signaux, l'abonnement et les statistiques de NICS AI Trader sont liés à votre compte Telegram dans le bot. Connectez-le une fois : ensuite vous pourrez vous connecter ici par e-mail ou Google.",
+  linkTelegramLead: "Les signaux, l'abonnement et les statistiques de NICS Trading Ecosystem sont liés à votre compte Telegram dans le bot. Connectez-le une fois : ensuite vous pourrez vous connecter ici par e-mail ou Google.",
   linkTelegramStep1: "1. Ouvrez le bot @nics_ai_bot et appuyez sur Start (si ce n'est pas déjà fait).",
   linkTelegramStep2: "2. Revenez ici et cliquez sur le bouton Telegram ci-dessous.",
   linkTelegramOpenBot: "Ouvrir le bot",
@@ -383,7 +383,7 @@ const fr: WebStrings = {
 };
 
 const it: WebStrings = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "Pannello di trading",
   navSignals: "Segnali",
   navPerformance: "Risultati e grafici",
@@ -438,7 +438,7 @@ const it: WebStrings = {
   accountSaved: "Fatto, il metodo di accesso è collegato.",
 
   linkTelegramTitle: "Collega Telegram per vedere i tuoi segnali",
-  linkTelegramLead: "Segnali, abbonamento e statistiche di NICS AI Trader sono legati al tuo account Telegram nel bot. Collegalo una volta: poi potrai accedere qui con e-mail o Google.",
+  linkTelegramLead: "Segnali, abbonamento e statistiche di NICS Trading Ecosystem sono legati al tuo account Telegram nel bot. Collegalo una volta: poi potrai accedere qui con e-mail o Google.",
   linkTelegramStep1: "1. Apri il bot @nics_ai_bot e premi Start (se non l'hai già fatto).",
   linkTelegramStep2: "2. Torna qui e premi il pulsante Telegram qui sotto.",
   linkTelegramOpenBot: "Apri il bot",
@@ -446,7 +446,7 @@ const it: WebStrings = {
 };
 
 const pt: WebStrings = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "Painel de trading",
   navSignals: "Sinais",
   navPerformance: "Resultados e gráficos",
@@ -501,7 +501,7 @@ const pt: WebStrings = {
   accountSaved: "Pronto, a forma de entrar foi conectada.",
 
   linkTelegramTitle: "Conecte o Telegram para ver seus sinais",
-  linkTelegramLead: "Os sinais, a assinatura e as estatísticas do NICS AI Trader estão ligados à sua conta do Telegram no bot. Conecte uma vez: depois você pode entrar aqui com e-mail ou Google.",
+  linkTelegramLead: "Os sinais, a assinatura e as estatísticas do NICS Trading Ecosystem estão ligados à sua conta do Telegram no bot. Conecte uma vez: depois você pode entrar aqui com e-mail ou Google.",
   linkTelegramStep1: "1. Abra o bot @nics_ai_bot e toque em Start (se ainda não fez isso).",
   linkTelegramStep2: "2. Volte aqui e clique no botão do Telegram abaixo.",
   linkTelegramOpenBot: "Abrir o bot",
@@ -509,7 +509,7 @@ const pt: WebStrings = {
 };
 
 const pl: WebStrings = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "Panel tradera",
   navSignals: "Sygnały",
   navPerformance: "Wyniki i wykresy",
@@ -564,7 +564,7 @@ const pl: WebStrings = {
   accountSaved: "Gotowe, sposób logowania został połączony.",
 
   linkTelegramTitle: "Połącz Telegram, aby zobaczyć swoje sygnały",
-  linkTelegramLead: "Sygnały, subskrypcja i statystyki NICS AI Trader są powiązane z Twoim kontem Telegram w bocie. Połącz je raz: potem możesz logować się tutaj e-mailem lub przez Google.",
+  linkTelegramLead: "Sygnały, subskrypcja i statystyki NICS Trading Ecosystem są powiązane z Twoim kontem Telegram w bocie. Połącz je raz: potem możesz logować się tutaj e-mailem lub przez Google.",
   linkTelegramStep1: "1. Otwórz bota @nics_ai_bot i naciśnij Start (jeśli jeszcze tego nie zrobiłeś).",
   linkTelegramStep2: "2. Wróć tutaj i naciśnij przycisk Telegram poniżej.",
   linkTelegramOpenBot: "Otwórz bota",
@@ -572,7 +572,7 @@ const pl: WebStrings = {
 };
 
 const tr: WebStrings = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "Trader paneli",
   navSignals: "Sinyaller",
   navPerformance: "Sonuçlar ve grafikler",
@@ -627,7 +627,7 @@ const tr: WebStrings = {
   accountSaved: "Tamam, giriş yöntemi bağlandı.",
 
   linkTelegramTitle: "Sinyallerinizi görmek için Telegram'ı bağlayın",
-  linkTelegramLead: "NICS AI Trader sinyalleri, abonelik ve istatistikler bottaki Telegram hesabınıza bağlıdır. Bir kez bağlayın: sonra buraya e-posta veya Google ile girebilirsiniz.",
+  linkTelegramLead: "NICS Trading Ecosystem sinyalleri, abonelik ve istatistikler bottaki Telegram hesabınıza bağlıdır. Bir kez bağlayın: sonra buraya e-posta veya Google ile girebilirsiniz.",
   linkTelegramStep1: "1. @nics_ai_bot botunu açın ve Start'a basın (henüz basmadıysanız).",
   linkTelegramStep2: "2. Buraya dönün ve aşağıdaki Telegram düğmesine basın.",
   linkTelegramOpenBot: "Botu aç",
@@ -635,7 +635,7 @@ const tr: WebStrings = {
 };
 
 const zh: WebStrings = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "交易面板",
   navSignals: "信号",
   navPerformance: "结果与图表",
@@ -690,7 +690,7 @@ const zh: WebStrings = {
   accountSaved: "完成，登录方式已连接。",
 
   linkTelegramTitle: "连接 Telegram 以查看您的信号",
-  linkTelegramLead: "NICS AI Trader 的信号、订阅和统计与您在机器人中的 Telegram 账户绑定。只需连接一次：之后即可用邮箱或 Google 登录这里。",
+  linkTelegramLead: "NICS Trading Ecosystem 的信号、订阅和统计与您在机器人中的 Telegram 账户绑定。只需连接一次：之后即可用邮箱或 Google 登录这里。",
   linkTelegramStep1: "1. 打开机器人 @nics_ai_bot 并点击 Start（如果还没有点过）。",
   linkTelegramStep2: "2. 回到这里并点击下方的 Telegram 按钮。",
   linkTelegramOpenBot: "打开机器人",
@@ -698,7 +698,7 @@ const zh: WebStrings = {
 };
 
 const ar: WebStrings = {
-  navTraderGroup: "NICS AI Trader",
+  navTraderGroup: "NICS Trading Ecosystem",
   navTraderDashboard: "لوحة التداول",
   navSignals: "الإشارات",
   navPerformance: "النتائج والرسوم البيانية",
@@ -753,7 +753,7 @@ const ar: WebStrings = {
   accountSaved: "تم، أصبحت طريقة الدخول مربوطة.",
 
   linkTelegramTitle: "اربط Telegram لترى إشاراتك",
-  linkTelegramLead: "إشارات NICS AI Trader والاشتراك والإحصاءات مرتبطة بحسابك في Telegram داخل البوت. اربطه مرة واحدة: بعدها يمكنك الدخول هنا بالبريد أو Google.",
+  linkTelegramLead: "إشارات NICS Trading Ecosystem والاشتراك والإحصاءات مرتبطة بحسابك في Telegram داخل البوت. اربطه مرة واحدة: بعدها يمكنك الدخول هنا بالبريد أو Google.",
   linkTelegramStep1: "1. افتح البوت @nics_ai_bot واضغط Start (إن لم تفعل بعد).",
   linkTelegramStep2: "2. عد إلى هنا واضغط زر Telegram أدناه.",
   linkTelegramOpenBot: "فتح البوت",

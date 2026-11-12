@@ -4,8 +4,8 @@ description: What actually happens inside an AI trading signal service, what a c
 date: 2026-11-12
 image: /og-trading.jpg
 service: /nics-trading-software
-cta: See how NICS AI Trader turns live prices into complete trade plans, and check every closed signal in the public track record.
-ctaButton: Explore NICS AI Trader
+cta: See how NICS Trading Ecosystem turns live prices into complete trade plans, and check every closed signal in the public track record.
+ctaButton: Explore NICS Trading Ecosystem
 ---
 
 "AI trading signals" is a phrase that covers everything from a carefully tested engine to a chat group copying someone's guesses. Here is what a real signal system does, step by step, and how to check one before you trust it with money.
@@ -53,9 +53,9 @@ The last step is the one most providers skip: following each signal until it hit
 4. **Are weak ideas separated from strong ones?** Mixing them in statistics hides the real quality.
 5. **Does it say what it does not do?** No honest service promises profit.
 
-## How NICS AI Trader does it
+## How NICS Trading Ecosystem does it
 
-[NICS AI Trader](/nics-trading-software/) follows exactly this chain. The engine scans 19 instruments — gold, silver, forex, Brent oil, Bitcoin, Ethereum, US stocks and indices — every 15 minutes from a live broker feed. A setup that passes all filters is published as a **Strong Setup** with an entry zone, stop loss, TP1–TP4, the reason for the direction and a multi-timeframe block. Weaker ideas are labelled **Watchlist Setup**, are never sent automatically and are not counted in any statistics.
+[NICS Trading Ecosystem](/nics-trading-software/) follows exactly this chain. The engine scans 19 instruments — gold, silver, forex, Brent oil, Bitcoin, Ethereum, US stocks and indices — every 15 minutes from a live broker feed. A setup that passes all filters is published as a **Strong Setup** with an entry zone, stop loss, TP1–TP4, the reason for the direction and a multi-timeframe block. Weaker ideas are labelled **Watchlist Setup**, are never sent automatically and are not counted in any statistics.
 
 Each card also shows the lot size for your balance and risk. You decide whether to trade; nothing is executed on your account. Every closed strong signal goes into the [public track record](/trading/#track-record), wins and losses alike.
 

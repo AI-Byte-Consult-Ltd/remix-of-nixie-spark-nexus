@@ -56,9 +56,9 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li><a href="https://estate.aibyteconsult.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Real Estate</a></li>
                 <li><Link to={phasedPath("/nics-ecosystem", language)} className="text-muted-foreground hover:text-primary transition-colors">NICS AI Ecosystem</Link></li>
-                <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">NICS AI Trading</Link></li>
+                <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">NICS Trading Ecosystem</Link></li>
                 <li><Link to={phasedPath("/nics-trading-software", language)} className="text-muted-foreground hover:text-primary transition-colors">{SOFTWARE_LABEL[language] ?? SOFTWARE_LABEL.en}</Link></li>
-                <li><Link to={windowsAppPath(language)} className="text-muted-foreground hover:text-primary transition-colors">NICS AI Trader for Windows</Link></li>
+                <li><Link to={windowsAppPath(language)} className="text-muted-foreground hover:text-primary transition-colors">NICS Trading Ecosystem for Windows</Link></li>
                 <li><Link to="/nics-video" className="text-muted-foreground hover:text-primary transition-colors">NICS Video</Link></li>
                 <li><a href={TRADING_LAB_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Trading Lab (YouTube)</a></li>
                 <li><a href="https://pridesocial.org" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Social</a></li>

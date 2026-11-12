@@ -130,9 +130,9 @@ const CASES: Case[] = [
   {
     id: "nicstrading",
     industry: "Trading · Market Intelligence",
-    name: "NICS AI Trading",
+    name: "NICS Trading Ecosystem",
     problem: "Retail traders act on emotion and scattered information instead of a structured process across Forex, Gold and Crypto.",
-    solution: "NICS AI Trader reads price action, Ichimoku, Fibonacci and volume confluence in real time, then delivers confidence-scored signals with entries, stops and take-profit levels straight to Telegram and MT5 through our Vantage broker integration.",
+    solution: "NICS Trading Ecosystem reads price action, Ichimoku, Fibonacci and volume confluence in real time, then delivers confidence-scored signals with entries, stops and take-profit levels straight to Telegram and MT5 through our Vantage broker integration.",
     result: "A disciplined, always-on signal engine with a public, verified track record instead of backtested promises.",
     metric: { value: 24, suffix: "/7", label: "Market analysis coverage" },
     tags: ["AI Trading", "Forex · Gold · Crypto", "Telegram + MT5", "Verified Track Record"],

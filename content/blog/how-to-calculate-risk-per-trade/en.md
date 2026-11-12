@@ -4,8 +4,8 @@ description: How much of your account to risk on one trade, why losing streaks d
 date: 2026-11-12
 image: /og-trading.jpg
 service: /nics-trading-software
-cta: Set your risk once in NICS AI Trader, and every signal card shows the money at risk and the lot size for your account.
-ctaButton: Try NICS AI Trader
+cta: Set your risk once in NICS Trading Ecosystem, and every signal card shows the money at risk and the lot size for your account.
+ctaButton: Try NICS Trading Ecosystem
 ---
 
 Risk per trade is the amount you lose if a trade hits its stop. It is the setting that decides whether a normal bad week is an annoyance or the end of your account.
@@ -56,8 +56,8 @@ That is the main reason professional traders keep risk small: not because they e
 
 Once your risk is fixed, it is useful to measure results in **R**, where 1R is the amount you risk. A trade that makes twice the risk is +2R; a full stop is −1R. R makes results comparable across instruments and account sizes, and it is how the [risk-to-reward ratio](/blog/risk-to-reward-ratio/) is usually expressed.
 
-## How NICS AI Trader uses it
+## How NICS Trading Ecosystem uses it
 
-In [NICS AI Trader](/nics-trading-software/) you set your balance, account currency and risk once. Every signal card then shows the money at risk, the exact lot and the lot rounded to your broker's step, plus the loss if you are forced to use the minimum lot. The public [track record](/trading/#track-record) is kept in R, so you can see how a 1R loss and a +2R win add up over hundreds of strong signals — drawdowns included.
+In [NICS Trading Ecosystem](/nics-trading-software/) you set your balance, account currency and risk once. Every signal card then shows the money at risk, the exact lot and the lot rounded to your broker's step, plus the loss if you are forced to use the minimum lot. The public [track record](/trading/#track-record) is kept in R, so you can see how a 1R loss and a +2R win add up over hundreds of strong signals — drawdowns included.
 
 > Trading involves substantial risk. Choose a risk level you can afford to lose; past results do not guarantee future ones.

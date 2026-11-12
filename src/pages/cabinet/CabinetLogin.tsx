@@ -50,8 +50,8 @@ const CabinetLogin = () => {
   return (
     <>
       <SEO
-        title="NICS AI Trader — Login"
-        description="Log in to your NICS AI Trader personal cabinet."
+        title="NICS Trading Ecosystem — Login"
+        description="Log in to your NICS Trading Ecosystem personal cabinet."
         canonical="https://aibyteconsult.com/cabinet/login"
         noindex
       />

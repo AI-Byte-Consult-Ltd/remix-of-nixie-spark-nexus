@@ -1,4 +1,4 @@
-//! NICS AI Trader for Windows: a thin native shell around the web cabinet
+//! NICS Trading Ecosystem for Windows: a thin native shell around the web cabinet
 //! at aibyteconsult.com. The app itself is the live site, so every site
 //! release reaches desktop users without reinstalling.
 
@@ -44,7 +44,7 @@ pub fn run() {
             // index.html is a small local page: it moves to the live cabinet
             // when online and shows an honest "no connection" screen otherwise.
             WebviewWindowBuilder::new(app, MAIN_WINDOW, WebviewUrl::App("index.html".into()))
-                .title("NICS AI Trader")
+                .title("NICS Trading Ecosystem")
                 .inner_size(1200.0, 820.0)
                 .min_inner_size(380.0, 600.0)
                 .center()
@@ -68,5 +68,5 @@ pub fn run() {
             Ok(())
         })
         .run(tauri::generate_context!())
-        .expect("error while running NICS AI Trader");
+        .expect("error while running NICS Trading Ecosystem");
 }
