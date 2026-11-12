@@ -4,7 +4,7 @@ import { useCabinetOutletContext } from "./CabinetLayout";
 const SERVICES = [
   { href: "https://estate.aibyteconsult.com", label: "NICS Real Estate", external: true },
   { href: "/nics-ecosystem", label: "NICS AI Ecosystem", external: false },
-  { href: "/trading", label: "NICS AI Trading", external: false },
+  { href: "/trading", label: "NICS Trading Ecosystem", external: false },
   { href: "/nics-multimedia", label: "NICS Multimedia", external: false },
 ];
 

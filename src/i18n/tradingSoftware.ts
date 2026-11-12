@@ -57,13 +57,13 @@ const SLUGS = {
 };
 
 const en: TradingSoftwareTexts = {
-  seoTitle: "AI Trading Software — NICS AI Trader for Windows, Web and Telegram",
+  seoTitle: "AI Trading Software — NICS Trading Ecosystem for Windows, Web and Telegram",
   seoDescription:
-    "NICS AI Trader is AI trading software that scans gold, forex, oil, crypto, stocks and indices 24/7 and gives ready setups with Entry, Stop Loss, TP1–TP4 and position sizing for your account.",
+    "NICS Trading Ecosystem is AI trading software that scans gold, forex, oil, crypto, stocks and indices 24/7 and gives ready setups with Entry, Stop Loss, TP1–TP4 and position sizing for your account.",
   badge: "AI trading software · by AI Byte Consult, Bulgaria",
   title: "AI trading software that does the market scanning for you",
   subtitle:
-    "NICS AI Trader watches 19 instruments around the clock, finds setups that pass its filters and hands you a complete plan: where to enter, where the stop is, four profit targets and the lot size for your balance. You make the final decision.",
+    "NICS Trading Ecosystem watches 19 instruments around the clock, finds setups that pass its filters and hands you a complete plan: where to enter, where the stop is, four profit targets and the lot size for your balance. You make the final decision.",
   ctaPlans: "See plans",
   ctaWindows: "Windows app",
   ctaTrack: "Verified performance",
@@ -121,24 +121,24 @@ const en: TradingSoftwareTexts = {
   ],
   faqTitle: "Questions",
   faq: [
-    { q: "What is AI trading software?", a: "A program that analyses market data automatically and turns it into trade ideas or trades. NICS AI Trader produces complete trade plans and risk calculations; the decision to trade stays with you." },
-    { q: "Does NICS AI Trader trade automatically?", a: "No. It scans the markets autonomously and publishes setups, but it never places orders on your account. You accept or skip each signal." },
+    { q: "What is AI trading software?", a: "A program that analyses market data automatically and turns it into trade ideas or trades. NICS Trading Ecosystem produces complete trade plans and risk calculations; the decision to trade stays with you." },
+    { q: "Does NICS Trading Ecosystem trade automatically?", a: "No. It scans the markets autonomously and publishes setups, but it never places orders on your account. You accept or skip each signal." },
     { q: "Which broker do I need?", a: "Prices come from a Vantage MT5 feed, and position sizing uses MT5 contract specifications. You can apply the levels with any broker that offers the same instruments, but check its contract sizes." },
     { q: "How much does it cost?", a: "A 7-day trial costs €1.99, then €19.99 a month, cancel any time. One-time passes for 7, 30 or 90 days without renewal are also available. The Windows app is included." },
     { q: "Can I check the results before paying?", a: "Yes. The verified track record on the trading page is public and shows every closed strong signal, including the losing ones." },
   ],
   disclaimer:
-    "Trading involves substantial risk of loss. NICS AI Trader provides analytical trading scenarios and risk tools, not financial advice or guaranteed returns.",
+    "Trading involves substantial risk of loss. NICS Trading Ecosystem provides analytical trading scenarios and risk tools, not financial advice or guaranteed returns.",
 };
 
 const ru: TradingSoftwareTexts = {
-  seoTitle: "Программа для трейдинга с ИИ — NICS AI Trader для Windows, веба и Telegram",
+  seoTitle: "Программа для трейдинга с ИИ — NICS Trading Ecosystem для Windows, веба и Telegram",
   seoDescription:
-    "NICS AI Trader — программа для трейдинга с ИИ: круглосуточно сканирует золото, форекс, нефть, крипту, акции и индексы и даёт готовые сетапы со входом, стоп-лоссом, TP1–TP4 и расчётом лота под ваш счёт.",
+    "NICS Trading Ecosystem — программа для трейдинга с ИИ: круглосуточно сканирует золото, форекс, нефть, крипту, акции и индексы и даёт готовые сетапы со входом, стоп-лоссом, TP1–TP4 и расчётом лота под ваш счёт.",
   badge: "Программа для трейдинга с ИИ · AI Byte Consult, Болгария",
   title: "Программа для трейдинга, которая сканирует рынок за вас",
   subtitle:
-    "NICS AI Trader круглосуточно следит за 19 инструментами, находит сетапы, прошедшие фильтры, и выдаёт готовый план: где входить, где стоп, четыре цели и объём лота под ваш баланс. Окончательное решение — за вами.",
+    "NICS Trading Ecosystem круглосуточно следит за 19 инструментами, находит сетапы, прошедшие фильтры, и выдаёт готовый план: где входить, где стоп, четыре цели и объём лота под ваш баланс. Окончательное решение — за вами.",
   ctaPlans: "Тарифы",
   ctaWindows: "Приложение для Windows",
   ctaTrack: "Проверенная статистика",
@@ -196,24 +196,24 @@ const ru: TradingSoftwareTexts = {
   ],
   faqTitle: "Вопросы",
   faq: [
-    { q: "Что такое программа для трейдинга с ИИ?", a: "Программа, которая автоматически анализирует рыночные данные и превращает их в торговые идеи или сделки. NICS AI Trader выдаёт готовые торговые планы и расчёт риска, а решение о сделке остаётся за вами." },
-    { q: "NICS AI Trader торгует автоматически?", a: "Нет. Он самостоятельно сканирует рынки и публикует сетапы, но никогда не ставит ордера на вашем счёте. Каждый сигнал вы принимаете или пропускаете." },
+    { q: "Что такое программа для трейдинга с ИИ?", a: "Программа, которая автоматически анализирует рыночные данные и превращает их в торговые идеи или сделки. NICS Trading Ecosystem выдаёт готовые торговые планы и расчёт риска, а решение о сделке остаётся за вами." },
+    { q: "NICS Trading Ecosystem торгует автоматически?", a: "Нет. Он самостоятельно сканирует рынки и публикует сетапы, но никогда не ставит ордера на вашем счёте. Каждый сигнал вы принимаете или пропускаете." },
     { q: "Какой нужен брокер?", a: "Цены берутся из фида Vantage MT5, расчёт объёма — по спецификациям контрактов MT5. Уровни можно применять у любого брокера с теми же инструментами, но проверьте размер его контрактов." },
     { q: "Сколько это стоит?", a: "Пробные 7 дней — 1,99 €, затем 19,99 € в месяц, отменить можно в любой момент. Есть и разовые доступы на 7, 30 или 90 дней без продления. Приложение для Windows входит в подписку." },
     { q: "Можно проверить результаты до оплаты?", a: "Да. Проверенная статистика на странице трейдинга открыта и показывает каждый закрытый сильный сигнал, включая убыточные." },
   ],
   disclaimer:
-    "Торговля связана с высоким риском потерь. NICS AI Trader даёт аналитические торговые сценарии и инструменты контроля риска, а не инвестиционные рекомендации и не гарантию дохода.",
+    "Торговля связана с высоким риском потерь. NICS Trading Ecosystem даёт аналитические торговые сценарии и инструменты контроля риска, а не инвестиционные рекомендации и не гарантию дохода.",
 };
 
 const bg: TradingSoftwareTexts = {
-  seoTitle: "Софтуер за трейдинг с ИИ — NICS AI Trader за Windows, уеб и Telegram",
+  seoTitle: "Софтуер за трейдинг с ИИ — NICS Trading Ecosystem за Windows, уеб и Telegram",
   seoDescription:
-    "NICS AI Trader е софтуер за трейдинг с ИИ: денонощно сканира злато, форекс, петрол, крипто, акции и индекси и дава готови сетъпи с вход, стоп загуба, TP1–TP4 и размер на лота за вашата сметка.",
+    "NICS Trading Ecosystem е софтуер за трейдинг с ИИ: денонощно сканира злато, форекс, петрол, крипто, акции и индекси и дава готови сетъпи с вход, стоп загуба, TP1–TP4 и размер на лота за вашата сметка.",
   badge: "Софтуер за трейдинг с ИИ · AI Byte Consult, България",
   title: "Софтуер за трейдинг, който сканира пазара вместо вас",
   subtitle:
-    "NICS AI Trader следи 19 инструмента денонощно, намира сетъпи, които минават филтрите, и ви дава готов план: къде да влезете, къде е стопът, четири цели и размерът на лота за вашия баланс. Последната дума е ваша.",
+    "NICS Trading Ecosystem следи 19 инструмента денонощно, намира сетъпи, които минават филтрите, и ви дава готов план: къде да влезете, къде е стопът, четири цели и размерът на лота за вашия баланс. Последната дума е ваша.",
   ctaPlans: "Планове",
   ctaWindows: "Приложение за Windows",
   ctaTrack: "Проверени резултати",
@@ -271,24 +271,24 @@ const bg: TradingSoftwareTexts = {
   ],
   faqTitle: "Въпроси",
   faq: [
-    { q: "Какво е софтуер за трейдинг с ИИ?", a: "Програма, която автоматично анализира пазарни данни и ги превръща в търговски идеи или сделки. NICS AI Trader дава готови планове за сделки и изчисления на риска; решението да търгувате остава ваше." },
-    { q: "NICS AI Trader търгува ли автоматично?", a: "Не. Той сам сканира пазарите и публикува сетъпи, но никога не пуска поръчки по вашата сметка. Всеки сигнал вие приемате или пропускате." },
+    { q: "Какво е софтуер за трейдинг с ИИ?", a: "Програма, която автоматично анализира пазарни данни и ги превръща в търговски идеи или сделки. NICS Trading Ecosystem дава готови планове за сделки и изчисления на риска; решението да търгувате остава ваше." },
+    { q: "NICS Trading Ecosystem търгува ли автоматично?", a: "Не. Той сам сканира пазарите и публикува сетъпи, но никога не пуска поръчки по вашата сметка. Всеки сигнал вие приемате или пропускате." },
     { q: "Какъв брокер ми трябва?", a: "Цените идват от фийд на Vantage MT5, а размерът на позицията се изчислява по MT5 спецификации. Можете да използвате нивата при всеки брокер със същите инструменти, но проверете размера на договорите му." },
     { q: "Колко струва?", a: "7-дневен пробен период за 1,99 €, след това 19,99 € на месец, с отказ по всяко време. Има и еднократен достъп за 7, 30 или 90 дни без подновяване. Приложението за Windows е включено." },
     { q: "Мога ли да проверя резултатите преди да платя?", a: "Да. Проверената статистика на страницата за трейдинг е публична и показва всеки затворен силен сигнал, включително губещите." },
   ],
   disclaimer:
-    "Търговията носи висок риск от загуби. NICS AI Trader предоставя аналитични сценарии и инструменти за риска, а не финансов съвет или гарантирана доходност.",
+    "Търговията носи висок риск от загуби. NICS Trading Ecosystem предоставя аналитични сценарии и инструменти за риска, а не финансов съвет или гарантирана доходност.",
 };
 
 const de: TradingSoftwareTexts = {
-  seoTitle: "KI-Trading-Software — NICS AI Trader für Windows, Web und Telegram",
+  seoTitle: "KI-Trading-Software — NICS Trading Ecosystem für Windows, Web und Telegram",
   seoDescription:
-    "NICS AI Trader ist eine KI-Trading-Software: Sie scannt Gold, Forex, Öl, Krypto, Aktien und Indizes rund um die Uhr und liefert fertige Setups mit Einstieg, Stop-Loss, TP1–TP4 und Positionsgröße für Ihr Konto.",
+    "NICS Trading Ecosystem ist eine KI-Trading-Software: Sie scannt Gold, Forex, Öl, Krypto, Aktien und Indizes rund um die Uhr und liefert fertige Setups mit Einstieg, Stop-Loss, TP1–TP4 und Positionsgröße für Ihr Konto.",
   badge: "KI-Trading-Software · AI Byte Consult, Bulgarien",
   title: "Trading-Software, die den Markt für Sie scannt",
   subtitle:
-    "NICS AI Trader beobachtet 19 Instrumente rund um die Uhr, findet Setups, die alle Filter bestehen, und liefert einen fertigen Plan: Einstieg, Stop, vier Kursziele und die Lotgröße für Ihren Kontostand. Die Entscheidung treffen Sie.",
+    "NICS Trading Ecosystem beobachtet 19 Instrumente rund um die Uhr, findet Setups, die alle Filter bestehen, und liefert einen fertigen Plan: Einstieg, Stop, vier Kursziele und die Lotgröße für Ihren Kontostand. Die Entscheidung treffen Sie.",
   ctaPlans: "Tarife ansehen",
   ctaWindows: "Windows-App",
   ctaTrack: "Geprüfte Ergebnisse",
@@ -346,24 +346,24 @@ const de: TradingSoftwareTexts = {
   ],
   faqTitle: "Fragen",
   faq: [
-    { q: "Was ist KI-Trading-Software?", a: "Ein Programm, das Marktdaten automatisch auswertet und daraus Handelsideen oder Trades macht. NICS AI Trader liefert vollständige Handelspläne und Risikoberechnungen; die Entscheidung bleibt bei Ihnen." },
-    { q: "Handelt NICS AI Trader automatisch?", a: "Nein. Er scannt die Märkte selbstständig und veröffentlicht Setups, platziert aber nie Orders auf Ihrem Konto. Jedes Signal nehmen Sie an oder überspringen es." },
+    { q: "Was ist KI-Trading-Software?", a: "Ein Programm, das Marktdaten automatisch auswertet und daraus Handelsideen oder Trades macht. NICS Trading Ecosystem liefert vollständige Handelspläne und Risikoberechnungen; die Entscheidung bleibt bei Ihnen." },
+    { q: "Handelt NICS Trading Ecosystem automatisch?", a: "Nein. Er scannt die Märkte selbstständig und veröffentlicht Setups, platziert aber nie Orders auf Ihrem Konto. Jedes Signal nehmen Sie an oder überspringen es." },
     { q: "Welchen Broker brauche ich?", a: "Die Kurse stammen aus einem Vantage-MT5-Feed, die Positionsgröße basiert auf MT5-Kontraktspezifikationen. Sie können die Niveaus bei jedem Broker mit denselben Instrumenten nutzen, prüfen Sie aber dessen Kontraktgrößen." },
     { q: "Was kostet es?", a: "Die 7-tägige Testphase kostet 1,99 €, danach 19,99 € im Monat, jederzeit kündbar. Es gibt auch einmalige Zugänge für 7, 30 oder 90 Tage ohne Verlängerung. Die Windows-App ist inklusive." },
     { q: "Kann ich die Ergebnisse vor dem Kauf prüfen?", a: "Ja. Die geprüfte Statistik auf der Trading-Seite ist öffentlich und zeigt jedes geschlossene starke Signal, auch die Verlierer." },
   ],
   disclaimer:
-    "Trading ist mit einem erheblichen Verlustrisiko verbunden. NICS AI Trader liefert analytische Handelsszenarien und Risikowerkzeuge, keine Anlageberatung und keine garantierten Renditen.",
+    "Trading ist mit einem erheblichen Verlustrisiko verbunden. NICS Trading Ecosystem liefert analytische Handelsszenarien und Risikowerkzeuge, keine Anlageberatung und keine garantierten Renditen.",
 };
 
 const es: TradingSoftwareTexts = {
-  seoTitle: "Software de trading con IA — NICS AI Trader para Windows, web y Telegram",
+  seoTitle: "Software de trading con IA — NICS Trading Ecosystem para Windows, web y Telegram",
   seoDescription:
-    "NICS AI Trader es un software de trading con IA: analiza oro, forex, petróleo, cripto, acciones e índices las 24 horas y entrega setups con entrada, stop loss, TP1–TP4 y tamaño de lote para tu cuenta.",
+    "NICS Trading Ecosystem es un software de trading con IA: analiza oro, forex, petróleo, cripto, acciones e índices las 24 horas y entrega setups con entrada, stop loss, TP1–TP4 y tamaño de lote para tu cuenta.",
   badge: "Software de trading con IA · AI Byte Consult, Bulgaria",
   title: "Software de trading que analiza el mercado por ti",
   subtitle:
-    "NICS AI Trader vigila 19 instrumentos día y noche, encuentra setups que superan sus filtros y te da un plan completo: dónde entrar, dónde va el stop, cuatro objetivos y el tamaño de lote para tu saldo. La decisión final es tuya.",
+    "NICS Trading Ecosystem vigila 19 instrumentos día y noche, encuentra setups que superan sus filtros y te da un plan completo: dónde entrar, dónde va el stop, cuatro objetivos y el tamaño de lote para tu saldo. La decisión final es tuya.",
   ctaPlans: "Ver planes",
   ctaWindows: "App para Windows",
   ctaTrack: "Resultados verificados",
@@ -421,14 +421,14 @@ const es: TradingSoftwareTexts = {
   ],
   faqTitle: "Preguntas",
   faq: [
-    { q: "¿Qué es un software de trading con IA?", a: "Un programa que analiza datos de mercado de forma automática y los convierte en ideas de operación u operaciones. NICS AI Trader genera planes completos y cálculos de riesgo; la decisión de operar sigue siendo tuya." },
-    { q: "¿NICS AI Trader opera automáticamente?", a: "No. Analiza los mercados de forma autónoma y publica setups, pero nunca coloca órdenes en tu cuenta. Cada señal la aceptas o la descartas tú." },
+    { q: "¿Qué es un software de trading con IA?", a: "Un programa que analiza datos de mercado de forma automática y los convierte en ideas de operación u operaciones. NICS Trading Ecosystem genera planes completos y cálculos de riesgo; la decisión de operar sigue siendo tuya." },
+    { q: "¿NICS Trading Ecosystem opera automáticamente?", a: "No. Analiza los mercados de forma autónoma y publica setups, pero nunca coloca órdenes en tu cuenta. Cada señal la aceptas o la descartas tú." },
     { q: "¿Qué bróker necesito?", a: "Los precios vienen de un feed de Vantage MT5 y el tamaño de posición usa especificaciones de contratos MT5. Puedes aplicar los niveles en cualquier bróker con los mismos instrumentos, pero revisa el tamaño de sus contratos." },
     { q: "¿Cuánto cuesta?", a: "La prueba de 7 días cuesta 1,99 €, después 19,99 € al mes, cancelable en cualquier momento. También hay accesos únicos de 7, 30 o 90 días sin renovación. La app para Windows está incluida." },
     { q: "¿Puedo comprobar los resultados antes de pagar?", a: "Sí. El historial verificado de la página de trading es público y muestra cada señal fuerte cerrada, también las perdedoras." },
   ],
   disclaimer:
-    "El trading conlleva un riesgo elevado de pérdidas. NICS AI Trader ofrece escenarios analíticos y herramientas de riesgo, no asesoramiento financiero ni rentabilidad garantizada.",
+    "El trading conlleva un riesgo elevado de pérdidas. NICS Trading Ecosystem ofrece escenarios analíticos y herramientas de riesgo, no asesoramiento financiero ni rentabilidad garantizada.",
 };
 
 export const tradingSoftwareTexts: Record<Phase1Lang, TradingSoftwareTexts> = { en, ru, bg, de, es };

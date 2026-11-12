@@ -1,8 +1,8 @@
 {
   "id": "/trading/",
-  "name": "NICS Trading",
+  "name": "NICS Trading Ecosystem",
   "short_name": "NICS Trading",
-  "description": "NICS AI Trader: trading signals, verified track record and your account.",
+  "description": "NICS Trading Ecosystem: trading signals, verified track record and your account.",
   "start_url": "/trading/?source=pwa",
   "scope": "/",
   "display": "standalone",

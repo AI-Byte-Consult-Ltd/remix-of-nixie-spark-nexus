@@ -188,7 +188,7 @@ const pageShell = ({ lang, title, description, canonical, alternates, ogType, og
 <header><nav class="bar">
 <a class="brand" href="${servicePath(lang, "") || "/"}">AI Byte Consult</a>
 <a href="${servicePath(lang, "/nics-video")}">NICS Video</a>
-<a href="${servicePath(lang, "/trading")}">NICS AI Trader</a>
+<a href="${servicePath(lang, "/trading")}">NICS Trading Ecosystem</a>
 <a href="${servicePath(lang, "/nics-trading-software")}">${ui.software}</a>
 <a href="${blogBase(lang)}">${ui.blog}</a>
 </nav></header>

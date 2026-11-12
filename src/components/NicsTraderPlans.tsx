@@ -53,7 +53,7 @@ const NicsTraderPlans = () => {
         >
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-400/30 bg-orange-400/5 px-4 py-1.5 text-xs font-medium tracking-wider text-orange-300 backdrop-blur">
             <Bot className="h-3.5 w-3.5" />
-            NICS AI TRADER ACCESS
+            NICS TRADING ECOSYSTEM ACCESS
           </div>
           <h2 className="mb-6 text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
             {ui.title1}{" "}

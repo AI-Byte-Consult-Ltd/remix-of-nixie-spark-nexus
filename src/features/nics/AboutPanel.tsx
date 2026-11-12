@@ -17,6 +17,47 @@ type ReleaseText = Record<AppLanguage, { title: string; items: string[] }>;
 
 export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseText }> = [
   {
+    version: "2.14.0",
+    date: "12.11.2026",
+    text: {
+      ru: {
+        title: "Новое имя: NICS Trading Ecosystem",
+        items: [
+          "NICS AI Trader теперь называется NICS Trading Ecosystem: одно имя для приложения Windows, Mini App, кабинета, бота и сайта.",
+          "Функции, тариф, ключ лицензии и ваша история не изменились.",
+        ],
+      },
+      bg: {
+        title: "Ново име: NICS Trading Ecosystem",
+        items: [
+          "NICS AI Trader вече се казва NICS Trading Ecosystem: едно име за приложението за Windows, Mini App, кабинета, бота и сайта.",
+          "Функциите, тарифът, лицензионният ключ и историята ви не са променени.",
+        ],
+      },
+      en: {
+        title: "New name: NICS Trading Ecosystem",
+        items: [
+          "NICS AI Trader is now called NICS Trading Ecosystem: one name for the Windows app, Mini App, cabinet, bot and website.",
+          "Features, plan, license key and your history stay the same.",
+        ],
+      },
+      es: {
+        title: "Nuevo nombre: NICS Trading Ecosystem",
+        items: [
+          "NICS AI Trader ahora se llama NICS Trading Ecosystem: un solo nombre para la app de Windows, la Mini App, el panel, el bot y el sitio web.",
+          "Las funciones, el plan, la clave de licencia y su historial no cambian.",
+        ],
+      },
+      pt: {
+        title: "Novo nome: NICS Trading Ecosystem",
+        items: [
+          "O NICS AI Trader agora se chama NICS Trading Ecosystem: um só nome para o app do Windows, o Mini App, o painel, o bot e o site.",
+          "Funções, plano, chave de licença e o seu histórico continuam iguais.",
+        ],
+      },
+    },
+  },
+  {
     version: "2.13.0",
     date: "12.11.2026",
     text: {
@@ -514,7 +555,7 @@ export const AboutPanel = ({ t, language, appVersion, updates }: AboutPanelProps
             <Bot className="h-6 w-6 text-[#171006]" />
           </div>
           <div>
-            <h1 className="text-xl font-semibold">NICS AI Trader</h1>
+            <h1 className="text-xl font-semibold">NICS Trading Ecosystem</h1>
             <p className="text-xs text-slate-400">
               {t.appVersion} {appVersion}
             </p>

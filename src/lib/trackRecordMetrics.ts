@@ -1,4 +1,4 @@
-// Pure calculations for the public NICS AI Trader track record.
+// Pure calculations for the public NICS Trading Ecosystem track record.
 //
 // Input is the `trades` list returned by the [10 PUBLIC STATS] endpoint:
 // every closed signal that cleared the quality gate (WEAK signals are

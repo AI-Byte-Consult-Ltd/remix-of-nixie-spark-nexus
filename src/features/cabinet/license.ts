@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import type { CabinetLanguage } from "./types";
 
 /*
- * License keys for the NICS AI Trader Windows app (n8n [39 TRADER] License
+ * License keys for the NICS Trading Ecosystem Windows app (n8n [39 TRADER] License
  * Keys, POST nics-license).
  * - An active paid Trader subscription (or an admin) gets one key, shown in
  *   the cabinet; it stays valid while the subscription is active.
@@ -207,7 +207,7 @@ export const useDesktopLicense = (enabled: boolean, session: string | null) => {
 
 const en = {
   title: "Windows app license",
-  lead: "The NICS AI Trader app for Windows works with a license key. The key comes with an active Trader subscription.",
+  lead: "The NICS Trading Ecosystem app for Windows works with a license key. The key comes with an active Trader subscription.",
   yourKey: "Your license key",
   copy: "Copy",
   copied: "Copied",
@@ -233,7 +233,7 @@ const en = {
   monthUntil: "1 month, until",
   revoke: "Revoke",
   error: "Something went wrong. Please try again.",
-  gateTitle: "Activate NICS AI Trader",
+  gateTitle: "Activate NICS Trading Ecosystem",
   gateLead: "Enter your license key. You find it in the cabinet under “Windows app license” after paying for a Trader subscription. A gift key from us works too.",
   keyPlaceholder: "NICS-XXXX-XXXX-XXXX",
   activate: "Activate",
@@ -249,14 +249,14 @@ const en = {
   haveKeyTitle: "Got a license key (also a gift key)?",
   haveKeySteps: "1. Download the installer and install the app on Windows 10 or 11. 2. Open it and sign in (Telegram or e-mail). 3. Enter the key NICS-XXXX-XXXX-XXXX. A gift key works without a subscription.",
   copyInvite: "Copy message for the recipient",
-  invite: "Your NICS AI Trader license key: {key} ({validity}).\n1. Download the Windows app: {url}\n2. Install it and sign in with Telegram or e-mail.\n3. Enter the key when the app asks for it.",
+  invite: "Your NICS Trading Ecosystem license key: {key} ({validity}).\n1. Download the Windows app: {url}\n2. Install it and sign in with Telegram or e-mail.\n3. Enter the key when the app asks for it.",
 };
 
 type LicenseStrings = typeof en;
 
 const ru: LicenseStrings = {
   title: "Лицензия Windows-приложения",
-  lead: "Приложение NICS AI Trader для Windows работает по лицензионному ключу. Ключ выдаётся при активной подписке Trader.",
+  lead: "Приложение NICS Trading Ecosystem для Windows работает по лицензионному ключу. Ключ выдаётся при активной подписке Trader.",
   yourKey: "Ваш лицензионный ключ",
   copy: "Копировать",
   copied: "Скопировано",
@@ -282,7 +282,7 @@ const ru: LicenseStrings = {
   monthUntil: "1 месяц, до",
   revoke: "Отозвать",
   error: "Что-то пошло не так. Попробуйте ещё раз.",
-  gateTitle: "Активация NICS AI Trader",
+  gateTitle: "Активация NICS Trading Ecosystem",
   gateLead: "Введите лицензионный ключ. Он есть в кабинете в разделе «Лицензия Windows-приложения» после оплаты подписки Trader. Подходит и подарочный ключ.",
   keyPlaceholder: "NICS-XXXX-XXXX-XXXX",
   activate: "Активировать",
@@ -298,12 +298,12 @@ const ru: LicenseStrings = {
   haveKeyTitle: "Есть лицензионный ключ (в том числе подарочный)?",
   haveKeySteps: "1. Скачайте установщик и установите приложение на Windows 10 или 11. 2. Откройте его и войдите (Telegram или e-mail). 3. Введите ключ NICS-XXXX-XXXX-XXXX. Подарочный ключ работает без подписки.",
   copyInvite: "Копировать сообщение для получателя",
-  invite: "Ваш лицензионный ключ NICS AI Trader: {key} ({validity}).\n1. Скачайте приложение для Windows: {url}\n2. Установите его и войдите через Telegram или e-mail.\n3. Введите ключ, когда приложение его попросит.",
+  invite: "Ваш лицензионный ключ NICS Trading Ecosystem: {key} ({validity}).\n1. Скачайте приложение для Windows: {url}\n2. Установите его и войдите через Telegram или e-mail.\n3. Введите ключ, когда приложение его попросит.",
 };
 
 const bg: LicenseStrings = {
   title: "Лиценз за Windows приложението",
-  lead: "Приложението NICS AI Trader за Windows работи с лицензионен ключ. Ключът се дава при активен абонамент за Trader.",
+  lead: "Приложението NICS Trading Ecosystem за Windows работи с лицензионен ключ. Ключът се дава при активен абонамент за Trader.",
   yourKey: "Вашият лицензионен ключ",
   copy: "Копирай",
   copied: "Копирано",
@@ -329,7 +329,7 @@ const bg: LicenseStrings = {
   monthUntil: "1 месец, до",
   revoke: "Отмени",
   error: "Нещо се обърка. Опитайте отново.",
-  gateTitle: "Активиране на NICS AI Trader",
+  gateTitle: "Активиране на NICS Trading Ecosystem",
   gateLead: "Въведете лицензионния ключ. Ще го намерите в кабинета в раздел „Лиценз за Windows приложението“ след плащане на абонамент за Trader. Подаръчен ключ също работи.",
   keyPlaceholder: "NICS-XXXX-XXXX-XXXX",
   activate: "Активирай",
@@ -345,12 +345,12 @@ const bg: LicenseStrings = {
   haveKeyTitle: "Имате лицензен ключ (включително подарен)?",
   haveKeySteps: "1. Изтеглете инсталатора и инсталирайте приложението на Windows 10 или 11. 2. Отворете го и влезте (Telegram или e-mail). 3. Въведете ключа NICS-XXXX-XXXX-XXXX. Подареният ключ работи без абонамент.",
   copyInvite: "Копирай съобщение за получателя",
-  invite: "Вашият лицензен ключ за NICS AI Trader: {key} ({validity}).\n1. Изтеглете приложението за Windows: {url}\n2. Инсталирайте го и влезте с Telegram или e-mail.\n3. Въведете ключа, когато приложението го поиска.",
+  invite: "Вашият лицензен ключ за NICS Trading Ecosystem: {key} ({validity}).\n1. Изтеглете приложението за Windows: {url}\n2. Инсталирайте го и влезте с Telegram или e-mail.\n3. Въведете ключа, когато приложението го поиска.",
 };
 
 const es: LicenseStrings = {
   title: "Licencia de la app de Windows",
-  lead: "La app NICS AI Trader para Windows funciona con una clave de licencia. La clave viene con una suscripción activa a Trader.",
+  lead: "La app NICS Trading Ecosystem para Windows funciona con una clave de licencia. La clave viene con una suscripción activa a Trader.",
   yourKey: "Tu clave de licencia",
   copy: "Copiar",
   copied: "Copiado",
@@ -376,7 +376,7 @@ const es: LicenseStrings = {
   monthUntil: "1 mes, hasta",
   revoke: "Revocar",
   error: "Algo salió mal. Inténtalo de nuevo.",
-  gateTitle: "Activar NICS AI Trader",
+  gateTitle: "Activar NICS Trading Ecosystem",
   gateLead: "Introduce tu clave de licencia. La encontrarás en el panel, en «Licencia de la app de Windows», tras pagar una suscripción a Trader. También sirve una clave de regalo.",
   keyPlaceholder: "NICS-XXXX-XXXX-XXXX",
   activate: "Activar",
@@ -392,12 +392,12 @@ const es: LicenseStrings = {
   haveKeyTitle: "¿Tienes una clave de licencia (también de regalo)?",
   haveKeySteps: "1. Descarga el instalador e instala la app en Windows 10 u 11. 2. Ábrela e inicia sesión (Telegram o e-mail). 3. Introduce la clave NICS-XXXX-XXXX-XXXX. Una clave de regalo funciona sin suscripción.",
   copyInvite: "Copiar mensaje para el destinatario",
-  invite: "Tu clave de licencia de NICS AI Trader: {key} ({validity}).\n1. Descarga la app para Windows: {url}\n2. Instálala e inicia sesión con Telegram o e-mail.\n3. Introduce la clave cuando la app la pida.",
+  invite: "Tu clave de licencia de NICS Trading Ecosystem: {key} ({validity}).\n1. Descarga la app para Windows: {url}\n2. Instálala e inicia sesión con Telegram o e-mail.\n3. Introduce la clave cuando la app la pida.",
 };
 
 const pt: LicenseStrings = {
   title: "Licença do aplicativo para Windows",
-  lead: "O aplicativo NICS AI Trader para Windows funciona com uma chave de licença. A chave vem com uma assinatura Trader ativa.",
+  lead: "O aplicativo NICS Trading Ecosystem para Windows funciona com uma chave de licença. A chave vem com uma assinatura Trader ativa.",
   yourKey: "Sua chave de licença",
   copy: "Copiar",
   copied: "Copiado",
@@ -423,7 +423,7 @@ const pt: LicenseStrings = {
   monthUntil: "1 mês, até",
   revoke: "Revogar",
   error: "Algo deu errado. Tente novamente.",
-  gateTitle: "Ativar o NICS AI Trader",
+  gateTitle: "Ativar o NICS Trading Ecosystem",
   gateLead: "Digite a sua chave de licença. Ela fica no painel, em «Licença do aplicativo para Windows», depois de pagar uma assinatura Trader. Uma chave de presente também serve.",
   keyPlaceholder: "NICS-XXXX-XXXX-XXXX",
   activate: "Ativar",
@@ -439,7 +439,7 @@ const pt: LicenseStrings = {
   haveKeyTitle: "Tem uma chave de licença (também de presente)?",
   haveKeySteps: "1. Baixe o instalador e instale o app no Windows 10 ou 11. 2. Abra-o e entre (Telegram ou e-mail). 3. Introduza a chave NICS-XXXX-XXXX-XXXX. Uma chave de presente funciona sem assinatura.",
   copyInvite: "Copiar mensagem para o destinatário",
-  invite: "A sua chave de licença do NICS AI Trader: {key} ({validity}).\n1. Baixe o app para Windows: {url}\n2. Instale-o e entre com Telegram ou e-mail.\n3. Introduza a chave quando o app pedir.",
+  invite: "A sua chave de licença do NICS Trading Ecosystem: {key} ({validity}).\n1. Baixe o app para Windows: {url}\n2. Instale-o e entre com Telegram ou e-mail.\n3. Introduza a chave quando o app pedir.",
 };
 
 const STRINGS: Partial<Record<CabinetLanguage, LicenseStrings>> = { en, ru, bg, es, pt };

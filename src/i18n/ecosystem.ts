@@ -37,7 +37,7 @@ export interface EcosystemTexts {
 const en: EcosystemTexts = {
   seoTitle: "NICS AI Ecosystem — Independent AI Platform by AI Byte Consult",
   seoDescription:
-    "NICS AI Ecosystem is an independent AI platform from Bulgaria: NICS AI Trader for markets, NICS Video and NICS Studio for content, and an open lab training its own models from scratch.",
+    "NICS AI Ecosystem is an independent AI platform from Bulgaria: NICS Trading Ecosystem for markets, NICS Video and NICS Studio for content, and an open lab training its own models from scratch.",
   badge: "Independent AI platform · Bulgaria",
   title1: "NICS AI",
   title2: "Ecosystem",
@@ -48,7 +48,7 @@ const en: EcosystemTexts = {
   productsTitle: "What runs on the platform today",
   productsDesc: "Each product has its own page with prices, limits and current status.",
   products: [
-    { id: "trader", title: "NICS AI Trader", status: "Live", desc: "Autonomous AI trading platform: 24/7 market scanning, setups with Entry, Stop Loss and TP1–TP4, position sizing, public track record. Windows app, web dashboard and Telegram.", cta: "Open NICS AI Trader" },
+    { id: "trader", title: "NICS Trading Ecosystem", status: "Live", desc: "Autonomous AI trading platform: 24/7 market scanning, setups with Entry, Stop Loss and TP1–TP4, position sizing, public track record. Windows app, web dashboard and Telegram.", cta: "Open NICS Trading Ecosystem" },
     { id: "video", title: "NICS Video", status: "Live", desc: "Your raw clips in, a finished package out: a vertical Short, a horizontal video and covers in two languages, edited by an automatic script.", cta: "Open NICS Video" },
     { id: "studio", title: "NICS Studio", status: "In development", desc: "An editor in the browser for fine-tuning your own videos yourself.", cta: "Open NICS Studio" },
     { id: "forge", title: "Alessandro Studio", status: "Live", desc: "3D-printed products and a studio that turns a photo into a printable 3D model.", cta: "Open Alessandro Studio" },
@@ -82,7 +82,7 @@ const en: EcosystemTexts = {
   ],
   faqTitle: "Questions",
   faq: [
-    { q: "What is the NICS AI Ecosystem?", a: "The family of AI products built by AI Byte Consult Ltd in Bulgaria: NICS AI Trader, NICS Video, NICS Studio, Alessandro Studio and the NICS AI Lab, with one company and one account system behind them." },
+    { q: "What is the NICS AI Ecosystem?", a: "The family of AI products built by AI Byte Consult Ltd in Bulgaria: NICS Trading Ecosystem, NICS Video, NICS Studio, Alessandro Studio and the NICS AI Lab, with one company and one account system behind them." },
     { q: "What does “independent AI platform” mean here?", a: "The products run on our own backend and automation, and the lab trains its own tokenizer and models from scratch instead of wrapping someone else's model." },
     { q: "Are the lab models used in the products today?", a: "Not yet. The lab is at an early research stage; the products use their own analysis engines and scripts. We will say so on this page when that changes." },
     { q: "Who is behind NICS?", a: "AI Byte Consult Ltd, a company registered in Bulgaria and an official Meta Tech Provider." },
@@ -92,7 +92,7 @@ const en: EcosystemTexts = {
 const ru: EcosystemTexts = {
   seoTitle: "Экосистема NICS AI — независимая AI-платформа от AI Byte Consult",
   seoDescription:
-    "NICS AI Ecosystem — независимая AI-платформа из Болгарии: NICS AI Trader для рынков, NICS Video и NICS Studio для контента и открытая лаборатория, которая обучает собственные модели с нуля.",
+    "NICS AI Ecosystem — независимая AI-платформа из Болгарии: NICS Trading Ecosystem для рынков, NICS Video и NICS Studio для контента и открытая лаборатория, которая обучает собственные модели с нуля.",
   badge: "Независимая AI-платформа · Болгария",
   title1: "Экосистема",
   title2: "NICS AI",
@@ -103,7 +103,7 @@ const ru: EcosystemTexts = {
   productsTitle: "Что уже работает на платформе",
   productsDesc: "У каждого продукта своя страница с ценами, ограничениями и текущим статусом.",
   products: [
-    { id: "trader", title: "NICS AI Trader", status: "Работает", desc: "Автономная AI-платформа для трейдинга: круглосуточное сканирование рынков, сетапы со входом, стоп-лоссом и TP1–TP4, расчёт объёма, открытая статистика. Приложение для Windows, веб-кабинет и Telegram.", cta: "Открыть NICS AI Trader" },
+    { id: "trader", title: "NICS Trading Ecosystem", status: "Работает", desc: "Автономная AI-платформа для трейдинга: круглосуточное сканирование рынков, сетапы со входом, стоп-лоссом и TP1–TP4, расчёт объёма, открытая статистика. Приложение для Windows, веб-кабинет и Telegram.", cta: "Открыть NICS Trading Ecosystem" },
     { id: "video", title: "NICS Video", status: "Работает", desc: "Загружаете исходные клипы — получаете готовый пакет: вертикальный ролик, горизонтальное видео и обложки на двух языках. Монтирует автоматический скрипт.", cta: "Открыть NICS Video" },
     { id: "studio", title: "NICS Studio", status: "В разработке", desc: "Редактор в браузере, чтобы самому доводить свои видео.", cta: "Открыть NICS Studio" },
     { id: "forge", title: "Alessandro Studio", status: "Работает", desc: "Изделия на 3D-принтере и студия, которая превращает фото в 3D-модель для печати.", cta: "Открыть Alessandro Studio" },
@@ -137,7 +137,7 @@ const ru: EcosystemTexts = {
   ],
   faqTitle: "Вопросы",
   faq: [
-    { q: "Что такое экосистема NICS AI?", a: "Семейство AI-продуктов AI Byte Consult Ltd из Болгарии: NICS AI Trader, NICS Video, NICS Studio, Alessandro Studio и NICS AI Lab — одна компания и одна система аккаунтов." },
+    { q: "Что такое экосистема NICS AI?", a: "Семейство AI-продуктов AI Byte Consult Ltd из Болгарии: NICS Trading Ecosystem, NICS Video, NICS Studio, Alessandro Studio и NICS AI Lab — одна компания и одна система аккаунтов." },
     { q: "Что значит «независимая AI-платформа»?", a: "Продукты работают на нашем собственном бэкенде и автоматизации, а лаборатория обучает свой токенизатор и модели с нуля, а не оборачивает чужую модель." },
     { q: "Модели лаборатории уже используются в продуктах?", a: "Пока нет. Лаборатория на ранней стадии; продукты работают на своих аналитических движках и скриптах. Когда это изменится, мы напишем об этом здесь." },
     { q: "Кто стоит за NICS?", a: "AI Byte Consult Ltd — компания, зарегистрированная в Болгарии, официальный Meta Tech Provider." },
@@ -147,7 +147,7 @@ const ru: EcosystemTexts = {
 const bg: EcosystemTexts = {
   seoTitle: "Екосистема NICS AI — независима AI платформа от AI Byte Consult",
   seoDescription:
-    "NICS AI Ecosystem е независима AI платформа от България: NICS AI Trader за пазарите, NICS Video и NICS Studio за съдържание и отворена лаборатория, която обучава собствени модели от нулата.",
+    "NICS AI Ecosystem е независима AI платформа от България: NICS Trading Ecosystem за пазарите, NICS Video и NICS Studio за съдържание и отворена лаборатория, която обучава собствени модели от нулата.",
   badge: "Независима AI платформа · България",
   title1: "Екосистема",
   title2: "NICS AI",
@@ -158,7 +158,7 @@ const bg: EcosystemTexts = {
   productsTitle: "Какво работи на платформата днес",
   productsDesc: "Всеки продукт има своя страница с цени, ограничения и текущо състояние.",
   products: [
-    { id: "trader", title: "NICS AI Trader", status: "Работи", desc: "Автономна AI платформа за трейдинг: денонощно сканиране на пазарите, сетъпи с вход, стоп загуба и TP1–TP4, размер на позицията, публична статистика. Приложение за Windows, уеб табло и Telegram.", cta: "Към NICS AI Trader" },
+    { id: "trader", title: "NICS Trading Ecosystem", status: "Работи", desc: "Автономна AI платформа за трейдинг: денонощно сканиране на пазарите, сетъпи с вход, стоп загуба и TP1–TP4, размер на позицията, публична статистика. Приложение за Windows, уеб табло и Telegram.", cta: "Към NICS Trading Ecosystem" },
     { id: "video", title: "NICS Video", status: "Работи", desc: "Качвате суровите си клипове и получавате готов пакет: вертикално видео, хоризонтално видео и корици на два езика. Монтажът се прави от автоматичен скрипт.", cta: "Към NICS Video" },
     { id: "studio", title: "NICS Studio", status: "В разработка", desc: "Редактор в браузъра, за да довършвате сами своите видеа.", cta: "Към NICS Studio" },
     { id: "forge", title: "Alessandro Studio", status: "Работи", desc: "Изделия, отпечатани на 3D принтер, и студио, което превръща снимка в 3D модел за печат.", cta: "Към Alessandro Studio" },
@@ -192,7 +192,7 @@ const bg: EcosystemTexts = {
   ],
   faqTitle: "Въпроси",
   faq: [
-    { q: "Какво е екосистемата NICS AI?", a: "Семейството AI продукти на AI Byte Consult Ltd от България: NICS AI Trader, NICS Video, NICS Studio, Alessandro Studio и NICS AI Lab — една компания и една система за акаунти." },
+    { q: "Какво е екосистемата NICS AI?", a: "Семейството AI продукти на AI Byte Consult Ltd от България: NICS Trading Ecosystem, NICS Video, NICS Studio, Alessandro Studio и NICS AI Lab — една компания и една система за акаунти." },
     { q: "Какво означава „независима AI платформа“?", a: "Продуктите работят на собствен бекенд и автоматизация, а лабораторията обучава свой токенизатор и модели от нулата, вместо да опакова чужд модел." },
     { q: "Използват ли се моделите на лабораторията в продуктите?", a: "Още не. Лабораторията е на ранен етап; продуктите използват собствени аналитични системи и скриптове. Когато това се промени, ще го напишем тук." },
     { q: "Кой стои зад NICS?", a: "AI Byte Consult Ltd — компания, регистрирана в България, официален Meta Tech Provider." },
@@ -202,7 +202,7 @@ const bg: EcosystemTexts = {
 const de: EcosystemTexts = {
   seoTitle: "NICS AI Ecosystem — unabhängige KI-Plattform von AI Byte Consult",
   seoDescription:
-    "NICS AI Ecosystem ist eine unabhängige KI-Plattform aus Bulgarien: NICS AI Trader für die Märkte, NICS Video und NICS Studio für Inhalte und ein offenes Labor, das eigene Modelle von Grund auf trainiert.",
+    "NICS AI Ecosystem ist eine unabhängige KI-Plattform aus Bulgarien: NICS Trading Ecosystem für die Märkte, NICS Video und NICS Studio für Inhalte und ein offenes Labor, das eigene Modelle von Grund auf trainiert.",
   badge: "Unabhängige KI-Plattform · Bulgarien",
   title1: "NICS AI",
   title2: "Ecosystem",
@@ -213,7 +213,7 @@ const de: EcosystemTexts = {
   productsTitle: "Was heute auf der Plattform läuft",
   productsDesc: "Jedes Produkt hat eine eigene Seite mit Preisen, Grenzen und aktuellem Status.",
   products: [
-    { id: "trader", title: "NICS AI Trader", status: "Live", desc: "Autonome KI-Trading-Plattform: Marktscan rund um die Uhr, Setups mit Einstieg, Stop-Loss und TP1–TP4, Positionsgröße, öffentliche Statistik. Windows-App, Web-Dashboard und Telegram.", cta: "Zu NICS AI Trader" },
+    { id: "trader", title: "NICS Trading Ecosystem", status: "Live", desc: "Autonome KI-Trading-Plattform: Marktscan rund um die Uhr, Setups mit Einstieg, Stop-Loss und TP1–TP4, Positionsgröße, öffentliche Statistik. Windows-App, Web-Dashboard und Telegram.", cta: "Zu NICS Trading Ecosystem" },
     { id: "video", title: "NICS Video", status: "Live", desc: "Ihre Rohclips hinein, ein fertiges Paket heraus: ein vertikales Short, ein horizontales Video und Cover in zwei Sprachen, geschnitten von einem automatischen Skript.", cta: "Zu NICS Video" },
     { id: "studio", title: "NICS Studio", status: "In Entwicklung", desc: "Ein Editor im Browser, um eigene Videos selbst nachzubearbeiten.", cta: "Zu NICS Studio" },
     { id: "forge", title: "Alessandro Studio", status: "Live", desc: "3D-gedruckte Produkte und ein Studio, das ein Foto in ein druckbares 3D-Modell verwandelt.", cta: "Zu Alessandro Studio" },
@@ -247,7 +247,7 @@ const de: EcosystemTexts = {
   ],
   faqTitle: "Fragen",
   faq: [
-    { q: "Was ist das NICS AI Ecosystem?", a: "Die KI-Produktfamilie der AI Byte Consult Ltd aus Bulgarien: NICS AI Trader, NICS Video, NICS Studio, Alessandro Studio und das NICS AI Lab, mit einem Unternehmen und einem Kontosystem dahinter." },
+    { q: "Was ist das NICS AI Ecosystem?", a: "Die KI-Produktfamilie der AI Byte Consult Ltd aus Bulgarien: NICS Trading Ecosystem, NICS Video, NICS Studio, Alessandro Studio und das NICS AI Lab, mit einem Unternehmen und einem Kontosystem dahinter." },
     { q: "Was bedeutet hier „unabhängige KI-Plattform“?", a: "Die Produkte laufen auf unserem eigenen Backend und unserer eigenen Automatisierung, und das Labor trainiert eigenen Tokenizer und eigene Modelle von Grund auf, statt ein fremdes Modell zu verpacken." },
     { q: "Werden die Labormodelle schon in den Produkten genutzt?", a: "Noch nicht. Das Labor ist in einem frühen Forschungsstadium; die Produkte nutzen eigene Analyse-Engines und Skripte. Ändert sich das, steht es hier." },
     { q: "Wer steht hinter NICS?", a: "AI Byte Consult Ltd, ein in Bulgarien registriertes Unternehmen und offizieller Meta Tech Provider." },
@@ -257,7 +257,7 @@ const de: EcosystemTexts = {
 const es: EcosystemTexts = {
   seoTitle: "Ecosistema NICS AI — plataforma de IA independiente de AI Byte Consult",
   seoDescription:
-    "NICS AI Ecosystem es una plataforma de IA independiente de Bulgaria: NICS AI Trader para los mercados, NICS Video y NICS Studio para contenido y un laboratorio abierto que entrena sus propios modelos desde cero.",
+    "NICS AI Ecosystem es una plataforma de IA independiente de Bulgaria: NICS Trading Ecosystem para los mercados, NICS Video y NICS Studio para contenido y un laboratorio abierto que entrena sus propios modelos desde cero.",
   badge: "Plataforma de IA independiente · Bulgaria",
   title1: "Ecosistema",
   title2: "NICS AI",
@@ -268,7 +268,7 @@ const es: EcosystemTexts = {
   productsTitle: "Qué funciona hoy en la plataforma",
   productsDesc: "Cada producto tiene su propia página con precios, límites y estado actual.",
   products: [
-    { id: "trader", title: "NICS AI Trader", status: "Activo", desc: "Plataforma autónoma de trading con IA: análisis de mercados 24/7, setups con entrada, stop loss y TP1–TP4, tamaño de posición e historial público. App para Windows, panel web y Telegram.", cta: "Ir a NICS AI Trader" },
+    { id: "trader", title: "NICS Trading Ecosystem", status: "Activo", desc: "Plataforma autónoma de trading con IA: análisis de mercados 24/7, setups con entrada, stop loss y TP1–TP4, tamaño de posición e historial público. App para Windows, panel web y Telegram.", cta: "Ir a NICS Trading Ecosystem" },
     { id: "video", title: "NICS Video", status: "Activo", desc: "Subes tus clips en bruto y recibes un paquete terminado: un vídeo vertical, uno horizontal y portadas en dos idiomas, montados por un script automático.", cta: "Ir a NICS Video" },
     { id: "studio", title: "NICS Studio", status: "En desarrollo", desc: "Un editor en el navegador para ajustar tú mismo tus vídeos.", cta: "Ir a NICS Studio" },
     { id: "forge", title: "Alessandro Studio", status: "Activo", desc: "Productos impresos en 3D y un estudio que convierte una foto en un modelo 3D imprimible.", cta: "Ir a Alessandro Studio" },
@@ -302,7 +302,7 @@ const es: EcosystemTexts = {
   ],
   faqTitle: "Preguntas",
   faq: [
-    { q: "¿Qué es el ecosistema NICS AI?", a: "La familia de productos de IA de AI Byte Consult Ltd, con sede en Bulgaria: NICS AI Trader, NICS Video, NICS Studio, Alessandro Studio y NICS AI Lab, con una sola empresa y un solo sistema de cuentas." },
+    { q: "¿Qué es el ecosistema NICS AI?", a: "La familia de productos de IA de AI Byte Consult Ltd, con sede en Bulgaria: NICS Trading Ecosystem, NICS Video, NICS Studio, Alessandro Studio y NICS AI Lab, con una sola empresa y un solo sistema de cuentas." },
     { q: "¿Qué significa aquí «plataforma de IA independiente»?", a: "Los productos funcionan con nuestro propio backend y automatización, y el laboratorio entrena su propio tokenizador y sus modelos desde cero en lugar de envolver un modelo ajeno." },
     { q: "¿Los modelos del laboratorio ya se usan en los productos?", a: "Todavía no. El laboratorio está en una fase temprana; los productos usan sus propios motores de análisis y scripts. Cuando eso cambie, lo diremos aquí." },
     { q: "¿Quién está detrás de NICS?", a: "AI Byte Consult Ltd, empresa registrada en Bulgaria y Meta Tech Provider oficial." },

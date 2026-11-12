@@ -4,7 +4,7 @@ import SEO from "@/components/SEO";
 import { trackSiteEvent } from "@/lib/siteAnalytics";
 
 /*
- * /trial?t=<token>&lang=ru|bg|en|es -- NICS AI Trader card subscription.
+ * /trial?t=<token>&lang=ru|bg|en|es -- NICS Trading Ecosystem card subscription.
  * The bot ([39 TRADER] Card Subscription in n8n) sends a personal link with a
  * one-time token. Revolut needs an e-mail to create a customer, so this page
  * asks for it, shows the exact terms and redirects to Revolut's hosted
@@ -42,8 +42,8 @@ const copy: Record<Lang, {
   risk: string;
 }> = {
   ru: {
-    titleTrial: "7 дней NICS AI Trader за 1,99 €",
-    titleMonthly: "Подписка NICS AI Trader за 19,99 € в месяц",
+    titleTrial: "7 дней NICS Trading Ecosystem за 1,99 €",
+    titleMonthly: "Подписка NICS Trading Ecosystem за 19,99 € в месяц",
     points: (v) => v === "trial"
       ? ["Сегодня спишется 1,99 €: полный доступ ко всем рынкам на 7 дней.", "Через 7 дней подписка продлится сама: 19,99 € каждый месяц.", "За сутки до первого списания 19,99 € напомним в боте и на e-mail.", "Отменить можно в любой момент одной кнопкой в боте: Меню → Тарифы → Моя подписка. Доступ сохранится до конца оплаченного периода."]
       : ["Сегодня спишется 19,99 €: полный доступ ко всем рынкам на месяц.", "Подписка продлевается сама каждый месяц за 19,99 €.", "Отменить можно в любой момент одной кнопкой в боте: Меню → Тарифы → Моя подписка. Доступ сохранится до конца оплаченного периода."],
@@ -67,8 +67,8 @@ const copy: Record<Lang, {
     risk: "Торговля связана с риском потерь. Сигналы не являются инвестиционным советом.",
   },
   bg: {
-    titleTrial: "7 дни NICS AI Trader за 1,99 €",
-    titleMonthly: "Абонамент NICS AI Trader за 19,99 € на месец",
+    titleTrial: "7 дни NICS Trading Ecosystem за 1,99 €",
+    titleMonthly: "Абонамент NICS Trading Ecosystem за 19,99 € на месец",
     points: (v) => v === "trial"
       ? ["Днес се таксуват 1,99 €: пълен достъп до всички пазари за 7 дни.", "След 7 дни абонаментът се подновява сам: 19,99 € всеки месец.", "Ден преди първото плащане от 19,99 € ще ви напомним в бота и по e-mail.", "Можете да откажете по всяко време с един бутон в бота: Меню → Тарифи → Моят абонамент. Достъпът остава до края на платения период."]
       : ["Днес се таксуват 19,99 €: пълен достъп до всички пазари за месец.", "Абонаментът се подновява сам всеки месец за 19,99 €.", "Можете да откажете по всяко време с един бутон в бота: Меню → Тарифи → Моят абонамент. Достъпът остава до края на платения период."],
@@ -92,8 +92,8 @@ const copy: Record<Lang, {
     risk: "Търговията е свързана с риск от загуби. Сигналите не са инвестиционен съвет.",
   },
   en: {
-    titleTrial: "7 days of NICS AI Trader for €1.99",
-    titleMonthly: "NICS AI Trader subscription, €19.99 per month",
+    titleTrial: "7 days of NICS Trading Ecosystem for €1.99",
+    titleMonthly: "NICS Trading Ecosystem subscription, €19.99 per month",
     points: (v) => v === "trial"
       ? ["Today you pay €1.99: full access to every market for 7 days.", "After 7 days the subscription renews automatically: €19.99 every month.", "One day before the first €19.99 charge we remind you in the bot and by e-mail.", "Cancel any time with one button in the bot: Menu → Plans → My subscription. Your access stays until the end of the paid period."]
       : ["Today you pay €19.99: full access to every market for a month.", "The subscription renews automatically every month at €19.99.", "Cancel any time with one button in the bot: Menu → Plans → My subscription. Your access stays until the end of the paid period."],
@@ -117,8 +117,8 @@ const copy: Record<Lang, {
     risk: "Trading involves risk of loss. Signals are not investment advice.",
   },
   es: {
-    titleTrial: "7 días de NICS AI Trader por 1,99 €",
-    titleMonthly: "Suscripción NICS AI Trader, 19,99 € al mes",
+    titleTrial: "7 días de NICS Trading Ecosystem por 1,99 €",
+    titleMonthly: "Suscripción NICS Trading Ecosystem, 19,99 € al mes",
     points: (v) => v === "trial"
       ? ["Hoy pagas 1,99 €: acceso completo a todos los mercados durante 7 días.", "Después de 7 días la suscripción se renueva sola: 19,99 € cada mes.", "Un día antes del primer cobro de 19,99 € te avisamos en el bot y por e-mail.", "Cancela cuando quieras con un botón en el bot: Menú → Planes → Mi suscripción. Tu acceso sigue hasta el final del periodo pagado."]
       : ["Hoy pagas 19,99 €: acceso completo a todos los mercados durante un mes.", "La suscripción se renueva sola cada mes por 19,99 €.", "Cancela cuando quieras con un botón en el bot: Menú → Planes → Mi suscripción. Tu acceso sigue hasta el final del periodo pagado."],

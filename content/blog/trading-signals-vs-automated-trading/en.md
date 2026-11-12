@@ -4,8 +4,8 @@ description: An honest comparison of trading signals and automated trading (robo
 date: 2026-11-12
 image: /og-trading.jpg
 service: /nics-trading-software
-cta: NICS AI Trader automates the analysis and keeps the decision with you: complete setups, sizing for your account and a public track record.
-ctaButton: Explore NICS AI Trader
+cta: NICS Trading Ecosystem automates the analysis and keeps the decision with you: complete setups, sizing for your account and a public track record.
+ctaButton: Explore NICS Trading Ecosystem
 ---
 
 There are two broad ways to let software help with trading. With **signals**, a system finds and describes trades and you decide whether to take them. With **automated trading**, a program — an Expert Advisor, a trading bot or a copy-trading link — opens and closes trades on your account by itself. Both can work; both can fail. The difference is where the decision sits.
@@ -49,8 +49,8 @@ The cost: you are trusting the program completely. Backtests can be tuned until 
 
 Many traders use automated *analysis* with manual *execution*: software scans the markets, filters setups and calculates the position size, and a person makes the final call. You get consistency and coverage without handing over your account.
 
-## Where NICS AI Trader stands
+## Where NICS Trading Ecosystem stands
 
-[NICS AI Trader](/nics-trading-software/) works this middle way. The engine autonomously scans 19 instruments every 15 minutes and publishes **Strong Setups** with an entry zone, stop loss, TP1–TP4 and the lot size for your balance. Weaker ideas are marked **Watchlist Setup**, appear only when you ask and never count in statistics. The software does not place trades on your account: you accept or skip each signal, and it then follows the trade to TP, SL or breakeven and reminds you about high-impact news. Every closed strong signal is in the public [track record](/trading/#track-record), so you can judge the system before you rely on it. More on how it works: [how AI trading signals work](/blog/how-ai-trading-signals-work/).
+[NICS Trading Ecosystem](/nics-trading-software/) works this middle way. The engine autonomously scans 19 instruments every 15 minutes and publishes **Strong Setups** with an entry zone, stop loss, TP1–TP4 and the lot size for your balance. Weaker ideas are marked **Watchlist Setup**, appear only when you ask and never count in statistics. The software does not place trades on your account: you accept or skip each signal, and it then follows the trade to TP, SL or breakeven and reminds you about high-impact news. Every closed strong signal is in the public [track record](/trading/#track-record), so you can judge the system before you rely on it. More on how it works: [how AI trading signals work](/blog/how-ai-trading-signals-work/).
 
 > Trading involves substantial risk, whether you trade manually, with signals or with automated systems.

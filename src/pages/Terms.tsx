@@ -27,8 +27,8 @@ const Terms = () => {
       id: "acceptance",
       title: "Acceptance of Terms",
       content: [
-        "By accessing, browsing, or using any website, application, bot, widget, Mini App, or service operated by AI Byte Consult Ltd. (\"we\", \"us\", \"our\", the \"Company\"), including but not limited to aibyteconsult.com, estate.aibyteconsult.com, the NICS AI Trader Telegram bot and Mini App, and any related subdomain or channel (together, the \"Services\"), you (\"you\", \"User\") confirm that you have read, understood, and agree to be bound by these Terms of Service, our disclaimers, and all applicable laws and regulations.",
-        "If you do not agree with any part of these terms, you must discontinue use of the Services immediately. These terms apply to all visitors, registered users, subscribers, clients, and others who access or use any of our Services, regardless of the specific product line (AI and automation services, NICS Real Estate, or NICS AI Trader) involved.",
+        "By accessing, browsing, or using any website, application, bot, widget, Mini App, or service operated by AI Byte Consult Ltd. (\"we\", \"us\", \"our\", the \"Company\"), including but not limited to aibyteconsult.com, estate.aibyteconsult.com, the NICS Trading Ecosystem Telegram bot and Mini App, and any related subdomain or channel (together, the \"Services\"), you (\"you\", \"User\") confirm that you have read, understood, and agree to be bound by these Terms of Service, our disclaimers, and all applicable laws and regulations.",
+        "If you do not agree with any part of these terms, you must discontinue use of the Services immediately. These terms apply to all visitors, registered users, subscribers, clients, and others who access or use any of our Services, regardless of the specific product line (AI and automation services, NICS Real Estate, or NICS Trading Ecosystem) involved.",
         "These Terms incorporate by reference any product-specific notices, in-app disclaimers, or subscription terms presented to you at the point of signup or payment. In the event of a direct conflict, the more specific, product-level notice governs for that product only.",
       ],
     },
@@ -48,7 +48,7 @@ const Terms = () => {
       icon: AlertTriangle,
       highlight: true,
       content: [
-        "Nothing on this website, in the NICS AI Trader bot or Mini App, in our newsletters, reports, real estate tools, AI-generated insights, or any other communication from AI Byte Consult Ltd. constitutes financial, investment, tax, real estate, or legal advice, and none of it should be treated as a personal recommendation suitable for your individual circumstances.",
+        "Nothing on this website, in the NICS Trading Ecosystem bot or Mini App, in our newsletters, reports, real estate tools, AI-generated insights, or any other communication from AI Byte Consult Ltd. constitutes financial, investment, tax, real estate, or legal advice, and none of it should be treated as a personal recommendation suitable for your individual circumstances.",
         "Information related to trading, investing, markets, cryptocurrencies, forex, commodities, or any financial instrument, and information related to property values, real estate investment potential, or real estate transactions, is provided for general, educational and informational purposes only. Past performance — including any historical track record, win rate, or R-multiple statistics we publish — is not indicative of, and does not guarantee, future results.",
         "You are solely responsible for your own financial, investment, and property decisions. We strongly recommend consulting a licensed financial advisor, a licensed real estate professional, and, where relevant, independent legal counsel in your jurisdiction before making any investment, trading, or property decision.",
         "AI Byte Consult Ltd. is not a registered investment advisor, broker-dealer, real estate broker, notary, or law firm in any jurisdiction unless explicitly stated otherwise for a specific, separately licensed service. Do not treat any Service as a substitute for a licensed professional.",
@@ -56,12 +56,12 @@ const Terms = () => {
     },
     {
       id: "trading",
-      title: "Trading, Signals & Investment Risk (NICS AI Trader)",
+      title: "Trading, Signals & Investment Risk (NICS Trading Ecosystem)",
       icon: AlertTriangle,
       highlight: true,
       content: [
         "Trading forex, cryptocurrencies, commodities, stocks, indices, CFDs, derivatives, and other financial instruments carries a high level of risk and is not suitable for all investors. You can lose some or all of your invested or deposited capital, and losses can exceed your initial deposit where leverage is used.",
-        "NICS AI Trader's signals, trading scenarios, market analysis, technical scores, confidence indicators, published win-rate/expectancy statistics, copy-trading features (where offered), and any other output are generated by automated, experimental, and AI-assisted technology. They do not guarantee profits, do not prevent losses, are not a promise of any specific outcome, and do not replace your own judgment or that of a licensed professional.",
+        "NICS Trading Ecosystem's signals, trading scenarios, market analysis, technical scores, confidence indicators, published win-rate/expectancy statistics, copy-trading features (where offered), and any other output are generated by automated, experimental, and AI-assisted technology. They do not guarantee profits, do not prevent losses, are not a promise of any specific outcome, and do not replace your own judgment or that of a licensed professional.",
         "Every signal, scenario, or piece of analysis reflects a snapshot of market conditions at the time it was generated. Markets move continuously; by the time you view, accept, or act on a signal, conditions may already have changed, and the scenario may no longer be favorable or achievable at the stated levels.",
         "Accepting, declining, or acting on any signal, and choosing your own position size, risk percentage, leverage, and account settings, is entirely your decision and your responsibility. We do not place trades on your behalf, hold client funds, or have discretionary control over your brokerage account, except where you explicitly connect an execution bridge you control and configure yourself.",
         "Any performance statistics we publish (including on the public track-record page and in Telegram or Threads posts) are calculated from our own signal-lifecycle records of real, closed signals. They reflect the performance of the signal itself, not of any individual user's actual trading account, which will differ due to entry timing, slippage, spread, broker execution, position sizing, and personal risk decisions.",
@@ -103,7 +103,7 @@ const Terms = () => {
       id: "payments",
       title: "Subscriptions, Payments & Refunds",
       content: [
-        "Paid subscriptions (including NICS AI Trader plans) grant access to the described Service for the stated period only. Access does not constitute, and must not be understood as, an investment, a deposit, or a share of any trading profit — it is payment for access to software tools and information.",
+        "Paid subscriptions (including NICS Trading Ecosystem plans) grant access to the described Service for the stated period only. Access does not constitute, and must not be understood as, an investment, a deposit, or a share of any trading profit — it is payment for access to software tools and information.",
         "Unless required by mandatory consumer-protection law in your jurisdiction, payments are non-refundable once access has been granted or activated, including in cases where you disagree with the trading outcome of signals received during your subscription period. Suspected billing errors or unauthorized charges should be reported to us promptly at the contact details below.",
         "We reserve the right to change subscription pricing, plan structure, or included features for future billing periods, with reasonable notice where practicable.",
       ],
@@ -112,8 +112,8 @@ const Terms = () => {
       id: "cabinet",
       title: "Personal Cabinet",
       content: [
-        "The personal cabinet at aibyteconsult.com/cabinet is a browser-accessible extension of your existing NICS AI Trader Telegram account, not a separate account or product. You sign in with the Telegram Login Widget using the same Telegram account you use with the bot; a cabinet session cannot exist independently of that Telegram account.",
-        "Academy certificates issued through the cabinet are named documents, issued only once you have actually completed every lesson of the NICS AI Trader Academy as recorded in our systems — never on request, and never for a fee. Each certificate is published at a public, individually verifiable link, so its authenticity can always be independently checked; do not share that link if you do not want the certificate publicly viewable.",
+        "The personal cabinet at aibyteconsult.com/cabinet is a browser-accessible extension of your existing NICS Trading Ecosystem Telegram account, not a separate account or product. You sign in with the Telegram Login Widget using the same Telegram account you use with the bot; a cabinet session cannot exist independently of that Telegram account.",
+        "Academy certificates issued through the cabinet are named documents, issued only once you have actually completed every lesson of the NICS Trading Ecosystem Academy as recorded in our systems — never on request, and never for a fee. Each certificate is published at a public, individually verifiable link, so its authenticity can always be independently checked; do not share that link if you do not want the certificate publicly viewable.",
         "The cabinet may also surface a cashback balance from our existing 30% referral-commission program (described in \"Affiliate, Referral & Third-Party Disclosure\" above) — this is a display of the same program, not a separate offer or a promise of any additional payment.",
       ],
     },
@@ -140,7 +140,7 @@ const Terms = () => {
       content: [
         "All content on our Services, including but not limited to text, graphics, logos, images, videos, software, source code, product names, trading methodology, and brand materials, is the intellectual property of AI Byte Consult Ltd. or its licensors and is protected by copyright, trademark, and other applicable laws.",
         "You may not reproduce, distribute, modify, create derivative works from, publicly display, resell, or commercially exploit any content without our prior written permission, except for personal, non-commercial use, or as expressly permitted by these Terms.",
-        "\"NICS AI\", \"NICS AI Trader\", \"NICS Real Estate\", \"AI Byte Consult\", and related logos, product names, and service marks are trademarks of AI Byte Consult Ltd.",
+        "\"NICS AI\", \"NICS Trading Ecosystem\", \"NICS Real Estate\", \"AI Byte Consult\", and related logos, product names, and service marks are trademarks of AI Byte Consult Ltd.",
       ],
     },
     {

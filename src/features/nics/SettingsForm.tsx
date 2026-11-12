@@ -41,7 +41,7 @@ export const SettingsForm = ({
         </div>
         <div>
           <h1 className="text-xl font-semibold">{t.settings}</h1>
-          <p className="text-xs text-slate-500">NICS AI Trader</p>
+          <p className="text-xs text-slate-500">NICS Trading Ecosystem</p>
         </div>
       </div>
     </section>

@@ -33,7 +33,7 @@ const TelegramOnly = ({ children }: { children: ReactNode }) => {
     return () => window.clearTimeout(timer);
   }, [ready, navigate]);
 
-  if (!ready) return <main className="grid min-h-screen place-items-center bg-[#07090f] text-sm text-slate-400">NICS AI Trader…</main>;
+  if (!ready) return <main className="grid min-h-screen place-items-center bg-[#07090f] text-sm text-slate-400">NICS Trading Ecosystem…</main>;
   return <>{children}</>;
 };
 

@@ -62,7 +62,7 @@ const modules: EcosystemModule[] = [
   },
   {
     id: "trading",
-    name: "NICS Trading",
+    name: "NICS Trading Ecosystem",
     icon: TrendingUp,
     status: "Live",
     short:
@@ -71,7 +71,7 @@ const modules: EcosystemModule[] = [
     who: "Active traders, funds and institutions seeking data-driven multi-asset intelligence.",
     connection:
       "Applies NICS reasoning to live financial markets — real-time signals and structured market analysis.",
-    cta: { label: "Explore NICS Trading", href: "https://fwd.cx/Yj25BCrDzEHB", external: true },
+    cta: { label: "Explore NICS Trading Ecosystem", href: "https://fwd.cx/Yj25BCrDzEHB", external: true },
   },
   {
     id: "architect",

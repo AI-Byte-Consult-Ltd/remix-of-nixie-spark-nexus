@@ -32,7 +32,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "In September 2026, Coinbase engineer Alex Wormuth showed an unusual experiment. He took a digital model of a fruit fly brain (166,700 neurons and 25.6 million connections) and showed it a Bitcoin chart. The price was turned into an image for the fly's \"eyes\", and its reactions were translated into buy, sell or wait. A profit gave the fly \"dopamine\", a loss switched on aversion neurons, a \"punishment\". It traded with a virtual $100. The author is honest that he has not yet proven the fly learned to trade profitably. It is research, not a ready-made strategy.",
     idea:
-      "What caught our attention was the idea itself: a system that learns not only from the rules written for it, but also from the consequences of its own decisions. We brought this principle into NICS AI Trader.",
+      "What caught our attention was the idea itself: a system that learns not only from the rules written for it, but also from the consequences of its own decisions. We brought this principle into NICS Trading Ecosystem.",
     howTitle: "How it works in our system",
     how:
       "The main analysis stays the same: technical analysis of gold, forex and crypto, an entry, a stop and four targets. Alongside it, a separate parallel stream runs every night: the reward engine. It takes all closed signals, groups them by setup type and calculates the real result in R. Setup types that ended in profit get \"dopamine\", and confidence in them rises slightly. Types that ended in a loss get a \"penalty\", and confidence goes down. The steps are small and capped, so one bad week cannot turn the system upside down. This stream has been running since 17 September 2026.",
@@ -52,7 +52,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "В сентябре 2026 года программист Coinbase Алекс Вормут показал необычный эксперимент. Он взял цифровую модель мозга плодовой мушки дрозофилы (166 700 нейронов и 25,6 млн связей) и показал ей график биткоина. Цена превращалась в картинку для «глаз» мухи, а её реакции переводились в «купить», «продать» или «ждать». За прибыль муха получала «дофамин», за убыток включались нейроны отвращения, то есть «наказание». Торговала она виртуальными 100 долларов. Автор честно пишет, что пока не доказал, что муха научилась торговать в плюс. Это исследование, а не готовая стратегия.",
     idea:
-      "Нас зацепила сама идея: система учится не только по правилам, которые ей написали, но и на последствиях собственных решений. Этот принцип мы перенесли в NICS AI Trader.",
+      "Нас зацепила сама идея: система учится не только по правилам, которые ей написали, но и на последствиях собственных решений. Этот принцип мы перенесли в NICS Trading Ecosystem.",
     howTitle: "Как это устроено у нас",
     how:
       "Основной анализ остаётся прежним: технический разбор золота, валют и крипты, точка входа, стоп и четыре цели. Параллельно с ним каждую ночь работает отдельный поток, движок наград. Он берёт все закрытые сигналы, группирует их по типу сетапа и считает реальный итог в R. Типы сделок, которые принесли плюс, получают «дофамин», и уверенность в них немного растёт. Типы, которые дали минус, получают «штраф», и уверенность снижается. Шаги маленькие и ограниченные, чтобы одна неудачная неделя не перевернула систему. Поток работает с 17 сентября 2026 года.",
@@ -72,7 +72,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "Im September 2026 stellte der Coinbase-Entwickler Alex Wormuth ein ungewöhnliches Experiment vor. Er nahm ein digitales Modell des Gehirns einer Fruchtfliege (166.700 Neuronen und 25,6 Millionen Verbindungen) und zeigte ihm einen Bitcoin-Chart. Der Kurs wurde in ein Bild für die „Augen“ der Fliege umgewandelt, ihre Reaktionen in Kaufen, Verkaufen oder Warten übersetzt. Für Gewinn bekam die Fliege „Dopamin“, bei Verlust wurden Abneigungsneuronen aktiviert, eine „Strafe“. Gehandelt wurde mit virtuellen 100 Dollar. Der Autor schreibt offen, dass er noch nicht bewiesen hat, dass die Fliege profitabel traden gelernt hat. Es ist Forschung, keine fertige Strategie.",
     idea:
-      "Uns hat die Idee selbst gepackt: Ein System lernt nicht nur aus den Regeln, die man ihm geschrieben hat, sondern auch aus den Folgen seiner eigenen Entscheidungen. Dieses Prinzip haben wir in NICS AI Trader übernommen.",
+      "Uns hat die Idee selbst gepackt: Ein System lernt nicht nur aus den Regeln, die man ihm geschrieben hat, sondern auch aus den Folgen seiner eigenen Entscheidungen. Dieses Prinzip haben wir in NICS Trading Ecosystem übernommen.",
     howTitle: "So funktioniert es bei uns",
     how:
       "Die Hauptanalyse bleibt gleich: technische Analyse von Gold, Forex und Krypto, ein Einstieg, ein Stop und vier Ziele. Parallel dazu läuft jede Nacht ein eigener Strang: die Belohnungs-Engine. Sie nimmt alle geschlossenen Signale, gruppiert sie nach Setup-Typ und berechnet das reale Ergebnis in R. Setup-Typen mit Gewinn bekommen „Dopamin“, das Vertrauen in sie steigt leicht. Typen mit Verlust bekommen eine „Strafe“, das Vertrauen sinkt. Die Schritte sind klein und begrenzt, damit eine schlechte Woche das System nicht umwirft. Dieser Strang läuft seit dem 17. September 2026.",
@@ -92,7 +92,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "En septembre 2026, Alex Wormuth, ingénieur chez Coinbase, a présenté une expérience inhabituelle. Il a pris un modèle numérique du cerveau d'une drosophile (166 700 neurones et 25,6 millions de connexions) et lui a montré un graphique du bitcoin. Le prix était transformé en image pour les « yeux » de la mouche, et ses réactions traduites en acheter, vendre ou attendre. Un gain lui donnait de la « dopamine », une perte activait des neurones d'aversion, une « punition ». Elle tradait avec 100 dollars virtuels. L'auteur reconnaît honnêtement qu'il n'a pas encore prouvé que la mouche a appris à trader avec profit. C'est de la recherche, pas une stratégie prête à l'emploi.",
     idea:
-      "C'est l'idée elle-même qui nous a accrochés : un système qui apprend non seulement des règles qu'on lui a écrites, mais aussi des conséquences de ses propres décisions. Nous avons intégré ce principe dans NICS AI Trader.",
+      "C'est l'idée elle-même qui nous a accrochés : un système qui apprend non seulement des règles qu'on lui a écrites, mais aussi des conséquences de ses propres décisions. Nous avons intégré ce principe dans NICS Trading Ecosystem.",
     howTitle: "Comment cela fonctionne chez nous",
     how:
       "L'analyse principale reste la même : analyse technique de l'or, du forex et des cryptos, une entrée, un stop et quatre objectifs. En parallèle, un flux séparé tourne chaque nuit : le moteur de récompense. Il prend tous les signaux clôturés, les regroupe par type de configuration et calcule le résultat réel en R. Les types qui ont fini en gain reçoivent de la « dopamine », et la confiance en eux augmente légèrement. Ceux qui ont fini en perte reçoivent une « pénalité », et la confiance baisse. Les pas sont petits et plafonnés, pour qu'une mauvaise semaine ne bouleverse pas le système. Ce flux fonctionne depuis le 17 septembre 2026.",
@@ -112,7 +112,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "في سبتمبر 2026 عرض أليكس وورموث، المبرمج في Coinbase، تجربة غير عادية. أخذ نموذجًا رقميًا لدماغ ذبابة الفاكهة (166,700 خلية عصبية و25.6 مليون اتصال) وعرض عليه مخطط البيتكوين. تحوّل السعر إلى صورة تراها «عينا» الذبابة، وتُرجمت ردود فعلها إلى شراء أو بيع أو انتظار. عند الربح تحصل الذبابة على «الدوبامين»، وعند الخسارة تنشط خلايا النفور، أي «العقاب». تداولت بمبلغ افتراضي قدره 100 دولار. ويكتب المؤلف بصراحة أنه لم يثبت بعد أن الذبابة تعلّمت التداول بربح. إنه بحث، وليس استراتيجية جاهزة.",
     idea:
-      "ما جذبنا هو الفكرة نفسها: نظام لا يتعلم من القواعد المكتوبة له فقط، بل أيضًا من عواقب قراراته. وقد نقلنا هذا المبدأ إلى NICS AI Trader.",
+      "ما جذبنا هو الفكرة نفسها: نظام لا يتعلم من القواعد المكتوبة له فقط، بل أيضًا من عواقب قراراته. وقد نقلنا هذا المبدأ إلى NICS Trading Ecosystem.",
     howTitle: "كيف يعمل ذلك لدينا",
     how:
       "يبقى التحليل الأساسي كما هو: تحليل فني للذهب والفوركس والعملات المشفرة، ونقطة دخول، ووقف خسارة، وأربعة أهداف. وبالتوازي معه يعمل كل ليلة مسار مستقل هو محرك المكافآت. يأخذ كل الإشارات المغلقة، ويجمعها حسب نوع الإعداد، ويحسب النتيجة الفعلية بوحدة R. أنواع الصفقات التي انتهت بربح تحصل على «الدوبامين» وترتفع الثقة بها قليلًا. والأنواع التي انتهت بخسارة تحصل على «غرامة» وتنخفض الثقة بها. الخطوات صغيرة ومحدودة حتى لا يقلب أسبوع سيئ واحد النظام رأسًا على عقب. يعمل هذا المسار منذ 17 سبتمبر 2026.",
@@ -132,7 +132,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "2026 年 9 月，Coinbase 程序员 Alex Wormuth 展示了一项不寻常的实验。他使用果蝇大脑的数字模型（166,700 个神经元、2560 万个连接），让它观看比特币走势图。价格被转换成果蝇“眼睛”能看到的图像，它的反应被翻译成买入、卖出或等待。盈利时果蝇获得“多巴胺”，亏损时激活厌恶神经元，即“惩罚”。它用虚拟的 100 美元进行交易。作者坦言，目前还没有证明果蝇学会了盈利交易。这是一项研究，而不是现成的策略。",
     idea:
-      "吸引我们的是这个想法本身：系统不仅按照写给它的规则学习，也从自己决策的后果中学习。我们把这一原则带进了 NICS AI Trader。",
+      "吸引我们的是这个想法本身：系统不仅按照写给它的规则学习，也从自己决策的后果中学习。我们把这一原则带进了 NICS Trading Ecosystem。",
     howTitle: "在我们的系统中如何运作",
     how:
       "主分析保持不变：对黄金、外汇和加密货币进行技术分析，给出入场点、止损和四个目标。与此同时，每晚有一个独立的并行流程在运行：奖励引擎。它收集所有已平仓信号，按形态类型分组，并计算以 R 计的真实结果。盈利的形态类型获得“多巴胺”，对它们的信心略微提高；亏损的类型受到“惩罚”，信心下降。每一步都很小且有上限，一周的糟糕表现不会让系统大起大落。该流程自 2026 年 9 月 17 日起运行。",
@@ -152,7 +152,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "We wrześniu 2026 roku programista Coinbase Alex Wormuth pokazał nietypowy eksperyment. Wziął cyfrowy model mózgu muszki owocowej (166 700 neuronów i 25,6 mln połączeń) i pokazał mu wykres bitcoina. Cena była zamieniana na obraz dla „oczu” muchy, a jej reakcje tłumaczone na kup, sprzedaj lub czekaj. Za zysk mucha dostawała „dopaminę”, przy stracie włączały się neurony awersji, czyli „kara”. Handlowała wirtualnymi 100 dolarami. Autor uczciwie pisze, że nie udowodnił jeszcze, że mucha nauczyła się handlować z zyskiem. To badanie, a nie gotowa strategia.",
     idea:
-      "Zaciekawił nas sam pomysł: system uczy się nie tylko z reguł, które mu napisano, ale też z konsekwencji własnych decyzji. Tę zasadę przenieśliśmy do NICS AI Trader.",
+      "Zaciekawił nas sam pomysł: system uczy się nie tylko z reguł, które mu napisano, ale też z konsekwencji własnych decyzji. Tę zasadę przenieśliśmy do NICS Trading Ecosystem.",
     howTitle: "Jak to działa u nas",
     how:
       "Główna analiza pozostaje bez zmian: analiza techniczna złota, forexu i kryptowalut, wejście, stop i cztery cele. Równolegle co noc działa osobny strumień: silnik nagród. Bierze wszystkie zamknięte sygnały, grupuje je według typu setupu i liczy realny wynik w R. Typy, które skończyły się zyskiem, dostają „dopaminę” i zaufanie do nich lekko rośnie. Typy ze stratą dostają „karę” i zaufanie spada. Kroki są małe i ograniczone, żeby jeden zły tydzień nie wywrócił systemu. Ten strumień działa od 17 września 2026 roku.",
@@ -172,7 +172,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "Eylül 2026'da Coinbase programcısı Alex Wormuth sıra dışı bir deney gösterdi. Bir meyve sineği beyninin dijital modelini (166.700 nöron ve 25,6 milyon bağlantı) aldı ve ona bir Bitcoin grafiği gösterdi. Fiyat, sineğin \"gözleri\" için bir görüntüye dönüştürüldü; tepkileri ise al, sat veya bekle olarak çevrildi. Kârda sinek \"dopamin\" aldı, zararda ise tiksinti nöronları devreye girdi, yani \"ceza\". Sanal 100 dolarla işlem yaptı. Yazar, sineğin kârlı işlem yapmayı öğrendiğini henüz kanıtlamadığını dürüstçe yazıyor. Bu bir araştırma, hazır bir strateji değil.",
     idea:
-      "Bizi asıl fikrin kendisi etkiledi: Sistem yalnızca kendisi için yazılan kurallardan değil, kendi kararlarının sonuçlarından da öğreniyor. Bu ilkeyi NICS AI Trader'a taşıdık.",
+      "Bizi asıl fikrin kendisi etkiledi: Sistem yalnızca kendisi için yazılan kurallardan değil, kendi kararlarının sonuçlarından da öğreniyor. Bu ilkeyi NICS Trading Ecosystem'a taşıdık.",
     howTitle: "Bizim sistemimizde nasıl çalışıyor",
     how:
       "Ana analiz aynı kalıyor: altın, forex ve kripto için teknik analiz, giriş noktası, stop ve dört hedef. Bununla paralel olarak her gece ayrı bir akış çalışıyor: ödül motoru. Kapanan tüm sinyalleri alıyor, kurulum türüne göre grupluyor ve R cinsinden gerçek sonucu hesaplıyor. Kârla biten kurulum türleri \"dopamin\" alıyor ve onlara duyulan güven biraz artıyor. Zararla biten türler \"ceza\" alıyor ve güven düşüyor. Adımlar küçük ve sınırlı, böylece tek bir kötü hafta sistemi altüst edemez. Bu akış 17 Eylül 2026'dan beri çalışıyor.",
@@ -192,7 +192,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "Nel settembre 2026 Alex Wormuth, programmatore di Coinbase, ha presentato un esperimento insolito. Ha preso un modello digitale del cervello di un moscerino della frutta (166.700 neuroni e 25,6 milioni di connessioni) e gli ha mostrato un grafico del bitcoin. Il prezzo veniva trasformato in un'immagine per gli \"occhi\" della mosca, e le sue reazioni tradotte in compra, vendi o aspetta. Con un profitto la mosca riceveva \"dopamina\", con una perdita si attivavano i neuroni dell'avversione, una \"punizione\". Operava con 100 dollari virtuali. L'autore scrive onestamente di non aver ancora dimostrato che la mosca abbia imparato a operare in profitto. È ricerca, non una strategia pronta.",
     idea:
-      "Ci ha colpito l'idea in sé: un sistema che impara non solo dalle regole scritte per lui, ma anche dalle conseguenze delle proprie decisioni. Abbiamo portato questo principio in NICS AI Trader.",
+      "Ci ha colpito l'idea in sé: un sistema che impara non solo dalle regole scritte per lui, ma anche dalle conseguenze delle proprie decisioni. Abbiamo portato questo principio in NICS Trading Ecosystem.",
     howTitle: "Come funziona nel nostro sistema",
     how:
       "L'analisi principale resta la stessa: analisi tecnica di oro, forex e cripto, un ingresso, uno stop e quattro target. In parallelo, ogni notte gira un flusso separato: il motore delle ricompense. Prende tutti i segnali chiusi, li raggruppa per tipo di setup e calcola il risultato reale in R. I tipi chiusi in profitto ricevono \"dopamina\" e la fiducia in loro sale leggermente. Quelli chiusi in perdita ricevono una \"penalità\" e la fiducia scende. I passi sono piccoli e limitati, così una settimana negativa non può stravolgere il sistema. Questo flusso è attivo dal 17 settembre 2026.",
@@ -212,7 +212,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "През септември 2026 г. програмистът от Coinbase Алекс Вормут показа необичаен експеримент. Той взе цифров модел на мозъка на плодова мушица (166 700 неврона и 25,6 млн връзки) и му показа графика на биткойна. Цената се превръщаше в картина за „очите“ на мухата, а реакциите ѝ се превеждаха в „купи“, „продай“ или „чакай“. При печалба мухата получаваше „допамин“, при загуба се включваха невроните на отвращението, тоест „наказание“. Търгуваше с виртуални 100 долара. Авторът честно пише, че още не е доказал, че мухата се е научила да търгува на печалба. Това е изследване, а не готова стратегия.",
     idea:
-      "Привлече ни самата идея: системата се учи не само по правилата, които са ѝ написани, но и от последствията на собствените си решения. Този принцип пренесохме в NICS AI Trader.",
+      "Привлече ни самата идея: системата се учи не само по правилата, които са ѝ написани, но и от последствията на собствените си решения. Този принцип пренесохме в NICS Trading Ecosystem.",
     howTitle: "Как работи това при нас",
     how:
       "Основният анализ остава същият: технически анализ на злато, валути и крипто, точка на вход, стоп и четири цели. Паралелно с него всяка нощ работи отделен поток, двигателят на наградите. Той взема всички затворени сигнали, групира ги по тип сетъп и изчислява реалния резултат в R. Типовете сделки, завършили на печалба, получават „допамин“ и увереността в тях леко расте. Типовете със загуба получават „глоба“ и увереността намалява. Стъпките са малки и ограничени, за да не може една лоша седмица да преобърне системата. Потокът работи от 17 септември 2026 г.",
@@ -232,7 +232,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "En septiembre de 2026, el programador de Coinbase Alex Wormuth presentó un experimento poco común. Tomó un modelo digital del cerebro de una mosca de la fruta (166.700 neuronas y 25,6 millones de conexiones) y le mostró un gráfico de bitcoin. El precio se convertía en una imagen para los \"ojos\" de la mosca, y sus reacciones se traducían en comprar, vender o esperar. Con ganancias la mosca recibía \"dopamina\"; con pérdidas se activaban neuronas de aversión, un \"castigo\". Operaba con 100 dólares virtuales. El autor reconoce con honestidad que aún no ha demostrado que la mosca aprendiera a operar con beneficio. Es investigación, no una estrategia lista para usar.",
     idea:
-      "Nos atrapó la idea en sí: un sistema que aprende no solo de las reglas que se le escribieron, sino también de las consecuencias de sus propias decisiones. Llevamos este principio a NICS AI Trader.",
+      "Nos atrapó la idea en sí: un sistema que aprende no solo de las reglas que se le escribieron, sino también de las consecuencias de sus propias decisiones. Llevamos este principio a NICS Trading Ecosystem.",
     howTitle: "Cómo funciona en nuestro sistema",
     how:
       "El análisis principal sigue igual: análisis técnico de oro, forex y cripto, una entrada, un stop y cuatro objetivos. En paralelo, cada noche funciona un flujo aparte: el motor de recompensas. Toma todas las señales cerradas, las agrupa por tipo de setup y calcula el resultado real en R. Los tipos que terminaron en ganancia reciben \"dopamina\" y la confianza en ellos sube un poco. Los que terminaron en pérdida reciben una \"penalización\" y la confianza baja. Los pasos son pequeños y limitados, para que una mala semana no ponga el sistema patas arriba. Este flujo funciona desde el 17 de septiembre de 2026.",
@@ -252,7 +252,7 @@ const strings: Record<Language, StoryStrings> = {
     intro:
       "Em setembro de 2026, o programador da Coinbase Alex Wormuth apresentou um experimento incomum. Ele pegou um modelo digital do cérebro de uma mosca-da-fruta (166.700 neurônios e 25,6 milhões de conexões) e mostrou a ele um gráfico do bitcoin. O preço era transformado numa imagem para os \"olhos\" da mosca, e as reações dela eram traduzidas em comprar, vender ou esperar. Com lucro, a mosca recebia \"dopamina\"; com prejuízo, ativavam-se neurônios de aversão, uma \"punição\". Ela operava com 100 dólares virtuais. O autor admite honestamente que ainda não provou que a mosca aprendeu a operar com lucro. É pesquisa, não uma estratégia pronta.",
     idea:
-      "O que nos chamou a atenção foi a própria ideia: um sistema que aprende não só com as regras escritas para ele, mas também com as consequências das próprias decisões. Levamos esse princípio para o NICS AI Trader.",
+      "O que nos chamou a atenção foi a própria ideia: um sistema que aprende não só com as regras escritas para ele, mas também com as consequências das próprias decisões. Levamos esse princípio para o NICS Trading Ecosystem.",
     howTitle: "Como funciona no nosso sistema",
     how:
       "A análise principal continua a mesma: análise técnica de ouro, forex e cripto, uma entrada, um stop e quatro alvos. Em paralelo, todas as noites roda um fluxo separado: o motor de recompensas. Ele pega todos os sinais fechados, agrupa por tipo de setup e calcula o resultado real em R. Os tipos que terminaram com lucro recebem \"dopamina\", e a confiança neles sobe um pouco. Os que terminaram com prejuízo recebem uma \"penalidade\", e a confiança cai. Os passos são pequenos e limitados, para que uma semana ruim não vire o sistema de cabeça para baixo. Esse fluxo roda desde 17 de setembro de 2026.",

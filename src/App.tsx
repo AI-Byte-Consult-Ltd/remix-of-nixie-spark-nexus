@@ -89,7 +89,7 @@ const App = () => (
             <Route path="/subtitles" element={<Subtitles />} />
             <Route path="/ru/subtitles" element={<Subtitles />} />
             <Route path="/bg/subtitles" element={<Subtitles />} />
-            {/* NICS AI Trader card trial checkout (1.99 EUR / 7 days, then 19.99 EUR/month), linked from the bot; noindex. */}
+            {/* NICS Trading Ecosystem card trial checkout (1.99 EUR / 7 days, then 19.99 EUR/month), linked from the bot; noindex. */}
             <Route path="/trial" element={<Trial />} />
             <Route path="/about" element={<About />} />
             <Route path="/estate" element={<Estate />} />
@@ -99,15 +99,15 @@ const App = () => (
               element={
                 <>
                   <SEO
-                    title="NICS AI Trader Mini App"
-                    description="Authenticated NICS AI Trader user application."
+                    title="NICS Trading Ecosystem Mini App"
+                    description="Authenticated NICS Trading Ecosystem user application."
                     canonical="https://aibyteconsult.com/nics-app"
                     noindex
                   />
                   <Suspense
                     fallback={
                       <main className="grid min-h-screen place-items-center bg-[#07090f] text-sm text-slate-400">
-                        NICS AI Trader…
+                        NICS Trading Ecosystem…
                       </main>
                     }
                   >

@@ -79,19 +79,19 @@ export const AuthorSocialIcons = ({ className = "", size = "md" }: { className?:
 const AUTHOR_COPY = {
   ru: {
     badge: "Автор проекта",
-    role: "Сооснователь AI Byte Consult, автор NICS AI Trader",
+    role: "Сооснователь AI Byte Consult, автор NICS Trading Ecosystem",
     text: "Рассказываю, как развивается проект: что построено, что не сработало, реальные цифры. Плюс путешествия и технологии — «За гранью возможного».",
     follow: "Подписывайтесь, где вам удобнее:",
   },
   bg: {
     badge: "Автор на проекта",
-    role: "Съосновател на AI Byte Consult, автор на NICS AI Trader",
+    role: "Съосновател на AI Byte Consult, автор на NICS Trading Ecosystem",
     text: "Разказвам как се развива проектът: какво е построено, какво не проработи, реални числа. Плюс пътешествия и технологии — „Отвъд обикновеното“.",
     follow: "Последвайте ме, където ви е удобно:",
   },
   en: {
     badge: "Behind the project",
-    role: "Co-founder of AI Byte Consult, author of NICS AI Trader",
+    role: "Co-founder of AI Byte Consult, author of NICS Trading Ecosystem",
     text: "I share how the project is going: what got built, what didn't work, real numbers. Plus travel and tech — Beyond the Ordinary.",
     follow: "Follow wherever suits you:",
   },
@@ -143,23 +143,23 @@ export const AuthorBlock = () => {
 };
 
 // NICS Trading Lab: the project's own YouTube channel (trading, technical
-// analysis, how the NICS AI Trader app is being built).
+// analysis, how the NICS Trading Ecosystem app is being built).
 export const TRADING_LAB_URL = "https://www.youtube.com/@NICSTradingLab";
 
 const TRADING_LAB_COPY = {
   ru: {
     title: "NICS Trading Lab на YouTube",
-    text: "Трейдинг, технический анализ и как мы разрабатываем приложение NICS AI Trader — изнутри.",
+    text: "Трейдинг, технический анализ и как мы разрабатываем приложение NICS Trading Ecosystem — изнутри.",
     button: "Смотреть канал",
   },
   bg: {
     title: "NICS Trading Lab в YouTube",
-    text: "Трейдинг, технически анализ и как разработваме приложението NICS AI Trader — отвътре.",
+    text: "Трейдинг, технически анализ и как разработваме приложението NICS Trading Ecosystem — отвътре.",
     button: "Към канала",
   },
   en: {
     title: "NICS Trading Lab on YouTube",
-    text: "Trading, technical analysis and how we build the NICS AI Trader app, from the inside.",
+    text: "Trading, technical analysis and how we build the NICS Trading Ecosystem app, from the inside.",
     button: "Watch the channel",
   },
 };

@@ -20,7 +20,7 @@ const text: Record<Language, HalloweenText> = {
   en: {
     banner: "Halloween until 31 Oct: +{b}% NICS Video credits on every plan. A pumpkin on this page hides a −{p}% code.",
     eggTitle: "You found the pumpkin!",
-    eggText: "Code {code}: −{p}% on NICS AI Trader (pay in your cabinet) and on NICS Video plans. Valid until 31 Oct, 23:59 Sofia time.",
+    eggText: "Code {code}: −{p}% on NICS Trading Ecosystem (pay in your cabinet) and on NICS Video plans. Valid until 31 Oct, 23:59 Sofia time.",
     boo: "Boo! Happy Halloween 🎃",
     copy: "Copy code",
     copied: "Copied",
@@ -33,7 +33,7 @@ const text: Record<Language, HalloweenText> = {
   ru: {
     banner: "Хэллоуин до 31.10: +{b}% кредитов NICS Video на любой тариф. А в тыкве на этой странице спрятан код на −{p}%.",
     eggTitle: "Вы нашли тыкву!",
-    eggText: "Код {code}: −{p}% на NICS AI Trader (оплата в кабинете) и на тарифы NICS Video. Действует до 31.10, 23:59 по Софии.",
+    eggText: "Код {code}: −{p}% на NICS Trading Ecosystem (оплата в кабинете) и на тарифы NICS Video. Действует до 31.10, 23:59 по Софии.",
     boo: "Бу! С Хэллоуином 🎃",
     copy: "Скопировать код",
     copied: "Скопировано",
@@ -46,7 +46,7 @@ const text: Record<Language, HalloweenText> = {
   bg: {
     banner: "Хелоуин до 31.10: +{b}% кредити за NICS Video на всеки план. В тиквата на тази страница е скрит код за −{p}%.",
     eggTitle: "Намерихте тиквата!",
-    eggText: "Код {code}: −{p}% за NICS AI Trader (плащане в кабинета) и за плановете на NICS Video. Валиден до 31.10, 23:59 софийско време.",
+    eggText: "Код {code}: −{p}% за NICS Trading Ecosystem (плащане в кабинета) и за плановете на NICS Video. Валиден до 31.10, 23:59 софийско време.",
     boo: "Бу! Честит Хелоуин 🎃",
     copy: "Копирай кода",
     copied: "Копирано",
@@ -59,7 +59,7 @@ const text: Record<Language, HalloweenText> = {
   de: {
     banner: "Halloween bis 31.10.: +{b}% NICS-Video-Credits auf jeden Tarif. Ein Kürbis auf dieser Seite versteckt einen −{p}%-Code.",
     eggTitle: "Du hast den Kürbis gefunden!",
-    eggText: "Code {code}: −{p}% auf NICS AI Trader (Zahlung im Kabinett) und auf NICS-Video-Tarife. Gültig bis 31.10., 23:59 Uhr Sofia-Zeit.",
+    eggText: "Code {code}: −{p}% auf NICS Trading Ecosystem (Zahlung im Kabinett) und auf NICS-Video-Tarife. Gültig bis 31.10., 23:59 Uhr Sofia-Zeit.",
     boo: "Buh! Happy Halloween 🎃",
     copy: "Code kopieren",
     copied: "Kopiert",
@@ -72,7 +72,7 @@ const text: Record<Language, HalloweenText> = {
   fr: {
     banner: "Halloween jusqu'au 31/10 : +{b}% de crédits NICS Video sur chaque offre. Une citrouille sur cette page cache un code −{p}%.",
     eggTitle: "Vous avez trouvé la citrouille !",
-    eggText: "Code {code} : −{p}% sur NICS AI Trader (paiement dans votre espace) et sur les offres NICS Video. Valable jusqu'au 31/10, 23h59 heure de Sofia.",
+    eggText: "Code {code} : −{p}% sur NICS Trading Ecosystem (paiement dans votre espace) et sur les offres NICS Video. Valable jusqu'au 31/10, 23h59 heure de Sofia.",
     boo: "Bouh ! Joyeux Halloween 🎃",
     copy: "Copier le code",
     copied: "Copié",
@@ -85,7 +85,7 @@ const text: Record<Language, HalloweenText> = {
   it: {
     banner: "Halloween fino al 31/10: +{b}% crediti NICS Video su ogni piano. Una zucca in questa pagina nasconde un codice −{p}%.",
     eggTitle: "Hai trovato la zucca!",
-    eggText: "Codice {code}: −{p}% su NICS AI Trader (pagamento nell'area personale) e sui piani NICS Video. Valido fino al 31/10, 23:59 ora di Sofia.",
+    eggText: "Codice {code}: −{p}% su NICS Trading Ecosystem (pagamento nell'area personale) e sui piani NICS Video. Valido fino al 31/10, 23:59 ora di Sofia.",
     boo: "Bu! Buon Halloween 🎃",
     copy: "Copia il codice",
     copied: "Copiato",
@@ -98,7 +98,7 @@ const text: Record<Language, HalloweenText> = {
   es: {
     banner: "Halloween hasta el 31/10: +{b}% de créditos NICS Video en cada plan. Una calabaza en esta página esconde un código de −{p}%.",
     eggTitle: "¡Encontraste la calabaza!",
-    eggText: "Código {code}: −{p}% en NICS AI Trader (pago en tu panel) y en los planes de NICS Video. Válido hasta el 31/10, 23:59 hora de Sofía.",
+    eggText: "Código {code}: −{p}% en NICS Trading Ecosystem (pago en tu panel) y en los planes de NICS Video. Válido hasta el 31/10, 23:59 hora de Sofía.",
     boo: "¡Bu! Feliz Halloween 🎃",
     copy: "Copiar código",
     copied: "Copiado",
@@ -111,7 +111,7 @@ const text: Record<Language, HalloweenText> = {
   pt: {
     banner: "Halloween até 31/10: +{b}% de créditos NICS Video em qualquer plano. Uma abóbora nesta página esconde um código de −{p}%.",
     eggTitle: "Você achou a abóbora!",
-    eggText: "Código {code}: −{p}% no NICS AI Trader (pagamento no seu painel) e nos planos NICS Video. Válido até 31/10, 23:59 horário de Sófia.",
+    eggText: "Código {code}: −{p}% no NICS Trading Ecosystem (pagamento no seu painel) e nos planos NICS Video. Válido até 31/10, 23:59 horário de Sófia.",
     boo: "Bu! Feliz Halloween 🎃",
     copy: "Copiar código",
     copied: "Copiado",
@@ -124,7 +124,7 @@ const text: Record<Language, HalloweenText> = {
   pl: {
     banner: "Halloween do 31.10: +{b}% kredytów NICS Video w każdym planie. Dynia na tej stronie skrywa kod −{p}%.",
     eggTitle: "Znalazłeś dynię!",
-    eggText: "Kod {code}: −{p}% na NICS AI Trader (płatność w panelu) i na plany NICS Video. Ważny do 31.10, 23:59 czasu Sofii.",
+    eggText: "Kod {code}: −{p}% na NICS Trading Ecosystem (płatność w panelu) i na plany NICS Video. Ważny do 31.10, 23:59 czasu Sofii.",
     boo: "Buu! Wesołego Halloween 🎃",
     copy: "Kopiuj kod",
     copied: "Skopiowano",
@@ -137,7 +137,7 @@ const text: Record<Language, HalloweenText> = {
   tr: {
     banner: "31 Ekim'e kadar Cadılar Bayramı: her pakette +{b}% NICS Video kredisi. Bu sayfadaki bir balkabağında −{p}% kod saklı.",
     eggTitle: "Balkabağını buldun!",
-    eggText: "Kod {code}: NICS AI Trader'da (ödeme panelinizde) ve NICS Video paketlerinde −{p}%. 31 Ekim 23:59'a (Sofya saati) kadar geçerli.",
+    eggText: "Kod {code}: NICS Trading Ecosystem'da (ödeme panelinizde) ve NICS Video paketlerinde −{p}%. 31 Ekim 23:59'a (Sofya saati) kadar geçerli.",
     boo: "Böö! Mutlu Cadılar Bayramı 🎃",
     copy: "Kodu kopyala",
     copied: "Kopyalandı",
@@ -150,7 +150,7 @@ const text: Record<Language, HalloweenText> = {
   ar: {
     banner: "الهالوين حتى 31 أكتوبر: ‎+{b}%‎ رصيد إضافي في NICS Video على كل باقة. في يقطينة على هذه الصفحة رمز خصم ‎{p}%‎.",
     eggTitle: "وجدت اليقطينة!",
-    eggText: "الرمز {code}: خصم ‎{p}%‎ على NICS AI Trader (الدفع من لوحتك) وعلى باقات NICS Video. صالح حتى 31 أكتوبر، 23:59 بتوقيت صوفيا.",
+    eggText: "الرمز {code}: خصم ‎{p}%‎ على NICS Trading Ecosystem (الدفع من لوحتك) وعلى باقات NICS Video. صالح حتى 31 أكتوبر، 23:59 بتوقيت صوفيا.",
     boo: "بوو! هالوين سعيد 🎃",
     copy: "نسخ الرمز",
     copied: "تم النسخ",
@@ -163,7 +163,7 @@ const text: Record<Language, HalloweenText> = {
   zh: {
     banner: "万圣节活动至 10 月 31 日：NICS Video 所有套餐额度 +{b}%。本页的南瓜里藏着一个 −{p}% 优惠码。",
     eggTitle: "你找到南瓜了！",
-    eggText: "优惠码 {code}：NICS AI Trader（在个人中心付款）和 NICS Video 套餐立减 {p}%。有效期至 10 月 31 日 23:59（索非亚时间）。",
+    eggText: "优惠码 {code}：NICS Trading Ecosystem（在个人中心付款）和 NICS Video 套餐立减 {p}%。有效期至 10 月 31 日 23:59（索非亚时间）。",
     boo: "嘘！万圣节快乐 🎃",
     copy: "复制优惠码",
     copied: "已复制",

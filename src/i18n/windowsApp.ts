@@ -1,5 +1,5 @@
 /*
- * Texts of the NICS AI Trader Windows app page (/nics-windows-app).
+ * Texts of the NICS Trading Ecosystem Windows app page (/nics-windows-app).
  *
  * SEO rollout is phased (2026-11-11): this page exists in EN, RU, BG, DE and
  * ES only. Other site languages show the English text at the English URL.
@@ -9,14 +9,14 @@
  * Facts on this page must stay true: the app is a Tauri shell that opens the
  * web cabinet (so it always runs the current workspace version), the
  * installer is not code-signed yet (SmartScreen warning), Pro = a license key
- * that comes with any active paid NICS AI Trader subscription, 2 computers
+ * that comes with any active paid NICS Trading Ecosystem subscription, 2 computers
  * per key, daily check, 7 days offline grace (src/features/cabinet/license.ts).
  */
 
 export const WINDOWS_APP_LANGS = ["en", "ru", "bg", "de", "es"] as const;
 export type WindowsAppLang = (typeof WINDOWS_APP_LANGS)[number];
 
-export const WINDOWS_APP_DOWNLOAD = "/downloads/NICS-AI-Trader-Setup.exe";
+export const WINDOWS_APP_DOWNLOAD = "/downloads/NICS-Trading-Ecosystem-Setup.exe";
 // Microsoft Store listing is pending (Partner Center identity not set up yet).
 // Put the Store URL here when it exists; the button turns live by itself.
 export const WINDOWS_APP_STORE_URL = "";
@@ -59,11 +59,11 @@ export interface WindowsAppTexts {
 }
 
 const en: WindowsAppTexts = {
-  seoTitle: "NICS AI Trader for Windows — Desktop Trading Workspace",
+  seoTitle: "NICS Trading Ecosystem for Windows — Desktop Trading Workspace",
   seoDescription:
-    "Download the NICS AI Trader Windows app: live trading signals with Entry, Stop Loss and TP1–TP4, on-demand market analysis, economic calendar and verified performance on your PC.",
+    "Download the NICS Trading Ecosystem Windows app: live trading signals with Entry, Stop Loss and TP1–TP4, on-demand market analysis, economic calendar and verified performance on your PC.",
   badge: "Windows 10 / 11 · Free download",
-  title: "NICS AI Trader for Windows",
+  title: "NICS Trading Ecosystem for Windows",
   subtitle:
     "Your trading workspace on the desktop: live signals, on-demand analysis of any supported instrument, the economic calendar and the verified track record in one window, without Telegram.",
   download: "Download for Windows",
@@ -90,14 +90,14 @@ const en: WindowsAppTexts = {
   ],
   installTitle: "How to install",
   install: [
-    "Click “Download for Windows” and open NICS-AI-Trader-Setup.exe.",
+    "Click “Download for Windows” and open NICS-Trading-Ecosystem-Setup.exe.",
     "The installer is not code-signed yet, so Windows may show “Windows protected your PC”. Click “More info”, then “Run anyway”.",
-    "Finish the setup and start NICS AI Trader from the Start menu or the desktop shortcut.",
+    "Finish the setup and start NICS Trading Ecosystem from the Start menu or the desktop shortcut.",
     "Sign in with Telegram or with an e-mail code. With an active subscription your Pro key is filled in automatically.",
   ],
   licenseTitle: "Pro license",
   license: [
-    "Pro comes with any active paid NICS AI Trader subscription, including the €1.99 7-day trial. There is no separate price for the app.",
+    "Pro comes with any active paid NICS Trading Ecosystem subscription, including the €1.99 7-day trial. There is no separate price for the app.",
     "Your personal key (NICS-XXXX-XXXX-XXXX) is in your account and is filled in automatically after sign-in.",
     "One key works on two computers. The app checks it once a day and keeps working offline for up to 7 days.",
   ],
@@ -116,7 +116,7 @@ const en: WindowsAppTexts = {
   ],
   faqTitle: "Questions",
   faq: [
-    { q: "Is the app free?", a: "Downloading and signing in is free. The trading screens need Pro, which comes with any active paid NICS AI Trader subscription." },
+    { q: "Is the app free?", a: "Downloading and signing in is free. The trading screens need Pro, which comes with any active paid NICS Trading Ecosystem subscription." },
     { q: "Does the app place trades for me?", a: "No. It delivers analysis and trading signals; you decide whether to open a position with your broker." },
     { q: "Why does Windows show a warning?", a: "The installer is not code-signed yet. The Microsoft Store version, signed by Microsoft, is being prepared." },
     { q: "Do I need to update the app?", a: "The workspace inside the app loads the current version every time it starts, so new features arrive without reinstalling." },
@@ -124,16 +124,16 @@ const en: WindowsAppTexts = {
     { q: "Can I use one subscription on several devices?", a: "Yes: the web dashboard and Telegram everywhere, and the Windows app on up to two computers per key." },
   ],
   disclaimer:
-    "Trading involves substantial risk. NICS AI Trader provides analytical trading scenarios and risk tools, not financial advice or guaranteed returns.",
-  backToTrading: "Back to NICS AI Trader",
+    "Trading involves substantial risk. NICS Trading Ecosystem provides analytical trading scenarios and risk tools, not financial advice or guaranteed returns.",
+  backToTrading: "Back to NICS Trading Ecosystem",
 };
 
 const ru: WindowsAppTexts = {
-  seoTitle: "NICS AI Trader для Windows — торговое рабочее место на ПК",
+  seoTitle: "NICS Trading Ecosystem для Windows — торговое рабочее место на ПК",
   seoDescription:
-    "Скачайте приложение NICS AI Trader для Windows: торговые сигналы с входом, стоп-лоссом и TP1–TP4, анализ инструмента по запросу, экономический календарь и проверенная статистика на вашем компьютере.",
+    "Скачайте приложение NICS Trading Ecosystem для Windows: торговые сигналы с входом, стоп-лоссом и TP1–TP4, анализ инструмента по запросу, экономический календарь и проверенная статистика на вашем компьютере.",
   badge: "Windows 10 / 11 · Бесплатная загрузка",
-  title: "NICS AI Trader для Windows",
+  title: "NICS Trading Ecosystem для Windows",
   subtitle:
     "Торговое рабочее место на компьютере: сигналы в реальном времени, анализ любого инструмента по запросу, экономический календарь и проверенная статистика в одном окне, без Telegram.",
   download: "Скачать для Windows",
@@ -160,14 +160,14 @@ const ru: WindowsAppTexts = {
   ],
   installTitle: "Как установить",
   install: [
-    "Нажмите «Скачать для Windows» и откройте NICS-AI-Trader-Setup.exe.",
+    "Нажмите «Скачать для Windows» и откройте NICS-Trading-Ecosystem-Setup.exe.",
     "Установщик пока без цифровой подписи, поэтому Windows может показать «Система Windows защитила ваш компьютер». Нажмите «Подробнее», затем «Выполнить в любом случае».",
-    "Завершите установку и запустите NICS AI Trader из меню «Пуск» или с ярлыка на рабочем столе.",
+    "Завершите установку и запустите NICS Trading Ecosystem из меню «Пуск» или с ярлыка на рабочем столе.",
     "Войдите через Telegram или по коду на e-mail. При активной подписке ключ Pro подставится автоматически.",
   ],
   licenseTitle: "Лицензия Pro",
   license: [
-    "Pro входит в любую активную платную подписку NICS AI Trader, включая пробную неделю за €1,99. Отдельно за приложение платить не нужно.",
+    "Pro входит в любую активную платную подписку NICS Trading Ecosystem, включая пробную неделю за €1,99. Отдельно за приложение платить не нужно.",
     "Ваш личный ключ (NICS-XXXX-XXXX-XXXX) находится в кабинете и подставляется автоматически после входа.",
     "Один ключ работает на двух компьютерах. Приложение проверяет его раз в день и работает без интернета до 7 дней.",
   ],
@@ -186,7 +186,7 @@ const ru: WindowsAppTexts = {
   ],
   faqTitle: "Вопросы",
   faq: [
-    { q: "Приложение бесплатное?", a: "Скачать и войти можно бесплатно. Торговые экраны работают с Pro, который входит в любую активную платную подписку NICS AI Trader." },
+    { q: "Приложение бесплатное?", a: "Скачать и войти можно бесплатно. Торговые экраны работают с Pro, который входит в любую активную платную подписку NICS Trading Ecosystem." },
     { q: "Приложение само открывает сделки?", a: "Нет. Оно даёт анализ и торговые сигналы, а решение открыть позицию у брокера принимаете вы." },
     { q: "Почему Windows показывает предупреждение?", a: "Установщик пока без цифровой подписи. Версия для Microsoft Store, подписанная Microsoft, готовится." },
     { q: "Нужно ли обновлять приложение?", a: "Рабочее место внутри приложения при каждом запуске загружает актуальную версию, новые функции появляются без переустановки." },
@@ -194,16 +194,16 @@ const ru: WindowsAppTexts = {
     { q: "Можно пользоваться одной подпиской на нескольких устройствах?", a: "Да: веб-кабинет и Telegram — везде, приложение для Windows — на двух компьютерах на один ключ." },
   ],
   disclaimer:
-    "Торговля на финансовых рынках связана с высоким риском. NICS AI Trader даёт аналитические торговые сценарии и инструменты управления риском, а не финансовые рекомендации и не гарантию дохода.",
-  backToTrading: "Назад к NICS AI Trader",
+    "Торговля на финансовых рынках связана с высоким риском. NICS Trading Ecosystem даёт аналитические торговые сценарии и инструменты управления риском, а не финансовые рекомендации и не гарантию дохода.",
+  backToTrading: "Назад к NICS Trading Ecosystem",
 };
 
 const bg: WindowsAppTexts = {
-  seoTitle: "NICS AI Trader за Windows — работно място за търговия на компютъра",
+  seoTitle: "NICS Trading Ecosystem за Windows — работно място за търговия на компютъра",
   seoDescription:
-    "Изтеглете приложението NICS AI Trader за Windows: търговски сигнали с вход, стоп загуба и TP1–TP4, анализ на инструмент при поискване, икономически календар и проверени резултати на вашия компютър.",
+    "Изтеглете приложението NICS Trading Ecosystem за Windows: търговски сигнали с вход, стоп загуба и TP1–TP4, анализ на инструмент при поискване, икономически календар и проверени резултати на вашия компютър.",
   badge: "Windows 10 / 11 · Безплатно изтегляне",
-  title: "NICS AI Trader за Windows",
+  title: "NICS Trading Ecosystem за Windows",
   subtitle:
     "Работно място за търговия на компютъра: сигнали в реално време, анализ на всеки поддържан инструмент при поискване, икономически календар и проверени резултати в един прозорец, без Telegram.",
   download: "Изтегли за Windows",
@@ -230,14 +230,14 @@ const bg: WindowsAppTexts = {
   ],
   installTitle: "Как да инсталирате",
   install: [
-    "Натиснете „Изтегли за Windows“ и отворете NICS-AI-Trader-Setup.exe.",
+    "Натиснете „Изтегли за Windows“ и отворете NICS-Trading-Ecosystem-Setup.exe.",
     "Инсталаторът все още няма цифров подпис, затова Windows може да покаже „Windows защити вашия компютър“. Натиснете „Повече информация“, след това „Изпълни въпреки това“.",
-    "Завършете инсталацията и стартирайте NICS AI Trader от менюто „Старт“ или от прекия път на работния плот.",
+    "Завършете инсталацията и стартирайте NICS Trading Ecosystem от менюто „Старт“ или от прекия път на работния плот.",
     "Влезте с Telegram или с код по e-mail. При активен абонамент ключът Pro се попълва автоматично.",
   ],
   licenseTitle: "Лиценз Pro",
   license: [
-    "Pro е включен във всеки активен платен абонамент за NICS AI Trader, включително пробната седмица за €1,99. Приложението няма отделна цена.",
+    "Pro е включен във всеки активен платен абонамент за NICS Trading Ecosystem, включително пробната седмица за €1,99. Приложението няма отделна цена.",
     "Личният ви ключ (NICS-XXXX-XXXX-XXXX) е в акаунта ви и се попълва автоматично след вход.",
     "Един ключ работи на два компютъра. Приложението го проверява веднъж дневно и работи без интернет до 7 дни.",
   ],
@@ -256,7 +256,7 @@ const bg: WindowsAppTexts = {
   ],
   faqTitle: "Въпроси",
   faq: [
-    { q: "Безплатно ли е приложението?", a: "Изтеглянето и входът са безплатни. Търговските екрани изискват Pro, който е включен във всеки активен платен абонамент за NICS AI Trader." },
+    { q: "Безплатно ли е приложението?", a: "Изтеглянето и входът са безплатни. Търговските екрани изискват Pro, който е включен във всеки активен платен абонамент за NICS Trading Ecosystem." },
     { q: "Приложението само ли отваря сделки?", a: "Не. То дава анализ и търговски сигнали, а решението да отворите позиция при брокера е ваше." },
     { q: "Защо Windows показва предупреждение?", a: "Инсталаторът все още няма цифров подпис. Подготвя се версия за Microsoft Store, подписана от Microsoft." },
     { q: "Трябва ли да обновявам приложението?", a: "Работното място в приложението зарежда актуалната версия при всяко стартиране, новите функции идват без преинсталиране." },
@@ -264,16 +264,16 @@ const bg: WindowsAppTexts = {
     { q: "Може ли един абонамент на няколко устройства?", a: "Да: уеб таблото и Telegram навсякъде, а приложението за Windows — на до два компютъра с един ключ." },
   ],
   disclaimer:
-    "Търговията на финансовите пазари е свързана със значителен риск. NICS AI Trader предоставя аналитични търговски сценарии и инструменти за управление на риска, а не финансови съвети или гарантирана печалба.",
-  backToTrading: "Обратно към NICS AI Trader",
+    "Търговията на финансовите пазари е свързана със значителен риск. NICS Trading Ecosystem предоставя аналитични търговски сценарии и инструменти за управление на риска, а не финансови съвети или гарантирана печалба.",
+  backToTrading: "Обратно към NICS Trading Ecosystem",
 };
 
 const de: WindowsAppTexts = {
-  seoTitle: "NICS AI Trader für Windows — Trading-Arbeitsplatz am PC",
+  seoTitle: "NICS Trading Ecosystem für Windows — Trading-Arbeitsplatz am PC",
   seoDescription:
-    "Laden Sie die NICS AI Trader Windows-App herunter: Handelssignale mit Entry, Stop Loss und TP1–TP4, Marktanalyse auf Abruf, Wirtschaftskalender und verifizierte Performance auf Ihrem PC.",
+    "Laden Sie die NICS Trading Ecosystem Windows-App herunter: Handelssignale mit Entry, Stop Loss und TP1–TP4, Marktanalyse auf Abruf, Wirtschaftskalender und verifizierte Performance auf Ihrem PC.",
   badge: "Windows 10 / 11 · Kostenloser Download",
-  title: "NICS AI Trader für Windows",
+  title: "NICS Trading Ecosystem für Windows",
   subtitle:
     "Ihr Trading-Arbeitsplatz auf dem Desktop: Live-Signale, Analyse jedes unterstützten Instruments auf Abruf, Wirtschaftskalender und verifizierte Performance in einem Fenster, ohne Telegram.",
   download: "Für Windows herunterladen",
@@ -300,14 +300,14 @@ const de: WindowsAppTexts = {
   ],
   installTitle: "Installation",
   install: [
-    "Klicken Sie auf „Für Windows herunterladen“ und öffnen Sie NICS-AI-Trader-Setup.exe.",
+    "Klicken Sie auf „Für Windows herunterladen“ und öffnen Sie NICS-Trading-Ecosystem-Setup.exe.",
     "Der Installer ist noch nicht digital signiert, daher kann Windows „Der Computer wurde durch Windows geschützt“ anzeigen. Klicken Sie auf „Weitere Informationen“ und dann auf „Trotzdem ausführen“.",
-    "Schließen Sie die Installation ab und starten Sie NICS AI Trader über das Startmenü oder die Desktop-Verknüpfung.",
+    "Schließen Sie die Installation ab und starten Sie NICS Trading Ecosystem über das Startmenü oder die Desktop-Verknüpfung.",
     "Melden Sie sich mit Telegram oder per E-Mail-Code an. Mit aktivem Abo wird Ihr Pro-Schlüssel automatisch eingetragen.",
   ],
   licenseTitle: "Pro-Lizenz",
   license: [
-    "Pro ist in jedem aktiven bezahlten NICS AI Trader Abo enthalten, auch in der 7-Tage-Testphase für €1,99. Die App kostet nichts extra.",
+    "Pro ist in jedem aktiven bezahlten NICS Trading Ecosystem Abo enthalten, auch in der 7-Tage-Testphase für €1,99. Die App kostet nichts extra.",
     "Ihr persönlicher Schlüssel (NICS-XXXX-XXXX-XXXX) liegt in Ihrem Konto und wird nach der Anmeldung automatisch eingetragen.",
     "Ein Schlüssel gilt für zwei Computer. Die App prüft ihn einmal täglich und funktioniert bis zu 7 Tage offline.",
   ],
@@ -326,7 +326,7 @@ const de: WindowsAppTexts = {
   ],
   faqTitle: "Fragen",
   faq: [
-    { q: "Ist die App kostenlos?", a: "Download und Anmeldung sind kostenlos. Die Trading-Bereiche benötigen Pro, das in jedem aktiven bezahlten NICS AI Trader Abo enthalten ist." },
+    { q: "Ist die App kostenlos?", a: "Download und Anmeldung sind kostenlos. Die Trading-Bereiche benötigen Pro, das in jedem aktiven bezahlten NICS Trading Ecosystem Abo enthalten ist." },
     { q: "Eröffnet die App Trades für mich?", a: "Nein. Sie liefert Analysen und Handelssignale; ob Sie bei Ihrem Broker eine Position eröffnen, entscheiden Sie." },
     { q: "Warum zeigt Windows eine Warnung?", a: "Der Installer ist noch nicht digital signiert. Eine von Microsoft signierte Version für den Microsoft Store wird vorbereitet." },
     { q: "Muss ich die App aktualisieren?", a: "Der Arbeitsplatz in der App lädt bei jedem Start die aktuelle Version, neue Funktionen kommen ohne Neuinstallation." },
@@ -334,16 +334,16 @@ const de: WindowsAppTexts = {
     { q: "Kann ich ein Abo auf mehreren Geräten nutzen?", a: "Ja: Web-Dashboard und Telegram überall, die Windows-App auf bis zu zwei Computern pro Schlüssel." },
   ],
   disclaimer:
-    "Trading ist mit erheblichen Risiken verbunden. NICS AI Trader liefert analytische Handelsszenarien und Risikowerkzeuge, keine Finanzberatung und keine garantierten Renditen.",
-  backToTrading: "Zurück zu NICS AI Trader",
+    "Trading ist mit erheblichen Risiken verbunden. NICS Trading Ecosystem liefert analytische Handelsszenarien und Risikowerkzeuge, keine Finanzberatung und keine garantierten Renditen.",
+  backToTrading: "Zurück zu NICS Trading Ecosystem",
 };
 
 const es: WindowsAppTexts = {
-  seoTitle: "NICS AI Trader para Windows — espacio de trading en tu PC",
+  seoTitle: "NICS Trading Ecosystem para Windows — espacio de trading en tu PC",
   seoDescription:
-    "Descarga la app NICS AI Trader para Windows: señales de trading con Entry, Stop Loss y TP1–TP4, análisis de mercado bajo pedido, calendario económico y rendimiento verificado en tu PC.",
+    "Descarga la app NICS Trading Ecosystem para Windows: señales de trading con Entry, Stop Loss y TP1–TP4, análisis de mercado bajo pedido, calendario económico y rendimiento verificado en tu PC.",
   badge: "Windows 10 / 11 · Descarga gratuita",
-  title: "NICS AI Trader para Windows",
+  title: "NICS Trading Ecosystem para Windows",
   subtitle:
     "Tu espacio de trading en el escritorio: señales en tiempo real, análisis de cualquier instrumento compatible bajo pedido, calendario económico y rendimiento verificado en una sola ventana, sin Telegram.",
   download: "Descargar para Windows",
@@ -370,14 +370,14 @@ const es: WindowsAppTexts = {
   ],
   installTitle: "Cómo instalar",
   install: [
-    "Pulsa «Descargar para Windows» y abre NICS-AI-Trader-Setup.exe.",
+    "Pulsa «Descargar para Windows» y abre NICS-Trading-Ecosystem-Setup.exe.",
     "El instalador aún no tiene firma digital, así que Windows puede mostrar «Windows protegió su PC». Pulsa «Más información» y luego «Ejecutar de todas formas».",
-    "Termina la instalación y abre NICS AI Trader desde el menú Inicio o el acceso directo del escritorio.",
+    "Termina la instalación y abre NICS Trading Ecosystem desde el menú Inicio o el acceso directo del escritorio.",
     "Accede con Telegram o con un código por e-mail. Con una suscripción activa tu clave Pro se rellena sola.",
   ],
   licenseTitle: "Licencia Pro",
   license: [
-    "Pro viene con cualquier suscripción de pago activa de NICS AI Trader, incluida la prueba de 7 días por €1,99. La app no tiene precio aparte.",
+    "Pro viene con cualquier suscripción de pago activa de NICS Trading Ecosystem, incluida la prueba de 7 días por €1,99. La app no tiene precio aparte.",
     "Tu clave personal (NICS-XXXX-XXXX-XXXX) está en tu cuenta y se rellena automáticamente al acceder.",
     "Una clave funciona en dos ordenadores. La app la comprueba una vez al día y funciona sin conexión hasta 7 días.",
   ],
@@ -396,7 +396,7 @@ const es: WindowsAppTexts = {
   ],
   faqTitle: "Preguntas",
   faq: [
-    { q: "¿La app es gratis?", a: "Descargarla y acceder es gratis. Las pantallas de trading necesitan Pro, que viene con cualquier suscripción de pago activa de NICS AI Trader." },
+    { q: "¿La app es gratis?", a: "Descargarla y acceder es gratis. Las pantallas de trading necesitan Pro, que viene con cualquier suscripción de pago activa de NICS Trading Ecosystem." },
     { q: "¿La app abre operaciones por mí?", a: "No. Ofrece análisis y señales de trading; tú decides si abrir una posición con tu bróker." },
     { q: "¿Por qué Windows muestra un aviso?", a: "El instalador aún no tiene firma digital. Se está preparando la versión de Microsoft Store, firmada por Microsoft." },
     { q: "¿Tengo que actualizar la app?", a: "El espacio de trabajo dentro de la app carga la versión actual en cada inicio, así que las novedades llegan sin reinstalar." },
@@ -404,8 +404,8 @@ const es: WindowsAppTexts = {
     { q: "¿Puedo usar una suscripción en varios dispositivos?", a: "Sí: el panel web y Telegram en todas partes, y la app de Windows en hasta dos ordenadores por clave." },
   ],
   disclaimer:
-    "El trading implica un riesgo considerable. NICS AI Trader ofrece escenarios analíticos de trading y herramientas de riesgo, no asesoramiento financiero ni rentabilidad garantizada.",
-  backToTrading: "Volver a NICS AI Trader",
+    "El trading implica un riesgo considerable. NICS Trading Ecosystem ofrece escenarios analíticos de trading y herramientas de riesgo, no asesoramiento financiero ni rentabilidad garantizada.",
+  backToTrading: "Volver a NICS Trading Ecosystem",
 };
 
 export const windowsAppTexts: Record<WindowsAppLang, WindowsAppTexts> = { en, ru, bg, de, es };

@@ -4,8 +4,8 @@ description: A practical forex risk management plan — risk per trade, stops, p
 date: 2026-11-12
 image: /og-trading.jpg
 service: /trading
-cta: NICS AI Trader builds these rules into every signal: stop, lot size for your account, news reminders and a public track record.
-ctaButton: Open NICS AI Trader
+cta: NICS Trading Ecosystem builds these rules into every signal: stop, lot size for your account, news reminders and a public track record.
+ctaButton: Open NICS Trading Ecosystem
 ---
 
 Most forex accounts are not lost on one terrible trade. They are lost on ordinary losing streaks traded with too much size, no stop, or several positions that turn out to be the same bet. Risk management is the set of rules that prevents that. Here are eight that cover most of it.
@@ -50,8 +50,8 @@ Write down every trade: instrument, reason, entry, stop, targets, result in R an
 - Is there a high-impact event before the trade can play out?
 - Am I under my daily loss limit?
 
-## Where NICS AI Trader fits
+## Where NICS Trading Ecosystem fits
 
-[NICS AI Trader](/nics-trading-software/) does not replace these rules, it makes them easier to follow. Each signal arrives with a stop and four targets already defined, and the card calculates the lot for your balance and risk. The economic calendar shows the week's high-impact events, and while a position is open you get a reminder before major news — positions are never closed for you, the decision stays yours. All closed strong signals are recorded in the public [track record](/trading/#track-record) in R, so you can judge the system the same way you judge your own trading.
+[NICS Trading Ecosystem](/nics-trading-software/) does not replace these rules, it makes them easier to follow. Each signal arrives with a stop and four targets already defined, and the card calculates the lot for your balance and risk. The economic calendar shows the week's high-impact events, and while a position is open you get a reminder before major news — positions are never closed for you, the decision stays yours. All closed strong signals are recorded in the public [track record](/trading/#track-record) in R, so you can judge the system the same way you judge your own trading.
 
 > Trading forex and CFDs involves substantial risk of loss and is not suitable for everyone.

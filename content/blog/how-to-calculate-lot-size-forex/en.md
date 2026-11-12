@@ -4,7 +4,7 @@ description: The one formula for position size, pip values for EUR/USD, USD/JPY 
 date: 2026-11-12
 image: /og-trading.jpg
 service: /nics-trading-software
-cta: NICS AI Trader calculates the lot for every signal from your balance, your risk and your broker's MT5 contract specification.
+cta: NICS Trading Ecosystem calculates the lot for every signal from your balance, your risk and your broker's MT5 contract specification.
 ctaButton: See position sizing in NICS
 ---
 
@@ -66,8 +66,8 @@ Lot size decides risk; leverage decides margin. Make sure the margin for the pos
 - Lot rounded down to the broker's step
 - Loss at the minimum lot checked on small accounts
 
-## How NICS AI Trader helps
+## How NICS Trading Ecosystem helps
 
-Every signal card in [NICS AI Trader](/nics-trading-software/) shows this calculation for you: the risk amount from your balance and risk setting, the exact lot, the lot rounded to the broker step, the loss at the minimum lot and the estimated margin. It uses the broker's MT5 contract specification, so gold, indices and yen pairs are sized correctly. If the specification or exchange rate is missing, the card says sizing is unavailable instead of guessing.
+Every signal card in [NICS Trading Ecosystem](/nics-trading-software/) shows this calculation for you: the risk amount from your balance and risk setting, the exact lot, the lot rounded to the broker step, the loss at the minimum lot and the estimated margin. It uses the broker's MT5 contract specification, so gold, indices and yen pairs are sized correctly. If the specification or exchange rate is missing, the card says sizing is unavailable instead of guessing.
 
 > Trading involves substantial risk. These examples illustrate the arithmetic; they are not trading advice.

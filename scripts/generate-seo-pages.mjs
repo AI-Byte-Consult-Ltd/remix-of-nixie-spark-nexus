@@ -139,7 +139,7 @@ const tradingSchema = (canonical, lang) => withSiteNodes([
     {
       "@type": "SoftwareApplication",
       "@id": `${siteUrl}/trading#software`,
-      name: "NICS AI Trader",
+      name: "NICS Trading Ecosystem",
       applicationCategory: "FinanceApplication",
       operatingSystem: "Windows, Web, Telegram",
       url: canonical,
@@ -157,14 +157,14 @@ const tradingSchema = (canonical, lang) => withSiteNodes([
     },
     {
       "@type": "OfferCatalog",
-      name: "NICS AI Trader access plans",
+      name: "NICS Trading Ecosystem access plans",
       itemListElement: [
         // Must match src/data/nicsTraderPlans.ts and the n8n price keys.
-        { "@type": "Offer", name: "NICS AI Trader subscription — 7-day trial, then €19.99/month", price: "1.99", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
-        { "@type": "Offer", name: "NICS AI Trader subscription — monthly, auto-renews", price: "19.99", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
-        { "@type": "Offer", name: "NICS AI Trader one-time pass — 7 days, no renewal", price: "9", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
-        { "@type": "Offer", name: "NICS AI Trader one-time pass — 30 days, no renewal", price: "29", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
-        { "@type": "Offer", name: "NICS AI Trader one-time pass — 90 days, no renewal", price: "69", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
+        { "@type": "Offer", name: "NICS Trading Ecosystem subscription — 7-day trial, then €19.99/month", price: "1.99", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
+        { "@type": "Offer", name: "NICS Trading Ecosystem subscription — monthly, auto-renews", price: "19.99", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
+        { "@type": "Offer", name: "NICS Trading Ecosystem one-time pass — 7 days, no renewal", price: "9", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
+        { "@type": "Offer", name: "NICS Trading Ecosystem one-time pass — 30 days, no renewal", price: "29", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
+        { "@type": "Offer", name: "NICS Trading Ecosystem one-time pass — 90 days, no renewal", price: "69", priceCurrency: "EUR", url: "https://aibyteconsult.com/trading/#nics-trader-plans" },
       ],
     },
     {
@@ -208,7 +208,7 @@ const localizedPages = ALL_LANGUAGES.flatMap((lang) => {
       // No dedicated og-trading.jpg exists yet — reuse the real home banner
       // rather than point social previews at a missing file.
       ogImage: `${siteUrl}/og-trading.jpg`,
-      ogImageAlt: "NICS AI Trader — structured trading signals in Telegram",
+      ogImageAlt: "NICS Trading Ecosystem — structured trading signals in Telegram",
       alternates: tradingAlternates,
       schema: tradingSchema(urlFor(tradingRoute), lang),
     },
@@ -262,7 +262,7 @@ const subtitlesPages = [
   alternates: subtitlesAlternates,
 }));
 
-// NICS AI Trader Windows app page (src/pages/NicsWindowsApp.tsx): phased SEO
+// NICS Trading Ecosystem Windows app page (src/pages/NicsWindowsApp.tsx): phased SEO
 // languages only (WINDOWS_APP_LANGS in src/i18n/windowsApp.ts), each listing
 // the others as alternates.
 const windowsAlternates = [
@@ -281,12 +281,12 @@ const windowsPages = WINDOWS_APP_LANGS.map((lang) => {
     description: tx.seoDescription,
     type: "website",
     ogImage: `${siteUrl}/og-trading.jpg`,
-    ogImageAlt: "NICS AI Trader for Windows",
+    ogImageAlt: "NICS Trading Ecosystem for Windows",
     alternates: windowsAlternates,
     schema: withSiteNodes([
       {
         "@type": "SoftwareApplication",
-        name: "NICS AI Trader for Windows",
+        name: "NICS Trading Ecosystem for Windows",
         applicationCategory: "FinanceApplication",
         operatingSystem: "Windows 10, Windows 11",
         downloadUrl: `${siteUrl}${WINDOWS_APP_DOWNLOAD}`,
@@ -331,11 +331,11 @@ const softwarePages = phasedPages("/nics-trading-software", (lang, url) => {
     title: tx.seoTitle,
     description: tx.seoDescription,
     ogImage: `${siteUrl}/og-trading.jpg`,
-    ogImageAlt: "NICS AI Trader — AI trading software",
+    ogImageAlt: "NICS Trading Ecosystem — AI trading software",
     schema: withSiteNodes([
       {
         "@type": "SoftwareApplication",
-        name: "NICS AI Trader",
+        name: "NICS Trading Ecosystem",
         applicationCategory: "FinanceApplication",
         operatingSystem: "Windows, Web, Telegram",
         url,
@@ -399,7 +399,7 @@ const pages = [
     route: "/privacy",
     title: "Privacy Policy — AI Byte Consult",
     description:
-      "How AI Byte Consult Ltd. collects, uses, shares, and protects personal data across our website, Telegram bot, NICS AI Trader Mini App, and connected Meta/Threads account.",
+      "How AI Byte Consult Ltd. collects, uses, shares, and protects personal data across our website, Telegram bot, NICS Trading Ecosystem Mini App, and connected Meta/Threads account.",
     type: "website",
     schemaType: "WebPage",
   },
@@ -441,7 +441,7 @@ const OG_IMAGE_SIZES = {
 };
 
 const APP_HEAD = {
-  trading: { manifest: "/trading.webmanifest", icon: "/apps/trading-apple-touch.png", title: "NICS Trading" },
+  trading: { manifest: "/trading.webmanifest", icon: "/apps/trading-apple-touch.png", title: "NICS Trading Ecosystem" },
   video: { manifest: "/nics-video.webmanifest", icon: "/apps/video-apple-touch.png", title: "NICS Video" },
 };
 
@@ -478,7 +478,7 @@ const pageSchema = (page, canonical) =>
 // link previews) the page is not an empty <div>.
 const NAV = [
   { base: "/", label: "AI Byte Consult" },
-  { base: "/trading", label: "NICS AI Trader" },
+  { base: "/trading", label: "NICS Trading Ecosystem" },
   { base: "/nics-windows-app", label: "Windows app", langs: [...WINDOWS_APP_LANGS] },
   { base: "/nics-video", label: "NICS Video" },
   { base: "/nics-studio", label: "NICS Studio" },
@@ -584,11 +584,11 @@ for (const go of goPages) {
   await writeFile(path.join(distDir, route.slice(1), "index.html"), html, "utf8");
 }
 
-// NICS AI Trader card trial checkout (src/pages/Trial.tsx), opened from the bot
+// NICS Trading Ecosystem card trial checkout (src/pages/Trial.tsx), opened from the bot
 // and as Revolut's return URL: a real file so it answers 200, noindex, not in the sitemap.
 {
   const html = renderPage({ route: "/trial", type: "website", schemaType: "WebPage", locale: OG_LOCALE.en, lang: "en",
-    title: "NICS AI Trader — 7 days for €1.99", description: "Start the NICS AI Trader trial: 7 days of full access for €1.99, then €19.99 a month, cancel any time in the bot." }, true);
+    title: "NICS Trading Ecosystem — 7 days for €1.99", description: "Start the NICS Trading Ecosystem trial: 7 days of full access for €1.99, then €19.99 a month, cancel any time in the bot." }, true);
   await mkdir(path.join(distDir, "trial"), { recursive: true });
   await writeFile(path.join(distDir, "trial", "index.html"), html, "utf8");
 }
@@ -598,7 +598,7 @@ for (const go of goPages) {
 // Outside Telegram the page itself forwards to the web cabinet.
 {
   const html = renderPage({ route: "/nics-app", type: "website", schemaType: "WebPage", locale: OG_LOCALE.en, lang: "en",
-    title: "NICS AI Trader Mini App", description: "NICS AI Trader inside Telegram. In a browser, use the web dashboard at aibyteconsult.com/cabinet." }, true);
+    title: "NICS Trading Ecosystem Mini App", description: "NICS Trading Ecosystem inside Telegram. In a browser, use the web dashboard at aibyteconsult.com/cabinet." }, true);
   await mkdir(path.join(distDir, "nics-app"), { recursive: true });
   await writeFile(path.join(distDir, "nics-app", "index.html"), html, "utf8");
 }

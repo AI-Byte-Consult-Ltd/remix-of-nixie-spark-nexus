@@ -1,5 +1,5 @@
 /*
- * Translations of the NICS AI Trader plan cards (site /trading and cabinet
+ * Translations of the NICS Trading Ecosystem plan cards (site /trading and cabinet
  * subscription page). Prices and ids live in src/data/nicsTraderPlans.ts —
  * only words are here. Languages: en (base, in the data file), ru, bg, de,
  * es, pt. Other site languages fall back to English.
