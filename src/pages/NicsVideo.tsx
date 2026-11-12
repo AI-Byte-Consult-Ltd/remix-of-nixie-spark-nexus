@@ -21,7 +21,7 @@ import {
   Check,
   Scissors,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "@/components/SiteLink";
 import SEO from "@/components/SEO";
 import { useInstallableApp } from "@/lib/installableApp";
 import { useLanguage, getLocalizedSeoMeta, Language } from "@/contexts/LanguageContext";

@@ -1,5 +1,5 @@
 import { Mail, Phone, MessageCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "@/components/SiteLink";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { AuthorSocialIcons, TRADING_LAB_URL } from "@/components/AuthorSocials";
 import { windowsAppPath } from "@/i18n/windowsApp";

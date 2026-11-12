@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { withTrailingSlash } from "@/lib/canonicalPath";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
 import {
   Brain,
@@ -591,7 +592,7 @@ const OurEcosystem = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-3">
-                <a href="/nics-ecosystem">
+                <a href="/nics-ecosystem/">
                   <Button
                     size="lg"
                     className="w-full bg-amber-300 text-black hover:bg-amber-200"
@@ -700,7 +701,7 @@ const OurEcosystem = () => {
 
                 <div className="mt-6 flex flex-wrap gap-3">
                   <a
-                    href={active.cta.href}
+                    href={withTrailingSlash(active.cta.href)}
                     target={active.cta.external ? "_blank" : undefined}
                     rel={active.cta.external ? "noopener noreferrer" : undefined}
                   >

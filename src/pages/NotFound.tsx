@@ -1,4 +1,5 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Link from "@/components/SiteLink";
 import { useEffect } from "react";
 import { Home } from "lucide-react";
 import { Button } from "@/components/ui/button";

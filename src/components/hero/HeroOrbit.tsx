@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import Link from "@/components/SiteLink";
 
 // The NICS products circling a glowing core, on the right of the home hero.
 // Every product is a real link. Positions are written straight to the DOM from

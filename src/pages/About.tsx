@@ -7,7 +7,7 @@ import {
   Target, Eye, Heart, Globe, Users, Award, ArrowRight, CheckCircle2,
   Music2, Share2, Globe2
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "@/components/SiteLink";
 import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { aboutTexts } from "@/i18n/aboutPage";

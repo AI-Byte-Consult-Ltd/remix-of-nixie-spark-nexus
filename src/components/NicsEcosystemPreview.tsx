@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "@/components/SiteLink";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Cpu, Globe2, Layers, Zap } from "lucide-react";

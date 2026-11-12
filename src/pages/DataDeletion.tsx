@@ -71,7 +71,7 @@ const DataDeletion = () => {
 
               <p>
                 See our{" "}
-                <a href="/privacy" className="text-primary hover:underline">
+                <a href="/privacy/" className="text-primary hover:underline">
                   Privacy Policy
                 </a>{" "}
                 for full details on what data we collect and why. For any

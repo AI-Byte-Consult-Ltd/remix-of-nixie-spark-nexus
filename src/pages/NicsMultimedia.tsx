@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Music2, PenLine, Sparkles, ExternalLink, ArrowRight, ArrowLeft, BookOpen } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "@/components/SiteLink";
 import SEO from "@/components/SEO";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 

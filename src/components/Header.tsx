@@ -8,7 +8,9 @@ import {
 "@/components/ui/dropdown-menu";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useLanguage, Language, localizedPathFor } from "@/contexts/LanguageContext";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Link from "@/components/SiteLink";
+import { withTrailingSlash } from "@/lib/canonicalPath";
 import logoImg from "@/assets/logo.jpeg";
 import { isHalloween } from "@/lib/halloween";
 import { isNewYear } from "@/lib/newYear";
@@ -52,7 +54,7 @@ const Header = () => {
     setLanguage(code);
     const target = localizedPathFor(location.pathname, code);
     if (target && target !== location.pathname) {
-      navigate(target + location.search + location.hash);
+      navigate(withTrailingSlash(target) + location.search + location.hash);
     }
   };
 
