@@ -17,6 +17,57 @@ type ReleaseText = Record<AppLanguage, { title: string; items: string[] }>;
 
 export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseText }> = [
   {
+    version: "2.15.0",
+    date: "12.11.2026",
+    text: {
+      ru: {
+        title: "Личный журнал сделок",
+        items: [
+          "Новый раздел «Журнал сделок»: ваши собственные сделки, итог, профит-фактор, просадка и кривая счёта.",
+          "Сделки попадают в журнал сами через советник NICS Journal для MT5, из отчёта MT5/MT4 (HTML или xlsx) или вручную.",
+          "Автоматический разбор ошибок (без стопа, отыгрыш после убытка, ранний выход и другие) и разбор недели: что получается и что исправить.",
+          "Сигналы NICS, которые вы приняли, с проверкой D1/H4. Журнал личный и не входит в публичную статистику.",
+        ],
+      },
+      bg: {
+        title: "Личен дневник на сделките",
+        items: [
+          "Нов раздел «Дневник на сделките»: вашите сделки, резултат, профит фактор, просадка и крива на сметката.",
+          "Сделките влизат сами чрез съветника NICS Journal за MT5, от отчет MT5/MT4 (HTML или xlsx) или ръчно.",
+          "Автоматичен анализ на грешките и седмичен преглед: какво се получава и какво да поправите.",
+          "Приетите сигнали на NICS с проверка D1/H4. Дневникът е личен и не влиза в публичната статистика.",
+        ],
+      },
+      en: {
+        title: "Personal trade journal",
+        items: [
+          "New «Trade journal» section: your own trades, net result, profit factor, drawdown and equity curve.",
+          "Trades arrive automatically from the NICS Journal expert for MT5, from an MT5/MT4 report (HTML or xlsx) or by hand.",
+          "Automatic mistake audit (no stop, revenge trading, early exit and more) and a weekly review: what works and what to fix.",
+          "The NICS signals you accepted, with a D1/H4 check. The journal is private and is not part of the public statistics.",
+        ],
+      },
+      es: {
+        title: "Diario personal de operaciones",
+        items: [
+          "Nueva sección «Diario de operaciones»: tus operaciones, resultado, profit factor, drawdown y curva de capital.",
+          "Las operaciones llegan solas con el experto NICS Journal para MT5, desde un informe MT5/MT4 (HTML o xlsx) o a mano.",
+          "Análisis automático de errores y revisión semanal: lo que funciona y qué corregir.",
+          "Las señales NICS que aceptaste, con comprobación D1/H4. El diario es privado y no entra en las estadísticas públicas.",
+        ],
+      },
+      pt: {
+        title: "Diário pessoal de operações",
+        items: [
+          "Nova seção «Diário de operações»: as suas operações, resultado, profit factor, drawdown e curva de capital.",
+          "As operações chegam sozinhas pelo expert NICS Journal para MT5, por um relatório MT5/MT4 (HTML ou xlsx) ou manualmente.",
+          "Análise automática de erros e revisão semanal: o que funciona e o que corrigir.",
+          "Os sinais NICS que você aceitou, com verificação D1/H4. O diário é privado e não entra nas estatísticas públicas.",
+        ],
+      },
+    },
+  },
+  {
     version: "2.14.0",
     date: "12.11.2026",
     text: {
