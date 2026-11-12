@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Link from "@/components/SiteLink";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { isDesktopApp } from "@/features/cabinet/license";
 

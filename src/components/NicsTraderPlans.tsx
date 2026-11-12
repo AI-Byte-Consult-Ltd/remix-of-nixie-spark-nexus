@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Bot, Check, CreditCard, ShieldCheck, Target, Zap } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "@/components/SiteLink";
 import {
   Dialog,
   DialogContent,

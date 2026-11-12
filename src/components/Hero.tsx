@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import Link from "@/components/SiteLink";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play, Calendar } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
