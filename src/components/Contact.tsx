@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Phone, MessageCircle } from "lucide-react";
+import { trackSiteEvent } from "@/lib/siteAnalytics";
 
 // n8n [12 WEB] Contact Form: checks the honeypot, timing, content and rate limits, then emails us.
 const CONTACT_FORM_URL = "https://n8n.aibyteconsult.com/webhook/contact-form";
@@ -27,6 +28,7 @@ const Contact = () => {
         body: JSON.stringify({ ...formData, website, elapsed_ms: Date.now() - openedAt.current }),
       });
       if (!response.ok) throw new Error(`Contact form failed with status ${response.status}`);
+      trackSiteEvent("contact_submit");
       toast.success(t("contact.success"));
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {

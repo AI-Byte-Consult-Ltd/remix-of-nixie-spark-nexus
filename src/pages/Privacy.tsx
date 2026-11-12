@@ -137,7 +137,8 @@ const Privacy = () => {
       title: "Cookies & Tracking",
       icon: Cookie,
       content: [
-        "This website does not use third-party advertising or cross-site tracking cookies. We do not currently run Google Analytics or a comparable analytics platform. Any cookie or local-storage use is limited to functional purposes, such as remembering a language preference or a signed-in session in the NICS AI Trader Mini App.",
+        "This website does not use cookies for analytics or advertising, and no third-party tracking or advertising scripts (such as Google Analytics or the Meta Pixel) run on it. Any cookie or local-storage use is limited to functional purposes, such as remembering a language preference or a signed-in session in the NICS AI Trader Mini App.",
+        "Cookie-free website statistics: to understand which pages are useful and which channels bring visitors, we run our own privacy-friendly counter on our own server. For each page view and for a few actions (for example opening our Telegram bot, starting a trial, downloading the Windows app, sending a form or starting a checkout) it records the page address without any query parameters, the name of the referring website or campaign tag, the site language, device type (mobile, tablet or desktop) and the time. It does not set cookies or store anything in your browser, does not record what you type into forms, and does not store your IP address or browser details. To count unique visitors, a one-way code is computed from your IP address and browser together with a random value that is replaced every day, so a visitor cannot be recognised on another day or identified. The data is used only as totals, kept for up to 400 days, never sold or shared, and processed on the basis of our legitimate interest in running and improving the website (Art. 6(1)(f) GDPR). You can switch it off on your device by opening any page of the site with ?notrack=1 at the end of the address.",
         "First-party usage statistics in the NICS AI Trader app (Telegram Mini App, web cabinet and Windows app): to improve the app we record which screens are opened and which features are used (for example \"signal ordered\" or \"theme changed\"), together with the platform, app version, language and theme. These records are stored on our own servers, linked to your NICS account only internally, never sold or shared, and reviewed only as totals (active users, popular screens). We do not record message texts, trade amounts, license keys, passwords or e-mail content. You can ask us to delete them together with the rest of your data.",
       ],
     },
@@ -204,7 +205,7 @@ const Privacy = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground">
                 <span className="px-4 py-2 rounded-full bg-muted/50 border border-border/50">
-                  Last updated: <strong className="text-foreground">September 2026</strong>
+                  Last updated: <strong className="text-foreground">November 2026</strong>
                 </span>
                 <span className="px-4 py-2 rounded-full bg-muted/50 border border-border/50">
                   Company: <strong className="text-foreground">AI Byte Consult Ltd.</strong>
