@@ -1,0 +1,388 @@
+import type { SessionKey } from "@/lib/trackRecordMetrics";
+
+// Texts for the two heatmaps on the track record (results by hour / weekday)
+// and the market volume-by-price map. 12 site languages, English fallback.
+
+export type VolumeRangeKey = "1d" | "3d" | "2w" | "1m";
+
+type Dict = {
+  resultsTitle: string;
+  resultsNote: string;
+  byHour: string;
+  byWeekday: string;
+  avgR: string;
+  winRate: string;
+  allInstruments: string;
+  hourAxis: string;
+  sessions: Record<SessionKey, string>;
+  sessionHint: string;
+  weekdays: string[];
+  signals: string;
+  fewSignals: string;
+  tapHint: string;
+  volumeTitle: string;
+  volumeNote: string;
+  ranges: Record<VolumeRangeKey, string>;
+  poc: string;
+  valueArea: string;
+  lastPrice: string;
+  price: string;
+  volume: string;
+  tickNote: string;
+  loading: string;
+  offline: string;
+  noData: string;
+};
+
+const en: Dict = {
+  resultsTitle: "When our signals work best",
+  resultsNote: "Colour = average R per signal (green profit, red loss). Pale cells have fewer than 3 signals, too few to judge.",
+  byHour: "Instrument × hour",
+  byWeekday: "Weekday × session",
+  avgR: "Average R",
+  winRate: "Win rate",
+  allInstruments: "All",
+  hourAxis: "Hour of the signal, Sofia time",
+  sessions: { asia: "Asia", london: "London", overlap: "London + NY", newYork: "New York", late: "Late" },
+  sessionHint: "Sessions in UTC: Asia 00–07, London 07–12, London + NY 12–16, New York 16–21, late 21–24.",
+  weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  signals: "signals",
+  fewSignals: "fewer than 3 signals",
+  tapHint: "Hover or tap a cell to see the numbers.",
+  volumeTitle: "Volume heatmap by price",
+  volumeNote: "Where the market traded most: the brighter the cell, the more activity at that price and time. On the right, the total for each price level.",
+  ranges: { "1d": "1 day · M5", "3d": "3 days · M15", "2w": "2 weeks · H1", "1m": "1 month · H4" },
+  poc: "POC (busiest price)",
+  valueArea: "70% of volume",
+  lastPrice: "Last price",
+  price: "Price",
+  volume: "Activity",
+  tickNote: "Broker tick volume (number of price updates), not exchange volume. Live data, refreshed every 5 minutes.",
+  loading: "Loading…",
+  offline: "Market data is offline right now.",
+  noData: "No candles for this instrument in the selected period.",
+};
+
+const ru: Dict = {
+  resultsTitle: "Когда наши сигналы работают лучше",
+  resultsNote: "Цвет = средний R на сигнал (зелёный плюс, красный минус). Бледные клетки: меньше 3 сигналов, по ним судить рано.",
+  byHour: "Инструмент × час",
+  byWeekday: "День недели × сессия",
+  avgR: "Средний R",
+  winRate: "Win rate",
+  allInstruments: "Все",
+  hourAxis: "Час сигнала, время Софии",
+  sessions: { asia: "Азия", london: "Лондон", overlap: "Лондон + НЙ", newYork: "Нью-Йорк", late: "Поздняя" },
+  sessionHint: "Сессии по UTC: Азия 00–07, Лондон 07–12, Лондон + НЙ 12–16, Нью-Йорк 16–21, поздняя 21–24.",
+  weekdays: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
+  signals: "сигн.",
+  fewSignals: "меньше 3 сигналов",
+  tapHint: "Наведите или нажмите на клетку, чтобы увидеть цифры.",
+  volumeTitle: "Тепловая карта объёмов по цене",
+  volumeNote: "Где рынок торговался больше всего: чем ярче клетка, тем больше активности на этой цене в это время. Справа итог по каждому уровню цены.",
+  ranges: { "1d": "1 день · M5", "3d": "3 дня · M15", "2w": "2 недели · H1", "1m": "1 месяц · H4" },
+  poc: "POC (самая торгуемая цена)",
+  valueArea: "70% объёма",
+  lastPrice: "Последняя цена",
+  price: "Цена",
+  volume: "Активность",
+  tickNote: "Тиковый объём брокера (число изменений цены), не биржевой. Живые данные, обновление каждые 5 минут.",
+  loading: "Загрузка…",
+  offline: "Рыночные данные сейчас недоступны.",
+  noData: "Нет свечей по этому инструменту за выбранный период.",
+};
+
+const bg: Dict = {
+  resultsTitle: "Кога сигналите ни работят най-добре",
+  resultsNote: "Цвят = среден R на сигнал (зелено печалба, червено загуба). Бледите клетки имат под 3 сигнала, твърде малко за извод.",
+  byHour: "Инструмент × час",
+  byWeekday: "Ден × сесия",
+  avgR: "Среден R",
+  winRate: "Win rate",
+  allInstruments: "Всички",
+  hourAxis: "Час на сигнала, софийско време",
+  sessions: { asia: "Азия", london: "Лондон", overlap: "Лондон + НЙ", newYork: "Ню Йорк", late: "Късна" },
+  sessionHint: "Сесии по UTC: Азия 00–07, Лондон 07–12, Лондон + НЙ 12–16, Ню Йорк 16–21, късна 21–24.",
+  weekdays: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"],
+  signals: "сигн.",
+  fewSignals: "под 3 сигнала",
+  tapHint: "Посочете или докоснете клетка, за да видите числата.",
+  volumeTitle: "Топлинна карта на обема по цена",
+  volumeNote: "Къде пазарът е търгувал най-много: колкото по-ярка е клетката, толкова повече активност на тази цена. Вдясно е сборът за всяко ниво.",
+  ranges: { "1d": "1 ден · M5", "3d": "3 дни · M15", "2w": "2 седмици · H1", "1m": "1 месец · H4" },
+  poc: "POC (най-търгувана цена)",
+  valueArea: "70% от обема",
+  lastPrice: "Последна цена",
+  price: "Цена",
+  volume: "Активност",
+  tickNote: "Тиков обем на брокера (брой промени на цената), не борсов. Данни на живо, обновяване на 5 минути.",
+  loading: "Зареждане…",
+  offline: "Пазарните данни в момента не са достъпни.",
+  noData: "Няма свещи за този инструмент в избрания период.",
+};
+
+const es: Dict = {
+  resultsTitle: "Cuándo funcionan mejor nuestras señales",
+  resultsNote: "Color = R medio por señal (verde ganancia, rojo pérdida). Las celdas pálidas tienen menos de 3 señales, demasiado pocas para juzgar.",
+  byHour: "Instrumento × hora",
+  byWeekday: "Día × sesión",
+  avgR: "R medio",
+  winRate: "Win rate",
+  allInstruments: "Todos",
+  hourAxis: "Hora de la señal, hora de Sofía",
+  sessions: { asia: "Asia", london: "Londres", overlap: "Londres + NY", newYork: "Nueva York", late: "Tardía" },
+  sessionHint: "Sesiones en UTC: Asia 00–07, Londres 07–12, Londres + NY 12–16, Nueva York 16–21, tardía 21–24.",
+  weekdays: ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
+  signals: "señales",
+  fewSignals: "menos de 3 señales",
+  tapHint: "Pasa el cursor o toca una celda para ver los números.",
+  volumeTitle: "Mapa de calor del volumen por precio",
+  volumeNote: "Dónde más se negoció: cuanto más brillante la celda, más actividad en ese precio y momento. A la derecha, el total por nivel de precio.",
+  ranges: { "1d": "1 día · M5", "3d": "3 días · M15", "2w": "2 semanas · H1", "1m": "1 mes · H4" },
+  poc: "POC (precio más negociado)",
+  valueArea: "70% del volumen",
+  lastPrice: "Último precio",
+  price: "Precio",
+  volume: "Actividad",
+  tickNote: "Volumen de ticks del bróker (número de cambios de precio), no volumen de bolsa. Datos en vivo, cada 5 minutos.",
+  loading: "Cargando…",
+  offline: "Los datos de mercado no están disponibles ahora.",
+  noData: "No hay velas de este instrumento en el periodo elegido.",
+};
+
+const de: Dict = {
+  resultsTitle: "Wann unsere Signale am besten funktionieren",
+  resultsNote: "Farbe = durchschnittliches R pro Signal (grün Gewinn, rot Verlust). Blasse Zellen haben weniger als 3 Signale, zu wenig für ein Urteil.",
+  byHour: "Instrument × Stunde",
+  byWeekday: "Wochentag × Session",
+  avgR: "Ø R",
+  winRate: "Trefferquote",
+  allInstruments: "Alle",
+  hourAxis: "Stunde des Signals, Zeit Sofia",
+  sessions: { asia: "Asien", london: "London", overlap: "London + NY", newYork: "New York", late: "Spät" },
+  sessionHint: "Sessions in UTC: Asien 00–07, London 07–12, London + NY 12–16, New York 16–21, spät 21–24.",
+  weekdays: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+  signals: "Signale",
+  fewSignals: "weniger als 3 Signale",
+  tapHint: "Zelle berühren oder mit der Maus darauf zeigen, um die Zahlen zu sehen.",
+  volumeTitle: "Volumen-Heatmap nach Preis",
+  volumeNote: "Wo der Markt am meisten gehandelt hat: je heller die Zelle, desto mehr Aktivität bei diesem Preis. Rechts die Summe je Preisniveau.",
+  ranges: { "1d": "1 Tag · M5", "3d": "3 Tage · M15", "2w": "2 Wochen · H1", "1m": "1 Monat · H4" },
+  poc: "POC (meistgehandelter Preis)",
+  valueArea: "70 % des Volumens",
+  lastPrice: "Letzter Preis",
+  price: "Preis",
+  volume: "Aktivität",
+  tickNote: "Tick-Volumen des Brokers (Anzahl Preisänderungen), kein Börsenvolumen. Live-Daten, alle 5 Minuten aktualisiert.",
+  loading: "Wird geladen…",
+  offline: "Marktdaten sind gerade nicht verfügbar.",
+  noData: "Keine Kerzen für dieses Instrument im gewählten Zeitraum.",
+};
+
+const fr: Dict = {
+  resultsTitle: "Quand nos signaux fonctionnent le mieux",
+  resultsNote: "Couleur = R moyen par signal (vert gain, rouge perte). Les cases pâles ont moins de 3 signaux, trop peu pour conclure.",
+  byHour: "Instrument × heure",
+  byWeekday: "Jour × session",
+  avgR: "R moyen",
+  winRate: "Taux de réussite",
+  allInstruments: "Tous",
+  hourAxis: "Heure du signal, heure de Sofia",
+  sessions: { asia: "Asie", london: "Londres", overlap: "Londres + NY", newYork: "New York", late: "Tardive" },
+  sessionHint: "Sessions en UTC : Asie 00–07, Londres 07–12, Londres + NY 12–16, New York 16–21, tardive 21–24.",
+  weekdays: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
+  signals: "signaux",
+  fewSignals: "moins de 3 signaux",
+  tapHint: "Survolez ou touchez une case pour voir les chiffres.",
+  volumeTitle: "Carte de chaleur du volume par prix",
+  volumeNote: "Où le marché a le plus échangé : plus la case est claire, plus il y a eu d’activité à ce prix. À droite, le total par niveau de prix.",
+  ranges: { "1d": "1 jour · M5", "3d": "3 jours · M15", "2w": "2 semaines · H1", "1m": "1 mois · H4" },
+  poc: "POC (prix le plus échangé)",
+  valueArea: "70 % du volume",
+  lastPrice: "Dernier prix",
+  price: "Prix",
+  volume: "Activité",
+  tickNote: "Volume en ticks du courtier (nombre de variations de prix), pas le volume de bourse. Données en direct, toutes les 5 minutes.",
+  loading: "Chargement…",
+  offline: "Les données de marché sont indisponibles pour le moment.",
+  noData: "Aucune bougie pour cet instrument sur la période choisie.",
+};
+
+const it: Dict = {
+  resultsTitle: "Quando i nostri segnali funzionano meglio",
+  resultsNote: "Colore = R medio per segnale (verde profitto, rosso perdita). Le celle pallide hanno meno di 3 segnali, troppo pochi per giudicare.",
+  byHour: "Strumento × ora",
+  byWeekday: "Giorno × sessione",
+  avgR: "R medio",
+  winRate: "Win rate",
+  allInstruments: "Tutti",
+  hourAxis: "Ora del segnale, ora di Sofia",
+  sessions: { asia: "Asia", london: "Londra", overlap: "Londra + NY", newYork: "New York", late: "Tarda" },
+  sessionHint: "Sessioni in UTC: Asia 00–07, Londra 07–12, Londra + NY 12–16, New York 16–21, tarda 21–24.",
+  weekdays: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"],
+  signals: "segnali",
+  fewSignals: "meno di 3 segnali",
+  tapHint: "Passa il mouse o tocca una cella per vedere i numeri.",
+  volumeTitle: "Heatmap del volume per prezzo",
+  volumeNote: "Dove il mercato ha scambiato di più: più la cella è luminosa, più attività a quel prezzo. A destra il totale per livello di prezzo.",
+  ranges: { "1d": "1 giorno · M5", "3d": "3 giorni · M15", "2w": "2 settimane · H1", "1m": "1 mese · H4" },
+  poc: "POC (prezzo più scambiato)",
+  valueArea: "70% del volume",
+  lastPrice: "Ultimo prezzo",
+  price: "Prezzo",
+  volume: "Attività",
+  tickNote: "Volume tick del broker (numero di variazioni di prezzo), non volume di borsa. Dati live, ogni 5 minuti.",
+  loading: "Caricamento…",
+  offline: "I dati di mercato non sono disponibili al momento.",
+  noData: "Nessuna candela per questo strumento nel periodo scelto.",
+};
+
+const pt: Dict = {
+  resultsTitle: "Quando os nossos sinais funcionam melhor",
+  resultsNote: "Cor = R médio por sinal (verde lucro, vermelho perda). As células pálidas têm menos de 3 sinais, poucos para avaliar.",
+  byHour: "Instrumento × hora",
+  byWeekday: "Dia × sessão",
+  avgR: "R médio",
+  winRate: "Win rate",
+  allInstruments: "Todos",
+  hourAxis: "Hora do sinal, hora de Sófia",
+  sessions: { asia: "Ásia", london: "Londres", overlap: "Londres + NY", newYork: "Nova Iorque", late: "Tardia" },
+  sessionHint: "Sessões em UTC: Ásia 00–07, Londres 07–12, Londres + NY 12–16, Nova Iorque 16–21, tardia 21–24.",
+  weekdays: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
+  signals: "sinais",
+  fewSignals: "menos de 3 sinais",
+  tapHint: "Passe o cursor ou toque numa célula para ver os números.",
+  volumeTitle: "Mapa de calor do volume por preço",
+  volumeNote: "Onde o mercado negociou mais: quanto mais clara a célula, mais atividade nesse preço. À direita, o total por nível de preço.",
+  ranges: { "1d": "1 dia · M5", "3d": "3 dias · M15", "2w": "2 semanas · H1", "1m": "1 mês · H4" },
+  poc: "POC (preço mais negociado)",
+  valueArea: "70% do volume",
+  lastPrice: "Último preço",
+  price: "Preço",
+  volume: "Atividade",
+  tickNote: "Volume de ticks da corretora (número de mudanças de preço), não volume de bolsa. Dados ao vivo, a cada 5 minutos.",
+  loading: "A carregar…",
+  offline: "Os dados de mercado não estão disponíveis agora.",
+  noData: "Sem velas deste instrumento no período escolhido.",
+};
+
+const pl: Dict = {
+  resultsTitle: "Kiedy nasze sygnały działają najlepiej",
+  resultsNote: "Kolor = średnie R na sygnał (zielony zysk, czerwony strata). Blade pola mają mniej niż 3 sygnały, za mało do oceny.",
+  byHour: "Instrument × godzina",
+  byWeekday: "Dzień × sesja",
+  avgR: "Średnie R",
+  winRate: "Skuteczność",
+  allInstruments: "Wszystkie",
+  hourAxis: "Godzina sygnału, czas Sofii",
+  sessions: { asia: "Azja", london: "Londyn", overlap: "Londyn + NY", newYork: "Nowy Jork", late: "Późna" },
+  sessionHint: "Sesje w UTC: Azja 00–07, Londyn 07–12, Londyn + NY 12–16, Nowy Jork 16–21, późna 21–24.",
+  weekdays: ["Pn", "Wt", "Śr", "Cz", "Pt", "So", "Nd"],
+  signals: "sygnałów",
+  fewSignals: "mniej niż 3 sygnały",
+  tapHint: "Najedź lub dotknij pola, aby zobaczyć liczby.",
+  volumeTitle: "Mapa cieplna wolumenu według ceny",
+  volumeNote: "Gdzie rynek handlował najwięcej: im jaśniejsze pole, tym większa aktywność przy tej cenie. Po prawej suma dla każdego poziomu ceny.",
+  ranges: { "1d": "1 dzień · M5", "3d": "3 dni · M15", "2w": "2 tygodnie · H1", "1m": "1 miesiąc · H4" },
+  poc: "POC (najczęściej handlowana cena)",
+  valueArea: "70% wolumenu",
+  lastPrice: "Ostatnia cena",
+  price: "Cena",
+  volume: "Aktywność",
+  tickNote: "Wolumen tickowy brokera (liczba zmian ceny), nie giełdowy. Dane na żywo, co 5 minut.",
+  loading: "Ładowanie…",
+  offline: "Dane rynkowe są teraz niedostępne.",
+  noData: "Brak świec dla tego instrumentu w wybranym okresie.",
+};
+
+const tr: Dict = {
+  resultsTitle: "Sinyallerimiz en iyi ne zaman çalışıyor",
+  resultsNote: "Renk = sinyal başına ortalama R (yeşil kâr, kırmızı zarar). Soluk hücrelerde 3'ten az sinyal var, karar için az.",
+  byHour: "Enstrüman × saat",
+  byWeekday: "Gün × seans",
+  avgR: "Ortalama R",
+  winRate: "Kazanma oranı",
+  allInstruments: "Tümü",
+  hourAxis: "Sinyal saati, Sofya saati",
+  sessions: { asia: "Asya", london: "Londra", overlap: "Londra + NY", newYork: "New York", late: "Geç" },
+  sessionHint: "Seanslar UTC: Asya 00–07, Londra 07–12, Londra + NY 12–16, New York 16–21, geç 21–24.",
+  weekdays: ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"],
+  signals: "sinyal",
+  fewSignals: "3'ten az sinyal",
+  tapHint: "Rakamları görmek için bir hücrenin üzerine gelin veya dokunun.",
+  volumeTitle: "Fiyata göre hacim ısı haritası",
+  volumeNote: "Piyasanın en çok işlem gördüğü yerler: hücre ne kadar parlaksa o fiyatta o kadar çok aktivite. Sağda her fiyat seviyesinin toplamı.",
+  ranges: { "1d": "1 gün · M5", "3d": "3 gün · M15", "2w": "2 hafta · H1", "1m": "1 ay · H4" },
+  poc: "POC (en çok işlem gören fiyat)",
+  valueArea: "Hacmin %70'i",
+  lastPrice: "Son fiyat",
+  price: "Fiyat",
+  volume: "Aktivite",
+  tickNote: "Aracı kurumun tik hacmi (fiyat değişim sayısı), borsa hacmi değil. Canlı veri, 5 dakikada bir.",
+  loading: "Yükleniyor…",
+  offline: "Piyasa verileri şu anda kullanılamıyor.",
+  noData: "Seçilen dönemde bu enstrüman için mum yok.",
+};
+
+const zh: Dict = {
+  resultsTitle: "我们的信号何时表现最好",
+  resultsNote: "颜色 = 每个信号的平均 R（绿色盈利，红色亏损）。浅色格子少于 3 个信号，数据太少无法判断。",
+  byHour: "品种 × 小时",
+  byWeekday: "星期 × 交易时段",
+  avgR: "平均 R",
+  winRate: "胜率",
+  allInstruments: "全部",
+  hourAxis: "信号时间（索非亚时间）",
+  sessions: { asia: "亚洲", london: "伦敦", overlap: "伦敦 + 纽约", newYork: "纽约", late: "尾盘" },
+  sessionHint: "时段按 UTC：亚洲 00–07，伦敦 07–12，伦敦 + 纽约 12–16，纽约 16–21，尾盘 21–24。",
+  weekdays: ["一", "二", "三", "四", "五", "六", "日"],
+  signals: "个信号",
+  fewSignals: "少于 3 个信号",
+  tapHint: "将鼠标悬停或点按格子查看数字。",
+  volumeTitle: "按价格的成交量热力图",
+  volumeNote: "市场交易最活跃的位置：格子越亮，该价格该时刻的活动越多。右侧为每个价格水平的合计。",
+  ranges: { "1d": "1 天 · M5", "3d": "3 天 · M15", "2w": "2 周 · H1", "1m": "1 个月 · H4" },
+  poc: "POC（成交最多的价格）",
+  valueArea: "70% 成交量",
+  lastPrice: "最新价",
+  price: "价格",
+  volume: "活跃度",
+  tickNote: "经纪商的 tick 成交量（价格变动次数），并非交易所成交量。实时数据，每 5 分钟更新。",
+  loading: "加载中…",
+  offline: "行情数据暂时不可用。",
+  noData: "所选时段内该品种没有 K 线。",
+};
+
+const ar: Dict = {
+  resultsTitle: "متى تعمل إشاراتنا بشكل أفضل",
+  resultsNote: "اللون = متوسط R لكل إشارة (الأخضر ربح، الأحمر خسارة). الخلايا الباهتة فيها أقل من 3 إشارات، وهذا قليل للحكم.",
+  byHour: "الأداة × الساعة",
+  byWeekday: "اليوم × الجلسة",
+  avgR: "متوسط R",
+  winRate: "نسبة الربح",
+  allInstruments: "الكل",
+  hourAxis: "ساعة الإشارة بتوقيت صوفيا",
+  sessions: { asia: "آسيا", london: "لندن", overlap: "لندن + نيويورك", newYork: "نيويورك", late: "متأخرة" },
+  sessionHint: "الجلسات بتوقيت UTC: آسيا 00–07، لندن 07–12، لندن + نيويورك 12–16، نيويورك 16–21، متأخرة 21–24.",
+  weekdays: ["الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت", "الأحد"],
+  signals: "إشارات",
+  fewSignals: "أقل من 3 إشارات",
+  tapHint: "مرّر المؤشر أو المس خلية لرؤية الأرقام.",
+  volumeTitle: "خريطة حرارية للحجم حسب السعر",
+  volumeNote: "أين تداول السوق أكثر: كلما كانت الخلية أسطع زاد النشاط عند هذا السعر. على اليمين مجموع كل مستوى سعري.",
+  ranges: { "1d": "يوم · M5", "3d": "3 أيام · M15", "2w": "أسبوعان · H1", "1m": "شهر · H4" },
+  poc: "POC (السعر الأكثر تداولًا)",
+  valueArea: "70% من الحجم",
+  lastPrice: "آخر سعر",
+  price: "السعر",
+  volume: "النشاط",
+  tickNote: "حجم التيك لدى الوسيط (عدد تغيّرات السعر)، وليس حجم البورصة. بيانات مباشرة كل 5 دقائق.",
+  loading: "جارٍ التحميل…",
+  offline: "بيانات السوق غير متاحة الآن.",
+  noData: "لا توجد شموع لهذه الأداة في الفترة المختارة.",
+};
+
+const dictionaries: Record<string, Dict> = { en, ru, bg, es, de, fr, it, pt, pl, tr, zh, ar };
+
+export const heatmapText = (language: string | undefined): Dict =>
+  dictionaries[(language ?? "en").slice(0, 2)] ?? en;

@@ -17,6 +17,8 @@ import {
   type TradeRow,
 } from "@/lib/trackRecordMetrics";
 import { trackRecordText } from "./trackRecordI18n";
+import ResultsHeatmap from "./ResultsHeatmap";
+import VolumeHeatmap from "./VolumeHeatmap";
 
 // Full public track record: period and market filters, ten key metrics,
 // equity curve, drawdown chart and a per-instrument table. Built entirely
@@ -370,8 +372,16 @@ const TrackRecordAnalytics = ({ trades: rows, language, variant = "site", defaul
             {instrumentTable(text.inProfit, winners)}
             {instrumentTable(text.inLoss, losers)}
           </div>
+
+          {/* 2026-11-12 (Alexander): results heatmaps, instrument x hour and
+              weekday x session, for the same period and market filter. */}
+          <ResultsHeatmap trades={inMarket} language={language} variant={variant} />
         </>
       )}
+
+      {/* 2026-11-12 (Alexander): volume-by-price heatmap from our live broker
+          candles. Market data, independent of the filters above. */}
+      <VolumeHeatmap language={language} variant={variant} />
 
       <p className={cn("text-center text-xs", ui.muted)}>{text.footnote}</p>
     </div>

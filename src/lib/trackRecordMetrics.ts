@@ -3,27 +3,31 @@
 // Input is the `trades` list returned by the [10 PUBLIC STATS] endpoint:
 // every closed signal that cleared the quality gate (WEAK signals are
 // excluded server-side, owner's rule of 2026-10-28), oldest first, as
-// [closedAtEpochSeconds, symbol, assetClass, realizedR].
+// [closedAtEpochSeconds, symbol, assetClass, realizedR, signalAtEpochSeconds].
+// The 5th field (signal creation time, since 2026-11-12) feeds the hour and
+// weekday heatmaps; older responses without it fall back to the close time.
 //
 // Everything here is computed from those real rows; nothing is estimated.
 
-export type TradeRow = [number, string, string, number];
+export type TradeRow = [number, string, string, number, number?];
 
 export type Trade = {
   closedAt: number; // ms
   symbol: string;
   assetClass: string;
   r: number;
+  signalAt: number; // ms, when the signal was created
 };
 
 export const toTrades = (rows: TradeRow[] | undefined | null): Trade[] =>
   (rows ?? [])
     .filter((row) => Array.isArray(row) && row.length >= 4)
-    .map(([ts, symbol, assetClass, r]) => ({
+    .map(([ts, symbol, assetClass, r, signalTs]) => ({
       closedAt: Number(ts) * 1000,
       symbol: String(symbol ?? ""),
       assetClass: String(assetClass ?? ""),
       r: Number(r) || 0,
+      signalAt: Number(signalTs) > 0 ? Number(signalTs) * 1000 : Number(ts) * 1000,
     }))
     .sort((a, b) => a.closedAt - b.closedAt);
 
@@ -240,4 +244,66 @@ export const byInstrument = (trades: Trade[]): InstrumentRow[] => {
   return [...groups.entries()]
     .map(([symbol, list]) => ({ symbol, market: marketOf(list[0]), ...computeMetrics(list) }))
     .sort((a, b) => b.totalR - a.totalR);
+};
+
+// ---------------------------------------------------------------- heatmaps
+
+// Cells for the results heatmaps: how many signals, how many won, total R.
+export type HeatCell = { n: number; wins: number; totalR: number };
+const emptyCell = (): HeatCell => ({ n: 0, wins: 0, totalR: 0 });
+const addTo = (cell: HeatCell, t: Trade) => {
+  cell.n += 1;
+  if (t.r > 0) cell.wins += 1;
+  cell.totalR += t.r;
+};
+
+const hourFormatter = new Intl.DateTimeFormat("en-GB", { timeZone: TIME_ZONE, hour: "2-digit", hourCycle: "h23" });
+const weekdayFormatter = new Intl.DateTimeFormat("en-US", { timeZone: TIME_ZONE, weekday: "short" });
+const WEEKDAY_INDEX: Record<string, number> = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 };
+
+export const sofiaHour = (ms: number) => Number(hourFormatter.format(new Date(ms))) % 24;
+export const sofiaWeekday = (ms: number) => WEEKDAY_INDEX[weekdayFormatter.format(new Date(ms))] ?? 0;
+
+// Trading sessions by UTC hour of the signal (fixed, so they do not move
+// with daylight saving): Asia 00-07, London 07-12, London+New York 12-16,
+// New York 16-21, late 21-24.
+export const SESSION_KEYS = ["asia", "london", "overlap", "newYork", "late"] as const;
+export type SessionKey = (typeof SESSION_KEYS)[number];
+export const sessionOf = (ms: number): SessionKey => {
+  const h = new Date(ms).getUTCHours();
+  if (h < 7) return "asia";
+  if (h < 12) return "london";
+  if (h < 16) return "overlap";
+  if (h < 21) return "newYork";
+  return "late";
+};
+
+export type HourHeatRow = { symbol: string | null; cells: HeatCell[]; total: HeatCell };
+
+// Instrument x hour of the signal (Sofia time). First row = all instruments
+// together, then the instruments with the most signals (up to `limit`).
+export const hourHeatmap = (trades: Trade[], limit = 12): HourHeatRow[] => {
+  const all: HourHeatRow = { symbol: null, cells: Array.from({ length: 24 }, emptyCell), total: emptyCell() };
+  const bySymbol = new Map<string, HourHeatRow>();
+  for (const t of trades) {
+    const h = sofiaHour(t.signalAt);
+    let row = bySymbol.get(t.symbol);
+    if (!row) {
+      row = { symbol: t.symbol, cells: Array.from({ length: 24 }, emptyCell), total: emptyCell() };
+      bySymbol.set(t.symbol, row);
+    }
+    addTo(row.cells[h], t);
+    addTo(row.total, t);
+    addTo(all.cells[h], t);
+    addTo(all.total, t);
+  }
+  const rows = [...bySymbol.values()].sort((a, b) => b.total.n - a.total.n).slice(0, limit);
+  return [all, ...rows];
+};
+
+// Weekday (Sofia, Mon..Sun) x session.
+export const weekdaySessionHeatmap = (trades: Trade[]): HeatCell[][] => {
+  const grid = Array.from({ length: 7 }, () => SESSION_KEYS.map(emptyCell));
+  for (const t of trades) addTo(grid[sofiaWeekday(t.signalAt)][SESSION_KEYS.indexOf(sessionOf(t.signalAt))], t);
+  return grid;
 };
