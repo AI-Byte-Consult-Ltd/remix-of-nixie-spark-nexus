@@ -35,7 +35,10 @@ const FEATURE_ICONS = [BellRing, Search, History, CalendarDays, BarChart3, BookO
 
 // Real screenshots of the Windows app go here (files in public/apps/windows/).
 // The section stays hidden while the list is empty: no mock-ups on this page.
-const SCREENSHOTS: { src: string; alt: string }[] = [];
+const SCREENSHOTS: { src: string; alt: string }[] = [
+  { src: "/apps/windows/win-order-signal.webp", alt: "NICS AI Trader for Windows: signals list with an analysis request in progress" },
+  { src: "/apps/windows/win-calendar.webp", alt: "NICS AI Trader for Windows: economic calendar for the week" },
+];
 
 const tradingPath = (lang: string) =>
   lang === "en" ? "/trading" : `/${lang}/trading`;
@@ -160,13 +163,15 @@ const NicsWindowsApp = () => {
           <section className="py-20">
             <div className="container mx-auto px-4">
               <h2 className="mb-10 text-3xl font-semibold md:text-4xl">{tx.screensTitle}</h2>
-              <div className="grid gap-6 md:grid-cols-2">
+              <div className="grid gap-6 lg:grid-cols-2">
                 {SCREENSHOTS.map((shot) => (
                   <img
                     key={shot.src}
                     src={shot.src}
                     alt={shot.alt}
                     loading="lazy"
+                    width={1535}
+                    height={722}
                     className="w-full rounded-2xl border border-border/60 shadow-lg"
                   />
                 ))}
