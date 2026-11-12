@@ -60,6 +60,7 @@ import { RewardsCabinet } from "@/features/nics/RewardsCabinet";
 import { RiskProfileForm } from "@/features/nics/RiskProfileForm";
 import { RiskSummaryCard } from "@/features/nics/RiskSummaryCard";
 import { SettingsForm } from "@/features/nics/SettingsForm";
+import { PRO_ACCESS_MODES } from "@/features/nics/LadderPlan";
 import { SignalCard } from "@/features/nics/SignalCard";
 import { DashboardDna, MyDnaPanel } from "@/features/nics/SignalDna";
 import { RequestedSignalsPanel } from "@/features/nics/RequestedSignalsPanel";
@@ -810,6 +811,7 @@ const NicsTraderApp = ({
       language={language}
       t={t}
       sizing={sizingSignalId === signal.signalId ? sizing : null}
+      isPro={PRO_ACCESS_MODES.includes(String(data.access?.mode ?? ""))}
       sizingLoading={sizingLoading && sizingSignalId === signal.signalId}
       decisionLoading={decisionLoadingSignalId === signal.signalId}
       onCalculate={(signalId) => void calculateSizing(signalId)}
