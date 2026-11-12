@@ -17,6 +17,52 @@ type ReleaseText = Record<AppLanguage, { title: string; items: string[] }>;
 
 export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseText }> = [
   {
+    version: "2.13.0",
+    date: "12.11.2026",
+    text: {
+      ru: {
+        title: "Лестница входа NICS Ladder в тарифе Pro",
+        items: [
+          "В карточке сильного сигнала — план входа из 5 заявок от края зоны входа к стопу, с общим стопом и долями объёма 13/17/20/23/27%.",
+          "После расчёта лота приложение показывает лот для каждого уровня при вашем обычном риске.",
+          "Это инструмент снижения риска, а не дополнительной прибыли: на истории результат как у одного входа, максимальная просадка примерно вдвое меньше.",
+        ],
+      },
+      bg: {
+        title: "Стълба за вход NICS Ladder в тарифа Pro",
+        items: [
+          "В картата на силен сигнал — план за вход от 5 поръчки от ръба на зоната към стопа, с общ стоп и дялове от обема 13/17/20/23/27%.",
+          "След изчисляване на лота приложението показва лот за всяко ниво при обичайния ви риск.",
+          "Това е инструмент за по-нисък риск, не за допълнителна печалба: по историята резултатът е като при един вход, а максималният спад е около два пъти по-малък.",
+        ],
+      },
+      en: {
+        title: "NICS Ladder entry in the Pro plan",
+        items: [
+          "Strong signal cards show a 5-order entry plan from the edge of the entry zone towards the stop, with one common stop and volume shares 13/17/20/23/27%.",
+          "After you calculate the lot, the app shows the lot for each level at your normal risk.",
+          "This is a risk-reduction tool, not extra profit: on past signals the result matched a single entry, with about half the maximum drawdown.",
+        ],
+      },
+      es: {
+        title: "Entrada escalonada NICS Ladder en el plan Pro",
+        items: [
+          "Las tarjetas de señales fuertes muestran un plan de 5 órdenes desde el borde de la zona de entrada hacia el stop, con un stop común y partes de volumen 13/17/20/23/27%.",
+          "Después de calcular el lote, la app muestra el lote de cada nivel con su riesgo habitual.",
+          "Es una herramienta para reducir el riesgo, no para ganar más: en señales pasadas el resultado fue igual al de una sola entrada, con cerca de la mitad de la caída máxima.",
+        ],
+      },
+      pt: {
+        title: "Entrada escalonada NICS Ladder no plano Pro",
+        items: [
+          "Os cartões de sinais fortes mostram um plano de 5 ordens da borda da zona de entrada em direção ao stop, com um stop comum e partes de volume 13/17/20/23/27%.",
+          "Depois de calcular o lote, a app mostra o lote de cada nível com o seu risco habitual.",
+          "É uma ferramenta para reduzir o risco, não para ganhar mais: em sinais passados o resultado foi igual ao de uma única entrada, com cerca de metade da queda máxima.",
+        ],
+      },
+    },
+  },
+  {
     version: "2.12.0",
     date: "12.11.2026",
     text: {

@@ -20,12 +20,15 @@ import { statusLabels, type Translation } from "./i18n";
 import type { AppLanguage, SignalRow, SizingResult } from "./types";
 import { formatDate, formatMoney, formatNumber, freshnessTone } from "./utils";
 import { SignalDnaStrip } from "./SignalDna";
+import { LadderPlan } from "./LadderPlan";
 
 interface SignalCardProps {
   signal: SignalRow;
   language: AppLanguage;
   t: Translation;
   sizing?: SizingResult | null;
+  /** Pro tariff (PAID / ADMIN): shows the NICS Ladder entry plan */
+  isPro?: boolean;
   sizingLoading?: boolean;
   decisionLoading?: boolean;
   onCalculate: (signalId: string) => void;
@@ -47,6 +50,7 @@ export const SignalCard = ({
   language,
   t,
   sizing,
+  isPro = false,
   sizingLoading = false,
   decisionLoading = false,
   onCalculate,
@@ -246,6 +250,8 @@ export const SignalCard = ({
             <span>{t.lastChecked}: {formatDate(signal.lastCheckedAt, language)}</span>
           </div>
         </div>
+
+        <LadderPlan signal={signal} language={language} isPro={isPro} sizing={ownSizing} />
 
         {ownSizing && (
           <div className="border-b border-white/10 bg-black/15 p-4">
