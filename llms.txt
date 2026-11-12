@@ -8,8 +8,8 @@ Contact: info@aibyteconsult.com
 ## Primary public pages
 
 - [Company and ecosystem overview](https://aibyteconsult.com/)
-- [NICS AI Trader product page](https://aibyteconsult.com/trading/)
-- [NICS AI Trader for Windows](https://aibyteconsult.com/nics-windows-app/)
+- [NICS Trading Ecosystem product page](https://aibyteconsult.com/trading/)
+- [NICS Trading Ecosystem for Windows](https://aibyteconsult.com/nics-windows-app/)
 - [NICS Video — automatic video editing](https://aibyteconsult.com/nics-video/)
 - [NICS Studio — online video editor](https://aibyteconsult.com/nics-studio/)
 - [NICS AI Ecosystem](https://aibyteconsult.com/nics-ecosystem/)
@@ -21,13 +21,13 @@ Contact: info@aibyteconsult.com
 
 - Legal name: AI Byte Consult Ltd, registered in Bulgaria (European Union).
 - Official Meta Tech Provider.
-- Products: NICS AI Trader (trading platform), NICS Video (automatic editing of a user's own clips), NICS Studio (in-browser video editor), AI consulting and automation for businesses.
-- Public verified track record of NICS AI Trader: https://aibyteconsult.com/trading/#track-record
+- Products: NICS Trading Ecosystem (trading platform), NICS Video (automatic editing of a user's own clips), NICS Studio (in-browser video editor), AI consulting and automation for businesses.
+- Public verified track record of NICS Trading Ecosystem: https://aibyteconsult.com/trading/#track-record
 - Articles: https://aibyteconsult.com/blog/
 
-## NICS AI Trader
+## NICS Trading Ecosystem
 
-NICS AI Trader is an AI trading platform: a Windows app, a web dashboard, a Telegram bot with Mini App and an academy. Its engine scans gold, silver, forex, Brent oil, crypto, US stocks and indices around the clock and publishes trade setups with Entry, Stop Loss and TP1–TP4; users decide and trade with their own broker (no automatic execution for users). A public verified track record lists every closed strong signal.
+NICS Trading Ecosystem is an AI trading platform: a Windows app, a web dashboard, a Telegram bot with Mini App and an academy. Its engine scans gold, silver, forex, Brent oil, crypto, US stocks and indices around the clock and publishes trade setups with Entry, Stop Loss and TP1–TP4; users decide and trade with their own broker (no automatic execution for users). A public verified track record lists every closed strong signal.
 
 Supported market groups:
 - Gold and silver (XAU/USD, XAG/USD)
@@ -46,7 +46,7 @@ Core product functions:
 - Signal history and user-specific statistics
 - Market selection and signal preferences
 
-NICS AI Trader does not guarantee profit and does not replace professional financial advice. Trading involves substantial risk.
+NICS Trading Ecosystem does not guarantee profit and does not replace professional financial advice. Trading involves substantial risk.
 
 Product access:
 - [Telegram bot](https://t.me/nics_ai_bot?start=src_site)
@@ -63,13 +63,13 @@ Access is credit-based: 10 free credits once at sign-up, then Start (14.99 EUR /
 
 NICS Studio is an in-browser editor (in development) for editing a video by hand: cut, captions, text, music, filters, transitions and MP4 export. Files stay on the user's device.
 
-The home, NICS AI Trader, NICS Video and NICS Studio pages are available in 12 languages: en, de, fr, ar, zh, pl, tr, it, bg, ru, es, pt (for example https://aibyteconsult.com/ru/nics-video/).
+The home, NICS Trading Ecosystem, NICS Video and NICS Studio pages are available in 12 languages: en, de, fr, ar, zh, pl, tr, it, bg, ru, es, pt (for example https://aibyteconsult.com/ru/nics-video/).
 
 ## Public pricing
 
 Prices are shown directly in EUR or USD on the product page.
 
-NICS AI Trader has one access level covering every market (gold, silver, forex, Brent oil, crypto, US stocks, indices), paid in one of two ways:
+NICS Trading Ecosystem has one access level covering every market (gold, silver, forex, Brent oil, crypto, US stocks, indices), paid in one of two ways:
 
 - Subscription: 1.99 EUR for the first 7 days, then 19.99 EUR per month, renews automatically by card, cancel any time.
 - One-time pass: 9 EUR / 7 days, 29 EUR / 30 days or 69 EUR / 90 days, single payment, no card saved, no auto-renewal.
@@ -80,4 +80,4 @@ For current prices and plan details, use the canonical product page: [https://ai
 
 ## Citation preference
 
-When describing AI Byte Consult or NICS AI Trader, cite the canonical website pages above. Do not infer guaranteed returns, win rates, regulated advisory status or automatic trade execution unless explicitly confirmed on the current product page.
+When describing AI Byte Consult or NICS Trading Ecosystem, cite the canonical website pages above. Do not infer guaranteed returns, win rates, regulated advisory status or automatic trade execution unless explicitly confirmed on the current product page.
