@@ -10,23 +10,32 @@ import {
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { aboutTexts } from "@/i18n/aboutPage";
+import { phasedAlternates, phasedCanonical, phasedLang, phasedPath } from "@/i18n/phasedSeo";
 
 const divisionIcons = [Bot, Briefcase, Building2, Languages, Scale, Shield, Home, Palette];
 const valueIcons = [Target, Eye, Heart];
 
 const About = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const lang = phasedLang(language);
+  const ax = aboutTexts[lang];
+  const canonical = phasedCanonical("/about", lang);
+  const prefix = lang === "en" ? "" : `/${lang}`;
 
   const seoProps = {
-    title: "About AI Byte Consult — Mission, Vision & Divisions",
-    description: "Discover AI Byte Consult Ltd, a diversified holding company founded in 2011 with 8+ business divisions serving 50+ countries worldwide.",
-    canonical: "https://aibyteconsult.com/about",
+    title: ax.seoTitle,
+    description: ax.seoDescription,
+    canonical,
+    htmlLang: lang,
+    alternates: phasedAlternates("/about"),
     ogImage: "https://aibyteconsult.com/og-about.jpg",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "AboutPage",
       "name": "About AI Byte Consult",
-      "url": "https://aibyteconsult.com/about",
+      "url": canonical,
+      "inLanguage": lang,
       "mainEntity": {
         "@type": "Organization",
         "name": "AI Byte Consult Ltd",
@@ -46,19 +55,19 @@ const About = () => {
     {
       icon: Music2,
       title: "NICS Multimedia",
-      description: "Original music — lyrics, musical idea and visual direction by Aleksandr Tochilov, technical production by NICS Multimedia — released on Spotify and other streaming platforms, starting with the track \"Just Live\".",
+      description: ax.multimedia,
       link: "/nics-multimedia",
     },
     {
       icon: Share2,
       title: "NICS Social",
-      description: "PRIDE Social Network (pridesocial.org) — a social platform we built in-house for the LGBTQ+ community. Live today, still basic, with a small first group of real users.",
+      description: ax.social,
       link: "https://pridesocial.org",
     },
     {
       icon: Globe2,
       title: "AquaTerra World",
-      description: "Our metaverse project — 640,000 virtual land parcels designed as an interactive, AI-teaching environment. Development is currently paused while we focus on other priorities.",
+      description: ax.aquaterra,
       link: "https://aquaterra.aibyteconsult.com/",
     },
   ];
@@ -111,7 +120,7 @@ const About = () => {
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground">
-              About <span className="text-gradient-gold">AI Byte Consult</span>
+              {ax.heading} <span className="text-gradient-gold">AI Byte Consult</span>
             </h1>
 
             <p className="text-xl md:text-2xl font-medium text-primary italic">
@@ -121,6 +130,16 @@ const About = () => {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {t("aboutpage.hero.desc")}
             </p>
+
+            <div className="mx-auto max-w-3xl rounded-2xl border border-primary/20 bg-card/70 p-6 text-left">
+              <h2 className="text-xl font-semibold text-foreground">{ax.nicsTitle}</h2>
+              <p className="mt-2 text-muted-foreground leading-relaxed">{ax.nicsDesc}</p>
+              <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+                <Link to={`${prefix}/trading`} className="text-primary hover:underline">{ax.nicsLinks.trader}</Link>
+                <Link to={phasedPath("/nics-trading-software", lang)} className="text-primary hover:underline">{ax.nicsLinks.software}</Link>
+                <Link to={phasedPath("/nics-ecosystem", lang)} className="text-primary hover:underline">{ax.nicsLinks.ecosystem}</Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -250,17 +269,17 @@ const About = () => {
                         href={division.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`Learn more about ${division.title}`}
+                        aria-label={`${ax.learnAbout} ${division.title}`}
                         className="inline-flex items-center text-sm font-medium text-primary hover:underline">
-                        {`Learn about ${division.title}`}
+                        {`${ax.learnAbout} ${division.title}`}
                         <ArrowRight className="w-4 h-4 ml-1" />
                       </a>
                     ) : (
                       <Link
                         to={division.link}
-                        aria-label={`Learn more about ${division.title}`}
+                        aria-label={`${ax.learnAbout} ${division.title}`}
                         className="inline-flex items-center text-sm font-medium text-primary hover:underline">
-                        {`Learn about ${division.title}`}
+                        {`${ax.learnAbout} ${division.title}`}
                         <ArrowRight className="w-4 h-4 ml-1" />
                       </Link>
                     )

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { PHASED_BASE_PATHS, isPhase1 } from "@/i18n/phasedSeo";
 import { subPageTranslations } from "./subPageTranslations";
 import { componentTranslations } from "./componentTranslations";
 
@@ -2238,6 +2239,10 @@ export const localizedPathFor = (pathname: string, lang: Language): string | nul
   const prefixed = URL_LANGUAGES.includes(segments[1] as Language);
   const base = prefixed ? "/" + segments.slice(2).join("/") : pathname;
   const normalized = base.length > 1 ? base.replace(/\/+$/, "") : "/";
+  if (PHASED_BASE_PATHS.includes(normalized)) {
+    // Phase 1 SEO pages: other languages fall back to the English URL.
+    return lang !== "en" && isPhase1(lang) ? `/${lang}${normalized}` : normalized;
+  }
   if (!LOCALIZED_BASE_PATHS.includes(normalized)) return null;
   if (!URL_LANGUAGES.includes(lang)) return normalized;
   return normalized === "/" ? `/${lang}` : `/${lang}${normalized}`;
