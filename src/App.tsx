@@ -21,6 +21,7 @@ const NicsForge = lazy(() => import("./pages/NicsForge"));
 const NicsVideo = lazy(() => import("./pages/NicsVideo"));
 const NicsStudio = lazy(() => import("./pages/NicsStudio"));
 const NicsWindowsApp = lazy(() => import("./pages/NicsWindowsApp"));
+const NicsTradingSoftware = lazy(() => import("./pages/NicsTradingSoftware"));
 const TelegramOnly = lazy(() => import("./components/TelegramOnly"));
 const Go = lazy(() => import("./pages/Go"));
 const Subtitles = lazy(() => import("./pages/Subtitles"));
@@ -127,6 +128,13 @@ const App = () => (
             {["ru", "bg", "de", "es"].map((lang) => (
               <Route key={`${lang}-win`} path={`/${lang}/nics-windows-app`} element={<NicsWindowsApp />} />
             ))}
+            {/* Level-A SEO pages in phase 1 languages (src/i18n/phasedSeo.ts PHASE1_LANGS). */}
+            <Route path="/nics-trading-software" element={<NicsTradingSoftware />} />
+            {["ru", "bg", "de", "es"].map((lang) => [
+              <Route key={`${lang}-software`} path={`/${lang}/nics-trading-software`} element={<NicsTradingSoftware />} />,
+              <Route key={`${lang}-ecosystem`} path={`/${lang}/nics-ecosystem`} element={<NicsEcosystem />} />,
+              <Route key={`${lang}-about`} path={`/${lang}/about`} element={<About />} />,
+            ])}
             <Route
               path="/cabinet/login"
               element={

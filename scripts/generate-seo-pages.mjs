@@ -3,6 +3,10 @@ import path from "node:path";
 import { subPageTranslations } from "../src/contexts/subPageTranslations.ts";
 import { buildBlog } from "./blog.mjs";
 import { windowsAppTexts, WINDOWS_APP_LANGS, WINDOWS_APP_DOWNLOAD } from "../src/i18n/windowsApp.ts";
+import { PHASE1_LANGS } from "../src/i18n/phasedSeo.ts";
+import { tradingSoftwareTexts } from "../src/i18n/tradingSoftware.ts";
+import { ecosystemTexts } from "../src/i18n/ecosystem.ts";
+import { aboutTexts } from "../src/i18n/aboutPage.ts";
 
 const distDir = path.resolve("dist");
 const basePath = path.join(distDir, "index.html");
@@ -304,19 +308,76 @@ const windowsPages = WINDOWS_APP_LANGS.map((lang) => {
   };
 });
 
+// Level-A commercial pages of the 2026-11-07 SEO plan, phase 1 languages
+// only (src/i18n/phasedSeo.ts). Each language lists the others as alternates.
+const faqNode = (faq) => ({
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
+});
+const phasedPages = (base, build) => {
+  const alternates = [
+    ...PHASE1_LANGS.map((lang) => ({ lang, path: localePath(lang, base) })),
+    { lang: "x-default", path: base },
+  ];
+  return PHASE1_LANGS.map((lang) => {
+    const route = localePath(lang, base);
+    return { route, lang, locale: OG_LOCALE[lang], type: "website", alternates, ...build(lang, urlFor(route)) };
+  });
+};
+const softwarePages = phasedPages("/nics-trading-software", (lang, url) => {
+  const tx = tradingSoftwareTexts[lang];
+  return {
+    app: "trading",
+    title: tx.seoTitle,
+    description: tx.seoDescription,
+    ogImage: `${siteUrl}/og-trading.jpg`,
+    ogImageAlt: "NICS AI Trader — AI trading software",
+    schema: withSiteNodes([
+      {
+        "@type": "SoftwareApplication",
+        name: "NICS AI Trader",
+        applicationCategory: "FinanceApplication",
+        operatingSystem: "Windows, Web, Telegram",
+        url,
+        inLanguage: lang,
+        description: tx.seoDescription,
+        publisher: { "@id": `${siteUrl}/#organization` },
+        offers: { "@type": "Offer", price: "1.99", priceCurrency: "EUR", url: `${urlFor(localePath(lang, "/trading"))}#nics-trader-plans` },
+      },
+      faqNode(tx.faq),
+    ]),
+  };
+});
+const ecosystemPages = phasedPages("/nics-ecosystem", (lang, url) => {
+  const tx = ecosystemTexts[lang];
+  return {
+    title: tx.seoTitle,
+    description: tx.seoDescription,
+    schema: withSiteNodes([
+      { "@type": "WebPage", name: tx.seoTitle, description: tx.seoDescription, url, inLanguage: lang, isPartOf: { "@id": `${siteUrl}/#website` }, publisher: { "@id": `${siteUrl}/#organization` } },
+      faqNode(tx.faq),
+    ]),
+  };
+});
+const aboutPages = phasedPages("/about", (lang, url) => {
+  const tx = aboutTexts[lang];
+  return {
+    title: tx.seoTitle,
+    description: tx.seoDescription,
+    ogImage: `${siteUrl}/og-about.jpg`,
+    schema: withSiteNodes([
+      { "@type": "AboutPage", name: tx.seoTitle, description: tx.seoDescription, url, inLanguage: lang, about: { "@id": `${siteUrl}/#organization` }, isPartOf: { "@id": `${siteUrl}/#website` } },
+    ]),
+  };
+});
+
 const pages = [
   ...localizedPages,
   ...windowsPages,
+  ...softwarePages,
+  ...ecosystemPages,
+  ...aboutPages,
   ...subtitlesPages,
-  {
-    route: "/about",
-    title: "About AI Byte Consult — Mission, Vision & NICS Divisions",
-    description:
-      "Learn about AI Byte Consult Ltd, its applied AI work, the NICS ecosystem, international services and product divisions.",
-    type: "website",
-    schemaType: "AboutPage",
-    ogImage: `${siteUrl}/og-about.jpg`,
-  },
   {
     route: "/estate",
     title: "NICS Real Estate — AI Property Solutions | AI Byte Consult",
@@ -325,14 +386,6 @@ const pages = [
     type: "website",
     schemaType: "Service",
     ogImage: `${siteUrl}/og-estate.jpg`,
-  },
-  {
-    route: "/nics-ecosystem",
-    title: "NICS AI Ecosystem — Independent Multilingual AI Platform",
-    description:
-      "Explore the NICS AI ecosystem, including proprietary language technology, intelligent agents, applied research and real-world platforms.",
-    type: "website",
-    schemaType: "SoftwareApplication",
   },
   {
     route: "/terms",
@@ -429,8 +482,9 @@ const NAV = [
   { base: "/nics-windows-app", label: "Windows app", langs: [...WINDOWS_APP_LANGS] },
   { base: "/nics-video", label: "NICS Video" },
   { base: "/nics-studio", label: "NICS Studio" },
-  { base: "/nics-ecosystem", label: "NICS AI Ecosystem", enOnly: true },
-  { base: "/about", label: "About", enOnly: true },
+  { base: "/nics-trading-software", label: "AI trading software", langs: [...PHASE1_LANGS] },
+  { base: "/nics-ecosystem", label: "NICS AI Ecosystem", langs: [...PHASE1_LANGS] },
+  { base: "/about", label: "About", langs: [...PHASE1_LANGS] },
   { base: "/blog", label: "Articles", langs: ["en", "ru", "bg"] },
 ];
 const staticBody = (page) => {
@@ -575,6 +629,7 @@ const sitemapMeta = {
   "/nics-video": { priority: "0.8", changefreq: "weekly" },
   "/nics-studio": { priority: "0.6", changefreq: "monthly" },
   "/nics-windows-app": { priority: "0.9", changefreq: "weekly" },
+  "/nics-trading-software": { priority: "0.9", changefreq: "weekly" },
   "/subtitles": { priority: "0.7", changefreq: "monthly" },
   "/ru/subtitles": { priority: "0.7", changefreq: "monthly" },
   "/bg/subtitles": { priority: "0.6", changefreq: "monthly" },
@@ -589,6 +644,11 @@ for (const lang of ALL_LANGUAGES) {
   sitemapMeta[localePath(lang, "/nics-video")] = { priority: "0.6", changefreq: "monthly" };
   sitemapMeta[localePath(lang, "/nics-studio")] = { priority: "0.5", changefreq: "monthly" };
   if (WINDOWS_APP_LANGS.includes(lang)) sitemapMeta[localePath(lang, "/nics-windows-app")] = { priority: "0.8", changefreq: "weekly" };
+  if (PHASE1_LANGS.includes(lang)) {
+    sitemapMeta[localePath(lang, "/nics-trading-software")] = { priority: "0.85", changefreq: "weekly" };
+    sitemapMeta[localePath(lang, "/nics-ecosystem")] = { priority: "0.8", changefreq: "monthly" };
+    sitemapMeta[localePath(lang, "/about")] = { priority: "0.75", changefreq: "monthly" };
+  }
 }
 const today = new Date().toISOString().slice(0, 10);
 const sitemapUrls = pages
