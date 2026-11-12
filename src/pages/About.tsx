@@ -82,7 +82,7 @@ const About = () => {
     { value: "2011", label: t("aboutpage.stat1") },
     { value: "8+", label: t("aboutpage.stat2") },
     { value: "50+", label: t("aboutpage.stat3") },
-    { value: "500+", label: t("aboutpage.stat4") },
+    { value: "230+", label: t("aboutpage.stat4") },
   ];
 
   const milestones = [
