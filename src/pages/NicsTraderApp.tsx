@@ -5,6 +5,7 @@ import {
   Bot,
   Calculator,
   CalendarDays,
+  BookOpenCheck,
   ChevronRight,
   Clock3,
   FileClock,
@@ -64,6 +65,8 @@ import { PRO_ACCESS_MODES } from "@/features/nics/LadderPlan";
 import { SignalCard } from "@/features/nics/SignalCard";
 import { DashboardDna, MyDnaPanel } from "@/features/nics/SignalDna";
 import { RequestedSignalsPanel } from "@/features/nics/RequestedSignalsPanel";
+import { TradeJournal } from "@/features/nics/journal/TradeJournal";
+import { journalTexts } from "@/features/nics/journal/journalI18n";
 import {
   RequestStatusBanner,
   SignalRequestPanel,
@@ -146,6 +149,7 @@ const SCREENS: Screen[] = [
   "articles",
   "calendar",
   "requested",
+  "journal",
 ];
 
 // After a signal request the panel re-reads the dashboard this often, this
@@ -765,6 +769,7 @@ const NicsTraderApp = ({
     { key: "rewards", icon: Gift, label: t.rewards },
     { key: "performance", icon: BarChart3, label: t.performance },
     { key: "history", icon: History, label: t.history },
+    { key: "journal", icon: BookOpenCheck, label: journalTexts[language].title },
     { key: "markets", icon: Activity, label: t.markets },
     { key: "articles", icon: Newspaper, label: t.articles },
     { key: "settings", icon: Settings2, label: t.settings },
@@ -1413,6 +1418,18 @@ const NicsTraderApp = ({
         {screen === "articles" && <ArticlesPanel t={t} language={language} />}
 
         {screen === "calendar" && <EconomicCalendar language={language} />}
+
+        {screen === "journal" && (
+          <TradeJournal
+            language={language}
+            auth={
+              cabinetSession
+                ? { cabinetSession }
+                : { initData: window.Telegram?.WebApp?.initData ?? "" }
+            }
+            onSessionInvalid={embedded ? onCabinetSessionInvalid : undefined}
+          />
+        )}
 
         {screen === "updates" && (
           <section className="space-y-4">
