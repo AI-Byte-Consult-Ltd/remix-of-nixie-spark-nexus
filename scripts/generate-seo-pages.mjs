@@ -487,6 +487,26 @@ const NAV = [
   { base: "/about", label: "About", langs: [...PHASE1_LANGS] },
   { base: "/blog", label: "Articles", langs: ["en", "ru", "bg"] },
 ];
+// Extra plain-HTML sections under the heading, so the no-JavaScript version
+// of a page is not a two-line stub (Bing Webmaster: "insufficient content"
+// on /pl/ and /tr/, 2026-11-12). Only text that the rendered page also
+// carries, in the page's own language: the product summaries on the home
+// pages and the FAQ on the trading pages.
+const staticSections = (page) => {
+  const lang = page.lang || "en";
+  const base = page.route === "/" || page.route === `/${lang}` ? "/" : page.route.replace(new RegExp(`^/${lang}(?=/)`), "");
+  if (base === "/") {
+    return [
+      { href: localePath(lang, "/trading"), title: t(lang, "tradingpage.seo.title"), text: `${t(lang, "tradingpage.seo.description")} ${t(lang, "tradingpage.schema.description")}` },
+      { href: localePath(lang, "/nics-video"), title: t(lang, "seo.nicsvideo.title"), text: t(lang, "seo.nicsvideo.description") },
+      { href: localePath(lang, "/nics-studio"), title: t(lang, "seo.nicsstudio.title"), text: t(lang, "seo.nicsstudio.description") },
+    ];
+  }
+  if (base === "/trading") {
+    return [1, 2, 3, 4, 5, 6].map((n) => ({ title: t(lang, `tradingpage.faq${n}.q`), text: t(lang, `tradingpage.faq${n}.a`) }));
+  }
+  return [];
+};
 const staticBody = (page) => {
   const lang = page.lang || "en";
   const links = NAV.map(
@@ -495,7 +515,14 @@ const staticBody = (page) => {
       return `<a href="${urlFor(own)}">${escapeAttribute(item.label)}</a>`;
     },
   ).join(" · ");
-  return `<div style="max-width:720px;margin:0 auto;padding:96px 16px;font-family:system-ui,sans-serif;color:#0f172a"><h1 style="font-size:28px;line-height:1.25">${escapeAttribute(page.title)}</h1><p style="font-size:16px;line-height:1.6;color:#475569">${escapeAttribute(page.description)}</p><nav style="font-size:14px;line-height:2">${links}</nav></div>`;
+  const sections = staticSections(page)
+    .filter((section) => section.title && section.text)
+    .map((section) => {
+      const heading = section.href ? `<a href="${urlFor(section.href)}">${escapeAttribute(section.title)}</a>` : escapeAttribute(section.title);
+      return `<h2 style="font-size:20px;line-height:1.3;margin-top:28px">${heading}</h2><p style="font-size:16px;line-height:1.6;color:#475569">${escapeAttribute(section.text)}</p>`;
+    })
+    .join("");
+  return `<div style="max-width:720px;margin:0 auto;padding:96px 16px;font-family:system-ui,sans-serif;color:#0f172a"><h1 style="font-size:28px;line-height:1.25">${escapeAttribute(page.title)}</h1><p style="font-size:16px;line-height:1.6;color:#475569">${escapeAttribute(page.description)}</p>${sections}<nav style="font-size:14px;line-height:2;margin-top:28px">${links}</nav></div>`;
 };
 
 const renderPage = (page, noindex = false) => {
