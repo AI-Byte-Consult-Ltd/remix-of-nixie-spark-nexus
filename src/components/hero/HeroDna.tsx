@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { DnaHelix } from "@/components/dna/DnaHelix";
-import { HOME_DNA } from "./homeDna";
+import { HOME_BLOOM_U, HOME_DNA, homeBloomAmount, homeBloomRadius } from "./homeDna";
+
+// Stable object: the spiral swells into a breathing sphere here (see homeDna).
+const HOME_BLOOM = { u: HOME_BLOOM_U, amount: homeBloomAmount, radius: homeBloomRadius };
 
 // On a phone the spiral runs behind the text, so it is drawn softer there.
 const useNarrow = () => useState(() => typeof window !== "undefined" && window.innerWidth < 768)[0];
@@ -28,6 +31,7 @@ const HeroDna = ({ variant }: { variant: "home" | "trading" }) => {
           knots={[0.3, 0.57, 0.84]}
           maxDpr={1.5}
           intensity={narrow ? 0.5 : 0.95}
+          bloom={HOME_BLOOM}
         />
       </div>
     );

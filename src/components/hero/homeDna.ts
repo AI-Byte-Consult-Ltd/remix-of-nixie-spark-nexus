@@ -20,6 +20,26 @@ export const homeAxisPoint = (width: number, height: number, u: number, t: numbe
   return { x: x0 + dx * u + nx * bend, y: y0 + dy * u + ny * bend, ex: dx / len, ey: dy / len, len };
 };
 
+// The "swarm" bloom (2026-11-13, Alexander): in the middle of the spiral the
+// strands swell into a breathing sphere of the same dust, then contract back
+// into a plain double helix. One cycle: helix -> sphere -> helix.
+const smooth = (a: number, b: number, x: number) => {
+  const k = Math.max(0, Math.min(1, (x - a) / (b - a)));
+  return k * k * (3 - 2 * k);
+};
+export const HOME_BLOOM_U = 0.62;
+export const HOME_BLOOM_CYCLE = 10;
+/** 0 = plain helix, 1 = fully open sphere. t in seconds (performance.now()/1000). */
+export const homeBloomAmount = (t: number) => {
+  const p = (t % HOME_BLOOM_CYCLE) / HOME_BLOOM_CYCLE;
+  return smooth(0.06, 0.4, p) - smooth(0.62, 0.94, p);
+};
+/** Sphere radius in px for a hero of this size, with a gentle pulse while open. */
+export const homeBloomRadius = (width: number, height: number, t: number) => {
+  const base = width < 768 ? Math.min(width * 0.34, height * 0.2) : Math.min(height * 0.25, width * 0.17);
+  return base * (1 + 0.06 * Math.sin(t * 2.2) + 0.025 * Math.sin(t * 5.1 + 1));
+};
+
 export type HeroProduct = { label: string; href: string; external?: boolean; color: string };
 
 // The NICS products shown in the home hero. If a product is added to the

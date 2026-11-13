@@ -109,6 +109,13 @@ export interface DnaHelixProps {
   ariaLabel?: string;
   /** Canvas px² per dust particle before `density` caps it (lower = denser). */
   areaPerDust?: number;
+  /**
+   * Optional "swarm" bloom: around axis position `u` the strands swell into a
+   * sphere of the same dust and contract back. `amount(t)` is 0 (plain helix)
+   * to 1 (open sphere); `radius(w, h, t)` is the sphere radius in px. Pass
+   * stable (module-level) functions.
+   */
+  bloom?: { u: number; amount: (t: number) => number; radius: (w: number, h: number, t: number) => number };
 }
 
 export const DnaHelix = ({
@@ -128,6 +135,7 @@ export const DnaHelix = ({
   maxDpr = 2,
   ariaLabel,
   areaPerDust = 120,
+  bloom,
 }: DnaHelixProps) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const rungsRef = useRef<DnaRung[] | undefined>(rungs);
@@ -146,18 +154,26 @@ export const DnaHelix = ({
     let width = 0;
     let height = 0;
     let dpr = 1;
-    let dust: Array<{ s: number; u: number; jr: number; ja: number; ox: number; oy: number; size: number; alpha: number; seed: number; halo: boolean }> = [];
+    let dust: Array<{ s: number; u: number; jr: number; ja: number; ox: number; oy: number; size: number; alpha: number; seed: number; halo: boolean; sa: number; extra: boolean }> = [];
     const data = rungsRef.current;
 
     const build = () => {
       const area = width * height;
       const perStrand = Math.max(160, Math.min(density, Math.round(area / areaPerDust)));
       const count = (reduce ? 0.6 : 1) * perStrand * 2;
-      dust = Array.from({ length: Math.round(count) }, (_, i) => {
+      // With a bloom, extra dust lives around its centre: it fills the sphere
+      // when open and fades into the strands when closed.
+      const extraCount = bloom ? Math.round(count * (width < 768 ? 0.35 : 0.7)) : 0;
+      const axisLen = Math.hypot((to[0] - from[0]) * width, (to[1] - from[1]) * height) || 1;
+      const span = bloom ? bloom.radius(width, height, 0) / axisLen : 0;
+      dust = Array.from({ length: Math.round(count) + extraCount }, (_, i) => {
+        const extra = i >= Math.round(count);
         const halo = Math.random() < 0.07;
         return {
           s: i % 2,
-          u: Math.random(),
+          u: extra && bloom ? bloom.u + (Math.random() * 2 - 1) * span * 0.98 : Math.random(),
+          sa: (Math.random() * 2 - 1) * Math.PI,
+          extra,
           jr: halo ? gauss() * 0.9 : gauss() * 0.1,
           ja: gauss() * (halo ? 0.04 : 0.004),
           // Screen-space scatter: makes each strand a ribbon of dust.
@@ -223,15 +239,32 @@ export const DnaHelix = ({
       const ny = ex;
       const baseR = len * radius;
 
-      const point = (u: number, strand: number, extraAngle = 0, extraR = 0) => {
+      const bAmt = bloom ? bloom.amount(t) : 0;
+      const bR = bloom ? bloom.radius(width, height, t) : 0;
+      const point = (u: number, strand: number, extraAngle = 0, extraR = 0, spreadA = 0) => {
         // Gentle bend of the axis so it does not look like a ruler.
         const bend = Math.sin(u * Math.PI * 1.2 + t * 0.15) * len * 0.025;
         const cx = x0 + dx * u + nx * bend;
         const cy = y0 + dy * u + ny * bend;
-        const r = baseR * (taper[0] + (taper[1] - taper[0]) * u) * (1 + extraR);
-        const a = phase + u * turns * Math.PI * 2 + strand * Math.PI + extraAngle;
+        let r = baseR * (taper[0] + (taper[1] - taper[0]) * u);
+        let a = phase + u * turns * Math.PI * 2 + strand * Math.PI + extraAngle;
+        let m = 0;
+        if (bloom && bAmt > 0.001) {
+          const off = ((u - bloom.u) * len) / bR;
+          const g = 1 - off * off;
+          if (g > 0) {
+            // Near the poles the dust stays on the strands, so the helix
+            // flows into the sphere through a smooth neck.
+            const k = Math.min(1, g / 0.4);
+            m = bAmt * k * k * (3 - 2 * k);
+            a += spreadA * m;
+            const ripple = 1 + 0.05 * Math.sin(a * 3 + t * 1.3) * Math.cos(off * 5 - t * 0.8);
+            r += (bR * Math.sqrt(g) * ripple - r) * m;
+          }
+        }
+        r *= 1 + extraR * (1 - 0.8 * m);
         const s = Math.sin(a);
-        return { x: cx + nx * s * r, y: cy + ny * s * r, z: Math.cos(a), r };
+        return { x: cx + nx * s * r, y: cy + ny * s * r, z: Math.cos(a), r, m };
       };
 
       // Dust strands.
@@ -239,7 +272,8 @@ export const DnaHelix = ({
       for (const d of dust) {
         const u = d.u + d.ja;
         if (u < 0 || u > 1) continue;
-        const p = point(u, d.s, 0, d.jr);
+        const p = point(u, d.s, 0, d.jr, d.sa);
+        if (d.extra && p.m < 0.02) continue;
         const rung = toneAt(u);
         let rgb: RGB;
         if (rung) {
@@ -253,9 +287,9 @@ export const DnaHelix = ({
         }
         const depth = 0.3 + (p.z + 1) * 0.35;
         const dim = rung && rung.lit === false ? 0.55 : 1;
-        const alpha = d.alpha * depth * dim * intensity * (d.halo ? 0.55 : light ? 0.8 : 0.9);
+        const alpha = d.alpha * depth * dim * intensity * (d.halo ? 0.55 : light ? 0.8 : 0.9) * (d.extra ? p.m : 1);
         const size = d.size * (0.75 + (p.z + 1) * 0.3) * dustScale;
-        const spread = p.r * 0.11;
+        const spread = Math.min(p.r, baseR * 1.3) * 0.11;
         ctx.fillStyle = `rgba(${rgb[0] | 0},${rgb[1] | 0},${rgb[2] | 0},${alpha.toFixed(3)})`;
         ctx.fillRect(p.x + d.ox * spread - size / 2, p.y + d.oy * spread - size / 2, size, size);
       }
@@ -271,7 +305,9 @@ export const DnaHelix = ({
         const strength = rung ? Math.max(0.25, Math.min(1, rung.strength ?? 1)) : 1;
         const sprite = rung && lit && rung.tone !== "flat" ? toneSprite(rung.tone) : sprites.bridge;
         const dots = Math.max(3, Math.min(7, Math.round(Math.hypot(p2.x - p1.x, p2.y - p1.y) / 22)));
-        const avgDepth = 0.35 + ((p1.z + p2.z) / 2 + 1) * 0.3;
+        // Bridges dissolve while the strands are blown open into the sphere.
+        const avgDepth = (0.35 + ((p1.z + p2.z) / 2 + 1) * 0.3) * (1 - p1.m) * (1 - p1.m);
+        if (avgDepth < 0.01) continue;
         for (let j = 1; j < dots; j += 1) {
           const v = j / dots;
           const x = p1.x + (p2.x - p1.x) * v;
@@ -300,10 +336,11 @@ export const DnaHelix = ({
         const p = point(u, strand);
         const pulse = 0.75 + 0.25 * Math.sin(t * 1.6 + i * 1.7);
         const s = (light ? 34 : 46) * pulse * (0.7 + (p.z + 1) * 0.25);
-        ctx.globalAlpha = (light ? 0.35 : 0.65) * intensity;
+        if (p.m > 0.9) return;
+        ctx.globalAlpha = (light ? 0.35 : 0.65) * intensity * (1 - p.m);
         ctx.drawImage(strand ? sprites.b : sprites.a, p.x - s / 2, p.y - s / 2, s, s);
         if (!light) {
-          ctx.globalAlpha = 0.55 * intensity;
+          ctx.globalAlpha = 0.55 * intensity * (1 - p.m);
           ctx.drawImage(sprites.bridge, p.x - s / 6, p.y - s / 6, s / 3, s / 3);
         }
       });
@@ -362,7 +399,7 @@ export const DnaHelix = ({
       document.removeEventListener("visibilitychange", update);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme, rungKey, from[0], from[1], to[0], to[1], radius, taper[0], taper[1], turns, speed, density, bridges, knots.join(","), intensity, maxDpr, areaPerDust]);
+  }, [theme, rungKey, from[0], from[1], to[0], to[1], radius, taper[0], taper[1], turns, speed, density, bridges, knots.join(","), intensity, maxDpr, areaPerDust, bloom?.u]);
 
   return (
     <canvas
