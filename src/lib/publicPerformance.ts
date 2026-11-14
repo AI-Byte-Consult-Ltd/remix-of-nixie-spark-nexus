@@ -56,6 +56,7 @@ const loadPerformance = () => {
 export const usePublicPerformance = () => {
   const [data, setData] = useState<PerformanceResponse | null>(null);
   const [error, setError] = useState(false);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -69,7 +70,14 @@ export const usePublicPerformance = () => {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [attempt]);
 
-  return { data, error };
+  // A failed request is not cached (see loadPerformance), so a retry asks the
+  // endpoint again.
+  const retry = () => {
+    setError(false);
+    setAttempt((n) => n + 1);
+  };
+
+  return { data, error, retry };
 };

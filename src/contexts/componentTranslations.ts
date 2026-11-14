@@ -202,6 +202,13 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "aisa.final.cta": "Book AI Audit",
   },
   de: {
+    // Verified Track Record section header (added 2026-11-14)
+    "track.badge": "Live · Geprüft · Echte Trades",
+    "track.title1": "Geprüfte",
+    "track.title2": "Bilanz",
+    "track.subtitle": "Echte, unbearbeitete Ergebnisse von NICS Trading Ecosystem, live aus der Produktionsdatenbank. Keine Auswahl der besten Trades.",
+    "track.loading": "Live-Daten werden geladen…",
+    "track.disclaimer": "Die Zahlen aktualisieren sich automatisch, sobald Signale schließen. Frühere Ergebnisse garantieren keine künftigen.",
     "hero.badge": "Ein globales Multi-Sektor-Technologieunternehmen",
     "hero.headline1": "Ein Unternehmen.",
     "hero.headline2": "Unendliche Möglichkeiten.",
@@ -396,6 +403,13 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "aisa.final.cta": "KI-Audit buchen",
   },
   fr: {
+    // Verified Track Record section header (added 2026-11-14)
+    "track.badge": "En direct · Vérifié · Trades réels",
+    "track.title1": "Historique",
+    "track.title2": "vérifié",
+    "track.subtitle": "Résultats réels et non retouchés de NICS Trading Ecosystem, tirés en direct de la base de production. Aucune sélection des meilleurs trades.",
+    "track.loading": "Chargement des données en direct…",
+    "track.disclaimer": "Les chiffres se mettent à jour automatiquement à la clôture des signaux. Les performances passées ne garantissent pas les résultats futurs.",
     "hero.badge": "Une entreprise technologique mondiale multi-sectorielle",
     "hero.headline1": "Une entreprise.",
     "hero.headline2": "Possibilités infinies.",
@@ -585,6 +599,13 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "aisa.final.cta": "Réserver l'audit IA",
   },
   ar: {
+    // Verified Track Record section header (added 2026-11-14)
+    "track.badge": "مباشر · موثّق · صفقات حقيقية",
+    "track.title1": "سجل أداء",
+    "track.title2": "موثّق",
+    "track.subtitle": "نتائج حقيقية غير معدّلة من NICS Trading Ecosystem، مباشرة من قاعدة بيانات الإنتاج. بلا انتقاء للصفقات الرابحة.",
+    "track.loading": "جارٍ تحميل البيانات المباشرة…",
+    "track.disclaimer": "تتحدّث الأرقام تلقائياً مع إغلاق الإشارات. الأداء السابق لا يضمن النتائج المستقبلية.",
     "hero.badge": "شركة تكنولوجيا عالمية متعددة القطاعات",
     "hero.headline1": "شركة واحدة.",
     "hero.headline2": "إمكانيات لا حدود لها.",
@@ -764,6 +785,13 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "aisa.final.cta": "احجز التدقيق",
   },
   zh: {
+    // Verified Track Record section header (added 2026-11-14)
+    "track.badge": "实时 · 已验证 · 真实交易",
+    "track.title1": "已验证的",
+    "track.title2": "业绩记录",
+    "track.subtitle": "NICS Trading Ecosystem 的真实、未经修改的业绩，直接来自生产数据库。不挑选盈利交易。",
+    "track.loading": "正在加载实时数据…",
+    "track.disclaimer": "信号平仓后数字自动更新。过往业绩不代表未来结果。",
     "hero.badge": "全球多行业科技公司",
     "hero.headline1": "一家公司。",
     "hero.headline2": "无限可能。",
@@ -943,6 +971,13 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "aisa.final.cta": "预约 AI 审计",
   },
   pl: {
+    // Verified Track Record section header (added 2026-11-14)
+    "track.badge": "Na żywo · Zweryfikowane · Prawdziwe transakcje",
+    "track.title1": "Zweryfikowane",
+    "track.title2": "wyniki",
+    "track.subtitle": "Prawdziwe, nieedytowane wyniki NICS Trading Ecosystem, prosto z bazy produkcyjnej. Bez wybierania udanych transakcji.",
+    "track.loading": "Ładujemy dane na żywo…",
+    "track.disclaimer": "Liczby aktualizują się automatycznie po zamknięciu sygnałów. Wyniki z przeszłości nie gwarantują przyszłych.",
     "hero.badge": "Globalna wielosektorowa firma technologiczna",
     "hero.headline1": "Jedna firma.",
     "hero.headline2": "Nieskończone możliwości.",
@@ -1122,6 +1157,13 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "aisa.final.cta": "Zamów audyt AI",
   },
   tr: {
+    // Verified Track Record section header (added 2026-11-14)
+    "track.badge": "Canlı · Doğrulanmış · Gerçek işlemler",
+    "track.title1": "Doğrulanmış",
+    "track.title2": "sonuçlar",
+    "track.subtitle": "NICS Trading Ecosystem'in gerçek ve düzenlenmemiş sonuçları, doğrudan canlı veritabanından. Kazanan işlemler seçilmez.",
+    "track.loading": "Canlı veriler yükleniyor…",
+    "track.disclaimer": "Rakamlar sinyaller kapandıkça otomatik güncellenir. Geçmiş performans gelecekteki sonuçları garanti etmez.",
     "hero.badge": "Küresel çok sektörlü teknoloji şirketi",
     "hero.headline1": "Bir şirket.",
     "hero.headline2": "Sonsuz olanaklar.",
@@ -1301,6 +1343,13 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "aisa.final.cta": "AI Denetimi Ayırt",
   },
   it: {
+    // Verified Track Record section header (added 2026-11-14)
+    "track.badge": "Live · Verificato · Operazioni reali",
+    "track.title1": "Storico",
+    "track.title2": "verificato",
+    "track.subtitle": "Risultati reali e non modificati di NICS Trading Ecosystem, in diretta dal database di produzione. Nessuna selezione delle operazioni migliori.",
+    "track.loading": "Caricamento dei dati in tempo reale…",
+    "track.disclaimer": "I numeri si aggiornano automaticamente alla chiusura dei segnali. I risultati passati non garantiscono quelli futuri.",
     "hero.badge": "Un'azienda tecnologica globale multi-settore",
     "hero.headline1": "Un'azienda.",
     "hero.headline2": "Possibilità infinite.",
@@ -1480,6 +1529,13 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "aisa.final.cta": "Prenota AI Audit",
   },
   bg: {
+    // Verified Track Record section header (added 2026-11-14)
+    "track.badge": "На живо · Проверено · Реални сделки",
+    "track.title1": "Проверена",
+    "track.title2": "статистика",
+    "track.subtitle": "Реални резултати на NICS Trading Ecosystem без редакции, директно от работната база. Без подбор на успешни сделки.",
+    "track.loading": "Зареждаме живи данни…",
+    "track.disclaimer": "Числата се обновяват автоматично при затваряне на сигналите. Миналите резултати не гарантират бъдещи.",
     "hero.badge": "Глобална мултисекторна технологична компания",
     "hero.headline1": "Една компания.",
     "hero.headline2": "Безкрайни възможности.",
@@ -1659,6 +1715,13 @@ export const componentTranslations: Record<Language, Record<string, string>> = {
     "aisa.final.cta": "Запази AI одит",
   },
   ru: {
+    // Verified Track Record section header (added 2026-11-14)
+    "track.badge": "В реальном времени · Проверено · Реальные сделки",
+    "track.title1": "Проверенная",
+    "track.title2": "статистика",
+    "track.subtitle": "Реальные результаты NICS Trading Ecosystem без правок, напрямую из рабочей базы. Без отбора удачных сделок.",
+    "track.loading": "Загружаем живые данные…",
+    "track.disclaimer": "Цифры обновляются автоматически по мере закрытия сигналов. Прошлые результаты не гарантируют будущих.",
     "hero.badge": "Глобальная мультисекторная технологическая компания",
     "hero.headline1": "Одна компания.",
     "hero.headline2": "Бесконечные возможности.",
