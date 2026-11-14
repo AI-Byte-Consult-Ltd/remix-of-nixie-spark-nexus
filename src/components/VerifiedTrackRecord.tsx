@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { BadgeCheck, TrendingUp, TrendingDown, Minus } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage, type Language } from "@/contexts/LanguageContext";
 import { usePublicPerformance, type PerformanceResponse, type PeriodStats } from "@/lib/publicPerformance";
 import TrackRecordAnalytics from "@/components/trading/TrackRecordAnalytics";
 
@@ -12,14 +13,62 @@ const PERIODS: { key: keyof PerformanceResponse["performance"]; labelKey: string
   { key: "all", labelKey: "track.period.all" },
 ];
 
+// Shown instead of numbers when the statistics endpoint does not answer. The
+// section itself always stays on the page: every "Verified statistics" button
+// scrolls to it, and a hidden section turned those buttons into dead ones
+// (2026-11-14). Honest state, no placeholder numbers.
+const OFFLINE: Record<Language, { text: string; retry: string }> = {
+  en: { text: "Statistics are temporarily unavailable. No numbers are shown until the live data is back.", retry: "Try again" },
+  ru: { text: "Статистика временно недоступна. Пока живые данные не вернутся, цифры не показываем.", retry: "Обновить" },
+  de: { text: "Die Statistik ist vorübergehend nicht verfügbar. Ohne Live-Daten zeigen wir keine Zahlen.", retry: "Erneut versuchen" },
+  fr: { text: "Les statistiques sont temporairement indisponibles. Aucun chiffre n'est affiché sans données en direct.", retry: "Réessayer" },
+  ar: { text: "الإحصاءات غير متاحة مؤقتاً. لا نعرض أي أرقام حتى تعود البيانات المباشرة.", retry: "إعادة المحاولة" },
+  zh: { text: "统计数据暂时不可用。实时数据恢复之前不显示任何数字。", retry: "重试" },
+  pl: { text: "Statystyki są chwilowo niedostępne. Bez danych na żywo nie pokazujemy liczb.", retry: "Spróbuj ponownie" },
+  tr: { text: "İstatistikler geçici olarak kullanılamıyor. Canlı veri dönene kadar rakam göstermiyoruz.", retry: "Tekrar dene" },
+  it: { text: "Le statistiche sono temporaneamente non disponibili. Senza dati in tempo reale non mostriamo numeri.", retry: "Riprova" },
+  bg: { text: "Статистиката временно не е достъпна. Докато живите данни не се върнат, не показваме числа.", retry: "Опитай отново" },
+  es: { text: "Las estadísticas no están disponibles temporalmente. No mostramos cifras hasta que vuelvan los datos en vivo.", retry: "Reintentar" },
+  pt: { text: "As estatísticas estão temporariamente indisponíveis. Não mostramos números até os dados em tempo real voltarem.", retry: "Tentar novamente" },
+};
+
+const SECTION_ID = "track-record";
+
 const VerifiedTrackRecord = () => {
   const { t, language } = useLanguage();
-  const { data, error } = usePublicPerformance();
+  const { data, error, retry } = usePublicPerformance();
   const [period, setPeriod] = useState<keyof PerformanceResponse["performance"]>("all");
+  const { hash } = useLocation();
+  const sectionRef = useRef<HTMLElement>(null);
+  const userMoved = useRef(false);
 
-  if (error || (data && !data.performance?.[period])) {
-    return null;
-  }
+  // Arriving from another page with #track-record (the button on
+  // /nics-trading-software): the router does not scroll to a hash by itself.
+  // Scroll once on arrival and once more when the data lands, because the
+  // hero strip above appears at that moment and shifts the page; never after
+  // the visitor has started scrolling on their own.
+  useEffect(() => {
+    const stop = () => {
+      userMoved.current = true;
+    };
+    window.addEventListener("wheel", stop, { passive: true });
+    window.addEventListener("touchmove", stop, { passive: true });
+    window.addEventListener("keydown", stop);
+    return () => {
+      window.removeEventListener("wheel", stop);
+      window.removeEventListener("touchmove", stop);
+      window.removeEventListener("keydown", stop);
+    };
+  }, []);
+  const ready = Boolean(data) || error;
+  useEffect(() => {
+    if (hash !== `#${SECTION_ID}` || userMoved.current) return;
+    const id = window.setTimeout(() => sectionRef.current?.scrollIntoView(), 50);
+    return () => window.clearTimeout(id);
+  }, [hash, ready]);
+
+  const offline = error || Boolean(data && !data.performance?.[period]);
+  const offlineText = OFFLINE[language] ?? OFFLINE.en;
 
   const tiered = data?.performance?.[period];
 
@@ -78,7 +127,7 @@ const VerifiedTrackRecord = () => {
   );
 
   return (
-    <section id="track-record" className="py-24 relative bg-muted/30 scroll-mt-24">
+    <section id={SECTION_ID} ref={sectionRef} className="py-24 relative bg-muted/30 scroll-mt-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary">
@@ -91,7 +140,22 @@ const VerifiedTrackRecord = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("track.subtitle")}</p>
         </div>
 
-        {data?.trades?.length ? (
+        {offline ? (
+          <div className="mx-auto max-w-xl rounded-2xl border border-border/60 bg-card p-6 text-center">
+            <p className="flex items-center justify-center gap-2 text-sm font-medium text-foreground">
+              <span className="h-2 w-2 rounded-full bg-muted-foreground" />
+              offline
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">{offlineText.text}</p>
+            <button
+              type="button"
+              onClick={retry}
+              className="mt-4 rounded-full border border-border px-4 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary/40"
+            >
+              {offlineText.retry}
+            </button>
+          </div>
+        ) : data?.trades?.length ? (
           // Since 2026-11-04: full analytics (equity curve, drawdown, profit
           // factor, per-instrument table, calendar periods) from the real
           // closed-signal list. The four-card fallback below stays for an API
