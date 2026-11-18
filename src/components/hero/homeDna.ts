@@ -51,5 +51,5 @@ export const HERO_PRODUCTS: HeroProduct[] = [
   { label: "NICS Multimedia", href: "/nics-multimedia", color: "#a78bfa" },
   { label: "NICS AI Lab", href: "https://github.com/AI-Byte-Consult-Ltd/nics-ai-lab", external: true, color: "#6cc6ff" },
   // Our own trading model (Alexander, 2026-11-18); jumps to the lab block below the hero.
-  { label: "NICS Trading Club", href: "#nics-ai-lab", color: "#fde047" },
+  { label: "NICS Trading", href: "#nics-ai-lab", color: "#fde047" },
 ];

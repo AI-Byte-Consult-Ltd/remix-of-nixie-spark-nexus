@@ -6,7 +6,7 @@
  * Datasets per Alexander (2026-11-18): Project Gutenberg (text) and Earth +
  * NASA space imagery (vision), trained before the nics-ai-lab repo existed.
  * Repo pipeline runs: own BPE tokenizer, CPU-only training,
- * trading model NICS Trading Club in development (not trained yet),
+ * trading model NICS Trading in development (not trained yet),
  * no production inference service yet.
  */
 import type { Phase1Lang } from "./phasedSeo";
@@ -81,7 +81,7 @@ const en: EcosystemTexts = {
     { title: "Code and provenance", desc: "Public GitHub repository nics-ai-lab" },
     { title: "Checkpoint verification", desc: "SHA-256 checksums, step-0 random-init checkpoint kept" },
     { title: "Dataset", desc: "Project Gutenberg (text) and Earth and NASA space imagery (vision)" },
-    { title: "Status", desc: "Text and vision models trained (pipeline scale); trading model NICS Trading Club in development" },
+    { title: "Status", desc: "Text and vision models trained (pipeline scale); trading model NICS Trading in development" },
   ],
   faqTitle: "Questions",
   faq: [
@@ -136,7 +136,7 @@ const ru: EcosystemTexts = {
     { title: "Код и происхождение", desc: "Открытый репозиторий nics-ai-lab на GitHub" },
     { title: "Проверка чекпоинтов", desc: "Контрольные суммы SHA-256, сохранён чекпоинт шага 0" },
     { title: "Датасет", desc: "Project Gutenberg (текст) и снимки Земли и космоса NASA (зрение)" },
-    { title: "Статус", desc: "Текстовая модель и модель зрения обучены (масштаб проверки пайплайна); торговая модель NICS Trading Club в разработке" },
+    { title: "Статус", desc: "Текстовая модель и модель зрения обучены (масштаб проверки пайплайна); торговая модель NICS Trading в разработке" },
   ],
   faqTitle: "Вопросы",
   faq: [
@@ -191,7 +191,7 @@ const bg: EcosystemTexts = {
     { title: "Код и произход", desc: "Публично GitHub хранилище nics-ai-lab" },
     { title: "Проверка на чекпойнтите", desc: "SHA-256 контролни суми, запазен чекпойнт на стъпка 0" },
     { title: "Набор от данни", desc: "Project Gutenberg (текст) и изображения на Земята и космоса от НАСА (зрение)" },
-    { title: "Състояние", desc: "Текстовият модел и моделът за зрение са обучени (мащаб за проверка); търговският модел NICS Trading Club е в разработка" },
+    { title: "Състояние", desc: "Текстовият модел и моделът за зрение са обучени (мащаб за проверка); търговският модел NICS Trading е в разработка" },
   ],
   faqTitle: "Въпроси",
   faq: [
@@ -246,7 +246,7 @@ const de: EcosystemTexts = {
     { title: "Code und Herkunft", desc: "Öffentliches GitHub-Repository nics-ai-lab" },
     { title: "Checkpoint-Prüfung", desc: "SHA-256-Prüfsummen, Checkpoint von Schritt 0 aufbewahrt" },
     { title: "Datensatz", desc: "Project Gutenberg (Text) sowie Erd- und NASA-Weltraumbilder (Bild)" },
-    { title: "Status", desc: "Text- und Bildmodell trainiert (Pipeline-Maßstab); Trading-Modell NICS Trading Club in Entwicklung" },
+    { title: "Status", desc: "Text- und Bildmodell trainiert (Pipeline-Maßstab); Trading-Modell NICS Trading in Entwicklung" },
   ],
   faqTitle: "Fragen",
   faq: [
@@ -301,7 +301,7 @@ const es: EcosystemTexts = {
     { title: "Código y procedencia", desc: "Repositorio público nics-ai-lab en GitHub" },
     { title: "Verificación de checkpoints", desc: "Sumas SHA-256, checkpoint del paso 0 conservado" },
     { title: "Dataset", desc: "Project Gutenberg (texto) e imágenes de la Tierra y del espacio de la NASA (visión)" },
-    { title: "Estado", desc: "Modelos de texto y de visión entrenados (escala de validación); modelo de trading NICS Trading Club en desarrollo" },
+    { title: "Estado", desc: "Modelos de texto y de visión entrenados (escala de validación); modelo de trading NICS Trading en desarrollo" },
   ],
   faqTitle: "Preguntas",
   faq: [

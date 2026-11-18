@@ -4,11 +4,13 @@
  * models from scratch.
  *
  * Facts must stay true to the nics-ai-lab repository (v0.2.0):
- * - NICS Text: Transformer + own BPE tokenizer, trained on Project Gutenberg
+ * - NICS Language: Transformer + own BPE tokenizer, trained on Project Gutenberg
  *   (Alexander, 2026-11-18: earlier work, before the nics-ai-lab repo).
  * - NICS Vision: trained on Earth and NASA space imagery (same source).
- * - NICS Trading Club: in development, NOT trained yet. Update the status
+ * - NICS Trading: in development, NOT trained yet. Update the status
  *   here only when a real training run exists.
+ * Names (Alexander 2026-11-18): NICS Language, NICS Vision, NICS Trading.
+ * Status words follow implemented / prototype / experiment / plan.
  * Phase 1 languages; others fall back to English.
  */
 import { phasedLang } from "./phasedSeo";
@@ -45,7 +47,7 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
     models: [
       {
         id: "trading",
-        name: "NICS Trading Club",
+        name: "NICS Trading",
         status: "In development",
         stage: "building",
         desc: "Our trading model, built to learn from our own market data: candles from all timeframes, the scanner's signals and how each trade really ended.",
@@ -53,8 +55,8 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
       },
       {
         id: "text",
-        name: "NICS Text",
-        status: "Trained, early",
+        name: "NICS Language",
+        status: "Experiment",
         stage: "trained",
         desc: "A Transformer language model with our own tokenizer, trained from random weights on the Project Gutenberg corpus.",
         facts: ["Project Gutenberg corpus", "Own BPE tokenizer", "Trained from random weights"],
@@ -62,7 +64,7 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
       {
         id: "vision",
         name: "NICS Vision",
-        status: "Trained, early",
+        status: "Experiment",
         stage: "trained",
         desc: "An image model trained from random weights on Earth and NASA space imagery.",
         facts: ["Earth and NASA space imagery", "Minerals and materials recognition", "Trained from random weights"],
@@ -80,7 +82,7 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
     models: [
       {
         id: "trading",
-        name: "NICS Trading Club",
+        name: "NICS Trading",
         status: "В разработке",
         stage: "building",
         desc: "Наша торговая модель. Она будет учиться на наших рыночных данных: свечи всех таймфреймов, сигналы сканера и реальные итоги каждой сделки.",
@@ -88,8 +90,8 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
       },
       {
         id: "text",
-        name: "NICS Text",
-        status: "Обучена, ранняя",
+        name: "NICS Language",
+        status: "Эксперимент",
         stage: "trained",
         desc: "Языковая модель-трансформер с собственным токенизатором, обученная со случайных весов на корпусе Project Gutenberg.",
         facts: ["Корпус Project Gutenberg", "Свой BPE-токенизатор", "Обучена со случайных весов"],
@@ -97,7 +99,7 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
       {
         id: "vision",
         name: "NICS Vision",
-        status: "Обучена, ранняя",
+        status: "Эксперимент",
         stage: "trained",
         desc: "Модель зрения, обученная со случайных весов на снимках Земли и космоса NASA.",
         facts: ["Снимки Земли и космоса NASA", "Распознавание минералов и материалов", "Обучена со случайных весов"],
@@ -115,7 +117,7 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
     models: [
       {
         id: "trading",
-        name: "NICS Trading Club",
+        name: "NICS Trading",
         status: "В разработка",
         stage: "building",
         desc: "Нашият търговски модел. Ще се учи на нашите пазарни данни: свещи от всички таймфрейми, сигналите на скенера и реалния резултат от всяка сделка.",
@@ -123,8 +125,8 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
       },
       {
         id: "text",
-        name: "NICS Text",
-        status: "Обучен, ранен",
+        name: "NICS Language",
+        status: "Експеримент",
         stage: "trained",
         desc: "Езиков модел трансформър със собствен токенизатор, обучен от случайни тегла върху корпуса Project Gutenberg.",
         facts: ["Корпус Project Gutenberg", "Собствен BPE токенизатор", "Обучен от случайни тегла"],
@@ -132,7 +134,7 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
       {
         id: "vision",
         name: "NICS Vision",
-        status: "Обучен, ранен",
+        status: "Експеримент",
         stage: "trained",
         desc: "Модел за зрение, обучен от случайни тегла върху изображения на Земята и космоса от НАСА.",
         facts: ["Изображения на Земята и космоса от НАСА", "Разпознаване на минерали и материали", "Обучен от случайни тегла"],
@@ -150,7 +152,7 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
     models: [
       {
         id: "trading",
-        name: "NICS Trading Club",
+        name: "NICS Trading",
         status: "In Entwicklung",
         stage: "building",
         desc: "Unser Trading-Modell. Es soll aus unseren eigenen Marktdaten lernen: Kerzen aller Zeitrahmen, die Signale des Scanners und das tatsächliche Ergebnis jedes Trades.",
@@ -158,8 +160,8 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
       },
       {
         id: "text",
-        name: "NICS Text",
-        status: "Trainiert, früh",
+        name: "NICS Language",
+        status: "Experiment",
         stage: "trained",
         desc: "Ein Transformer-Sprachmodell mit eigenem Tokenizer, ab zufälligen Gewichten trainiert auf dem Project-Gutenberg-Korpus.",
         facts: ["Project-Gutenberg-Korpus", "Eigener BPE-Tokenizer", "Ab zufälligen Gewichten trainiert"],
@@ -167,7 +169,7 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
       {
         id: "vision",
         name: "NICS Vision",
-        status: "Trainiert, früh",
+        status: "Experiment",
         stage: "trained",
         desc: "Ein Bildmodell, ab zufälligen Gewichten trainiert auf Erd- und NASA-Weltraumbildern.",
         facts: ["Erd- und NASA-Weltraumbilder", "Erkennung von Mineralien und Materialien", "Ab zufälligen Gewichten trainiert"],
@@ -185,7 +187,7 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
     models: [
       {
         id: "trading",
-        name: "NICS Trading Club",
+        name: "NICS Trading",
         status: "En desarrollo",
         stage: "building",
         desc: "Nuestro modelo de trading. Aprenderá de nuestros propios datos de mercado: velas de todas las temporalidades, las señales del escáner y el resultado real de cada operación.",
@@ -193,8 +195,8 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
       },
       {
         id: "text",
-        name: "NICS Text",
-        status: "Entrenado, inicial",
+        name: "NICS Language",
+        status: "Experimento",
         stage: "trained",
         desc: "Un modelo de lenguaje Transformer con tokenizador propio, entrenado desde pesos aleatorios con el corpus de Project Gutenberg.",
         facts: ["Corpus de Project Gutenberg", "Tokenizador BPE propio", "Entrenado desde pesos aleatorios"],
@@ -202,7 +204,7 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
       {
         id: "vision",
         name: "NICS Vision",
-        status: "Entrenado, inicial",
+        status: "Experimento",
         stage: "trained",
         desc: "Un modelo de visión entrenado desde pesos aleatorios con imágenes de la Tierra y del espacio de la NASA.",
         facts: ["Imágenes de la Tierra y de la NASA", "Reconocimiento de minerales y materiales", "Entrenado desde pesos aleatorios"],

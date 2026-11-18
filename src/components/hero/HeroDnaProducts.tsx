@@ -19,7 +19,7 @@ const PLACES: Record<string, { u: number; side: -1 | 1 }> = {
   "NICS Real Estate": { u: 0.55, side: -1 },
   "NICS Multimedia": { u: 0.66, side: -1 },
   "NICS AI Lab": { u: 0.78, side: -1 },
-  "NICS Trading Club": { u: 0.88, side: -1 },
+  "NICS Trading": { u: 0.88, side: -1 },
 };
 
 const LEADER = 46;
