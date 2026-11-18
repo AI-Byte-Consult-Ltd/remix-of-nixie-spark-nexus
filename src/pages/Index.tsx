@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import HomeMarketTicker from "@/components/HomeMarketTicker";
+import LabModelsStrip from "@/components/LabModelsStrip";
 import NicsEcosystemPreview from "@/components/NicsEcosystemPreview";
 import About from "@/components/About";
 import OurEcosystem from "@/components/OurEcosystem";
@@ -55,6 +56,7 @@ const Index = () => {
       <main className="min-h-screen">
         <Header />
         <Hero />
+        <LabModelsStrip />
         <HomeMarketTicker />
         <VerifiedTrackRecord />
         <NicsEcosystemPreview />

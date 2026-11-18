@@ -15,7 +15,7 @@ const SNAPSHOT = {
   status: "First run complete",
   parameters: "868,992",
   architecture: "4-layer Transformer, CPU-trained",
-  dataset: "Tiny Shakespeare (public domain)",
+  dataset: "Project Gutenberg (public domain)",
   trainLoss: "3.914",
   valLoss: "3.988",
   hardware: "CPU only, no GPU",
