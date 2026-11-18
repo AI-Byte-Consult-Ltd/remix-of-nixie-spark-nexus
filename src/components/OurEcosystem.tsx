@@ -36,28 +36,28 @@ interface EcosystemModule {
 const modules: EcosystemModule[] = [
   {
     id: "llm",
-    name: "NICS Text",
+    name: "NICS LLM",
     icon: Brain,
-    status: "Early research",
+    status: "Training Active",
     short:
-      "Our own small Transformer language model with its own tokenizer, trained from scratch in the NICS AI Lab.",
-    tags: ["Language model", "From scratch", "Early stage"],
-    who: "Teams who want to follow an independent language model from its first training runs.",
+      "Proprietary multilingual language model trained on Project Gutenberg corpus.",
+    tags: ["LLM", "Gutenberg-trained", "Multilingual"],
+    who: "Researchers, product teams and enterprises that need an independent, sovereign language model.",
     connection:
-      "The language part of the NICS AI Lab. Today it is a pipeline-scale model (869K parameters) and does not power any product yet.",
+      "The linguistic core of the NICS AI Ecosystem — powers reasoning, dialogue and multilingual understanding across every platform.",
     cta: { label: "View NICS Ecosystem", href: "/nics-ecosystem" },
   },
   {
     id: "visual",
-    name: "NICS Vision",
+    name: "NICS Visual AI",
     icon: Eye,
-    status: "Early research",
+    status: "Research Active",
     short:
-      "Our own small image model trained from random weights: 87.1% accuracy on Fashion-MNIST.",
-    tags: ["Computer Vision", "From scratch", "Early stage"],
-    who: "Creators and teams interested in image analysis built without third-party weights.",
+      "Computer vision model trained on Earth and NASA imagery for minerals, materials and complex scene recognition.",
+    tags: ["Computer Vision", "NASA Imagery", "Science AI"],
+    who: "Geologists, scientific labs, mining companies and Earth-observation teams.",
     connection:
-      "The vision part of the NICS AI Lab. Next planned use: frame analysis for NICS Video.",
+      "The eyes of NICS — feeds visual understanding into the LLM and downstream platforms like NICS AI Geologist.",
     cta: { label: "Explore Research", href: "/nics-ecosystem" },
   },
   {

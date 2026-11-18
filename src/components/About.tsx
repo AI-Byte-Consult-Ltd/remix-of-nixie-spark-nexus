@@ -5,8 +5,8 @@ const About = () => {
   const { t } = useLanguage();
 
   const highlights = [
-    { icon: Brain, label: "NICS Text", sub: "Own model, early" },
-    { icon: Eye, label: "NICS Vision", sub: "Own model, early" },
+    { icon: Brain, label: "NICS LLM", sub: "Gutenberg-trained" },
+    { icon: Eye, label: "NICS Visual AI", sub: "NASA imagery" },
     { icon: Building2, label: "Architecture", sub: "AI & classic" },
     { icon: Rocket, label: "Space Research", sub: "Terraforming" },
   ];

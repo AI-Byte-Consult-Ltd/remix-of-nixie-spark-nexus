@@ -3,8 +3,9 @@
  * Alexander's plan 2026-11-07). Phase 1 languages only (src/i18n/phasedSeo.ts).
  *
  * The lab facts must stay true to the public nics-ai-lab repository:
- * CPU-only training, Tiny Shakespeare v1 dataset, own BPE tokenizer, first
- * training run complete, vision-nano trained on Fashion-MNIST (87.1%),
+ * Datasets per Alexander (2026-11-18): Project Gutenberg (text) and Earth +
+ * NASA space imagery (vision), trained before the nics-ai-lab repo existed.
+ * Repo pipeline runs: own BPE tokenizer, CPU-only training,
  * trading model NICS Trading Club in development (not trained yet),
  * no production inference service yet.
  */
@@ -72,14 +73,14 @@ const en: EcosystemTexts = {
     { title: "Training pipeline", desc: "Automated checkpointing, loss monitoring and structured telemetry, running today on CPU-only hardware." },
     { title: "Text generation (early)", desc: "Basic greedy and sampling generation for evaluation. A production inference service is not built yet." },
     { title: "Multilingual roadmap", desc: "English today, trained on public-domain text. Russian, Bulgarian and Spanish are planned, not yet trained." },
-    { title: "Vision model (early)", desc: "A small image classifier trained from scratch: 34K parameters, 87.1% accuracy on Fashion-MNIST. Audio is on the roadmap." },
+    { title: "Vision model (early)", desc: "A vision model trained from scratch on Earth and NASA space imagery to recognise minerals and materials. Audio is on the roadmap." },
   ],
   infraTitle: "Current setup",
   infra: [
     { title: "Training hardware", desc: "CPU only, no GPU: proof-of-pipeline scale" },
     { title: "Code and provenance", desc: "Public GitHub repository nics-ai-lab" },
     { title: "Checkpoint verification", desc: "SHA-256 checksums, step-0 random-init checkpoint kept" },
-    { title: "Dataset", desc: "Tiny Shakespeare, public domain (v1)" },
+    { title: "Dataset", desc: "Project Gutenberg (text) and Earth and NASA space imagery (vision)" },
     { title: "Status", desc: "Text and vision models trained (pipeline scale); trading model NICS Trading Club in development" },
   ],
   faqTitle: "Questions",
@@ -127,14 +128,14 @@ const ru: EcosystemTexts = {
     { title: "Конвейер обучения", desc: "Автоматические чекпоинты, мониторинг loss и структурированная телеметрия; сейчас обучение идёт только на CPU." },
     { title: "Генерация текста (ранняя)", desc: "Простая жадная генерация и сэмплирование для оценки модели. Боевого сервиса пока нет." },
     { title: "Языки", desc: "Сейчас английский, на текстах из общественного достояния. Русский, болгарский и испанский запланированы, но ещё не обучены." },
-    { title: "Модель зрения (ранняя)", desc: "Небольшой классификатор изображений, обученный с нуля: 34 тыс. параметров, точность 87,1% на Fashion-MNIST. Звук — в планах." },
+    { title: "Модель зрения (ранняя)", desc: "Модель зрения, обученная с нуля на снимках Земли и космоса NASA для распознавания минералов и материалов. Звук — в планах." },
   ],
   infraTitle: "Текущая установка",
   infra: [
     { title: "Железо для обучения", desc: "Только CPU, без GPU: масштаб проверки конвейера" },
     { title: "Код и происхождение", desc: "Открытый репозиторий nics-ai-lab на GitHub" },
     { title: "Проверка чекпоинтов", desc: "Контрольные суммы SHA-256, сохранён чекпоинт шага 0" },
-    { title: "Датасет", desc: "Tiny Shakespeare, общественное достояние (v1)" },
+    { title: "Датасет", desc: "Project Gutenberg (текст) и снимки Земли и космоса NASA (зрение)" },
     { title: "Статус", desc: "Текстовая модель и модель зрения обучены (масштаб проверки пайплайна); торговая модель NICS Trading Club в разработке" },
   ],
   faqTitle: "Вопросы",
@@ -182,14 +183,14 @@ const bg: EcosystemTexts = {
     { title: "Процес на обучение", desc: "Автоматични чекпойнти, наблюдение на загубата и структурирана телеметрия; днес обучението върви само на CPU." },
     { title: "Генериране на текст (ранно)", desc: "Базово генериране за оценка на модела. Продукционна услуга още няма." },
     { title: "Езици", desc: "Днес английски, върху текстове в публичното пространство. Руски, български и испански са планирани, още не са обучени." },
-    { title: "Модел за зрение (ранен)", desc: "Малък класификатор на изображения, обучен от нулата: 34 хил. параметъра, точност 87,1% на Fashion-MNIST. Звукът е в плана." },
+    { title: "Модел за зрение (ранен)", desc: "Модел за зрение, обучен от нулата върху изображения на Земята и космоса от НАСА за разпознаване на минерали и материали. Звукът е в плана." },
   ],
   infraTitle: "Текуща конфигурация",
   infra: [
     { title: "Хардуер за обучение", desc: "Само CPU, без GPU: мащаб за проверка на процеса" },
     { title: "Код и произход", desc: "Публично GitHub хранилище nics-ai-lab" },
     { title: "Проверка на чекпойнтите", desc: "SHA-256 контролни суми, запазен чекпойнт на стъпка 0" },
-    { title: "Набор от данни", desc: "Tiny Shakespeare, публично достояние (v1)" },
+    { title: "Набор от данни", desc: "Project Gutenberg (текст) и изображения на Земята и космоса от НАСА (зрение)" },
     { title: "Състояние", desc: "Текстовият модел и моделът за зрение са обучени (мащаб за проверка); търговският модел NICS Trading Club е в разработка" },
   ],
   faqTitle: "Въпроси",
@@ -237,14 +238,14 @@ const de: EcosystemTexts = {
     { title: "Trainings-Pipeline", desc: "Automatische Checkpoints, Loss-Überwachung und strukturierte Telemetrie, derzeit nur auf CPU-Hardware." },
     { title: "Textgenerierung (früh)", desc: "Einfache Generierung zur Bewertung des Modells. Ein Produktivdienst existiert noch nicht." },
     { title: "Sprachen", desc: "Heute Englisch, trainiert auf gemeinfreien Texten. Russisch, Bulgarisch und Spanisch sind geplant, aber noch nicht trainiert." },
-    { title: "Bildmodell (früh)", desc: "Ein kleiner Bildklassifikator, von Grund auf trainiert: 34.000 Parameter, 87,1 % Genauigkeit auf Fashion-MNIST. Audio steht auf der Roadmap." },
+    { title: "Bildmodell (früh)", desc: "Ein Bildmodell, von Grund auf trainiert auf Erd- und NASA-Weltraumbildern zur Erkennung von Mineralien und Materialien. Audio steht auf der Roadmap." },
   ],
   infraTitle: "Aktueller Aufbau",
   infra: [
     { title: "Trainings-Hardware", desc: "Nur CPU, keine GPU: Maßstab zum Nachweis der Pipeline" },
     { title: "Code und Herkunft", desc: "Öffentliches GitHub-Repository nics-ai-lab" },
     { title: "Checkpoint-Prüfung", desc: "SHA-256-Prüfsummen, Checkpoint von Schritt 0 aufbewahrt" },
-    { title: "Datensatz", desc: "Tiny Shakespeare, gemeinfrei (v1)" },
+    { title: "Datensatz", desc: "Project Gutenberg (Text) sowie Erd- und NASA-Weltraumbilder (Bild)" },
     { title: "Status", desc: "Text- und Bildmodell trainiert (Pipeline-Maßstab); Trading-Modell NICS Trading Club in Entwicklung" },
   ],
   faqTitle: "Fragen",
@@ -292,14 +293,14 @@ const es: EcosystemTexts = {
     { title: "Pipeline de entrenamiento", desc: "Checkpoints automáticos, seguimiento de la pérdida y telemetría estructurada; hoy funciona solo con CPU." },
     { title: "Generación de texto (temprana)", desc: "Generación básica para evaluar el modelo. Aún no existe un servicio en producción." },
     { title: "Idiomas", desc: "Hoy inglés, con textos de dominio público. Ruso, búlgaro y español están previstos, aún sin entrenar." },
-    { title: "Modelo de visión (inicial)", desc: "Un pequeño clasificador de imágenes entrenado desde cero: 34.000 parámetros, 87,1 % de precisión en Fashion-MNIST. El audio está en la hoja de ruta." },
+    { title: "Modelo de visión (inicial)", desc: "Un modelo de visión entrenado desde cero con imágenes de la Tierra y de la NASA para reconocer minerales y materiales. El audio está en la hoja de ruta." },
   ],
   infraTitle: "Configuración actual",
   infra: [
     { title: "Hardware de entrenamiento", desc: "Solo CPU, sin GPU: escala de prueba del pipeline" },
     { title: "Código y procedencia", desc: "Repositorio público nics-ai-lab en GitHub" },
     { title: "Verificación de checkpoints", desc: "Sumas SHA-256, checkpoint del paso 0 conservado" },
-    { title: "Dataset", desc: "Tiny Shakespeare, dominio público (v1)" },
+    { title: "Dataset", desc: "Project Gutenberg (texto) e imágenes de la Tierra y del espacio de la NASA (visión)" },
     { title: "Estado", desc: "Modelos de texto y de visión entrenados (escala de validación); modelo de trading NICS Trading Club en desarrollo" },
   ],
   faqTitle: "Preguntas",

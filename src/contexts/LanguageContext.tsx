@@ -33,7 +33,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // About
     "about.title": "About the Company",
     "about.p1": "AI Byte Consult Ltd. is a global technology company building independent artificial intelligence from the ground up. We design proprietary AI systems — including the NICS LLM and NICS Visual AI — that power scientific research, industrial automation, and the next generation of digital experiences for organizations worldwide.",
-    "about.p2": "Our work spans our own text, vision and trading models trained from scratch in the NICS AI Lab (early stage), and professional architectural visualization for apartments and homes — with or without AI. We serve geology, archaeology, medicine, chemistry, space colonization and terraforming research, alongside B2B, B2C, hospitality, and design industries.",
+    "about.p2": "Our work spans large language models trained on the Project Gutenberg corpus, computer vision models trained on Earth and NASA space imagery to detect minerals and materials, and professional architectural visualization for apartments and homes — with or without AI. We serve geology, archaeology, medicine, chemistry, space colonization and terraforming research, alongside B2B, B2C, hospitality, and design industries.",
     
     // Ecosystem
     "ecosystem.title": "Our Ecosystem",
@@ -258,7 +258,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // About
     "about.title": "Über das Unternehmen",
     "about.p1": "AI Byte Consult Ltd. ist ein globales Technologieunternehmen, das unabhängige künstliche Intelligenz von Grund auf entwickelt. Wir gestalten eigene KI-Systeme — darunter das NICS LLM und NICS Visual AI — die wissenschaftliche Forschung, industrielle Automatisierung und die nächste Generation digitaler Erlebnisse weltweit antreiben.",
-    "about.p2": "Unsere Arbeit umfasst eigene Text-, Bild- und Trading-Modelle, die im NICS AI Lab von Grund auf trainiert werden (frühes Stadium), sowie professionelle architektonische Visualisierung für Wohnungen und Häuser — mit oder ohne KI. Wir bedienen Geologie, Archäologie, Medizin, Chemie, Weltraumkolonisierung und Terraforming-Forschung sowie B2B-, B2C-, Gastgewerbe- und Designbranchen.",
+    "about.p2": "Unsere Arbeit umfasst große Sprachmodelle, trainiert auf dem Project-Gutenberg-Korpus, Computer-Vision-Modelle, trainiert auf Erd- und NASA-Weltraumbildern zur Erkennung von Mineralien und Materialien, sowie professionelle architektonische Visualisierung für Wohnungen und Häuser — mit oder ohne KI. Wir bedienen Geologie, Archäologie, Medizin, Chemie, Weltraumkolonisierung und Terraforming-Forschung sowie B2B-, B2C-, Gastgewerbe- und Designbranchen.",
     
     // Ecosystem
     "ecosystem.title": "Unser Ökosystem",
@@ -466,7 +466,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // About
     "about.title": "À propos de l'entreprise",
     "about.p1": "AI Byte Consult Ltd. est une entreprise technologique mondiale qui construit une intelligence artificielle indépendante de A à Z. Nous concevons des systèmes IA propriétaires — dont NICS LLM et NICS Visual AI — qui alimentent la recherche scientifique, l'automatisation industrielle et la nouvelle génération d'expériences numériques.",
-    "about.p2": "Nos travaux couvrent nos propres modèles de texte, de vision et de trading entraînés de zéro au NICS AI Lab (stade précoce), ainsi que la visualisation architecturale professionnelle d'appartements et de maisons — avec ou sans IA. Nous servons la géologie, l'archéologie, la médecine, la chimie, la colonisation spatiale et la recherche en terraformation, ainsi que les secteurs B2B, B2C, hôtellerie et design.",
+    "about.p2": "Nos travaux couvrent de grands modèles de langage entraînés sur le corpus Project Gutenberg, des modèles de vision par ordinateur entraînés sur des images terrestres et spatiales de la NASA pour détecter minéraux et matériaux, ainsi que la visualisation architecturale professionnelle d'appartements et de maisons — avec ou sans IA. Nous servons la géologie, l'archéologie, la médecine, la chimie, la colonisation spatiale et la recherche en terraformation, ainsi que les secteurs B2B, B2C, hôtellerie et design.",
     
     // Ecosystem
     "ecosystem.title": "Notre écosystème",
@@ -674,7 +674,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // About
     "about.title": "عن الشركة",
     "about.p1": "AI Byte Consult Ltd. هي شركة تكنولوجيا عالمية تبني ذكاءً اصطناعياً مستقلاً من الصفر. نصمم أنظمة ذكاء اصطناعي خاصة — بما في ذلك NICS LLM و NICS Visual AI — تدعم البحث العلمي والأتمتة الصناعية والجيل القادم من التجارب الرقمية للمؤسسات حول العالم.",
-    "about.p2": "يشمل عملنا نماذجنا الخاصة للنصوص والرؤية والتداول المدربة من الصفر في مختبر NICS AI (مرحلة مبكرة)، والتصور المعماري الاحترافي للشقق والمنازل — مع أو بدون ذكاء اصطناعي. نخدم الجيولوجيا والآثار والطب والكيمياء واستعمار الفضاء وأبحاث تطويع الكواكب، إلى جانب قطاعات B2B و B2C والضيافة والتصميم.",
+    "about.p2": "يشمل عملنا نماذج لغوية كبيرة مدربة على مجموعة Project Gutenberg، ونماذج رؤية حاسوبية مدربة على صور الأرض وصور الفضاء من ناسا لاكتشاف المعادن والمواد، والتصور المعماري الاحترافي للشقق والمنازل — مع أو بدون ذكاء اصطناعي. نخدم الجيولوجيا والآثار والطب والكيمياء واستعمار الفضاء وأبحاث تطويع الكواكب، إلى جانب قطاعات B2B و B2C والضيافة والتصميم.",
     
     // Ecosystem
     "ecosystem.title": "نظامنا البيئي",
@@ -882,7 +882,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // About
     "about.title": "关于公司",
     "about.p1": "AI Byte Consult Ltd. 是一家全球科技公司，从零开始构建独立的人工智能。我们设计专有的 AI 系统——包括 NICS LLM 和 NICS Visual AI——为全球组织的科学研究、工业自动化和下一代数字体验提供动力。",
-    "about.p2": "我们的工作涵盖在 NICS AI Lab 从零训练的自有文本、视觉和交易模型（早期阶段），以及面向公寓和住宅的专业建筑可视化——可结合 AI 也可不使用 AI。我们服务于地质学、考古学、医学、化学、太空殖民和地球化研究，以及 B2B、B2C、酒店和设计行业。",
+    "about.p2": "我们的工作涵盖在 Project Gutenberg 语料库上训练的大型语言模型、在地球与 NASA 太空影像上训练的计算机视觉模型（用于检测矿物和材料），以及面向公寓和住宅的专业建筑可视化——可结合 AI 也可不使用 AI。我们服务于地质学、考古学、医学、化学、太空殖民和地球化研究，以及 B2B、B2C、酒店和设计行业。",
     
     // Ecosystem
     "ecosystem.title": "我们的生态系统",
@@ -1090,7 +1090,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // About
     "about.title": "O firmie",
     "about.p1": "AI Byte Consult Ltd. to globalna firma technologiczna budująca niezależną sztuczną inteligencję od podstaw. Projektujemy autorskie systemy AI — w tym NICS LLM i NICS Visual AI — które napędzają badania naukowe, automatyzację przemysłu i nową generację doświadczeń cyfrowych na całym świecie.",
-    "about.p2": "Nasza praca obejmuje własne modele tekstowe, wizyjne i tradingowe trenowane od zera w NICS AI Lab (wczesny etap), a także profesjonalną wizualizację architektoniczną mieszkań i domów — z AI lub bez. Obsługujemy geologię, archeologię, medycynę, chemię, kolonizację kosmosu i badania nad terraformowaniem, a także branże B2B, B2C, hotelarską i projektową.",
+    "about.p2": "Nasza praca obejmuje duże modele językowe trenowane na korpusie Project Gutenberg, modele wizji komputerowej trenowane na zdjęciach Ziemi i kosmosu z NASA do wykrywania minerałów i materiałów, a także profesjonalną wizualizację architektoniczną mieszkań i domów — z AI lub bez. Obsługujemy geologię, archeologię, medycynę, chemię, kolonizację kosmosu i badania nad terraformowaniem, a także branże B2B, B2C, hotelarską i projektową.",
     
     // Ecosystem
     "ecosystem.title": "Nasz ekosystem",
@@ -1298,7 +1298,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // About
     "about.title": "Şirket Hakkında",
     "about.p1": "AI Byte Consult Ltd., bağımsız yapay zekayı sıfırdan inşa eden küresel bir teknoloji şirketidir. NICS LLM ve NICS Visual AI dahil olmak üzere; bilimsel araştırma, endüstriyel otomasyon ve yeni nesil dijital deneyimleri destekleyen özgün AI sistemleri tasarlıyoruz.",
-    "about.p2": "Çalışmalarımız NICS AI Lab'da sıfırdan eğitilen kendi metin, görü ve alım satım modellerimizi (erken aşama) ve daire ile evler için profesyonel mimari görselleştirmeyi — AI ile veya AI olmadan — kapsar. Jeoloji, arkeoloji, tıp, kimya, uzay kolonizasyonu ve terraforming araştırmalarının yanı sıra B2B, B2C, ağırlama ve tasarım sektörlerine hizmet veriyoruz.",
+    "about.p2": "Çalışmalarımız Project Gutenberg derlemi üzerinde eğitilmiş büyük dil modellerini, mineral ve malzeme tespiti için Dünya ve NASA uzay görüntüleri üzerinde eğitilmiş bilgisayarlı görü modellerini ve daire ile evler için profesyonel mimari görselleştirmeyi — AI ile veya AI olmadan — kapsar. Jeoloji, arkeoloji, tıp, kimya, uzay kolonizasyonu ve terraforming araştırmalarının yanı sıra B2B, B2C, ağırlama ve tasarım sektörlerine hizmet veriyoruz.",
     
     // Ecosystem
     "ecosystem.title": "Ekosistemimiz",
@@ -1506,7 +1506,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // About
     "about.title": "L'Azienda",
     "about.p1": "AI Byte Consult Ltd. è un'azienda tecnologica globale che costruisce intelligenza artificiale indipendente da zero. Progettiamo sistemi AI proprietari — tra cui NICS LLM e NICS Visual AI — che alimentano la ricerca scientifica, l'automazione industriale e la prossima generazione di esperienze digitali nel mondo.",
-    "about.p2": "Il nostro lavoro abbraccia i nostri modelli di testo, visione e trading addestrati da zero nel NICS AI Lab (fase iniziale) e la visualizzazione architettonica professionale per appartamenti e case — con o senza AI. Serviamo geologia, archeologia, medicina, chimica, colonizzazione spaziale e ricerca sul terraforming, oltre a settori B2B, B2C, ospitalità e design.",
+    "about.p2": "Il nostro lavoro abbraccia grandi modelli linguistici addestrati sul corpus Project Gutenberg, modelli di visione artificiale addestrati su immagini terrestri e spaziali della NASA per rilevare minerali e materiali, e visualizzazione architettonica professionale per appartamenti e case — con o senza AI. Serviamo geologia, archeologia, medicina, chimica, colonizzazione spaziale e ricerca sul terraforming, oltre a settori B2B, B2C, ospitalità e design.",
     
     // Ecosystem
     "ecosystem.title": "Il Nostro Ecosistema",
@@ -1714,7 +1714,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // About
     "about.title": "За компанията",
     "about.p1": "AI Byte Consult Ltd. е глобална технологична компания, която изгражда независим изкуствен интелект от нулата. Проектираме собствени AI системи — включително NICS LLM и NICS Visual AI — които задвижват научни изследвания, индустриална автоматизация и следващото поколение цифрови преживявания за организации по целия свят.",
-    "about.p2": "Работата ни обхваща собствени модели за текст, зрение и търговия, обучени от нулата в NICS AI Lab (ранен етап), както и професионална архитектурна визуализация на апартаменти и къщи — със или без AI. Обслужваме геология, археология, медицина, химия, космическа колонизация и тераформиране, както и B2B, B2C, хотелиерство и дизайн.",
+    "about.p2": "Работата ни обхваща големи езикови модели, обучени върху корпуса Project Gutenberg, модели за компютърно зрение, обучени върху изображения на Земята и космически изображения от НАСА за откриване на минерали и материали, както и професионална архитектурна визуализация за апартаменти и домове — със или без AI. Обслужваме геология, археология, медицина, химия, космическа колонизация и тераформиране, както и B2B, B2C, хотелиерство и дизайн.",
     
     // Ecosystem
     "ecosystem.title": "Нашата екосистема",
@@ -1923,7 +1923,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // About
     "about.title": "О компании",
     "about.p1": "AI Byte Consult Ltd. — глобальная технологическая компания, создающая независимый искусственный интеллект с нуля. Мы разрабатываем собственные AI-системы — включая NICS LLM и NICS Visual AI — которые поддерживают научные исследования, промышленную автоматизацию и новое поколение цифровых решений для организаций по всему миру.",
-    "about.p2": "Наша работа охватывает собственные модели для текста, зрения и трейдинга, обученные с нуля в NICS AI Lab (ранняя стадия), а также профессиональную архитектурную визуализацию квартир и домов — с применением AI и без него. Мы работаем для геологии, археологии, медицины, химии, космической колонизации и терраформирования, а также для B2B, B2C, индустрии гостеприимства и дизайна.",
+    "about.p2": "Наша работа охватывает большие языковые модели, обученные на корпусе Project Gutenberg, модели компьютерного зрения, обученные на земных и космических снимках NASA для распознавания минералов и материалов, а также профессиональную архитектурную визуализацию квартир и домов — с применением AI и без него. Мы работаем для геологии, археологии, медицины, химии, космической колонизации и терраформирования, а также для B2B, B2C, индустрии гостеприимства и дизайна.",
     
     // Ecosystem
     "ecosystem.title": "Наша экосистема",
@@ -2128,7 +2128,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.terms": "Términos de Servicio",
 
     "about.p1": "AI Byte Consult Ltd. es una empresa tecnológica global que construye inteligencia artificial independiente desde cero. Diseñamos sistemas de IA propios — incluyendo el LLM NICS y NICS Visual AI — que impulsan la investigación científica, la automatización industrial y la próxima generación de experiencias digitales para organizaciones de todo el mundo.",
-    "about.p2": "Nuestro trabajo abarca modelos propios de texto, visión y trading entrenados desde cero en el NICS AI Lab (etapa inicial), y visualización arquitectónica profesional para apartamentos y viviendas — con o sin IA. Damos servicio a la geología, la arqueología, la medicina, la química, la investigación sobre colonización espacial y terraformación, además de los sectores B2B, B2C, hostelería y diseño.",
+    "about.p2": "Nuestro trabajo abarca grandes modelos de lenguaje entrenados con el corpus de Project Gutenberg, modelos de visión por computadora entrenados con imágenes de la Tierra y de la NASA para detectar minerales y materiales, y visualización arquitectónica profesional para apartamentos y viviendas — con o sin IA. Damos servicio a la geología, la arqueología, la medicina, la química, la investigación sobre colonización espacial y terraformación, además de los sectores B2B, B2C, hostelería y diseño.",
     "about.title": "Sobre la Empresa",
 
     "team.subtitle": "Los visionarios detrás de AI Byte Consult Ltd.",
@@ -2178,7 +2178,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.terms": "Termos de Serviço",
 
     "about.p1": "A AI Byte Consult Ltd. é uma empresa de tecnologia global que constrói inteligência artificial independente desde o zero. Projetamos sistemas de IA proprietários — incluindo o LLM NICS e o NICS Visual AI — que impulsionam a pesquisa científica, a automação industrial e a próxima geração de experiências digitais para organizações em todo o mundo.",
-    "about.p2": "Nosso trabalho abrange modelos próprios de texto, visão e trading treinados do zero no NICS AI Lab (estágio inicial), e visualização arquitetônica profissional para apartamentos e casas — com ou sem IA. Atendemos geologia, arqueologia, medicina, química, pesquisa de colonização espacial e terraformação, além dos setores B2B, B2C, hotelaria e design.",
+    "about.p2": "Nosso trabalho abrange grandes modelos de linguagem treinados com o corpus do Project Gutenberg, modelos de visão computacional treinados com imagens da Terra e da NASA para detectar minerais e materiais, e visualização arquitetônica profissional para apartamentos e casas — com ou sem IA. Atendemos geologia, arqueologia, medicina, química, pesquisa de colonização espacial e terraformação, além dos setores B2B, B2C, hotelaria e design.",
     "about.title": "Sobre a Empresa",
 
     "team.subtitle": "Os visionários por trás da AI Byte Consult Ltd.",
