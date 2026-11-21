@@ -36,7 +36,7 @@ interface EcosystemModule {
 const modules: EcosystemModule[] = [
   {
     id: "llm",
-    name: "NICS LLM",
+    name: "NICS Language",
     icon: Brain,
     status: "Training Active",
     short:
@@ -49,7 +49,7 @@ const modules: EcosystemModule[] = [
   },
   {
     id: "visual",
-    name: "NICS Visual AI",
+    name: "NICS Vision",
     icon: Eye,
     status: "Research Active",
     short:
@@ -109,7 +109,7 @@ const modules: EcosystemModule[] = [
     tags: ["Geology", "Mining", "Research"],
     who: "Mining companies, exploration teams and geological institutes.",
     connection:
-      "Combines NICS LLM with Visual AI to fuse historical archives, field data and satellite imagery.",
+      "Combines NICS Language with NICS Vision to fuse historical archives, field data and satellite imagery.",
     cta: { label: "Discover Geologist AI", href: "#contact" },
   },
   {
