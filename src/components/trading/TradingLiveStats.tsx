@@ -16,18 +16,18 @@ interface StatsStrings {
 }
 
 const strings: Record<Language, StatsStrings> = {
-  en: { title: "All time · signals that passed the quality gate", closed: "closed signals", winRate: "win rate", totalR: "total R", more: "Full track record" },
-  ru: { title: "За всё время · сигналы, прошедшие фильтр качества", closed: "закрытых сигналов", winRate: "прибыльных", totalR: "итог в R", more: "Вся статистика" },
-  de: { title: "Gesamter Zeitraum · Signale, die den Qualitätsfilter bestanden haben", closed: "geschlossene Signale", winRate: "Trefferquote", totalR: "Summe R", more: "Gesamte Bilanz" },
-  fr: { title: "Depuis le début · signaux ayant passé le filtre qualité", closed: "signaux clôturés", winRate: "taux de réussite", totalR: "total R", more: "Historique complet" },
-  ar: { title: "طوال الفترة · الإشارات التي اجتازت فلتر الجودة", closed: "إشارة مغلقة", winRate: "نسبة الربح", totalR: "إجمالي R", more: "السجل الكامل" },
-  zh: { title: "全部时间 · 通过质量筛选的信号", closed: "已平仓信号", winRate: "胜率", totalR: "累计 R", more: "完整业绩记录" },
-  pl: { title: "Cały okres · sygnały, które przeszły filtr jakości", closed: "zamkniętych sygnałów", winRate: "skuteczność", totalR: "suma R", more: "Pełne wyniki" },
-  tr: { title: "Tüm zamanlar · kalite filtresinden geçen sinyaller", closed: "kapanan sinyal", winRate: "kazanma oranı", totalR: "toplam R", more: "Tüm sonuçlar" },
-  it: { title: "Da sempre · segnali che hanno superato il filtro qualità", closed: "segnali chiusi", winRate: "tasso di successo", totalR: "totale R", more: "Storico completo" },
-  bg: { title: "За цялото време · сигнали, преминали филтъра за качество", closed: "затворени сигнала", winRate: "печеливши", totalR: "общо R", more: "Пълна статистика" },
-  es: { title: "Desde el inicio · señales que pasaron el filtro de calidad", closed: "señales cerradas", winRate: "tasa de acierto", totalR: "total R", more: "Historial completo" },
-  pt: { title: "Desde o início · sinais que passaram no filtro de qualidade", closed: "sinais fechados", winRate: "taxa de acerto", totalR: "total R", more: "Histórico completo" },
+  en: { title: "All time · trades that passed the quality gate", closed: "closed trades", winRate: "win rate", totalR: "total R", more: "Full track record" },
+  ru: { title: "За всё время · сделки, прошедшие фильтр качества", closed: "закрытых сделок", winRate: "прибыльных", totalR: "итог в R", more: "Вся статистика" },
+  de: { title: "Gesamter Zeitraum · Trades, die den Qualitätsfilter bestanden haben", closed: "geschlossene Trades", winRate: "Trefferquote", totalR: "Summe R", more: "Gesamte Bilanz" },
+  fr: { title: "Depuis le début · trades ayant passé le filtre qualité", closed: "trades clôturés", winRate: "taux de réussite", totalR: "total R", more: "Historique complet" },
+  ar: { title: "طوال الفترة · الصفقات التي اجتازت فلتر الجودة", closed: "صفقة مغلقة", winRate: "نسبة الربح", totalR: "إجمالي R", more: "السجل الكامل" },
+  zh: { title: "全部时间 · 通过质量筛选的分析", closed: "已平仓交易", winRate: "胜率", totalR: "累计 R", more: "完整业绩记录" },
+  pl: { title: "Cały okres · transakcje, które przeszły filtr jakości", closed: "zamkniętych transakcji", winRate: "skuteczność", totalR: "suma R", more: "Pełne wyniki" },
+  tr: { title: "Tüm zamanlar · kalite filtresinden geçen işlemler", closed: "kapanan işlem", winRate: "kazanma oranı", totalR: "toplam R", more: "Tüm sonuçlar" },
+  it: { title: "Da sempre · operazioni che hanno superato il filtro qualità", closed: "operazioni chiuse", winRate: "tasso di successo", totalR: "totale R", more: "Storico completo" },
+  bg: { title: "За цялото време · сделки, преминали филтъра за качество", closed: "затворени сделки", winRate: "печеливши", totalR: "общо R", more: "Пълна статистика" },
+  es: { title: "Desde el inicio · operaciones que pasaron el filtro de calidad", closed: "operaciones cerradas", winRate: "tasa de acierto", totalR: "total R", more: "Historial completo" },
+  pt: { title: "Desde o início · operações que passaram no filtro de qualidade", closed: "operações fechadas", winRate: "taxa de acerto", totalR: "total R", more: "Histórico completo" },
 };
 
 const TradingLiveStats = ({ lang }: { lang: Language }) => {

@@ -27,7 +27,7 @@ Contact: info@aibyteconsult.com
 
 ## NICS Trading Ecosystem
 
-NICS Trading Ecosystem is an AI trading platform: a Windows app, a web dashboard, a Telegram bot with Mini App and an academy. Its engine scans gold, silver, forex, Brent oil, crypto, US stocks and indices around the clock and publishes trade setups with Entry, Stop Loss and TP1–TP4; users decide and trade with their own broker (no automatic execution for users). A public verified track record lists every closed strong signal.
+NICS Trading Ecosystem is an AI trading platform: a Windows app, a web dashboard, a Telegram bot with Mini App and an academy. Its engine scans gold, silver, forex, Brent oil, crypto, US stocks and indices around the clock and publishes trade setups with Entry, Stop Loss and TP1–TP4; users decide and trade with their own broker (no automatic execution for users). A public verified track record lists every closed strong setup.
 
 Supported market groups:
 - Gold and silver (XAU/USD, XAG/USD)
@@ -39,12 +39,12 @@ Supported market groups:
 
 Core product functions:
 - AI technical analysis producing structured market scenarios with Entry, Stop Loss and TP1-TP4
-- Compact Telegram signal delivery
+- Compact Telegram analysis delivery
 - Accept or skip decisions
 - Personal risk profile and exposure limits
-- Active-signal status and lifecycle tracking
-- Signal history and user-specific statistics
-- Market selection and signal preferences
+- Active-setup status and lifecycle tracking
+- Trade history and user-specific statistics
+- Market selection and analysis preferences
 
 NICS Trading Ecosystem does not guarantee profit and does not replace professional financial advice. Trading involves substantial risk.
 

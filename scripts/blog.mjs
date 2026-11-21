@@ -20,7 +20,7 @@ const UI = {
   en: {
     blog: "Articles",
     blogTitle: "Articles — AI Byte Consult",
-    blogDescription: "Practical articles from AI Byte Consult: trading risk, lot size and signals, AI trading software, video editing for Shorts and YouTube, automation for small business.",
+    blogDescription: "Practical articles from AI Byte Consult: trading risk, lot size and technical analysis, AI trading software, video editing for Shorts and YouTube, automation for small business.",
     software: "AI trading software",
     home: "Home",
     published: "Published",
@@ -31,7 +31,7 @@ const UI = {
   ru: {
     blog: "Статьи",
     blogTitle: "Статьи — AI Byte Consult",
-    blogDescription: "Практические статьи AI Byte Consult: риск и размер лота в трейдинге, торговые сигналы и программы для трейдинга с ИИ, монтаж видео для Shorts и YouTube, автоматизация для малого бизнеса.",
+    blogDescription: "Практические статьи AI Byte Consult: риск и размер лота в трейдинге, технический анализ и программы для трейдинга с ИИ, монтаж видео для Shorts и YouTube, автоматизация для малого бизнеса.",
     software: "Программа для трейдинга",
     home: "Главная",
     published: "Опубликовано",
@@ -42,7 +42,7 @@ const UI = {
   bg: {
     blog: "Статии",
     blogTitle: "Статии — AI Byte Consult",
-    blogDescription: "Практически статии от AI Byte Consult: риск и размер на лота в трейдинга, търговски сигнали и софтуер за трейдинг с ИИ, монтаж на видео за Shorts и YouTube, автоматизация за малкия бизнес.",
+    blogDescription: "Практически статии от AI Byte Consult: риск и размер на лота в трейдинга, технически анализ и софтуер за трейдинг с ИИ, монтаж на видео за Shorts и YouTube, автоматизация за малкия бизнес.",
     software: "Софтуер за трейдинг",
     home: "Начало",
     published: "Публикувано",

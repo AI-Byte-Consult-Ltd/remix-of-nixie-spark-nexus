@@ -36,7 +36,7 @@ const FEATURE_ICONS = [BellRing, Search, History, CalendarDays, BarChart3, BookO
 // Real screenshots of the Windows app go here (files in public/apps/windows/).
 // The section stays hidden while the list is empty: no mock-ups on this page.
 const SCREENSHOTS: { src: string; alt: string }[] = [
-  { src: "/apps/windows/win-order-signal.webp", alt: "NICS Trading Ecosystem for Windows: signals list with an analysis request in progress" },
+  { src: "/apps/windows/win-order-signal.webp", alt: "NICS Trading Ecosystem for Windows: analysis list with an analysis request in progress" },
   { src: "/apps/windows/win-calendar.webp", alt: "NICS Trading Ecosystem for Windows: economic calendar for the week" },
 ];
 

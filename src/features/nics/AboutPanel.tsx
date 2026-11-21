@@ -21,35 +21,35 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
     date: "21.11.2026",
     text: {
       ru: {
-        title: "Технический анализ вместо «сигналов»",
+        title: "Технический анализ вместо прежних формулировок",
         items: [
           "Во всём приложении, в кабинете и в Windows-версии теперь «теханализ», «сетап» и «сделка»: разделы «Теханализ», «Заказать теханализ», «Мои запросы», «ДНК сделки».",
           "Под каждым экраном остаётся предупреждение: технический анализ носит информационный характер и не является инвестиционным советом.",
         ],
       },
       bg: {
-        title: "Технически анализ вместо „сигнали“",
+        title: "Технически анализ вместо старите формулировки",
         items: [
           "В цялото приложение, в кабинета и във Windows версията вече пише „анализ“, „сетъп“ и „сделка“: раздели „Анализ“, „Поръчай анализ“, „Моите заявки“, „ДНК на сделката“.",
           "Под всеки екран остава предупреждението: техническият анализ е информационен и не е инвестиционен съвет.",
         ],
       },
       en: {
-        title: "Technical analysis instead of “signals”",
+        title: "Technical analysis wording everywhere",
         items: [
           "The app, the web cabinet and the Windows version now say “analysis”, “setup” and “trade”: sections Analysis, Order analysis, My requests, Trade DNA.",
           "Every screen keeps the notice: technical analysis is for information only and is not investment advice.",
         ],
       },
       es: {
-        title: "Análisis técnico en lugar de «señales»",
+        title: "Análisis técnico en todos los textos",
         items: [
           "La app, el gabinete web y la versión de Windows ahora dicen «análisis» y «operación»: secciones Análisis, Pedir análisis, Mis solicitudes, ADN de la operación.",
           "Cada pantalla mantiene el aviso: el análisis técnico es informativo y no es asesoramiento de inversión.",
         ],
       },
       pt: {
-        title: "Análise técnica em vez de «sinais»",
+        title: "Análise técnica em todos os textos",
         items: [
           "O app, o gabinete web e a versão para Windows agora dizem «análise» e «operação»: seções Análises, Pedir análise, Meus pedidos, DNA da operação.",
           "Cada tela mantém o aviso: a análise técnica é informativa e não é aconselhamento de investimento.",
