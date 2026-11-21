@@ -32,8 +32,10 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // About
     "about.title": "About the Company",
-    "about.p1": "AI Byte Consult Ltd. is a global technology company building independent artificial intelligence from the ground up. We design proprietary AI systems — including the NICS LLM and NICS Visual AI — that power scientific research, industrial automation, and the next generation of digital experiences for organizations worldwide.",
-    "about.p2": "Our work spans large language models trained on the Project Gutenberg corpus, computer vision models trained on Earth and NASA space imagery to detect minerals and materials, and professional architectural visualization for apartments and homes — with or without AI. We serve geology, archaeology, medicine, chemistry, space colonization and terraforming research, alongside B2B, B2C, hospitality, and design industries.",
+    "about.p1": "AI Byte Consult Ltd. is an international technology company building its own artificial intelligence from scratch. We have three models: NICS Language, NICS Vision and NICS Trading. They serve science, industry, financial markets and digital solutions around the world.",
+    "about.p2": "NICS Language is trained on the Project Gutenberg corpus. NICS Vision is trained on Earth and NASA space imagery to detect minerals and materials. NICS Trading is our trading model: it learns from our own market data and the real outcomes of every trade. NICS Property, a model for real estate and architectural visualization, is in development. We also create professional architectural visualization of apartments and homes, with or without AI. We work for geology, archaeology, medicine, chemistry, space colonization and terraforming research, as well as B2B, B2C, hospitality and design.",
+    "about.status.training": "In training",
+    "about.status.dev": "In development",
     
     // Ecosystem
     "ecosystem.title": "Our Ecosystem",
@@ -257,8 +259,10 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // About
     "about.title": "Über das Unternehmen",
-    "about.p1": "AI Byte Consult Ltd. ist ein globales Technologieunternehmen, das unabhängige künstliche Intelligenz von Grund auf entwickelt. Wir gestalten eigene KI-Systeme — darunter das NICS LLM und NICS Visual AI — die wissenschaftliche Forschung, industrielle Automatisierung und die nächste Generation digitaler Erlebnisse weltweit antreiben.",
-    "about.p2": "Unsere Arbeit umfasst große Sprachmodelle, trainiert auf dem Project-Gutenberg-Korpus, Computer-Vision-Modelle, trainiert auf Erd- und NASA-Weltraumbildern zur Erkennung von Mineralien und Materialien, sowie professionelle architektonische Visualisierung für Wohnungen und Häuser — mit oder ohne KI. Wir bedienen Geologie, Archäologie, Medizin, Chemie, Weltraumkolonisierung und Terraforming-Forschung sowie B2B-, B2C-, Gastgewerbe- und Designbranchen.",
+    "about.p1": "AI Byte Consult Ltd. ist ein internationales Technologieunternehmen, das eigene künstliche Intelligenz von Grund auf entwickelt. Wir haben drei Modelle: NICS Language, NICS Vision und NICS Trading. Sie arbeiten für Wissenschaft, Industrie, Finanzmärkte und digitale Lösungen weltweit.",
+    "about.p2": "NICS Language ist auf dem Project-Gutenberg-Korpus trainiert. NICS Vision ist auf Erd- und NASA-Weltraumbildern trainiert und erkennt Mineralien und Materialien. NICS Trading ist unser Trading-Modell: Es lernt aus unseren eigenen Marktdaten und dem tatsächlichen Ergebnis jedes Trades. In Entwicklung ist NICS Property, ein Modell für Immobilien und Architekturvisualisierung. Außerdem erstellen wir professionelle Architekturvisualisierungen von Wohnungen und Häusern, mit oder ohne KI. Wir arbeiten für Geologie, Archäologie, Medizin, Chemie, Weltraumkolonisierung und Terraforming sowie für B2B, B2C, Gastgewerbe und Design.",
+    "about.status.training": "Wird trainiert",
+    "about.status.dev": "In Entwicklung",
     
     // Ecosystem
     "ecosystem.title": "Unser Ökosystem",
@@ -465,8 +469,10 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // About
     "about.title": "À propos de l'entreprise",
-    "about.p1": "AI Byte Consult Ltd. est une entreprise technologique mondiale qui construit une intelligence artificielle indépendante de A à Z. Nous concevons des systèmes IA propriétaires — dont NICS LLM et NICS Visual AI — qui alimentent la recherche scientifique, l'automatisation industrielle et la nouvelle génération d'expériences numériques.",
-    "about.p2": "Nos travaux couvrent de grands modèles de langage entraînés sur le corpus Project Gutenberg, des modèles de vision par ordinateur entraînés sur des images terrestres et spatiales de la NASA pour détecter minéraux et matériaux, ainsi que la visualisation architecturale professionnelle d'appartements et de maisons — avec ou sans IA. Nous servons la géologie, l'archéologie, la médecine, la chimie, la colonisation spatiale et la recherche en terraformation, ainsi que les secteurs B2B, B2C, hôtellerie et design.",
+    "about.p1": "AI Byte Consult Ltd. est une entreprise technologique internationale qui crée sa propre intelligence artificielle à partir de zéro. Nous avons trois modèles : NICS Language, NICS Vision et NICS Trading. Ils servent la science, l'industrie, les marchés financiers et les solutions numériques dans le monde entier.",
+    "about.p2": "NICS Language est entraîné sur le corpus Project Gutenberg. NICS Vision est entraîné sur des images terrestres et spatiales de la NASA et détecte minéraux et matériaux. NICS Trading est notre modèle de trading : il apprend de nos propres données de marché et du résultat réel de chaque trade. NICS Property, un modèle pour l'immobilier et la visualisation architecturale, est en développement. Nous réalisons aussi des visualisations architecturales professionnelles d'appartements et de maisons, avec ou sans IA. Nous travaillons pour la géologie, l'archéologie, la médecine, la chimie, la colonisation spatiale et la terraformation, ainsi que pour le B2B, le B2C, l'hôtellerie et le design.",
+    "about.status.training": "En entraînement",
+    "about.status.dev": "En développement",
     
     // Ecosystem
     "ecosystem.title": "Notre écosystème",
@@ -673,8 +679,10 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // About
     "about.title": "عن الشركة",
-    "about.p1": "AI Byte Consult Ltd. هي شركة تكنولوجيا عالمية تبني ذكاءً اصطناعياً مستقلاً من الصفر. نصمم أنظمة ذكاء اصطناعي خاصة — بما في ذلك NICS LLM و NICS Visual AI — تدعم البحث العلمي والأتمتة الصناعية والجيل القادم من التجارب الرقمية للمؤسسات حول العالم.",
-    "about.p2": "يشمل عملنا نماذج لغوية كبيرة مدربة على مجموعة Project Gutenberg، ونماذج رؤية حاسوبية مدربة على صور الأرض وصور الفضاء من ناسا لاكتشاف المعادن والمواد، والتصور المعماري الاحترافي للشقق والمنازل — مع أو بدون ذكاء اصطناعي. نخدم الجيولوجيا والآثار والطب والكيمياء واستعمار الفضاء وأبحاث تطويع الكواكب، إلى جانب قطاعات B2B و B2C والضيافة والتصميم.",
+    "about.p1": "AI Byte Consult Ltd. شركة تكنولوجيا دولية تبني ذكاءها الاصطناعي الخاص من الصفر. لدينا ثلاثة نماذج: NICS Language وNICS Vision وNICS Trading. تعمل في خدمة العلوم والصناعة والأسواق المالية والحلول الرقمية حول العالم.",
+    "about.p2": "تم تدريب NICS Language على مجموعة نصوص Project Gutenberg. وتم تدريب NICS Vision على صور الأرض والفضاء من NASA للتعرف على المعادن والمواد. أما NICS Trading فهو نموذجنا للتداول: يتعلم من بيانات السوق الخاصة بنا ومن النتيجة الفعلية لكل صفقة. ونعمل حالياً على تطوير NICS Property، وهو نموذج للعقارات والتصور المعماري. كما نقدم تصوراً معمارياً احترافياً للشقق والمنازل، بالذكاء الاصطناعي أو بدونه. نعمل لخدمة الجيولوجيا وعلم الآثار والطب والكيمياء واستعمار الفضاء والاستصلاح الكوكبي، إضافة إلى B2B وB2C والضيافة والتصميم.",
+    "about.status.training": "قيد التدريب",
+    "about.status.dev": "قيد التطوير",
     
     // Ecosystem
     "ecosystem.title": "نظامنا البيئي",
@@ -881,8 +889,10 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // About
     "about.title": "关于公司",
-    "about.p1": "AI Byte Consult Ltd. 是一家全球科技公司，从零开始构建独立的人工智能。我们设计专有的 AI 系统——包括 NICS LLM 和 NICS Visual AI——为全球组织的科学研究、工业自动化和下一代数字体验提供动力。",
-    "about.p2": "我们的工作涵盖在 Project Gutenberg 语料库上训练的大型语言模型、在地球与 NASA 太空影像上训练的计算机视觉模型（用于检测矿物和材料），以及面向公寓和住宅的专业建筑可视化——可结合 AI 也可不使用 AI。我们服务于地质学、考古学、医学、化学、太空殖民和地球化研究，以及 B2B、B2C、酒店和设计行业。",
+    "about.p1": "AI Byte Consult Ltd. 是一家国际科技公司，从零开始打造自己的人工智能。我们有三个模型：NICS Language、NICS Vision 和 NICS Trading，服务于全球的科学、工业、金融市场和数字化解决方案。",
+    "about.p2": "NICS Language 在 Project Gutenberg 语料库上训练。NICS Vision 在地球与 NASA 太空影像上训练，用于识别矿物和材料。NICS Trading 是我们的交易模型：它从我们自己的市场数据和每笔交易的真实结果中学习。面向房地产和建筑可视化的 NICS Property 模型正在开发中。我们还提供公寓和住宅的专业建筑可视化，可使用或不使用 AI。我们服务于地质、考古、医学、化学、太空殖民和地球化改造研究，以及 B2B、B2C、酒店和设计行业。",
+    "about.status.training": "训练中",
+    "about.status.dev": "开发中",
     
     // Ecosystem
     "ecosystem.title": "我们的生态系统",
@@ -1089,8 +1099,10 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // About
     "about.title": "O firmie",
-    "about.p1": "AI Byte Consult Ltd. to globalna firma technologiczna budująca niezależną sztuczną inteligencję od podstaw. Projektujemy autorskie systemy AI — w tym NICS LLM i NICS Visual AI — które napędzają badania naukowe, automatyzację przemysłu i nową generację doświadczeń cyfrowych na całym świecie.",
-    "about.p2": "Nasza praca obejmuje duże modele językowe trenowane na korpusie Project Gutenberg, modele wizji komputerowej trenowane na zdjęciach Ziemi i kosmosu z NASA do wykrywania minerałów i materiałów, a także profesjonalną wizualizację architektoniczną mieszkań i domów — z AI lub bez. Obsługujemy geologię, archeologię, medycynę, chemię, kolonizację kosmosu i badania nad terraformowaniem, a także branże B2B, B2C, hotelarską i projektową.",
+    "about.p1": "AI Byte Consult Ltd. to międzynarodowa firma technologiczna, która tworzy własną sztuczną inteligencję od podstaw. Mamy trzy modele: NICS Language, NICS Vision i NICS Trading. Pracują dla nauki, przemysłu, rynków finansowych i rozwiązań cyfrowych na całym świecie.",
+    "about.p2": "NICS Language jest trenowany na korpusie Project Gutenberg. NICS Vision jest trenowany na zdjęciach Ziemi i kosmosu NASA i rozpoznaje minerały oraz materiały. NICS Trading to nasz model tradingowy: uczy się na naszych danych rynkowych i rzeczywistych wynikach każdej transakcji. W przygotowaniu jest NICS Property — model dla nieruchomości i wizualizacji architektonicznej. Tworzymy też profesjonalne wizualizacje architektoniczne mieszkań i domów, z AI lub bez. Pracujemy dla geologii, archeologii, medycyny, chemii, kolonizacji kosmosu i terraformowania, a także dla B2B, B2C, hotelarstwa i designu.",
+    "about.status.training": "W trakcie treningu",
+    "about.status.dev": "W przygotowaniu",
     
     // Ecosystem
     "ecosystem.title": "Nasz ekosystem",
@@ -1297,8 +1309,10 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // About
     "about.title": "Şirket Hakkında",
-    "about.p1": "AI Byte Consult Ltd., bağımsız yapay zekayı sıfırdan inşa eden küresel bir teknoloji şirketidir. NICS LLM ve NICS Visual AI dahil olmak üzere; bilimsel araştırma, endüstriyel otomasyon ve yeni nesil dijital deneyimleri destekleyen özgün AI sistemleri tasarlıyoruz.",
-    "about.p2": "Çalışmalarımız Project Gutenberg derlemi üzerinde eğitilmiş büyük dil modellerini, mineral ve malzeme tespiti için Dünya ve NASA uzay görüntüleri üzerinde eğitilmiş bilgisayarlı görü modellerini ve daire ile evler için profesyonel mimari görselleştirmeyi — AI ile veya AI olmadan — kapsar. Jeoloji, arkeoloji, tıp, kimya, uzay kolonizasyonu ve terraforming araştırmalarının yanı sıra B2B, B2C, ağırlama ve tasarım sektörlerine hizmet veriyoruz.",
+    "about.p1": "AI Byte Consult Ltd., kendi yapay zekasını sıfırdan geliştiren uluslararası bir teknoloji şirketidir. Üç modelimiz var: NICS Language, NICS Vision ve NICS Trading. Bilim, sanayi, finansal piyasalar ve dijital çözümler için dünya çapında çalışırlar.",
+    "about.p2": "NICS Language, Project Gutenberg derlemi üzerinde eğitildi. NICS Vision, Dünya ve NASA uzay görüntüleri üzerinde eğitildi ve mineralleri ve malzemeleri tanır. NICS Trading bizim alım satım modelimizdir: kendi piyasa verilerimizden ve her işlemin gerçek sonucundan öğrenir. Gayrimenkul ve mimari görselleştirme için bir model olan NICS Property geliştirme aşamasındadır. Ayrıca daireler ve evler için yapay zekalı veya yapay zekasız profesyonel mimari görselleştirme yapıyoruz. Jeoloji, arkeoloji, tıp, kimya, uzay kolonizasyonu ve terraforming araştırmalarının yanı sıra B2B, B2C, konaklama ve tasarım için çalışıyoruz.",
+    "about.status.training": "Eğitiliyor",
+    "about.status.dev": "Geliştiriliyor",
     
     // Ecosystem
     "ecosystem.title": "Ekosistemimiz",
@@ -1505,8 +1519,10 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // About
     "about.title": "L'Azienda",
-    "about.p1": "AI Byte Consult Ltd. è un'azienda tecnologica globale che costruisce intelligenza artificiale indipendente da zero. Progettiamo sistemi AI proprietari — tra cui NICS LLM e NICS Visual AI — che alimentano la ricerca scientifica, l'automazione industriale e la prossima generazione di esperienze digitali nel mondo.",
-    "about.p2": "Il nostro lavoro abbraccia grandi modelli linguistici addestrati sul corpus Project Gutenberg, modelli di visione artificiale addestrati su immagini terrestri e spaziali della NASA per rilevare minerali e materiali, e visualizzazione architettonica professionale per appartamenti e case — con o senza AI. Serviamo geologia, archeologia, medicina, chimica, colonizzazione spaziale e ricerca sul terraforming, oltre a settori B2B, B2C, ospitalità e design.",
+    "about.p1": "AI Byte Consult Ltd. è un'azienda tecnologica internazionale che crea la propria intelligenza artificiale da zero. Abbiamo tre modelli: NICS Language, NICS Vision e NICS Trading. Lavorano per la scienza, l'industria, i mercati finanziari e le soluzioni digitali in tutto il mondo.",
+    "about.p2": "NICS Language è addestrato sul corpus Project Gutenberg. NICS Vision è addestrato su immagini terrestri e spaziali della NASA e riconosce minerali e materiali. NICS Trading è il nostro modello di trading: impara dai nostri dati di mercato e dal risultato reale di ogni operazione. NICS Property, un modello per il settore immobiliare e la visualizzazione architettonica, è in sviluppo. Realizziamo anche visualizzazioni architettoniche professionali di appartamenti e case, con o senza IA. Lavoriamo per geologia, archeologia, medicina, chimica, colonizzazione spaziale e terraformazione, oltre che per B2B, B2C, ospitalità e design.",
+    "about.status.training": "In addestramento",
+    "about.status.dev": "In sviluppo",
     
     // Ecosystem
     "ecosystem.title": "Il Nostro Ecosistema",
@@ -1713,8 +1729,10 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // About
     "about.title": "За компанията",
-    "about.p1": "AI Byte Consult Ltd. е глобална технологична компания, която изгражда независим изкуствен интелект от нулата. Проектираме собствени AI системи — включително NICS LLM и NICS Visual AI — които задвижват научни изследвания, индустриална автоматизация и следващото поколение цифрови преживявания за организации по целия свят.",
-    "about.p2": "Работата ни обхваща големи езикови модели, обучени върху корпуса Project Gutenberg, модели за компютърно зрение, обучени върху изображения на Земята и космически изображения от НАСА за откриване на минерали и материали, както и професионална архитектурна визуализация за апартаменти и домове — със или без AI. Обслужваме геология, археология, медицина, химия, космическа колонизация и тераформиране, както и B2B, B2C, хотелиерство и дизайн.",
+    "about.p1": "AI Byte Consult Ltd. е международна технологична компания, която създава собствен изкуствен интелект от нулата. Имаме три модела: NICS Language, NICS Vision и NICS Trading. Те работят за науката, индустрията, финансовите пазари и дигиталните решения по целия свят.",
+    "about.p2": "NICS Language е обучен върху корпуса Project Gutenberg. NICS Vision е обучен върху земни и космически снимки на NASA и разпознава минерали и материали. NICS Trading е нашият търговски модел: учи се от нашите пазарни данни и реалния резултат от всяка сделка. В разработка е NICS Property — модел за недвижими имоти и архитектурна визуализация. Правим и професионална архитектурна визуализация на апартаменти и къщи — с AI и без него. Работим за геологията, археологията, медицината, химията, космическата колонизация и тераформирането, както и за B2B, B2C, хотелиерството и дизайна.",
+    "about.status.training": "Обучава се",
+    "about.status.dev": "В разработка",
     
     // Ecosystem
     "ecosystem.title": "Нашата екосистема",
@@ -1922,8 +1940,10 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // About
     "about.title": "О компании",
-    "about.p1": "AI Byte Consult Ltd. — глобальная технологическая компания, создающая независимый искусственный интеллект с нуля. Мы разрабатываем собственные AI-системы — включая NICS LLM и NICS Visual AI — которые поддерживают научные исследования, промышленную автоматизацию и новое поколение цифровых решений для организаций по всему миру.",
-    "about.p2": "Наша работа охватывает большие языковые модели, обученные на корпусе Project Gutenberg, модели компьютерного зрения, обученные на земных и космических снимках NASA для распознавания минералов и материалов, а также профессиональную архитектурную визуализацию квартир и домов — с применением AI и без него. Мы работаем для геологии, археологии, медицины, химии, космической колонизации и терраформирования, а также для B2B, B2C, индустрии гостеприимства и дизайна.",
+    "about.p1": "AI Byte Consult Ltd. — международная технологическая компания, которая создаёт собственный искусственный интеллект с нуля. У нас три модели: NICS Language, NICS Vision и NICS Trading. Они работают для науки, промышленности, финансовых рынков и цифровых решений по всему миру.",
+    "about.p2": "NICS Language обучена на корпусе Project Gutenberg. NICS Vision обучена на земных и космических снимках NASA и распознаёт минералы и материалы. NICS Trading — наша торговая модель: она учится на наших рыночных данных и реальных итогах каждой сделки. В разработке NICS Property — модель для недвижимости и архитектурной визуализации. Мы также делаем профессиональную архитектурную визуализацию квартир и домов — с применением AI и без него. Мы работаем для геологии, археологии, медицины, химии, космической колонизации и терраформирования, а также для B2B, B2C, индустрии гостеприимства и дизайна.",
+    "about.status.training": "Обучается",
+    "about.status.dev": "В разработке",
     
     // Ecosystem
     "ecosystem.title": "Наша экосистема",
@@ -2127,8 +2147,10 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.quicklinks": "Enlaces Rápidos",
     "footer.terms": "Términos de Servicio",
 
-    "about.p1": "AI Byte Consult Ltd. es una empresa tecnológica global que construye inteligencia artificial independiente desde cero. Diseñamos sistemas de IA propios — incluyendo el LLM NICS y NICS Visual AI — que impulsan la investigación científica, la automatización industrial y la próxima generación de experiencias digitales para organizaciones de todo el mundo.",
-    "about.p2": "Nuestro trabajo abarca grandes modelos de lenguaje entrenados con el corpus de Project Gutenberg, modelos de visión por computadora entrenados con imágenes de la Tierra y de la NASA para detectar minerales y materiales, y visualización arquitectónica profesional para apartamentos y viviendas — con o sin IA. Damos servicio a la geología, la arqueología, la medicina, la química, la investigación sobre colonización espacial y terraformación, además de los sectores B2B, B2C, hostelería y diseño.",
+    "about.p1": "AI Byte Consult Ltd. es una empresa tecnológica internacional que crea su propia inteligencia artificial desde cero. Tenemos tres modelos: NICS Language, NICS Vision y NICS Trading. Trabajan para la ciencia, la industria, los mercados financieros y las soluciones digitales en todo el mundo.",
+    "about.p2": "NICS Language está entrenado con el corpus de Project Gutenberg. NICS Vision está entrenado con imágenes terrestres y espaciales de la NASA y detecta minerales y materiales. NICS Trading es nuestro modelo de trading: aprende de nuestros propios datos de mercado y del resultado real de cada operación. NICS Property, un modelo para bienes raíces y visualización arquitectónica, está en desarrollo. También creamos visualización arquitectónica profesional de apartamentos y casas, con o sin IA. Trabajamos para la geología, la arqueología, la medicina, la química, la colonización espacial y la terraformación, así como para B2B, B2C, hostelería y diseño.",
+    "about.status.training": "En entrenamiento",
+    "about.status.dev": "En desarrollo",
     "about.title": "Sobre la Empresa",
 
     "team.subtitle": "Los visionarios detrás de AI Byte Consult Ltd.",
@@ -2177,8 +2199,10 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.quicklinks": "Links Rápidos",
     "footer.terms": "Termos de Serviço",
 
-    "about.p1": "A AI Byte Consult Ltd. é uma empresa de tecnologia global que constrói inteligência artificial independente desde o zero. Projetamos sistemas de IA proprietários — incluindo o LLM NICS e o NICS Visual AI — que impulsionam a pesquisa científica, a automação industrial e a próxima geração de experiências digitais para organizações em todo o mundo.",
-    "about.p2": "Nosso trabalho abrange grandes modelos de linguagem treinados com o corpus do Project Gutenberg, modelos de visão computacional treinados com imagens da Terra e da NASA para detectar minerais e materiais, e visualização arquitetônica profissional para apartamentos e casas — com ou sem IA. Atendemos geologia, arqueologia, medicina, química, pesquisa de colonização espacial e terraformação, além dos setores B2B, B2C, hotelaria e design.",
+    "about.p1": "A AI Byte Consult Ltd. é uma empresa de tecnologia internacional que cria a sua própria inteligência artificial do zero. Temos três modelos: NICS Language, NICS Vision e NICS Trading. Eles trabalham para a ciência, a indústria, os mercados financeiros e soluções digitais em todo o mundo.",
+    "about.p2": "O NICS Language é treinado com o corpus do Project Gutenberg. O NICS Vision é treinado com imagens terrestres e espaciais da NASA e deteta minerais e materiais. O NICS Trading é o nosso modelo de trading: aprende com os nossos próprios dados de mercado e com o resultado real de cada operação. O NICS Property, um modelo para imobiliário e visualização arquitetónica, está em desenvolvimento. Também criamos visualização arquitetónica profissional de apartamentos e casas, com ou sem IA. Trabalhamos para geologia, arqueologia, medicina, química, colonização espacial e terraformação, bem como para B2B, B2C, hotelaria e design.",
+    "about.status.training": "Em treino",
+    "about.status.dev": "Em desenvolvimento",
     "about.title": "Sobre a Empresa",
 
     "team.subtitle": "Os visionários por trás da AI Byte Consult Ltd.",

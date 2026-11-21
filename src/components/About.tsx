@@ -1,14 +1,16 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Brain, Eye, Building2, Rocket } from "lucide-react";
+import { Brain, Eye, Building2, TrendingUp } from "lucide-react";
 
 const About = () => {
   const { t } = useLanguage();
 
   const highlights = [
-    { icon: Brain, label: "NICS LLM", sub: "Gutenberg-trained" },
-    { icon: Eye, label: "NICS Visual AI", sub: "NASA imagery" },
-    { icon: Building2, label: "Architecture", sub: "AI & classic" },
-    { icon: Rocket, label: "Space Research", sub: "Terraforming" },
+    // Same model names as the lab block at the top of the homepage. NICS Property is
+    // shown here only (in development), not in the top block (Alexander, 2026-11-21).
+    { icon: Brain, label: "NICS Language", sub: "Gutenberg-trained" },
+    { icon: Eye, label: "NICS Vision", sub: "NASA imagery" },
+    { icon: TrendingUp, label: "NICS Trading", sub: t("about.status.training") },
+    { icon: Building2, label: "NICS Property", sub: t("about.status.dev") },
   ];
 
   return (
