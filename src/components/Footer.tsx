@@ -3,7 +3,20 @@ import Link from "@/components/SiteLink";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { AuthorSocialIcons, TRADING_LAB_URL } from "@/components/AuthorSocials";
 import { windowsAppPath } from "@/i18n/windowsApp";
-import { phasedPath } from "@/i18n/phasedSeo";
+import { blogPath, phasedPath } from "@/i18n/phasedSeo";
+
+// Featured articles (content/blog). Articles exist in EN, RU and BG; every
+// other language links to the English version. Slugs must match folders in
+// content/blog, otherwise the link 404s.
+const FEATURED_ARTICLES: { slug: string; label: Record<"en" | "ru" | "bg", string> }[] = [
+  { slug: "trading-signals-vs-automated-trading", label: { en: "Signals vs automated trading", ru: "Торговые сигналы или автоторговля", bg: "Сигнали или автоматична търговия" } },
+  { slug: "forex-risk-management", label: { en: "Forex risk management: 8 rules", ru: "Риск-менеджмент: 8 правил", bg: "Управление на риска: 8 правила" } },
+  { slug: "how-to-calculate-lot-size-forex", label: { en: "How to calculate lot size", ru: "Как рассчитать размер лота", bg: "Как да изчислим размера на лота" } },
+  { slug: "how-to-analyze-gold-market", label: { en: "How to analyze the gold market", ru: "Как анализировать рынок золота", bg: "Как да анализираме пазара на злато" } },
+  { slug: "short-video-editing-cost", label: { en: "How much short video editing costs", ru: "Сколько стоит монтаж коротких видео", bg: "Колко струва монтажът на кратки видеа" } },
+];
+
+const ALL_ARTICLES_LABEL: Record<"en" | "ru" | "bg", string> = { en: "All articles →", ru: "Все статьи →", bg: "Всички статии →" };
 
 const SOFTWARE_LABEL: Record<string, string> = {
   en: "AI Trading Software", ru: "Программа для трейдинга с ИИ", bg: "Софтуер за трейдинг с ИИ", de: "KI-Trading-Software", es: "Software de trading con IA",
@@ -18,15 +31,16 @@ const Footer = () => {
   const { t, language } = useLanguage();
   // Articles are static pages outside the SPA (scripts/blog.mjs), so a plain
   // <a> with a full page load, in the reader's language where one exists.
-  const blogHref = language === "ru" || language === "bg" ? `/${language}/blog/` : "/blog/";
-  const blogLabel = language === "ru" ? "Статьи" : language === "bg" ? "Статии" : "Articles";
+  const blogLang = language === "ru" || language === "bg" ? language : "en";
+  const blogHref = blogPath(language);
+  const blogLabel = blogLang === "ru" ? "Статьи" : blogLang === "bg" ? "Статии" : "Articles";
   const currentYear = new Date().getFullYear();
 
   return (
     <>
       <footer className="relative py-16 border-t border-border/50 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
             <div className="space-y-4">
               <h3 className="text-xl font-semibold text-foreground">AI Byte Consult Ltd.</h3>
               <p className="text-muted-foreground leading-relaxed">{t("footer.description")}</p>
@@ -46,7 +60,6 @@ const Footer = () => {
                 <li><Link to="/#projects" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.projects")}</Link></li>
                 <li><Link to="/#contact" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.contact")}</Link></li>
                 <li><Link to="/nics-multimedia" className="text-muted-foreground hover:text-primary transition-colors">NICS Multimedia</Link></li>
-                <li><a href={blogHref} className="text-muted-foreground hover:text-primary transition-colors">{blogLabel}</a></li>
                 <li><a href="https://alessandro-studio.eu" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">Partners</a></li>
               </ul>
             </div>
@@ -63,6 +76,20 @@ const Footer = () => {
                 <li><a href={TRADING_LAB_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Trading Lab (YouTube)</a></li>
                 <li><a href="https://pridesocial.org" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">NICS Social</a></li>
                 <li><a href="https://aquaterra.aibyteconsult.com/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">AquaTerra World</a></li>
+              </ul>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                <a href={blogHref} className="hover:text-primary transition-colors">{blogLabel}</a>
+              </h3>
+              <ul className="space-y-2">
+                {FEATURED_ARTICLES.map((article) => (
+                  <li key={article.slug}>
+                    <a href={blogPath(language, article.slug)} className="text-muted-foreground hover:text-primary transition-colors">{article.label[blogLang]}</a>
+                  </li>
+                ))}
+                <li><a href={blogHref} className="font-medium text-primary hover:underline underline-offset-4">{ALL_ARTICLES_LABEL[blogLang]}</a></li>
               </ul>
             </div>
 
