@@ -7,8 +7,8 @@
  * - NICS Language: Transformer + own BPE tokenizer, trained on Project Gutenberg
  *   (Alexander, 2026-11-18: earlier work, before the nics-ai-lab repo).
  * - NICS Vision: trained on Earth and NASA space imagery (same source).
- * - NICS Trading: in development, NOT trained yet. Update the status
- *   here only when a real training run exists.
+ * - NICS Trading: in development and training (Alexander, 2026-11-21: nightly
+ *   self-learning on our candles, signals and outcomes runs since 2026-11-19).
  * Names (Alexander 2026-11-18): NICS Language, NICS Vision, NICS Trading.
  * Status words follow implemented / prototype / experiment / plan.
  * Phase 1 languages; others fall back to English.
@@ -50,8 +50,8 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
         name: "NICS Trading",
         status: "In development",
         stage: "building",
-        desc: "Our trading model, built to learn from our own market data: candles from all timeframes, the scanner's signals and how each trade really ended.",
-        facts: ["Data: our candles, signals and outcomes", "Not trained yet", "Goal: run our market analysis on our own model"],
+        desc: "Our trading model, learning from our own market data: candles from all timeframes, the scanner's signals and how each trade really ended.",
+        facts: ["Data: our candles, signals and outcomes", "In training", "Goal: run our market analysis on our own model"],
       },
       {
         id: "text",
@@ -85,8 +85,8 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
         name: "NICS Trading",
         status: "В разработке",
         stage: "building",
-        desc: "Наша торговая модель. Она будет учиться на наших рыночных данных: свечи всех таймфреймов, сигналы сканера и реальные итоги каждой сделки.",
-        facts: ["Данные: наши свечи, сигналы и итоги", "Ещё не обучена", "Цель: анализ рынка на собственной модели"],
+        desc: "Наша торговая модель. Она учится на наших рыночных данных: свечи всех таймфреймов, сигналы сканера и реальные итоги каждой сделки.",
+        facts: ["Данные: наши свечи, сигналы и итоги", "Обучается", "Цель: анализ рынка на собственной модели"],
       },
       {
         id: "text",
@@ -120,8 +120,8 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
         name: "NICS Trading",
         status: "В разработка",
         stage: "building",
-        desc: "Нашият търговски модел. Ще се учи на нашите пазарни данни: свещи от всички таймфрейми, сигналите на скенера и реалния резултат от всяка сделка.",
-        facts: ["Данни: нашите свещи, сигнали и резултати", "Още не е обучен", "Цел: пазарен анализ със собствен модел"],
+        desc: "Нашият търговски модел. Учи се от нашите пазарни данни: свещи от всички таймфрейми, сигналите на скенера и реалния резултат от всяка сделка.",
+        facts: ["Данни: нашите свещи, сигнали и резултати", "Обучава се", "Цел: пазарен анализ със собствен модел"],
       },
       {
         id: "text",
@@ -155,8 +155,8 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
         name: "NICS Trading",
         status: "In Entwicklung",
         stage: "building",
-        desc: "Unser Trading-Modell. Es soll aus unseren eigenen Marktdaten lernen: Kerzen aller Zeitrahmen, die Signale des Scanners und das tatsächliche Ergebnis jedes Trades.",
-        facts: ["Daten: unsere Kerzen, Signale und Ergebnisse", "Noch nicht trainiert", "Ziel: Marktanalyse mit eigenem Modell"],
+        desc: "Unser Trading-Modell. Es lernt aus unseren eigenen Marktdaten: Kerzen aller Zeitrahmen, die Signale des Scanners und das tatsächliche Ergebnis jedes Trades.",
+        facts: ["Daten: unsere Kerzen, Signale und Ergebnisse", "Wird trainiert", "Ziel: Marktanalyse mit eigenem Modell"],
       },
       {
         id: "text",
@@ -190,8 +190,8 @@ const TEXTS: Record<Phase1Lang, LabModelsTexts> = {
         name: "NICS Trading",
         status: "En desarrollo",
         stage: "building",
-        desc: "Nuestro modelo de trading. Aprenderá de nuestros propios datos de mercado: velas de todas las temporalidades, las señales del escáner y el resultado real de cada operación.",
-        facts: ["Datos: nuestras velas, señales y resultados", "Aún sin entrenar", "Objetivo: análisis de mercado con modelo propio"],
+        desc: "Nuestro modelo de trading. Aprende de nuestros propios datos de mercado: velas de todas las temporalidades, las señales del escáner y el resultado real de cada operación.",
+        facts: ["Datos: nuestras velas, señales y resultados", "En entrenamiento", "Objetivo: análisis de mercado con modelo propio"],
       },
       {
         id: "text",
