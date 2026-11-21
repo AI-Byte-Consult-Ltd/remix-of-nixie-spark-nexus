@@ -27,6 +27,8 @@ const copy: Record<Lang, {
   emailLabel: string;
   emailHint: string;
   agree: (v: Variation) => string;
+  immediate: string;
+  termsLink: string;
   pay: (v: Variation) => string;
   secure: string;
   loading: string;
@@ -52,6 +54,8 @@ const copy: Record<Lang, {
     agree: (v) => v === "trial"
       ? "Я согласен: 1,99 € сейчас, затем 19,99 € каждый месяц, пока я не отменю подписку."
       : "Я согласен: 19,99 € каждый месяц, пока я не отменю подписку.",
+    immediate: "Прошу открыть доступ сразу после оплаты. Я знаю, что в течение 14 дней могу отказаться от договора и получу деньги обратно за вычетом дней, которыми уже пользовался.",
+    termsLink: "Условия, право отказа и возврат",
     pay: (v) => (v === "trial" ? "Оплатить 1,99 € картой" : "Оплатить 19,99 € картой"),
     secure: "Оплата на защищённой странице Revolut. Данные карты мы не видим и не храним.",
     loading: "Проверяем ссылку…",
@@ -61,7 +65,7 @@ const copy: Record<Lang, {
     expired: "Эта ссылка устарела. Откройте бот и нажмите «Тарифы» ещё раз, бот пришлёт новую.",
     alreadyActive: "У вас уже есть активная подписка. Управлять ей можно в боте: Меню → Тарифы → Моя подписка.",
     errEmail: "Проверьте e-mail.",
-    errAgree: "Отметьте согласие с условиями.",
+    errAgree: "Отметьте обе галочки.",
     errPayment: "Не получилось открыть оплату. Попробуйте ещё раз через минуту.",
     noToken: "Ссылка на оплату приходит из Telegram-бота. Откройте бот и нажмите «Тарифы».",
     risk: "Торговля связана с риском потерь. Сигналы не являются инвестиционным советом.",
@@ -77,6 +81,8 @@ const copy: Record<Lang, {
     agree: (v) => v === "trial"
       ? "Съгласен съм: 1,99 € сега, след това 19,99 € всеки месец, докато не откажа абонамента."
       : "Съгласен съм: 19,99 € всеки месец, докато не откажа абонамента.",
+    immediate: "Моля достъпът да започне веднага след плащането. Знам, че в рамките на 14 дни мога да се откажа от договора и ще получа парите обратно без дните, които вече съм ползвал.",
+    termsLink: "Условия, право на отказ и възстановяване",
     pay: (v) => (v === "trial" ? "Плати 1,99 € с карта" : "Плати 19,99 € с карта"),
     secure: "Плащането е на защитената страница на Revolut. Не виждаме и не пазим данните на картата.",
     loading: "Проверяваме линка…",
@@ -86,7 +92,7 @@ const copy: Record<Lang, {
     expired: "Този линк е изтекъл. Отворете бота и натиснете „Тарифи“ отново, ботът ще изпрати нов.",
     alreadyActive: "Вече имате активен абонамент. Управлявайте го в бота: Меню → Тарифи → Моят абонамент.",
     errEmail: "Проверете e-mail адреса.",
-    errAgree: "Отбележете съгласието с условията.",
+    errAgree: "Отбележете и двете отметки.",
     errPayment: "Не успяхме да отворим плащането. Опитайте отново след минута.",
     noToken: "Линкът за плащане идва от Telegram бота. Отворете бота и натиснете „Тарифи“.",
     risk: "Търговията е свързана с риск от загуби. Сигналите не са инвестиционен съвет.",
@@ -102,6 +108,8 @@ const copy: Record<Lang, {
     agree: (v) => v === "trial"
       ? "I agree: €1.99 now, then €19.99 every month until I cancel."
       : "I agree: €19.99 every month until I cancel.",
+    immediate: "Please start my access right after payment. I understand that I can withdraw within 14 days and get my money back minus the days I have already used.",
+    termsLink: "Terms, right of withdrawal and refunds",
     pay: (v) => (v === "trial" ? "Pay €1.99 by card" : "Pay €19.99 by card"),
     secure: "You pay on Revolut's secure page. We never see or store your card details.",
     loading: "Checking your link…",
@@ -111,7 +119,7 @@ const copy: Record<Lang, {
     expired: "This link has expired. Open the bot and tap \"Plans\" again to get a new one.",
     alreadyActive: "You already have an active subscription. Manage it in the bot: Menu → Plans → My subscription.",
     errEmail: "Please check the e-mail address.",
-    errAgree: "Please confirm that you agree to the terms.",
+    errAgree: "Please tick both boxes.",
     errPayment: "Could not open the payment. Please try again in a minute.",
     noToken: "The payment link comes from the Telegram bot. Open the bot and tap \"Plans\".",
     risk: "Trading involves risk of loss. Signals are not investment advice.",
@@ -127,6 +135,8 @@ const copy: Record<Lang, {
     agree: (v) => v === "trial"
       ? "Acepto: 1,99 € ahora y después 19,99 € cada mes hasta que cancele."
       : "Acepto: 19,99 € cada mes hasta que cancele.",
+    immediate: "Pido que el acceso empiece justo después del pago. Sé que puedo desistir en 14 días y recuperar el dinero, descontando los días ya utilizados.",
+    termsLink: "Condiciones, derecho de desistimiento y reembolsos",
     pay: (v) => (v === "trial" ? "Pagar 1,99 € con tarjeta" : "Pagar 19,99 € con tarjeta"),
     secure: "Pagas en la página segura de Revolut. Nunca vemos ni guardamos los datos de tu tarjeta.",
     loading: "Comprobando el enlace…",
@@ -136,7 +146,7 @@ const copy: Record<Lang, {
     expired: "Este enlace ha caducado. Abre el bot y toca «Planes» otra vez para recibir uno nuevo.",
     alreadyActive: "Ya tienes una suscripción activa. Gestiónala en el bot: Menú → Planes → Mi suscripción.",
     errEmail: "Revisa el e-mail.",
-    errAgree: "Confirma que aceptas las condiciones.",
+    errAgree: "Marca las dos casillas.",
     errPayment: "No se pudo abrir el pago. Inténtalo de nuevo en un minuto.",
     noToken: "El enlace de pago llega desde el bot de Telegram. Abre el bot y toca «Planes».",
     risk: "El trading implica riesgo de pérdidas. Las señales no son asesoramiento de inversión.",
@@ -173,6 +183,9 @@ const Trial = () => {
   const [variation, setVariation] = useState<Variation>("trial");
   const [email, setEmail] = useState("");
   const [agree, setAgree] = useState(false);
+  // 2026-11-21 (Alexander, legal review): explicit request to start at once,
+  // with the 14-day withdrawal and pro-rata refund (Directive 2011/83 art. 7(3), 14(3)).
+  const [immediate, setImmediate] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const c = copy[lang];
@@ -205,7 +218,7 @@ const Trial = () => {
       setError(c.errEmail);
       return;
     }
-    if (!agree) {
+    if (!agree || !immediate) {
       setError(c.errAgree);
       return;
     }
@@ -285,6 +298,15 @@ const Trial = () => {
                 <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-1 h-4 w-4 shrink-0 accent-primary" />
                 <span>{c.agree(variation)}</span>
               </label>
+
+              <label className="flex items-start gap-3 text-sm leading-relaxed text-foreground">
+                <input type="checkbox" checked={immediate} onChange={(e) => setImmediate(e.target.checked)} className="mt-1 h-4 w-4 shrink-0 accent-primary" />
+                <span>{c.immediate}</span>
+              </label>
+
+              <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground underline underline-offset-2">
+                {c.termsLink}
+              </a>
 
               {error && <p className="text-sm text-destructive">{error}</p>}
 
