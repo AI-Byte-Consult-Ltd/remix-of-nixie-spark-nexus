@@ -49,7 +49,7 @@ export const translations = {
     viewCertificate: "Посмотреть сертификат",
     certificateNotYet: "Сертификат выдаётся после прохождения всех уроков академии.",
     homeIntroTitle: "Что такое NICS Trading Ecosystem",
-    homeIntroDesc: "ИИ-система технического анализа для золота, нефти, форекса и криптовалют: точка входа, стоп-лосс и TP1–TP4 по каждому сигналу, доставка в Telegram и мини-приложение.",
+    homeIntroDesc: "ИИ-система технического анализа для золота, нефти, форекса и криптовалют: точка входа, стоп-лосс и TP1–TP4 в каждом анализе, доставка в Telegram и мини-приложение.",
     homeLiveStatsLabel: "Живая статистика по сделкам",
     subscriptionPlansTitle: "Тарифы",
     subscriptionPlansLead: "Оформление и оплата — через Telegram-бота (Stars или карта).",
@@ -83,7 +83,7 @@ export const translations = {
 
     achievementsTitle: "Мои достижения",
     achievementsLessonsPassed: "Пройдено уроков",
-    achievementsSignalsNote: "Статистика по сигналам скоро появится здесь.",
+    achievementsSignalsNote: "Статистика по сделкам скоро появится здесь.",
 
     coursesTitle: "Все курсы",
     lessonPassed: "Пройден",
@@ -191,7 +191,7 @@ export const translations = {
     viewCertificate: "Виж сертификата",
     certificateNotYet: "Сертификатът се издава след преминаване на всички уроци от академията.",
     homeIntroTitle: "Какво е NICS Trading Ecosystem",
-    homeIntroDesc: "AI система за технически анализ на злато, петрол, форекс и криптовалути: вход, стоп-лос и TP1–TP4 за всеки сигнал, доставка в Telegram и мини-приложението.",
+    homeIntroDesc: "AI система за технически анализ на злато, петрол, форекс и криптовалути: вход, стоп-лос и TP1–TP4 във всеки анализ, доставка в Telegram и мини-приложението.",
     homeLiveStatsLabel: "Жива статистика на сделките",
     subscriptionPlansTitle: "Тарифи",
     subscriptionPlansLead: "Оформяне и плащане — през Telegram бота (Stars или карта).",
@@ -204,7 +204,7 @@ export const translations = {
 
     achievementsTitle: "Моите постижения",
     achievementsLessonsPassed: "Преминати уроци",
-    achievementsSignalsNote: "Статистиката за сигнали скоро ще бъде добавена тук.",
+    achievementsSignalsNote: "Статистиката по сделките скоро ще бъде добавена тук.",
 
     coursesTitle: "Всички курсове",
     lessonPassed: "Преминат",
@@ -333,7 +333,7 @@ export const translations = {
     viewCertificate: "View certificate",
     certificateNotYet: "The certificate is issued once you complete every academy lesson.",
     homeIntroTitle: "What is NICS Trading Ecosystem",
-    homeIntroDesc: "An AI technical-analysis system for gold, oil, forex and crypto: entry, stop-loss and TP1–TP4 on every signal, delivered via Telegram and the Mini App.",
+    homeIntroDesc: "An AI technical-analysis system for gold, oil, forex and crypto: entry, stop-loss and TP1–TP4 in every analysis, delivered via Telegram and the Mini App.",
     homeLiveStatsLabel: "Live trading track record",
     subscriptionPlansTitle: "Plans",
     subscriptionPlansLead: "Sign-up and payment happen in the Telegram bot (Stars or card).",
@@ -367,7 +367,7 @@ export const translations = {
 
     achievementsTitle: "My achievements",
     achievementsLessonsPassed: "Lessons passed",
-    achievementsSignalsNote: "Signal statistics are coming here soon.",
+    achievementsSignalsNote: "Trade statistics are coming here soon.",
 
     coursesTitle: "All courses",
     lessonPassed: "Passed",
@@ -475,7 +475,7 @@ export const translations = {
     viewCertificate: "Ver certificado",
     certificateNotYet: "El certificado se emite al completar todas las lecciones de la academia.",
     homeIntroTitle: "Qué es NICS Trading Ecosystem",
-    homeIntroDesc: "Un sistema de IA de análisis técnico para oro, petróleo, forex y cripto: entrada, stop-loss y TP1–TP4 en cada señal, entregado por Telegram y la Mini App.",
+    homeIntroDesc: "Un sistema de IA de análisis técnico para oro, petróleo, forex y cripto: entrada, stop-loss y TP1–TP4 en cada análisis, entregado por Telegram y la Mini App.",
     homeLiveStatsLabel: "Historial de operaciones en vivo",
     subscriptionPlansTitle: "Planes",
     subscriptionPlansLead: "El alta y el pago se hacen en el bot de Telegram (Stars o tarjeta).",
@@ -488,7 +488,7 @@ export const translations = {
 
     achievementsTitle: "Mis logros",
     achievementsLessonsPassed: "Lecciones aprobadas",
-    achievementsSignalsNote: "Las estadísticas de señales llegarán aquí pronto.",
+    achievementsSignalsNote: "Las estadísticas de operaciones llegarán aquí pronto.",
 
     coursesTitle: "Todos los cursos",
     lessonPassed: "Aprobada",
@@ -617,7 +617,7 @@ export const translations = {
     viewCertificate: "Zertifikat ansehen",
     certificateNotYet: "Das Zertifikat wird ausgestellt, sobald Sie alle Akademie-Lektionen abgeschlossen haben.",
     homeIntroTitle: "Was ist NICS Trading Ecosystem",
-    homeIntroDesc: "Ein KI-System für technische Analyse von Gold, Öl, Forex und Krypto: Einstieg, Stop-Loss und TP1–TP4 bei jedem Signal, geliefert über Telegram und die Mini-App.",
+    homeIntroDesc: "Ein KI-System für technische Analyse von Gold, Öl, Forex und Krypto: Einstieg, Stop-Loss und TP1–TP4 in jeder Analyse, geliefert über Telegram und die Mini-App.",
     homeLiveStatsLabel: "Live-Handelshistorie",
     subscriptionPlansTitle: "Tarife",
     subscriptionPlansLead: "Anmeldung und Zahlung erfolgen im Telegram-Bot (Stars oder Karte).",
@@ -630,7 +630,7 @@ export const translations = {
 
     achievementsTitle: "Meine Erfolge",
     achievementsLessonsPassed: "Abgeschlossene Lektionen",
-    achievementsSignalsNote: "Signalstatistiken erscheinen hier bald.",
+    achievementsSignalsNote: "Handelsstatistiken erscheinen hier bald.",
 
     coursesTitle: "Alle Kurse",
     lessonPassed: "Bestanden",
@@ -738,7 +738,7 @@ export const translations = {
     viewCertificate: "Voir le certificat",
     certificateNotYet: "Le certificat est délivré une fois toutes les leçons de l'académie terminées.",
     homeIntroTitle: "Qu'est-ce que NICS Trading Ecosystem",
-    homeIntroDesc: "Un système d'IA d'analyse technique pour l'or, le pétrole, le forex et les cryptos : entrée, stop-loss et TP1–TP4 pour chaque signal, livré via Telegram et la Mini App.",
+    homeIntroDesc: "Un système d'IA d'analyse technique pour l'or, le pétrole, le forex et les cryptos : entrée, stop-loss et TP1–TP4 dans chaque analyse, livré via Telegram et la Mini App.",
     homeLiveStatsLabel: "Historique de trading en direct",
     subscriptionPlansTitle: "Formules",
     subscriptionPlansLead: "L'inscription et le paiement se font dans le bot Telegram (Stars ou carte).",
@@ -751,7 +751,7 @@ export const translations = {
 
     achievementsTitle: "Mes réussites",
     achievementsLessonsPassed: "Leçons terminées",
-    achievementsSignalsNote: "Les statistiques des signaux arriveront bientôt ici.",
+    achievementsSignalsNote: "Les statistiques des trades arriveront bientôt ici.",
 
     coursesTitle: "Tous les cours",
     lessonPassed: "Terminée",
@@ -859,7 +859,7 @@ export const translations = {
     viewCertificate: "Visualizza certificato",
     certificateNotYet: "Il certificato viene rilasciato al completamento di tutte le lezioni dell'accademia.",
     homeIntroTitle: "Cos'è NICS Trading Ecosystem",
-    homeIntroDesc: "Un sistema di IA di analisi tecnica per oro, petrolio, forex e cripto: entrata, stop-loss e TP1–TP4 per ogni segnale, consegnato via Telegram e la Mini App.",
+    homeIntroDesc: "Un sistema di IA di analisi tecnica per oro, petrolio, forex e cripto: entrata, stop-loss e TP1–TP4 in ogni analisi, consegnato via Telegram e la Mini App.",
     homeLiveStatsLabel: "Storico di trading in tempo reale",
     subscriptionPlansTitle: "Piani",
     subscriptionPlansLead: "Iscrizione e pagamento avvengono nel bot Telegram (Stars o carta).",
@@ -872,7 +872,7 @@ export const translations = {
 
     achievementsTitle: "I miei traguardi",
     achievementsLessonsPassed: "Lezioni completate",
-    achievementsSignalsNote: "Le statistiche sui segnali arriveranno presto qui.",
+    achievementsSignalsNote: "Le statistiche sulle operazioni arriveranno presto qui.",
 
     coursesTitle: "Tutti i corsi",
     lessonPassed: "Completata",
@@ -980,7 +980,7 @@ export const translations = {
     viewCertificate: "Ver certificado",
     certificateNotYet: "O certificado é emitido após a conclusão de todas as aulas da academia.",
     homeIntroTitle: "O que é o NICS Trading Ecosystem",
-    homeIntroDesc: "Um sistema de IA de análise técnica para ouro, petróleo, forex e cripto: entrada, stop-loss e TP1–TP4 em cada sinal, entregue via Telegram e o Mini App.",
+    homeIntroDesc: "Um sistema de IA de análise técnica para ouro, petróleo, forex e cripto: entrada, stop-loss e TP1–TP4 em cada análise, entregue via Telegram e o Mini App.",
     homeLiveStatsLabel: "Histórico de negociações em tempo real",
     subscriptionPlansTitle: "Planos",
     subscriptionPlansLead: "A inscrição e o pagamento são feitos no bot do Telegram (Stars ou cartão).",
@@ -993,7 +993,7 @@ export const translations = {
 
     achievementsTitle: "Minhas conquistas",
     achievementsLessonsPassed: "Aulas concluídas",
-    achievementsSignalsNote: "As estatísticas de sinais chegarão aqui em breve.",
+    achievementsSignalsNote: "As estatísticas de operações chegarão aqui em breve.",
 
     coursesTitle: "Todos os cursos",
     lessonPassed: "Concluída",
@@ -1122,7 +1122,7 @@ export const translations = {
     viewCertificate: "Zobacz certyfikat",
     certificateNotYet: "Certyfikat jest wydawany po ukończeniu wszystkich lekcji akademii.",
     homeIntroTitle: "Czym jest NICS Trading Ecosystem",
-    homeIntroDesc: "System AI do analizy technicznej złota, ropy, forex i kryptowalut: wejście, stop-loss i TP1–TP4 dla każdego sygnału, dostarczane przez Telegram i Mini App.",
+    homeIntroDesc: "System AI do analizy technicznej złota, ropy, forex i kryptowalut: wejście, stop-loss i TP1–TP4 w każdej analizie, dostarczane przez Telegram i Mini App.",
     homeLiveStatsLabel: "Historia transakcji na żywo",
     subscriptionPlansTitle: "Plany",
     subscriptionPlansLead: "Zapis i płatność odbywają się w bocie Telegram (Stars lub karta).",
@@ -1135,7 +1135,7 @@ export const translations = {
 
     achievementsTitle: "Moje osiągnięcia",
     achievementsLessonsPassed: "Ukończone lekcje",
-    achievementsSignalsNote: "Statystyki sygnałów pojawią się tutaj wkrótce.",
+    achievementsSignalsNote: "Statystyki transakcji pojawią się tutaj wkrótce.",
 
     coursesTitle: "Wszystkie kursy",
     lessonPassed: "Ukończona",
@@ -1243,7 +1243,7 @@ export const translations = {
     viewCertificate: "Sertifikayı görüntüle",
     certificateNotYet: "Sertifika, akademideki tüm dersler tamamlandığında verilir.",
     homeIntroTitle: "NICS Trading Ecosystem nedir",
-    homeIntroDesc: "Altın, petrol, forex ve kripto için teknik analiz yapan bir yapay zeka sistemi: her sinyalde giriş, stop-loss ve TP1–TP4, Telegram ve Mini App üzerinden iletilir.",
+    homeIntroDesc: "Altın, petrol, forex ve kripto için teknik analiz yapan bir yapay zeka sistemi: her analizde giriş, stop-loss ve TP1–TP4, Telegram ve Mini App üzerinden iletilir.",
     homeLiveStatsLabel: "Canlı işlem geçmişi",
     subscriptionPlansTitle: "Planlar",
     subscriptionPlansLead: "Kayıt ve ödeme Telegram botunda yapılır (Stars veya kart).",
@@ -1256,7 +1256,7 @@ export const translations = {
 
     achievementsTitle: "Başarılarım",
     achievementsLessonsPassed: "Tamamlanan dersler",
-    achievementsSignalsNote: "Sinyal istatistikleri yakında burada olacak.",
+    achievementsSignalsNote: "İşlem istatistikleri yakında burada olacak.",
 
     coursesTitle: "Tüm kurslar",
     lessonPassed: "Tamamlandı",

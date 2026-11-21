@@ -100,7 +100,7 @@ const CabinetPro = () => {
 
       const signals = result.data?.signals ?? [];
 
-      downloadCsv("nics-signals-history.csv", [
+      downloadCsv("nics-trades-history.csv", [
         [
           t("proStatsColSymbol"),
           t("proStatsColDirection"),

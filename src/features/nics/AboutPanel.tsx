@@ -17,6 +17,47 @@ type ReleaseText = Record<AppLanguage, { title: string; items: string[] }>;
 
 export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseText }> = [
   {
+    version: "2.16.0",
+    date: "21.11.2026",
+    text: {
+      ru: {
+        title: "Технический анализ вместо «сигналов»",
+        items: [
+          "Во всём приложении, в кабинете и в Windows-версии теперь «теханализ», «сетап» и «сделка»: разделы «Теханализ», «Заказать теханализ», «Мои запросы», «ДНК сделки».",
+          "Под каждым экраном остаётся предупреждение: технический анализ носит информационный характер и не является инвестиционным советом.",
+        ],
+      },
+      bg: {
+        title: "Технически анализ вместо „сигнали“",
+        items: [
+          "В цялото приложение, в кабинета и във Windows версията вече пише „анализ“, „сетъп“ и „сделка“: раздели „Анализ“, „Поръчай анализ“, „Моите заявки“, „ДНК на сделката“.",
+          "Под всеки екран остава предупреждението: техническият анализ е информационен и не е инвестиционен съвет.",
+        ],
+      },
+      en: {
+        title: "Technical analysis instead of “signals”",
+        items: [
+          "The app, the web cabinet and the Windows version now say “analysis”, “setup” and “trade”: sections Analysis, Order analysis, My requests, Trade DNA.",
+          "Every screen keeps the notice: technical analysis is for information only and is not investment advice.",
+        ],
+      },
+      es: {
+        title: "Análisis técnico en lugar de «señales»",
+        items: [
+          "La app, el gabinete web y la versión de Windows ahora dicen «análisis» y «operación»: secciones Análisis, Pedir análisis, Mis solicitudes, ADN de la operación.",
+          "Cada pantalla mantiene el aviso: el análisis técnico es informativo y no es asesoramiento de inversión.",
+        ],
+      },
+      pt: {
+        title: "Análise técnica em vez de «sinais»",
+        items: [
+          "O app, o gabinete web e a versão para Windows agora dizem «análise» e «operação»: seções Análises, Pedir análise, Meus pedidos, DNA da operação.",
+          "Cada tela mantém o aviso: a análise técnica é informativa e não é aconselhamento de investimento.",
+        ],
+      },
+    },
+  },
+  {
     version: "2.15.0",
     date: "12.11.2026",
     text: {
@@ -26,7 +67,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Новый раздел «Журнал сделок»: ваши собственные сделки, итог, профит-фактор, просадка и кривая счёта.",
           "Сделки попадают в журнал сами через советник NICS Journal для MT5, из отчёта MT5/MT4 (HTML или xlsx) или вручную.",
           "Автоматический разбор ошибок (без стопа, отыгрыш после убытка, ранний выход и другие) и разбор недели: что получается и что исправить.",
-          "Сигналы NICS, которые вы приняли, с проверкой D1/H4. Журнал личный и не входит в публичную статистику.",
+          "Сделки NICS, которые вы приняли, с проверкой D1/H4. Журнал личный и не входит в публичную статистику.",
         ],
       },
       bg: {
@@ -35,7 +76,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Нов раздел «Дневник на сделките»: вашите сделки, резултат, профит фактор, просадка и крива на сметката.",
           "Сделките влизат сами чрез съветника NICS Journal за MT5, от отчет MT5/MT4 (HTML или xlsx) или ръчно.",
           "Автоматичен анализ на грешките и седмичен преглед: какво се получава и какво да поправите.",
-          "Приетите сигнали на NICS с проверка D1/H4. Дневникът е личен и не влиза в публичната статистика.",
+          "Приетите сделки на NICS с проверка D1/H4. Дневникът е личен и не влиза в публичната статистика.",
         ],
       },
       en: {
@@ -44,7 +85,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "New «Trade journal» section: your own trades, net result, profit factor, drawdown and equity curve.",
           "Trades arrive automatically from the NICS Journal expert for MT5, from an MT5/MT4 report (HTML or xlsx) or by hand.",
           "Automatic mistake audit (no stop, revenge trading, early exit and more) and a weekly review: what works and what to fix.",
-          "The NICS signals you accepted, with a D1/H4 check. The journal is private and is not part of the public statistics.",
+          "The NICS setups you accepted, with a D1/H4 check. The journal is private and is not part of the public statistics.",
         ],
       },
       es: {
@@ -53,7 +94,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Nueva sección «Diario de operaciones»: tus operaciones, resultado, profit factor, drawdown y curva de capital.",
           "Las operaciones llegan solas con el experto NICS Journal para MT5, desde un informe MT5/MT4 (HTML o xlsx) o a mano.",
           "Análisis automático de errores y revisión semanal: lo que funciona y qué corregir.",
-          "Las señales NICS que aceptaste, con comprobación D1/H4. El diario es privado y no entra en las estadísticas públicas.",
+          "Las operaciones NICS que aceptaste, con comprobación D1/H4. El diario es privado y no entra en las estadísticas públicas.",
         ],
       },
       pt: {
@@ -62,7 +103,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
           "Nova seção «Diário de operações»: as suas operações, resultado, profit factor, drawdown e curva de capital.",
           "As operações chegam sozinhas pelo expert NICS Journal para MT5, por um relatório MT5/MT4 (HTML ou xlsx) ou manualmente.",
           "Análise automática de erros e revisão semanal: o que funciona e o que corrigir.",
-          "Os sinais NICS que você aceitou, com verificação D1/H4. O diário é privado e não entra nas estatísticas públicas.",
+          "As operações NICS que você aceitou, com verificação D1/H4. O diário é privado e não entra nas estatísticas públicas.",
         ],
       },
     },
@@ -115,7 +156,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
       ru: {
         title: "Лестница входа NICS Ladder в тарифе Pro",
         items: [
-          "В карточке сильного сигнала — план входа из 5 заявок от края зоны входа к стопу, с общим стопом и долями объёма 13/17/20/23/27%.",
+          "В карточке сильного сетапа — план входа из 5 заявок от края зоны входа к стопу, с общим стопом и долями объёма 13/17/20/23/27%.",
           "После расчёта лота приложение показывает лот для каждого уровня при вашем обычном риске.",
           "Это инструмент снижения риска, а не дополнительной прибыли: на истории результат как у одного входа, максимальная просадка примерно вдвое меньше.",
         ],
@@ -123,7 +164,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
       bg: {
         title: "Стълба за вход NICS Ladder в тарифа Pro",
         items: [
-          "В картата на силен сигнал — план за вход от 5 поръчки от ръба на зоната към стопа, с общ стоп и дялове от обема 13/17/20/23/27%.",
+          "В картата на силен сетъп — план за вход от 5 поръчки от ръба на зоната към стопа, с общ стоп и дялове от обема 13/17/20/23/27%.",
           "След изчисляване на лота приложението показва лот за всяко ниво при обичайния ви риск.",
           "Това е инструмент за по-нисък риск, не за допълнителна печалба: по историята резултатът е като при един вход, а максималният спад е около два пъти по-малък.",
         ],
@@ -131,25 +172,25 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
       en: {
         title: "NICS Ladder entry in the Pro plan",
         items: [
-          "Strong signal cards show a 5-order entry plan from the edge of the entry zone towards the stop, with one common stop and volume shares 13/17/20/23/27%.",
+          "Strong setup cards show a 5-order entry plan from the edge of the entry zone towards the stop, with one common stop and volume shares 13/17/20/23/27%.",
           "After you calculate the lot, the app shows the lot for each level at your normal risk.",
-          "This is a risk-reduction tool, not extra profit: on past signals the result matched a single entry, with about half the maximum drawdown.",
+          "This is a risk-reduction tool, not extra profit: on past setups the result matched a single entry, with about half the maximum drawdown.",
         ],
       },
       es: {
         title: "Entrada escalonada NICS Ladder en el plan Pro",
         items: [
-          "Las tarjetas de señales fuertes muestran un plan de 5 órdenes desde el borde de la zona de entrada hacia el stop, con un stop común y partes de volumen 13/17/20/23/27%.",
+          "Las tarjetas de análisis fuertes muestran un plan de 5 órdenes desde el borde de la zona de entrada hacia el stop, con un stop común y partes de volumen 13/17/20/23/27%.",
           "Después de calcular el lote, la app muestra el lote de cada nivel con su riesgo habitual.",
-          "Es una herramienta para reducir el riesgo, no para ganar más: en señales pasadas el resultado fue igual al de una sola entrada, con cerca de la mitad de la caída máxima.",
+          "Es una herramienta para reducir el riesgo, no para ganar más: en operaciones pasadas el resultado fue igual al de una sola entrada, con cerca de la mitad de la caída máxima.",
         ],
       },
       pt: {
         title: "Entrada escalonada NICS Ladder no plano Pro",
         items: [
-          "Os cartões de sinais fortes mostram um plano de 5 ordens da borda da zona de entrada em direção ao stop, com um stop comum e partes de volume 13/17/20/23/27%.",
+          "Os cartões de análises fortes mostram um plano de 5 ordens da borda da zona de entrada em direção ao stop, com um stop comum e partes de volume 13/17/20/23/27%.",
           "Depois de calcular o lote, a app mostra o lote de cada nível com o seu risco habitual.",
-          "É uma ferramenta para reduzir o risco, não para ganhar mais: em sinais passados o resultado foi igual ao de uma única entrada, com cerca de metade da queda máxima.",
+          "É uma ferramenta para reduzir o risco, não para ganhar mais: em operações passadas o resultado foi igual ao de uma única entrada, com cerca de metade da queda máxima.",
         ],
       },
     },
@@ -161,41 +202,41 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
       ru: {
         title: "ДНК-спираль во всём приложении",
         items: [
-          "«Моё ДНК» в разделе «Результаты»: большая спираль из вашей реальной истории сигналов. Зелёные мостики в плюс, красные в минус, серые в ноль.",
-          "Спираль на главной странице приложения, построенная из ваших последних сигналов.",
-          "«ДНК сигнала» в каждой карточке сигнала: стоп, вход и цели; цель загорается, только когда она реально достигнута.",
+          "«Моё ДНК» в разделе «Результаты»: большая спираль из вашей реальной истории сделок. Зелёные мостики в плюс, красные в минус, серые в ноль.",
+          "Спираль на главной странице приложения, построенная из ваших последних сделок.",
+          "«ДНК сделки» в каждой карточке анализа: стоп, вход и цели; цель загорается, только когда она реально достигнута.",
         ],
       },
       bg: {
         title: "ДНК спирала в цялото приложение",
         items: [
-          "„Моето ДНК“ в „Резултати“: голяма спирала от вашата реална история на сигналите. Зелените мостове са печалба, червените загуба, сивите нула.",
-          "Спирала на началния екран на приложението, изградена от последните ви сигнали.",
-          "„ДНК на сигнала“ във всяка карта на сигнал: стоп, вход и цели; целта светва само когато е реално достигната.",
+          "„Моето ДНК“ в „Резултати“: голяма спирала от вашата реална история на сделките. Зелените мостове са печалба, червените загуба, сивите нула.",
+          "Спирала на началния екран на приложението, изградена от последните ви сделки.",
+          "„ДНК на сделката“ във всяка карта на анализ: стоп, вход и цели; целта светва само когато е реално достигната.",
         ],
       },
       en: {
         title: "DNA spiral across the app",
         items: [
-          "\"My DNA\" in Results: a large spiral built from your real signal history. Green bridges are profit, red are loss, grey are zero.",
-          "A spiral on the app home screen, built from your latest signals.",
-          "\"Signal DNA\" on every signal card: stop, entry and targets; a target lights up only when it was really hit.",
+          "\"My DNA\" in Results: a large spiral built from your real trade history. Green bridges are profit, red are loss, grey are zero.",
+          "A spiral on the app home screen, built from your latest trades.",
+          "\"Trade DNA\" on every analysis card: stop, entry and targets; a target lights up only when it was really hit.",
         ],
       },
       es: {
         title: "Espiral de ADN en toda la app",
         items: [
-          "\"Mi ADN\" en Resultados: una gran espiral hecha con tu historial real de señales. Puentes verdes en ganancia, rojos en pérdida, grises en cero.",
-          "Una espiral en la pantalla principal, hecha con tus últimas señales.",
-          "\"ADN de la señal\" en cada tarjeta: stop, entrada y objetivos; un objetivo se ilumina solo cuando se alcanzó de verdad.",
+          "\"Mi ADN\" en Resultados: una gran espiral hecha con tu historial real de operaciones. Puentes verdes en ganancia, rojos en pérdida, grises en cero.",
+          "Una espiral en la pantalla principal, hecha con tus últimas operaciones.",
+          "\"ADN de la operación\" en cada tarjeta: stop, entrada y objetivos; un objetivo se ilumina solo cuando se alcanzó de verdad.",
         ],
       },
       pt: {
         title: "Espiral de DNA em todo o app",
         items: [
-          "\"Meu DNA\" em Resultados: uma grande espiral feita com o seu histórico real de sinais. Pontes verdes no lucro, vermelhas na perda, cinzas no zero.",
-          "Uma espiral na tela inicial, feita com os seus últimos sinais.",
-          "\"DNA do sinal\" em cada cartão: stop, entrada e alvos; um alvo acende só quando foi realmente atingido.",
+          "\"Meu DNA\" em Resultados: uma grande espiral feita com o seu histórico real de operações. Pontes verdes no lucro, vermelhas na perda, cinzas no zero.",
+          "Uma espiral na tela inicial, feita com as suas últimas operações.",
+          "\"DNA da operação\" em cada cartão: stop, entrada e alvos; um alvo acende só quando foi realmente atingido.",
         ],
       },
     },
@@ -207,45 +248,45 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
       ru: {
         title: "Приложение работает без Telegram",
         items: [
-          "Новый сигнал виден в приложении сразу, как только движок его рассчитал, а не после того, как вы приняли его в Telegram.",
-          "Принять или отклонить сигнал можно прямо в приложении. Решение одно на всех: в Telegram, Mini App и Windows-приложении статус одинаковый.",
-          "Новый раздел «Запрошенные сигналы»: всё, что вы заказали за 30 дней, с текущим статусом и итогом.",
+          "Новый теханализ виден в приложении сразу, как только движок его рассчитал, а не после того, как вы приняли его в Telegram.",
+          "Принять или отклонить сделку можно прямо в приложении. Решение одно на всех: в Telegram, Mini App и Windows-приложении статус одинаковый.",
+          "Новый раздел «Мои запросы»: всё, что вы заказали за 30 дней, с текущим статусом и итогом.",
           "Ссылка на скачивание приложения для Windows теперь есть внутри приложения: в меню и в разделе «О программе».",
         ],
       },
       bg: {
         title: "Приложението работи без Telegram",
         items: [
-          "Новият сигнал се вижда в приложението веднага щом двигателят го изчисли, а не след като го приемете в Telegram.",
-          "Можете да приемете или откажете сигнала направо в приложението. Решението е едно навсякъде: в Telegram, Mini App и Windows приложението статусът е един и същ.",
-          "Нов раздел „Поръчани сигнали“: всичко, което сте поръчали за 30 дни, с текущия статус и резултата.",
+          "Новият анализ се вижда в приложението веднага щом двигателят го изчисли, а не след като го приемете в Telegram.",
+          "Можете да приемете или откажете сделката направо в приложението. Решението е едно навсякъде: в Telegram, Mini App и Windows приложението статусът е един и същ.",
+          "Нов раздел „Моите заявки“: всичко, което сте поръчали за 30 дни, с текущия статус и резултата.",
           "Връзката за изтегляне на приложението за Windows вече е вътре в приложението: в менюто и в „За програмата“.",
         ],
       },
       en: {
         title: "The app works without Telegram",
         items: [
-          "A new signal shows in the app as soon as the engine has calculated it, not only after you accepted it in Telegram.",
-          "Accept or decline a signal right in the app. It is one decision everywhere: Telegram, the Mini App and the Windows app show the same status.",
-          "New \"Requested signals\" page: everything you ordered over 30 days, with its current status and outcome.",
+          "A new setup shows in the app as soon as the engine has calculated it, not only after you accepted it in Telegram.",
+          "Accept or decline a setup right in the app. It is one decision everywhere: Telegram, the Mini App and the Windows app show the same status.",
+          "New \"My requests\" page: everything you ordered over 30 days, with its current status and outcome.",
           "The Windows app download link is now inside the app: in the menu and on the About page.",
         ],
       },
       es: {
         title: "La app funciona sin Telegram",
         items: [
-          "Una señal nueva aparece en la app en cuanto el motor la calcula, no solo después de aceptarla en Telegram.",
-          "Acepta o rechaza una señal directamente en la app. Es una sola decisión: Telegram, la Mini App y la app de Windows muestran el mismo estado.",
-          "Nueva página «Señales solicitadas»: todo lo que pediste en 30 días, con su estado y resultado.",
+          "Un análisis nuevo aparece en la app en cuanto el motor lo calcula, no solo después de aceptarlo en Telegram.",
+          "Acepta o rechaza una operación directamente en la app. Es una sola decisión: Telegram, la Mini App y la app de Windows muestran el mismo estado.",
+          "Nueva página «Mis solicitudes»: todo lo que pediste en 30 días, con su estado y resultado.",
           "El enlace de descarga de la app para Windows ya está dentro de la app: en el menú y en «Acerca de».",
         ],
       },
       pt: {
         title: "O app funciona sem Telegram",
         items: [
-          "Um sinal novo aparece no app assim que o motor o calcula, e não só depois de aceitá-lo no Telegram.",
-          "Aceite ou recuse um sinal diretamente no app. É uma única decisão: Telegram, Mini App e o app para Windows mostram o mesmo estado.",
-          "Nova página «Sinais pedidos»: tudo o que pediu em 30 dias, com o estado atual e o resultado.",
+          "Uma análise nova aparece no app assim que o motor a calcula, e não só depois de aceitá-la no Telegram.",
+          "Aceite ou recuse uma operação diretamente no app. É uma única decisão: Telegram, Mini App e o app para Windows mostram o mesmo estado.",
+          "Nova página «Meus pedidos»: tudo o que pediu em 30 dias, com o estado atual e o resultado.",
           "O link para baixar o app para Windows agora está dentro do app: no menu e em «Sobre».",
         ],
       },
@@ -305,7 +346,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
         title: "Португальский язык и исправления",
         items: [
           "Приложение доступно на испанском и португальском: кнопки ES и PT добавлены в меню языков кабинета и приложения для Windows (раньше там были только EN, RU, BG).",
-          "Дополнительный скан снова присылает сигналы по всем рынкам, а не один.",
+          "Дополнительный скан снова присылает теханализ по всем рынкам, а не по одному.",
           "Карточка доступа показывает названия рынков, а не служебные коды; на странице ключа число компьютеров больше не пропадает.",
         ],
       },
@@ -313,7 +354,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
         title: "Португалски език и поправки",
         items: [
           "Приложението е достъпно на испански и португалски: бутоните ES и PT са добавени в менюто за езици на кабинета и приложението за Windows.",
-          "Допълнителното сканиране отново изпраща сигнали за всички пазари, а не само един.",
+          "Допълнителното сканиране отново изпраща анализ за всички пазари, а не само за един.",
           "Картата за достъп показва имената на пазарите, а не служебни кодове; броят компютри на страницата с ключа вече не изчезва.",
         ],
       },
@@ -321,7 +362,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
         title: "Portuguese and fixes",
         items: [
           "The app is available in Spanish and Portuguese: ES and PT buttons added to the language menu of the cabinet and the Windows app.",
-          "The extra scan again sends signals for every market, not just one.",
+          "The extra scan again sends analysis for every market, not just one.",
           "The access card shows market names instead of internal codes; the computer count on the key page no longer goes missing.",
         ],
       },
@@ -329,7 +370,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
         title: "Portugués y correcciones",
         items: [
           "La app está disponible en español y portugués: botones ES y PT en el menú de idiomas del gabinete y de la app para Windows.",
-          "El escaneo extra vuelve a enviar señales de todos los mercados, no solo de uno.",
+          "El escaneo extra vuelve a enviar análisis de todos los mercados, no solo de uno.",
           "La tarjeta de acceso muestra los nombres de los mercados, no códigos internos; el número de ordenadores en la página de la clave ya no desaparece.",
         ],
       },
@@ -337,7 +378,7 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
         title: "Português e correções",
         items: [
           "O aplicativo está disponível em espanhol e português: botões ES e PT no menu de idiomas do painel e do aplicativo para Windows.",
-          "A varredura extra volta a enviar sinais de todos os mercados, não só de um.",
+          "A varredura extra volta a enviar análises de todos os mercados, não só de um.",
           "O cartão de acesso mostra os nomes dos mercados, não códigos internos; o número de computadores na página da chave não some mais.",
         ],
       },
@@ -496,47 +537,47 @@ export const APP_RELEASES: Array<{ version: string; date: string; text: ReleaseT
     date: "04.11.2026",
     text: {
       ru: {
-        title: "Рабочее место трейдера: заказ сигналов прямо из приложения",
+        title: "Рабочее место трейдера: заказ теханализа прямо из приложения",
         items: [
-          "Новый раздел «Заказать сигнал»: анализ любого инструмента по кнопке и дополнительное сканирование всех рынков вашего доступа, не дожидаясь планового скана.",
+          "Новый раздел «Заказать теханализ»: анализ любого инструмента по кнопке и дополнительное сканирование всех рынков вашего доступа, не дожидаясь планового скана.",
           "Список рынков синхронизирован с движком: 19 инструментов, включая серебро, GER40, US100 и пары EUR/JPY, GBP/JPY, USD/CAD, USD/CHF, USD/CNH. Исправлен индикатор свежести данных.",
-          "Фильтры по рынкам и горизонту сделки в сигналах, фильтры по рынкам и результату в истории.",
+          "Фильтры по рынкам и горизонту сделки в теханализе, фильтры по рынкам и результату в истории.",
           "Страница «О программе» с историей версий.",
         ],
       },
       bg: {
-        title: "Работно място на трейдъра: поръчка на сигнали директно от приложението",
+        title: "Работно място на трейдъра: поръчка на технически анализ директно от приложението",
         items: [
-          "Нов раздел „Поръчай сигнал“: анализ на всеки инструмент с един бутон и допълнително сканиране на всички пазари от вашия достъп без чакане на планираното сканиране.",
+          "Нов раздел „Поръчай анализ“: анализ на всеки инструмент с един бутон и допълнително сканиране на всички пазари от вашия достъп без чакане на планираното сканиране.",
           "Списъкът с пазари е синхронизиран с двигателя: 19 инструмента, включително сребро, GER40, US100 и двойките EUR/JPY, GBP/JPY, USD/CAD, USD/CHF, USD/CNH. Поправен е индикаторът за актуалност на данните.",
-          "Филтри по пазари и хоризонт на сделката в сигналите, филтри по пазари и резултат в историята.",
+          "Филтри по пазари и хоризонт на сделката в анализа, филтри по пазари и резултат в историята.",
           "Страница „За програмата“ с история на версиите.",
         ],
       },
       en: {
-        title: "Trader workspace: order signals right from the app",
+        title: "Trader workspace: order technical analysis right from the app",
         items: [
-          "New Order a signal section: analyse any instrument with one button, or run an extra scan of every market in your access without waiting for the scheduled scan.",
+          "New Order analysis section: analyse any instrument with one button, or run an extra scan of every market in your access without waiting for the scheduled scan.",
           "Market list synced with the engine: 19 instruments, including silver, GER40, US100 and EUR/JPY, GBP/JPY, USD/CAD, USD/CHF, USD/CNH. Data freshness indicator fixed.",
-          "Filters by market and trade horizon in Signals, by market and result in History.",
+          "Filters by market and trade horizon in Analysis, by market and result in History.",
           "About page with the version history.",
         ],
       },
       es: {
-        title: "Puesto del trader: pide señales directamente desde la app",
+        title: "Puesto del trader: pide análisis técnico directamente desde la app",
         items: [
-          "Nueva sección Pedir una señal: analiza cualquier instrumento con un botón o lanza un escaneo adicional de todos los mercados de tu acceso sin esperar al escaneo programado.",
+          "Nueva sección Pedir análisis: analiza cualquier instrumento con un botón o lanza un escaneo adicional de todos los mercados de tu acceso sin esperar al escaneo programado.",
           "Lista de mercados sincronizada con el motor: 19 instrumentos, incluidos plata, GER40, US100 y EUR/JPY, GBP/JPY, USD/CAD, USD/CHF, USD/CNH. Corregido el indicador de datos actualizados.",
-          "Filtros por mercado y horizonte en Señales, por mercado y resultado en Historial.",
+          "Filtros por mercado y horizonte en Análisis, por mercado y resultado en Historial.",
           "Página Acerca de con el historial de versiones.",
         ],
       },
       pt: {
-        title: "Espaço do trader: peça sinais direto do aplicativo",
+        title: "Espaço do trader: peça análise técnica direto do aplicativo",
         items: [
-          "Nova seção Pedir um sinal: analise qualquer instrumento com um botão ou faça uma varredura extra de todos os mercados do seu acesso sem esperar a varredura programada.",
+          "Nova seção Pedir análise: analise qualquer instrumento com um botão ou faça uma varredura extra de todos os mercados do seu acesso sem esperar a varredura programada.",
           "Lista de mercados sincronizada com o motor: 19 instrumentos, incluindo prata, GER40, US100 e EUR/JPY, GBP/JPY, USD/CAD, USD/CHF, USD/CNH. Indicador de atualidade dos dados corrigido.",
-          "Filtros por mercado e horizonte em Sinais, por mercado e resultado em Histórico.",
+          "Filtros por mercado e horizonte em Análises, por mercado e resultado em Histórico.",
           "Página Sobre com o histórico de versões.",
         ],
       },
