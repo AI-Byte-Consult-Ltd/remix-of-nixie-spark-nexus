@@ -17,6 +17,7 @@ import {
   type TradeRow,
 } from "@/lib/trackRecordMetrics";
 import { trackRecordText } from "./trackRecordI18n";
+import { trackRecordMethod } from "./trackRecordMethod";
 import ResultsHeatmap from "./ResultsHeatmap";
 import VolumeHeatmap from "./VolumeHeatmap";
 
@@ -42,6 +43,7 @@ const NEG = "#f43f5e";
 
 const TrackRecordAnalytics = ({ trades: rows, language, variant = "site", defaultPeriod = "all" }: Props) => {
   const text = trackRecordText(language);
+  const method = trackRecordMethod(language);
   const app = variant === "app";
   const [period, setPeriod] = useState<PeriodKey>(defaultPeriod);
   const [market, setMarket] = useState<MarketKey>("all");
@@ -384,6 +386,25 @@ const TrackRecordAnalytics = ({ trades: rows, language, variant = "site", defaul
       <VolumeHeatmap language={language} variant={variant} />
 
       <p className={cn("text-center text-xs", ui.muted)}>{text.footnote}</p>
+
+      {/* 2026-11-21 (Alexander, legal review): methodology and risk notice next to
+          the numbers. Explains only; the figures above are unchanged. */}
+      <details id="track-record-method" className={cn(ui.card, "p-4 text-sm sm:p-5")}>
+        <summary className={cn("cursor-pointer font-medium", ui.strong)}>{method.title}</summary>
+        <ul className={cn("mt-3 list-disc space-y-2 ps-5 text-xs leading-5", ui.muted)}>
+          {method.points.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+        <a
+          href="https://aibyteconsult.com/terms"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block text-xs underline underline-offset-2"
+        >
+          {method.terms}
+        </a>
+      </details>
     </div>
   );
 };
