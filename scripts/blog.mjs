@@ -9,11 +9,11 @@ import path from "node:path";
 // React bundle at all; links back into the site are plain <a href>.
 
 const siteUrl = "https://aibyteconsult.com";
-const contentDir = path.resolve("content/blog");
 
 const urlFor = (route) => `${siteUrl}${route}`;
-const blogBase = (lang) => (lang === "en" ? "/blog/" : `/${lang}/blog/`);
-const articleRoute = (lang, slug) => `${blogBase(lang)}${slug}/`;
+const sectionBase = (segment, lang) => (lang === "en" ? `/${segment}/` : `/${lang}/${segment}/`);
+const blogBase = (lang) => sectionBase("blog", lang);
+const journalBase = (lang) => sectionBase("journal", lang);
 const servicePath = (lang, base) => (lang === "en" ? `${base}/` : `/${lang}${base}/`);
 
 const UI = {
@@ -22,6 +22,7 @@ const UI = {
     blogTitle: "Articles — AI Byte Consult",
     blogDescription: "Practical articles from AI Byte Consult: trading risk, lot size and technical analysis, AI trading software, video editing for Shorts and YouTube, automation for small business.",
     software: "AI trading software",
+    journal: "Dev Journal",
     home: "Home",
     published: "Published",
     readAlso: "Read in",
@@ -33,6 +34,7 @@ const UI = {
     blogTitle: "Статьи — AI Byte Consult",
     blogDescription: "Практические статьи AI Byte Consult: риск и размер лота в трейдинге, технический анализ и программы для трейдинга с ИИ, монтаж видео для Shorts и YouTube, автоматизация для малого бизнеса.",
     software: "Программа для трейдинга",
+    journal: "Журнал",
     home: "Главная",
     published: "Опубликовано",
     readAlso: "Читать на языке",
@@ -44,6 +46,7 @@ const UI = {
     blogTitle: "Статии — AI Byte Consult",
     blogDescription: "Практически статии от AI Byte Consult: риск и размер на лота в трейдинга, технически анализ и софтуер за трейдинг с ИИ, монтаж на видео за Shorts и YouTube, автоматизация за малкия бизнес.",
     software: "Софтуер за трейдинг",
+    journal: "Дневник",
     home: "Начало",
     published: "Публикувано",
     readAlso: "Прочетете на",
@@ -153,8 +156,8 @@ const organization = {
   logo: `${siteUrl}/android-chrome-512x512.png`,
 };
 
-const pageShell = ({ lang, title, description, canonical, alternates, ogType, ogImage, schema, body }) => {
-  const ui = UI[lang];
+const pageShell = ({ ui: sectionUi, lang, title, description, canonical, alternates, ogType, ogImage, schema, body }) => {
+  const ui = sectionUi || UI[lang];
   const alternateTags = alternates
     .map((alt) => `\n<link rel="alternate" hreflang="${alt.lang}" href="${alt.href}" />`)
     .join("");
@@ -190,7 +193,8 @@ const pageShell = ({ lang, title, description, canonical, alternates, ogType, og
 <a href="${servicePath(lang, "/nics-video")}">NICS Video</a>
 <a href="${servicePath(lang, "/trading")}">NICS Trading Ecosystem</a>
 <a href="${servicePath(lang, "/nics-trading-software")}">${ui.software}</a>
-<a href="${blogBase(lang)}">${ui.blog}</a>
+<a href="${blogBase(lang)}">${UI[lang].blog}</a>
+<a href="${journalBase(lang)}">${UI[lang].journal}</a>
 </nav></header>
 <main>
 ${body}
@@ -203,7 +207,14 @@ ${body}
 
 // Returns sitemap entries ({ loc, alternates: [{ lang, href }] }) for every
 // page it writes, so generate-seo-pages.mjs can list them in sitemap.xml.
-export const buildBlog = async (distDir) => {
+// The same engine builds the articles (content/blog -> /blog/) and the
+// development journal (content/journal -> /journal/): `segment` is the URL
+// part and folder name, `texts` overrides the section's name and description.
+export const buildBlog = async (distDir, { segment = "blog", texts = {}, schemaType = "Article" } = {}) => {
+  const contentDir = path.resolve(`content/${segment}`);
+  const uiFor = (lang) => ({ ...UI[lang], ...(texts[lang] || {}) });
+  const blogBase = (lang) => sectionBase(segment, lang);
+  const articleRoute = (lang, slug) => `${blogBase(lang)}${slug}/`;
   const slugs = (await readdir(contentDir, { withFileTypes: true }))
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
@@ -215,14 +226,14 @@ export const buildBlog = async (distDir) => {
     // The company is based in Bulgaria: every article must have a Bulgarian
     // version (Alexander, 2026-10-29). The build fails without it.
     for (const lang of REQUIRED_LANGUAGES) {
-      if (!files.includes(`${lang}.md`)) throw new Error(`content/blog/${slug}: missing required ${lang}.md`);
+      if (!files.includes(`${lang}.md`)) throw new Error(`content/${segment}/${slug}: missing required ${lang}.md`);
     }
     for (const file of files) {
       const lang = file.replace(/\.md$/, "");
-      if (!UI[lang]) throw new Error(`content/blog/${slug}/${file}: no UI strings for language "${lang}"`);
+      if (!UI[lang]) throw new Error(`content/${segment}/${slug}/${file}: no UI strings for language "${lang}"`);
       const { meta, body } = parseArticle(await readFile(path.join(contentDir, slug, file), "utf8"));
       for (const key of ["title", "description", "date", "service", "cta"]) {
-        if (!meta[key]) throw new Error(`content/blog/${slug}/${file}: front matter needs "${key}"`);
+        if (!meta[key]) throw new Error(`content/${segment}/${slug}/${file}: front matter needs "${key}"`);
       }
       articles.push({ slug, lang, meta, body });
     }
@@ -234,7 +245,7 @@ export const buildBlog = async (distDir) => {
 
   for (const article of articles) {
     const { slug, lang, meta, body } = article;
-    const ui = UI[lang];
+    const ui = uiFor(lang);
     const canonical = urlFor(articleRoute(lang, slug));
     const siblings = articles.filter((other) => other.slug === slug);
     const alternates = siblings.map((other) => ({ lang: other.lang, href: urlFor(articleRoute(other.lang, slug)) }));
@@ -255,6 +266,7 @@ export const buildBlog = async (distDir) => {
       : meta.service;
 
     const html = pageShell({
+      ui,
       lang,
       title: `${meta.title} | AI Byte Consult`,
       description: meta.description,
@@ -265,7 +277,7 @@ export const buildBlog = async (distDir) => {
       schema: [
         organization,
         {
-          "@type": "Article",
+          "@type": schemaType,
           headline: meta.title,
           description: meta.description,
           inLanguage: lang,
@@ -304,10 +316,11 @@ ${markdownToHtml(body)}
 
   // One index page per language that has articles, newest first.
   for (const { lang } of indexGroup.filter((alt) => alt.lang !== "x-default")) {
-    const ui = UI[lang];
+    const ui = uiFor(lang);
     const own = articles.filter((a) => a.lang === lang).sort((a, b) => b.meta.date.localeCompare(a.meta.date));
     const canonical = urlFor(blogBase(lang));
     const html = pageShell({
+      ui,
       lang,
       title: ui.blogTitle,
       description: ui.blogDescription,
