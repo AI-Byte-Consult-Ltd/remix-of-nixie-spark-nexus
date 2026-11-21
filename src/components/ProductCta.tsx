@@ -44,8 +44,8 @@ const traderCopy: Record<Lang, {
 }> = {
   en: {
     badge: "Free calculator",
-    title: "Lot size calculator and 7 days of signals for €1.99",
-    text: "Paste the entry and stop from any signal: the calculator shows the lot that risks exactly the share of the deposit you chose. Then try our signals in Telegram: 7 days for €1.99, then €19.99 a month, cancel any time.",
+    title: "Lot size calculator and 7 days of technical analysis for €1.99",
+    text: "Paste the entry and stop from any setup: the calculator shows the lot that risks exactly the share of the deposit you chose. Then try our technical analysis in Telegram: 7 days for €1.99, then €19.99 a month, cancel any time.",
     calc: "Lot size from your risk",
     deposit: "Deposit, USD",
     risk: "Risk per trade, %",
@@ -56,12 +56,12 @@ const traderCopy: Record<Lang, {
     hint: "For a USD account. Contract size can differ by broker, check it in your terminal.",
     bad: "Enter a deposit, a risk and two different prices.",
     button: "Try 7 days for €1.99 in Telegram",
-    note: "Trading involves risk of loss. Signals are not investment advice.",
+    note: "Trading involves risk of loss. Technical analysis is not investment advice.",
   },
   ru: {
     badge: "Бесплатный калькулятор",
-    title: "Калькулятор лота и 7 дней сигналов за 1,99 €",
-    text: "Вставьте вход и стоп из любого сигнала: калькулятор покажет лот, при котором вы рискуете ровно выбранной долей депозита. А сигналы попробуйте в Telegram: 7 дней за 1,99 €, дальше 19,99 € в месяц, отменить можно в любой момент.",
+    title: "Калькулятор лота и 7 дней теханализа за 1,99 €",
+    text: "Вставьте вход и стоп из любого сетапа: калькулятор покажет лот, при котором вы рискуете ровно выбранной долей депозита. А теханализ попробуйте в Telegram: 7 дней за 1,99 €, дальше 19,99 € в месяц, отменить можно в любой момент.",
     calc: "Лот от вашего риска",
     deposit: "Депозит, USD",
     risk: "Риск на сделку, %",
@@ -72,12 +72,12 @@ const traderCopy: Record<Lang, {
     hint: "Для счёта в USD. Размер контракта у брокеров бывает разным, сверьте в терминале.",
     bad: "Введите депозит, риск и две разные цены.",
     button: "7 дней за 1,99 € в Telegram",
-    note: "Торговля связана с риском потерь. Сигналы не являются инвестиционным советом.",
+    note: "Торговля связана с риском потерь. Технический анализ не является инвестиционным советом.",
   },
   bg: {
     badge: "Безплатен калкулатор",
-    title: "Калкулатор на лота и 7 дни сигнали за 1,99 €",
-    text: "Поставете входа и стопа от всеки сигнал: калкулаторът показва лота, при който рискувате точно избрания дял от депозита. А сигналите пробвайте в Telegram: 7 дни за 1,99 €, след това 19,99 € на месец, можете да откажете по всяко време.",
+    title: "Калкулатор на лота и 7 дни технически анализ за 1,99 €",
+    text: "Поставете входа и стопа от всеки сетъп: калкулаторът показва лота, при който рискувате точно избрания дял от депозита. А техническия анализ пробвайте в Telegram: 7 дни за 1,99 €, след това 19,99 € на месец, можете да откажете по всяко време.",
     calc: "Лот според риска ви",
     deposit: "Депозит, USD",
     risk: "Риск на сделка, %",
@@ -88,7 +88,7 @@ const traderCopy: Record<Lang, {
     hint: "За сметка в USD. Размерът на контракта зависи от брокера, проверете в терминала.",
     bad: "Въведете депозит, риск и две различни цени.",
     button: "7 дни за 1,99 € в Telegram",
-    note: "Търговията е свързана с риск от загуби. Сигналите не са инвестиционен съвет.",
+    note: "Търговията е свързана с риск от загуби. Техническият анализ не е инвестиционен съвет.",
   },
 };
 

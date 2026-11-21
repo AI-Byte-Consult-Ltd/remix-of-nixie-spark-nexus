@@ -68,7 +68,7 @@ const copy: Record<Lang, {
     errAgree: "Отметьте обе галочки.",
     errPayment: "Не получилось открыть оплату. Попробуйте ещё раз через минуту.",
     noToken: "Ссылка на оплату приходит из Telegram-бота. Откройте бот и нажмите «Тарифы».",
-    risk: "Торговля связана с риском потерь. Сигналы не являются инвестиционным советом.",
+    risk: "Торговля связана с риском потерь. Технический анализ не является инвестиционным советом.",
   },
   bg: {
     titleTrial: "7 дни NICS Trading Ecosystem за 1,99 €",
@@ -95,7 +95,7 @@ const copy: Record<Lang, {
     errAgree: "Отбележете и двете отметки.",
     errPayment: "Не успяхме да отворим плащането. Опитайте отново след минута.",
     noToken: "Линкът за плащане идва от Telegram бота. Отворете бота и натиснете „Тарифи“.",
-    risk: "Търговията е свързана с риск от загуби. Сигналите не са инвестиционен съвет.",
+    risk: "Търговията е свързана с риск от загуби. Техническият анализ не е инвестиционен съвет.",
   },
   en: {
     titleTrial: "7 days of NICS Trading Ecosystem for €1.99",
@@ -122,7 +122,7 @@ const copy: Record<Lang, {
     errAgree: "Please tick both boxes.",
     errPayment: "Could not open the payment. Please try again in a minute.",
     noToken: "The payment link comes from the Telegram bot. Open the bot and tap \"Plans\".",
-    risk: "Trading involves risk of loss. Signals are not investment advice.",
+    risk: "Trading involves risk of loss. Technical analysis is not investment advice.",
   },
   es: {
     titleTrial: "7 días de NICS Trading Ecosystem por 1,99 €",
@@ -149,7 +149,7 @@ const copy: Record<Lang, {
     errAgree: "Marca las dos casillas.",
     errPayment: "No se pudo abrir el pago. Inténtalo de nuevo en un minuto.",
     noToken: "El enlace de pago llega desde el bot de Telegram. Abre el bot y toca «Planes».",
-    risk: "El trading implica riesgo de pérdidas. Las señales no son asesoramiento de inversión.",
+    risk: "El trading implica riesgo de pérdidas. El análisis técnico no es asesoramiento de inversión.",
   },
 };
 

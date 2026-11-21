@@ -60,7 +60,7 @@ export const plans: Plan[] = [
     features: [
       "Full access to every supported market",
       "Windows app Pro key, web dashboard and Telegram",
-      "Request signals on demand, any time",
+      "Order technical analysis on demand, any time",
       "Entry zone, Stop Loss and TP1–TP4",
       "AI explanation and risk notes",
       "Reminder in the bot and by e-mail a day before the first €19.99 charge",
@@ -84,7 +84,7 @@ export const plans: Plan[] = [
       "Access to every supported market",
       "No request-count limit while access is active",
       "Automated scans around the clock",
-      "On-demand Get Signal requests",
+      "On-demand analysis requests",
       "Entry, SL and TP1–TP4",
       "AI explanation and risk analysis",
       "TP, SL and breakeven lifecycle updates",
