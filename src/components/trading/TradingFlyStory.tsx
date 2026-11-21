@@ -35,16 +35,16 @@ const strings: Record<Language, StoryStrings> = {
       "What caught our attention was the idea itself: a system that learns not only from the rules written for it, but also from the consequences of its own decisions. We brought this principle into NICS Trading Ecosystem.",
     howTitle: "How it works in our system",
     how:
-      "The main analysis stays the same: technical analysis of gold, forex and crypto, an entry, a stop and four targets. Alongside it, a separate parallel stream runs every night: the reward engine. It takes all closed signals, groups them by setup type and calculates the real result in R. Setup types that ended in profit get \"dopamine\", and confidence in them rises slightly. Types that ended in a loss get a \"penalty\", and confidence goes down. The steps are small and capped, so one bad week cannot turn the system upside down. This stream has been running since 17 September 2026.",
+      "The main analysis stays the same: technical analysis of gold, forex and crypto, an entry, a stop and four targets. Alongside it, a separate parallel stream runs every night: the reward engine. It takes all closed trades, groups them by setup type and calculates the real result in R. Setup types that ended in profit get \"dopamine\", and confidence in them rises slightly. Types that ended in a loss get a \"penalty\", and confidence goes down. The steps are small and capped, so one bad week cannot turn the system upside down. This stream has been running since 17 September 2026.",
     honestTitle: "Honest about results",
     honest:
-      "It is too early to say this has made the signals more profitable. All real results, good and bad, are in the Verified Track Record above. If the approach does not pay off, we will say so here.",
+      "It is too early to say this has made the setups more profitable. All real results, good and bad, are in the Verified Track Record above. If the approach does not pay off, we will say so here.",
     nextTitle: "What's next",
     next:
       "We keep developing this stream. The digital fly is already in our GitHub repository, and we are connecting it now. It will first run in a separate sandbox, with no client money, and we will show how it does.",
     source: "Source: bits.media",
     loopTitle: "The reward loop",
-    steps: ["Signal", "Trade closes", "Result in R", "Dopamine or penalty", "New confidence"],
+    steps: ["Setup", "Trade closes", "Result in R", "Dopamine or penalty", "New confidence"],
   },
   ru: {
     badge: "Вдохновлено экспериментом",
@@ -55,16 +55,16 @@ const strings: Record<Language, StoryStrings> = {
       "Нас зацепила сама идея: система учится не только по правилам, которые ей написали, но и на последствиях собственных решений. Этот принцип мы перенесли в NICS Trading Ecosystem.",
     howTitle: "Как это устроено у нас",
     how:
-      "Основной анализ остаётся прежним: технический разбор золота, валют и крипты, точка входа, стоп и четыре цели. Параллельно с ним каждую ночь работает отдельный поток, движок наград. Он берёт все закрытые сигналы, группирует их по типу сетапа и считает реальный итог в R. Типы сделок, которые принесли плюс, получают «дофамин», и уверенность в них немного растёт. Типы, которые дали минус, получают «штраф», и уверенность снижается. Шаги маленькие и ограниченные, чтобы одна неудачная неделя не перевернула систему. Поток работает с 17 сентября 2026 года.",
+      "Основной анализ остаётся прежним: технический разбор золота, валют и крипты, точка входа, стоп и четыре цели. Параллельно с ним каждую ночь работает отдельный поток, движок наград. Он берёт все закрытые сделки, группирует их по типу сетапа и считает реальный итог в R. Типы сделок, которые принесли плюс, получают «дофамин», и уверенность в них немного растёт. Типы, которые дали минус, получают «штраф», и уверенность снижается. Шаги маленькие и ограниченные, чтобы одна неудачная неделя не перевернула систему. Поток работает с 17 сентября 2026 года.",
     honestTitle: "Честно о результатах",
     honest:
-      "Пока рано говорить, что это сделало сигналы прибыльнее. Все реальные итоги, хорошие и плохие, вы видите в блоке Verified Track Record выше. Если подход себя не оправдает, мы так и напишем.",
+      "Пока рано говорить, что это сделало сетапы прибыльнее. Все реальные итоги, хорошие и плохие, вы видите в блоке Verified Track Record выше. Если подход себя не оправдает, мы так и напишем.",
     nextTitle: "Что дальше",
     next:
       "Мы продолжаем развивать этот поток. Цифровая муха уже лежит в нашем репозитории на GitHub, и сейчас мы её подключаем. Сначала она будет работать в отдельной песочнице, без денег клиентов, и мы покажем, как она справляется.",
     source: "Источник: bits.media",
     loopTitle: "Круг наград",
-    steps: ["Сигнал", "Сделка закрыта", "Итог в R", "Дофамин или штраф", "Новая уверенность"],
+    steps: ["Сетап", "Сделка закрыта", "Итог в R", "Дофамин или штраф", "Новая уверенность"],
   },
   de: {
     badge: "Inspiriert von einem Experiment",
@@ -75,16 +75,16 @@ const strings: Record<Language, StoryStrings> = {
       "Uns hat die Idee selbst gepackt: Ein System lernt nicht nur aus den Regeln, die man ihm geschrieben hat, sondern auch aus den Folgen seiner eigenen Entscheidungen. Dieses Prinzip haben wir in NICS Trading Ecosystem übernommen.",
     howTitle: "So funktioniert es bei uns",
     how:
-      "Die Hauptanalyse bleibt gleich: technische Analyse von Gold, Forex und Krypto, ein Einstieg, ein Stop und vier Ziele. Parallel dazu läuft jede Nacht ein eigener Strang: die Belohnungs-Engine. Sie nimmt alle geschlossenen Signale, gruppiert sie nach Setup-Typ und berechnet das reale Ergebnis in R. Setup-Typen mit Gewinn bekommen „Dopamin“, das Vertrauen in sie steigt leicht. Typen mit Verlust bekommen eine „Strafe“, das Vertrauen sinkt. Die Schritte sind klein und begrenzt, damit eine schlechte Woche das System nicht umwirft. Dieser Strang läuft seit dem 17. September 2026.",
+      "Die Hauptanalyse bleibt gleich: technische Analyse von Gold, Forex und Krypto, ein Einstieg, ein Stop und vier Ziele. Parallel dazu läuft jede Nacht ein eigener Strang: die Belohnungs-Engine. Sie nimmt alle geschlossenen Trades, gruppiert sie nach Setup-Typ und berechnet das reale Ergebnis in R. Setup-Typen mit Gewinn bekommen „Dopamin“, das Vertrauen in sie steigt leicht. Typen mit Verlust bekommen eine „Strafe“, das Vertrauen sinkt. Die Schritte sind klein und begrenzt, damit eine schlechte Woche das System nicht umwirft. Dieser Strang läuft seit dem 17. September 2026.",
     honestTitle: "Ehrlich zu den Ergebnissen",
     honest:
-      "Es ist zu früh zu sagen, dass die Signale dadurch profitabler geworden sind. Alle realen Ergebnisse, gute wie schlechte, sehen Sie oben im Verified Track Record. Wenn sich der Ansatz nicht bewährt, schreiben wir das hier.",
+      "Es ist zu früh zu sagen, dass die Setups dadurch profitabler geworden sind. Alle realen Ergebnisse, gute wie schlechte, sehen Sie oben im Verified Track Record. Wenn sich der Ansatz nicht bewährt, schreiben wir das hier.",
     nextTitle: "Wie es weitergeht",
     next:
       "Wir entwickeln diesen Strang weiter. Die digitale Fliege liegt bereits in unserem GitHub-Repository, und wir binden sie gerade an. Zuerst läuft sie in einer separaten Sandbox, ohne Kundengeld, und wir zeigen, wie sie sich schlägt.",
     source: "Quelle: bits.media",
     loopTitle: "Der Belohnungskreislauf",
-    steps: ["Signal", "Trade geschlossen", "Ergebnis in R", "Dopamin oder Strafe", "Neues Vertrauen"],
+    steps: ["Setup", "Trade geschlossen", "Ergebnis in R", "Dopamin oder Strafe", "Neues Vertrauen"],
   },
   fr: {
     badge: "Inspiré d'une expérience",
@@ -95,16 +95,16 @@ const strings: Record<Language, StoryStrings> = {
       "C'est l'idée elle-même qui nous a accrochés : un système qui apprend non seulement des règles qu'on lui a écrites, mais aussi des conséquences de ses propres décisions. Nous avons intégré ce principe dans NICS Trading Ecosystem.",
     howTitle: "Comment cela fonctionne chez nous",
     how:
-      "L'analyse principale reste la même : analyse technique de l'or, du forex et des cryptos, une entrée, un stop et quatre objectifs. En parallèle, un flux séparé tourne chaque nuit : le moteur de récompense. Il prend tous les signaux clôturés, les regroupe par type de configuration et calcule le résultat réel en R. Les types qui ont fini en gain reçoivent de la « dopamine », et la confiance en eux augmente légèrement. Ceux qui ont fini en perte reçoivent une « pénalité », et la confiance baisse. Les pas sont petits et plafonnés, pour qu'une mauvaise semaine ne bouleverse pas le système. Ce flux fonctionne depuis le 17 septembre 2026.",
+      "L'analyse principale reste la même : analyse technique de l'or, du forex et des cryptos, une entrée, un stop et quatre objectifs. En parallèle, un flux séparé tourne chaque nuit : le moteur de récompense. Il prend tous les trades clôturés, les regroupe par type de configuration et calcule le résultat réel en R. Les types qui ont fini en gain reçoivent de la « dopamine », et la confiance en eux augmente légèrement. Ceux qui ont fini en perte reçoivent une « pénalité », et la confiance baisse. Les pas sont petits et plafonnés, pour qu'une mauvaise semaine ne bouleverse pas le système. Ce flux fonctionne depuis le 17 septembre 2026.",
     honestTitle: "En toute honnêteté sur les résultats",
     honest:
-      "Il est trop tôt pour dire que cela a rendu les signaux plus rentables. Tous les résultats réels, bons et mauvais, figurent dans le Verified Track Record ci-dessus. Si l'approche ne fait pas ses preuves, nous l'écrirons ici.",
+      "Il est trop tôt pour dire que cela a rendu les setups plus rentables. Tous les résultats réels, bons et mauvais, figurent dans le Verified Track Record ci-dessus. Si l'approche ne fait pas ses preuves, nous l'écrirons ici.",
     nextTitle: "La suite",
     next:
       "Nous continuons à développer ce flux. La mouche numérique est déjà dans notre dépôt GitHub, et nous sommes en train de la connecter. Elle tournera d'abord dans un bac à sable séparé, sans l'argent des clients, et nous montrerons comment elle s'en sort.",
     source: "Source : bits.media",
     loopTitle: "La boucle de récompense",
-    steps: ["Signal", "Trade clôturé", "Résultat en R", "Dopamine ou pénalité", "Nouvelle confiance"],
+    steps: ["Setup", "Trade clôturé", "Résultat en R", "Dopamine ou pénalité", "Nouvelle confiance"],
   },
   ar: {
     badge: "مستوحى من تجربة",
@@ -115,16 +115,16 @@ const strings: Record<Language, StoryStrings> = {
       "ما جذبنا هو الفكرة نفسها: نظام لا يتعلم من القواعد المكتوبة له فقط، بل أيضًا من عواقب قراراته. وقد نقلنا هذا المبدأ إلى NICS Trading Ecosystem.",
     howTitle: "كيف يعمل ذلك لدينا",
     how:
-      "يبقى التحليل الأساسي كما هو: تحليل فني للذهب والفوركس والعملات المشفرة، ونقطة دخول، ووقف خسارة، وأربعة أهداف. وبالتوازي معه يعمل كل ليلة مسار مستقل هو محرك المكافآت. يأخذ كل الإشارات المغلقة، ويجمعها حسب نوع الإعداد، ويحسب النتيجة الفعلية بوحدة R. أنواع الصفقات التي انتهت بربح تحصل على «الدوبامين» وترتفع الثقة بها قليلًا. والأنواع التي انتهت بخسارة تحصل على «غرامة» وتنخفض الثقة بها. الخطوات صغيرة ومحدودة حتى لا يقلب أسبوع سيئ واحد النظام رأسًا على عقب. يعمل هذا المسار منذ 17 سبتمبر 2026.",
+      "يبقى التحليل الأساسي كما هو: تحليل فني للذهب والفوركس والعملات المشفرة، ونقطة دخول، ووقف خسارة، وأربعة أهداف. وبالتوازي معه يعمل كل ليلة مسار مستقل هو محرك المكافآت. يأخذ كل الصفقات المغلقة، ويجمعها حسب نوع الإعداد، ويحسب النتيجة الفعلية بوحدة R. أنواع الصفقات التي انتهت بربح تحصل على «الدوبامين» وترتفع الثقة بها قليلًا. والأنواع التي انتهت بخسارة تحصل على «غرامة» وتنخفض الثقة بها. الخطوات صغيرة ومحدودة حتى لا يقلب أسبوع سيئ واحد النظام رأسًا على عقب. يعمل هذا المسار منذ 17 سبتمبر 2026.",
     honestTitle: "بصراحة عن النتائج",
     honest:
-      "من المبكر القول إن هذا جعل الإشارات أكثر ربحية. كل النتائج الحقيقية، الجيدة والسيئة، تجدونها في قسم Verified Track Record أعلاه. وإذا لم يثبت النهج جدواه فسنكتب ذلك هنا.",
+      "من المبكر القول إن هذا جعل الصفقات أكثر ربحية. كل النتائج الحقيقية، الجيدة والسيئة، تجدونها في قسم Verified Track Record أعلاه. وإذا لم يثبت النهج جدواه فسنكتب ذلك هنا.",
     nextTitle: "ما التالي",
     next:
       "نواصل تطوير هذا المسار. الذبابة الرقمية موجودة بالفعل في مستودعنا على GitHub، ونعمل الآن على ربطها. ستعمل أولًا في بيئة تجريبية منفصلة، من دون أموال العملاء، وسنعرض كيف تؤدي.",
     source: "المصدر: bits.media",
     loopTitle: "دورة المكافأة",
-    steps: ["إشارة", "إغلاق الصفقة", "النتيجة بوحدة R", "دوبامين أو غرامة", "ثقة جديدة"],
+    steps: ["صفقة", "إغلاق الصفقة", "النتيجة بوحدة R", "دوبامين أو غرامة", "ثقة جديدة"],
   },
   zh: {
     badge: "灵感来自一项实验",
@@ -135,16 +135,16 @@ const strings: Record<Language, StoryStrings> = {
       "吸引我们的是这个想法本身：系统不仅按照写给它的规则学习，也从自己决策的后果中学习。我们把这一原则带进了 NICS Trading Ecosystem。",
     howTitle: "在我们的系统中如何运作",
     how:
-      "主分析保持不变：对黄金、外汇和加密货币进行技术分析，给出入场点、止损和四个目标。与此同时，每晚有一个独立的并行流程在运行：奖励引擎。它收集所有已平仓信号，按形态类型分组，并计算以 R 计的真实结果。盈利的形态类型获得“多巴胺”，对它们的信心略微提高；亏损的类型受到“惩罚”，信心下降。每一步都很小且有上限，一周的糟糕表现不会让系统大起大落。该流程自 2026 年 9 月 17 日起运行。",
+      "主分析保持不变：对黄金、外汇和加密货币进行技术分析，给出入场点、止损和四个目标。与此同时，每晚有一个独立的并行流程在运行：奖励引擎。它收集所有已平仓交易，按形态类型分组，并计算以 R 计的真实结果。盈利的形态类型获得“多巴胺”，对它们的信心略微提高；亏损的类型受到“惩罚”，信心下降。每一步都很小且有上限，一周的糟糕表现不会让系统大起大落。该流程自 2026 年 9 月 17 日起运行。",
     honestTitle: "如实说明结果",
     honest:
-      "现在说这让信号更赚钱还为时过早。所有真实结果，无论好坏，都在上方的 Verified Track Record 中。如果这种方法不奏效，我们会在这里直说。",
+      "现在说这让分析更赚钱还为时过早。所有真实结果，无论好坏，都在上方的 Verified Track Record 中。如果这种方法不奏效，我们会在这里直说。",
     nextTitle: "下一步",
     next:
       "我们会继续完善这个流程。数字果蝇已经在我们的 GitHub 仓库中，我们正在接入它。它将先在独立的沙盒中运行，不使用客户资金，我们会公开它的表现。",
     source: "来源：bits.media",
     loopTitle: "奖励循环",
-    steps: ["信号", "交易平仓", "以 R 计的结果", "多巴胺或惩罚", "新的信心"],
+    steps: ["分析", "交易平仓", "以 R 计的结果", "多巴胺或惩罚", "新的信心"],
   },
   pl: {
     badge: "Zainspirowane eksperymentem",
@@ -155,16 +155,16 @@ const strings: Record<Language, StoryStrings> = {
       "Zaciekawił nas sam pomysł: system uczy się nie tylko z reguł, które mu napisano, ale też z konsekwencji własnych decyzji. Tę zasadę przenieśliśmy do NICS Trading Ecosystem.",
     howTitle: "Jak to działa u nas",
     how:
-      "Główna analiza pozostaje bez zmian: analiza techniczna złota, forexu i kryptowalut, wejście, stop i cztery cele. Równolegle co noc działa osobny strumień: silnik nagród. Bierze wszystkie zamknięte sygnały, grupuje je według typu setupu i liczy realny wynik w R. Typy, które skończyły się zyskiem, dostają „dopaminę” i zaufanie do nich lekko rośnie. Typy ze stratą dostają „karę” i zaufanie spada. Kroki są małe i ograniczone, żeby jeden zły tydzień nie wywrócił systemu. Ten strumień działa od 17 września 2026 roku.",
+      "Główna analiza pozostaje bez zmian: analiza techniczna złota, forexu i kryptowalut, wejście, stop i cztery cele. Równolegle co noc działa osobny strumień: silnik nagród. Bierze wszystkie zamknięte transakcje, grupuje je według typu setupu i liczy realny wynik w R. Typy, które skończyły się zyskiem, dostają „dopaminę” i zaufanie do nich lekko rośnie. Typy ze stratą dostają „karę” i zaufanie spada. Kroki są małe i ograniczone, żeby jeden zły tydzień nie wywrócił systemu. Ten strumień działa od 17 września 2026 roku.",
     honestTitle: "Uczciwie o wynikach",
     honest:
-      "Za wcześnie, by mówić, że sygnały stały się przez to bardziej zyskowne. Wszystkie realne wyniki, dobre i złe, widać w sekcji Verified Track Record powyżej. Jeśli podejście się nie sprawdzi, napiszemy o tym tutaj.",
+      "Za wcześnie, by mówić, że setupy stały się przez to bardziej zyskowne. Wszystkie realne wyniki, dobre i złe, widać w sekcji Verified Track Record powyżej. Jeśli podejście się nie sprawdzi, napiszemy o tym tutaj.",
     nextTitle: "Co dalej",
     next:
       "Rozwijamy ten strumień dalej. Cyfrowa mucha jest już w naszym repozytorium na GitHubie i właśnie ją podłączamy. Najpierw będzie działać w osobnej piaskownicy, bez pieniędzy klientów, a my pokażemy, jak sobie radzi.",
     source: "Źródło: bits.media",
     loopTitle: "Pętla nagród",
-    steps: ["Sygnał", "Transakcja zamknięta", "Wynik w R", "Dopamina lub kara", "Nowe zaufanie"],
+    steps: ["Setup", "Transakcja zamknięta", "Wynik w R", "Dopamina lub kara", "Nowe zaufanie"],
   },
   tr: {
     badge: "Bir deneyden ilham alındı",
@@ -175,16 +175,16 @@ const strings: Record<Language, StoryStrings> = {
       "Bizi asıl fikrin kendisi etkiledi: Sistem yalnızca kendisi için yazılan kurallardan değil, kendi kararlarının sonuçlarından da öğreniyor. Bu ilkeyi NICS Trading Ecosystem'a taşıdık.",
     howTitle: "Bizim sistemimizde nasıl çalışıyor",
     how:
-      "Ana analiz aynı kalıyor: altın, forex ve kripto için teknik analiz, giriş noktası, stop ve dört hedef. Bununla paralel olarak her gece ayrı bir akış çalışıyor: ödül motoru. Kapanan tüm sinyalleri alıyor, kurulum türüne göre grupluyor ve R cinsinden gerçek sonucu hesaplıyor. Kârla biten kurulum türleri \"dopamin\" alıyor ve onlara duyulan güven biraz artıyor. Zararla biten türler \"ceza\" alıyor ve güven düşüyor. Adımlar küçük ve sınırlı, böylece tek bir kötü hafta sistemi altüst edemez. Bu akış 17 Eylül 2026'dan beri çalışıyor.",
+      "Ana analiz aynı kalıyor: altın, forex ve kripto için teknik analiz, giriş noktası, stop ve dört hedef. Bununla paralel olarak her gece ayrı bir akış çalışıyor: ödül motoru. Kapanan tüm işlemleri alıyor, kurulum türüne göre grupluyor ve R cinsinden gerçek sonucu hesaplıyor. Kârla biten kurulum türleri \"dopamin\" alıyor ve onlara duyulan güven biraz artıyor. Zararla biten türler \"ceza\" alıyor ve güven düşüyor. Adımlar küçük ve sınırlı, böylece tek bir kötü hafta sistemi altüst edemez. Bu akış 17 Eylül 2026'dan beri çalışıyor.",
     honestTitle: "Sonuçlar hakkında dürüstçe",
     honest:
-      "Bunun sinyalleri daha kârlı hale getirdiğini söylemek için henüz erken. İyi ve kötü tüm gerçek sonuçlar yukarıdaki Verified Track Record bölümünde. Yaklaşım işe yaramazsa bunu burada yazacağız.",
+      "Bunun kurulumları daha kârlı hale getirdiğini söylemek için henüz erken. İyi ve kötü tüm gerçek sonuçlar yukarıdaki Verified Track Record bölümünde. Yaklaşım işe yaramazsa bunu burada yazacağız.",
     nextTitle: "Sırada ne var",
     next:
       "Bu akışı geliştirmeye devam ediyoruz. Dijital sinek zaten GitHub depomuzda ve şu anda onu bağlıyoruz. Önce müşteri parası olmadan ayrı bir test ortamında çalışacak ve nasıl performans gösterdiğini paylaşacağız.",
     source: "Kaynak: bits.media",
     loopTitle: "Ödül döngüsü",
-    steps: ["Sinyal", "İşlem kapanır", "R cinsinden sonuç", "Dopamin veya ceza", "Yeni güven"],
+    steps: ["Kurulum", "İşlem kapanır", "R cinsinden sonuç", "Dopamin veya ceza", "Yeni güven"],
   },
   it: {
     badge: "Ispirato da un esperimento",
@@ -195,16 +195,16 @@ const strings: Record<Language, StoryStrings> = {
       "Ci ha colpito l'idea in sé: un sistema che impara non solo dalle regole scritte per lui, ma anche dalle conseguenze delle proprie decisioni. Abbiamo portato questo principio in NICS Trading Ecosystem.",
     howTitle: "Come funziona nel nostro sistema",
     how:
-      "L'analisi principale resta la stessa: analisi tecnica di oro, forex e cripto, un ingresso, uno stop e quattro target. In parallelo, ogni notte gira un flusso separato: il motore delle ricompense. Prende tutti i segnali chiusi, li raggruppa per tipo di setup e calcola il risultato reale in R. I tipi chiusi in profitto ricevono \"dopamina\" e la fiducia in loro sale leggermente. Quelli chiusi in perdita ricevono una \"penalità\" e la fiducia scende. I passi sono piccoli e limitati, così una settimana negativa non può stravolgere il sistema. Questo flusso è attivo dal 17 settembre 2026.",
+      "L'analisi principale resta la stessa: analisi tecnica di oro, forex e cripto, un ingresso, uno stop e quattro target. In parallelo, ogni notte gira un flusso separato: il motore delle ricompense. Prende tutte le operazioni chiuse, le raggruppa per tipo di setup e calcola il risultato reale in R. I tipi chiusi in profitto ricevono \"dopamina\" e la fiducia in loro sale leggermente. Quelli chiusi in perdita ricevono una \"penalità\" e la fiducia scende. I passi sono piccoli e limitati, così una settimana negativa non può stravolgere il sistema. Questo flusso è attivo dal 17 settembre 2026.",
     honestTitle: "Onestamente sui risultati",
     honest:
-      "È presto per dire che questo abbia reso i segnali più redditizi. Tutti i risultati reali, buoni e cattivi, sono nel Verified Track Record qui sopra. Se l'approccio non funzionerà, lo scriveremo qui.",
+      "È presto per dire che questo abbia reso i setup più redditizi. Tutti i risultati reali, buoni e cattivi, sono nel Verified Track Record qui sopra. Se l'approccio non funzionerà, lo scriveremo qui.",
     nextTitle: "I prossimi passi",
     next:
       "Continuiamo a sviluppare questo flusso. La mosca digitale è già nel nostro repository su GitHub e la stiamo collegando. Prima girerà in una sandbox separata, senza soldi dei clienti, e mostreremo come se la cava.",
     source: "Fonte: bits.media",
     loopTitle: "Il ciclo delle ricompense",
-    steps: ["Segnale", "Trade chiuso", "Risultato in R", "Dopamina o penalità", "Nuova fiducia"],
+    steps: ["Setup", "Trade chiuso", "Risultato in R", "Dopamina o penalità", "Nuova fiducia"],
   },
   bg: {
     badge: "Вдъхновено от експеримент",
@@ -215,16 +215,16 @@ const strings: Record<Language, StoryStrings> = {
       "Привлече ни самата идея: системата се учи не само по правилата, които са ѝ написани, но и от последствията на собствените си решения. Този принцип пренесохме в NICS Trading Ecosystem.",
     howTitle: "Как работи това при нас",
     how:
-      "Основният анализ остава същият: технически анализ на злато, валути и крипто, точка на вход, стоп и четири цели. Паралелно с него всяка нощ работи отделен поток, двигателят на наградите. Той взема всички затворени сигнали, групира ги по тип сетъп и изчислява реалния резултат в R. Типовете сделки, завършили на печалба, получават „допамин“ и увереността в тях леко расте. Типовете със загуба получават „глоба“ и увереността намалява. Стъпките са малки и ограничени, за да не може една лоша седмица да преобърне системата. Потокът работи от 17 септември 2026 г.",
+      "Основният анализ остава същият: технически анализ на злато, валути и крипто, точка на вход, стоп и четири цели. Паралелно с него всяка нощ работи отделен поток, двигателят на наградите. Той взема всички затворени сделки, групира ги по тип сетъп и изчислява реалния резултат в R. Типовете сделки, завършили на печалба, получават „допамин“ и увереността в тях леко расте. Типовете със загуба получават „глоба“ и увереността намалява. Стъпките са малки и ограничени, за да не може една лоша седмица да преобърне системата. Потокът работи от 17 септември 2026 г.",
     honestTitle: "Честно за резултатите",
     honest:
-      "Още е рано да се каже, че това е направило сигналите по-печеливши. Всички реални резултати, добри и лоши, виждате в блока Verified Track Record по-горе. Ако подходът не се оправдае, ще го напишем тук.",
+      "Още е рано да се каже, че това е направило сетъпите по-печеливши. Всички реални резултати, добри и лоши, виждате в блока Verified Track Record по-горе. Ако подходът не се оправдае, ще го напишем тук.",
     nextTitle: "Какво следва",
     next:
       "Продължаваме да развиваме този поток. Цифровата муха вече е в нашето хранилище в GitHub и в момента я свързваме. Първо ще работи в отделна пясъчна среда, без пари на клиенти, и ще покажем как се справя.",
     source: "Източник: bits.media",
     loopTitle: "Кръгът на наградите",
-    steps: ["Сигнал", "Сделката е затворена", "Резултат в R", "Допамин или глоба", "Нова увереност"],
+    steps: ["Сетъп", "Сделката е затворена", "Резултат в R", "Допамин или глоба", "Нова увереност"],
   },
   es: {
     badge: "Inspirado en un experimento",
@@ -235,16 +235,16 @@ const strings: Record<Language, StoryStrings> = {
       "Nos atrapó la idea en sí: un sistema que aprende no solo de las reglas que se le escribieron, sino también de las consecuencias de sus propias decisiones. Llevamos este principio a NICS Trading Ecosystem.",
     howTitle: "Cómo funciona en nuestro sistema",
     how:
-      "El análisis principal sigue igual: análisis técnico de oro, forex y cripto, una entrada, un stop y cuatro objetivos. En paralelo, cada noche funciona un flujo aparte: el motor de recompensas. Toma todas las señales cerradas, las agrupa por tipo de setup y calcula el resultado real en R. Los tipos que terminaron en ganancia reciben \"dopamina\" y la confianza en ellos sube un poco. Los que terminaron en pérdida reciben una \"penalización\" y la confianza baja. Los pasos son pequeños y limitados, para que una mala semana no ponga el sistema patas arriba. Este flujo funciona desde el 17 de septiembre de 2026.",
+      "El análisis principal sigue igual: análisis técnico de oro, forex y cripto, una entrada, un stop y cuatro objetivos. En paralelo, cada noche funciona un flujo aparte: el motor de recompensas. Toma todas las operaciones cerradas, las agrupa por tipo de setup y calcula el resultado real en R. Los tipos que terminaron en ganancia reciben \"dopamina\" y la confianza en ellos sube un poco. Los que terminaron en pérdida reciben una \"penalización\" y la confianza baja. Los pasos son pequeños y limitados, para que una mala semana no ponga el sistema patas arriba. Este flujo funciona desde el 17 de septiembre de 2026.",
     honestTitle: "Con honestidad sobre los resultados",
     honest:
-      "Es pronto para decir que esto haya hecho más rentables las señales. Todos los resultados reales, buenos y malos, están en el Verified Track Record de arriba. Si el enfoque no funciona, lo diremos aquí.",
+      "Es pronto para decir que esto haya hecho más rentables los setups. Todos los resultados reales, buenos y malos, están en el Verified Track Record de arriba. Si el enfoque no funciona, lo diremos aquí.",
     nextTitle: "Qué sigue",
     next:
       "Seguimos desarrollando este flujo. La mosca digital ya está en nuestro repositorio de GitHub y la estamos conectando. Primero funcionará en un entorno de pruebas aparte, sin dinero de clientes, y mostraremos cómo le va.",
     source: "Fuente: bits.media",
     loopTitle: "El ciclo de recompensas",
-    steps: ["Señal", "Operación cerrada", "Resultado en R", "Dopamina o penalización", "Nueva confianza"],
+    steps: ["Setup", "Operación cerrada", "Resultado en R", "Dopamina o penalización", "Nueva confianza"],
   },
   pt: {
     badge: "Inspirado num experimento",
@@ -255,16 +255,16 @@ const strings: Record<Language, StoryStrings> = {
       "O que nos chamou a atenção foi a própria ideia: um sistema que aprende não só com as regras escritas para ele, mas também com as consequências das próprias decisões. Levamos esse princípio para o NICS Trading Ecosystem.",
     howTitle: "Como funciona no nosso sistema",
     how:
-      "A análise principal continua a mesma: análise técnica de ouro, forex e cripto, uma entrada, um stop e quatro alvos. Em paralelo, todas as noites roda um fluxo separado: o motor de recompensas. Ele pega todos os sinais fechados, agrupa por tipo de setup e calcula o resultado real em R. Os tipos que terminaram com lucro recebem \"dopamina\", e a confiança neles sobe um pouco. Os que terminaram com prejuízo recebem uma \"penalidade\", e a confiança cai. Os passos são pequenos e limitados, para que uma semana ruim não vire o sistema de cabeça para baixo. Esse fluxo roda desde 17 de setembro de 2026.",
+      "A análise principal continua a mesma: análise técnica de ouro, forex e cripto, uma entrada, um stop e quatro alvos. Em paralelo, todas as noites roda um fluxo separado: o motor de recompensas. Ele pega todas as operações fechadas, agrupa por tipo de setup e calcula o resultado real em R. Os tipos que terminaram com lucro recebem \"dopamina\", e a confiança neles sobe um pouco. Os que terminaram com prejuízo recebem uma \"penalidade\", e a confiança cai. Os passos são pequenos e limitados, para que uma semana ruim não vire o sistema de cabeça para baixo. Esse fluxo roda desde 17 de setembro de 2026.",
     honestTitle: "Com honestidade sobre os resultados",
     honest:
-      "Ainda é cedo para dizer que isso tornou os sinais mais lucrativos. Todos os resultados reais, bons e ruins, estão no Verified Track Record acima. Se a abordagem não der certo, vamos dizer isso aqui.",
+      "Ainda é cedo para dizer que isso tornou os setups mais lucrativos. Todos os resultados reais, bons e ruins, estão no Verified Track Record acima. Se a abordagem não der certo, vamos dizer isso aqui.",
     nextTitle: "Próximos passos",
     next:
       "Seguimos desenvolvendo esse fluxo. A mosca digital já está no nosso repositório no GitHub e estamos conectando-a agora. Primeiro ela vai rodar num ambiente de testes separado, sem dinheiro de clientes, e vamos mostrar como ela se sai.",
     source: "Fonte: bits.media",
     loopTitle: "O ciclo de recompensas",
-    steps: ["Sinal", "Operação fechada", "Resultado em R", "Dopamina ou penalidade", "Nova confiança"],
+    steps: ["Setup", "Operação fechada", "Resultado em R", "Dopamina ou penalidade", "Nova confiança"],
   },
 };
 

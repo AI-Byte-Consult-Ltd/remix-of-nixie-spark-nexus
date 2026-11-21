@@ -19,18 +19,18 @@ interface DemoStrings {
 }
 
 const strings: Record<Language, DemoStrings> = {
-  en: { example: "EXAMPLE", buy: "BUY MARKET", sell: "SELL MARKET", reached: (tp) => `${tp} reached`, inProgress: "Tracking the signal…" },
-  ru: { example: "ПРИМЕР", buy: "ПОКУПКА ПО РЫНКУ", sell: "ПРОДАЖА ПО РЫНКУ", reached: (tp) => `${tp} достигнут`, inProgress: "Сигнал отслеживается…" },
-  de: { example: "BEISPIEL", buy: "MARKTKAUF", sell: "MARKTVERKAUF", reached: (tp) => `${tp} erreicht`, inProgress: "Signal wird verfolgt…" },
-  fr: { example: "EXEMPLE", buy: "ACHAT AU MARCHÉ", sell: "VENTE AU MARCHÉ", reached: (tp) => `${tp} atteint`, inProgress: "Suivi du signal…" },
-  ar: { example: "مثال", buy: "شراء بسعر السوق", sell: "بيع بسعر السوق", reached: (tp) => `تم بلوغ ${tp}`, inProgress: "جارٍ تتبّع الإشارة…" },
-  zh: { example: "示例", buy: "市价买入", sell: "市价卖出", reached: (tp) => `已到达 ${tp}`, inProgress: "正在跟踪信号…" },
-  pl: { example: "PRZYKŁAD", buy: "KUPNO PO RYNKU", sell: "SPRZEDAŻ PO RYNKU", reached: (tp) => `${tp} osiągnięty`, inProgress: "Śledzenie sygnału…" },
-  tr: { example: "ÖRNEK", buy: "PİYASA ALIŞ", sell: "PİYASA SATIŞ", reached: (tp) => `${tp} ulaşıldı`, inProgress: "Sinyal izleniyor…" },
-  it: { example: "ESEMPIO", buy: "ACQUISTO A MERCATO", sell: "VENDITA A MERCATO", reached: (tp) => `${tp} raggiunto`, inProgress: "Monitoraggio del segnale…" },
-  bg: { example: "ПРИМЕР", buy: "ПОКУПКА ПО ПАЗАРНА ЦЕНА", sell: "ПРОДАЖБА ПО ПАЗАРНА ЦЕНА", reached: (tp) => `${tp} е достигнат`, inProgress: "Сигналът се проследява…" },
-  es: { example: "EJEMPLO", buy: "COMPRA A MERCADO", sell: "VENTA A MERCADO", reached: (tp) => `${tp} alcanzado`, inProgress: "Siguiendo la señal…" },
-  pt: { example: "EXEMPLO", buy: "COMPRA A MERCADO", sell: "VENDA A MERCADO", reached: (tp) => `${tp} atingido`, inProgress: "Acompanhando o sinal…" },
+  en: { example: "EXAMPLE", buy: "BUY MARKET", sell: "SELL MARKET", reached: (tp) => `${tp} reached`, inProgress: "Tracking the trade…" },
+  ru: { example: "ПРИМЕР", buy: "ПОКУПКА ПО РЫНКУ", sell: "ПРОДАЖА ПО РЫНКУ", reached: (tp) => `${tp} достигнут`, inProgress: "Сделка отслеживается…" },
+  de: { example: "BEISPIEL", buy: "MARKTKAUF", sell: "MARKTVERKAUF", reached: (tp) => `${tp} erreicht`, inProgress: "Trade wird verfolgt…" },
+  fr: { example: "EXEMPLE", buy: "ACHAT AU MARCHÉ", sell: "VENTE AU MARCHÉ", reached: (tp) => `${tp} atteint`, inProgress: "Suivi du trade…" },
+  ar: { example: "مثال", buy: "شراء بسعر السوق", sell: "بيع بسعر السوق", reached: (tp) => `تم بلوغ ${tp}`, inProgress: "جارٍ تتبّع الصفقة…" },
+  zh: { example: "示例", buy: "市价买入", sell: "市价卖出", reached: (tp) => `已到达 ${tp}`, inProgress: "正在跟踪分析…" },
+  pl: { example: "PRZYKŁAD", buy: "KUPNO PO RYNKU", sell: "SPRZEDAŻ PO RYNKU", reached: (tp) => `${tp} osiągnięty`, inProgress: "Śledzenie transakcji…" },
+  tr: { example: "ÖRNEK", buy: "PİYASA ALIŞ", sell: "PİYASA SATIŞ", reached: (tp) => `${tp} ulaşıldı`, inProgress: "İşlem izleniyor…" },
+  it: { example: "ESEMPIO", buy: "ACQUISTO A MERCATO", sell: "VENDITA A MERCATO", reached: (tp) => `${tp} raggiunto`, inProgress: "Monitoraggio dell'operazione…" },
+  bg: { example: "ПРИМЕР", buy: "ПОКУПКА ПО ПАЗАРНА ЦЕНА", sell: "ПРОДАЖБА ПО ПАЗАРНА ЦЕНА", reached: (tp) => `${tp} е достигнат`, inProgress: "Сделката се проследява…" },
+  es: { example: "EJEMPLO", buy: "COMPRA A MERCADO", sell: "VENTA A MERCADO", reached: (tp) => `${tp} alcanzado`, inProgress: "Siguiendo la operación…" },
+  pt: { example: "EXEMPLO", buy: "COMPRA A MERCADO", sell: "VENDA A MERCADO", reached: (tp) => `${tp} atingido`, inProgress: "Acompanhando a operação…" },
 };
 
 // Chart coordinates (viewBox 300 x 122, smaller y = higher price) for a LONG

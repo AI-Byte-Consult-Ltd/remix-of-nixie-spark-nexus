@@ -150,7 +150,7 @@ const tradingSchema = (canonical, lang) => withSiteNodes([
         "Gold, silver, forex, Brent oil, crypto, US stocks and indices",
         "Windows app and web dashboard",
         "On-demand analysis of one instrument",
-        "Signal lifecycle tracking: TP, SL and breakeven",
+        "Trade lifecycle tracking: TP, SL and breakeven",
         "Public verified track record",
         "Telegram bot and Mini App delivery",
       ],
@@ -208,7 +208,7 @@ const localizedPages = ALL_LANGUAGES.flatMap((lang) => {
       // No dedicated og-trading.jpg exists yet — reuse the real home banner
       // rather than point social previews at a missing file.
       ogImage: `${siteUrl}/og-trading.jpg`,
-      ogImageAlt: "NICS Trading Ecosystem — structured trading signals in Telegram",
+      ogImageAlt: "NICS Trading Ecosystem — structured technical analysis in Telegram",
       alternates: tradingAlternates,
       schema: tradingSchema(urlFor(tradingRoute), lang),
     },
@@ -600,9 +600,9 @@ for (const page of pages) {
 // files so the profile link answers 200, but noindex and kept out of the
 // sitemap, they only repeat the product pages.
 const goPages = [
-  { lang: "en", title: "Alexander Lunin — AI Byte Consult", description: "Free first steps: video editing from your clips, gold and forex signals in Telegram, a business automation review." },
-  { lang: "ru", title: "Александр Лунин — AI Byte Consult", description: "Бесплатный первый шаг: монтаж ролика из ваших клипов, сигналы по золоту и форексу в Telegram, разбор автоматизации бизнеса." },
-  { lang: "bg", title: "Александър Лунин — AI Byte Consult", description: "Безплатна първа стъпка: видео от вашите клипове, сигнали за злато и форекс в Telegram, преглед на автоматизацията на бизнеса." },
+  { lang: "en", title: "Alexander Lunin — AI Byte Consult", description: "Free first steps: video editing from your clips, gold and forex technical analysis in Telegram, a business automation review." },
+  { lang: "ru", title: "Александр Лунин — AI Byte Consult", description: "Бесплатный первый шаг: монтаж ролика из ваших клипов, теханализ по золоту и форексу в Telegram, разбор автоматизации бизнеса." },
+  { lang: "bg", title: "Александър Лунин — AI Byte Consult", description: "Безплатна първа стъпка: видео от вашите клипове, технически анализ за злато и форекс в Telegram, преглед на автоматизацията на бизнеса." },
 ];
 for (const go of goPages) {
   const route = localePath(go.lang, "/go");

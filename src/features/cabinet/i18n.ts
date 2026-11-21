@@ -1364,7 +1364,7 @@ export const translations = {
     viewCertificate: "查看证书",
     certificateNotYet: "完成学院所有课程后即可获得证书。",
     homeIntroTitle: "什么是 NICS Trading Ecosystem",
-    homeIntroDesc: "面向黄金、原油、外汇和加密货币的AI技术分析系统：每个信号都包含入场点、止损和TP1–TP4，通过Telegram和小程序推送。",
+    homeIntroDesc: "面向黄金、原油、外汇和加密货币的AI技术分析系统：每笔交易都包含入场点、止损和TP1–TP4，通过Telegram和小程序推送。",
     homeLiveStatsLabel: "实时交易记录",
     subscriptionPlansTitle: "套餐",
     subscriptionPlansLead: "开通与付款均在Telegram机器人中完成（Stars或银行卡）。",
@@ -1377,7 +1377,7 @@ export const translations = {
 
     achievementsTitle: "我的成就",
     achievementsLessonsPassed: "已完成课程",
-    achievementsSignalsNote: "信号统计数据即将在此显示。",
+    achievementsSignalsNote: "分析统计数据即将在此显示。",
 
     coursesTitle: "全部课程",
     lessonPassed: "已完成",
@@ -1485,7 +1485,7 @@ export const translations = {
     viewCertificate: "عرض الشهادة",
     certificateNotYet: "تُمنح الشهادة بعد إكمال جميع دروس الأكاديمية.",
     homeIntroTitle: "ما هو NICS Trading Ecosystem",
-    homeIntroDesc: "نظام ذكاء اصطناعي للتحليل الفني للذهب والنفط والفوركس والعملات الرقمية: نقطة دخول ووقف خسارة وأهداف TP1–TP4 لكل إشارة، يُرسَل عبر Telegram والتطبيق المصغر.",
+    homeIntroDesc: "نظام ذكاء اصطناعي للتحليل الفني للذهب والنفط والفوركس والعملات الرقمية: نقطة دخول ووقف خسارة وأهداف TP1–TP4 لكل صفقة، يُرسَل عبر Telegram والتطبيق المصغر.",
     homeLiveStatsLabel: "سجل التداول المباشر",
     subscriptionPlansTitle: "الباقات",
     subscriptionPlansLead: "الاشتراك والدفع يتمان داخل بوت Telegram (Stars أو بطاقة).",
@@ -1498,7 +1498,7 @@ export const translations = {
 
     achievementsTitle: "إنجازاتي",
     achievementsLessonsPassed: "الدروس المكتملة",
-    achievementsSignalsNote: "ستظهر إحصاءات الإشارات هنا قريبًا.",
+    achievementsSignalsNote: "ستظهر إحصاءات الصفقات هنا قريبًا.",
 
     coursesTitle: "جميع الدورات",
     lessonPassed: "مكتمل",
