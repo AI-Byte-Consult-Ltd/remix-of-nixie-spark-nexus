@@ -158,7 +158,9 @@ const TradingSignalDemo = ({
   const pair = `${scenario.pair ?? marketNames[scenario.market]} · ${scenario.long ? "LONG" : "SHORT"}`;
 
   return (
-    <div className="rounded-[2rem] border border-border/70 bg-card/90 p-3 shadow-2xl shadow-primary/10 backdrop-blur dark:bg-card/30 dark:backdrop-blur-[2px]">
+    // data-volatile: animated demo, its text cycles on a timer; the build's
+    // sitemap date check (scripts/sitemap-lastmod.mjs) ignores it.
+    <div data-volatile className="rounded-[2rem] border border-border/70 bg-card/90 p-3 shadow-2xl shadow-primary/10 backdrop-blur dark:bg-card/30 dark:backdrop-blur-[2px]">
       <div className="rounded-[1.5rem] border border-border/60 bg-background p-6 dark:bg-background/40">
         <div className="flex items-start justify-between gap-4">
           <div>
