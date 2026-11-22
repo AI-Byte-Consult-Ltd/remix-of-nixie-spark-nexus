@@ -140,7 +140,7 @@ const modules: EcosystemModule[] = [
     who: "The LGBTQ+ community and allies looking for a dedicated social space.",
     connection:
       "The community layer of the ecosystem — built independently of the AI/trading products.",
-    cta: { label: "Visit PRIDE Social", href: "https://pridesocial.org", external: true },
+    cta: { label: "Visit PRIDE Social", href: "https://pride.aibyteconsult.com/", external: true },
   },
   {
     id: "forge",
@@ -166,7 +166,7 @@ const modules: EcosystemModule[] = [
     who: "Shelters, NGOs, veterinary networks and wildlife protection groups.",
     connection:
       "Applies NICS coordination and vision models to animal welfare and rescue logistics.",
-    cta: { label: "Support the Foundation", href: "https://yorkie.aibyteconsult.com/", external: true },
+    cta: { label: "Support the Foundation", href: "#contact" },
   },
 ];
 

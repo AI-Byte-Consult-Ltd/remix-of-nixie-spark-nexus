@@ -62,7 +62,7 @@ const About = () => {
       icon: Share2,
       title: "NICS Social",
       description: ax.social,
-      link: "https://pridesocial.org",
+      link: "https://pride.aibyteconsult.com/",
     },
     {
       icon: Globe2,

@@ -17,7 +17,7 @@ export const workCases: Record<string, WorkCasesLang> = {
       propertypartner: { industry: "Недвижимость · Застройщики и агентства", solution: "Всё под ключ: профессиональный сайт недвижимости, AI-чат на сайте и AI-агент в WhatsApp/Telegram, который круглосуточно отвечает на вопросы, присылает объекты и записывает на просмотры.", metric: "Ответ клиентам круглосуточно", cta: "Собрать пакет для недвижимости" },
       aquaterra: { industry: "Метавселенная · Обучение ИИ", solution: "AquaTerra World — наш проект метавселенной: 640 000 виртуальных участков как интерактивная среда для обучения ИИ. Разработка сейчас на паузе, пока мы заняты другими приоритетами.", metric: "Виртуальных участков в плане", cta: "Посмотреть AquaTerra World" },
       multimedia: { industry: "Музыка · Мультимедиа", solution: "Текст, музыкальная идея и визуальная концепция полностью от Александра Точилова, техническое производство NICS Multimedia. Трек «Just Live» уже вышел на Spotify и других стриминговых платформах.", metric: "Трек вышел, следующие в работе", cta: "Читать историю" },
-      pride: { industry: "Соцсеть · Сообщество", solution: "Мы сами спроектировали и построили PRIDE Social Network (pridesocial.org) от начала до конца: профили, ленты и функции сообщества, без готовых шаблонов.", metric: "Собственная разработка, уже работает", cta: "Открыть PRIDE Social" },
+      pride: { industry: "Соцсеть · Сообщество", solution: "Мы сами спроектировали и построили PRIDE Social Network (pride.aibyteconsult.com) от начала до конца: профили, ленты и функции сообщества, без готовых шаблонов.", metric: "Собственная разработка, уже работает", cta: "Открыть PRIDE Social" },
     },
   },
   bg: {
@@ -29,7 +29,7 @@ export const workCases: Record<string, WorkCasesLang> = {
       propertypartner: { industry: "Недвижими имоти · Строители и агенции", solution: "Пълен пакет: професионален сайт за имоти, AI чат на сайта и AI агент в WhatsApp/Telegram, който денонощно отговаря на въпроси, изпраща оферти и записва огледи.", metric: "Отговор на клиентите денонощно", cta: "Съберете пакет за имоти" },
       aquaterra: { industry: "Метавселена · Обучение по ИИ", solution: "AquaTerra World е нашият проект за метавселена: 640 000 виртуални парцела като интерактивна среда за обучение по ИИ. Разработката е на пауза, докато сме заети с други приоритети.", metric: "Планирани виртуални парцела", cta: "Вижте AquaTerra World" },
       multimedia: { industry: "Музика · Мултимедия", solution: "Текст, музикална идея и визуална концепция изцяло от Александър Точилов, техническа продукция NICS Multimedia. Песента „Just Live“ вече е в Spotify и други стрийминг платформи.", metric: "Издадена песен, следващите са в работа", cta: "Прочетете историята" },
-      pride: { industry: "Социална мрежа · Общност", solution: "Проектирахме и изградихме сами PRIDE Social Network (pridesocial.org) от начало до край: профили, потоци и функции за общността, без готови шаблони.", metric: "Собствена разработка, вече работи", cta: "Към PRIDE Social" },
+      pride: { industry: "Социална мрежа · Общност", solution: "Проектирахме и изградихме сами PRIDE Social Network (pride.aibyteconsult.com) от начало до край: профили, потоци и функции за общността, без готови шаблони.", metric: "Собствена разработка, вече работи", cta: "Към PRIDE Social" },
     },
   },
   de: {
@@ -41,7 +41,7 @@ export const workCases: Record<string, WorkCasesLang> = {
       propertypartner: { industry: "Immobilien · Bauträger und Agenturen", solution: "Das Komplettpaket: eine professionelle Immobilien-Website, ein KI-Chat auf der Seite und ein KI-Agent in WhatsApp/Telegram, der rund um die Uhr Fragen beantwortet, Angebote schickt und Besichtigungen bucht.", metric: "Antwort an Interessenten rund um die Uhr", cta: "Mein Immobilienpaket anfragen" },
       aquaterra: { industry: "Metaverse · KI-Bildung", solution: "AquaTerra World ist unser Metaverse-Projekt: 640.000 virtuelle Parzellen als interaktive Lernumgebung für KI. Die Entwicklung ruht derzeit, weil wir uns auf andere Prioritäten konzentrieren.", metric: "Geplante virtuelle Parzellen", cta: "AquaTerra World ansehen" },
       multimedia: { industry: "Musik · Multimedia", solution: "Text, musikalische Idee und visuelles Konzept vollständig von Aleksandr Tochilov, technische Produktion von NICS Multimedia. Auf Spotify und anderen Streaming-Plattformen veröffentlicht, angefangen mit dem Track „Just Live“.", metric: "Track veröffentlicht, weitere in Arbeit", cta: "Die Geschichte lesen" },
-      pride: { industry: "Soziales Netzwerk · Community", solution: "Wir haben PRIDE Social Network (pridesocial.org) komplett selbst entworfen und gebaut: Profile, Feeds und Community-Funktionen, ohne Vorlage.", metric: "Eigenentwicklung, bereits online", cta: "Zu PRIDE Social" },
+      pride: { industry: "Soziales Netzwerk · Community", solution: "Wir haben PRIDE Social Network (pride.aibyteconsult.com) komplett selbst entworfen und gebaut: Profile, Feeds und Community-Funktionen, ohne Vorlage.", metric: "Eigenentwicklung, bereits online", cta: "Zu PRIDE Social" },
     },
   },
   es: {
@@ -53,7 +53,7 @@ export const workCases: Record<string, WorkCasesLang> = {
       propertypartner: { industry: "Inmobiliaria · Promotoras y agencias", solution: "El paquete completo: una web inmobiliaria profesional, un chat con IA en la web y un agente de IA en WhatsApp/Telegram que responde preguntas, envía inmuebles y agenda visitas a cualquier hora.", metric: "Respuesta a clientes las 24 horas", cta: "Crear mi paquete inmobiliario" },
       aquaterra: { industry: "Metaverso · Educación en IA", solution: "AquaTerra World es nuestro proyecto de metaverso: 640.000 parcelas virtuales pensadas como entorno interactivo para aprender IA. El desarrollo está en pausa mientras nos centramos en otras prioridades.", metric: "Parcelas virtuales previstas", cta: "Ver AquaTerra World" },
       multimedia: { industry: "Música · Multimedia", solution: "Letra, idea musical y dirección visual íntegramente de Aleksandr Tochilov; producción técnica de NICS Multimedia. Publicado en Spotify y otras plataformas, empezando por el tema «Just Live».", metric: "Tema publicado, más en camino", cta: "Leer la historia" },
-      pride: { industry: "Red social · Comunidad", solution: "Diseñamos y construimos PRIDE Social Network (pridesocial.org) de principio a fin: perfiles, feeds y funciones de comunidad, hechos por nosotros y no con una plantilla.", metric: "Desarrollo propio, ya en marcha", cta: "Ir a PRIDE Social" },
+      pride: { industry: "Red social · Comunidad", solution: "Diseñamos y construimos PRIDE Social Network (pride.aibyteconsult.com) de principio a fin: perfiles, feeds y funciones de comunidad, hechos por nosotros y no con una plantilla.", metric: "Desarrollo propio, ya en marcha", cta: "Ir a PRIDE Social" },
     },
   },
   fr: {
@@ -65,7 +65,7 @@ export const workCases: Record<string, WorkCasesLang> = {
       propertypartner: { industry: "Immobilier · Promoteurs et agences", solution: "La solution complète : un site immobilier professionnel, un chat IA sur le site et un agent IA dans WhatsApp/Telegram qui répond aux questions, envoie des annonces et planifie des visites jour et nuit.", metric: "Réponse aux prospects 24 h/24", cta: "Créer mon pack immobilier" },
       aquaterra: { industry: "Métavers · Éducation à l'IA", solution: "AquaTerra World est notre projet de métavers : 640 000 parcelles virtuelles conçues comme un environnement interactif pour apprendre l'IA. Le développement est en pause pendant que nous nous concentrons sur d'autres priorités.", metric: "Parcelles virtuelles prévues", cta: "Voir AquaTerra World" },
       multimedia: { industry: "Musique · Multimédia", solution: "Paroles, idée musicale et direction visuelle entièrement signées Aleksandr Tochilov ; production technique par NICS Multimedia. Sorti sur Spotify et d'autres plateformes, à commencer par le titre « Just Live ».", metric: "Titre sorti, d'autres en préparation", cta: "Lire l'histoire" },
-      pride: { industry: "Réseau social · Communauté", solution: "Nous avons conçu et développé PRIDE Social Network (pridesocial.org) de bout en bout : profils, fils d'actualité et fonctions communautaires, faits maison et non à partir d'un modèle.", metric: "Développé en interne, déjà en ligne", cta: "Voir PRIDE Social" },
+      pride: { industry: "Réseau social · Communauté", solution: "Nous avons conçu et développé PRIDE Social Network (pride.aibyteconsult.com) de bout en bout : profils, fils d'actualité et fonctions communautaires, faits maison et non à partir d'un modèle.", metric: "Développé en interne, déjà en ligne", cta: "Voir PRIDE Social" },
     },
   },
   it: {
@@ -77,7 +77,7 @@ export const workCases: Record<string, WorkCasesLang> = {
       propertypartner: { industry: "Immobiliare · Costruttori e agenzie", solution: "Il pacchetto completo: un sito immobiliare professionale, una chat IA sul sito e un agente IA su WhatsApp/Telegram che risponde alle domande, invia annunci e fissa visite a qualsiasi ora.", metric: "Risposta ai clienti 24 ore su 24", cta: "Crea il mio pacchetto immobiliare" },
       aquaterra: { industry: "Metaverso · Formazione sull'IA", solution: "AquaTerra World è il nostro progetto di metaverso: 640.000 lotti virtuali pensati come ambiente interattivo per imparare l'IA. Lo sviluppo è in pausa mentre ci concentriamo su altre priorità.", metric: "Lotti virtuali previsti", cta: "Guarda AquaTerra World" },
       multimedia: { industry: "Musica · Multimedia", solution: "Testo, idea musicale e direzione visiva interamente di Aleksandr Tochilov; produzione tecnica di NICS Multimedia. Pubblicato su Spotify e altre piattaforme di streaming, a partire dal brano «Just Live».", metric: "Brano pubblicato, altri in lavorazione", cta: "Leggi la storia" },
-      pride: { industry: "Social network · Comunità", solution: "Abbiamo progettato e costruito PRIDE Social Network (pridesocial.org) da cima a fondo: profili, feed e funzioni per la comunità, sviluppati da noi e non su un modello.", metric: "Sviluppo interno, già online", cta: "Visita PRIDE Social" },
+      pride: { industry: "Social network · Comunità", solution: "Abbiamo progettato e costruito PRIDE Social Network (pride.aibyteconsult.com) da cima a fondo: profili, feed e funzioni per la comunità, sviluppati da noi e non su un modello.", metric: "Sviluppo interno, già online", cta: "Visita PRIDE Social" },
     },
   },
   pl: {
@@ -89,7 +89,7 @@ export const workCases: Record<string, WorkCasesLang> = {
       propertypartner: { industry: "Nieruchomości · Deweloperzy i agencje", solution: "Kompletny pakiet: profesjonalna strona nieruchomości, czat AI na stronie i agent AI w WhatsApp/Telegramie, który przez całą dobę odpowiada na pytania, wysyła oferty i umawia oglądanie.", metric: "Odpowiedź klientom całą dobę", cta: "Zbuduj mój pakiet nieruchomości" },
       aquaterra: { industry: "Metawersum · Edukacja AI", solution: "AquaTerra World to nasz projekt metawersum: 640 000 wirtualnych działek pomyślanych jako interaktywne środowisko do nauki AI. Prace są wstrzymane, bo skupiamy się na innych priorytetach.", metric: "Planowanych wirtualnych działek", cta: "Zobacz AquaTerra World" },
       multimedia: { industry: "Muzyka · Multimedia", solution: "Tekst, pomysł muzyczny i koncepcja wizualna w całości autorstwa Aleksandra Tochilova; produkcja techniczna NICS Multimedia. Wydane na Spotify i innych platformach, zaczynając od utworu „Just Live”.", metric: "Utwór wydany, kolejne w przygotowaniu", cta: "Przeczytaj historię" },
-      pride: { industry: "Sieć społecznościowa · Społeczność", solution: "Zaprojektowaliśmy i zbudowaliśmy PRIDE Social Network (pridesocial.org) od początku do końca: profile, kanały i funkcje społeczności, własnymi siłami, a nie na gotowym szablonie.", metric: "Własna budowa, już działa", cta: "Odwiedź PRIDE Social" },
+      pride: { industry: "Sieć społecznościowa · Społeczność", solution: "Zaprojektowaliśmy i zbudowaliśmy PRIDE Social Network (pride.aibyteconsult.com) od początku do końca: profile, kanały i funkcje społeczności, własnymi siłami, a nie na gotowym szablonie.", metric: "Własna budowa, już działa", cta: "Odwiedź PRIDE Social" },
     },
   },
   pt: {
@@ -101,7 +101,7 @@ export const workCases: Record<string, WorkCasesLang> = {
       propertypartner: { industry: "Imóveis · Incorporadoras e imobiliárias", solution: "O pacote completo: um site imobiliário profissional, um chat com IA no site e um agente de IA no WhatsApp/Telegram que responde dúvidas, envia imóveis e agenda visitas a qualquer hora.", metric: "Resposta a clientes 24 horas", cta: "Montar meu pacote imobiliário" },
       aquaterra: { industry: "Metaverso · Educação em IA", solution: "AquaTerra World é nosso projeto de metaverso: 640.000 lotes virtuais pensados como ambiente interativo para aprender IA. O desenvolvimento está pausado enquanto focamos em outras prioridades.", metric: "Lotes virtuais planejados", cta: "Ver o AquaTerra World" },
       multimedia: { industry: "Música · Multimídia", solution: "Letra, ideia musical e direção visual inteiramente de Aleksandr Tochilov; produção técnica da NICS Multimedia. Lançado no Spotify e em outras plataformas, começando pela faixa \"Just Live\".", metric: "Faixa lançada, outras a caminho", cta: "Ler a história" },
-      pride: { industry: "Rede social · Comunidade", solution: "Projetamos e construímos a PRIDE Social Network (pridesocial.org) de ponta a ponta: perfis, feeds e recursos de comunidade, feitos por nós e não a partir de um modelo pronto.", metric: "Desenvolvimento próprio, já no ar", cta: "Visitar o PRIDE Social" },
+      pride: { industry: "Rede social · Comunidade", solution: "Projetamos e construímos a PRIDE Social Network (pride.aibyteconsult.com) de ponta a ponta: perfis, feeds e recursos de comunidade, feitos por nós e não a partir de um modelo pronto.", metric: "Desenvolvimento próprio, já no ar", cta: "Visitar o PRIDE Social" },
     },
   },
   tr: {
@@ -113,7 +113,7 @@ export const workCases: Record<string, WorkCasesLang> = {
       propertypartner: { industry: "Gayrimenkul · Müteahhitler ve ofisler", solution: "Eksiksiz paket: profesyonel bir emlak sitesi, sitede yapay zekâ sohbeti ve WhatsApp/Telegram'da günün her saati soruları yanıtlayan, ilan gönderen ve gezme randevusu ayarlayan bir yapay zekâ ajanı.", metric: "Müşterilere 7/24 yanıt", cta: "Emlak paketimi oluştur" },
       aquaterra: { industry: "Metaverse · Yapay zekâ eğitimi", solution: "AquaTerra World metaverse projemiz: yapay zekâ öğrenimi için etkileşimli bir ortam olarak tasarlanmış 640.000 sanal arsa. Diğer önceliklere odaklandığımız için geliştirme şu an duraklatıldı.", metric: "Planlanan sanal arsa", cta: "AquaTerra World'ü gör" },
       multimedia: { industry: "Müzik · Multimedya", solution: "Söz, müzik fikri ve görsel yönetim tamamen Aleksandr Tochilov'a ait; teknik prodüksiyon NICS Multimedia. \"Just Live\" parçasıyla başlayarak Spotify ve diğer platformlarda yayında.", metric: "Parça yayında, yenileri yolda", cta: "Hikâyeyi oku" },
-      pride: { industry: "Sosyal ağ · Topluluk", solution: "PRIDE Social Network'ü (pridesocial.org) baştan sona kendimiz tasarlayıp geliştirdik: profiller, akışlar ve topluluk özellikleri, hazır şablon kullanmadan.", metric: "Kendi geliştirmemiz, şu an yayında", cta: "PRIDE Social'a git" },
+      pride: { industry: "Sosyal ağ · Topluluk", solution: "PRIDE Social Network'ü (pride.aibyteconsult.com) baştan sona kendimiz tasarlayıp geliştirdik: profiller, akışlar ve topluluk özellikleri, hazır şablon kullanmadan.", metric: "Kendi geliştirmemiz, şu an yayında", cta: "PRIDE Social'a git" },
     },
   },
   zh: {
@@ -125,7 +125,7 @@ export const workCases: Record<string, WorkCasesLang> = {
       propertypartner: { industry: "房地产 · 开发商与中介", solution: "一站式方案：专业的房产网站、网站上的 AI 聊天，以及 WhatsApp/Telegram 中的 AI 助手，全天候回答问题、发送房源并预约看房。", metric: "全天候回复客户", cta: "定制我的房产方案" },
       aquaterra: { industry: "元宇宙 · AI 教育", solution: "AquaTerra World 是我们的元宇宙项目：64 万块虚拟地块，设计为学习 AI 的互动环境。由于我们正专注于其他优先事项，开发目前暂停。", metric: "块规划中的虚拟地块", cta: "查看 AquaTerra World" },
       multimedia: { industry: "音乐 · 多媒体", solution: "歌词、音乐创意和视觉方向全部出自 Aleksandr Tochilov，技术制作由 NICS Multimedia 完成。首支单曲《Just Live》已在 Spotify 等流媒体平台发布。", metric: "首单曲已发布，更多在制作中", cta: "阅读故事" },
-      pride: { industry: "社交网络 · 社群", solution: "我们从头到尾自主设计并开发了 PRIDE Social Network（pridesocial.org）：个人资料、动态和社群功能，全部自研而非套用模板。", metric: "自主开发，已上线", cta: "访问 PRIDE Social" },
+      pride: { industry: "社交网络 · 社群", solution: "我们从头到尾自主设计并开发了 PRIDE Social Network（pride.aibyteconsult.com）：个人资料、动态和社群功能，全部自研而非套用模板。", metric: "自主开发，已上线", cta: "访问 PRIDE Social" },
     },
   },
   ar: {
@@ -137,7 +137,7 @@ export const workCases: Record<string, WorkCasesLang> = {
       propertypartner: { industry: "العقارات · المطوّرون والوكالات", solution: "الحزمة الكاملة: موقع عقاري احترافي، ودردشة بالذكاء الاصطناعي على الموقع، ووكيل ذكاء اصطناعي في WhatsApp/Telegram يجيب عن الأسئلة ويرسل العقارات ويحجز المعاينات على مدار الساعة.", metric: "رد على العملاء على مدار الساعة", cta: "أنشئ حزمتي العقارية" },
       aquaterra: { industry: "ميتافيرس · تعليم الذكاء الاصطناعي", solution: "AquaTerra World هو مشروع الميتافيرس الخاص بنا: 640,000 قطعة أرض افتراضية صُمّمت كبيئة تفاعلية لتعلّم الذكاء الاصطناعي. التطوير متوقف حاليًا بينما نركّز على أولويات أخرى.", metric: "قطعة أرض افتراضية مخطط لها", cta: "شاهد AquaTerra World" },
       multimedia: { industry: "موسيقى · وسائط متعددة", solution: "الكلمات والفكرة الموسيقية والرؤية البصرية بالكامل من Aleksandr Tochilov، والإنتاج التقني من NICS Multimedia. صدرت على Spotify ومنصات بث أخرى، بدءًا بأغنية \"Just Live\".", metric: "أغنية صدرت، والمزيد قيد العمل", cta: "اقرأ القصة" },
-      pride: { industry: "شبكة اجتماعية · مجتمع", solution: "صمّمنا وبنينا PRIDE Social Network ‏(pridesocial.org) من البداية إلى النهاية: الملفات الشخصية والخلاصات وميزات المجتمع، بتطوير داخلي وليس على قالب جاهز.", metric: "تطوير داخلي، يعمل اليوم", cta: "زيارة PRIDE Social" },
+      pride: { industry: "شبكة اجتماعية · مجتمع", solution: "صمّمنا وبنينا PRIDE Social Network ‏(pride.aibyteconsult.com) من البداية إلى النهاية: الملفات الشخصية والخلاصات وميزات المجتمع، بتطوير داخلي وليس على قالب جاهز.", metric: "تطوير داخلي، يعمل اليوم", cta: "زيارة PRIDE Social" },
     },
   },
 };
