@@ -121,7 +121,7 @@ const Terms = () => {
       id: "payments",
       title: "Subscriptions, Payments & Refunds",
       content: [
-        "Paid subscriptions (including NICS Trading Ecosystem plans) grant access to the described Service for the stated period only. Access does not constitute, and must not be understood as, an investment, a deposit, or a share of any trading profit — it is payment for access to software tools and information.",
+        "Paid subscriptions (including NICS Trading Ecosystem plans) grant access to the described Service for the stated period only. Access does not constitute, and must not be understood as, an investment, a deposit, or a share of any trading profit — it is the fee for a time-limited licence to use our software and for access to information (see \"Software Licence: Right of Use, Not a Sale\"). The software itself is not sold or rented to you.",
         "Auto-renewing subscription: a paid trial (currently 1.99 EUR for 7 days) turns into a monthly subscription (currently 19.99 EUR per month) unless you cancel before the trial ends. We remind you by bot message, and by e-mail where you gave one, about 24 hours before the first full charge. One-time passes (7, 30 or 90 days) do not renew. The price and renewal terms are shown before you pay.",
         "Cancelling: you can cancel a subscription at any time with the cancel button in the bot or in your cabinet, or by e-mail. Cancellation stops future charges; access continues until the end of the period already paid.",
         "Right of withdrawal (consumers in the EU/EEA): you may withdraw from a purchase within 14 days of the contract without giving a reason, by using the cancel or withdrawal function in the bot or cabinet or by e-mail to info@aibyteconsult.com. Because you ask us to give access immediately, if you withdraw within the 14 days we refund the amount paid minus a proportionate amount for the days of access already provided. Refunds are made to the original payment method within 14 days of receiving your withdrawal.",
@@ -162,6 +162,18 @@ const Terms = () => {
         "All content on our Services, including but not limited to text, graphics, logos, images, videos, software, source code, product names, trading methodology, and brand materials, is the intellectual property of AI Byte Consult Ltd. or its licensors and is protected by copyright, trademark, and other applicable laws.",
         "You may not reproduce, distribute, modify, create derivative works from, publicly display, resell, or commercially exploit any content without our prior written permission, except for personal, non-commercial use, or as expressly permitted by these Terms.",
         "\"NICS AI\", \"NICS Trading Ecosystem\", \"NICS Real Estate\", \"AI Byte Consult\", and related logos, product names, and service marks are trademarks of AI Byte Consult Ltd.",
+      ],
+    },
+    {
+      id: "licence",
+      title: "Software Licence: Right of Use, Not a Sale",
+      content: [
+        "All software made available through the Services, including the NICS Trading Ecosystem bot, Mini App, personal cabinet, Windows app, NICS Video and NICS Studio, MetaTrader expert advisors, NICS models, algorithms, and their source and object code, was developed by AI Byte Consult Ltd. and is and remains the exclusive property of AI Byte Consult Ltd.",
+        "We do not sell the software, and we do not rent or lease it. No copy of the software, and no ownership, copyright, or other intellectual property right in it, is transferred to you, whether you use a free plan, a trial, a gift key, or a paid subscription or pass.",
+        "What you receive is a licence: a limited, personal, non-exclusive, non-transferable, non-sublicensable, revocable right to use the software for your own purposes, only for the period you have paid for or that we have granted (for example a trial, a subscription period, a one-time pass, or a gift key), and only within the scope described for that product (for example the number of devices for a licence key, or the trading account named in a separate EULA). The licence ends automatically when that period ends, when the subscription is cancelled and the paid period has run out, or when access is withdrawn under these Terms.",
+        "Any fee you pay is a fee for this time-limited right of use and for access to the related information. It is not a purchase price for the software and not rent for a copy of it.",
+        "You may not copy, sell, rent, lease, lend, sublicense, share, or otherwise transfer the software, your licence key, or your access; decompile, disassemble, or reverse-engineer the software, except to the extent mandatory law expressly allows; remove proprietary notices; or use the software or its output to build a competing product. All rights not expressly granted to you are reserved by AI Byte Consult Ltd.",
+        "This licence does not change the nature of the output: analysis produced by the software remains general technical analysis for information purposes, not personal investment advice, as described in the sections above.",
       ],
     },
     {
@@ -245,7 +257,7 @@ const Terms = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground">
                 <span className="px-4 py-2 rounded-full bg-muted/50 border border-border/50">
-                  Version 2.0 · Effective: <strong className="text-foreground">21 November 2026</strong>
+                  Version 2.1 · Effective: <strong className="text-foreground">22 November 2026</strong>
                 </span>
                 <span className="px-4 py-2 rounded-full bg-muted/50 border border-border/50">
                   Company: <strong className="text-foreground">AI Byte Consult Ltd.</strong>
