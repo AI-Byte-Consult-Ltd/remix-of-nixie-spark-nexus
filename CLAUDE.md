@@ -106,8 +106,12 @@ ID workflow/credentials, что-либо, что раньше уже приво�
 
 **Про деплой сайта:**
 - `npm install && npm run build && npm run deploy` из актуального
-  `main`; следить, что в `postbuild` вызывается
-  `node scripts/generate-seo-pages.mjs`.
+  `main`; следить, что в `postbuild` вызываются
+  `scripts/generate-seo-pages.mjs`, `scripts/prerender.mjs` (полный
+  текст страниц в HTML для поисковиков, нужен Playwright) и
+  `scripts/sitemap-lastmod.mjs` (честные даты в sitemap). Сборка
+  обновляет `content/sitemap-lastmod.json`, если текст страниц
+  изменился: этот файл коммитить вместе с изменением.
 - Alessandro явно разрешил делать это самостоятельно, без запроса
   подтверждения на каждый раз: когда PR с изменениями сайта готов
   (собирается, задача выполнена) — сразу мёржить в `main` и деплоить,

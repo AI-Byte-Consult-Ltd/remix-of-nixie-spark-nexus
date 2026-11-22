@@ -703,4 +703,8 @@ const blogUrls = blogEntries
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapUrls}\n${blogUrls}\n</urlset>\n`;
 await writeFile(path.join(distDir, "sitemap.xml"), sitemap, "utf8");
 
+// Indexable pages for scripts/prerender.mjs (removed again by sitemap-lastmod.mjs,
+// never deployed). Articles are complete static HTML already and are not listed.
+await writeFile(path.join(distDir, ".prerender-routes.json"), JSON.stringify(pages.map((page) => page.route)), "utf8");
+
 console.log(`Generated static SEO metadata for ${pages.length} public routes, ${blogEntries.length} article pages and a fresh sitemap.xml.`);
