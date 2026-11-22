@@ -10,7 +10,6 @@ import {
   Mountain,
   Globe2,
   Users,
-  PawPrint,
   Box,
   X,
   ArrowRight,
@@ -154,19 +153,6 @@ const modules: EcosystemModule[] = [
     connection:
       "Applies NICS generative AI to physical products — from a text or voice request to a shipped object.",
     cta: { label: "Visit Alessandro Studio", href: "/nics-forge" },
-  },
-  {
-    id: "animals",
-    name: "Animals Foundation",
-    icon: PawPrint,
-    status: "Coming Soon",
-    short:
-      "AI and blockchain platform for animal welfare, rescue coordination and wildlife protection.",
-    tags: ["Animals", "Foundation", "Blockchain"],
-    who: "Shelters, NGOs, veterinary networks and wildlife protection groups.",
-    connection:
-      "Applies NICS coordination and vision models to animal welfare and rescue logistics.",
-    cta: { label: "Support the Foundation", href: "#contact" },
   },
 ];
 

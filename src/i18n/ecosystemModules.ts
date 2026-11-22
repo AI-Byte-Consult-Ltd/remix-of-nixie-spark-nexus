@@ -32,7 +32,6 @@ export const ecosystemShort: Record<string, Record<string, string>> = {
     aquaterra: "Метавселенная из 640 000 виртуальных участков как интерактивная среда для обучения ИИ. Разработка сейчас на паузе: мы сосредоточены на других задачах.",
     pride: "Социальная сеть, которую мы сделали сами для ЛГБТК+ сообщества. Уже работает, пока простая, с небольшой первой группой реальных пользователей.",
     forge: "Линия 3D-печати AI Byte Consult: реальные изделия, которые мы печатаем и продаём уже сейчас. Сервис индивидуального дизайна с ИИ в разработке.",
-    animals: "Платформа на ИИ и блокчейне для защиты животных, координации спасения и охраны дикой природы.",
   },
   bg: {
     llm: "Собствен многоезичен езиков модел, обучен върху корпуса на Project Gutenberg.",
@@ -44,7 +43,6 @@ export const ecosystemShort: Record<string, Record<string, string>> = {
     aquaterra: "Метавселена от 640 000 виртуални парцела като интерактивна среда за обучение по ИИ. Разработката е на пауза, докато сме съсредоточени върху други приоритети.",
     pride: "Социална мрежа, която изградихме сами за ЛГБТК+ общността. Вече работи, засега е проста, с малка първа група реални потребители.",
     forge: "Линията за 3D печат на AI Byte Consult: реални изделия, които печатаме и продаваме още днес. Услугата за индивидуален дизайн с ИИ е в разработка.",
-    animals: "Платформа с ИИ и блокчейн за грижа за животните, координиране на спасявания и опазване на дивата природа.",
   },
   de: {
     llm: "Eigenes mehrsprachiges Sprachmodell, trainiert auf dem Project-Gutenberg-Korpus.",
@@ -56,7 +54,6 @@ export const ecosystemShort: Record<string, Record<string, string>> = {
     aquaterra: "Ein Metaverse-Projekt mit 640.000 virtuellen Parzellen als interaktive Lernumgebung für KI. Die Entwicklung ruht derzeit, weil wir andere Prioritäten haben.",
     pride: "Ein selbst entwickeltes soziales Netzwerk für die LGBTQ+-Community. Es läuft bereits, ist noch einfach und hat eine kleine erste Gruppe echter Nutzer.",
     forge: "Die 3D-Druck-Linie von AI Byte Consult: echte Produkte, die wir selbst drucken und schon verkaufen. Ein KI-Service für individuelle Designs ist in Entwicklung.",
-    animals: "KI- und Blockchain-Plattform für Tierschutz, Rettungskoordination und Wildtierschutz.",
   },
   es: {
     llm: "Modelo de lenguaje multilingüe propio, entrenado con el corpus de Project Gutenberg.",
@@ -68,7 +65,6 @@ export const ecosystemShort: Record<string, Record<string, string>> = {
     aquaterra: "Un proyecto de metaverso con 640.000 parcelas virtuales pensado como entorno interactivo para aprender IA. El desarrollo está en pausa mientras nos centramos en otras prioridades.",
     pride: "Una red social que construimos nosotros para la comunidad LGBTQ+. Ya funciona, todavía es sencilla y tiene un pequeño primer grupo de usuarios reales.",
     forge: "La línea de impresión 3D de AI Byte Consult: productos reales que imprimimos y vendemos hoy. El servicio de diseño personalizado con IA está en desarrollo.",
-    animals: "Plataforma de IA y blockchain para el bienestar animal, la coordinación de rescates y la protección de la fauna.",
   },
   fr: {
     llm: "Modèle de langage multilingue maison, entraîné sur le corpus du Project Gutenberg.",
@@ -80,7 +76,6 @@ export const ecosystemShort: Record<string, Record<string, string>> = {
     aquaterra: "Un projet de métavers de 640 000 parcelles virtuelles, conçu comme un environnement interactif pour apprendre l'IA. Le développement est en pause pendant que nous nous concentrons sur d'autres priorités.",
     pride: "Un réseau social que nous avons construit nous-mêmes pour la communauté LGBTQ+. Il fonctionne déjà, reste simple et compte un petit premier groupe d'utilisateurs réels.",
     forge: "La ligne d'impression 3D d'AI Byte Consult : de vrais produits imprimés chez nous et déjà vendus. Un service de design sur mesure par IA est en développement.",
-    animals: "Plateforme d'IA et de blockchain pour le bien-être animal, la coordination des sauvetages et la protection de la faune.",
   },
   it: {
     llm: "Modello linguistico multilingue proprietario, addestrato sul corpus del Project Gutenberg.",
@@ -92,7 +87,6 @@ export const ecosystemShort: Record<string, Record<string, string>> = {
     aquaterra: "Un progetto di metaverso con 640.000 lotti virtuali pensato come ambiente interattivo per imparare l'IA. Lo sviluppo è in pausa mentre ci concentriamo su altre priorità.",
     pride: "Un social network costruito da noi per la comunità LGBTQ+. È già attivo, ancora essenziale, con un piccolo primo gruppo di utenti reali.",
     forge: "La linea di stampa 3D di AI Byte Consult: prodotti reali stampati da noi e già in vendita. Un servizio di design personalizzato con IA è in sviluppo.",
-    animals: "Piattaforma di IA e blockchain per il benessere animale, il coordinamento dei soccorsi e la tutela della fauna.",
   },
   pl: {
     llm: "Własny wielojęzyczny model językowy trenowany na korpusie Project Gutenberg.",
@@ -104,7 +98,6 @@ export const ecosystemShort: Record<string, Record<string, string>> = {
     aquaterra: "Projekt metawersum z 640 000 wirtualnych działek jako interaktywne środowisko do nauki AI. Prace są wstrzymane, bo skupiamy się na innych priorytetach.",
     pride: "Sieć społecznościowa, którą zbudowaliśmy sami dla społeczności LGBTQ+. Już działa, jest jeszcze prosta i ma małą pierwszą grupę prawdziwych użytkowników.",
     forge: "Linia druku 3D AI Byte Consult: prawdziwe produkty, które drukujemy i sprzedajemy już dziś. Usługa projektów na zamówienie z AI jest w przygotowaniu.",
-    animals: "Platforma AI i blockchain dla dobrostanu zwierząt, koordynacji akcji ratunkowych i ochrony dzikiej przyrody.",
   },
   pt: {
     llm: "Modelo de linguagem multilíngue próprio, treinado no corpus do Project Gutenberg.",
@@ -116,7 +109,6 @@ export const ecosystemShort: Record<string, Record<string, string>> = {
     aquaterra: "Um projeto de metaverso com 640.000 lotes virtuais pensado como ambiente interativo para aprender IA. O desenvolvimento está pausado enquanto focamos em outras prioridades.",
     pride: "Uma rede social que construímos nós mesmos para a comunidade LGBTQ+. Já funciona, ainda é simples e tem um pequeno primeiro grupo de usuários reais.",
     forge: "A linha de impressão 3D da AI Byte Consult: produtos reais impressos por nós e vendidos hoje. Um serviço de design personalizado com IA está em desenvolvimento.",
-    animals: "Plataforma de IA e blockchain para o bem-estar animal, coordenação de resgates e proteção da vida selvagem.",
   },
   tr: {
     llm: "Project Gutenberg külliyatı üzerinde eğitilmiş, çok dilli kendi dil modelimiz.",
@@ -128,7 +120,6 @@ export const ecosystemShort: Record<string, Record<string, string>> = {
     aquaterra: "640.000 sanal arsadan oluşan, yapay zekâ öğretimi için etkileşimli bir ortam olarak tasarlanmış metaverse projesi. Diğer önceliklere odaklandığımız için geliştirme şu an duraklatıldı.",
     pride: "LGBTQ+ topluluğu için kendimiz geliştirdiğimiz sosyal ağ. Şu an yayında, henüz basit ve küçük bir ilk gerçek kullanıcı grubu var.",
     forge: "AI Byte Consult'un 3D baskı serisi: kendimiz basıp bugün sattığımız gerçek ürünler. Yapay zekâ ile kişiye özel tasarım hizmeti geliştiriliyor.",
-    animals: "Hayvan refahı, kurtarma koordinasyonu ve yaban hayatı koruma için yapay zekâ ve blokzincir platformu.",
   },
   zh: {
     llm: "自研多语言语言模型，在 Project Gutenberg 语料上训练。",
@@ -140,7 +131,6 @@ export const ecosystemShort: Record<string, Record<string, string>> = {
     aquaterra: "一个由 64 万块虚拟地块组成的元宇宙项目，设计为学习 AI 的互动环境。由于我们正专注于其他优先事项，开发目前暂停。",
     pride: "我们为 LGBTQ+ 社群自主开发的社交网络。目前已上线，功能仍较基础，已有一小批真实用户。",
     forge: "AI Byte Consult 的 3D 打印产品线：自主打印并已在售的实物产品；AI 定制设计服务正在开发中。",
-    animals: "利用 AI 和区块链服务动物福利、救援协调和野生动物保护的平台。",
   },
   ar: {
     llm: "نموذج لغوي متعدد اللغات خاص بنا، مدرَّب على مجموعة نصوص Project Gutenberg.",
@@ -152,6 +142,5 @@ export const ecosystemShort: Record<string, Record<string, string>> = {
     aquaterra: "مشروع ميتافيرس يضم 640,000 قطعة أرض افتراضية، صُمّم كبيئة تفاعلية لتعلّم الذكاء الاصطناعي. التطوير متوقف حاليًا بينما نركّز على أولويات أخرى.",
     pride: "شبكة اجتماعية بنيناها بأنفسنا لمجتمع الميم (LGBTQ+). تعمل اليوم، وما زالت بسيطة، ولديها مجموعة أولى صغيرة من المستخدمين الحقيقيين.",
     forge: "خط الطباعة ثلاثية الأبعاد لدى AI Byte Consult: منتجات حقيقية نطبعها ونبيعها اليوم، وخدمة تصميم مخصص بالذكاء الاصطناعي قيد التطوير.",
-    animals: "منصة بالذكاء الاصطناعي والبلوك تشين لرعاية الحيوانات وتنسيق عمليات الإنقاذ وحماية الحياة البرية.",
   },
 };
