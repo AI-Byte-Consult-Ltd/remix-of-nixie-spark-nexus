@@ -8,7 +8,7 @@
     "date": "2026-11-22"
   },
   "/ar/": {
-    "hash": "65d492b1b1e2d6a4",
+    "hash": "6ffcc3d27d0bcc80",
     "date": "2026-11-22"
   },
   "/ar/nics-studio/": {
@@ -16,15 +16,15 @@
     "date": "2026-11-22"
   },
   "/ar/nics-video/": {
-    "hash": "3c76133bb8600ca9",
+    "hash": "0cc64dd35145eb39",
     "date": "2026-11-22"
   },
   "/ar/trading/": {
-    "hash": "31ed4d19e5709e9c",
+    "hash": "c1acbb9570ad694f",
     "date": "2026-11-22"
   },
   "/bg/": {
-    "hash": "3c5130d730983309",
+    "hash": "2d3c5601b9cd6b0a",
     "date": "2026-11-22"
   },
   "/bg/about/": {
@@ -32,7 +32,7 @@
     "date": "2026-11-22"
   },
   "/bg/nics-ecosystem/": {
-    "hash": "2951d762f2b0c367",
+    "hash": "d77c08180d08fd92",
     "date": "2026-11-22"
   },
   "/bg/nics-studio/": {
@@ -60,7 +60,7 @@
     "date": "2026-11-22"
   },
   "/de/": {
-    "hash": "edaf70389deb1b8b",
+    "hash": "81e27829836b88ae",
     "date": "2026-11-22"
   },
   "/de/about/": {
@@ -68,7 +68,7 @@
     "date": "2026-11-22"
   },
   "/de/nics-ecosystem/": {
-    "hash": "c226ce14b9b6fa42",
+    "hash": "bd8dcc283bde12af",
     "date": "2026-11-22"
   },
   "/de/nics-studio/": {
@@ -80,7 +80,7 @@
     "date": "2026-11-22"
   },
   "/de/nics-video/": {
-    "hash": "f2cfce3e8745f5a8",
+    "hash": "e8a0d52fb70b2cbc",
     "date": "2026-11-22"
   },
   "/de/nics-windows-app/": {
@@ -88,7 +88,7 @@
     "date": "2026-11-22"
   },
   "/de/trading/": {
-    "hash": "d0331eda2fe9d322",
+    "hash": "543a7241f44d709c",
     "date": "2026-11-22"
   },
   "/delete/": {
@@ -96,7 +96,7 @@
     "date": "2026-11-22"
   },
   "/es/": {
-    "hash": "d2226852db766f6b",
+    "hash": "7f5eb903c3e5c5b6",
     "date": "2026-11-22"
   },
   "/es/about/": {
@@ -104,7 +104,7 @@
     "date": "2026-11-22"
   },
   "/es/nics-ecosystem/": {
-    "hash": "b77c3d0ebb01caf3",
+    "hash": "e3d8aae3bfb10013",
     "date": "2026-11-22"
   },
   "/es/nics-studio/": {
@@ -116,7 +116,7 @@
     "date": "2026-11-22"
   },
   "/es/nics-video/": {
-    "hash": "db00870093ce5083",
+    "hash": "ec22c8035844b643",
     "date": "2026-11-22"
   },
   "/es/nics-windows-app/": {
@@ -124,7 +124,7 @@
     "date": "2026-11-22"
   },
   "/es/trading/": {
-    "hash": "b9fb36aeb3364ff9",
+    "hash": "91f16ff09b341cc8",
     "date": "2026-11-22"
   },
   "/estate/": {
@@ -132,7 +132,7 @@
     "date": "2026-11-22"
   },
   "/fr/": {
-    "hash": "402a2352599503e0",
+    "hash": "0865be1c8146c2c4",
     "date": "2026-11-22"
   },
   "/fr/nics-studio/": {
@@ -140,15 +140,15 @@
     "date": "2026-11-22"
   },
   "/fr/nics-video/": {
-    "hash": "1905857b4ae6d4a9",
+    "hash": "620c99aa2097b667",
     "date": "2026-11-22"
   },
   "/fr/trading/": {
-    "hash": "1af872d1f71ec5dd",
+    "hash": "367d650337334352",
     "date": "2026-11-22"
   },
   "/it/": {
-    "hash": "08b433bd08a8e226",
+    "hash": "4ceb82a72bb42c5b",
     "date": "2026-11-22"
   },
   "/it/nics-studio/": {
@@ -156,15 +156,15 @@
     "date": "2026-11-22"
   },
   "/it/nics-video/": {
-    "hash": "82df67e1f34d07d0",
+    "hash": "b4924ca07d48ee7c",
     "date": "2026-11-22"
   },
   "/it/trading/": {
-    "hash": "a03f13368299dc85",
+    "hash": "ef571eb1fca6d26e",
     "date": "2026-11-22"
   },
   "/nics-ecosystem/": {
-    "hash": "abc9a32453695ccd",
+    "hash": "e8e0feb06bae0cdf",
     "date": "2026-11-22"
   },
   "/nics-forge/": {
@@ -192,7 +192,7 @@
     "date": "2026-11-22"
   },
   "/pl/": {
-    "hash": "dfc4bdf2be5ddc54",
+    "hash": "8677deaf7a1077b0",
     "date": "2026-11-22"
   },
   "/pl/nics-studio/": {
@@ -200,11 +200,11 @@
     "date": "2026-11-22"
   },
   "/pl/nics-video/": {
-    "hash": "c83acbe55b6f7fe9",
+    "hash": "38474e64664f18ff",
     "date": "2026-11-22"
   },
   "/pl/trading/": {
-    "hash": "9046bf83c6338e89",
+    "hash": "a5842dfae5782fd9",
     "date": "2026-11-22"
   },
   "/privacy/": {
@@ -212,7 +212,7 @@
     "date": "2026-11-22"
   },
   "/pt/": {
-    "hash": "f9bcdfa773c9c3c5",
+    "hash": "360e185dc3204f15",
     "date": "2026-11-22"
   },
   "/pt/nics-studio/": {
@@ -220,15 +220,15 @@
     "date": "2026-11-22"
   },
   "/pt/nics-video/": {
-    "hash": "62e9a4f2f3b7463f",
+    "hash": "39f5ead82097d92a",
     "date": "2026-11-22"
   },
   "/pt/trading/": {
-    "hash": "3107b64586d601de",
+    "hash": "64c38c6fc73a6045",
     "date": "2026-11-22"
   },
   "/ru/": {
-    "hash": "05989f28131fc124",
+    "hash": "6d2c29f9918b6aa0",
     "date": "2026-11-22"
   },
   "/ru/about/": {
@@ -236,7 +236,7 @@
     "date": "2026-11-22"
   },
   "/ru/nics-ecosystem/": {
-    "hash": "379453b38052616f",
+    "hash": "0268e42d0b69ad21",
     "date": "2026-11-22"
   },
   "/ru/nics-studio/": {
@@ -272,7 +272,7 @@
     "date": "2026-11-22"
   },
   "/tr/": {
-    "hash": "1efc07292817a030",
+    "hash": "4f746035f24f54a2",
     "date": "2026-11-22"
   },
   "/tr/nics-studio/": {
@@ -280,11 +280,11 @@
     "date": "2026-11-22"
   },
   "/tr/nics-video/": {
-    "hash": "431280a947367bfd",
+    "hash": "a47ca93e686f1f85",
     "date": "2026-11-22"
   },
   "/tr/trading/": {
-    "hash": "75a9f62d21cec044",
+    "hash": "9f6534a79bf4777b",
     "date": "2026-11-22"
   },
   "/trading/": {
@@ -292,7 +292,7 @@
     "date": "2026-11-22"
   },
   "/zh/": {
-    "hash": "9ec4a9b115768948",
+    "hash": "e90dcb94f0b0b157",
     "date": "2026-11-22"
   },
   "/zh/nics-studio/": {
@@ -300,11 +300,11 @@
     "date": "2026-11-22"
   },
   "/zh/nics-video/": {
-    "hash": "e25653acb7b3ef38",
+    "hash": "84a0f41425da8202",
     "date": "2026-11-22"
   },
   "/zh/trading/": {
-    "hash": "f0c2b124a285d316",
+    "hash": "c14e6972f2d473a6",
     "date": "2026-11-22"
   }
 }
