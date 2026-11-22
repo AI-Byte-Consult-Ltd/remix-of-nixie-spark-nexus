@@ -31,7 +31,7 @@ AI Byte Consult Ltd is a technology company specializing in **SaaS development, 
 | NICS AI Geologist | AI-driven geological analysis |
 | NICS AI HoReCa | AI solutions for hospitality industry |
 | [Animals Foundation](https://yorkie.aibyteconsult.com/) | Animal welfare initiative |
-| [PRIDE Social Network](https://pridesocial.org) | Social networking platform |
+| [PRIDE Social Network](https://pride.aibyteconsult.com/) | Social networking platform |
 
 ---
 

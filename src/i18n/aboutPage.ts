@@ -31,7 +31,7 @@ const en: AboutTexts = {
   multimedia:
     "Original music — lyrics, musical idea and visual direction by Aleksandr Tochilov, technical production by NICS Multimedia — released on Spotify and other streaming platforms, starting with the track \"Just Live\".",
   social:
-    "PRIDE Social Network (pridesocial.org) — a social platform we built in-house for the LGBTQ+ community. Live today, still basic, with a small first group of real users.",
+    "PRIDE Social Network (pride.aibyteconsult.com) — a social platform we built in-house for the LGBTQ+ community. Live today, still basic, with a small first group of real users.",
   aquaterra:
     "Our metaverse project — 640,000 virtual land parcels designed as an interactive, AI-teaching environment. Development is currently paused while we focus on other priorities.",
 };
@@ -49,7 +49,7 @@ const ru: AboutTexts = {
   multimedia:
     "Авторская музыка: текст, музыкальная идея и визуальный образ — Александр Точилов, техническое производство — NICS Multimedia. Выходит на Spotify и других стриминговых площадках, начиная с трека «Just Live».",
   social:
-    "PRIDE Social Network (pridesocial.org) — социальная платформа для ЛГБТК+ сообщества, которую мы сделали сами. Уже работает, пока в базовом виде, с небольшой первой группой реальных пользователей.",
+    "PRIDE Social Network (pride.aibyteconsult.com) — социальная платформа для ЛГБТК+ сообщества, которую мы сделали сами. Уже работает, пока в базовом виде, с небольшой первой группой реальных пользователей.",
   aquaterra:
     "Наш проект метавселенной — 640 000 виртуальных участков как интерактивная обучающая среда с ИИ. Разработка сейчас на паузе: мы сосредоточены на других приоритетах.",
 };
@@ -67,7 +67,7 @@ const bg: AboutTexts = {
   multimedia:
     "Авторска музика: текст, музикална идея и визия — Александър Точилов, техническа продукция — NICS Multimedia. Излиза в Spotify и други стрийминг платформи, започвайки с песента „Just Live“.",
   social:
-    "PRIDE Social Network (pridesocial.org) — социална платформа за ЛГБТК+ общността, която изградихме сами. Работи днес, все още в базов вид, с малка първа група реални потребители.",
+    "PRIDE Social Network (pride.aibyteconsult.com) — социална платформа за ЛГБТК+ общността, която изградихме сами. Работи днес, все още в базов вид, с малка първа група реални потребители.",
   aquaterra:
     "Нашият проект за метавселена — 640 000 виртуални парцела като интерактивна обучителна среда с ИИ. Разработката в момента е на пауза, докато сме съсредоточени върху други приоритети.",
 };
@@ -85,7 +85,7 @@ const de: AboutTexts = {
   multimedia:
     "Eigene Musik: Text, musikalische Idee und visuelle Gestaltung von Aleksandr Tochilov, technische Produktion von NICS Multimedia. Erscheint auf Spotify und anderen Streaming-Plattformen, beginnend mit dem Titel „Just Live“.",
   social:
-    "PRIDE Social Network (pridesocial.org) — eine selbst entwickelte soziale Plattform für die LGBTQ+-Community. Heute online, noch einfach gehalten, mit einer kleinen ersten Gruppe echter Nutzer.",
+    "PRIDE Social Network (pride.aibyteconsult.com) — eine selbst entwickelte soziale Plattform für die LGBTQ+-Community. Heute online, noch einfach gehalten, mit einer kleinen ersten Gruppe echter Nutzer.",
   aquaterra:
     "Unser Metaverse-Projekt — 640.000 virtuelle Grundstücke als interaktive, KI-gestützte Lernumgebung. Die Entwicklung pausiert derzeit, während wir uns auf andere Prioritäten konzentrieren.",
 };
@@ -103,7 +103,7 @@ const es: AboutTexts = {
   multimedia:
     "Música original: letra, idea musical y dirección visual de Aleksandr Tochilov, producción técnica de NICS Multimedia. Publicada en Spotify y otras plataformas, empezando por el tema «Just Live».",
   social:
-    "PRIDE Social Network (pridesocial.org) — una plataforma social creada por nosotros para la comunidad LGBTQ+. Ya funciona, todavía básica, con un pequeño primer grupo de usuarios reales.",
+    "PRIDE Social Network (pride.aibyteconsult.com) — una plataforma social creada por nosotros para la comunidad LGBTQ+. Ya funciona, todavía básica, con un pequeño primer grupo de usuarios reales.",
   aquaterra:
     "Nuestro proyecto de metaverso — 640.000 parcelas virtuales como entorno interactivo de aprendizaje con IA. El desarrollo está en pausa mientras nos centramos en otras prioridades.",
 };
