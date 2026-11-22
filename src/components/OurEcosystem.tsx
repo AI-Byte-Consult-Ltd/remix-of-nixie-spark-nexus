@@ -19,6 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ecosystemShort, ecosystemStatusLabels } from "@/i18n/ecosystemModules";
+import { VANTAGE_SITE_URL } from "@/features/nics/externalLinks";
 
 type Status = "Live" | "Alpha" | "Training Active" | "Research Active" | "Coming Soon" | "Paused";
 
@@ -74,7 +75,7 @@ const modules: EcosystemModule[] = [
     who: "Active traders, funds and institutions seeking data-driven multi-asset intelligence.",
     connection:
       "Applies NICS reasoning to live financial markets — real-time technical analysis and structured market scenarios.",
-    cta: { label: "Explore NICS Trading Ecosystem", href: "https://fwd.cx/Yj25BCrDzEHB", external: true },
+    cta: { label: "Explore NICS Trading Ecosystem", href: VANTAGE_SITE_URL, external: true },
   },
   {
     id: "architect",

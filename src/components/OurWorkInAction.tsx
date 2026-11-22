@@ -7,6 +7,7 @@ import realestateAiImg from "@/assets/project-realestate-ai.jpg";
 import alessandroStudioImg from "@/assets/project-alessandro-studio.webp";
 import nicsVideoImg from "@/assets/project-nics-video.webp";
 import aquaterraImg from "@/assets/project-nft-new.jpg";
+import { VANTAGE_SITE_URL } from "@/features/nics/externalLinks";
 
 const prideImg = `data:image/svg+xml,${encodeURIComponent(`
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125">
@@ -140,7 +141,7 @@ const CASES: Case[] = [
     metric: { value: 24, suffix: "/7", label: "Market analysis coverage" },
     tags: ["AI Trading", "Forex · Gold · Crypto", "Telegram + MT5", "Verified Track Record"],
     cta: "Explore AI Trading",
-    href: "https://fwd.cx/Yj25BCrDzEHB",
+    href: VANTAGE_SITE_URL,
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1600&q=80",
   },
   {
