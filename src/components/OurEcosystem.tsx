@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ecosystemShort, ecosystemStatusLabels } from "@/i18n/ecosystemModules";
 
 type Status = "Live" | "Alpha" | "Training Active" | "Research Active" | "Coming Soon" | "Paused";
 
@@ -26,6 +27,8 @@ interface EcosystemModule {
   name: string;
   icon: typeof Brain;
   status: Status;
+  /** Status in the page language (set in OurEcosystem from src/i18n/ecosystemModules.ts). */
+  statusLabel?: string;
   short: string;
   tags: string[];
   who: string;
@@ -268,7 +271,7 @@ function ModuleNode({
             className={`inline-flex items-center gap-1.5 text-[10px] px-2 py-0.5 rounded-full border ${statusStyles[m.status]}`}
           >
             <span className="w-1 h-1 rounded-full bg-current animate-pulse" />
-            {m.status}
+            {m.statusLabel ?? m.status}
           </div>
           <AnimatePresence>
             {hovered && (
@@ -300,7 +303,17 @@ function ModuleNode({
 }
 
 const OurEcosystem = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  // Card status and summary in the page language; English when missing.
+  const localModules = useMemo(
+    () =>
+      modules.map((m) => ({
+        ...m,
+        short: ecosystemShort[language]?.[m.id] ?? m.short,
+        statusLabel: ecosystemStatusLabels[language]?.[m.status] ?? m.status,
+      })),
+    [language],
+  );
   const [active, setActive] = useState<EcosystemModule | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -507,7 +520,7 @@ const OurEcosystem = () => {
             </motion.button>
 
             {/* Modules */}
-            {modules.map((m, i) => (
+            {localModules.map((m, i) => (
               <ModuleNode
                 key={m.id}
                 m={m}
@@ -531,7 +544,7 @@ const OurEcosystem = () => {
             <div className="text-lg font-semibold">{t("oureco.core.name")}</div>
             <div className="text-[11px] text-white/50">{t("oureco.core.stack")}</div>
           </div>
-          {modules.map((m) => {
+          {localModules.map((m) => {
             const Icon = m.icon;
             return (
               <button
@@ -549,7 +562,7 @@ const OurEcosystem = () => {
                       className={`inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full border mt-1 ${statusStyles[m.status]}`}
                     >
                       <span className="w-1 h-1 rounded-full bg-current animate-pulse" />
-                      {m.status}
+                      {m.statusLabel ?? m.status}
                     </div>
                   </div>
                   <ArrowRight className="w-4 h-4 text-white/40" />
@@ -662,7 +675,7 @@ const OurEcosystem = () => {
                       className={`inline-flex items-center gap-1.5 text-[10px] px-2 py-0.5 rounded-full border mb-1 ${statusStyles[active.status]}`}
                     >
                       <span className="w-1 h-1 rounded-full bg-current animate-pulse" />
-                      {active.status}
+                      {active.statusLabel ?? active.status}
                     </div>
                     <h3 className="text-2xl font-semibold">{active.name}</h3>
                   </div>

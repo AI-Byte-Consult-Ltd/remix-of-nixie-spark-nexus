@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { traderCtaExtra, videoCtaExtra } from "@/i18n/productCtaExtra";
 
 // Free first step on /nics-video and /trading: the product itself instead of a
 // checklist by email. Video opens the 10 free credits dialog; Trader gives a lot
@@ -168,9 +169,10 @@ const LotCalculator = ({ c }: { c: (typeof traderCopy)[Lang] }) => {
 const ProductCta = ({ kind, onStart }: { kind: ProductCtaKind; onStart?: () => void }) => {
   const { language } = useLanguage();
   const lang: Lang = language === "ru" || language === "bg" ? language : "en";
+  // Other site languages: src/i18n/productCtaExtra.ts, English if missing.
 
   if (kind === "video") {
-    const c = videoCopy[lang];
+    const c = videoCtaExtra[language] ?? videoCopy[lang];
     return (
       <section id="free" className="py-20 bg-background scroll-mt-24">
         <div className="container mx-auto px-4">
@@ -204,7 +206,7 @@ const ProductCta = ({ kind, onStart }: { kind: ProductCtaKind; onStart?: () => v
     );
   }
 
-  const c = traderCopy[lang];
+  const c = traderCtaExtra[language] ?? traderCopy[lang];
   return (
     <section id="free" className="py-20 bg-background scroll-mt-24">
       <div className="container mx-auto px-4">
