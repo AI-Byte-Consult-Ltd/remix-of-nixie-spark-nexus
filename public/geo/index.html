@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NICS Vision Geo</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="NICS Vision Geo: определение камней и минералов по фото. Работает на телефоне, фото никуда не отправляется.">
+<meta name="theme-color" content="#14110f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NICS Geo">
+<link rel="manifest" href="/geo/geo.webmanifest">
+<link rel="apple-touch-icon" href="/geo/icon-180.png">
+<link rel="icon" type="image/png" href="/geo/icon-192.png">
+<style>
+  :root {
+    --bg: #14110f; --card: #1f1a17; --card2: #2a231f; --line: #3a312b; --text: #f3ece6; --muted: #b3a597;
+    --accent: #e0a458; --accent-ink: #1b140e; --good: #7fc29b; --warn: #e6b35a; --bad: #e57f6e; --bar: #4a3d34;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  .wrap { max-width: 560px; margin: 0 auto; padding: calc(14px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom)); }
+  header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  header img { width: 36px; height: 36px; border-radius: 9px; }
+  h1 { font-size: 20px; margin: 0; letter-spacing: .2px; }
+  .beta { font-size: 11px; font-weight: 700; color: var(--accent-ink); background: var(--accent); padding: 2px 7px; border-radius: 99px; }
+  .lang { margin-left: auto; display: flex; border: 1px solid var(--line); border-radius: 99px; overflow: hidden; }
+  .lang button { background: none; border: 0; color: var(--muted); padding: 6px 11px; font: inherit; font-size: 13px; }
+  .lang button.on { background: var(--card2); color: var(--text); }
+  .sub { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+  .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 54px; border-radius: 14px;
+    border: 1px solid var(--line); background: var(--card); color: var(--text); font: inherit; font-weight: 600; cursor: pointer; }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .btn:disabled { opacity: .5; }
+  .btn svg { width: 20px; height: 20px; }
+  input[type=file] { display: none; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; margin-top: 14px; }
+  .photo { position: relative; aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; background: #0d0b0a; }
+  .photo canvas { width: 100%; height: 100%; display: block; }
+  .status { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; margin-top: 12px; }
+  .spin { width: 18px; height: 18px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: s 0.8s linear infinite; }
+  @keyframes s { to { transform: rotate(360deg); } }
+  .headline { font-size: 21px; font-weight: 700; margin: 2px 0 6px; line-height: 1.3; }
+  .level-abstain .headline { color: var(--warn); }
+  .muted { color: var(--muted); font-size: 14px; }
+  .bars { margin: 12px 0 4px; display: grid; gap: 8px; }
+  .bar { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; font-size: 14px; }
+  .bar .track { grid-column: 1 / -1; height: 8px; border-radius: 99px; background: var(--bar); overflow: hidden; }
+  .bar .fill { height: 100%; background: var(--accent); border-radius: 99px; }
+  .bar:not(:first-child) .fill { background: #9c8676; }
+  h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin: 16px 0 6px; }
+  ul { margin: 0; padding-left: 18px; }
+  li { margin: 4px 0; }
+  .caution { color: var(--bad); }
+  .limit { margin-top: 14px; padding: 10px 12px; border-radius: 10px; background: var(--card2); font-size: 13px; color: var(--muted); }
+  .row { display: flex; gap: 10px; margin-top: 12px; }
+  .row .btn { flex: 1; min-height: 46px; font-size: 15px; }
+  .tips li { color: var(--muted); font-size: 14px; }
+  details { margin-top: 14px; }
+  summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+  .install { font-size: 14px; color: var(--muted); }
+  .install b { color: var(--text); }
+  .foot { margin-top: 18px; font-size: 12px; color: var(--muted); text-align: center; }
+  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--card2);
+    border: 1px solid var(--line); padding: 10px 16px; border-radius: 99px; font-size: 14px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .toast.on { opacity: 1; }
+  .hidden { display: none !important; }
+  .classes { columns: 2; font-size: 13px; color: var(--muted); padding-left: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="/geo/icon-192.png" alt="">
+    <h1>NICS Vision Geo</h1><span class="beta">beta</span>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="ru" class="on">RU</button><button data-lang="en">EN</button>
+    </div>
+  </header>
+  <p class="sub" data-t="sub"></p>
+
+  <div class="actions">
+    <button class="btn primary" id="shoot" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+      <span data-t="shoot"></span></button>
+    <button class="btn" id="pick" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/></svg>
+      <span data-t="pick"></span></button>
+  </div>
+  <input type="file" id="fileCam" accept="image/*" capture="environment">
+  <input type="file" id="fileLib" accept="image/*">
+  <div class="status" id="loading"><div class="spin"></div><span data-t="loading"></span></div>
+
+  <div class="card hidden" id="work">
+    <div class="photo"><canvas id="preview" width="384" height="384"></canvas></div>
+    <div class="status hidden" id="busy"><div class="spin"></div><span data-t="busy"></span></div>
+    <div id="result" class="hidden">
+      <div class="headline" id="headline"></div>
+      <div class="muted" id="retake"></div>
+      <div class="bars" id="bars"></div>
+      <div class="muted" id="alts"></div>
+      <div id="testsBox"><h3 data-t="check"></h3><ul id="tests"></ul></div>
+      <div id="meansBox"><h3 data-t="means"></h3><ul id="means"></ul></div>
+      <div id="cautionBox"><h3 data-t="caution"></h3><ul id="cautions" class="caution"></ul></div>
+      <div class="limit" id="limit"></div>
+      <div class="row">
+        <button class="btn" id="copy"><span data-t="copy"></span></button>
+        <button class="btn primary" id="again"><span data-t="again"></span></button>
+      </div>
+      <div class="foot" id="timing"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0" data-t="tipsTitle"></h3>
+    <ul class="tips" id="tips"></ul>
+    <details>
+      <summary data-t="installTitle"></summary>
+      <p class="install" data-t="installIos"></p>
+      <p class="install" data-t="installAndroid"></p>
+    </details>
+    <details>
+      <summary id="classesTitle"></summary>
+      <ul class="classes" id="classes"></ul>
+    </details>
+  </div>
+  <div class="foot" id="about"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+  var UI = {
+    ru: {
+      sub: "Сфотографируйте камень, и модель скажет, что это может быть. Распознавание идёт прямо на телефоне, фото никуда не отправляется.",
+      shoot: "Сфотографировать", pick: "Из галереи", loading: "Загружаю модель…", busy: "Смотрю на камень…",
+      check: "Как проверить", means: "Что это может значить", caution: "Осторожно",
+      copy: "Скопировать", again: "Ещё фото", copied: "Результат скопирован",
+      tipsTitle: "Как снять, чтобы модель поняла",
+      tips: ["Камень по центру и крупно, занимает большую часть кадра.", "Дневной свет, без вспышки и сильных бликов.", "Однотонный фон: бумага, ладонь, ткань.", "Если есть, снимите свежий скол: он честнее грязной поверхности.", "Один камень на фото. Пейзаж и пляж целиком модель пока не понимает."],
+      installTitle: "Как поставить на главный экран",
+      installIos: "<b>iPhone (Safari):</b> кнопка «Поделиться» → «На экран „Домой“».",
+      installAndroid: "<b>Android (Chrome):</b> меню ⋮ → «Добавить на главный экран» или «Установить приложение».",
+      classesTitle: function (n) { return "Что модель знает сейчас: " + n + " классов"; },
+      about: function (r) { return "Модель " + (r.version ? "v" + r.version + ", " : "") + "обучена с нуля на " + (r.photos || "—") + " музейных фото. На тестовых музейных фото: верно с первой попытки " + pct(r.test_top1) + " %, в тройке " + pct(r.test_top3) + " %. На полевых фото точность ниже, это первая версия."; },
+      timing: function (ms) { return "Распознано на телефоне за " + (ms / 1000).toFixed(1) + " с"; },
+      fail: "Не получилось открыть фото. Попробуйте другое.", loadFail: "Модель не загрузилась. Проверьте интернет и обновите страницу."
+    },
+    en: {
+      sub: "Take a photo of a stone and the model will say what it may be. Recognition runs on your phone; the photo is not sent anywhere.",
+      shoot: "Take photo", pick: "From gallery", loading: "Loading the model…", busy: "Looking at the stone…",
+      check: "How to check", means: "What it may mean", caution: "Caution",
+      copy: "Copy", again: "Another photo", copied: "Result copied",
+      tipsTitle: "How to shoot so the model understands",
+      tips: ["Stone in the centre and close, filling most of the frame.", "Daylight, no flash, no strong glare.", "Plain background: paper, palm, cloth.", "If you can, photograph a fresh break: it tells more than a dirty surface.", "One stone per photo. Whole landscapes and beaches are not understood yet."],
+      installTitle: "How to add it to the home screen",
+      installIos: "<b>iPhone (Safari):</b> Share button → “Add to Home Screen”.",
+      installAndroid: "<b>Android (Chrome):</b> menu ⋮ → “Add to Home screen” or “Install app”.",
+      classesTitle: function (n) { return "What the model knows now: " + n + " classes"; },
+      about: function (r) { return "Model " + (r.version ? "v" + r.version + ", " : "") + "trained from scratch on " + (r.photos || "—") + " museum photos. On held-out museum photos: right first time " + pct(r.test_top1) + " %, in the top three " + pct(r.test_top3) + " %. Field photos will be less accurate; this is the first version."; },
+      timing: function (ms) { return "Recognised on your phone in " + (ms / 1000).toFixed(1) + " s"; },
+      fail: "Could not open the photo. Try another one.", loadFail: "The model did not load. Check the connection and reload."
+    }
+  };
+  function pct(x) { return x == null ? "—" : (x * 100).toFixed(1).replace(".", lang === "ru" ? "," : "."); }
+  var $ = function (id) { return document.getElementById(id); };
+  var lang = "ru";
+  try { lang = localStorage.getItem("nicsGeoLang") || ((navigator.language || "").slice(0, 2) === "ru" ? "ru" : (navigator.language || "").slice(0, 2) === "en" ? "en" : "ru"); } catch (e) {}
+  var meta = null, worker = null, lastProbs = null, lastMs = 0, seq = 0;
+  var VIEWS = [[0, false], [1, false], [2, false], [3, false]];
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll(".lang button").forEach(function (b) { b.classList.toggle("on", b.dataset.lang === lang); });
+    var t = UI[lang];
+    document.querySelectorAll("[data-t]").forEach(function (el) {
+      var v = t[el.dataset.t];
+      if (typeof v === "string") { if (/^install/.test(el.dataset.t)) el.innerHTML = v; else el.textContent = v; }
+    });
+    $("tips").innerHTML = ""; t.tips.forEach(function (s) { var li = document.createElement("li"); li.textContent = s; $("tips").appendChild(li); });
+    if (meta) {
+      $("classesTitle").textContent = t.classesTitle(meta.classes.length);
+      var names = meta.classes.map(function (k) { return meta.texts.classes[k][lang]; }).sort(function (a, b) { return a.localeCompare(b, lang); });
+      $("classes").innerHTML = ""; names.forEach(function (n) { var li = document.createElement("li"); li.textContent = n; $("classes").appendChild(li); });
+      $("about").textContent = t.about(meta.run || {});
+    }
+    if (lastProbs) render(lastProbs, lastMs);
+  }
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { lang = b.dataset.lang; try { localStorage.setItem("nicsGeoLang", lang); } catch (e) {} applyLang(); });
+  });
+
+  function toast(msg) { var t = $("toast"); t.textContent = msg; t.classList.add("on"); setTimeout(function () { t.classList.remove("on"); }, 1800); }
+
+  function load() {
+    Promise.all([fetch("geo-model.json?v=1").then(function (r) { if (!r.ok) throw 0; return r.json(); }),
+                 fetch("geo-model.bin?v=1").then(function (r) { if (!r.ok) throw 0; return r.arrayBuffer(); })])
+      .then(function (res) {
+        meta = res[0];
+        worker = new Worker("geo-worker.js?v=1");
+        worker.onmessage = onWorker;
+        worker.postMessage({ type: "load", meta: meta, buffer: res[1] }, [res[1]]);
+        applyLang();
+      }).catch(function () { $("loading").innerHTML = ""; $("loading").textContent = UI[lang].loadFail; });
+  }
+  function onWorker(e) {
+    var d = e.data;
+    if (d.type === "ready") { $("loading").classList.add("hidden"); $("shoot").disabled = false; $("pick").disabled = false; }
+    else if (d.type === "result" && d.id === seq) { lastProbs = d.probs; lastMs = d.ms; $("busy").classList.add("hidden"); render(d.probs, d.ms); }
+    else if (d.type === "error") { $("busy").classList.add("hidden"); toast(UI[lang].fail); }
+  }
+
+  $("shoot").addEventListener("click", function () { $("fileCam").click(); });
+  $("pick").addEventListener("click", function () { $("fileLib").click(); });
+  $("again").addEventListener("click", function () { $("fileCam").click(); });
+  ["fileCam", "fileLib"].forEach(function (id) {
+    $(id).addEventListener("change", function (e) { var f = e.target.files && e.target.files[0]; e.target.value = ""; if (f) run(f); });
+  });
+
+  function decode(file) {
+    var url = URL.createObjectURL(file);
+    return new Promise(function (ok, bad) {
+      var img = new Image();
+      img.onload = function () { ok(img); };
+      img.onerror = function () { URL.revokeObjectURL(url); bad(); };
+      img.src = url;   // browsers apply EXIF orientation when drawing
+    });
+  }
+  // centre square, scaled in two steps (big phone photos alias in one step), to `size` px
+  function square(img, size) {
+    var w = img.naturalWidth, h = img.naturalHeight, s = Math.min(w, h), sx = (w - s) / 2, sy = (h - s) / 2;
+    var mid = document.createElement("canvas"), m = Math.min(s, size * 4); mid.width = mid.height = m;
+    var c1 = mid.getContext("2d"); c1.imageSmoothingEnabled = true; c1.imageSmoothingQuality = "high";
+    c1.drawImage(img, sx, sy, s, s, 0, 0, m, m);
+    var out = document.createElement("canvas"); out.width = out.height = size;
+    var c2 = out.getContext("2d"); c2.imageSmoothingEnabled = true; c2.imageSmoothingQuality = "high";
+    c2.drawImage(mid, 0, 0, m, m, 0, 0, size, size);
+    return out;
+  }
+  function run(file) {
+    $("work").classList.remove("hidden"); $("result").classList.add("hidden"); $("busy").classList.remove("hidden");
+    decode(file).then(function (img) {
+      var pv = $("preview"), ctx = pv.getContext("2d");
+      ctx.imageSmoothingQuality = "high"; ctx.drawImage(square(img, 384), 0, 0);
+      var sq = square(img, meta.cache_size), data = sq.getContext("2d").getImageData(0, 0, meta.cache_size, meta.cache_size).data;
+      URL.revokeObjectURL(img.src);
+      seq += 1;
+      var buf = new Uint8ClampedArray(data).buffer;
+      worker.postMessage({ type: "classify", id: seq, rgba: buf, views: VIEWS }, [buf]);
+      $("work").scrollIntoView({ behavior: "smooth", block: "start" });
+    }).catch(function () { $("busy").classList.add("hidden"); toast(UI[lang].fail); });
+  }
+
+  function fill(id, items, boxId) {
+    var ul = $(id); ul.innerHTML = "";
+    items.forEach(function (s) { var li = document.createElement("li"); li.textContent = s; ul.appendChild(li); });
+    $(boxId).classList.toggle("hidden", !items.length);
+  }
+  function render(probs, ms) {
+    var a = NicsGeoAnswer(meta, probs, lang);
+    $("result").className = "level-" + a.level;
+    $("headline").textContent = a.headline;
+    $("retake").textContent = a.retake;
+    $("bars").innerHTML = "";
+    a.top.forEach(function (t) {
+      var d = document.createElement("div"); d.className = "bar";
+      var p = Math.round(t.p * 100);
+      d.innerHTML = '<span></span><span class="muted"></span><div class="track"><div class="fill"></div></div>';
+      d.children[0].textContent = t.name; d.children[1].textContent = p + " %";
+      d.querySelector(".fill").style.width = Math.max(2, p) + "%";
+      $("bars").appendChild(d);
+    });
+    $("alts").textContent = "";
+    fill("tests", a.tests, "testsBox"); fill("means", a.means, "meansBox"); fill("cautions", a.cautions, "cautionBox");
+    $("limit").textContent = a.limit;
+    $("timing").textContent = UI[lang].timing(ms);
+  }
+  $("copy").addEventListener("click", function () {
+    if (!lastProbs) return;
+    var a = NicsGeoAnswer(meta, lastProbs, lang), lines = [a.headline];
+    if (a.retake) lines.push(a.retake);
+    lines.push(a.top.map(function (t) { return t.name + " " + Math.round(t.p * 100) + " %"; }).join(", "));
+    if (a.tests.length) lines.push(a.labels.check + ":", a.tests.map(function (s) { return "• " + s; }).join("\n"));
+    if (a.means.length) lines.push(a.labels.means + ":", a.means.map(function (s) { return "• " + s; }).join("\n"));
+    lines.push(a.limit, "NICS Vision Geo " + ((meta.run && meta.run.version) || ""));
+    var text = lines.join("\n");
+    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () { toast(UI[lang].copied); }, function () {
+      var ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); toast(UI[lang].copied); } catch (e) {} ta.remove();
+    });
+  });
+
+  var s = document.createElement("script"); s.src = "geo-engine.js?v=1";
+  s.onload = function () { window.NicsGeoAnswer = window.NicsGeo.answer; load(); };
+  document.head.appendChild(s);
+  applyLang();
+})();
+</script>
+</body>
+</html>
