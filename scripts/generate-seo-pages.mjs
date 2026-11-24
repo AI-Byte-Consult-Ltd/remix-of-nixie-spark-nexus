@@ -486,6 +486,7 @@ const NAV = [
   { base: "/nics-ecosystem", label: "NICS AI Ecosystem", langs: [...PHASE1_LANGS] },
   { base: "/about", label: "About", langs: [...PHASE1_LANGS] },
   { base: "/blog", label: "Articles", langs: ["en", "ru", "bg"] },
+  { base: "/journal", label: "Dev Journal", langs: ["en", "ru", "bg"] },
 ];
 // Extra plain-HTML sections under the heading, so the no-JavaScript version
 // of a page is not a two-line stub (Bing Webmaster: "insufficient content"
@@ -691,7 +692,31 @@ const sitemapUrls = pages
   })
   .join("\n");
 // Articles (content/blog) are written as complete static pages by blog.mjs.
-const blogEntries = await buildBlog(distDir);
+// The development journal (content/journal) uses the same engine.
+const JOURNAL_TEXTS = {
+  en: {
+    blog: "NICS Dev Journal",
+    blogTitle: "NICS Dev Journal — AI Byte Consult",
+    blogDescription: "How we build NICS: what we shipped, what broke, what we measured and what comes next. Real numbers only, no forecasts.",
+    all: "All journal entries",
+  },
+  ru: {
+    blog: "Журнал разработки NICS",
+    blogTitle: "Журнал разработки NICS — AI Byte Consult",
+    blogDescription: "Как мы строим NICS: что запустили, что сломалось, что измерили и что делаем дальше. Только реальные цифры, без прогнозов.",
+    all: "Все записи журнала",
+  },
+  bg: {
+    blog: "Дневник на разработката NICS",
+    blogTitle: "Дневник на разработката NICS — AI Byte Consult",
+    blogDescription: "Как изграждаме NICS: какво пуснахме, какво се счупи, какво измерихме и какво следва. Само реални числа, без прогнози.",
+    all: "Всички записи",
+  },
+};
+const blogEntries = [
+  ...(await buildBlog(distDir)),
+  ...(await buildBlog(distDir, { segment: "journal", texts: JOURNAL_TEXTS, schemaType: "BlogPosting" })),
+];
 const blogUrls = blogEntries
   .map((entry) => {
     const links = entry.alternates

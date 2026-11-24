@@ -42,6 +42,14 @@ export const phasedAlternates = (base: string) => [
 export const phasedCanonical = (base: string, lang: string) => `${SITE_URL}${phasedPath(base, phasedLang(lang))}/`;
 
 // Articles (content/blog) exist in EN, RU and BG. DE/ES readers get English.
+// Development journal (content/journal), same languages and URL scheme as the articles.
+export const journalPath = (lang: string, slug?: string) => {
+  const prefix = lang === "ru" || lang === "bg" ? `/${lang}/journal/` : "/journal/";
+  return slug ? `${prefix}${slug}/` : prefix;
+};
+
+export const JOURNAL_LABEL: Record<string, string> = { en: "Dev Journal", ru: "Журнал", bg: "Дневник" };
+
 export const blogPath = (lang: string, slug?: string) => {
   const prefix = lang === "ru" || lang === "bg" ? `/${lang}/blog/` : "/blog/";
   return slug ? `${prefix}${slug}/` : prefix;

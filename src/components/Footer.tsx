@@ -3,7 +3,7 @@ import Link from "@/components/SiteLink";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { AuthorSocialIcons, TRADING_LAB_URL } from "@/components/AuthorSocials";
 import { windowsAppPath } from "@/i18n/windowsApp";
-import { blogPath, phasedPath } from "@/i18n/phasedSeo";
+import { blogPath, JOURNAL_LABEL, journalPath, phasedPath } from "@/i18n/phasedSeo";
 
 // Featured articles (content/blog). Articles exist in EN, RU and BG; every
 // other language links to the English version. Slugs must match folders in
@@ -59,6 +59,7 @@ const Footer = () => {
                 <li><Link to="/trading" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.trading")}</Link></li>
                 <li><Link to="/#projects" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.projects")}</Link></li>
                 <li><Link to="/#contact" className="text-muted-foreground hover:text-primary transition-colors">{t("nav.contact")}</Link></li>
+                <li><a href={journalPath(language)} className="text-muted-foreground hover:text-primary transition-colors">{JOURNAL_LABEL[language] ?? JOURNAL_LABEL.en}</a></li>
                 <li><Link to="/nics-multimedia" className="text-muted-foreground hover:text-primary transition-colors">NICS Multimedia</Link></li>
                 <li><a href="https://alessandro-studio.eu" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">Partners</a></li>
               </ul>

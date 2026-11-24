@@ -14,6 +14,7 @@ import { withTrailingSlash } from "@/lib/canonicalPath";
 import logoImg from "@/assets/logo.jpeg";
 import { isHalloween } from "@/lib/halloween";
 import { isNewYear } from "@/lib/newYear";
+import { JOURNAL_LABEL, journalPath } from "@/i18n/phasedSeo";
 
 const languages: {code: Language;flag: string;name: string;}[] = [
 { code: "en", flag: "🇬🇧", name: "English" },
@@ -36,6 +37,10 @@ const nicsServices = [
 { href: "https://estate.aibyteconsult.com", label: "NICS Real Estate", external: true },
 { href: "/nics-ecosystem", label: "NICS AI Ecosystem", external: false },
 { href: "/nics-multimedia", label: "NICS Multimedia", external: false }];
+
+// The journal is static HTML outside the SPA (scripts/blog.mjs): plain <a>.
+const journalHref = (lang: string) => journalPath(lang);
+const journalLabel = (lang: string) => JOURNAL_LABEL[lang] ?? JOURNAL_LABEL.en;
 
 const partnersLink = { href: "https://alessandro-studio.eu", label: "Partners" };
 
@@ -103,6 +108,12 @@ const Header = () => {
                 {link.label}
               </Link>
             )}
+
+            <a
+              href={journalHref(language)}
+              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-muted/50">
+              {journalLabel(language)}
+            </a>
 
             <a
               href={partnersLink.href}
@@ -209,6 +220,13 @@ const Header = () => {
                   {link.label}
                 </Link>
             )}
+
+              <a
+                href={journalHref(language)}
+                onClick={() => setIsMenuOpen(false)}
+                className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors">
+                {journalLabel(language)}
+              </a>
 
               <a
                 href={partnersLink.href}
