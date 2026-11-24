@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Учим свою торговую модель с нуля: первая неделя NICS Trading | AI Byte Consult</title>
+<meta name="description" content="Небольшой трансформер на 166 тысяч параметров, обычный ноутбук вместо арендованных видеокарт, ночное самообучение и ошибка в подсчёте, которую мы поймали у себя сами." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://aibyteconsult.com/ru/journal/nics-trading-model-week-one/" />
+<link rel="alternate" hreflang="bg" href="https://aibyteconsult.com/bg/journal/nics-trading-model-week-one/" />
+<link rel="alternate" hreflang="en" href="https://aibyteconsult.com/journal/nics-trading-model-week-one/" />
+<link rel="alternate" hreflang="ru" href="https://aibyteconsult.com/ru/journal/nics-trading-model-week-one/" />
+<link rel="alternate" hreflang="x-default" href="https://aibyteconsult.com/journal/nics-trading-model-week-one/" />
+<meta property="og:site_name" content="AI Byte Consult" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Учим свою торговую модель с нуля: первая неделя NICS Trading | AI Byte Consult" />
+<meta property="og:description" content="Небольшой трансформер на 166 тысяч параметров, обычный ноутбук вместо арендованных видеокарт, ночное самообучение и ошибка в подсчёте, которую мы поймали у себя сами." />
+<meta property="og:url" content="https://aibyteconsult.com/ru/journal/nics-trading-model-week-one/" />
+<meta property="og:image" content="https://aibyteconsult.com/og-trading.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@EarthAuthor" />
+<meta name="theme-color" content="#0f172a" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://aibyteconsult.com/#organization","name":"AI Byte Consult Ltd","url":"https://aibyteconsult.com/","logo":"https://aibyteconsult.com/android-chrome-512x512.png"},{"@type":"BlogPosting","headline":"Учим свою торговую модель с нуля: первая неделя NICS Trading","description":"Небольшой трансформер на 166 тысяч параметров, обычный ноутбук вместо арендованных видеокарт, ночное самообучение и ошибка в подсчёте, которую мы поймали у себя сами.","inLanguage":"ru","datePublished":"2026-11-22","dateModified":"2026-11-22","image":"https://aibyteconsult.com/og-trading.jpg","mainEntityOfPage":"https://aibyteconsult.com/ru/journal/nics-trading-model-week-one/","author":{"@id":"https://aibyteconsult.com/#organization"},"publisher":{"@id":"https://aibyteconsult.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://aibyteconsult.com/ru/"},{"@type":"ListItem","position":2,"name":"Журнал разработки NICS","item":"https://aibyteconsult.com/ru/journal/"},{"@type":"ListItem","position":3,"name":"Учим свою торговую модель с нуля: первая неделя NICS Trading","item":"https://aibyteconsult.com/ru/journal/nics-trading-model-week-one/"}]}]}</script>
+<style>
+:root{--bg:#ffffff;--fg:#0f172a;--muted:#475569;--line:#e2e8f0;--accent:#2563eb;--soft:#f1f5f9}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1120;--fg:#e2e8f0;--muted:#94a3b8;--line:#1e293b;--accent:#60a5fa;--soft:#111a2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+header,footer{border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line);border-bottom:0;margin-top:64px;color:var(--muted);font-size:14px}
+.bar{max-width:760px;margin:0 auto;padding:16px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+.bar .brand{font-weight:700;color:var(--fg);text-decoration:none;margin-right:auto}
+.bar a{text-decoration:none;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:24px 16px}
+.crumbs{font-size:14px;color:var(--muted)}
+.crumbs a{color:var(--muted)}
+h1{font-size:clamp(28px,5vw,38px);line-height:1.2;margin:16px 0 8px}
+h2{font-size:24px;line-height:1.3;margin:40px 0 8px}
+h3{font-size:19px;margin:28px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:24px}
+.lead{font-size:19px;color:var(--muted)}
+aside{background:var(--soft);border-left:4px solid var(--accent);padding:12px 16px;border-radius:6px;margin:20px 0}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+.cta{margin:40px 0;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.cta a.button{display:inline-block;margin-top:8px;padding:10px 18px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600}
+.list article{padding:20px 0;border-bottom:1px solid var(--line)}
+.list h2{margin:0 0 4px;font-size:21px}
+.list p{margin:4px 0;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><nav class="bar">
+<a class="brand" href="/ru/">AI Byte Consult</a>
+<a href="/ru/nics-video/">NICS Video</a>
+<a href="/ru/trading/">NICS Trading Ecosystem</a>
+<a href="/ru/nics-trading-software/">Программа для трейдинга</a>
+<a href="/ru/blog/">Статьи</a>
+<a href="/ru/journal/">Журнал</a>
+</nav></header>
+<main>
+<div class="crumbs"><a href="/ru/">Главная</a> › <a href="/ru/journal/">Журнал разработки NICS</a></div>
+<article>
+<h1>Учим свою торговую модель с нуля: первая неделя NICS Trading</h1>
+<div class="meta">Опубликовано: <time datetime="2026-11-22">2026-11-22</time> · AI Byte Consult · Читать на языке: <a href="/bg/journal/nics-trading-model-week-one/" hreflang="bg">Български</a> · <a href="/journal/nics-trading-model-week-one/" hreflang="en">English</a></div>
+<p class="lead">Небольшой трансформер на 166 тысяч параметров, обычный ноутбук вместо арендованных видеокарт, ночное самообучение и ошибка в подсчёте, которую мы поймали у себя сами.</p>
+<p>В NICS три направления: язык, зрение и рынки. На этой неделе мы всерьёз взялись за третье и начали учить собственную торговую модель, NICS Trading. Без готовой «большой» модели под капотом: архитектура, веса и обучение наши, с первого шага.</p>
+<h2>Что за модель</h2>
+<p>Это небольшой трансформер: три блока, 166 532 параметра. По меркам современных языковых моделей крошечный, и это сделано специально. Модель видит последние 96 свечей одного инструмента на любом таймфрейме, от минутного до недельного. Каждую свечу она получает в нормированном виде: ход, диапазон и тени в единицах ATR, режим волатильности, время суток и дня недели, расстояние до уровней, индикаторы и свечные паттерны.</p>
+<p>На выходе две «головы»:</p>
+<ul><li><strong>Куда пойдёт цена.</strong> Вниз, вбок или вверх через заданное число свечей; «вбок» значит в пределах половины ATR.</li><li><strong>Дойдёт ли сделка до первой цели раньше стопа.</strong> Это главный вопрос для каждого сетапа, который находит наш сканер.</li></ul>
+<h2>На чём учится</h2>
+<p>Только на данных, которые мы собрали сами или получили из открытых источников: свечи брокера по всем таймфреймам, все торговые идеи сканера с их реальными исходами, теневые стратегии и наши собственные сделки. Сверху добавлена длинная публичная история с 2008 года по 19 инструментам. Она нужна только для обучения и никогда не попадает в проверочную выборку.</p>
+<p>Данные делятся по времени: обучение, валидация, тест, а между ними зазор, чтобы будущее не подсматривало в прошлое. Исход каждой сделки пересчитывается по свечам. Если одна свеча задела и цель, и стоп, мы считаем это убытком.</p>
+<h2>Обычный ноутбук вместо дата-центра</h2>
+<p>Всё обучение идёт на процессоре обычного ноутбука, видеокарты мы не арендуем. Первое обучение с нуля 19 ноября заняло 21 минуту. Веса никуда не уходят: на сервер отправляются только метрики, чтобы команда видела их на внутренней панели.</p>
+<p>Каждую ночь запускается цикл самообучения. Текущая лучшая модель, «чемпион», проверяется на свежих данных, рядом дообучается «претендент», а раз в неделю ещё один учится с нуля. Претендент занимает место чемпиона, только если обыграл его на валидации на тех же новых данных. Тестовая выборка используется только для отчёта, по ней ничего не выбирается.</p>
+<h2>Честные первые цифры</h2>
+<p>Первый чемпион пока <strong>не</strong> умеет предсказывать направление цены. На тесте он угадал 43,4 % движений, а наивное правило «всегда отвечать самым частым вариантом» дало бы 48,9 %. Это хуже простого правила, и мы пишем об этом прямо.</p>
+<p>С вопросом «дойдёт ли сетап до цели» дела интереснее. Здесь качество меряют метрикой AUC, где 0,5 — это подбрасывание монеты, а 1,0 — идеальное предсказание. Первый чемпион показал на тесте 0,589. Это слабый, но уже не случайный результат.</p>
+<aside>Всё это измерения на прошлых данных, а не прогноз. Модель пока ничем не торгует и ни на что не влияет.</aside>
+<h2>Ошибку нашли у себя сами</h2>
+<p>Мы сравнили модель со сканером: кто из них чаще правильно выбирает направление. Первая сводка выглядела слишком хорошо. Когда стали разбираться, выяснилось, что сканер пересохраняет одну и ту же идею каждые три минуты. Так набиралось около тысячи записей в день, хотя пользователям уходит примерно пятьдесят. Один удачный день считался десятки раз.</p>
+<p>Мы исправили подсчёт: теперь в сводку попадает только то, что реально ушло пользователям, а повторы считаются отдельно. Урок простой, но важный: прежде чем радоваться числу, проверь, что именно ты считаешь.</p>
+<h2>Где модель сейчас</h2>
+<p>Модель работает «в тени». Каждые две минуты она смотрит на свежий теханализ, который получили пользователи, и пишет команде своё мнение: согласна ли она с направлением и какой план выбрала бы сама. Пользователи, торговые счета и логика платформы при этом не меняются.</p>
+<p>Решение такое: 2–4 недели наблюдения, включая плохие для рынка дни, и только потом разговор о том, может ли модель на что-то влиять.</p>
+<h2>Что дальше</h2>
+<p>Следующий шаг — реестр правил. Классические идеи технического анализа мы переписываем в код со своими параметрами. Каждое правило сначала живёт в тени, и модель учится на нём только если оно доказало пользу на новых данных. Об этом будет следующая запись в журнале.</p>
+<div class="cta">NICS Trading Ecosystem — платформа, внутри которой идёт эта работа: теханализ по 37 инструментам, открытая статистика и приложение для Windows.<br /><a class="button" href="/ru/trading/">Открыть NICS Trading Ecosystem</a></div>
+</article>
+<p><a href="/ru/journal/">← Все записи журнала</a></p>
+</main>
+<footer><div class="bar">© 2026 AI Byte Consult Ltd · <a href="mailto:info@aibyteconsult.com">info@aibyteconsult.com</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></div></footer>
+</body>
+</html>

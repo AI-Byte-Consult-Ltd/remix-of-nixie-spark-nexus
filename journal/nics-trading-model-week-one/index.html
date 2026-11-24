@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Training our own trading model from scratch: week one of NICS Trading | AI Byte Consult</title>
+<meta name="description" content="A 166-thousand-parameter Transformer, an ordinary laptop instead of rented GPUs, nightly self-learning, and a counting mistake we caught ourselves." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://aibyteconsult.com/journal/nics-trading-model-week-one/" />
+<link rel="alternate" hreflang="bg" href="https://aibyteconsult.com/bg/journal/nics-trading-model-week-one/" />
+<link rel="alternate" hreflang="en" href="https://aibyteconsult.com/journal/nics-trading-model-week-one/" />
+<link rel="alternate" hreflang="ru" href="https://aibyteconsult.com/ru/journal/nics-trading-model-week-one/" />
+<link rel="alternate" hreflang="x-default" href="https://aibyteconsult.com/journal/nics-trading-model-week-one/" />
+<meta property="og:site_name" content="AI Byte Consult" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Training our own trading model from scratch: week one of NICS Trading | AI Byte Consult" />
+<meta property="og:description" content="A 166-thousand-parameter Transformer, an ordinary laptop instead of rented GPUs, nightly self-learning, and a counting mistake we caught ourselves." />
+<meta property="og:url" content="https://aibyteconsult.com/journal/nics-trading-model-week-one/" />
+<meta property="og:image" content="https://aibyteconsult.com/og-trading.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@EarthAuthor" />
+<meta name="theme-color" content="#0f172a" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://aibyteconsult.com/#organization","name":"AI Byte Consult Ltd","url":"https://aibyteconsult.com/","logo":"https://aibyteconsult.com/android-chrome-512x512.png"},{"@type":"BlogPosting","headline":"Training our own trading model from scratch: week one of NICS Trading","description":"A 166-thousand-parameter Transformer, an ordinary laptop instead of rented GPUs, nightly self-learning, and a counting mistake we caught ourselves.","inLanguage":"en","datePublished":"2026-11-22","dateModified":"2026-11-22","image":"https://aibyteconsult.com/og-trading.jpg","mainEntityOfPage":"https://aibyteconsult.com/journal/nics-trading-model-week-one/","author":{"@id":"https://aibyteconsult.com/#organization"},"publisher":{"@id":"https://aibyteconsult.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://aibyteconsult.com/"},{"@type":"ListItem","position":2,"name":"NICS Dev Journal","item":"https://aibyteconsult.com/journal/"},{"@type":"ListItem","position":3,"name":"Training our own trading model from scratch: week one of NICS Trading","item":"https://aibyteconsult.com/journal/nics-trading-model-week-one/"}]}]}</script>
+<style>
+:root{--bg:#ffffff;--fg:#0f172a;--muted:#475569;--line:#e2e8f0;--accent:#2563eb;--soft:#f1f5f9}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1120;--fg:#e2e8f0;--muted:#94a3b8;--line:#1e293b;--accent:#60a5fa;--soft:#111a2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+header,footer{border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line);border-bottom:0;margin-top:64px;color:var(--muted);font-size:14px}
+.bar{max-width:760px;margin:0 auto;padding:16px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+.bar .brand{font-weight:700;color:var(--fg);text-decoration:none;margin-right:auto}
+.bar a{text-decoration:none;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:24px 16px}
+.crumbs{font-size:14px;color:var(--muted)}
+.crumbs a{color:var(--muted)}
+h1{font-size:clamp(28px,5vw,38px);line-height:1.2;margin:16px 0 8px}
+h2{font-size:24px;line-height:1.3;margin:40px 0 8px}
+h3{font-size:19px;margin:28px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:24px}
+.lead{font-size:19px;color:var(--muted)}
+aside{background:var(--soft);border-left:4px solid var(--accent);padding:12px 16px;border-radius:6px;margin:20px 0}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+.cta{margin:40px 0;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.cta a.button{display:inline-block;margin-top:8px;padding:10px 18px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600}
+.list article{padding:20px 0;border-bottom:1px solid var(--line)}
+.list h2{margin:0 0 4px;font-size:21px}
+.list p{margin:4px 0;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><nav class="bar">
+<a class="brand" href="/">AI Byte Consult</a>
+<a href="/nics-video/">NICS Video</a>
+<a href="/trading/">NICS Trading Ecosystem</a>
+<a href="/nics-trading-software/">AI trading software</a>
+<a href="/blog/">Articles</a>
+<a href="/journal/">Dev Journal</a>
+</nav></header>
+<main>
+<div class="crumbs"><a href="/">Home</a> › <a href="/journal/">NICS Dev Journal</a></div>
+<article>
+<h1>Training our own trading model from scratch: week one of NICS Trading</h1>
+<div class="meta">Published: <time datetime="2026-11-22">2026-11-22</time> · AI Byte Consult · Read in: <a href="/bg/journal/nics-trading-model-week-one/" hreflang="bg">Български</a> · <a href="/ru/journal/nics-trading-model-week-one/" hreflang="ru">Русский</a></div>
+<p class="lead">A 166-thousand-parameter Transformer, an ordinary laptop instead of rented GPUs, nightly self-learning, and a counting mistake we caught ourselves.</p>
+<p>NICS has three directions: language, vision and markets. This week we got serious about the third one and started training our own trading model, NICS Trading. There is no ready-made &quot;big&quot; model under the hood: the architecture, the weights and the training are ours from the first step.</p>
+<h2>What the model is</h2>
+<p>It is a small Transformer: three blocks, 166,532 parameters. Tiny by the standards of today's language models, and that is on purpose. The model sees the last 96 candles of one instrument on any timeframe, from one minute to one week. Each candle comes in normalised form: move, range and wicks in ATR units, volatility regime, time of day and day of week, distance to levels, indicators and candle patterns.</p>
+<p>It has two outputs, or &quot;heads&quot;:</p>
+<ul><li><strong>Where price goes.</strong> Down, sideways or up after a set number of candles; &quot;sideways&quot; means within half an ATR.</li><li><strong>Whether a trade reaches its first target before its stop.</strong> This is the key question for every setup our scanner finds.</li></ul>
+<h2>What it learns from</h2>
+<p>Only data we collected ourselves or took from open sources: broker candles on every timeframe, every trade idea the scanner produced with its real outcome, shadow strategies and our own trades. On top of that there is long public history since 2008 for 19 instruments. It is used for training only and never enters the evaluation sets.</p>
+<p>The data is split by time into training, validation and test, with a gap between them so the future cannot leak into the past. Every trade outcome is recomputed from candles. If one candle touched both the target and the stop, we count it as a loss.</p>
+<h2>An ordinary laptop instead of a data centre</h2>
+<p>All training runs on the CPU of an ordinary laptop; we rent no GPUs. The first training from scratch, on 19 November, took 21 minutes. The weights never leave the laptop: only metrics go to the server, so the team can see them on an internal dashboard.</p>
+<p>Every night a self-learning cycle runs. The current best model, the &quot;champion&quot;, is re-checked on fresh data, a &quot;challenger&quot; is fine-tuned next to it, and once a week another one is trained from scratch. A challenger replaces the champion only if it beats it on validation on the same new data. The test set is report-only; nothing is chosen by it.</p>
+<h2>Honest first numbers</h2>
+<p>The first champion <strong>cannot</strong> predict price direction yet. On the test set it got 43.4% of moves right, while the naive rule &quot;always answer the most common case&quot; would get 48.9%. That is worse than the simple rule, and we say so plainly.</p>
+<p>The question &quot;will the setup reach its target&quot; is more interesting. Quality there is measured with AUC, where 0.5 is a coin flip and 1.0 is a perfect prediction. The first champion scored 0.589 on the test set. Weak, but no longer random.</p>
+<aside>All of this is measured on past data and is not a forecast. The model does not trade and does not influence anything yet.</aside>
+<h2>A mistake we caught ourselves</h2>
+<p>We compared the model with the scanner: which one picks the direction correctly more often. The first summary looked too good. When we dug in, it turned out the scanner re-saves the same idea every three minutes. That made about a thousand records a day, while roughly fifty actually reach users. One good day was being counted dozens of times.</p>
+<p>We fixed the count: the summary now includes only what was actually delivered to users, and repeats are reported separately. A simple lesson, but an important one: before you celebrate a number, check what you are counting.</p>
+<h2>Where the model is now</h2>
+<p>The model runs &quot;in the shadow&quot;. Every two minutes it looks at the fresh technical analysis users received and sends the team its opinion: whether it agrees with the direction and what plan it would choose itself. Users, trading accounts and the platform's logic are not changed.</p>
+<p>The decision is 2–4 weeks of observation, including bad market days, and only then a conversation about whether the model may influence anything.</p>
+<h2>What comes next</h2>
+<p>The next step is a rules registry. We rewrite classic technical-analysis ideas as code with our own parameters. Every rule first lives in the shadow, and the model learns from it only if it has proven useful on new data. That will be the next entry in this journal.</p>
+<div class="cta">NICS Trading Ecosystem is the platform this work happens inside: technical analysis on 37 instruments, open statistics and a Windows app.<br /><a class="button" href="/trading/">Open NICS Trading Ecosystem</a></div>
+</article>
+<p><a href="/journal/">← All journal entries</a></p>
+</main>
+<footer><div class="bar">© 2026 AI Byte Consult Ltd · <a href="mailto:info@aibyteconsult.com">info@aibyteconsult.com</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></div></footer>
+</body>
+</html>
