@@ -1,11 +1,13 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { motion, useInView, useMotionValue, useTransform, animate, AnimatePresence } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { workCases } from "@/i18n/workCases";
 import realestateAiImg from "@/assets/project-realestate-ai.jpg";
 import alessandroStudioImg from "@/assets/project-alessandro-studio.webp";
 import nicsVideoImg from "@/assets/project-nics-video.webp";
 import aquaterraImg from "@/assets/project-nft-new.jpg";
+import { VANTAGE_SITE_URL } from "@/features/nics/externalLinks";
 
 const prideImg = `data:image/svg+xml,${encodeURIComponent(`
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125">
@@ -98,6 +100,8 @@ type Case = {
   cta: string;
   href?: string;
   image: string;
+  /** "Case" in the page language (set in OurWorkInAction). */
+  caseWord?: string;
 };
 
 const CASES: Case[] = [
@@ -137,7 +141,7 @@ const CASES: Case[] = [
     metric: { value: 24, suffix: "/7", label: "Market analysis coverage" },
     tags: ["AI Trading", "Forex · Gold · Crypto", "Telegram + MT5", "Verified Track Record"],
     cta: "Explore AI Trading",
-    href: "https://fwd.cx/Yj25BCrDzEHB",
+    href: VANTAGE_SITE_URL,
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1600&q=80",
   },
   {
@@ -183,18 +187,29 @@ const CASES: Case[] = [
     industry: "Social Network · Community",
     name: "PRIDE Social Network",
     problem: "LGBTQ+ communities often lack a dedicated social platform built with their needs in mind.",
-    solution: "We designed and built PRIDE Social Network (pridesocial.org) end to end — profiles, feeds and community features, built in-house rather than on a template.",
+    solution: "We designed and built PRIDE Social Network (pride.aibyteconsult.com) end to end — profiles, feeds and community features, built in-house rather than on a template.",
     result: "A live platform already in use by an early group of real members, growing organically.",
     metric: { value: 100, suffix: "%", label: "In-house build, live today" },
     tags: ["Social Network", "Community", "LGBTQ+", "Live"],
     cta: "Visit PRIDE Social",
-    href: "https://pridesocial.org",
+    href: "https://pride.aibyteconsult.com/",
     image: prideImg,
   },
 ];
 
-const FEATURED = CASES.slice(0, 3);
-const REST = CASES.slice(3);
+// Card texts in the page language (src/i18n/workCases.ts), English if missing.
+const localizeCases = (lang: string): Case[] => {
+  const tx = workCases[lang];
+  if (!tx) return CASES;
+  return CASES.map((c) => {
+    const w = tx.cases[c.id];
+    return {
+      ...c,
+      caseWord: tx.caseWord,
+      ...(w ? { industry: w.industry, solution: w.solution, cta: w.cta, metric: { ...c.metric, label: w.metric } } : {}),
+    };
+  });
+};
 
 function Counter({ to, suffix }: { to: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -277,7 +292,7 @@ function FeaturedCard({ c, index }: { c: Case; index: number }) {
         <div className="absolute inset-x-0 top-0 flex items-start justify-between p-6">
           <span className="text-[10px] uppercase tracking-[0.25em] text-white/70">{c.industry}</span>
           <span className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/70 backdrop-blur">
-            Case {String(index + 1).padStart(2, "0")}
+            {c.caseWord ?? "Case"} {String(index + 1).padStart(2, "0")}
           </span>
         </div>
 
@@ -459,7 +474,10 @@ function ExpandedCase({ open, onClose, c }: { open: boolean; onClose: () => void
 }
 
 const OurWorkInAction = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const cases = useMemo(() => localizeCases(language), [language]);
+  const FEATURED = cases.slice(0, 3);
+  const REST = cases.slice(3);
   return (
     <section id="projects" className="relative overflow-hidden bg-neutral-950 py-28 text-white">
       {/* Cinematic background */}

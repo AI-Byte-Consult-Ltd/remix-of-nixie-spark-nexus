@@ -10,7 +10,6 @@ import {
   Mountain,
   Globe2,
   Users,
-  PawPrint,
   Box,
   X,
   ArrowRight,
@@ -18,6 +17,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ecosystemShort, ecosystemStatusLabels } from "@/i18n/ecosystemModules";
+import { VANTAGE_SITE_URL } from "@/features/nics/externalLinks";
 
 type Status = "Live" | "Alpha" | "Training Active" | "Research Active" | "Coming Soon" | "Paused";
 
@@ -26,6 +27,8 @@ interface EcosystemModule {
   name: string;
   icon: typeof Brain;
   status: Status;
+  /** Status in the page language (set in OurEcosystem from src/i18n/ecosystemModules.ts). */
+  statusLabel?: string;
   short: string;
   tags: string[];
   who: string;
@@ -71,7 +74,7 @@ const modules: EcosystemModule[] = [
     who: "Active traders, funds and institutions seeking data-driven multi-asset intelligence.",
     connection:
       "Applies NICS reasoning to live financial markets — real-time technical analysis and structured market scenarios.",
-    cta: { label: "Explore NICS Trading Ecosystem", href: "https://fwd.cx/Yj25BCrDzEHB", external: true },
+    cta: { label: "Explore NICS Trading Ecosystem", href: VANTAGE_SITE_URL, external: true },
   },
   {
     id: "architect",
@@ -136,7 +139,7 @@ const modules: EcosystemModule[] = [
     who: "The LGBTQ+ community and allies looking for a dedicated social space.",
     connection:
       "The community layer of the ecosystem — built independently of the AI/trading products.",
-    cta: { label: "Visit PRIDE Social", href: "https://pridesocial.org", external: true },
+    cta: { label: "Visit PRIDE Social", href: "https://pride.aibyteconsult.com/", external: true },
   },
   {
     id: "forge",
@@ -150,19 +153,6 @@ const modules: EcosystemModule[] = [
     connection:
       "Applies NICS generative AI to physical products — from a text or voice request to a shipped object.",
     cta: { label: "Visit Alessandro Studio", href: "/nics-forge" },
-  },
-  {
-    id: "animals",
-    name: "Animals Foundation",
-    icon: PawPrint,
-    status: "Coming Soon",
-    short:
-      "AI and blockchain platform for animal welfare, rescue coordination and wildlife protection.",
-    tags: ["Animals", "Foundation", "Blockchain"],
-    who: "Shelters, NGOs, veterinary networks and wildlife protection groups.",
-    connection:
-      "Applies NICS coordination and vision models to animal welfare and rescue logistics.",
-    cta: { label: "Support the Foundation", href: "https://yorkie.aibyteconsult.com/", external: true },
   },
 ];
 
@@ -268,7 +258,7 @@ function ModuleNode({
             className={`inline-flex items-center gap-1.5 text-[10px] px-2 py-0.5 rounded-full border ${statusStyles[m.status]}`}
           >
             <span className="w-1 h-1 rounded-full bg-current animate-pulse" />
-            {m.status}
+            {m.statusLabel ?? m.status}
           </div>
           <AnimatePresence>
             {hovered && (
@@ -300,7 +290,17 @@ function ModuleNode({
 }
 
 const OurEcosystem = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  // Card status and summary in the page language; English when missing.
+  const localModules = useMemo(
+    () =>
+      modules.map((m) => ({
+        ...m,
+        short: ecosystemShort[language]?.[m.id] ?? m.short,
+        statusLabel: ecosystemStatusLabels[language]?.[m.status] ?? m.status,
+      })),
+    [language],
+  );
   const [active, setActive] = useState<EcosystemModule | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -507,7 +507,7 @@ const OurEcosystem = () => {
             </motion.button>
 
             {/* Modules */}
-            {modules.map((m, i) => (
+            {localModules.map((m, i) => (
               <ModuleNode
                 key={m.id}
                 m={m}
@@ -531,7 +531,7 @@ const OurEcosystem = () => {
             <div className="text-lg font-semibold">{t("oureco.core.name")}</div>
             <div className="text-[11px] text-white/50">{t("oureco.core.stack")}</div>
           </div>
-          {modules.map((m) => {
+          {localModules.map((m) => {
             const Icon = m.icon;
             return (
               <button
@@ -549,7 +549,7 @@ const OurEcosystem = () => {
                       className={`inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full border mt-1 ${statusStyles[m.status]}`}
                     >
                       <span className="w-1 h-1 rounded-full bg-current animate-pulse" />
-                      {m.status}
+                      {m.statusLabel ?? m.status}
                     </div>
                   </div>
                   <ArrowRight className="w-4 h-4 text-white/40" />
@@ -662,7 +662,7 @@ const OurEcosystem = () => {
                       className={`inline-flex items-center gap-1.5 text-[10px] px-2 py-0.5 rounded-full border mb-1 ${statusStyles[active.status]}`}
                     >
                       <span className="w-1 h-1 rounded-full bg-current animate-pulse" />
-                      {active.status}
+                      {active.statusLabel ?? active.status}
                     </div>
                     <h3 className="text-2xl font-semibold">{active.name}</h3>
                   </div>

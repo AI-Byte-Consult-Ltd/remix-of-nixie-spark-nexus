@@ -9,6 +9,7 @@ import clinicImg from "@/assets/project-clinic-new.jpg";
 import retailImg from "@/assets/project-retail-new.jpg";
 import realestateAiImg from "@/assets/project-realestate-ai.jpg";
 import architectureImg from "@/assets/project-architecture-3d.jpg";
+import { VANTAGE_SITE_URL } from "@/features/nics/externalLinks";
 
 const projectDefs = [
   {
@@ -16,7 +17,7 @@ const projectDefs = [
     descKey: "projects.nicstrading.desc",
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
     tags: ["AI Trading", "Forex", "Gold", "Crypto"],
-    href: "https://fwd.cx/Yj25BCrDzEHB",
+    href: VANTAGE_SITE_URL,
   },
   { titleKey: "projects.estatereply.title", descKey: "projects.estatereply.desc", image: realestateAiImg, tags: ["AI Agent", "Email Automation", "Real Estate", "24/7"] },
   { titleKey: "projects.architecture.title", descKey: "projects.architecture.desc", image: architectureImg, tags: ["3D Design", "Architecture", "Visualization", "AI"] },

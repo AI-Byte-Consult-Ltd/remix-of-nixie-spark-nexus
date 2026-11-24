@@ -6,9 +6,18 @@
 
 import { trackUsage } from "@/lib/usageAnalytics";
 
-// Alexander's broker referral link. Empty = the "Open at broker" buttons
-// stay hidden. Set it here when the link is known (public, not a secret).
-export const BROKER_REFERRAL_URL = "https://vigco.co/la-com-inv/mGaes8ub";
+// Vantage partner links go through our click counter (n8n "[45 WEB] Vantage
+// Click Counter", 2026-11-22): it counts the click per source (s=) without
+// storing IP or user agent, then redirects to the fixed partner link (l=):
+// vig = open-live-account invite link, fwd = the CPA short link.
+const VANTAGE_COUNTER = "https://n8n.aibyteconsult.com/webhook/vantage";
+
+// Alexander's broker referral link in the Trader app (Mini App, cabinet,
+// Windows app). Empty = the "Open at broker" buttons stay hidden.
+export const BROKER_REFERRAL_URL = `${VANTAGE_COUNTER}?s=app&l=vig`;
+
+// Vantage links on the public site.
+export const VANTAGE_SITE_URL = `${VANTAGE_COUNTER}?s=site&l=fwd`;
 
 // The Windows app installer, served by the site (public/downloads). The
 // same link is shown in the app (sidebar, About), on the license page and

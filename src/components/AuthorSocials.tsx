@@ -97,10 +97,22 @@ const AUTHOR_COPY = {
   },
 };
 
+// Other site languages (added 2026-11-22); en / ru / bg live in AUTHOR_COPY.
+const AUTHOR_COPY_MORE: Record<string, (typeof AUTHOR_COPY)["en"]> = {
+  de: { badge: "Hinter dem Projekt", role: "Mitgründer von AI Byte Consult, Autor von NICS Trading Ecosystem", text: "Ich erzähle, wie das Projekt vorankommt: was gebaut wurde, was nicht funktioniert hat, echte Zahlen. Dazu Reisen und Technik — Beyond the Ordinary.", follow: "Folgen Sie mir, wo es Ihnen passt:" },
+  es: { badge: "Detrás del proyecto", role: "Cofundador de AI Byte Consult, autor de NICS Trading Ecosystem", text: "Cuento cómo avanza el proyecto: qué se ha construido, qué no ha funcionado, cifras reales. Además, viajes y tecnología — Beyond the Ordinary.", follow: "Sígueme donde prefieras:" },
+  fr: { badge: "Derrière le projet", role: "Cofondateur d'AI Byte Consult, auteur de NICS Trading Ecosystem", text: "Je raconte l'avancement du projet : ce qui a été construit, ce qui n'a pas marché, les vrais chiffres. Et aussi voyages et tech — Beyond the Ordinary.", follow: "Suivez-moi là où vous préférez :" },
+  it: { badge: "Dietro il progetto", role: "Cofondatore di AI Byte Consult, autore di NICS Trading Ecosystem", text: "Racconto come procede il progetto: cosa è stato costruito, cosa non ha funzionato, numeri reali. In più viaggi e tecnologia — Beyond the Ordinary.", follow: "Seguimi dove preferisci:" },
+  pl: { badge: "Autor projektu", role: "Współzałożyciel AI Byte Consult, autor NICS Trading Ecosystem", text: "Opowiadam, jak rozwija się projekt: co zbudowaliśmy, co nie zadziałało, prawdziwe liczby. Do tego podróże i technologia — Beyond the Ordinary.", follow: "Obserwuj tam, gdzie Ci wygodnie:" },
+  pt: { badge: "Por trás do projeto", role: "Cofundador da AI Byte Consult, autor do NICS Trading Ecosystem", text: "Conto como o projeto está indo: o que foi construído, o que não deu certo, números reais. Além de viagens e tecnologia — Beyond the Ordinary.", follow: "Siga onde for melhor para você:" },
+  tr: { badge: "Projenin arkasında", role: "AI Byte Consult'un kurucu ortağı, NICS Trading Ecosystem'in yazarı", text: "Projenin nasıl ilerlediğini paylaşıyorum: neler yapıldı, neler işe yaramadı, gerçek rakamlar. Bir de seyahat ve teknoloji — Beyond the Ordinary.", follow: "Size uygun yerden takip edin:" },
+  zh: { badge: "项目背后", role: "AI Byte Consult 联合创始人，NICS Trading Ecosystem 作者", text: "我会分享项目的进展：做成了什么、哪些没成功、真实的数字。还有旅行和科技内容 — Beyond the Ordinary。", follow: "在您方便的平台关注我：" },
+  ar: { badge: "وراء المشروع", role: "شريك مؤسس في AI Byte Consult، ومؤلف NICS Trading Ecosystem", text: "أشارك كيف يتقدّم المشروع: ما الذي بُني، وما الذي لم ينجح، والأرقام الحقيقية. وأيضًا السفر والتقنية — Beyond the Ordinary.", follow: "تابعني حيث يناسبك:" },
+};
 /** Author card with photo and labelled links, for landing pages like /trading. */
 export const AuthorBlock = () => {
   const { language } = useLanguage();
-  const c = language === "ru" ? AUTHOR_COPY.ru : language === "bg" ? AUTHOR_COPY.bg : AUTHOR_COPY.en;
+  const c = language === "ru" ? AUTHOR_COPY.ru : language === "bg" ? AUTHOR_COPY.bg : AUTHOR_COPY_MORE[language] ?? AUTHOR_COPY.en;
   const name = language === "ru" || language === "bg" ? "Александр Лунин" : "Alexander Lunin";
 
   return (
@@ -164,10 +176,23 @@ const TRADING_LAB_COPY = {
   },
 };
 
+// Other site languages (added 2026-11-22); en / ru / bg live in TRADING_LAB_COPY.
+const TRADING_LAB_COPY_MORE: Record<string, (typeof TRADING_LAB_COPY)["en"]> = {
+  de: { title: "NICS Trading Lab auf YouTube", text: "Trading, technische Analyse und wie wir die App NICS Trading Ecosystem entwickeln, ein Blick hinter die Kulissen.", button: "Kanal ansehen" },
+  es: { title: "NICS Trading Lab en YouTube", text: "Trading, análisis técnico y cómo desarrollamos la app NICS Trading Ecosystem, desde dentro.", button: "Ver el canal" },
+  fr: { title: "NICS Trading Lab sur YouTube", text: "Trading, analyse technique et les coulisses du développement de l'application NICS Trading Ecosystem.", button: "Voir la chaîne" },
+  it: { title: "NICS Trading Lab su YouTube", text: "Trading, analisi tecnica e come sviluppiamo l'app NICS Trading Ecosystem, dall'interno.", button: "Guarda il canale" },
+  pl: { title: "NICS Trading Lab na YouTube", text: "Trading, analiza techniczna i kulisy budowy aplikacji NICS Trading Ecosystem.", button: "Oglądaj kanał" },
+  pt: { title: "NICS Trading Lab no YouTube", text: "Trading, análise técnica e como desenvolvemos o app NICS Trading Ecosystem, por dentro.", button: "Ver o canal" },
+  tr: { title: "YouTube'da NICS Trading Lab", text: "Trading, teknik analiz ve NICS Trading Ecosystem uygulamasını nasıl geliştirdiğimiz, içeriden.", button: "Kanalı izle" },
+  zh: { title: "YouTube 上的 NICS Trading Lab", text: "交易、技术分析，以及我们如何开发 NICS Trading Ecosystem 应用的幕后过程。", button: "观看频道" },
+  ar: { title: "NICS Trading Lab على YouTube", text: "التداول والتحليل الفني وكيف نطوّر تطبيق NICS Trading Ecosystem، من الداخل.", button: "شاهد القناة" },
+};
+
 /** Banner for the project's YouTube channel, shown on /trading. */
 export const TradingLabBanner = () => {
   const { language } = useLanguage();
-  const c = language === "ru" ? TRADING_LAB_COPY.ru : language === "bg" ? TRADING_LAB_COPY.bg : TRADING_LAB_COPY.en;
+  const c = language === "ru" ? TRADING_LAB_COPY.ru : language === "bg" ? TRADING_LAB_COPY.bg : TRADING_LAB_COPY_MORE[language] ?? TRADING_LAB_COPY.en;
   return (
     <section className="pt-4">
       <div className="container mx-auto px-4">

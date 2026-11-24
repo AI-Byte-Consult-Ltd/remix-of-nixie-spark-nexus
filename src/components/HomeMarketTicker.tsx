@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { TrendingUp, TrendingDown, Circle } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { VANTAGE_SITE_URL } from "@/features/nics/externalLinks";
 
 type Quote = {
   symbol: string;
@@ -75,7 +76,7 @@ const HomeMarketTicker = () => {
 
   return (
     <a
-      href="https://fwd.cx/Yj25BCrDzEHB"
+      href={VANTAGE_SITE_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Open Vantage referral"

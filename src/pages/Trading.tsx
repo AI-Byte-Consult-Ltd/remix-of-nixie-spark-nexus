@@ -51,9 +51,10 @@ import {
   Wallet,
   Zap,
 } from "lucide-react";
+import { VANTAGE_SITE_URL } from "@/features/nics/externalLinks";
 
 const TELEGRAM_URL = "https://t.me/TravelTradeBook";
-const VANTAGE_URL = "https://fwd.cx/Yj25BCrDzEHB";
+const VANTAGE_URL = VANTAGE_SITE_URL;
 
 const Trading = () => {
   const { t, language } = useLanguage();
