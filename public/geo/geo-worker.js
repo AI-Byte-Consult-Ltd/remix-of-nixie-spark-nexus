@@ -1,5 +1,5 @@
 /* NICS Vision Geo: runs the model in a background thread so the screen never freezes. */
-importScripts("geo-engine.js?v=1");
+importScripts("geo-engine.js?v=2");
 var model = null;
 self.onmessage = function (e) {
   var d = e.data;
